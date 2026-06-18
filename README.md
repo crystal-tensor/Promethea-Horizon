@@ -258,6 +258,18 @@ factory schedule, no device-calibrated physical validation, no accepted proxy-T
 reduction, and no `gcm_h6` min-row improvement. The counted B7 ledger reduction
 remains 0.
 
+B1/B7 has now returned from the rejected CM-08 cost-model route to a CM-01
+structural obligation gate for `cone_01`. A local-equivalence invariant
+diagnostic uses a magic-basis, determinant-normalized trace fingerprint over
+all 35 candidate windows. The result is useful but still incomplete: 24 windows
+show nonzero local-equivalence invariant sensitivity to `RY(theta)`, and those
+same 24 mismatch the nearest pi/4-grid invariant; 11 windows remain
+invariant-flat under this diagnostic. This blocks a local-only absorption
+interpretation for 24 windows, but it does not clear the B7 requirement of 30
+certified windows. There is still no KAK theorem, no occurrence-removing
+rewrite certificate, no semantic certificate, no accepted physical cost model,
+and no B7 resource-saving claim.
+
 ## Repository Layout
 
 ```text

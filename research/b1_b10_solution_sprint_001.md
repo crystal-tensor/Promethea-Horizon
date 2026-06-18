@@ -898,6 +898,20 @@ unchanged. This is useful negative progress: the next route must either produce
 30 occurrence-removing certificates or supply a genuinely accepted physical
 model before the B7 ledger can count any resource delta.
 
+**Sprint update 18o:** `T-B1-004o` is now merged as a local-equivalence
+invariant obligation gate for `cone_01`. The new artifact
+`research/B1_B7_cone01_local_invariant_obligation_gate.md` computes a
+magic-basis determinant-normalized trace fingerprint for all 35 candidate
+windows. It finds 24 windows with nonzero local-equivalence invariant
+sensitivity to `RY(theta)` and 24 nearest pi/4-grid invariant mismatches,
+leaving 11 invariant-flat windows. This blocks a local-only absorption
+interpretation for 24 windows, but it still does not reach the 30-window B7
+target and does not produce a KAK theorem, rewrite certificate, semantic
+certificate, obstruction theorem, resource saving, or ledger reduction. The
+next route must either certify at least 30 occurrence removals, resolve the 11
+invariant-flat windows with a stronger invariant/synthesis scaffold, or produce
+a genuinely accepted physical cost model.
+
 ## B8: Classical Verification of Quantum Outputs
 
 **Technical target:** keep verifier soundness low under adaptive leakage by

@@ -102,6 +102,14 @@ explicitly and rejects the current shared-theta model. There are still no
 physical factory schedule, no device-calibrated physical validation, and no
 `gcm_h6` min-row improvement.
 Accepted B7 reduction remains 0.
+The local-equivalence invariant obligation gate then returns to the CM-01
+structural route: using a magic-basis determinant-normalized trace fingerprint,
+24 of 35 `cone_01` windows show nonzero local-equivalence invariant sensitivity
+to `RY(theta)` and 24 mismatch the nearest pi/4-grid invariant. Eleven windows
+remain invariant-flat. This blocks a local-only absorption interpretation for
+24 windows, but it does not reach the 30-window B7 target and is not a KAK
+theorem, rewrite certificate, semantic certificate, obstruction theorem, or
+resource-saving claim.
 
 **Remaining path to a serious solution:** connect to calibrated/live-like
 heavy-hex baselines; cover dynamic circuits and reset/measurement semantics;
@@ -109,7 +117,8 @@ turn `cone_01` into a broader replayable semantic rewrite certificate,
 KAK/Clifford scaffold, or scoped obstruction report that explicitly carries,
 shares, or eliminates theta while addressing at least 30 arbitrary rotation
 occurrences / 600
-proxy-T units, or reverse the rejected CM-08 with accepted physical model
+proxy-T units, close the 11 invariant-flat windows with stronger invariant or
+synthesis evidence, or reverse the rejected CM-08 with accepted physical model
 evidence after CM-02/CM-07; broaden benchmarks; package certificates for independent
 reproduction.
 
@@ -589,11 +598,16 @@ shared-object requests. The updated cost-model scaffold now passes CM-02,
 CM-03, CM-04, CM-05, CM-06, and CM-07 and is 6/8 passed, 2/8 failed. The
 refreshed-B7-ledger gate now attempts CM-08 and rejects the current model. It is still not accepted,
 and B7 ledger reduction remains 0.
+The local-equivalence invariant obligation gate now blocks local-only
+absorption for 24 of the 35 `cone_01` windows using a magic-basis
+determinant-normalized trace fingerprint, but 11 windows remain invariant-flat
+and the 30-window B7 threshold remains uncleared.
 
 **Remaining path to a serious solution:** produce a symbolic KAK/Clifford-
 scaffold proof, scoped obstruction, or certified broader `cone_01`
 occurrence-removing rewrite for `gcm_h6` with explicit theta-carrier
-accounting, or reverse the rejected CM-08 with accepted physical model evidence after CM-02/CM-07; strengthen B1 non-Clifford/T-depth
+accounting, close the 11 invariant-flat windows with stronger invariant or
+synthesis evidence, or reverse the rejected CM-08 with accepted physical model evidence after CM-02/CM-07; strengthen B1 non-Clifford/T-depth
 optimization until a certified occurrence-removing rewrite improves minimum
 factory STV;
 separate claims by data-path versus T-factory dominated regimes; include

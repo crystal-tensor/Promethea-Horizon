@@ -547,6 +547,41 @@ current_results:
     validation_error_count: 0
     report: ../results/B1_B7_cone01_parameter_transfer_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_parameter_transfer_gate.md
+  b1_b7_cone01_local_invariant_obligation_gate_v0:
+    circuits: 1
+    status: cone01_local_invariant_obligation_not_rewrite_certificate
+    model_status: local_equivalence_fingerprint_obligation_not_kak_theorem
+    method: b1_b7_cone01_local_invariant_obligation_gate_v0
+    source_qasm: ../results/b1_u3_phase_factored_optimizer/qasmbench_medium_exact/gcm_h6.qasm
+    source_selector: b1_b7_gcm_h6_target_selector_v0
+    source_feasibility_gate: b1_b7_gcm_h6_cone_feasibility_gate_v0
+    source_parameter_transfer_gate: b1_b7_cone01_parameter_transfer_gate_v0
+    workload: qasmbench_medium_exact/gcm_h6.qasm
+    target_cone_id: cone_01
+    candidate_window_count: 35
+    required_exact_windows_for_b7_target: 30
+    target_proxy_t_ledger_reduction_for_gcm_h6_1_20: 600
+    invariant_fingerprint: magic_basis_det_normalized_trace_m_m2
+    local_equivalence_sensitive_count: 24
+    local_equivalence_flat_count: 11
+    nearest_grid_invariant_mismatch_count: 24
+    nearest_grid_invariant_match_count: 11
+    local_only_absorption_blocked_count: 24
+    local_only_absorption_blocked_clears_b7_target: false
+    min_invariant_derivative_norm: 0.0
+    max_invariant_derivative_norm: 2.006347280726594
+    median_invariant_derivative_norm: 0.7128046122151909
+    min_nearest_grid_invariant_distance: 0.0
+    max_nearest_grid_invariant_distance: 0.6976885899513073
+    median_nearest_grid_invariant_distance: 0.13555913939041783
+    rewrite_claimed: false
+    resource_saving_claimed: false
+    semantic_certificate_claimed: false
+    kak_theorem_claimed: false
+    obstruction_theorem_claimed: false
+    validation_error_count: 0
+    report: ../results/B1_B7_cone01_local_invariant_obligation_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_local_invariant_obligation_gate.md
   b1_b7_cone01_theta_sharing_ledger_gate_v0:
     circuits: 1
     status: cone01_theta_sharing_ledger_guardrail
@@ -1040,6 +1075,7 @@ prototype_artifacts:
   b1_b7_cone01_phase_removal_gate: ../tools/b1_b7_cone01_phase_removal_gate.py
   b1_b7_cone01_euler_reabsorption_gate: ../tools/b1_b7_cone01_euler_reabsorption_gate.py
   b1_b7_cone01_parameter_transfer_gate: ../tools/b1_b7_cone01_parameter_transfer_gate.py
+  b1_b7_cone01_local_invariant_obligation_gate: ../tools/b1_b7_cone01_local_invariant_obligation_gate.py
   b1_b7_cone01_theta_sharing_ledger_gate: ../tools/b1_b7_cone01_theta_sharing_ledger_gate.py
   b1_b7_cone01_shared_theta_synthesis_object_gate: ../tools/b1_b7_cone01_shared_theta_synthesis_object_gate.py
   b1_b7_cone01_shared_theta_replay_verifier_gate: ../tools/b1_b7_cone01_shared_theta_replay_verifier_gate.py

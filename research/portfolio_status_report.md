@@ -302,6 +302,20 @@ Overall audit: PASS
 - Rewrite/resource/semantic/obstruction claims: False / False / False / False
 - Validation errors: 0
 
+## B1/B7 cone_01 Local-Invariant Obligation Gate
+
+- Exists: True
+- Status: cone01_local_invariant_obligation_not_rewrite_certificate
+- Target cone / candidate windows / required windows: cone_01 / 35 / 30
+- Fingerprint: magic_basis_det_normalized_trace_m_m2
+- Local-equivalence sensitive / flat windows: 24 / 11
+- Nearest-grid invariant mismatch / match windows: 24 / 11
+- Local-only absorption blocked / clears B7 target: 24 / False
+- Invariant derivative min / median / max: 0.0 / 0.7128046122151909 / 2.006347280726594
+- Nearest-grid invariant distance min / median / max: 0.0 / 0.13555913939041783 / 0.6976885899513073
+- Rewrite/resource/semantic/KAK/obstruction claims: False / False / False / False / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Theta-Sharing Ledger Gate
 
 - Exists: True

@@ -141,6 +141,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_phase_removal_path = results / "B1_B7_cone01_phase_removal_gate_v0.json"
     b1_b7_cone01_euler_reabsorption_path = results / "B1_B7_cone01_euler_reabsorption_gate_v0.json"
     b1_b7_cone01_parameter_transfer_path = results / "B1_B7_cone01_parameter_transfer_gate_v0.json"
+    b1_b7_cone01_local_invariant_obligation_path = (
+        results / "B1_B7_cone01_local_invariant_obligation_gate_v0.json"
+    )
     b1_b7_cone01_theta_sharing_path = results / "B1_B7_cone01_theta_sharing_ledger_gate_v0.json"
     b1_b7_cone01_shared_theta_synthesis_object_path = (
         results / "B1_B7_cone01_shared_theta_synthesis_object_gate_v0.json"
@@ -637,6 +640,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_parameter_transfer_manifest = current_results.get(
         "b1_b7_cone01_parameter_transfer_gate_v0"
+    )
+    b1_b7_cone01_local_invariant_obligation_manifest = current_results.get(
+        "b1_b7_cone01_local_invariant_obligation_gate_v0"
     )
     b1_b7_cone01_theta_sharing_manifest = current_results.get(
         "b1_b7_cone01_theta_sharing_ledger_gate_v0"
@@ -1677,6 +1683,136 @@ def audit(root: Path) -> dict:
     else:
         errors.append(
             f"missing B1/B7 cone_01 parameter-transfer gate report: {b1_b7_cone01_parameter_transfer_path}"
+        )
+
+    b1_b7_cone01_local_invariant_obligation = {
+        "path": str(b1_b7_cone01_local_invariant_obligation_path),
+        "exists": b1_b7_cone01_local_invariant_obligation_path.exists(),
+    }
+    if not b1_b7_cone01_local_invariant_obligation_manifest:
+        errors.append("B1 manifest missing current result: b1_b7_cone01_local_invariant_obligation_gate_v0")
+    else:
+        if (
+            b1_b7_cone01_local_invariant_obligation_manifest.get("status")
+            != "cone01_local_invariant_obligation_not_rewrite_certificate"
+        ):
+            errors.append("B1/B7 cone_01 local-invariant gate must remain an obligation diagnostic")
+        for field in ["report", "markdown_report", "source_qasm"]:
+            value = b1_b7_cone01_local_invariant_obligation_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(f"B1/B7 cone_01 local-invariant gate missing existing {field} path: {value}")
+    if b1_b7_cone01_local_invariant_obligation_path.exists():
+        invariant_payload = json.loads(read(b1_b7_cone01_local_invariant_obligation_path))
+        invariant_summary = invariant_payload.get("summary", {})
+        invariant_claims = invariant_payload.get("claim_boundary", {})
+        b1_b7_cone01_local_invariant_obligation.update(
+            {
+                "status": invariant_payload.get("status"),
+                "model_status": invariant_payload.get("model_status"),
+                "method": invariant_payload.get("method"),
+                "workload": invariant_payload.get("workload"),
+                "target_cone_id": invariant_summary.get("target_cone_id"),
+                "candidate_window_count": invariant_summary.get("candidate_window_count"),
+                "required_exact_windows_for_b7_target": invariant_summary.get(
+                    "required_exact_windows_for_b7_target"
+                ),
+                "target_proxy_t_ledger_reduction_for_gcm_h6_1_20": invariant_summary.get(
+                    "target_proxy_t_ledger_reduction_for_gcm_h6_1_20"
+                ),
+                "invariant_fingerprint": invariant_summary.get("invariant_fingerprint"),
+                "local_equivalence_sensitive_count": invariant_summary.get(
+                    "local_equivalence_sensitive_count"
+                ),
+                "local_equivalence_flat_count": invariant_summary.get("local_equivalence_flat_count"),
+                "nearest_grid_invariant_mismatch_count": invariant_summary.get(
+                    "nearest_grid_invariant_mismatch_count"
+                ),
+                "nearest_grid_invariant_match_count": invariant_summary.get(
+                    "nearest_grid_invariant_match_count"
+                ),
+                "local_only_absorption_blocked_count": invariant_summary.get(
+                    "local_only_absorption_blocked_count"
+                ),
+                "local_only_absorption_blocked_clears_b7_target": invariant_summary.get(
+                    "local_only_absorption_blocked_clears_b7_target"
+                ),
+                "min_invariant_derivative_norm": invariant_summary.get("min_invariant_derivative_norm"),
+                "max_invariant_derivative_norm": invariant_summary.get("max_invariant_derivative_norm"),
+                "median_invariant_derivative_norm": invariant_summary.get("median_invariant_derivative_norm"),
+                "min_nearest_grid_invariant_distance": invariant_summary.get(
+                    "min_nearest_grid_invariant_distance"
+                ),
+                "max_nearest_grid_invariant_distance": invariant_summary.get(
+                    "max_nearest_grid_invariant_distance"
+                ),
+                "median_nearest_grid_invariant_distance": invariant_summary.get(
+                    "median_nearest_grid_invariant_distance"
+                ),
+                "rewrite_claimed": invariant_claims.get("rewrite_claimed"),
+                "resource_saving_claimed": invariant_claims.get("resource_saving_claimed"),
+                "semantic_certificate_claimed": invariant_claims.get("semantic_certificate_claimed"),
+                "kak_theorem_claimed": invariant_claims.get("kak_theorem_claimed"),
+                "obstruction_theorem_claimed": invariant_claims.get("obstruction_theorem_claimed"),
+                "validation_error_count": invariant_summary.get("validation_error_count"),
+            }
+        )
+        if invariant_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 local-invariant gate report must have benchmark_id B1")
+        if invariant_payload.get("method") != "b1_b7_cone01_local_invariant_obligation_gate_v0":
+            errors.append("B1/B7 cone_01 local-invariant gate method mismatch")
+        if invariant_payload.get("status") != "cone01_local_invariant_obligation_not_rewrite_certificate":
+            errors.append("B1/B7 cone_01 local-invariant gate status mismatch")
+        if invariant_payload.get("model_status") != "local_equivalence_fingerprint_obligation_not_kak_theorem":
+            errors.append("B1/B7 cone_01 local-invariant gate model_status mismatch")
+        for field in [
+            "target_cone_id",
+            "candidate_window_count",
+            "required_exact_windows_for_b7_target",
+            "target_proxy_t_ledger_reduction_for_gcm_h6_1_20",
+            "invariant_fingerprint",
+            "local_equivalence_sensitive_count",
+            "local_equivalence_flat_count",
+            "nearest_grid_invariant_mismatch_count",
+            "nearest_grid_invariant_match_count",
+            "local_only_absorption_blocked_count",
+            "local_only_absorption_blocked_clears_b7_target",
+            "min_invariant_derivative_norm",
+            "max_invariant_derivative_norm",
+            "median_invariant_derivative_norm",
+            "min_nearest_grid_invariant_distance",
+            "max_nearest_grid_invariant_distance",
+            "median_nearest_grid_invariant_distance",
+            "rewrite_claimed",
+            "resource_saving_claimed",
+            "semantic_certificate_claimed",
+            "kak_theorem_claimed",
+            "obstruction_theorem_claimed",
+        ]:
+            if invariant_summary.get(field) != b1_b7_cone01_local_invariant_obligation_manifest.get(field):
+                errors.append(f"B1/B7 cone_01 local-invariant gate {field} mismatch")
+        if invariant_summary.get("candidate_window_count") != 35:
+            errors.append("B1/B7 cone_01 local-invariant gate must inspect 35 windows")
+        if invariant_summary.get("local_equivalence_sensitive_count") != 24:
+            errors.append("B1/B7 cone_01 local-invariant gate should find 24 sensitive windows")
+        if invariant_summary.get("local_equivalence_flat_count") != 11:
+            errors.append("B1/B7 cone_01 local-invariant gate should leave 11 invariant-flat windows")
+        if invariant_summary.get("local_only_absorption_blocked_clears_b7_target") is not False:
+            errors.append("B1/B7 cone_01 local-invariant blocking must not clear the B7 target")
+        for field in [
+            "rewrite_claimed",
+            "resource_saving_claimed",
+            "semantic_certificate_claimed",
+            "kak_theorem_claimed",
+            "obstruction_theorem_claimed",
+        ]:
+            if invariant_claims.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 local-invariant gate must not claim {field}")
+        if invariant_summary.get("validation_error_count") != 0:
+            errors.append("B1/B7 cone_01 local-invariant gate validation errors must remain zero")
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 local-invariant gate report: "
+            f"{b1_b7_cone01_local_invariant_obligation_path}"
         )
 
     b1_b7_cone01_theta_sharing = {
@@ -11355,6 +11491,7 @@ def audit(root: Path) -> dict:
             "b7_cone01_phase_removal_gate": b1_b7_cone01_phase_removal,
             "b7_cone01_euler_reabsorption_gate": b1_b7_cone01_euler_reabsorption,
             "b7_cone01_parameter_transfer_gate": b1_b7_cone01_parameter_transfer,
+            "b7_cone01_local_invariant_obligation_gate": b1_b7_cone01_local_invariant_obligation,
             "b7_cone01_theta_sharing_ledger_gate": b1_b7_cone01_theta_sharing,
             "b7_cone01_shared_theta_synthesis_object_gate": b1_b7_cone01_shared_theta_synthesis_object,
             "b7_cone01_shared_theta_replay_verifier_gate": b1_b7_cone01_shared_theta_replay_verifier,
@@ -11533,6 +11670,9 @@ def audit(root: Path) -> dict:
             "b1_b7_cone01_phase_removal_gate": str(b1_b7_cone01_phase_removal_path),
             "b1_b7_cone01_euler_reabsorption_gate": str(b1_b7_cone01_euler_reabsorption_path),
             "b1_b7_cone01_parameter_transfer_gate": str(b1_b7_cone01_parameter_transfer_path),
+            "b1_b7_cone01_local_invariant_obligation_gate": str(
+                b1_b7_cone01_local_invariant_obligation_path
+            ),
             "b1_b7_cone01_theta_sharing_ledger_gate": str(b1_b7_cone01_theta_sharing_path),
             "b1_b7_cone01_shared_theta_synthesis_object_gate": str(
                 b1_b7_cone01_shared_theta_synthesis_object_path
@@ -12059,6 +12199,20 @@ def markdown_report(report: dict) -> str:
             f"- Deletion without parameter carrier clears B7 target: {report['b1']['b7_cone01_parameter_transfer_gate'].get('deletion_without_parameter_carrier_clears_b7_target')}",
             f"- Rewrite/resource/semantic/obstruction claims: {report['b1']['b7_cone01_parameter_transfer_gate'].get('rewrite_claimed')} / {report['b1']['b7_cone01_parameter_transfer_gate'].get('resource_saving_claimed')} / {report['b1']['b7_cone01_parameter_transfer_gate'].get('semantic_certificate_claimed')} / {report['b1']['b7_cone01_parameter_transfer_gate'].get('obstruction_theorem_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_parameter_transfer_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 Local-Invariant Obligation Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('status')}",
+            f"- Target cone / candidate windows / required windows: {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('target_cone_id')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('candidate_window_count')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('required_exact_windows_for_b7_target')}",
+            f"- Fingerprint: {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('invariant_fingerprint')}",
+            f"- Local-equivalence sensitive / flat windows: {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('local_equivalence_sensitive_count')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('local_equivalence_flat_count')}",
+            f"- Nearest-grid invariant mismatch / match windows: {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('nearest_grid_invariant_mismatch_count')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('nearest_grid_invariant_match_count')}",
+            f"- Local-only absorption blocked / clears B7 target: {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('local_only_absorption_blocked_count')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('local_only_absorption_blocked_clears_b7_target')}",
+            f"- Invariant derivative min / median / max: {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('min_invariant_derivative_norm')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('median_invariant_derivative_norm')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('max_invariant_derivative_norm')}",
+            f"- Nearest-grid invariant distance min / median / max: {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('min_nearest_grid_invariant_distance')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('median_nearest_grid_invariant_distance')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('max_nearest_grid_invariant_distance')}",
+            f"- Rewrite/resource/semantic/KAK/obstruction claims: {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('rewrite_claimed')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('resource_saving_claimed')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('semantic_certificate_claimed')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('kak_theorem_claimed')} / {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('obstruction_theorem_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_local_invariant_obligation_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Theta-Sharing Ledger Gate",
             "",
