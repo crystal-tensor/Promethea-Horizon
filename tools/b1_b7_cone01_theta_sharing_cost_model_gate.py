@@ -19,7 +19,7 @@ from typing import Any
 
 METHOD = "b1_b7_cone01_theta_sharing_cost_model_gate_v0"
 STATUS = "cone01_theta_sharing_cost_model_not_accepted"
-MODEL_STATUS = "physical_theta_sharing_cost_model_requirements_layout_scaffolded"
+MODEL_STATUS = "physical_theta_sharing_cost_model_requirements_factory_scaffolded"
 VERSION = "0.1"
 
 
@@ -51,6 +51,7 @@ def build_requirement_rows(
     shared_summary: dict[str, Any] | None,
     replay_summary: dict[str, Any] | None,
     layout_summary: dict[str, Any] | None,
+    factory_summary: dict[str, Any] | None,
 ) -> list[dict[str, Any]]:
     """Return current acceptance gates for a physical theta-sharing model."""
     shared_object_count = 0
@@ -59,6 +60,8 @@ def build_requirement_rows(
     replay_gate_passed = False
     layout_routed_object_count = 0
     layout_gate_passed = False
+    factory_gross_proxy_t_delta = 0
+    factory_gate_passed = False
     if shared_summary:
         shared_object_count = int(shared_summary["shared_synthesis_object_count"])
         shared_object_gate_passed = (
@@ -84,6 +87,18 @@ def build_requirement_rows(
             and layout_summary["physical_layout_claimed"] is False
             and layout_summary["factory_amortization_model_present"] is False
             and int(layout_summary["occurrence_ledger_removed_occurrences"]) == 0
+        )
+    if factory_summary:
+        factory_gross_proxy_t_delta = int(factory_summary["gross_proxy_t_pressure_delta"])
+        factory_gate_passed = (
+            factory_summary["factory_amortization_gate_passed"] is True
+            and int(factory_summary["baseline_factory_compilation_count"]) == int(theta_summary["candidate_window_count"])
+            and int(factory_summary["shared_object_factory_compilation_count"]) == int(theta_summary["distinct_theta_group_count"])
+            and int(factory_summary["gross_proxy_t_pressure_delta"])
+            == int(theta_summary["optimistic_cache_proxy_t_reuse"])
+            and factory_summary["physical_factory_schedule_present"] is False
+            and factory_summary["shared_error_budget_present"] is False
+            and int(factory_summary["occurrence_ledger_removed_occurrences"]) == 0
         )
     return [
         {
@@ -136,10 +151,16 @@ def build_requirement_rows(
         {
             "gate_id": "CM-05",
             "requirement": "A factory-amortization model proving lower T-factory pressure under the shared object.",
-            "current_evidence": False,
+            "current_evidence": factory_gross_proxy_t_delta,
             "required_evidence": True,
-            "passed": False,
-            "failure_reason": "No factory-throughput or amortization ledger is supplied.",
+            "passed": factory_gate_passed,
+            "failure_reason": (
+                "A factory-amortization scaffold now shows 35 per-occurrence synthesis requests "
+                "collapsing to 4 shared-object synthesis requests with 620 gross proxy-T pressure "
+                "delta, but it is not a physical factory schedule or B7 acceptance by itself."
+                if factory_gate_passed
+                else "No factory-throughput or amortization ledger is supplied."
+            ),
         },
         {
             "gate_id": "CM-06",
@@ -173,11 +194,13 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
     shared_object_gate = read_json(args.shared_object_gate) if args.shared_object_gate.exists() else None
     replay_gate = read_json(args.replay_verifier_gate) if args.replay_verifier_gate.exists() else None
     layout_gate = read_json(args.layout_routing_gate) if args.layout_routing_gate.exists() else None
+    factory_gate = read_json(args.factory_amortization_gate) if args.factory_amortization_gate.exists() else None
     theta_summary = theta_gate["summary"]
     shared_summary = shared_object_gate["summary"] if shared_object_gate else None
     replay_summary = replay_gate["summary"] if replay_gate else None
     layout_summary = layout_gate["summary"] if layout_gate else None
-    rows = build_requirement_rows(theta_summary, shared_summary, replay_summary, layout_summary)
+    factory_summary = factory_gate["summary"] if factory_gate else None
+    rows = build_requirement_rows(theta_summary, shared_summary, replay_summary, layout_summary, factory_summary)
     passed_count = sum(1 for row in rows if row["passed"])
     failed_count = len(rows) - passed_count
     optimistic_cache_signal_present = (
@@ -205,6 +228,9 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
         ),
         "source_shared_theta_layout_routing_gate": (
             display_path(args.layout_routing_gate) if layout_gate else None
+        ),
+        "source_shared_theta_factory_amortization_gate": (
+            display_path(args.factory_amortization_gate) if factory_gate else None
         ),
         "workload": "qasmbench_medium_exact/gcm_h6.qasm",
         "summary": {
@@ -247,6 +273,18 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
             "shared_theta_layout_max_logical_hop_count": (
                 int(layout_summary["max_logical_hop_count"]) if layout_summary else 0
             ),
+            "shared_theta_factory_amortization_gate_passed": (
+                bool(factory_summary["factory_amortization_gate_passed"]) if factory_summary else False
+            ),
+            "shared_theta_factory_baseline_compilation_count": (
+                int(factory_summary["baseline_factory_compilation_count"]) if factory_summary else 0
+            ),
+            "shared_theta_factory_shared_object_compilation_count": (
+                int(factory_summary["shared_object_factory_compilation_count"]) if factory_summary else 0
+            ),
+            "shared_theta_factory_gross_proxy_t_delta": (
+                int(factory_summary["gross_proxy_t_pressure_delta"]) if factory_summary else 0
+            ),
             "cost_model_acceptance_gate_count": len(rows),
             "cost_model_acceptance_pass_count": passed_count,
             "cost_model_acceptance_fail_count": failed_count,
@@ -276,20 +314,22 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
                 "A shared-theta synthesis object proposal now exists for all cone_01 windows, "
                 "a line-level replay verifier covers the shared objects, and a logical "
                 "layout/routing scaffold assigns anchors and route packets for the shared "
-                "objects, but the physical theta-sharing cost model is still not acceptable "
-                "under the current evidence; the optimistic 620 proxy-T cache signal remains "
-                "unaccepted."
+                "objects. A factory-amortization scaffold accounts for the 35-to-4 "
+                "compilation-pressure change, but the physical theta-sharing cost model is "
+                "still not acceptable under the current evidence; the optimistic 620 proxy-T "
+                "cache signal remains unaccepted."
             ),
             "unsupported_claims": [
                 "No occurrence-removing semantic certificates are produced.",
                 "The replay verifier is not a semantic rewrite certificate.",
                 "The logical layout scaffold is not a physical device layout.",
-                "No factory or error-budget ledger accepts theta sharing.",
+                "No shared-error budget ledger accepts theta sharing.",
+                "No independent physical baseline validates the amortization model.",
                 "No B7 min-row resource improvement is counted.",
             ],
             "next_gate": (
                 "A future PR must produce 30 occurrence-removing certificates, or satisfy "
-                "CM-05 through CM-08 after the existing CM-02/CM-03/CM-04 scaffold, before "
+                "CM-06 through CM-08 after the existing CM-02/CM-03/CM-04/CM-05 scaffold, before "
                 "any B7 resource delta can be counted."
             ),
         },
@@ -340,18 +380,26 @@ def validate(payload: dict[str, Any]) -> list[str]:
         errors.append("expected 4 layout-routed shared theta objects")
     if summary["shared_theta_layout_routed_occurrence_count"] != 35:
         errors.append("expected 35 layout-routed shared theta occurrences")
-    if summary["cost_model_acceptance_pass_count"] != 3:
-        errors.append("current cost-model acceptance passes must be 3")
-    if summary["cost_model_acceptance_fail_count"] != 5:
-        errors.append("current cost-model acceptance failures must be 5")
+    if summary["shared_theta_factory_amortization_gate_passed"] is not True:
+        errors.append("shared theta factory amortization gate should now pass")
+    if summary["shared_theta_factory_baseline_compilation_count"] != 35:
+        errors.append("expected 35 baseline factory compilation requests")
+    if summary["shared_theta_factory_shared_object_compilation_count"] != 4:
+        errors.append("expected 4 shared-object factory compilation requests")
+    if summary["shared_theta_factory_gross_proxy_t_delta"] != 620:
+        errors.append("expected 620 gross proxy-T factory pressure delta")
+    if summary["cost_model_acceptance_pass_count"] != 4:
+        errors.append("current cost-model acceptance passes must be 4")
+    if summary["cost_model_acceptance_fail_count"] != 4:
+        errors.append("current cost-model acceptance failures must be 4")
     if summary["cost_model_accepted"] is not False:
         errors.append("cost model must not be accepted")
     if summary["b7_ledger_proxy_t_reduction_after_cost_model"] != 0:
         errors.append("B7 ledger reduction after unaccepted cost model must be 0")
     for row in payload["cost_model_acceptance_gates"]:
-        if row.get("gate_id") in {"CM-02", "CM-03", "CM-04"}:
+        if row.get("gate_id") in {"CM-02", "CM-03", "CM-04", "CM-05"}:
             if row.get("passed") is not True:
-                errors.append(f"{row.get('gate_id')} should pass after shared object/replay/layout gates")
+                errors.append(f"{row.get('gate_id')} should pass after shared object/replay/layout/factory gates")
         elif row.get("passed") is not False:
             errors.append(f"{row.get('gate_id')} must not pass under current evidence")
     for field in [
@@ -379,10 +427,10 @@ def markdown(payload: dict[str, Any]) -> str:
         "can already be promoted into a physical B7 cost model. The answer is no. "
         "A shared synthesis object proposal now exists for the four theta groups, "
         "a line-level replay verifier covers the shared objects, and a logical "
-        "layout/routing scaffold assigns anchors and route packets. The current "
+        "layout/routing scaffold assigns anchors and route packets. A factory-amortization "
+        "scaffold now accounts for the 35-to-4 compilation-pressure change. The current "
         "evidence still lacks occurrence-removing certificates, physical device "
-        "layout, factory amortization, error budget, independent baseline, and "
-        "refreshed B7 ledger.",
+        "layout, shared-error budget, independent baseline, and refreshed B7 ledger.",
         "",
         "It is not a rewrite certificate, not a resource-saving claim, and not a "
         "physical cost-model acceptance.",
@@ -403,6 +451,9 @@ def markdown(payload: dict[str, Any]) -> str:
         f"- Layout-routed shared objects: `{summary['shared_theta_layout_routed_object_count']}`",
         f"- Layout-routed occurrences: `{summary['shared_theta_layout_routed_occurrence_count']}`",
         f"- Layout total / max logical hops: `{summary['shared_theta_layout_total_logical_hop_count']}` / `{summary['shared_theta_layout_max_logical_hop_count']}`",
+        f"- Factory-amortization gate passed: `{summary['shared_theta_factory_amortization_gate_passed']}`",
+        f"- Factory baseline/shared-object compilation counts: `{summary['shared_theta_factory_baseline_compilation_count']}` / `{summary['shared_theta_factory_shared_object_compilation_count']}`",
+        f"- Factory gross proxy-T delta: `{summary['shared_theta_factory_gross_proxy_t_delta']}`",
         f"- Acceptance gates passed / total: `{summary['cost_model_acceptance_pass_count']}` / `{summary['cost_model_acceptance_gate_count']}`",
         f"- Cost model accepted: `{summary['cost_model_accepted']}`",
         f"- B7 ledger proxy-T reduction after cost model: `{summary['b7_ledger_proxy_t_reduction_after_cost_model']}`",
@@ -427,9 +478,9 @@ def markdown(payload: dict[str, Any]) -> str:
             "",
             "The repeated-theta structure is valuable because it identifies where a "
             "future physical-sharing proposal would have leverage. The shared object "
-            "proposal, replay verifier, and logical layout/routing scaffold close three "
-            "bookkeeping gaps, but they are not enough by themselves. A future PR must "
-            "satisfy the remaining gates, or "
+            "proposal, replay verifier, logical layout/routing scaffold, and factory "
+            "amortization scaffold close four bookkeeping gaps, but they are not enough "
+            "by themselves. A future PR must satisfy the remaining gates, or "
             "bypass the cost-model route by producing 30 occurrence-removing certificates.",
             "",
         ]
@@ -464,6 +515,11 @@ def main() -> None:
         "--layout-routing-gate",
         type=Path,
         default=root / "results" / "B1_B7_cone01_shared_theta_layout_routing_gate_v0.json",
+    )
+    parser.add_argument(
+        "--factory-amortization-gate",
+        type=Path,
+        default=root / "results" / "B1_B7_cone01_shared_theta_factory_amortization_gate_v0.json",
     )
     parser.add_argument(
         "--markdown-output",

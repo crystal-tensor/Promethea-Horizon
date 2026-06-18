@@ -815,8 +815,9 @@ there was no shared synthesis object, replay verifier, layout/routing model,
 factory-amortization ledger, shared-error budget, independent baseline, or
 refreshed B7 ledger. The follow-up `T-B1-004h` now supplies the shared object
 proposal, `T-B1-004i` adds a line-level replay verifier, and `T-B1-004j` adds a
-logical layout/routing scaffold. The scaffold is now 3/8 gates passed. The cost
-model is still not accepted and B7 ledger reduction remains 0.
+logical layout/routing scaffold. `T-B1-004k` now adds a factory-amortization
+scaffold, so the scaffold is now 4/8 gates passed. The cost model is still not
+accepted and B7 ledger reduction remains 0.
 
 **Sprint update 18i:** `T-B1-004h` is now merged as a shared-theta synthesis object
 proposal gate. The new artifact `research/B1_B7_cone01_shared_theta_synthesis_object_gate.md`
@@ -827,10 +828,12 @@ verifier scaffold: 4/4 shared objects and 35/35 occurrences replay cleanly
 against source QASM and parameter-transfer theta groups with 0 mismatches. The
 follow-up `T-B1-004j` is now merged as a logical layout/routing scaffold: all 4
 objects and all 35 occurrences receive anchor/route packets, with total/max
-logical hops 139/11. The updated cost model is 3/8 passed, 5/8 failed; it still
-has no physical device layout, factory amortization, error budget, independent
-baseline, refreshed B7 ledger, or occurrence-removing certificates. The cost
-model remains unaccepted and B7 ledger reduction remains 0.
+logical hops 139/11. `T-B1-004k` adds a factory-amortization scaffold that
+collapses 35 baseline synthesis requests to 4 shared-object requests. The
+updated cost model is 4/8 passed, 4/8 failed; it still has no physical device
+layout, physical factory schedule, shared-error budget, independent baseline,
+refreshed B7 ledger, or occurrence-removing certificates. The cost model remains
+unaccepted and B7 ledger reduction remains 0.
 
 **Sprint update 18j:** `T-B1-004j` is now merged as a shared-theta logical
 layout/routing scaffold. The new artifact
@@ -840,6 +843,18 @@ occurrence route packets. This satisfies CM-04 as logical route scaffolding only
 it is not a physical device layout, not a factory-amortization model, not a
 semantic rewrite certificate, and not a B7 resource claim. The cost-model gate is
 now 3/8 passed and 5/8 failed, with counted B7 ledger reduction still 0.
+
+**Sprint update 18k:** `T-B1-004k` is now merged as a shared-theta
+factory-amortization scaffold. The new artifact
+`research/B1_B7_cone01_shared_theta_factory_amortization_gate.md` consumes the
+shared-object, replay, and logical-routing evidence and accounts for 35 baseline
+per-occurrence synthesis requests collapsing to 4 shared-object synthesis
+requests. It records 31 amortized saved compiles, baseline/shared proxy-T
+pressure 700/80, and a gross 620 proxy-T pressure delta. This satisfies CM-05 as
+a scaffold only. It is not a physical factory schedule, not a shared-error
+budget, not an independent baseline, not a refreshed B7 ledger, and not a
+resource claim. The cost-model gate is now 4/8 passed and 4/8 failed, with
+counted B7 ledger reduction still 0.
 
 ## B8: Classical Verification of Quantum Outputs
 

@@ -240,11 +240,14 @@ explicit. A shared-theta synthesis object proposal gate defines 4 machine-readab
 objects covering all 35 candidate windows, a replay-verifier gate checks 4/4
 objects plus 35/35 occurrences against source QASM and parameter-transfer groups
 with 0 mismatches, and a logical layout/routing scaffold assigns anchor qubits
-and route packets for all 35 occurrences. The cost-model scaffold has moved from
-0/8 to 3/8 acceptance gates by passing CM-02 object existence, CM-03 replay, and
-CM-04 logical layout/routing. The model is still not accepted: there are no 30
-occurrence-removing certificates, no physical device layout, no factory-amortization
-ledger, no shared-error budget, no independent baseline, and no refreshed B7
+and route packets for all 35 occurrences. A factory-amortization scaffold then
+accounts for the 35 per-occurrence synthesis requests collapsing to 4 shared-object
+requests, with 31 amortized saved compiles and a gross 620 proxy-T pressure delta.
+The cost-model scaffold has moved from 0/8 to 4/8 acceptance gates by passing
+CM-02 object existence, CM-03 replay, CM-04 logical layout/routing, and CM-05
+factory amortization. The model is still not accepted: there are no 30
+occurrence-removing certificates, no physical device layout, no physical factory
+schedule, no shared-error budget, no independent baseline, and no refreshed B7
 ledger. The counted B7 ledger reduction remains 0.
 
 ## Repository Layout
