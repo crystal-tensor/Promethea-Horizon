@@ -355,6 +355,34 @@ current_results:
     caveat: false_positive_stim_stress_not_shot_conditioned_decoder_or_calibrated_leakage_model
     result: ../results/B2_heralded_erasure_false_positive_stress_v0.json
     markdown_report: ../research/B2_heralded_erasure_false_positive_stress.md
+  shot_conditioned_erasure_decoder_boundary_v0:
+    status: shot_conditioned_calibrated_leakage_boundary_partial_survival_not_threshold
+    method: b2_shot_conditioned_erasure_decoder_boundary_v0
+    source: heralded_erasure_false_positive_stress_v0
+    model_status: posterior_calibrated_flag_model_not_hardware_calibrated_decoder
+    toolchain: posterior flag calibration over B2 false-positive Stim/PyMatching target comparisons
+    source_target_comparisons: 288
+    source_positive_fp_d5_d7_improved_rows: 5
+    calibration_profile_count: 4
+    evaluated_profile_rows: 1152
+    profiles_with_surviving_rows: 3
+    max_surviving_d5_d7_improved_rows_in_profile: 4
+    strict_high_purity_surviving_rows: 0
+    robust_all_profile_survival: false
+    reduced_rounds_used: false
+    distance_3_candidate_used: false
+    new_code_claimed: false
+    threshold_claimed: false
+    calibrated_device_claimed: false
+    full_physical_leakage_decoder_claimed: false
+    production_decoder_claimed: false
+    shot_conditioned_calibration_model_performed: true
+    shot_conditioned_erasure_decoder_claimed: false
+    hardware_result_claimed: false
+    interpretation: calibrated_flag_posterior_model_preserves_some_but_not_all_positive_fp_d5_d7_rows
+    caveat: posterior_calibration_boundary_not_production_decoder_threshold_or_hardware_calibration
+    result: ../results/B2_shot_conditioned_erasure_decoder_boundary_v0.json
+    markdown_report: ../research/B2_shot_conditioned_erasure_decoder_boundary.md
 prototype_artifacts:
   baseline_runner: ../tools/b2_repetition_code_baseline.py
   target_volume_estimator: ../tools/b2_target_volume.py
@@ -368,4 +396,5 @@ prototype_artifacts:
   same_hardware_schedule_robustness: ../tools/b2_same_hardware_schedule_robustness.py
   reduced_round_artifact_boundary: ../tools/b2_reduced_round_artifact_boundary.py
   heralded_erasure_false_positive_stress: ../tools/b2_heralded_erasure_false_positive_stress.py
+  shot_conditioned_erasure_decoder_boundary: ../tools/b2_shot_conditioned_erasure_decoder_boundary.py
   prototype_notes: ../research/B2_prototype_notes.md

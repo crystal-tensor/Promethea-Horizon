@@ -128,16 +128,21 @@ stress: 270 configurations, 324,000 shots, 288 target comparisons, 13 improved
 rows total, 5 positive-false-positive d=5/d=7 improved rows at fp=0.001/tick,
 and 0 improved rows by fp=0.003/tick. It explicitly does not claim
 shot-conditioned erasure decoding, calibrated leakage, a threshold, hardware
-evidence, or a new code.
+evidence, or a new code. T-B2-006 now adds a posterior-calibrated
+shot-conditioned leakage boundary over the same 288 target comparisons: 4
+calibration profiles, 1,152 evaluated profile rows, 3 profiles with surviving
+rows, max 4 surviving d=5/d=7 rows in one profile, strict high-purity survival
+0, and robust all-profile survival false. It performs calibration modeling but
+still does not claim a production decoder, hardware-calibrated leakage model,
+threshold, hardware result, or new code.
 
-**Remaining path to a serious solution:** implement a real shot-conditioned
-erasure decoder or calibrated leakage model; stress the surviving d=5/d=7 rows
-under calibrated flag false-positive rates beyond the observed fp=0.001/tick
-survival boundary; measure decoder/runtime overhead at larger distances and
-more shots; connect only shot-conditioned or calibrated non-artifact B2 rows
-into the B7 resource ledger.
+**Remaining path to a serious solution:** integrate posterior flag probabilities
+into an actual circuit-level decoder; collect or emulate calibrated leakage/flag
+data with realistic false-positive and false-negative rates; stress surviving
+d=5/d=7 rows under strict posterior, missed-leakage, noise-mismatch, and larger
+shot gates; connect only robust non-artifact B2 rows into the B7 resource ledger.
 
-**Current internal maturity:** 41/100.
+**Current internal maturity:** 42/100.
 
 ## B3: Quantum Algorithms for Molecular Reaction Dynamics
 

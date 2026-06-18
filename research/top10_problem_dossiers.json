@@ -59,14 +59,15 @@
         "learned decoders"
       ],
       "our_solution": "Use Wilson-bounded target-volume baselines and force every candidate code, schedule, decoder, or leakage-mitigation mechanism to beat the same denominator. Reduced-round signals are now explicitly boundary-checked; the active new route is leakage-flagged erasure information that may lower required distance without reducing syndrome rounds.",
-      "completed": "Stim/PyMatching rotated surface-code baseline with 30 configurations, 90,000 shots, distances 3/5/7, X/Z bases; target-volume table with 22 met and 18 unmet combinations; biased schedule proxy and real circuit-level sweep improved target-hit counts but not volume; same-hardware reduced-round candidate and robustness stress were closed by T-B2-002 as aggressive distance-3 one-round artifacts. T-B2-003 added a non-aggressive leakage-flagged erasure analytic boundary with 42 proxy target-volume improved rows and 33 distance-5/7 rows. T-B2-004 now adds a Stim HERALDED_ERASE / DEPOLARIZE1 circuit-derived stress: 108 configurations, 216,000 shots, 72 target comparisons, 59 candidate-met rows vs 53 baseline-met rows, 7 candidate-only target hits, 10 improved target-volume rows, all 10 with candidate distance 5 or 7, max reduction 4.598x, mean reduction 2.623x, validation errors 0, no reduced rounds, no d=3 candidates, and no new-code, threshold, calibrated-device, full physical leakage-decoder, or shot-conditioned erasure-decoder claim. T-B2-005 adds a heralded-erasure false-positive overhead stress: 270 configurations, 324,000 shots, 288 target comparisons, 13 improved rows total, 5 positive-false-positive d=5/d=7 improved rows at fp=0.001/tick, and 0 improved rows by fp=0.003/tick. It explicitly does not claim shot-conditioned erasure decoding, calibrated leakage, a threshold, hardware evidence, or a new code.",
+      "completed": "Stim/PyMatching baseline; Wilson target-volume table; biased schedule proxy; circuit-level biased-schedule sweep; same-hardware reduced-round candidate and robustness stress closed by artifact boundary; T-B2-003 leakage-flagged analytic boundary; T-B2-004 Stim HERALDED_ERASE / DEPOLARIZE1 stress with 10 d=5/d=7 improved rows; T-B2-005 false-positive overhead stress with 5 positive-false-positive d=5/d=7 rows at fp=0.001/tick and 0 improved rows by fp=0.003/tick; T-B2-006 posterior-calibrated shot-conditioned leakage boundary over 288 target comparisons and 4 calibration profiles, preserving at most 4 d=5/d=7 rows in one profile, with strict survival 0 and robust all-profile survival false.",
       "remaining_steps": [
-        "implement a real shot-conditioned erasure decoder or calibrated leakage model",
-        "stress the surviving d=5/d=7 rows under calibrated flag false-positive rates beyond the observed fp=0.001/tick survival boundary",
-        "measure decoder/runtime overhead at larger distances and more shots",
-        "connect only shot-conditioned or calibrated non-artifact B2 rows into the B7 resource ledger"
+        "integrate posterior flag probabilities into an actual circuit-level decoder",
+        "collect or emulate calibrated leakage/flag data with realistic false-positive and false-negative rates",
+        "rerun d=5/d=7 target-volume rows under strict posterior and missed-leakage gates",
+        "expand distances, shots, and noise-mismatch profiles",
+        "connect only robust non-artifact B2 rows into B7 resource ledgers"
       ],
-      "maturity_score": 41
+      "maturity_score": 42
     },
     {
       "b_id": "B3",

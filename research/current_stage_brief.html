@@ -253,7 +253,7 @@
         <span class="chip">工作区：/Users/avalok/work/FurturePlan</span>
         <span class="chip">目标状态：active，未完成</span>
         <span class="chip">当前阶段：B1-B10 技术解决推进</span>
-        <span class="chip">最新动作：B10 response-sampler cost stress</span>
+        <span class="chip">最新动作：B2 posterior-calibrated leakage boundary</span>
         <span class="chip">组合审计：PASS / 0 warnings</span>
       </div>
     </header>
@@ -325,7 +325,7 @@
         最新推进 15：B2/T-B2-004 已完成 Stim HERALDED_ERASE / DEPOLARIZE1 stress boundary。新工具在 generated rotated surface-code memory circuit 的每个 TICK 后注入 unheralded depolarizing leakage proxy 或 HERALDED_ERASE proxy，再用 PyMatching detector-error-model decoder 比较 Wilson target-volume。默认网格为 108 配置、216000 shots、72 个 target comparisons；candidate-met rows 为 59，baseline-met rows 为 53，candidate-only target hits 为 7；10 个 target-volume improved rows 全部是 candidate distance 5 或 7，max reduction 4.598x，mean reduction 2.623x，validation errors 为 0。边界仍然保持：这不是 shot-conditioned erasure decoder，不是 calibrated leakage model，不是 threshold、硬件或新码 claim。下一步 T-B2-005 必须做 shot-conditioned erasure decoder 或 calibrated leakage stress，并计入 flag false-positive overhead。
       </p>
       <p style="margin-top: 10px;">
-        最新推进 33：B2/T-B2-005 已完成 heralded-erasure false-positive overhead stress。新工具在同一 Stim rotated surface-code memory 框架下加入 false-positive flag rates，跑 270 配置、324000 shots、288 个 target comparisons；总 improved rows 为 13，其中 positive false-positive 下仍有 5 个 d=5/d=7 improved rows 在 fp=0.001/tick 存活，但 fp=0.003/tick 和 0.005/tick 下 improved rows 归零。结论：heralded-erasure 路线不是完全死亡，但只在很低 flag false-positive 误报率下存活；这仍不是 shot-conditioned erasure decoder、不是 calibrated leakage model、不是 threshold、硬件或新码 claim。下一步 T-B2-006 必须做真实 shot-conditioned decoder 或 calibrated leakage model。
+        最新推进 34：B2/T-B2-006 已完成 posterior-calibrated shot-conditioned leakage boundary。新工具读取 T-B2-005 的 288 个 false-positive target comparisons，并用 4 个 detector-calibration profiles 计算 flag 后验泄漏概率、missed leakage rate 和 shot-conditioned accept/reject gates；共评估 1152 个 profile rows。结果：3 个 profiles 仍保留部分 d=5/d=7 rows，单一 profile 最多保留 4 行，strict high-purity profile 保留 0 行，robust all-profile survival 为 false。结论：heralded-erasure 路线还没有死亡，但只是在校准假设下部分存活；这不是 production decoder、不是 hardware-calibrated leakage model、不是 threshold、硬件或新码 claim。下一步 T-B2-007 必须把 posterior probabilities 接入 circuit-level decoder，或拿真实/仿真的 calibrated leakage-flag 数据继续压力测试。
       </p>
       <p style="margin-top: 10px;">
         最新推进：B4/B8 已完成 circuit-level hidden-projection refresh proxy。新工具用随机 CNOT 电路导出 hidden projection masks，跑 3 个 circuit-derived tasks / 192 configs；honest completeness 为 1.0，无刷新 0.75 leakage 下 adaptive soundness 最高 0.675，projection rotation、challenge refresh、refresh-plus-rotation 三种修复在 high-leakage 下都压到 <=5% soundness。它仍是 CNOT/projection proxy，不是 quantum advantage 或硬件 randomized-measurement 协议。
@@ -397,7 +397,7 @@
         最新推进 23：B3/T-B3-011 已完成 cross-molecule UCC/ADAPT pressure and demotion boundary。新工具把 one-parameter compiled UCC-double / ADAPT-seed pressure 扩到 H2、LiH、H2O、N2 四个分子；每个分子最多取 96 个 high-coefficient、basis weight <=12 的 Pauli terms，做 bounded QWC 子集抽样，总 sampled groups 为 35，384 shots/group，mean/max relative variance error 为 0.0833/0.5029。即使用乐观 HF grouped-covariance derivative floors 作为 lower bound，max optimizer-loop shots 仍达 475,043,013,690,000，max optimizer-loop 2Q executions lower bound 为 281,225,464,104,480,000；denominator wins 仍为 0。因此 B3 当前被建议降级为 negative-boundary track，除非后续 T-B3-012 拿到真正 multi-parameter UCCSD/ADAPT covariance 或强于 QWC 的测量策略。
       </p>
       <p style="margin-top: 10px;">
-        B10 target cards 仍保留：B10-T2 继续约束 sampling advantage 接入 B4/B8 verification layer 时的 leakage 与 challenge-refresh 条件。B2 的历史 biased-schedule sweep 只有 target-hit 改善、volume improvement 为 0；same-hardware reduced-round candidate 已被 T-B2-002 关闭为 small-distance/aggressive-schedule artifact boundary；T-B2-003 给出 leakage-flagged erasure analytic proxy，T-B2-004 给出 Stim HERALDED_ERASE / DEPOLARIZE1 stress boundary，T-B2-005 又加入 false-positive overhead stress，显示 fp=0.001/tick 仍有 5 个 d=5/d=7 rows 存活，但 fp=0.003/tick 起 improved rows 归零；仍需 shot-conditioned erasure decoder 或 calibrated leakage model。B3 的 proxy circuit comparison、Hamiltonian Pauli mapper comparison、sampled Pauli confidence artifact、selected-CI grouped Pauli boundary、larger-basis Hamiltonian mapper、larger-basis QWC grouping、grouped covariance shot-floor、chemical prep derivative boundary、compiled UCC/ADAPT covariance pilot 和 cross-molecule pressure/demotion boundary 都已接入 portfolio audit；结果仍是 0 个 FCI / selected-CI larger-basis denominator wins。
+        B10 target cards 仍保留：B10-T2 继续约束 sampling advantage 接入 B4/B8 verification layer 时的 leakage 与 challenge-refresh 条件。B2 的历史 biased-schedule sweep 只有 target-hit 改善、volume improvement 为 0；same-hardware reduced-round candidate 已被 T-B2-002 关闭为 small-distance/aggressive-schedule artifact boundary；T-B2-003 给出 leakage-flagged erasure analytic proxy，T-B2-004 给出 Stim HERALDED_ERASE / DEPOLARIZE1 stress boundary，T-B2-005 加入 false-positive overhead stress，T-B2-006 又给出 posterior-calibrated shot-conditioned leakage boundary：单 profile 最多保留 4 个 d=5/d=7 rows，但 strict/all-profile robustness 不成立；仍需真正 circuit-level decoder 或 calibrated leakage/flag 数据。B3 的 proxy circuit comparison、Hamiltonian Pauli mapper comparison、sampled Pauli confidence artifact、selected-CI grouped Pauli boundary、larger-basis Hamiltonian mapper、larger-basis QWC grouping、grouped covariance shot-floor、chemical prep derivative boundary、compiled UCC/ADAPT covariance pilot 和 cross-molecule pressure/demotion boundary 都已接入 portfolio audit；结果仍是 0 个 FCI / selected-CI larger-basis denominator wins。
       </p>
     </section>
 
@@ -446,8 +446,8 @@
           <tr>
             <td>1</td>
             <td>B1 -> B2 -> B7 systems spine</td>
-            <td>B1 已有 proof replay、virtual-SWAP elimination 和弱 T-resource 诊断，B2 已有真实 Stim/PyMatching baseline、circuit-level schedule/noise sweep、reduced-round artifact boundary、leakage-flagged erasure proxy 与 Stim heralded-erasure stress，B7 能把二者转成资源账本。</td>
-            <td>B1 native-basis non-Clifford/T-depth optimizer；B2 当前 reduced-round 路线已关闭为 artifact boundary，heralded-erasure 路线必须升级到 shot-conditioned decoder 或 calibrated leakage stress；B7 需要让 min factory STV 也大于 1.0x。</td>
+            <td>B1 已有 proof replay、virtual-SWAP elimination 和弱 T-resource 诊断，B2 已有真实 Stim/PyMatching baseline、circuit-level schedule/noise sweep、reduced-round artifact boundary、leakage-flagged erasure proxy、Stim heralded-erasure stress、false-positive stress 与 posterior-calibrated shot-conditioned boundary，B7 能把二者转成资源账本。</td>
+            <td>B1 native-basis non-Clifford/T-depth optimizer；B2 当前 reduced-round 路线已关闭为 artifact boundary，heralded-erasure 路线必须升级到 circuit-level posterior decoder 或 calibrated leakage/flag dataset；B7 需要让 min factory STV 也大于 1.0x。</td>
           </tr>
           <tr>
             <td>2</td>
@@ -520,9 +520,9 @@
           </tr>
           <tr>
             <td>B2 低开销量子纠错</td>
-            <td>Stim/PyMatching baseline：30 配置、90,000 shots；Wilson target-volume 表：40 组合，22 达标、18 未达标；same-hardware reduced-round candidate 与 robustness stress 已被 artifact boundary 关闭为 aggressive、distance-3、one-round 信号。T-B2-004 新增 Stim HERALDED_ERASE / DEPOLARIZE1 stress：108 配置、216000 shots、10 个 improved rows 全部为 candidate d=5/7。T-B2-005 又跑 false-positive overhead stress：270 配置、324000 shots，fp=0.001/tick 下仍有 5 个 positive-fp d=5/d=7 improved rows，但 fp=0.003/tick 起归零。</td>
-            <td><span class="warn">B2 已从 analytic proxy 推进到 Stim false-positive boundary</span>：不使用 reduced rounds、不使用 d=3 candidate，但仍不是 shot-conditioned erasure decoder、calibrated leakage model、新码、阈值或硬件 claim。</td>
-            <td>下一步 T-B2-006：做真实 shot-conditioned erasure decoder 或 calibrated leakage model，并加入 noise mismatch 与 calibrated flag false-positive overhead。</td>
+            <td>Stim/PyMatching baseline：30 配置、90,000 shots；Wilson target-volume 表：40 组合，22 达标、18 未达标；same-hardware reduced-round candidate 与 robustness stress 已被 artifact boundary 关闭。T-B2-004 新增 Stim HERALDED_ERASE / DEPOLARIZE1 stress：108 配置、216000 shots、10 个 improved rows 全部为 candidate d=5/7。T-B2-005 false-positive stress：270 配置、324000 shots，fp=0.001/tick 下仍有 5 个 positive-fp d=5/d=7 improved rows，但 fp=0.003/tick 起归零。T-B2-006 posterior-calibrated boundary：4 calibration profiles、1152 profile rows、单 profile 最多保留 4 个 d=5/d=7 rows，strict survival 0，robust all-profile survival false。</td>
+            <td><span class="warn">B2 已从 false-positive boundary 推进到 posterior-calibrated boundary</span>：不使用 reduced rounds、不使用 d=3 candidate，但仍不是 production decoder、hardware-calibrated leakage model、新码、阈值或硬件 claim。</td>
+            <td>下一步 T-B2-007：把 posterior flag probabilities 接入 circuit-level decoder，或使用 calibrated leakage/flag 数据做 noise mismatch 与 false-positive/false-negative stress。</td>
           </tr>
           <tr>
             <td>B7 容错架构 co-design</td>
@@ -555,7 +555,7 @@
         </thead>
         <tbody>
           <tr><td>B1</td><td>硬件感知量子线路压缩</td><td><span class="ok">证据最强</span>：proof log、Aer cross-check、virtual-SWAP 诊断和弱 T-resource 诊断齐备。</td></tr>
-          <tr><td>B2</td><td>低开销量子纠错</td><td><span class="warn">reduced-round positive diagnostic 已关闭，T-B2-005 进入 false-positive boundary</span>：HERALDED_ERASE false-positive stress 跑 270 配置、324000 shots；fp=0.001/tick 下 5 个 d=5/7 improved rows 存活，fp=0.003/tick 起归零；仍需 shot-conditioned erasure decoder 才能晋级。</td></tr>
+          <tr><td>B2</td><td>低开销量子纠错</td><td><span class="warn">reduced-round positive diagnostic 已关闭，T-B2-006 进入 posterior-calibrated boundary</span>：4 calibration profiles、1152 profile rows；3 个 profiles 保留部分 d=5/7 rows，单 profile 最多 4 行，strict high-purity survival 0，robust all-profile survival false；仍需 circuit-level posterior decoder 或 calibrated leakage/flag 数据才能晋级。</td></tr>
           <tr><td>B3</td><td>分子反应动力学</td><td><span class="risk-text">已降级为 negative-boundary track</span>：T-B3-011 覆盖 H2/LiH/H2O/N2 bounded sampled covariance pressure，35 sampled groups、mean/max variance error 0.0833/0.5029；max optimizer-loop shots lower bound 475,043,013,690,000，denominator wins 为 0。只有 rescue-only multi-parameter UCCSD/ADAPT 或更强测量策略出现后才继续作为突破候选。</td></tr>
           <tr><td>B4</td><td>可验证量子优势</td><td><span class="warn">已有 B4/B8 CNOT hidden-projection circuit proxy</span>，但仍不是 quantum advantage 或硬件协议。</td></tr>
           <tr><td>B5</td><td>强关联物质</td><td><span class="warn">Hubbard exact/cluster proxy + denominators + MPS/ALS + two-site finite-DMRG-style prototype</span>：two-site prototype 覆盖 9 个 B10 D5 density-response rows，bond dimension 4，2 restarts x 4 sweeps，selected mean/max relative response error 0.08196/0.27710，min exact-state overlap 0.93945，4 行优于 one-site ALS，但 0 行优于 seeded MPS pressure reference；仍需真实 production DMRG/MPS reference 或真实量子 response-kernel costed comparison。</td></tr>
@@ -609,10 +609,10 @@
               <td>前人路线包括 Shor/Steane/CSS codes、surface/color/subsystem codes、quantum LDPC、biased-noise codes、lattice surgery、minimum-weight matching、belief propagation、neural decoders。里程碑是 surface-code threshold、Stim/PyMatching 快速仿真和近年 LDPC 复兴。</td>
               <td>
                 我们的方案是先建立可审计 target-volume baseline，再让候选 code/schedule 必须在同一指标上胜过 surface code；proxy 和 operation-class sweep 后，所有 same-hardware candidate 都必须经过 artifact-boundary 检查才允许接入 B7。
-                已完成 Stim/PyMatching rotated surface-code baseline：30 配置、90,000 shots、距离 3/5/7、X/Z basis；Wilson target-volume 表 40 组合，22 达标、18 未达标；biased schedule proxy 让 candidate-met target 达到 28；真实 circuit-level sweep 用 90 配置、270,000 shots 将 candidate-met target 从 22 提到 26 但 volume improvement 为 0；same-hardware reduced-round candidate 与 robustness stress 被 T-B2-002 artifact boundary 关闭为 aggressive、distance-3、one-round artifact。T-B2-003 新增 leakage-flagged erasure analytic boundary；T-B2-004 新增 Stim HERALDED_ERASE / DEPOLARIZE1 stress：108 配置、216000 shots、10 个 target-volume improved rows 全部为 candidate distance 5 或 7。T-B2-005 新增 false-positive overhead stress：270 配置、324000 shots、13 个 improved rows，其中 5 个 positive-false-positive d=5/d=7 rows 在 fp=0.001/tick 存活，但 fp=0.003/tick 起归零。
+                已完成 Stim/PyMatching rotated surface-code baseline：30 配置、90,000 shots、距离 3/5/7、X/Z basis；Wilson target-volume 表 40 组合，22 达标、18 未达标；biased schedule proxy 让 candidate-met target 达到 28；真实 circuit-level sweep 用 90 配置、270,000 shots 将 candidate-met target 从 22 提到 26 但 volume improvement 为 0；same-hardware reduced-round candidate 与 robustness stress 被 T-B2-002 artifact boundary 关闭为 aggressive、distance-3、one-round artifact。T-B2-003 新增 leakage-flagged erasure analytic boundary；T-B2-004 新增 Stim HERALDED_ERASE / DEPOLARIZE1 stress：108 配置、216000 shots、10 个 target-volume improved rows 全部为 candidate distance 5 或 7。T-B2-005 新增 false-positive overhead stress：270 配置、324000 shots、13 个 improved rows，其中 5 个 positive-false-positive d=5/d=7 rows 在 fp=0.001/tick 存活，但 fp=0.003/tick 起归零。T-B2-006 新增 posterior-calibrated shot-conditioned leakage boundary：读取同一组 288 target comparisons，评估 4 个 calibration profiles / 1152 profile rows，3 个 profiles 保留部分 d=5/d=7 rows，单 profile 最多保留 4 行，strict high-purity survival 0，robust all-profile survival false。
                 <span class="progress">内部成熟度：41/100</span>
               </td>
-              <td>还需 4 步：做真实 shot-conditioned erasure decoder 或 calibrated leakage model；在超过 fp=0.001/tick 的误报边界下复查 d=5/d=7 rows；扩大距离与 shots；只把可存活的 B2 结果接入 B7。</td>
+              <td>还需 4 步：把 posterior flag probabilities 接入 circuit-level decoder；用 calibrated leakage/flag 数据复查 d=5/d=7 rows；扩大距离、shots 与 noise mismatch；只把 robust non-artifact B2 结果接入 B7。</td>
             </tr>
             <tr>
               <td><strong>B3</strong><br>分子反应动力学</td>
@@ -786,6 +786,7 @@
         <li><code>research/B2_leakage_flagged_erasure_boundary.md</code>：B2 leakage-flagged erasure analytic boundary，480 配置，42 个 proxy improved rows、33 个 distance-5/7 improved rows；不使用 reduced rounds 或 d=3 candidate，仍不是 circuit-level decoder claim</li>
         <li><code>research/B2_stim_heralded_erasure_stress.md</code>：B2 Stim HERALDED_ERASE / DEPOLARIZE1 stress boundary，108 配置、216000 shots、10 个 target-volume improved rows 全部为 candidate d=5/7；仍不是 shot-conditioned erasure decoder 或 calibrated leakage claim</li>
         <li><code>research/B2_heralded_erasure_false_positive_stress.md</code>：B2 heralded-erasure false-positive overhead stress，270 配置、324000 shots；fp=0.001/tick 下 5 个 d=5/d=7 improved rows 存活，fp=0.003/tick 起归零</li>
+        <li><code>research/B2_shot_conditioned_erasure_decoder_boundary.md</code>：B2 posterior-calibrated shot-conditioned leakage boundary，4 calibration profiles、1152 profile rows、max 4 surviving d=5/d=7 rows in one profile，strict/all-profile robustness 未通过</li>
         <li><code>research/B7_b1_b2_dependency_schedule_bridge.md</code>：B7 B1/B2 dependency-schedule bridge</li>
         <li><code>research/B7_workload_dag_factory_schedule.md</code>：B7 workload-DAG factory-throughput schedule</li>
         <li><code>research/B7_logical_t_factory_schedule.md</code>：B7 logical T-count/T-depth factory-boundary test</li>
@@ -869,7 +870,7 @@
         <li>最新 T-B7-007：nonlocal template block scan 已完成；最佳 w8_21 覆盖 100 个任意旋转 occurrence，但没有相邻逆块或同绑定重复块可删。随后 T-B7-008 已关闭 same-skeleton one-angle exact replacement 路线。</li>
         <li>最新 T-B7-008/T-B7-009：w8_21 same-skeleton、broad-skeleton、target-informed Euler-local、bounded three-CNOT 四组搜索均未找到 exact four-arbitrary replacement；该路线已关闭为 claim-boundary fragment，但仍不是全局 KAK lower bound。</li>
         <li>最新 T-B7-009：全量扫描 15360/15360 个 two-CNOT/four-Rz-Ry family、500/500 个 target-informed Euler-local family、1480/1480 个 three-CNOT target-informed family，并汇总 same-skeleton 搜索；总计 43480 次优化，0 个 exact four-arbitrary candidate；scoped minimality note 与 claim-boundary fragment 已完成，T-B7-009 关闭为负结果边界。</li>
-        <li>最新 T-B2-005：heralded-erasure false-positive overhead stress 已完成；270 配置、324000 shots、288 target comparisons，13 个 improved rows，总体 max reduction 4.598x；positive false-positive 下仍有 5 个 d=5/d=7 improved rows 在 fp=0.001/tick 存活，但 fp=0.003/tick 起归零。下一步 T-B2-006 做真实 shot-conditioned erasure decoder 或 calibrated leakage stress。</li>
+        <li>最新 T-B2-006：posterior-calibrated shot-conditioned leakage boundary 已完成；读取 T-B2-005 的 288 target comparisons，评估 4 calibration profiles / 1152 profile rows，3 profiles 保留部分 d=5/d=7 rows，单 profile 最多 4 行，strict high-purity survival 0，robust all-profile survival false。下一步 T-B2-007：把 posterior flag probabilities 接入 circuit-level decoder，或使用 calibrated leakage/flag 数据继续压力测试。</li>
         <li>最新 T-B3-001：reaction-coordinate quantum observable-estimation proxy vs FCI denominator 已完成；4 个 OpenQASM circuits、max 21 qubits、441 controlled-phase gates、FCI denominator wins 为 0。下一步 T-B3-003 改用 Hamiltonian Pauli-term chemistry-mapper circuits，并加入 state-preparation 与 observable-variance cost。</li>
         <li>最新 T-B3-003：Hamiltonian Pauli-term mapper comparison 已完成；4 个 Qiskit Nature Jordan-Wigner QASM measurement packets、max 20 qubits、2951 mapped Pauli terms、max conservative total shot floor 30,504,129,929，state-preparation 与 variance costs 已入账，FCI wins 仍为 0。下一步 T-B3-004 做 sampled Pauli-estimator confidence intervals 或 selected-CI/larger-active-space denominator。</li>
         <li>最新 T-B3-011：cross-molecule UCC/ADAPT pressure and demotion boundary 已完成；H2/LiH/H2O/N2 共 35 个 bounded sampled groups、384 shots/group，mean/max variance error 0.0833/0.5029；max optimizer-loop shots lower bound 475,043,013,690,000，max optimizer-loop 2Q executions lower bound 281,225,464,104,480,000；denominator wins 仍为 0，因此 B3 当前降级为 negative-boundary track。下一步 T-B3-012 只接受 rescue-only multi-parameter UCCSD/ADAPT 或更强测量策略。</li>

@@ -40,7 +40,7 @@ Overall audit: PASS
 - B IDs are B1..B10: True
 - Problem IDs match attack pack: True
 - All required fields present: True
-- Maturity scores: {'B1': 37, 'B2': 41, 'B3': 30, 'B4': 20, 'B5': 24, 'B6': 19, 'B7': 33, 'B8': 32, 'B9': 12, 'B10': 49}
+- Maturity scores: {'B1': 37, 'B2': 42, 'B3': 30, 'B4': 20, 'B5': 24, 'B6': 19, 'B7': 33, 'B8': 32, 'B9': 12, 'B10': 49}
 
 ## Technical Resolution Program
 
@@ -346,6 +346,14 @@ Overall audit: PASS
 - Heralded-erasure false-positive stress new-code/threshold/device/full-decoder/shot-conditioned claims: False / False / False / False / False
 - Heralded-erasure false-positive stress validation errors: 0
 - Heralded-erasure false-positive stress result/markdown exists: True / True
+- Shot-conditioned erasure boundary status: shot_conditioned_calibrated_leakage_boundary_partial_survival_not_threshold
+- Shot-conditioned erasure boundary source positive-fp d5/d7 rows: 5
+- Shot-conditioned erasure boundary profiles / evaluated rows: 4 / 1152
+- Shot-conditioned erasure boundary surviving profiles / max rows: 3 / 4
+- Shot-conditioned erasure boundary strict surviving / all-profile robust: 0 / False
+- Shot-conditioned erasure boundary calibration model / production decoder / threshold / hardware: True / False / False / False
+- Shot-conditioned erasure boundary validation errors: 0
+- Shot-conditioned erasure boundary result/markdown exists: True / True
 
 ## B3 Resource Proxy Status
 

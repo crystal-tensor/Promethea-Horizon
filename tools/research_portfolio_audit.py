@@ -1310,6 +1310,7 @@ def audit(root: Path) -> dict:
     b2_leakage_flagged_erasure = b2_results.get("leakage_flagged_erasure_boundary_v0")
     b2_stim_heralded_erasure = b2_results.get("stim_heralded_erasure_stress_v0")
     b2_false_positive_erasure = b2_results.get("heralded_erasure_false_positive_stress_v0")
+    b2_shot_conditioned_erasure = b2_results.get("shot_conditioned_erasure_decoder_boundary_v0")
     b2_status = {}
     if not b2_baseline:
         warnings.append("B2 manifest has no repetition-code control baseline result")
@@ -2012,6 +2013,99 @@ def audit(root: Path) -> dict:
             errors.append("B2 false-positive stress must not claim a shot-conditioned erasure decoder")
         if len(payload.get("validation_errors", [])) != 0:
             errors.append("B2 false-positive stress validation errors must be zero")
+
+    b2_shot_conditioned_erasure_status = {}
+    if not b2_shot_conditioned_erasure:
+        warnings.append("B2 manifest has no shot-conditioned erasure decoder boundary result")
+    else:
+        result_path = b2_shot_conditioned_erasure.get("result")
+        markdown_path = b2_shot_conditioned_erasure.get("markdown_report")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"B2 shot-conditioned erasure boundary result path missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"B2 shot-conditioned erasure boundary markdown missing: {markdown_path}")
+        payload = json.loads(read((benchmarks / result_path).resolve())) if result_exists else {}
+        summary = payload.get("summary", {})
+        claims = payload.get("claim_boundary", {})
+        b2_shot_conditioned_erasure_status = {
+            "status": b2_shot_conditioned_erasure.get("status"),
+            "method": b2_shot_conditioned_erasure.get("method"),
+            "model_status": payload.get("model_status"),
+            "source_target_comparisons": summary.get("source_target_comparisons"),
+            "source_positive_fp_d5_d7_improved_rows": summary.get(
+                "source_positive_fp_d5_d7_improved_rows"
+            ),
+            "calibration_profile_count": summary.get("calibration_profile_count"),
+            "evaluated_profile_rows": summary.get("evaluated_profile_rows"),
+            "profiles_with_surviving_rows": summary.get("profiles_with_surviving_rows"),
+            "max_surviving_d5_d7_improved_rows_in_profile": summary.get(
+                "max_surviving_d5_d7_improved_rows_in_profile"
+            ),
+            "strict_high_purity_surviving_rows": summary.get("strict_high_purity_surviving_rows"),
+            "robust_all_profile_survival": summary.get("robust_all_profile_survival"),
+            "new_code_claimed": claims.get("new_code_claimed"),
+            "threshold_claimed": claims.get("threshold_claimed"),
+            "calibrated_device_claimed": claims.get("calibrated_device_claimed"),
+            "full_physical_leakage_decoder_claimed": claims.get("full_physical_leakage_decoder_claimed"),
+            "production_decoder_claimed": claims.get("production_decoder_claimed"),
+            "shot_conditioned_calibration_model_performed": claims.get(
+                "shot_conditioned_calibration_model_performed"
+            ),
+            "shot_conditioned_erasure_decoder_claimed": claims.get(
+                "shot_conditioned_erasure_decoder_claimed"
+            ),
+            "hardware_result_claimed": claims.get("hardware_result_claimed"),
+            "reduced_rounds_used": claims.get("reduced_rounds_used"),
+            "distance_3_candidate_used": claims.get("distance_3_candidate_used"),
+            "validation_error_count": len(payload.get("validation_errors", [])),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown_report": markdown_path,
+        }
+        if payload.get("status") != b2_shot_conditioned_erasure.get("status"):
+            errors.append("B2 shot-conditioned erasure boundary status mismatch")
+        if payload.get("method") != b2_shot_conditioned_erasure.get("method"):
+            errors.append("B2 shot-conditioned erasure boundary method mismatch")
+        if payload.get("model_status") != b2_shot_conditioned_erasure.get("model_status"):
+            errors.append("B2 shot-conditioned erasure boundary model-status mismatch")
+        for key in [
+            "source_target_comparisons",
+            "source_positive_fp_d5_d7_improved_rows",
+            "calibration_profile_count",
+            "evaluated_profile_rows",
+            "profiles_with_surviving_rows",
+            "max_surviving_d5_d7_improved_rows_in_profile",
+            "strict_high_purity_surviving_rows",
+            "robust_all_profile_survival",
+        ]:
+            if summary.get(key) != b2_shot_conditioned_erasure.get(key):
+                errors.append(f"B2 shot-conditioned erasure boundary {key} mismatch")
+        if int(summary.get("source_positive_fp_d5_d7_improved_rows", 0)) != 5:
+            errors.append("B2 shot-conditioned boundary expected five source positive-fp d5/d7 rows")
+        if int(summary.get("max_surviving_d5_d7_improved_rows_in_profile", 0)) != 4:
+            errors.append("B2 shot-conditioned boundary expected four max surviving rows")
+        if summary.get("robust_all_profile_survival") is not False:
+            errors.append("B2 shot-conditioned boundary must not claim robust all-profile survival")
+        if claims.get("shot_conditioned_calibration_model_performed") is not True:
+            errors.append("B2 shot-conditioned boundary must disclose calibration modeling")
+        for key in [
+            "new_code_claimed",
+            "threshold_claimed",
+            "calibrated_device_claimed",
+            "full_physical_leakage_decoder_claimed",
+            "production_decoder_claimed",
+            "shot_conditioned_erasure_decoder_claimed",
+            "hardware_result_claimed",
+            "reduced_rounds_used",
+            "distance_3_candidate_used",
+        ]:
+            if claims.get(key) is not False:
+                errors.append(f"B2 shot-conditioned boundary must keep {key}=False")
+        if len(payload.get("validation_errors", [])) != 0:
+            errors.append("B2 shot-conditioned boundary validation errors must be zero")
 
     b3_manifest = yaml.safe_load(read(b3_manifest_path))
     b3_results = b3_manifest.get("current_results", {})
@@ -7227,6 +7321,7 @@ def audit(root: Path) -> dict:
             "leakage_flagged_erasure_boundary": b2_leakage_flagged_erasure_status,
             "stim_heralded_erasure_stress": b2_stim_heralded_erasure_status,
             "heralded_erasure_false_positive_stress": b2_false_positive_erasure_status,
+            "shot_conditioned_erasure_decoder_boundary": b2_shot_conditioned_erasure_status,
         },
         "b3": {
             "manifest": str(b3_manifest_path),
@@ -7363,6 +7458,9 @@ def audit(root: Path) -> dict:
             "b2_stim_heralded_erasure_stress": str(research / "B2_stim_heralded_erasure_stress.md"),
             "b2_heralded_erasure_false_positive_stress": str(
                 research / "B2_heralded_erasure_false_positive_stress.md"
+            ),
+            "b2_shot_conditioned_erasure_decoder_boundary": str(
+                research / "B2_shot_conditioned_erasure_decoder_boundary.md"
             ),
             "b3_quantum_observable_fci_comparison": str(research / "B3_quantum_observable_fci_comparison.md"),
             "b3_quantum_observable_fci_qasm_directory": str(
@@ -7844,6 +7942,14 @@ def markdown_report(report: dict) -> str:
             f"- Heralded-erasure false-positive stress new-code/threshold/device/full-decoder/shot-conditioned claims: {report['b2']['heralded_erasure_false_positive_stress'].get('new_code_claimed')} / {report['b2']['heralded_erasure_false_positive_stress'].get('threshold_claimed')} / {report['b2']['heralded_erasure_false_positive_stress'].get('calibrated_device_claimed')} / {report['b2']['heralded_erasure_false_positive_stress'].get('full_physical_leakage_decoder_claimed')} / {report['b2']['heralded_erasure_false_positive_stress'].get('shot_conditioned_erasure_decoder_claimed')}",
             f"- Heralded-erasure false-positive stress validation errors: {report['b2']['heralded_erasure_false_positive_stress'].get('validation_error_count')}",
             f"- Heralded-erasure false-positive stress result/markdown exists: {report['b2']['heralded_erasure_false_positive_stress'].get('result_exists')} / {report['b2']['heralded_erasure_false_positive_stress'].get('markdown_exists')}",
+            f"- Shot-conditioned erasure boundary status: {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('status')}",
+            f"- Shot-conditioned erasure boundary source positive-fp d5/d7 rows: {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('source_positive_fp_d5_d7_improved_rows')}",
+            f"- Shot-conditioned erasure boundary profiles / evaluated rows: {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('calibration_profile_count')} / {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('evaluated_profile_rows')}",
+            f"- Shot-conditioned erasure boundary surviving profiles / max rows: {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('profiles_with_surviving_rows')} / {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('max_surviving_d5_d7_improved_rows_in_profile')}",
+            f"- Shot-conditioned erasure boundary strict surviving / all-profile robust: {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('strict_high_purity_surviving_rows')} / {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('robust_all_profile_survival')}",
+            f"- Shot-conditioned erasure boundary calibration model / production decoder / threshold / hardware: {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('shot_conditioned_calibration_model_performed')} / {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('production_decoder_claimed')} / {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('threshold_claimed')} / {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('hardware_result_claimed')}",
+            f"- Shot-conditioned erasure boundary validation errors: {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('validation_error_count')}",
+            f"- Shot-conditioned erasure boundary result/markdown exists: {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('result_exists')} / {report['b2']['shot_conditioned_erasure_decoder_boundary'].get('markdown_exists')}",
             "",
             "## B3 Resource Proxy Status",
             "",

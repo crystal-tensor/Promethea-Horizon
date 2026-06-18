@@ -197,6 +197,15 @@ leakage model; it is the current flag-noise survival boundary. Next:
 `T-B2-006` should replace this detector-error-model stress with a real
 shot-conditioned erasure decoder or calibrated leakage model.
 
+**Sprint update 42:** `T-B2-006` is now merged as a posterior-calibrated
+shot-conditioned leakage boundary, not a production decoder. The tool reads the
+T-B2-005 false-positive target comparisons and evaluates 4 calibration profiles
+over 1,152 profile rows. Three profiles preserve some d=5/d=7 rows, the best
+profile preserves 4 rows, strict high-purity survival is 0, and robust
+all-profile survival is false. Next: `T-B2-007` should integrate posterior flag
+probabilities into a circuit-level decoder or use calibrated leakage/flag data;
+otherwise demote the heralded-erasure route.
+
 ## B3: Molecular Reaction Dynamics
 
 **Technical target:** produce a reaction-coordinate quantum observable estimate
@@ -848,7 +857,7 @@ still identify which assumption is too strong or too weak.
 
 1. `compiler-agent`: B1 native T-resource optimizer.
 2. `ft-agent`: B7 min-STV regime classifier waiting on B1 output.
-3. `qec-agent`: B2 shot-conditioned erasure decoder or calibrated leakage model.
+3. `qec-agent`: B2 circuit-level posterior decoder or calibrated leakage/flag dataset.
 4. `verification-agent`: B4/B8 hidden task generator and adaptive spoofer.
 5. `chemistry-agent`: B3 reaction observable circuit vs FCI denominator.
 6. `theory-agent`: B10-T2 real-backend/hardware verifier bridge plus B9 negative lemma.

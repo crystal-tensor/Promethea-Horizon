@@ -102,11 +102,12 @@ erasure analytic boundary: 480 configurations, 42 proxy target-volume improved
 rows, 33 distance-5/7 improved rows, no reduced rounds, and no new-code,
 threshold, device, or circuit-level decoder claim.
 
-B2 now also has a Stim HERALDED_ERASE / DEPOLARIZE1 stress boundary plus a
-false-positive overhead stress: 270 configurations, 324k shots, 13 improved
-rows total, 5 positive-false-positive d=5/d=7 improved rows at fp=0.001/tick,
-and 0 improved rows by fp=0.003/tick. This is still not a shot-conditioned
-erasure decoder, calibrated leakage model, threshold, hardware, or new-code
+B2 now also has a Stim HERALDED_ERASE / DEPOLARIZE1 stress boundary, a
+false-positive overhead stress, and a posterior-calibrated shot-conditioned
+leakage boundary. The latest B2 run evaluates 4 calibration profiles across
+1,152 profile rows; at most 4 positive-false-positive d=5/d=7 rows survive in
+one profile, strict-profile survival is 0, and all-profile robustness is false.
+This is still not a production decoder, threshold, hardware result, or new-code
 claim.
 
 ## Repository Layout
