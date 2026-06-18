@@ -122,6 +122,15 @@ late-bound private parity challenges alone are not enough for protocol
 soundness without non-stabilizer structure, real backend properties, hardware
 execution, or otherwise non-public/non-predictable transcripts.
 
+The follow-up non-stabilizer late-bound transcript pilot now adds an H plus
+T/RZ(pi/4) challenge-basis layer to all 36 public skeletons. It removes the
+deterministic transcript blocker: 36/36 pilot circuits have non-stabilizer
+basis gates, the old deterministic emulator no longer predicts a single
+transcript, minimum min-entropy is 4 bits, and maximum output probability is
+0.0625. This is still an exact small-probability pilot, not hardware execution,
+cryptographic soundness, sampling hardness, quantum advantage, or BQP
+separation.
+
 B6 has moved from a synthetic descriptor toy to curated leakage audits and a
 structural/electronic proxy boundary. The latest B6 screen keeps 38 records
 across 22 families with 12 expanded negative controls; structural/electronic

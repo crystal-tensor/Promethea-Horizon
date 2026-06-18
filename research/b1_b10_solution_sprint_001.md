@@ -377,6 +377,20 @@ parity challenges alone are therefore not protocol soundness; the next gate
 needs non-stabilizer structure, real backend properties, hardware execution, or
 otherwise non-public/non-predictable transcripts.
 
+**Sprint update 57:** `T-B8-003c` is now merged back into B4 as a
+non-stabilizer late-bound transcript pilot. The new tool
+`tools/b4_b8_nonstabilizer_late_bound_transcript_pilot.py` emits 36 pilot
+`OPENQASM 3.0` circuits under
+`results/B4_B8_nonstabilizer_late_bound_transcript_pilot/circuits/` and records
+`results/B4_B8_nonstabilizer_late_bound_transcript_pilot_v0.json` plus
+`research/B4_B8_nonstabilizer_late_bound_transcript_pilot.md`. Each pilot adds
+H plus T/RZ(pi/4) challenge-basis layers to the public skeleton. The old
+deterministic transcript blocker is removed for 36/36 circuits, minimum
+min-entropy is 4 bits, and maximum output probability is 0.0625. This is an
+exact small-probability pilot only: not hardware execution, not cryptographic
+or protocol soundness, not sampling hardness, not quantum advantage, and not
+BQP separation.
+
 ## B5: Strongly Correlated Matter
 
 **Technical target:** show an accuracy-per-resource improvement on a meaningful
@@ -982,6 +996,19 @@ Those skeletons remove verifier-private masks/flips, but the public data
 transcripts are still deterministic and classically predictable. The gate
 therefore keeps late-bound private challenge alone marked insufficient for
 soundness, with 4 contract gates passed and 4 failed.
+
+**Sprint update 57:** `T-B8-003c` is now merged as the non-stabilizer
+late-bound transcript pilot. The result
+`results/B4_B8_nonstabilizer_late_bound_transcript_pilot_v0.json`, report
+`research/B4_B8_nonstabilizer_late_bound_transcript_pilot.md`, and 36 pilot
+QASM files under
+`results/B4_B8_nonstabilizer_late_bound_transcript_pilot/circuits/` add H plus
+T/RZ(pi/4) challenge-basis layers to the public skeletons. The deterministic
+public-data transcript blocker is removed for all 36 pilots, with minimum
+min-entropy 4 bits and maximum output probability 0.0625. This advances the
+transcript line, but it is still exact small-probability evidence only, not
+hardware execution, cryptographic/protocol soundness, sampling hardness,
+quantum advantage, or BQP separation.
 
 ## B9: Quantum PCP / Local Hamiltonian Hardness
 

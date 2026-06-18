@@ -122,6 +122,35 @@ current_results:
     public_skeleton_directory: ../results/B4_B8_late_bound_private_challenge_contract/public_skeletons
     result: ../results/B4_B8_late_bound_private_challenge_contract_gate_v0.json
     markdown_report: ../research/B4_B8_late_bound_private_challenge_contract_gate.md
+  nonstabilizer_late_bound_transcript_pilot_v0:
+    status: nonstabilizer_late_bound_transcript_pilot_not_soundness_or_advantage
+    model_status: exact_small_statevector_probability_pilot_not_hardware_execution
+    method: b4_b8_nonstabilizer_late_bound_transcript_pilot_v0
+    source_method: b4_b8_late_bound_private_challenge_contract_gate_v0
+    circuit_count: 36
+    nonstabilizer_file_count: 36
+    challenge_qubit_count_per_circuit: 4
+    deterministic_emulator_broken_count: 36
+    public_deterministic_transcript_blocker_removed: true
+    minimum_min_entropy_bits: 4.0
+    maximum_output_probability: 0.0625
+    exact_probability_ledger_file_count: 36
+    public_skeleton_private_material_hidden: true
+    nonstabilizer_basis_layer_present: true
+    hardware_execution_performed: false
+    real_backend_properties_used: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    sampling_hardness_proved: false
+    cryptographic_soundness_proved: false
+    protocol_soundness_proved: false
+    acceptance_gate_count: 8
+    passed_gate_count: 6
+    failed_gate_count: 2
+    validation_error_count: 0
+    nonstabilizer_pilot_directory: ../results/B4_B8_nonstabilizer_late_bound_transcript_pilot/circuits
+    result: ../results/B4_B8_nonstabilizer_late_bound_transcript_pilot_v0.json
+    markdown_report: ../research/B4_B8_nonstabilizer_late_bound_transcript_pilot.md
   toy_hidden_trap_protocol_sim_v0:
     status: toy_statistical_protocol
     model_status: toy_statistical_protocol_not_quantum_advantage_claim
@@ -185,3 +214,4 @@ prototype_artifacts:
   prototype_notes: ../research/B4_prototype_notes.md
   openqasm3_public_spoofer_gate: ../tools/b4_b8_openqasm3_packet_public_spoofer_gate.py
   late_bound_private_challenge_contract_gate: ../tools/b4_b8_late_bound_private_challenge_contract_gate.py
+  nonstabilizer_late_bound_transcript_pilot: ../tools/b4_b8_nonstabilizer_late_bound_transcript_pilot.py

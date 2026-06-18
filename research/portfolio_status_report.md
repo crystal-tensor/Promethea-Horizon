@@ -40,7 +40,7 @@ Overall audit: PASS
 - B IDs are B1..B10: True
 - Problem IDs match attack pack: True
 - All required fields present: True
-- Maturity scores: {'B1': 44, 'B2': 48, 'B3': 30, 'B4': 23, 'B5': 27, 'B6': 21, 'B7': 41, 'B8': 35, 'B9': 13, 'B10': 50}
+- Maturity scores: {'B1': 44, 'B2': 48, 'B3': 30, 'B4': 24, 'B5': 27, 'B6': 21, 'B7': 41, 'B8': 36, 'B9': 13, 'B10': 50}
 
 ## Technical Resolution Program
 
@@ -615,6 +615,12 @@ Overall audit: PASS
 - Late-bound deterministic data blocker / late-binding alone sufficient: True / False
 - Late-bound gates passed/failed: 4 / 4
 - Late-bound contract result/markdown/skeleton-dir exists: True / True / True
+- Non-stabilizer pilot status: nonstabilizer_late_bound_transcript_pilot_not_soundness_or_advantage
+- Non-stabilizer pilot circuits / deterministic blocker removed: 36 / True
+- Non-stabilizer pilot entropy / max output probability: 4.0 / 0.0625
+- Non-stabilizer pilot gates passed/failed: 6 / 2
+- Non-stabilizer pilot hardware execution / advantage / BQP separation: False / False / False
+- Non-stabilizer pilot result/markdown/directory exists: True / True / True
 
 ## B5 Hubbard Embedding Status
 
@@ -915,6 +921,12 @@ Overall audit: PASS
 - Late-bound deterministic data blocker / late-binding alone sufficient: True / False
 - Late-bound gates passed/failed: 4 / 4
 - Late-bound contract result/markdown/skeleton-dir exists: True / True / True
+- Non-stabilizer pilot status: nonstabilizer_late_bound_transcript_pilot_not_soundness_or_advantage
+- Non-stabilizer pilot circuits / deterministic blocker removed: 36 / True
+- Non-stabilizer pilot entropy / max output probability: 4.0 / 0.0625
+- Non-stabilizer pilot gates passed/failed: 6 / 2
+- Non-stabilizer pilot hardware execution / advantage / BQP separation: False / False / False
+- Non-stabilizer pilot result/markdown/directory exists: True / True / True
 - Generative spoofer status: trained_generative_spoofer_refresh_boundary_not_soundness_proof
 - Generative spoofer configurations: 144
 - Generative spoofer maximum learned soundness: 1.0
