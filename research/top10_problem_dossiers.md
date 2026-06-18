@@ -379,17 +379,23 @@ failed; seeded MPS pressure remains the strongest response reference; two-site
 and one-site ALS prototypes each have 0 rows beating seeded pressure; prototype
 fixed-sector norms fail the 0.01 threshold; and production DMRG, quantum
 response win, accuracy-per-resource win, and same-access positive route all
-remain false.
+remain false. T-B5-006a adds a canonical-environment smoke gate over the same
+two-site prototype outputs: 9 environment ledgers are present, but 0 rows pass
+the full smoke gate, 3 rows pass the fixed-sector norm / energy variance /
+discarded-weight / monotonicity checks, 0 rows are close to seeded MPS pressure,
+0 rows beat seeded MPS pressure, and mature canonical DMRG, production DMRG,
+quantum response win, accuracy-per-resource win, and same-access positive route
+all remain false.
 
 **Remaining path to a serious solution:** run T-B5-006 by implementing mature
 canonical-environment DMRG/MPS for the same response rows, with stored
 left/right environments, orthonormal residuals, sweep convergence, no
 exact-state seeding, and full cost accounting; or compare a fully costed
 quantum impurity/response kernel against exact D5, non-oracle embedding, seeded
-MPS pressure, one-site ALS, two-site finite-DMRG-style, and readiness-gate
-denominators.
+MPS pressure, one-site ALS, two-site finite-DMRG-style, readiness-gate, and
+smoke-gate denominators.
 
-**Current internal maturity:** 25/100.
+**Current internal maturity:** 26/100.
 
 ## B6: High-Temperature Superconductivity Search
 

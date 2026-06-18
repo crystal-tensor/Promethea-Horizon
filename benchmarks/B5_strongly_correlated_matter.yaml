@@ -40,6 +40,36 @@ next_actions:
   - add_observable_errors_beyond_energy
   - move_from_1d_chain_to_2d_plaquette_proxy
 current_results:
+  canonical_environment_smoke_gate_v0:
+    status: canonical_environment_smoke_gate_failed_not_production_dmrg
+    model_status: posthoc_two_site_environment_diagnostics_not_canonical_solver
+    method: b5_canonical_environment_smoke_gate_v0
+    model: one_dimensional_fermi_hubbard_half_filled_density_response
+    source_result: ../results/B5_two_site_dmrg_response_reference_v0.json
+    instance_count: 9
+    environment_ledger_rows: 9
+    smoke_passed_row_count: 0
+    fixed_sector_norm_passed_rows: 3
+    energy_variance_passed_rows: 3
+    discarded_weight_passed_rows: 3
+    energy_monotonicity_passed_rows: 3
+    response_close_to_seeded_rows: 0
+    rows_beating_seeded_mps_pressure_reference: 0
+    rows_beating_variational_mps_als_reference: 4
+    mean_relative_response_error: 0.08196129814275509
+    max_relative_response_error: 0.2771034796538877
+    min_fixed_sector_norm_before_normalization: 0.0004341448345871234
+    max_relative_discarded_weight: 0.23370810023566455
+    max_energy_variance: 1.798245465474567
+    mature_canonical_dmrg_ready: false
+    canonical_environment_solver_claimed: false
+    production_dmrg_claimed: false
+    same_access_positive_route_claimed: false
+    quantum_response_win_claimed: false
+    accuracy_per_resource_win_claimed: false
+    validation_error_count: 0
+    result: ../results/B5_canonical_environment_smoke_gate_v0.json
+    markdown_report: ../research/B5_canonical_environment_smoke_gate.md
   canonical_dmrg_readiness_gate_v0:
     status: canonical_dmrg_readiness_gate_failed_not_production_dmrg
     model_status: cross_reference_readiness_gate_not_solver
@@ -239,6 +269,7 @@ current_results:
       cluster4: 0.05921856583390095
     result: ../results/B5_hubbard_embedding_baseline_v0.json
 prototype_artifacts:
+  canonical_environment_smoke_gate: ../tools/b5_canonical_environment_smoke_gate.py
   canonical_dmrg_readiness_gate: ../tools/b5_canonical_dmrg_readiness_gate.py
   two_site_finite_dmrg_response_reference: ../tools/b5_two_site_dmrg_response_reference.py
   variational_mps_als_response_reference: ../tools/b5_variational_mps_als_response_reference.py

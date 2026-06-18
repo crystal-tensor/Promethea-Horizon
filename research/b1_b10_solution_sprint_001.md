@@ -392,6 +392,20 @@ stored environments, orthonormal residuals, sweep convergence, no exact-state
 seeding, and full cost accounting, or provide a fully costed quantum response
 kernel that beats the denominator ladder.
 
+**Sprint update 50:** `T-B5-006a` is now merged as a
+canonical-environment smoke gate over the existing two-site prototype outputs,
+not as production DMRG. `tools/b5_canonical_environment_smoke_gate.py` checks
+the same 9 B5/B10 D5 Hubbard response rows for environment ledger presence,
+fixed-sector norm, energy variance, discarded-weight pressure, monotonicity,
+and response closeness to the seeded MPS pressure reference. The official run
+finds 9 environment ledgers, 0 smoke-passed rows, 3 rows passing the
+fixed-sector norm / energy variance / discarded-weight / monotonicity checks,
+0 rows close to seeded MPS pressure, and 0 rows beating seeded MPS pressure.
+The path remains blocked until `T-B5-006` produces mature canonical-environment
+DMRG/MPS with stored environments, orthonormal residuals, convergence, no
+exact-state seeding, and full cost accounting, or a fully costed quantum
+response kernel beats the denominator ladder.
+
 ## B6: High-Temperature Superconductivity Search
 
 **Technical target:** rank candidate materials using mechanism-aware

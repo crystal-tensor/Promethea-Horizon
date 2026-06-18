@@ -40,7 +40,7 @@ Overall audit: PASS
 - B IDs are B1..B10: True
 - Problem IDs match attack pack: True
 - All required fields present: True
-- Maturity scores: {'B1': 37, 'B2': 48, 'B3': 30, 'B4': 20, 'B5': 25, 'B6': 21, 'B7': 33, 'B8': 32, 'B9': 12, 'B10': 49}
+- Maturity scores: {'B1': 37, 'B2': 48, 'B3': 30, 'B4': 20, 'B5': 26, 'B6': 21, 'B7': 33, 'B8': 32, 'B9': 12, 'B10': 49}
 
 ## Technical Resolution Program
 
@@ -553,6 +553,15 @@ Overall audit: PASS
 - Two-site finite-DMRG production DMRG / quantum win claimed: False / False
 - Two-site finite-DMRG validation errors: 0
 - Two-site finite-DMRG result/markdown exists: True / True
+- Canonical-environment smoke gate status: canonical_environment_smoke_gate_failed_not_production_dmrg
+- Canonical-environment smoke gate instances / ledger rows / smoke-passed rows: 9 / 9 / 0
+- Canonical-environment smoke gate fixed-sector / variance / discarded-weight / monotonicity rows: 3 / 3 / 3 / 3
+- Canonical-environment smoke gate response-close / beats seeded / beats ALS: 0 / 0 / 4
+- Canonical-environment smoke gate mean/max response error: 0.08196129814275509 / 0.2771034796538877
+- Canonical-environment smoke gate min norm / max discarded / max variance: 0.0004341448345871234 / 0.23370810023566455 / 1.798245465474567
+- Canonical-environment smoke gate mature DMRG / production DMRG / quantum win: False / False / False
+- Canonical-environment smoke gate validation errors: 0
+- Canonical-environment smoke gate result/markdown exists: True / True
 - Variational MPS/ALS status: variational_mps_als_pressure_reference_not_production_dmrg_or_advantage_claim
 - Variational MPS/ALS instances / bond dimensions / selected bond dimensions: 9 / [2, 4] / [4]
 - Variational MPS/ALS restarts x sweeps: 3 x 8

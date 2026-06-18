@@ -4245,6 +4245,7 @@ def audit(root: Path) -> dict:
     b5_manifest = yaml.safe_load(read(b5_manifest_path))
     b5_results = b5_manifest.get("current_results", {})
     b5_hubbard = b5_results.get("hubbard_exact_diagonalization_cluster_proxy_v0")
+    b5_canonical_smoke = b5_results.get("canonical_environment_smoke_gate_v0")
     b5_dmrg_readiness = b5_results.get("canonical_dmrg_readiness_gate_v0")
     b5_two_site_dmrg = b5_results.get("two_site_finite_dmrg_response_reference_v0")
     b5_var_mps = b5_results.get("variational_mps_als_response_reference_v0")
@@ -4285,6 +4286,110 @@ def audit(root: Path) -> dict:
             "result_exists": result_exists,
             "result": result_path,
         }
+
+    b5_canonical_smoke_status = {}
+    if not b5_canonical_smoke:
+        warnings.append("B5 manifest has no canonical-environment smoke gate")
+    else:
+        result_path = b5_canonical_smoke.get("result")
+        markdown_path = b5_canonical_smoke.get("markdown_report")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"B5 canonical-environment smoke gate result path missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"B5 canonical-environment smoke gate markdown missing: {markdown_path}")
+        payload = json.loads(read((benchmarks / result_path).resolve())) if result_exists else {}
+        summary = payload.get("summary", {})
+        claims = payload.get("claim_boundary", {})
+        b5_canonical_smoke_status = {
+            "status": b5_canonical_smoke.get("status"),
+            "method": b5_canonical_smoke.get("method"),
+            "model_status": payload.get("model_status"),
+            "instance_count": summary.get("instance_count"),
+            "environment_ledger_rows": summary.get("environment_ledger_rows"),
+            "smoke_passed_row_count": summary.get("smoke_passed_row_count"),
+            "fixed_sector_norm_passed_rows": summary.get("fixed_sector_norm_passed_rows"),
+            "energy_variance_passed_rows": summary.get("energy_variance_passed_rows"),
+            "discarded_weight_passed_rows": summary.get("discarded_weight_passed_rows"),
+            "energy_monotonicity_passed_rows": summary.get("energy_monotonicity_passed_rows"),
+            "response_close_to_seeded_rows": summary.get("response_close_to_seeded_rows"),
+            "rows_beating_seeded_mps_pressure_reference": summary.get(
+                "rows_beating_seeded_mps_pressure_reference"
+            ),
+            "rows_beating_variational_mps_als_reference": summary.get(
+                "rows_beating_variational_mps_als_reference"
+            ),
+            "mean_relative_response_error": summary.get("mean_relative_response_error"),
+            "max_relative_response_error": summary.get("max_relative_response_error"),
+            "min_fixed_sector_norm_before_normalization": summary.get(
+                "min_fixed_sector_norm_before_normalization"
+            ),
+            "max_relative_discarded_weight": summary.get("max_relative_discarded_weight"),
+            "max_energy_variance": summary.get("max_energy_variance"),
+            "mature_canonical_dmrg_ready": summary.get("mature_canonical_dmrg_ready"),
+            "canonical_environment_solver_claimed": claims.get("canonical_environment_solver_claimed"),
+            "production_dmrg_claimed": claims.get("production_dmrg_claimed"),
+            "same_access_positive_route_claimed": claims.get("same_access_positive_route_claimed"),
+            "quantum_response_win_claimed": claims.get("quantum_response_win_claimed"),
+            "accuracy_per_resource_win_claimed": claims.get("accuracy_per_resource_win_claimed"),
+            "validation_error_count": len(payload.get("validation_errors", [])),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown_report": markdown_path,
+        }
+        if payload.get("benchmark_id") != "B5":
+            errors.append("B5 canonical-environment smoke gate benchmark_id must be B5")
+        if payload.get("method") != b5_canonical_smoke.get("method"):
+            errors.append("B5 canonical-environment smoke gate method mismatch")
+        if payload.get("status") != b5_canonical_smoke.get("status"):
+            errors.append("B5 canonical-environment smoke gate status mismatch")
+        if payload.get("model_status") != b5_canonical_smoke.get("model_status"):
+            errors.append("B5 canonical-environment smoke gate model-status mismatch")
+        for field in [
+            "instance_count",
+            "environment_ledger_rows",
+            "smoke_passed_row_count",
+            "fixed_sector_norm_passed_rows",
+            "energy_variance_passed_rows",
+            "discarded_weight_passed_rows",
+            "energy_monotonicity_passed_rows",
+            "response_close_to_seeded_rows",
+            "rows_beating_seeded_mps_pressure_reference",
+            "rows_beating_variational_mps_als_reference",
+            "mean_relative_response_error",
+            "max_relative_response_error",
+            "min_fixed_sector_norm_before_normalization",
+            "max_relative_discarded_weight",
+            "max_energy_variance",
+            "mature_canonical_dmrg_ready",
+        ]:
+            if summary.get(field) != b5_canonical_smoke.get(field):
+                errors.append(f"B5 canonical-environment smoke gate {field} mismatch")
+        if summary.get("instance_count") != 9:
+            errors.append("B5 canonical-environment smoke gate must cover all nine D5 rows")
+        if summary.get("environment_ledger_rows") != 9:
+            errors.append("B5 canonical-environment smoke gate must expose ledgers for all rows")
+        if summary.get("smoke_passed_row_count") != 0:
+            errors.append("B5 canonical-environment smoke gate must not pass full smoke gate yet")
+        if summary.get("response_close_to_seeded_rows") != 0:
+            errors.append("B5 canonical-environment smoke gate must not be response-close to seeded pressure yet")
+        if summary.get("rows_beating_seeded_mps_pressure_reference") != 0:
+            errors.append("B5 canonical-environment smoke gate must not beat seeded pressure")
+        if summary.get("mature_canonical_dmrg_ready") is not False:
+            errors.append("B5 canonical-environment smoke gate must not mark mature DMRG ready")
+        for field in [
+            "canonical_environment_solver_claimed",
+            "production_dmrg_claimed",
+            "same_access_positive_route_claimed",
+            "quantum_response_win_claimed",
+            "accuracy_per_resource_win_claimed",
+        ]:
+            if claims.get(field) is not False:
+                errors.append(f"B5 canonical-environment smoke gate must keep {field}=False")
+        if len(payload.get("validation_errors", [])) != b5_canonical_smoke.get("validation_error_count"):
+            errors.append("B5 canonical-environment smoke gate validation-error count mismatch")
 
     b5_dmrg_readiness_status = {}
     if not b5_dmrg_readiness:
@@ -8403,6 +8508,7 @@ def audit(root: Path) -> dict:
         "b5": {
             "manifest": str(b5_manifest_path),
             "hubbard_embedding": b5_status,
+            "canonical_environment_smoke_gate": b5_canonical_smoke_status,
             "canonical_dmrg_readiness_gate": b5_dmrg_readiness_status,
             "two_site_finite_dmrg_response_reference": b5_two_site_dmrg_status,
             "variational_mps_als_response_reference": b5_var_mps_status,
@@ -8591,6 +8697,9 @@ def audit(root: Path) -> dict:
             ),
             "b5_canonical_dmrg_readiness_gate": str(
                 research / "B5_canonical_dmrg_readiness_gate.md"
+            ),
+            "b5_canonical_environment_smoke_gate": str(
+                research / "B5_canonical_environment_smoke_gate.md"
             ),
             "b6_curated_materials_leakage_audit": str(research / "B6_curated_materials_leakage_audit.md"),
             "b6_formula_descriptor_screen": str(research / "B6_formula_descriptor_screen.md"),
@@ -9233,6 +9342,15 @@ def markdown_report(report: dict) -> str:
             f"- Two-site finite-DMRG production DMRG / quantum win claimed: {report['b5']['two_site_finite_dmrg_response_reference'].get('production_dmrg')} / {report['b5']['two_site_finite_dmrg_response_reference'].get('quantum_response_win_claimed')}",
             f"- Two-site finite-DMRG validation errors: {report['b5']['two_site_finite_dmrg_response_reference'].get('validation_error_count')}",
             f"- Two-site finite-DMRG result/markdown exists: {report['b5']['two_site_finite_dmrg_response_reference'].get('result_exists')} / {report['b5']['two_site_finite_dmrg_response_reference'].get('markdown_exists')}",
+            f"- Canonical-environment smoke gate status: {report['b5']['canonical_environment_smoke_gate'].get('status')}",
+            f"- Canonical-environment smoke gate instances / ledger rows / smoke-passed rows: {report['b5']['canonical_environment_smoke_gate'].get('instance_count')} / {report['b5']['canonical_environment_smoke_gate'].get('environment_ledger_rows')} / {report['b5']['canonical_environment_smoke_gate'].get('smoke_passed_row_count')}",
+            f"- Canonical-environment smoke gate fixed-sector / variance / discarded-weight / monotonicity rows: {report['b5']['canonical_environment_smoke_gate'].get('fixed_sector_norm_passed_rows')} / {report['b5']['canonical_environment_smoke_gate'].get('energy_variance_passed_rows')} / {report['b5']['canonical_environment_smoke_gate'].get('discarded_weight_passed_rows')} / {report['b5']['canonical_environment_smoke_gate'].get('energy_monotonicity_passed_rows')}",
+            f"- Canonical-environment smoke gate response-close / beats seeded / beats ALS: {report['b5']['canonical_environment_smoke_gate'].get('response_close_to_seeded_rows')} / {report['b5']['canonical_environment_smoke_gate'].get('rows_beating_seeded_mps_pressure_reference')} / {report['b5']['canonical_environment_smoke_gate'].get('rows_beating_variational_mps_als_reference')}",
+            f"- Canonical-environment smoke gate mean/max response error: {report['b5']['canonical_environment_smoke_gate'].get('mean_relative_response_error')} / {report['b5']['canonical_environment_smoke_gate'].get('max_relative_response_error')}",
+            f"- Canonical-environment smoke gate min norm / max discarded / max variance: {report['b5']['canonical_environment_smoke_gate'].get('min_fixed_sector_norm_before_normalization')} / {report['b5']['canonical_environment_smoke_gate'].get('max_relative_discarded_weight')} / {report['b5']['canonical_environment_smoke_gate'].get('max_energy_variance')}",
+            f"- Canonical-environment smoke gate mature DMRG / production DMRG / quantum win: {report['b5']['canonical_environment_smoke_gate'].get('mature_canonical_dmrg_ready')} / {report['b5']['canonical_environment_smoke_gate'].get('production_dmrg_claimed')} / {report['b5']['canonical_environment_smoke_gate'].get('quantum_response_win_claimed')}",
+            f"- Canonical-environment smoke gate validation errors: {report['b5']['canonical_environment_smoke_gate'].get('validation_error_count')}",
+            f"- Canonical-environment smoke gate result/markdown exists: {report['b5']['canonical_environment_smoke_gate'].get('result_exists')} / {report['b5']['canonical_environment_smoke_gate'].get('markdown_exists')}",
             f"- Variational MPS/ALS status: {report['b5']['variational_mps_als_response_reference'].get('status')}",
             f"- Variational MPS/ALS instances / bond dimensions / selected bond dimensions: {report['b5']['variational_mps_als_response_reference'].get('instance_count')} / {report['b5']['variational_mps_als_response_reference'].get('bond_dimensions_tested')} / {report['b5']['variational_mps_als_response_reference'].get('selected_bond_dimensions')}",
             f"- Variational MPS/ALS restarts x sweeps: {report['b5']['variational_mps_als_response_reference'].get('restarts_per_instance_bond_dimension')} x {report['b5']['variational_mps_als_response_reference'].get('sweeps_per_restart')}",

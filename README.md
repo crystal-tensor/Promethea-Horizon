@@ -81,14 +81,16 @@ Current evidence includes:
 
 The current B5/B10 line has recently moved from small-cluster denominators to
 seeded MPS pressure, non-seeded one-site MPS/ALS pressure, and a two-site
-finite-DMRG-style pressure prototype. The latest B5 gate turns this into a
-canonical-DMRG readiness audit: 8 readiness conditions evaluated, 0 passed, 8
-failed, 0 non-seeded tensor rows beating seeded MPS pressure, and no production
-DMRG, same-access positive route, quantum response win, or accuracy-per-resource
-win claimed. The latest B10-T1 stress test still finds no positive same-access
-route because 0 rows beat explicit D5 matvec-equivalent costs by shots. This is
-progress, but it is not a production DMRG result, not a deployable tensor
-solver, not a sampling oracle, and not a quantum advantage claim.
+finite-DMRG-style pressure prototype. B5 now has a canonical-DMRG readiness
+audit plus a canonical-environment smoke gate over the same 9 B5/B10 D5 Hubbard
+response rows: 8 readiness conditions evaluated, 0 passed, 8 failed; the smoke
+gate finds 9 environment ledgers, 0 smoke-passed rows, 3 rows passing the
+fixed-sector, variance, discarded-weight, and monotonicity checks, 0 rows close
+to the seeded MPS pressure response, and 0 rows beating seeded MPS pressure.
+The latest B10-T1 stress test still finds no positive same-access route because
+0 rows beat explicit D5 matvec-equivalent costs by shots. This is progress, but
+it is not a production DMRG result, not a deployable tensor solver, not a
+sampling oracle, and not a quantum advantage claim.
 
 B6 has moved from a synthetic descriptor toy to curated leakage audits and a
 structural/electronic proxy boundary. The latest B6 screen keeps 38 records
