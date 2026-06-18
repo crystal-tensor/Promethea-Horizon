@@ -40,7 +40,7 @@ Overall audit: PASS
 - B IDs are B1..B10: True
 - Problem IDs match attack pack: True
 - All required fields present: True
-- Maturity scores: {'B1': 37, 'B2': 42, 'B3': 30, 'B4': 20, 'B5': 24, 'B6': 19, 'B7': 33, 'B8': 32, 'B9': 12, 'B10': 49}
+- Maturity scores: {'B1': 37, 'B2': 42, 'B3': 30, 'B4': 20, 'B5': 24, 'B6': 21, 'B7': 33, 'B8': 32, 'B9': 12, 'B10': 49}
 
 ## Technical Resolution Program
 
@@ -538,6 +538,14 @@ Overall audit: PASS
 - Formula uses formula descriptors / B5-linked proxy: True / True
 - Formula validation errors: 0
 - Formula result/markdown exists: True / True
+- Structural/electronic proxy status: structural_electronic_proxy_boundary_not_material_discovery_claim
+- Structural/electronic records / expanded negatives / families: 38 / 12 / 22
+- Structural/electronic AP@k / formula AP@k / family-prior AP@k: 0.6110119047619047 / 0.09999999999999999 / 1.0
+- Structural/electronic post-split AP / family-prior post-split AP: 0.6899659863945579 / 0.9821428571428571
+- Structural/electronic holdout AP / top-k negative controls: 0.8958333333333333 / 3
+- Structural/electronic discovery/mechanism/database/DFT/crystal claims: False / False / False / False / False
+- Structural/electronic validation errors: 0
+- Structural/electronic result/markdown exists: True / True
 
 ## B7 Fault-Tolerance Co-Design Status
 

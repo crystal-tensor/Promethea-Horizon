@@ -88,14 +88,13 @@ explicit D5 matvec-equivalent costs by shots. This is progress, but it is not a
 production DMRG result, not a deployable tensor solver, not a sampling oracle,
 and not a quantum advantage claim.
 
-B6 has moved from a synthetic descriptor toy to a curated retrospective
-materials leakage audit: 26 records across 12 families, explicit post-2008
-time split, family-prior comparison, and no material-discovery or solved
-mechanism claim. The latest B6 formula-derived descriptor screen extends this
-to 38 records across 22 families with 12 expanded negative controls and
-B5-linked correlation/screening proxies; formula AP@12 is 0.10 versus
-family-prior AP@12 of 1.0, so the next gate is computed structural/electronic
-descriptors rather than more formula-only scoring.
+B6 has moved from a synthetic descriptor toy to curated leakage audits and a
+structural/electronic proxy boundary. The latest B6 screen keeps 38 records
+across 22 families with 12 expanded negative controls; structural/electronic
+AP@12 improves to 0.611 versus formula AP@12 of 0.10, but family-prior AP@12
+remains 1.0 and the top 12 still include 3 negative controls. This is not a
+material-discovery or solved-mechanism claim; the next gate is real
+crystallographic, DFT, or B5-computed observables.
 
 B2 has moved past the closed reduced-round artifact into a leakage-flagged
 erasure analytic boundary: 480 configurations, 42 proxy target-volume improved

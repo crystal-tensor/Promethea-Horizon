@@ -78,6 +78,43 @@ current_results:
     uses_formula_derived_descriptors: true
     uses_b5_linked_proxy: true
     next_required_artifact: crystallographic/DFT/B5-computed descriptors with larger post-2008 negatives
+  b6_structural_electronic_proxy_screen_v0:
+    status: structural_electronic_proxy_boundary_not_material_discovery_claim
+    method: b6_structural_electronic_proxy_screen_v0
+    model_status: curated_structural_electronic_proxies_not_dft_or_crystallographic_database
+    result: ../results/B6_structural_electronic_proxy_screen_v0.json
+    markdown: ../research/B6_structural_electronic_proxy_screen.md
+    record_count: 38
+    curated_record_count: 26
+    expanded_negative_control_count: 12
+    family_count: 22
+    split_year: 2008
+    post_split_record_count: 10
+    post_split_positive_count: 7
+    high_tc_threshold_k: 30.0
+    top_k: 12
+    structural_precision_at_k: 0.75
+    structural_average_precision_at_k: 0.6110119047619047
+    formula_average_precision_at_k: 0.09999999999999999
+    family_prior_average_precision_at_k: 1.0
+    post_split_structural_average_precision_at_k: 0.6899659863945579
+    post_split_formula_average_precision_at_k: 0.5947278911564625
+    post_split_family_prior_average_precision_at_k: 0.9821428571428571
+    family_holdout_structural_mean_ap: 0.8958333333333333
+    top_k_negative_control_count: 3
+    structural_minus_formula_ap: 0.5110119047619047
+    structural_minus_family_prior_ap: -0.3889880952380953
+    validation_error_count: 0
+    material_discovery_claimed: false
+    mechanism_solved: false
+    complete_materials_database: false
+    computed_quantum_observable_claimed: false
+    real_dft_claimed: false
+    real_crystallographic_database_claimed: false
+    uses_formula_derived_descriptors: false
+    uses_structural_electronic_proxies: true
+    uses_b5_linked_proxy: true
+    next_required_artifact: actual crystallographic/DFT/B5-computed observables plus expanded post-2008 negatives
   b6_curated_materials_leakage_audit_v0:
     status: curated_retrospective_leakage_audit
     model_status: curated_materials_table_with_time_family_leakage_audit
@@ -133,4 +170,5 @@ current_results:
     result: ../results/B6_superconductivity_descriptor_ranker_v0.json
 prototype_artifacts:
   descriptor_ranker: ../tools/b6_superconductivity_descriptor_ranker.py
+  structural_electronic_proxy_screen: ../tools/b6_structural_electronic_proxy_screen.py
   prototype_notes: ../research/B6_prototype_notes.md

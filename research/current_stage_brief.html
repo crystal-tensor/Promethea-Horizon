@@ -253,7 +253,7 @@
         <span class="chip">工作区：/Users/avalok/work/FurturePlan</span>
         <span class="chip">目标状态：active，未完成</span>
         <span class="chip">当前阶段：B1-B10 技术解决推进</span>
-        <span class="chip">最新动作：B2 posterior-calibrated leakage boundary</span>
+        <span class="chip">最新动作：B6 structural/electronic proxy boundary</span>
         <span class="chip">组合审计：PASS / 0 warnings</span>
       </div>
     </header>
@@ -281,6 +281,9 @@
       </p>
       <p style="margin-top: 10px;">
         最新推进 27：B6/T-B6-002 已完成 formula-derived descriptor screen。新工具把 curated materials 表扩到 38 records / 22 families，加入 12 个 expanded negative controls，用内置元素表解析化学式并生成 formula mass、electronegativity spread、valence spread、active pairing element fraction、anion layer fraction、B5-linked correlation/screening proxies 等描述符。结果很清楚：formula AP@12 只有 0.10，而 family-prior AP@12 为 1.0；post-split formula AP 为 0.5947，仍低于 family-prior 0.9821。这个结果不是材料发现、不是高温超导机制解决、不是完整数据库、也不是 computed quantum observable；它的价值是把“只看化学式”的路线关闭为边界证据，下一步必须进入 crystallographic/DFT/B5-computed descriptors。
+      </p>
+      <p style="margin-top: 10px;">
+        最新推进 35：B6/T-B6-003 已完成 structural/electronic proxy boundary。新工具仍使用 38 records / 22 families / 12 expanded negative controls，但把 formula-only score 替换为 inferred dimensionality、layered anisotropy、electronic correlation、spin fluctuation、phonon、carrier tunability、disorder/competing-order penalty 和 B5 structural-response proxy。结果：structural AP@12 从 formula AP@12 0.10 提升到 0.611，但 family-prior AP@12 仍为 1.0；post-split structural AP 为 0.690，仍低于 family-prior 0.982；top-12 里仍有 3 个 negative controls。这不是 material discovery、不是 mechanism solution、不是 DFT、不是 crystallographic database，也不是 computed quantum observable；下一步 T-B6-004 必须接入真实 crystallographic/DFT/B5-computed observables。
       </p>
       <p style="margin-top: 10px;">
         最新推进 28：B10/T-B10-001 已完成 B3/B5 denominator boundary comparison。新工具汇总 B3 cross-molecule UCC/ADAPT pressure、B5 oracle/non-oracle response embedding、seeded MPS pressure reference、variational MPS/ALS prototype 和 B10 D5 denominator tables，输出 4 张 route cards。结论：B3 当前保持 negative-boundary，selected-CI larger-basis denominator wins 为 0，max optimizer-loop shots lower bound 为 475,043,013,690,000；B5 有 classical denominator pressure，non-oracle-over-oracle rows 为 4、seeded-MPS-over-non-oracle rows 为 6，但 variational MPS/ALS-over-seeded rows 为 0。它不是 BQP separation、不是 quantum advantage，也不是 B3/B5 solution；下一步 T-B10-010 是把这个 comparison 写成 dequantization/sampling-access theorem-note skeleton，或明确缺失的关键假设。
@@ -465,7 +468,7 @@
             <td>4</td>
             <td>B3/B5/B6 application spine</td>
             <td>化学和材料方向更接近未来价值，但现在证据还停在 proxy/toy，需要真实路径和强 classical baseline。</td>
-            <td>B3 已完成 proxy circuit、Hamiltonian Pauli mapper、sampled confidence boundary、selected-CI larger-basis grouped Pauli boundary、larger-basis Hamiltonian mapper、larger-basis QWC grouping、HF grouped covariance shot-floor、chemical state-prep derivative boundary、H2/cc-pVDZ one-parameter compiled UCC/ADAPT covariance pilot 和 H2/LiH/H2O/N2 cross-molecule pressure boundary；当前建议降级为 negative-boundary track，只有 T-B3-012 rescue 机制通过后才继续；B5 已补 oracle-tuned/non-oracle response denominators、exact-state-seeded MPS pressure reference、non-exact-state-seeded variational MPS/ALS prototype 和 two-site finite-DMRG-style pressure prototype；下一步是真实 production DMRG/MPS reference 或 quantum response-kernel costed comparison；B6 已完成 curated retrospective materials leakage audit 与 formula-derived descriptor screen：38 records / 22 families、12 expanded negative controls、formula AP@12 0.10 vs family-prior 1.0；下一步必须进入 crystallographic/DFT/B5-computed descriptors。</td>
+            <td>B3 已完成 proxy circuit、Hamiltonian Pauli mapper、sampled confidence boundary、selected-CI larger-basis grouped Pauli boundary、larger-basis Hamiltonian mapper、larger-basis QWC grouping、HF grouped covariance shot-floor、chemical state-prep derivative boundary、H2/cc-pVDZ one-parameter compiled UCC/ADAPT covariance pilot 和 H2/LiH/H2O/N2 cross-molecule pressure boundary；当前建议降级为 negative-boundary track，只有 T-B3-012 rescue 机制通过后才继续；B5 已补 oracle-tuned/non-oracle response denominators、exact-state-seeded MPS pressure reference、non-exact-state-seeded variational MPS/ALS prototype 和 two-site finite-DMRG-style pressure prototype；下一步是真实 production DMRG/MPS reference 或 quantum response-kernel costed comparison；B6 已完成 curated leakage audit、formula descriptor screen 与 structural/electronic proxy boundary：structural AP@12 0.611 vs formula 0.10，但 family-prior 仍为 1.0，top-12 negative controls 为 3；下一步必须进入真实 crystallographic/DFT/B5-computed observables。</td>
           </tr>
         </tbody>
       </table>
@@ -490,7 +493,7 @@
         <div class="step">
           <span class="tag current">当前</span>
           <h3>阶段 1B：证据加固</h3>
-          <p>B1/B2/B3/B6/B7/B8/B10 已从 toy/proxy 进入更强 baseline、真实 sweep、bridge、stress-test、formula boundary、circuit-vs-denominator comparison、Hamiltonian Pauli mapper cost boundary 或 source-backed boundary note。</p>
+          <p>B1/B2/B3/B6/B7/B8/B10 已从 toy/proxy 进入更强 baseline、真实 sweep、bridge、stress-test、structural/electronic boundary、circuit-vs-denominator comparison、Hamiltonian Pauli mapper cost boundary 或 source-backed boundary note。</p>
         </div>
         <div class="step">
           <span class="tag next">下一步</span>
@@ -559,7 +562,7 @@
           <tr><td>B3</td><td>分子反应动力学</td><td><span class="risk-text">已降级为 negative-boundary track</span>：T-B3-011 覆盖 H2/LiH/H2O/N2 bounded sampled covariance pressure，35 sampled groups、mean/max variance error 0.0833/0.5029；max optimizer-loop shots lower bound 475,043,013,690,000，denominator wins 为 0。只有 rescue-only multi-parameter UCCSD/ADAPT 或更强测量策略出现后才继续作为突破候选。</td></tr>
           <tr><td>B4</td><td>可验证量子优势</td><td><span class="warn">已有 B4/B8 CNOT hidden-projection circuit proxy</span>，但仍不是 quantum advantage 或硬件协议。</td></tr>
           <tr><td>B5</td><td>强关联物质</td><td><span class="warn">Hubbard exact/cluster proxy + denominators + MPS/ALS + two-site finite-DMRG-style prototype</span>：two-site prototype 覆盖 9 个 B10 D5 density-response rows，bond dimension 4，2 restarts x 4 sweeps，selected mean/max relative response error 0.08196/0.27710，min exact-state overlap 0.93945，4 行优于 one-site ALS，但 0 行优于 seeded MPS pressure reference；仍需真实 production DMRG/MPS reference 或真实量子 response-kernel costed comparison。</td></tr>
-          <tr><td>B6</td><td>高温超导搜索</td><td><span class="warn">formula descriptor boundary</span>：38 records / 22 families，12 expanded negatives，formula AP@12 0.10 vs family-prior 1.0；下一步接入 crystallographic/DFT/B5-computed descriptors。</td></tr>
+          <tr><td>B6</td><td>高温超导搜索</td><td><span class="warn">structural/electronic proxy boundary</span>：38 records / 22 families，12 expanded negatives，structural AP@12 0.611 vs formula 0.10，但 family-prior AP@12 仍为 1.0；top-12 negative controls 为 3；下一步接入真实 crystallographic/DFT/B5-computed observables。</td></tr>
           <tr><td>B7</td><td>容错架构 co-design</td><td><span class="warn">已有 B1/B2 bridge、DAG/factory schedule、T-factory 边界测试和 post-1Q retest</span>，mean STV 变为 1.034x，但 min STV 仍需突破。</td></tr>
           <tr><td>B8</td><td>量子输出经典验证</td><td><span class="ok">已有 adaptive leakage 边界、toy repair baseline、B4/B8 circuit-refresh proxy、trained-spoofer boundary、B10-T2 proof gate、restricted lemma、transcript/device-noise bridge、ideal Qiskit/Aer verifier bridge、noisy Aer verifier bridge 和 GenericBackendV2 backend-calibrated-style verifier bridge</span>，下一步 real backend / hardware verifier。</td></tr>
           <tr><td>B9</td><td>Quantum PCP / Local Hamiltonian</td><td><span class="risk-text">高风险理论线</span>，已有 exact gap lab、finite-instance failed gap-amplification negative lemma、Lean-style symbolic skeleton 和 cluster-stabilizer named-family width/locality bound：n=4,5,6 全部 term 统一 1.35x 缩放，max locality 3，raw gap 放大但 normalized gap 不变；下一步 T-B9-004 做真正 proof-check。</td></tr>
@@ -667,10 +670,10 @@
               <td>前人路线包括 Hubbard/t-J/RVB、spin-fluctuation、DFT/DFT+DMFT、Eliashberg theory、materials informatics、晶体图神经网络。里程碑是 cuprates、iron pnictides、hydrides 和机器学习材料筛选。</td>
               <td>
                 我们的方案是 mechanism-aware descriptor ranking：不只预测 Tc，而要隔离会泄漏历史发现的 proxy，并把 B5 强关联 observables 纳入候选筛选。
-                已完成 toy descriptor ranking harness、curated retrospective leakage audit，以及 T-B6-002 formula-derived descriptor screen：38 records / 22 families，12 expanded negative controls，B5-linked correlation/screening proxies，formula AP@12 0.10 vs family-prior AP@12 1.0，post-split formula AP 0.5947 vs family-prior 0.9821；这不是 material discovery、mechanism solution、complete database 或 computed quantum observable claim。
+                已完成 toy descriptor ranking harness、curated retrospective leakage audit、T-B6-002 formula-derived descriptor screen，以及 T-B6-003 structural/electronic proxy boundary：38 records / 22 families，12 expanded negative controls，B5-linked structural-response proxy，structural AP@12 0.611 vs formula AP@12 0.10，但 family-prior AP@12 仍为 1.0；post-split structural AP 0.690 vs family-prior 0.982；top-12 negative controls 为 3；这不是 material discovery、mechanism solution、complete database、DFT、crystallographic database 或 computed quantum observable claim。
                 <span class="progress">内部成熟度：19/100</span>
               </td>
-              <td>还需 6 步：接入 crystallographic/DFT 数据；把 formula proxy 替换为 computed structural/electronic descriptors；扩展 post-2008 negatives；继续 family/time leakage audit；和 B5 computed observable 对齐；技术门槛通过后再输出可实验验证的短名单。</td>
+              <td>还需 5 步：接入真实 crystallographic/DFT 数据；把 curated proxy 替换为 computed structural/electronic descriptors；扩展 post-2008 negatives 与 parent controls；和 B5 computed observable 对齐；技术门槛通过后再输出可实验验证的短名单。</td>
             </tr>
             <tr>
               <td><strong>B7</strong><br>容错架构 co-design</td>
@@ -787,6 +790,7 @@
         <li><code>research/B2_stim_heralded_erasure_stress.md</code>：B2 Stim HERALDED_ERASE / DEPOLARIZE1 stress boundary，108 配置、216000 shots、10 个 target-volume improved rows 全部为 candidate d=5/7；仍不是 shot-conditioned erasure decoder 或 calibrated leakage claim</li>
         <li><code>research/B2_heralded_erasure_false_positive_stress.md</code>：B2 heralded-erasure false-positive overhead stress，270 配置、324000 shots；fp=0.001/tick 下 5 个 d=5/d=7 improved rows 存活，fp=0.003/tick 起归零</li>
         <li><code>research/B2_shot_conditioned_erasure_decoder_boundary.md</code>：B2 posterior-calibrated shot-conditioned leakage boundary，4 calibration profiles、1152 profile rows、max 4 surviving d=5/d=7 rows in one profile，strict/all-profile robustness 未通过</li>
+        <li><code>research/B6_structural_electronic_proxy_screen.md</code>：B6 structural/electronic proxy boundary，structural AP@12 0.611 vs formula 0.10，但 family-prior AP@12 仍为 1.0，top-12 negative controls 为 3</li>
         <li><code>research/B7_b1_b2_dependency_schedule_bridge.md</code>：B7 B1/B2 dependency-schedule bridge</li>
         <li><code>research/B7_workload_dag_factory_schedule.md</code>：B7 workload-DAG factory-throughput schedule</li>
         <li><code>research/B7_logical_t_factory_schedule.md</code>：B7 logical T-count/T-depth factory-boundary test</li>
@@ -874,6 +878,7 @@
         <li>最新 T-B3-001：reaction-coordinate quantum observable-estimation proxy vs FCI denominator 已完成；4 个 OpenQASM circuits、max 21 qubits、441 controlled-phase gates、FCI denominator wins 为 0。下一步 T-B3-003 改用 Hamiltonian Pauli-term chemistry-mapper circuits，并加入 state-preparation 与 observable-variance cost。</li>
         <li>最新 T-B3-003：Hamiltonian Pauli-term mapper comparison 已完成；4 个 Qiskit Nature Jordan-Wigner QASM measurement packets、max 20 qubits、2951 mapped Pauli terms、max conservative total shot floor 30,504,129,929，state-preparation 与 variance costs 已入账，FCI wins 仍为 0。下一步 T-B3-004 做 sampled Pauli-estimator confidence intervals 或 selected-CI/larger-active-space denominator。</li>
         <li>最新 T-B3-011：cross-molecule UCC/ADAPT pressure and demotion boundary 已完成；H2/LiH/H2O/N2 共 35 个 bounded sampled groups、384 shots/group，mean/max variance error 0.0833/0.5029；max optimizer-loop shots lower bound 475,043,013,690,000，max optimizer-loop 2Q executions lower bound 281,225,464,104,480,000；denominator wins 仍为 0，因此 B3 当前降级为 negative-boundary track。下一步 T-B3-012 只接受 rescue-only multi-parameter UCCSD/ADAPT 或更强测量策略。</li>
+        <li>最新 T-B6-003：structural/electronic proxy boundary 已完成；38 records / 22 families / 12 expanded negatives，structural AP@12 0.611 vs formula AP@12 0.10，但 family-prior AP@12 仍为 1.0；post-split structural AP 0.690 vs family-prior 0.982；top-12 negative controls 为 3。下一步 T-B6-004：接入真实 crystallographic/DFT/B5-computed observables。</li>
         <li>推进 B7/B1：解释并攻击剩余 min-STV regime；若无法继续提高，则形成清晰的 data-path / T-factory / min-regime claim separation。</li>
         <li>最新 B8/B10：trained/generative spoofer refresh stress、B10-T2 proof gate、restricted lemma、transcript/device-noise bridge、ideal Qiskit/Aer verifier bridge、noisy Aer verifier bridge 与 GenericBackendV2 backend-calibrated-style verifier bridge 已完成；下一步升级到 real backend properties 或硬件 randomized-measurement verifier。</li>
         <li>最新 B9：T-B9-001 finite-instance failed gap-amplification negative lemma、T-B9-002 Lean-style symbolic skeleton 与 T-B9-003 cluster-stabilizer named-family width/locality bound skeleton 已完成；下一步 T-B9-004，建立真正 Lean/mathlib 或等价 proof-check 环境，并把 support-size、uniform-scaling、spectral-width、normalized-gap invariance 做成全 n 形式化引理。</li>

@@ -164,16 +164,15 @@
         "crystal graph neural networks"
       ],
       "our_solution": "Mechanism-aware descriptor ranking linked to B5-derived strong-correlation observables.",
-      "completed": "Toy descriptor-ranking harness with 72 candidates and precision@12 of 0.833333 on synthetic labels. T-B6-001 adds a curated retrospective materials leakage audit with 26 records across 12 families. T-B6-002 adds a formula-derived descriptor screen with 38 records across 22 families, 12 expanded negative controls, embedded element-table descriptors, B5-linked correlation/screening proxies, formula AP@12 0.10, family-prior AP@12 1.0, post-split formula AP 0.5947, post-split family-prior AP 0.9821, validation errors 0, and explicit non-claim of material discovery, solved mechanism, complete database coverage, or computed quantum observable.",
+      "completed": "Toy descriptor ranker, curated materials leakage audit, formula-derived descriptor screen, and T-B6-003 structural/electronic proxy boundary. The latest boundary keeps 38 records / 22 families / 12 expanded negatives, improves AP@12 from formula 0.10 to structural 0.611, but still loses to family-prior AP@12 1.0; post-split structural AP is 0.690 vs family-prior 0.982; top-12 contains 3 negative controls. This is not a material discovery, solved mechanism, complete database, real DFT calculation, crystallographic database pull, or computed quantum observable.",
       "remaining_steps": [
-        "replace formula-derived proxies with crystallographic/DFT/B5-computed descriptors",
-        "expand post-2008 negative controls",
-        "run family/time leakage controls against stronger baselines",
-        "add structure and correlation descriptors",
-        "B5 observable coupling",
-        "experimentally testable shortlist only after the technical gate passes"
+        "replace curated/imputed structural proxies with crystallographic descriptors",
+        "attach DFT or B5-computed electronic observables",
+        "expand post-2008 negative controls and parent compounds",
+        "beat family-prior and random baselines without promoting negative controls",
+        "only then consider candidate ranking or active-learning claims"
       ],
-      "maturity_score": 19
+      "maturity_score": 21
     },
     {
       "b_id": "B7",

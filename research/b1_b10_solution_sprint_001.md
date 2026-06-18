@@ -310,25 +310,28 @@ claim; it is a denominator-pressure artifact for the next B10-T1 gate.
 **Technical target:** rank candidate materials using mechanism-aware
 descriptors while controlling family-prior leakage.
 
-**Sprint hypothesis:** the curated table and formula-derived proxy screen are
-useful only as leakage controls; the next useful artifact must use
-crystallographic, DFT, or B5-computed observables.
+**Sprint hypothesis:** the curated table, formula-derived proxy screen, and
+structural/electronic proxy boundary are useful leakage controls; the next useful
+artifact must use real crystallographic, DFT, or B5-computed observables.
 
 **Algorithmic move:** replace formula-derived proxies with computed
 structural/electronic descriptors, keep family/time leakage controls, and
 charge any B5 observable coupling as a separate evidence channel.
 
-**Current evidence:** `T-B6-002` adds 38 records / 22 families with 12 expanded
-negative controls, formula-derived descriptors, B5-linked correlation/screening
-proxies, formula AP@12 0.10, family-prior AP@12 1.0, post-split formula AP
-0.5947, and no discovery/mechanism/database/computed-observable claim.
+**Current evidence:** `T-B6-003` is now merged as a structural/electronic proxy
+boundary. It keeps 38 records / 22 families with 12 expanded negative controls,
+improves AP@12 from formula 0.10 to structural 0.611, but still loses to
+family-prior AP@12 1.0. Post-split structural AP is 0.690 vs family-prior 0.982,
+family-holdout structural mean AP is 0.896, and the top 12 contain 3 negative
+controls. It is not a discovery/mechanism/database/DFT/crystallographic-data or
+computed-observable claim.
 
-**Next PR:** `T-B6-003`. Expected artifacts:
+**Next PR:** `T-B6-004`. Expected artifacts:
 
 - `benchmarks/B6_high_temperature_superconductivity.yaml`
-- `tools/b6_computed_descriptor_audit.py`
-- `results/B6_computed_descriptor_audit_v0.json`
-- `research/B6_computed_descriptor_audit.md`
+- `tools/b6_crystallographic_or_dft_descriptor_audit.py`
+- `results/B6_crystallographic_or_dft_descriptor_audit_v0.json`
+- `research/B6_crystallographic_or_dft_descriptor_audit.md`
 
 **Acceptance gate:** computed descriptors are reported separately from
 family-prior and formula-proxy baselines under random, time-forward, and

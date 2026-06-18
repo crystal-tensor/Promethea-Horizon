@@ -3974,9 +3974,11 @@ def audit(root: Path) -> dict:
     b6_descriptor = b6_results.get("toy_superconductivity_descriptor_ranker_v0")
     b6_curated = b6_results.get("b6_curated_materials_leakage_audit_v0")
     b6_formula = b6_results.get("b6_formula_descriptor_screen_v0")
+    b6_structural = b6_results.get("b6_structural_electronic_proxy_screen_v0")
     b6_status = {}
     b6_curated_status = {}
     b6_formula_status = {}
+    b6_structural_status = {}
     if not b6_descriptor:
         warnings.append("B6 manifest has no superconductivity descriptor ranking result")
     else:
@@ -4193,6 +4195,139 @@ def audit(root: Path) -> dict:
             "computed_quantum_observable_claimed": b6_formula.get("computed_quantum_observable_claimed"),
             "uses_formula_derived_descriptors": b6_formula.get("uses_formula_derived_descriptors"),
             "uses_b5_linked_proxy": b6_formula.get("uses_b5_linked_proxy"),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown": markdown_path,
+        }
+
+    if not b6_structural:
+        warnings.append("B6 manifest has no structural/electronic proxy screen result")
+    else:
+        result_path = b6_structural.get("result")
+        markdown_path = b6_structural.get("markdown")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"B6 structural/electronic proxy result path missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"B6 structural/electronic proxy markdown path missing: {markdown_path}")
+        if b6_structural.get("method") != "b6_structural_electronic_proxy_screen_v0":
+            errors.append("B6 structural/electronic proxy method mismatch")
+        if b6_structural.get("status") != "structural_electronic_proxy_boundary_not_material_discovery_claim":
+            errors.append("B6 structural/electronic proxy status must be a non-discovery claim")
+        if b6_structural.get("model_status") != "curated_structural_electronic_proxies_not_dft_or_crystallographic_database":
+            errors.append("B6 structural/electronic proxy model status mismatch")
+        if int(b6_structural.get("expanded_negative_control_count", 0)) < 10:
+            errors.append("B6 structural/electronic proxy must keep expanded negative controls")
+        if int(b6_structural.get("top_k_negative_control_count", 0)) < 1:
+            errors.append("B6 structural/electronic proxy should expose top-k negative-control pressure")
+        if int(b6_structural.get("validation_error_count", -1)) != 0:
+            errors.append("B6 structural/electronic proxy validation errors must be zero")
+        if float(b6_structural.get("structural_average_precision_at_k", 0.0)) <= float(
+            b6_structural.get("formula_average_precision_at_k", 0.0)
+        ):
+            errors.append("B6 structural/electronic proxy should improve over formula AP")
+        if float(b6_structural.get("structural_average_precision_at_k", 0.0)) >= float(
+            b6_structural.get("family_prior_average_precision_at_k", 0.0)
+        ):
+            errors.append("B6 structural/electronic proxy must not overclaim beating family prior")
+        for claim_key in [
+            "material_discovery_claimed",
+            "mechanism_solved",
+            "complete_materials_database",
+            "computed_quantum_observable_claimed",
+            "real_dft_claimed",
+            "real_crystallographic_database_claimed",
+        ]:
+            if b6_structural.get(claim_key) is not False:
+                errors.append(f"B6 structural/electronic proxy must not claim {claim_key}")
+        if b6_structural.get("uses_structural_electronic_proxies") is not True:
+            errors.append("B6 structural/electronic proxy must disclose structural/electronic proxies")
+        if b6_structural.get("uses_b5_linked_proxy") is not True:
+            errors.append("B6 structural/electronic proxy must disclose B5-linked proxy usage")
+        if result_exists:
+            payload = json.loads(read((benchmarks / result_path).resolve()))
+            if payload.get("benchmark_id") != "B6":
+                errors.append(f"B6 structural/electronic proxy benchmark_id={payload.get('benchmark_id')!r}, expected 'B6'")
+            if payload.get("method") != b6_structural.get("method"):
+                errors.append("B6 structural/electronic proxy payload method differs from manifest")
+            if payload.get("status") != b6_structural.get("status"):
+                errors.append("B6 structural/electronic proxy payload status differs from manifest")
+            if payload.get("model_status") != b6_structural.get("model_status"):
+                errors.append("B6 structural/electronic proxy payload model status differs from manifest")
+            for field in [
+                "record_count",
+                "curated_record_count",
+                "expanded_negative_control_count",
+                "family_count",
+                "post_split_record_count",
+                "post_split_positive_count",
+                "top_k",
+            ]:
+                if payload.get(field) != b6_structural.get(field):
+                    errors.append(f"B6 structural/electronic proxy {field} differs from manifest")
+            if len(payload.get("validation_errors", [])) != b6_structural.get("validation_error_count"):
+                errors.append("B6 structural/electronic proxy validation-error count mismatch")
+            metrics = payload.get("metrics", {})
+            for metric in [
+                "structural_average_precision_at_k",
+                "formula_average_precision_at_k",
+                "family_prior_average_precision_at_k",
+                "post_split_structural_average_precision_at_k",
+                "post_split_family_prior_average_precision_at_k",
+                "family_holdout_structural_mean_ap",
+                "top_k_negative_control_count",
+                "structural_minus_formula_ap",
+                "structural_minus_family_prior_ap",
+            ]:
+                if metrics.get(metric) != b6_structural.get(metric):
+                    errors.append(f"B6 structural/electronic proxy {metric} differs from manifest")
+            claim_boundary = payload.get("claim_boundary", {})
+            for claim_key in [
+                "material_discovery_claimed",
+                "mechanism_solved",
+                "complete_materials_database",
+                "computed_quantum_observable_claimed",
+                "real_dft_claimed",
+                "real_crystallographic_database_claimed",
+            ]:
+                if claim_boundary.get(claim_key) is not False:
+                    errors.append(f"B6 structural/electronic proxy payload claims {claim_key}")
+            if claim_boundary.get("uses_structural_electronic_proxies") is not True:
+                errors.append("B6 structural/electronic proxy payload hides proxy status")
+            if claim_boundary.get("uses_b5_linked_proxy") is not True:
+                errors.append("B6 structural/electronic proxy payload hides B5-linked proxy status")
+        b6_structural_status = {
+            "status": b6_structural.get("status"),
+            "method": b6_structural.get("method"),
+            "model_status": b6_structural.get("model_status"),
+            "record_count": b6_structural.get("record_count"),
+            "expanded_negative_control_count": b6_structural.get("expanded_negative_control_count"),
+            "family_count": b6_structural.get("family_count"),
+            "top_k": b6_structural.get("top_k"),
+            "structural_average_precision_at_k": b6_structural.get("structural_average_precision_at_k"),
+            "formula_average_precision_at_k": b6_structural.get("formula_average_precision_at_k"),
+            "family_prior_average_precision_at_k": b6_structural.get("family_prior_average_precision_at_k"),
+            "post_split_structural_average_precision_at_k": b6_structural.get(
+                "post_split_structural_average_precision_at_k"
+            ),
+            "post_split_family_prior_average_precision_at_k": b6_structural.get(
+                "post_split_family_prior_average_precision_at_k"
+            ),
+            "family_holdout_structural_mean_ap": b6_structural.get("family_holdout_structural_mean_ap"),
+            "top_k_negative_control_count": b6_structural.get("top_k_negative_control_count"),
+            "structural_minus_formula_ap": b6_structural.get("structural_minus_formula_ap"),
+            "structural_minus_family_prior_ap": b6_structural.get("structural_minus_family_prior_ap"),
+            "validation_error_count": b6_structural.get("validation_error_count"),
+            "material_discovery_claimed": b6_structural.get("material_discovery_claimed"),
+            "mechanism_solved": b6_structural.get("mechanism_solved"),
+            "complete_materials_database": b6_structural.get("complete_materials_database"),
+            "computed_quantum_observable_claimed": b6_structural.get("computed_quantum_observable_claimed"),
+            "real_dft_claimed": b6_structural.get("real_dft_claimed"),
+            "real_crystallographic_database_claimed": b6_structural.get("real_crystallographic_database_claimed"),
+            "uses_structural_electronic_proxies": b6_structural.get("uses_structural_electronic_proxies"),
+            "uses_b5_linked_proxy": b6_structural.get("uses_b5_linked_proxy"),
             "result_exists": result_exists,
             "markdown_exists": markdown_exists,
             "result": result_path,
@@ -7356,6 +7491,7 @@ def audit(root: Path) -> dict:
             "descriptor_ranking": b6_status,
             "curated_materials_leakage_audit": b6_curated_status,
             "formula_descriptor_screen": b6_formula_status,
+            "structural_electronic_proxy_screen": b6_structural_status,
         },
         "b7": {
             "manifest": str(b7_manifest_path),
@@ -7513,6 +7649,9 @@ def audit(root: Path) -> dict:
             ),
             "b6_curated_materials_leakage_audit": str(research / "B6_curated_materials_leakage_audit.md"),
             "b6_formula_descriptor_screen": str(research / "B6_formula_descriptor_screen.md"),
+            "b6_structural_electronic_proxy_screen": str(
+                research / "B6_structural_electronic_proxy_screen.md"
+            ),
             "b10_formal_theorem_targets": str(research / "B10_formal_theorem_targets.md"),
             "b10_t2_minimum_refresh_spoofer_boundary": str(research / "B8_generative_spoofer_refresh.md"),
             "b10_t2_refresh_proof_obligation_gate": str(research / "B10_t2_refresh_proof_obligation_gate.md"),
@@ -8134,6 +8273,14 @@ def markdown_report(report: dict) -> str:
             f"- Formula uses formula descriptors / B5-linked proxy: {report['b6']['formula_descriptor_screen'].get('uses_formula_derived_descriptors')} / {report['b6']['formula_descriptor_screen'].get('uses_b5_linked_proxy')}",
             f"- Formula validation errors: {report['b6']['formula_descriptor_screen'].get('validation_error_count')}",
             f"- Formula result/markdown exists: {report['b6']['formula_descriptor_screen'].get('result_exists')} / {report['b6']['formula_descriptor_screen'].get('markdown_exists')}",
+            f"- Structural/electronic proxy status: {report['b6']['structural_electronic_proxy_screen'].get('status')}",
+            f"- Structural/electronic records / expanded negatives / families: {report['b6']['structural_electronic_proxy_screen'].get('record_count')} / {report['b6']['structural_electronic_proxy_screen'].get('expanded_negative_control_count')} / {report['b6']['structural_electronic_proxy_screen'].get('family_count')}",
+            f"- Structural/electronic AP@k / formula AP@k / family-prior AP@k: {report['b6']['structural_electronic_proxy_screen'].get('structural_average_precision_at_k')} / {report['b6']['structural_electronic_proxy_screen'].get('formula_average_precision_at_k')} / {report['b6']['structural_electronic_proxy_screen'].get('family_prior_average_precision_at_k')}",
+            f"- Structural/electronic post-split AP / family-prior post-split AP: {report['b6']['structural_electronic_proxy_screen'].get('post_split_structural_average_precision_at_k')} / {report['b6']['structural_electronic_proxy_screen'].get('post_split_family_prior_average_precision_at_k')}",
+            f"- Structural/electronic holdout AP / top-k negative controls: {report['b6']['structural_electronic_proxy_screen'].get('family_holdout_structural_mean_ap')} / {report['b6']['structural_electronic_proxy_screen'].get('top_k_negative_control_count')}",
+            f"- Structural/electronic discovery/mechanism/database/DFT/crystal claims: {report['b6']['structural_electronic_proxy_screen'].get('material_discovery_claimed')} / {report['b6']['structural_electronic_proxy_screen'].get('mechanism_solved')} / {report['b6']['structural_electronic_proxy_screen'].get('complete_materials_database')} / {report['b6']['structural_electronic_proxy_screen'].get('real_dft_claimed')} / {report['b6']['structural_electronic_proxy_screen'].get('real_crystallographic_database_claimed')}",
+            f"- Structural/electronic validation errors: {report['b6']['structural_electronic_proxy_screen'].get('validation_error_count')}",
+            f"- Structural/electronic result/markdown exists: {report['b6']['structural_electronic_proxy_screen'].get('result_exists')} / {report['b6']['structural_electronic_proxy_screen'].get('markdown_exists')}",
             "",
             "## B7 Fault-Tolerance Co-Design Status",
             "",

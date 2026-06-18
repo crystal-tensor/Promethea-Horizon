@@ -396,14 +396,22 @@ formula AP@12 0.10, family-prior AP@12 1.0, post-split formula AP 0.5947,
 post-split family-prior AP 0.9821, validation errors 0, and explicit non-claim
 of material discovery, solved mechanism, complete database coverage, or
 computed quantum observable.
+T-B6-003 now adds a structural/electronic proxy boundary with the same 38
+records / 22 families / 12 expanded negative controls. Structural AP@12 improves
+to 0.611 versus formula AP@12 0.10, but family-prior AP@12 remains 1.0;
+post-split structural AP is 0.690 versus family-prior 0.982; family-holdout
+structural mean AP is 0.896; and the top 12 still include 3 negative controls.
+This is a useful leakage boundary, not a material discovery, mechanism solution,
+complete database, real DFT calculation, crystallographic database pull, or
+computed quantum observable.
 
-**Remaining path to a serious solution:** replace qualitative descriptor values
-and formula-derived proxies with crystallographic, DFT, or B5-computed
-structural/electronic descriptors; expand post-split negative controls; add
-structure and correlation descriptors; use B5 observables where available;
-produce a short candidate list only after the technical gate passes.
+**Remaining path to a serious solution:** replace curated/imputed structural
+proxies with crystallographic descriptors; attach DFT or B5-computed electronic
+observables; expand post-2008 negative controls and parent compounds; beat
+family-prior and random baselines without promoting negative controls; produce a
+short candidate list only after the technical gate passes.
 
-**Current internal maturity:** 19/100.
+**Current internal maturity:** 21/100.
 
 ## B7: Architecture-Level Fault-Tolerance Co-Design
 
