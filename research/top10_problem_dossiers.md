@@ -61,19 +61,21 @@ A post-virtual-SWAP 1Q pass removed 60 additional gates, reduced the logical
 T-count proxy 1.018x and T-depth proxy 1.015x, and passed 30/30 Aer
 cross-checks. Later control-RZ and U3 phase-factored diagnostics exposed
 additional T-resource proxy improvements. The B1/B7 `gcm_h6` target selector
-now counts 270 arbitrary decimal rotations and identifies 3 local CNOT-cone
-classes, 2 canonical angle classes, and 4 qubit classes that meet B7's
-30-occurrence target if a future semantic rewrite removes one per occurrence.
-No such rewrite is claimed yet.
+now counts 270 arbitrary decimal rotations, and the cone-feasibility gate shows
+3 target cone classes covering 111 occurrences. Strict direct
+CNOT-rotation-CNOT sandwiches total only 4, but `cone_01` has 35 pair-local
+single-arbitrary windows and is the only cone class meeting B7's 30-occurrence
+target under that stricter local-window criterion. No rewrite, semantic
+certificate, or resource saving is claimed yet.
 
 **Remaining path to a serious solution:** connect to calibrated/live-like
 heavy-hex baselines; cover dynamic circuits and reset/measurement semantics;
-turn one ranked `gcm_h6` target family into a replayable semantic rewrite
-certificate that removes at least 30 arbitrary rotation occurrences / 600
+turn `cone_01` into a replayable semantic rewrite certificate that removes at
+least 30 arbitrary rotation occurrences / 600
 proxy-T units; broaden benchmarks; package certificates for independent
 reproduction.
 
-**Current internal maturity:** 38/100.
+**Current internal maturity:** 39/100.
 
 ## B2: Low-Overhead Quantum Error Correction
 
@@ -488,8 +490,8 @@ assumptions are applied.
 **Completed here:** scalar planning model, B1/B2 dependency-schedule bridge,
 workload-DAG factory-throughput schedule, logical T-factory boundary tests, FT
 synthesis ledger, `gcm_h6` min-row boundary, repeated-template/cache boundary,
-nonlocal template scan, `w8_21` claim-boundary closure, and template-priority
-gate. The workload-DAG schedule has mean STV reduction 1.475x. The FT synthesis
+nonlocal template scan, `w8_21` claim-boundary closure, template-priority gate,
+B1-side target selector, and B1-side cone-feasibility gate. The workload-DAG schedule has mean STV reduction 1.475x. The FT synthesis
 ledger exposes `gcm_h6` as the current min row at 1.086008x. The `w8_21` route
 was tested across same-skeleton, exhaustive two-CNOT Rz/Ry, target-informed
 Euler-local, and bounded three-CNOT families for 43480 optimizer runs, finding
@@ -497,19 +499,20 @@ Euler-local, and bounded three-CNOT families for 43480 optimizer runs, finding
 template-priority gate evaluates 12 retained templates: 0 one-angle
 single-template routes clear the one-sided `gcm_h6` 1.20x target, and best
 `w8_21` needs at least 2 arbitrary removals per occurrence. The B1-side
-`gcm_h6` target selector now identifies concrete cone/angle/qubit families that
-meet the 30-occurrence target only if a future semantic rewrite certificate
-removes them.
+cone-feasibility gate shows strict direct CNOT-rotation-CNOT sandwiches total
+only 4, while `cone_01` has 35 pair-local single-arbitrary windows and is the
+only target cone meeting the 30-occurrence threshold under that stricter filter.
+This is still not an occurrence-removing certificate or a resource-saving claim.
 
 **Remaining path to a serious solution:** produce a symbolic KAK/Clifford-
-scaffold proof or alternate occurrence-removing rewrite for `gcm_h6`; strengthen
-B1 non-Clifford/T-depth optimization until a certified occurrence-removing
-rewrite improves minimum factory STV;
+scaffold proof or certified `cone_01` occurrence-removing rewrite for
+`gcm_h6`; strengthen B1 non-Clifford/T-depth optimization until a certified
+occurrence-removing rewrite improves minimum factory STV;
 separate claims by data-path versus T-factory dominated regimes; include
 physical layout, routing, and feed-forward constraints; run a full algorithm
 resource ledger.
 
-**Current internal maturity:** 35/100.
+**Current internal maturity:** 36/100.
 
 ## B8: Classical Verification of Quantum Outputs
 

@@ -138,6 +138,14 @@ qubit classes meet the 30-occurrence target. This is a target-selection
 artifact only; it is not a rewrite, not a semantic certificate, and not a
 resource-saving claim.
 
+B1/B7 now further has a cone-feasibility gate for the same `gcm_h6` bottleneck.
+The 3 target cone classes cover 111 occurrences, but strict direct
+CNOT-rotation-CNOT sandwiches total only 4. Under a stricter pair-local
+single-arbitrary-window filter, only `cone_01` clears the 30-occurrence target,
+with 35 candidate windows. This makes `cone_01` the next concrete rewrite
+target; it is still not a rewrite, not a semantic certificate, and not a
+resource-saving claim.
+
 ## Repository Layout
 
 ```text

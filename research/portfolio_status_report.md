@@ -40,7 +40,7 @@ Overall audit: PASS
 - B IDs are B1..B10: True
 - Problem IDs match attack pack: True
 - All required fields present: True
-- Maturity scores: {'B1': 38, 'B2': 48, 'B3': 30, 'B4': 20, 'B5': 26, 'B6': 21, 'B7': 35, 'B8': 32, 'B9': 12, 'B10': 49}
+- Maturity scores: {'B1': 39, 'B2': 48, 'B3': 30, 'B4': 20, 'B5': 26, 'B6': 21, 'B7': 36, 'B8': 32, 'B9': 12, 'B10': 49}
 
 ## Technical Resolution Program
 
@@ -250,6 +250,17 @@ Overall audit: PASS
 - Raw/canonical unique numeric parameters: 26 / 17
 - Top angle / cone occurrences: 48 / 45
 - Cone/angle/qubit classes meeting target: 3 / 2 / 4
+- Rewrite/resource/semantic claims: False / False / False
+- Validation errors: 0
+
+## B1/B7 gcm_h6 Cone Feasibility Gate
+
+- Exists: True
+- Status: cone_feasibility_gate_candidate_windows_not_rewrite
+- Target cone classes / total occurrences: 3 / 111
+- Strict direct sandwiches / pair-local windows / pair-local single-arb windows: 4 / 106 / 86
+- Cone classes meeting target by pair-local single windows: 1
+- Leading feasible cone / windows / direct sandwiches: cone_01 / 35 / 1
 - Rewrite/resource/semantic claims: False / False / False
 - Validation errors: 0
 

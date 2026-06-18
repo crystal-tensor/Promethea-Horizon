@@ -439,6 +439,31 @@ current_results:
     validation_error_count: 0
     report: ../results/B1_B7_gcm_h6_target_selector_v0.json
     markdown_report: ../research/B1_B7_gcm_h6_target_selector.md
+  b1_b7_gcm_h6_cone_feasibility_gate_v0:
+    circuits: 1
+    status: cone_feasibility_gate_candidate_windows_not_rewrite
+    model_status: posthoc_window_feasibility_not_semantic_certificate
+    method: b1_b7_gcm_h6_cone_feasibility_gate_v0
+    source_qasm: ../results/b1_u3_phase_factored_optimizer/qasmbench_medium_exact/gcm_h6.qasm
+    source_selector: b1_b7_gcm_h6_target_selector_v0
+    workload: qasmbench_medium_exact/gcm_h6.qasm
+    target_removed_arbitrary_occurrences_for_gcm_h6_1_20: 30
+    target_proxy_t_ledger_reduction_for_gcm_h6_1_20: 600
+    target_cone_class_count: 3
+    target_cone_total_occurrences: 111
+    strict_direct_sandwich_total: 4
+    pair_local_window_total: 106
+    pair_local_single_arbitrary_window_total: 86
+    cone_classes_meeting_target_by_pair_local_single_windows: 1
+    leading_feasible_cone_id: cone_01
+    leading_feasible_pair_local_single_window_count: 35
+    leading_feasible_direct_sandwich_count: 1
+    rewrite_claimed: false
+    resource_saving_claimed: false
+    semantic_certificate_claimed: false
+    validation_error_count: 0
+    report: ../results/B1_B7_gcm_h6_cone_feasibility_gate_v0.json
+    markdown_report: ../research/B1_B7_gcm_h6_cone_feasibility_gate.md
   b1_synthetic_heavyhex_noise_proxy_v0:
     circuits: 30
     status: synthetic_noise_proxy_not_calibrated_device_claim
@@ -582,4 +607,5 @@ prototype_artifacts:
   control_rz_commute_optimizer: ../tools/b1_control_rz_commute_optimizer.py
   u3_phase_factored_optimizer: ../tools/b1_u3_phase_factored_optimizer.py
   b1_b7_gcm_h6_target_selector: ../tools/b1_b7_gcm_h6_target_selector.py
+  b1_b7_gcm_h6_cone_feasibility_gate: ../tools/b1_b7_gcm_h6_cone_feasibility_gate.py
   synthetic_noise_proxy: ../tools/b1_synthetic_noise_proxy.py

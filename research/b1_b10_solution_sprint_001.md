@@ -682,6 +682,17 @@ meeting the target. This is not a rewrite and not a resource-saving claim; it
 turns `T-B1-004` into a sharper instruction: pick one ranked family, prove a
 replayable semantic rewrite, then re-run the B7 FT ledger.
 
+**Sprint update 18c:** `T-B1-004b` is now merged as a cone-feasibility gate.
+The new artifact `research/B1_B7_gcm_h6_cone_feasibility_gate.md` evaluates the
+3 target cone classes from `T-B1-004a`. Together they cover 111 occurrences,
+but strict direct CNOT-rotation-CNOT sandwiches total only 4, so there is still
+no direct local rewrite claim. The useful result is narrower: `cone_01` has 35
+pair-local single-arbitrary windows and is the only cone class that meets the
+30-occurrence B7 target under this stricter criterion. This makes the next
+`T-B1-004` attempt concrete: synthesize or prove a local two-qubit semantic
+rewrite for at least 30 `cone_01` windows, emit replayable certificates, and
+only then re-run the B7 FT ledger.
+
 ## B8: Classical Verification of Quantum Outputs
 
 **Technical target:** keep verifier soundness low under adaptive leakage by
