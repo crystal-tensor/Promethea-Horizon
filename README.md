@@ -245,13 +245,15 @@ accounts for the 35 per-occurrence synthesis requests collapsing to 4 shared-obj
 requests, with 31 amortized saved compiles and a gross 620 proxy-T pressure delta.
 The next shared-error budget scaffold allocates a 1e-6 aggregate synthesis-error
 budget across the 4 shared-theta objects and records 4 correlation groups. The
-cost-model scaffold has moved from 0/8 to 5/8 acceptance gates by passing
-CM-02 object existence, CM-03 replay, CM-04 logical layout/routing, and CM-05
-factory amortization, and CM-06 shared-error budgeting. The model is still not
+independent-baseline scaffold then separates cache labels from accepted
+occurrence-ledger savings and confirms zero double-counted occurrences and zero
+double-counted proxy-T pressure. The cost-model scaffold has moved from 0/8 to
+6/8 acceptance gates by passing CM-02 object existence, CM-03 replay, CM-04
+logical layout/routing, CM-05 factory amortization, CM-06 shared-error
+budgeting, and CM-07 independent accounting baseline. The model is still not
 accepted: there are no 30 occurrence-removing certificates, no physical device
-layout, no physical factory schedule, no device-calibrated error validation, no
-independent baseline, and no refreshed B7 ledger. The counted B7 ledger
-reduction remains 0.
+layout, no physical factory schedule, no device-calibrated physical validation,
+and no refreshed B7 ledger. The counted B7 ledger reduction remains 0.
 
 ## Repository Layout
 

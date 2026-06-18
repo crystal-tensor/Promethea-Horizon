@@ -815,9 +815,10 @@ there was no shared synthesis object, replay verifier, layout/routing model,
 factory-amortization ledger, shared-error budget, independent baseline, or
 refreshed B7 ledger. The follow-up `T-B1-004h` now supplies the shared object
 proposal, `T-B1-004i` adds a line-level replay verifier, and `T-B1-004j` adds a
-logical layout/routing scaffold. `T-B1-004k` now adds a factory-amortization
-scaffold, and `T-B1-004l` adds a shared-error budget scaffold, so the scaffold is now 5/8 gates passed. The cost model is still not
-accepted and B7 ledger reduction remains 0.
+logical layout/routing scaffold. `T-B1-004k` adds a factory-amortization
+scaffold, `T-B1-004l` adds a shared-error budget scaffold, and `T-B1-004m`
+adds an independent accounting baseline, so the scaffold is now 6/8 gates
+passed. The cost model is still not accepted and B7 ledger reduction remains 0.
 
 **Sprint update 18i:** `T-B1-004h` is now merged as a shared-theta synthesis object
 proposal gate. The new artifact `research/B1_B7_cone01_shared_theta_synthesis_object_gate.md`
@@ -831,9 +832,10 @@ objects and all 35 occurrences receive anchor/route packets, with total/max
 logical hops 139/11. `T-B1-004k` adds a factory-amortization scaffold that
 collapses 35 baseline synthesis requests to 4 shared-object requests. The
 follow-up `T-B1-004l` adds a shared-error budget scaffold across the 4 shared
-objects. The updated cost model is 5/8 passed, 3/8 failed; it still has no
-physical device layout, physical factory schedule, device-calibrated error
-validation, independent baseline,
+objects. `T-B1-004m` now adds an independent accounting baseline that confirms
+zero double-counted occurrences and zero double-counted proxy-T pressure. The
+updated cost model is 6/8 passed, 2/8 failed; it still has no physical device
+layout, physical factory schedule, device-calibrated physical validation,
 refreshed B7 ledger, or occurrence-removing certificates. The cost model remains
 unaccepted and B7 ledger reduction remains 0.
 
@@ -868,6 +870,18 @@ This satisfies CM-06 as bookkeeping only. It is not device-calibrated, not
 independently validated, not an independent physical baseline, not a refreshed
 B7 ledger, and not a resource claim. The cost-model gate is now 5/8 passed and
 3/8 failed, with counted B7 ledger reduction still 0.
+
+**Sprint update 18m:** `T-B1-004m` is now merged as a shared-theta independent
+accounting-baseline scaffold. The new artifact
+`research/B1_B7_cone01_shared_theta_independent_baseline_gate.md` consumes the
+error-budgeted and factory-amortized shared-theta objects, compares 35 baseline
+per-occurrence synthesis requests against 4 shared-object requests, preserves
+the 620 gross proxy-T cache/amortization signal, and confirms 0 double-counted
+occurrences plus 0 double-counted proxy-T pressure. This satisfies CM-07 as
+accounting evidence only. It is not an independent physical device baseline,
+not device-calibrated validation, not a refreshed B7 ledger, and not a resource
+claim. The cost-model gate is now 6/8 passed and 2/8 failed, with counted B7
+ledger reduction still 0.
 
 ## B8: Classical Verification of Quantum Outputs
 

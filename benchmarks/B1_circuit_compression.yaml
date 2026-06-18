@@ -748,10 +748,48 @@ current_results:
     validation_error_count: 0
     report: ../results/B1_B7_cone01_shared_theta_error_budget_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_shared_theta_error_budget_gate.md
+  b1_b7_cone01_shared_theta_independent_baseline_gate_v0:
+    circuits: 1
+    status: cone01_shared_theta_independent_baseline_scaffold
+    model_status: independent_baseline_scaffold_not_physical_cost_model
+    method: b1_b7_cone01_shared_theta_independent_baseline_gate_v0
+    source_shared_theta_error_budget_gate: b1_b7_cone01_shared_theta_error_budget_gate_v0
+    source_shared_theta_factory_amortization_gate: b1_b7_cone01_shared_theta_factory_amortization_gate_v0
+    source_theta_sharing_ledger_gate: b1_b7_cone01_theta_sharing_ledger_gate_v0
+    workload: qasmbench_medium_exact/gcm_h6.qasm
+    candidate_window_count: 35
+    shared_synthesis_object_count: 4
+    distinct_theta_group_count: 4
+    duplicate_theta_occurrence_count: 31
+    baseline_occurrence_count: 35
+    shared_object_count: 4
+    proxy_t_cost_per_arbitrary_rotation: 20
+    baseline_proxy_t_pressure: 700
+    shared_object_proxy_t_pressure: 80
+    gross_proxy_t_pressure_delta: 620
+    occurrence_ledger_removed_occurrences: 0
+    occurrence_ledger_proxy_t_reduction: 0
+    double_counted_occurrence_count: 0
+    double_counted_proxy_t_pressure: 0
+    cache_label_count: 4
+    independent_baseline_gate_passed: true
+    independent_baseline_present: true
+    independent_physical_baseline_present: false
+    device_calibrated_baseline_present: false
+    refreshed_b7_ledger_present: false
+    cost_model_accepted: false
+    rewrite_claimed: false
+    resource_saving_claimed: false
+    semantic_certificate_claimed: false
+    physical_resource_reduction_claimed: false
+    b7_ledger_improvement_claimed: false
+    validation_error_count: 0
+    report: ../results/B1_B7_cone01_shared_theta_independent_baseline_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_shared_theta_independent_baseline_gate.md
   b1_b7_cone01_theta_sharing_cost_model_gate_v0:
     circuits: 1
     status: cone01_theta_sharing_cost_model_not_accepted
-    model_status: physical_theta_sharing_cost_model_requirements_error_budget_scaffolded
+    model_status: physical_theta_sharing_cost_model_requirements_independent_baseline_scaffolded
     method: b1_b7_cone01_theta_sharing_cost_model_gate_v0
     source_theta_sharing_ledger_gate: b1_b7_cone01_theta_sharing_ledger_gate_v0
     source_shared_theta_synthesis_object_gate: b1_b7_cone01_shared_theta_synthesis_object_gate_v0
@@ -759,6 +797,7 @@ current_results:
     source_shared_theta_layout_routing_gate: b1_b7_cone01_shared_theta_layout_routing_gate_v0
     source_shared_theta_factory_amortization_gate: b1_b7_cone01_shared_theta_factory_amortization_gate_v0
     source_shared_theta_error_budget_gate: b1_b7_cone01_shared_theta_error_budget_gate_v0
+    source_shared_theta_independent_baseline_gate: b1_b7_cone01_shared_theta_independent_baseline_gate_v0
     workload: qasmbench_medium_exact/gcm_h6.qasm
     candidate_window_count: 35
     distinct_theta_group_count: 4
@@ -786,15 +825,20 @@ current_results:
     shared_theta_aggregate_per_occurrence_error_budget: 3.5e-7
     shared_theta_correlation_group_count: 4
     shared_theta_max_correlated_occurrence_count: 16
+    shared_theta_independent_baseline_gate_passed: true
+    shared_theta_independent_baseline_present: true
+    shared_theta_double_counted_occurrence_count: 0
+    shared_theta_double_counted_proxy_t_pressure: 0
+    shared_theta_independent_baseline_gross_proxy_t_delta: 620
     cost_model_acceptance_gate_count: 8
-    cost_model_acceptance_pass_count: 5
-    cost_model_acceptance_fail_count: 3
+    cost_model_acceptance_pass_count: 6
+    cost_model_acceptance_fail_count: 2
     cost_model_accepted: false
     occurrence_ledger_removed_occurrences: 0
     occurrence_ledger_proxy_t_reduction: 0
     b7_ledger_proxy_t_reduction_after_cost_model: 0
     additional_occurrence_certificates_required: 30
-    additional_cost_model_gates_required: 3
+    additional_cost_model_gates_required: 2
     rewrite_claimed: false
     resource_saving_claimed: false
     semantic_certificate_claimed: false
@@ -956,5 +1000,6 @@ prototype_artifacts:
   b1_b7_cone01_shared_theta_layout_routing_gate: ../tools/b1_b7_cone01_shared_theta_layout_routing_gate.py
   b1_b7_cone01_shared_theta_factory_amortization_gate: ../tools/b1_b7_cone01_shared_theta_factory_amortization_gate.py
   b1_b7_cone01_shared_theta_error_budget_gate: ../tools/b1_b7_cone01_shared_theta_error_budget_gate.py
+  b1_b7_cone01_shared_theta_independent_baseline_gate: ../tools/b1_b7_cone01_shared_theta_independent_baseline_gate.py
   b1_b7_cone01_theta_sharing_cost_model_gate: ../tools/b1_b7_cone01_theta_sharing_cost_model_gate.py
   synthetic_noise_proxy: ../tools/b1_synthetic_noise_proxy.py

@@ -19,7 +19,7 @@ from typing import Any
 
 METHOD = "b1_b7_cone01_theta_sharing_cost_model_gate_v0"
 STATUS = "cone01_theta_sharing_cost_model_not_accepted"
-MODEL_STATUS = "physical_theta_sharing_cost_model_requirements_error_budget_scaffolded"
+MODEL_STATUS = "physical_theta_sharing_cost_model_requirements_independent_baseline_scaffolded"
 VERSION = "0.1"
 
 
@@ -53,6 +53,7 @@ def build_requirement_rows(
     layout_summary: dict[str, Any] | None,
     factory_summary: dict[str, Any] | None,
     error_budget_summary: dict[str, Any] | None,
+    independent_baseline_summary: dict[str, Any] | None,
 ) -> list[dict[str, Any]]:
     """Return current acceptance gates for a physical theta-sharing model."""
     shared_object_count = 0
@@ -65,6 +66,8 @@ def build_requirement_rows(
     factory_gate_passed = False
     error_budget_current_evidence = False
     error_budget_gate_passed = False
+    independent_baseline_current_evidence = False
+    independent_baseline_gate_passed = False
     if shared_summary:
         shared_object_count = int(shared_summary["shared_synthesis_object_count"])
         shared_object_gate_passed = (
@@ -116,6 +119,29 @@ def build_requirement_rows(
             and error_budget_summary["independent_calibration_present"] is False
             and error_budget_summary["hardware_noise_model_present"] is False
             and int(error_budget_summary["occurrence_ledger_removed_occurrences"]) == 0
+        )
+    if independent_baseline_summary:
+        independent_baseline_current_evidence = bool(
+            independent_baseline_summary["independent_baseline_gate_passed"]
+        )
+        independent_baseline_gate_passed = (
+            independent_baseline_summary["independent_baseline_gate_passed"] is True
+            and independent_baseline_summary["independent_baseline_present"] is True
+            and int(independent_baseline_summary["baseline_occurrence_count"])
+            == int(theta_summary["candidate_window_count"])
+            and int(independent_baseline_summary["shared_object_count"])
+            == int(theta_summary["distinct_theta_group_count"])
+            and int(independent_baseline_summary["baseline_proxy_t_pressure"]) == 700
+            and int(independent_baseline_summary["shared_object_proxy_t_pressure"]) == 80
+            and int(independent_baseline_summary["gross_proxy_t_pressure_delta"])
+            == int(theta_summary["optimistic_cache_proxy_t_reuse"])
+            and int(independent_baseline_summary["double_counted_occurrence_count"]) == 0
+            and int(independent_baseline_summary["double_counted_proxy_t_pressure"]) == 0
+            and int(independent_baseline_summary["occurrence_ledger_removed_occurrences"]) == 0
+            and int(independent_baseline_summary["occurrence_ledger_proxy_t_reduction"]) == 0
+            and independent_baseline_summary["independent_physical_baseline_present"] is False
+            and independent_baseline_summary["device_calibrated_baseline_present"] is False
+            and independent_baseline_summary["refreshed_b7_ledger_present"] is False
         )
     return [
         {
@@ -196,10 +222,16 @@ def build_requirement_rows(
         {
             "gate_id": "CM-07",
             "requirement": "An independent baseline showing cache-only accounting is not double-counting occurrence cost.",
-            "current_evidence": False,
+            "current_evidence": independent_baseline_current_evidence,
             "required_evidence": True,
-            "passed": False,
-            "failure_reason": "No independent physical baseline separates cache labels from occurrence cost.",
+            "passed": independent_baseline_gate_passed,
+            "failure_reason": (
+                "An independent accounting baseline now separates cache labels from accepted "
+                "occurrence-ledger savings and shows zero double-counted occurrences/proxy-T, "
+                "but it is not a physical device baseline or B7 ledger acceptance by itself."
+                if independent_baseline_gate_passed
+                else "No independent baseline separates cache labels from occurrence cost."
+            ),
         },
         {
             "gate_id": "CM-08",
@@ -219,12 +251,16 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
     layout_gate = read_json(args.layout_routing_gate) if args.layout_routing_gate.exists() else None
     factory_gate = read_json(args.factory_amortization_gate) if args.factory_amortization_gate.exists() else None
     error_budget_gate = read_json(args.error_budget_gate) if args.error_budget_gate.exists() else None
+    independent_baseline_gate = (
+        read_json(args.independent_baseline_gate) if args.independent_baseline_gate.exists() else None
+    )
     theta_summary = theta_gate["summary"]
     shared_summary = shared_object_gate["summary"] if shared_object_gate else None
     replay_summary = replay_gate["summary"] if replay_gate else None
     layout_summary = layout_gate["summary"] if layout_gate else None
     factory_summary = factory_gate["summary"] if factory_gate else None
     error_budget_summary = error_budget_gate["summary"] if error_budget_gate else None
+    independent_baseline_summary = independent_baseline_gate["summary"] if independent_baseline_gate else None
     rows = build_requirement_rows(
         theta_summary,
         shared_summary,
@@ -232,6 +268,7 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
         layout_summary,
         factory_summary,
         error_budget_summary,
+        independent_baseline_summary,
     )
     passed_count = sum(1 for row in rows if row["passed"])
     failed_count = len(rows) - passed_count
@@ -266,6 +303,9 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
         ),
         "source_shared_theta_error_budget_gate": (
             display_path(args.error_budget_gate) if error_budget_gate else None
+        ),
+        "source_shared_theta_independent_baseline_gate": (
+            display_path(args.independent_baseline_gate) if independent_baseline_gate else None
         ),
         "workload": "qasmbench_medium_exact/gcm_h6.qasm",
         "summary": {
@@ -337,6 +377,31 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
             "shared_theta_max_correlated_occurrence_count": (
                 int(error_budget_summary["max_correlated_occurrence_count"]) if error_budget_summary else 0
             ),
+            "shared_theta_independent_baseline_gate_passed": (
+                bool(independent_baseline_summary["independent_baseline_gate_passed"])
+                if independent_baseline_summary
+                else False
+            ),
+            "shared_theta_independent_baseline_present": (
+                bool(independent_baseline_summary["independent_baseline_present"])
+                if independent_baseline_summary
+                else False
+            ),
+            "shared_theta_double_counted_occurrence_count": (
+                int(independent_baseline_summary["double_counted_occurrence_count"])
+                if independent_baseline_summary
+                else 0
+            ),
+            "shared_theta_double_counted_proxy_t_pressure": (
+                int(independent_baseline_summary["double_counted_proxy_t_pressure"])
+                if independent_baseline_summary
+                else 0
+            ),
+            "shared_theta_independent_baseline_gross_proxy_t_delta": (
+                int(independent_baseline_summary["gross_proxy_t_pressure_delta"])
+                if independent_baseline_summary
+                else 0
+            ),
             "cost_model_acceptance_gate_count": len(rows),
             "cost_model_acceptance_pass_count": passed_count,
             "cost_model_acceptance_fail_count": failed_count,
@@ -367,22 +432,23 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
                 "a line-level replay verifier covers the shared objects, and a logical "
                 "layout/routing scaffold assigns anchors and route packets for the shared "
                 "objects. A factory-amortization scaffold accounts for the 35-to-4 "
-                "compilation-pressure change. A shared-error budget scaffold now allocates "
-                "error across the four shared-theta objects, but the physical theta-sharing "
-                "cost model is still not acceptable under the current evidence; the optimistic "
-                "620 proxy-T cache signal remains unaccepted."
+                "compilation-pressure change, a shared-error budget scaffold allocates "
+                "error across the four shared-theta objects, and an independent accounting "
+                "baseline checks that the gross cache signal is not double-counted. The "
+                "physical theta-sharing cost model is still not acceptable under the "
+                "current evidence; the optimistic 620 proxy-T cache signal remains unaccepted."
             ),
             "unsupported_claims": [
                 "No occurrence-removing semantic certificates are produced.",
                 "The replay verifier is not a semantic rewrite certificate.",
                 "The logical layout scaffold is not a physical device layout.",
                 "The shared-error budget scaffold is not device-calibrated or independently validated.",
-                "No independent physical baseline validates theta sharing.",
+                "The independent accounting baseline is not an independent physical device baseline.",
                 "No B7 min-row resource improvement is counted.",
             ],
             "next_gate": (
                 "A future PR must produce 30 occurrence-removing certificates, or satisfy "
-                "CM-07 through CM-08 after the existing CM-02/CM-03/CM-04/CM-05/CM-06 scaffold, before "
+                "CM-08 after the existing CM-02/CM-03/CM-04/CM-05/CM-06/CM-07 scaffold, before "
                 "any B7 resource delta can be counted."
             ),
         },
@@ -449,18 +515,30 @@ def validate(payload: dict[str, Any]) -> list[str]:
         errors.append("expected 4 shared theta correlation groups")
     if summary["shared_theta_max_correlated_occurrence_count"] != 16:
         errors.append("expected max correlated occurrence count of 16")
-    if summary["cost_model_acceptance_pass_count"] != 5:
-        errors.append("current cost-model acceptance passes must be 5")
-    if summary["cost_model_acceptance_fail_count"] != 3:
-        errors.append("current cost-model acceptance failures must be 3")
+    if summary["shared_theta_independent_baseline_gate_passed"] is not True:
+        errors.append("shared theta independent-baseline gate should now pass")
+    if summary["shared_theta_independent_baseline_present"] is not True:
+        errors.append("shared theta independent-baseline evidence should be present")
+    if summary["shared_theta_double_counted_occurrence_count"] != 0:
+        errors.append("expected zero double-counted shared theta occurrences")
+    if summary["shared_theta_double_counted_proxy_t_pressure"] != 0:
+        errors.append("expected zero double-counted shared theta proxy-T pressure")
+    if summary["shared_theta_independent_baseline_gross_proxy_t_delta"] != 620:
+        errors.append("expected independent-baseline gross proxy-T delta of 620")
+    if summary["cost_model_acceptance_pass_count"] != 6:
+        errors.append("current cost-model acceptance passes must be 6")
+    if summary["cost_model_acceptance_fail_count"] != 2:
+        errors.append("current cost-model acceptance failures must be 2")
     if summary["cost_model_accepted"] is not False:
         errors.append("cost model must not be accepted")
     if summary["b7_ledger_proxy_t_reduction_after_cost_model"] != 0:
         errors.append("B7 ledger reduction after unaccepted cost model must be 0")
     for row in payload["cost_model_acceptance_gates"]:
-        if row.get("gate_id") in {"CM-02", "CM-03", "CM-04", "CM-05", "CM-06"}:
+        if row.get("gate_id") in {"CM-02", "CM-03", "CM-04", "CM-05", "CM-06", "CM-07"}:
             if row.get("passed") is not True:
-                errors.append(f"{row.get('gate_id')} should pass after shared object/replay/layout/factory/error-budget gates")
+                errors.append(
+                    f"{row.get('gate_id')} should pass after shared object/replay/layout/factory/error-budget/baseline gates"
+                )
         elif row.get("passed") is not False:
             errors.append(f"{row.get('gate_id')} must not pass under current evidence")
     for field in [
@@ -489,9 +567,11 @@ def markdown(payload: dict[str, Any]) -> str:
         "A shared synthesis object proposal now exists for the four theta groups, "
         "a line-level replay verifier covers the shared objects, and a logical "
         "layout/routing scaffold assigns anchors and route packets. A factory-amortization "
-        "scaffold now accounts for the 35-to-4 compilation-pressure change. The current "
+        "scaffold now accounts for the 35-to-4 compilation-pressure change, a shared-error "
+        "budget scaffold allocates the object-level synthesis-error budget, and an "
+        "independent accounting baseline checks for double-counting. The current "
         "evidence still lacks occurrence-removing certificates, physical device "
-        "layout, device-calibrated error validation, independent baseline, and refreshed B7 ledger.",
+        "layout, device-calibrated physical validation, and refreshed B7 ledger.",
         "",
         "It is not a rewrite certificate, not a resource-saving claim, and not a "
         "physical cost-model acceptance.",
@@ -519,6 +599,10 @@ def markdown(payload: dict[str, Any]) -> str:
         f"- Shared-theta total error budget: `{summary['shared_theta_total_error_budget']}`",
         f"- Shared-theta aggregate per-occurrence error budget: `{summary['shared_theta_aggregate_per_occurrence_error_budget']}`",
         f"- Shared-theta correlation groups: `{summary['shared_theta_correlation_group_count']}`",
+        f"- Independent-baseline gate passed: `{summary['shared_theta_independent_baseline_gate_passed']}`",
+        f"- Independent-baseline evidence present: `{summary['shared_theta_independent_baseline_present']}`",
+        f"- Double-counted occurrences / proxy-T: `{summary['shared_theta_double_counted_occurrence_count']}` / `{summary['shared_theta_double_counted_proxy_t_pressure']}`",
+        f"- Independent-baseline gross proxy-T delta: `{summary['shared_theta_independent_baseline_gross_proxy_t_delta']}`",
         f"- Acceptance gates passed / total: `{summary['cost_model_acceptance_pass_count']}` / `{summary['cost_model_acceptance_gate_count']}`",
         f"- Cost model accepted: `{summary['cost_model_accepted']}`",
         f"- B7 ledger proxy-T reduction after cost model: `{summary['b7_ledger_proxy_t_reduction_after_cost_model']}`",
@@ -544,8 +628,8 @@ def markdown(payload: dict[str, Any]) -> str:
             "The repeated-theta structure is valuable because it identifies where a "
             "future physical-sharing proposal would have leverage. The shared object "
             "proposal, replay verifier, logical layout/routing scaffold, and factory "
-            "amortization plus error-budget scaffolds close five bookkeeping gaps, but they are not enough "
-            "by themselves. A future PR must satisfy the remaining gates, or "
+            "amortization plus error-budget and independent-baseline scaffolds close six "
+            "bookkeeping gaps, but they are not enough by themselves. A future PR must satisfy the remaining gates, or "
             "bypass the cost-model route by producing 30 occurrence-removing certificates.",
             "",
         ]
@@ -590,6 +674,11 @@ def main() -> None:
         "--error-budget-gate",
         type=Path,
         default=root / "results" / "B1_B7_cone01_shared_theta_error_budget_gate_v0.json",
+    )
+    parser.add_argument(
+        "--independent-baseline-gate",
+        type=Path,
+        default=root / "results" / "B1_B7_cone01_shared_theta_independent_baseline_gate_v0.json",
     )
     parser.add_argument(
         "--markdown-output",

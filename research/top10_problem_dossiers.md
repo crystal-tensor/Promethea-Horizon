@@ -91,13 +91,14 @@ object proposals covering all 35 windows, a replay-verifier gate now checks
 4/4 objects and 35/35 occurrences against source QASM and parameter-transfer
 groups with 0 mismatches, and a logical layout/routing scaffold assigns route
 packets for all 35 occurrences. This upgrades the cost-model scaffold from 0/8
-to 5/8 acceptance gates by passing CM-02 object existence, CM-03 replay,
-CM-04 logical routing, CM-05 factory amortization, and CM-06 shared-error budgeting. The factory scaffold
+to 6/8 acceptance gates by passing CM-02 object existence, CM-03 replay,
+CM-04 logical routing, CM-05 factory amortization, CM-06 shared-error budgeting,
+and CM-07 independent accounting baseline. The factory scaffold
 collapses 35 baseline synthesis requests to 4 shared-object requests and records
-31 amortized saved compiles plus a gross 620 proxy-T pressure delta. The error-budget scaffold allocates a 1e-6 aggregate synthesis-error budget across 4 correlation groups. The cost
+31 amortized saved compiles plus a gross 620 proxy-T pressure delta. The error-budget scaffold allocates a 1e-6 aggregate synthesis-error budget across 4 correlation groups. The independent-baseline scaffold confirms 0 double-counted occurrences and 0 double-counted proxy-T pressure. The cost
 model remains unaccepted: there are still no 30 occurrence-removing
 certificates, no physical device layout, no physical factory schedule, no
-device-calibrated error validation, no independent baseline, and no refreshed B7 ledger.
+device-calibrated physical validation, and no refreshed B7 ledger.
 Accepted B7 reduction remains 0.
 
 **Remaining path to a serious solution:** connect to calibrated/live-like
@@ -106,10 +107,10 @@ turn `cone_01` into a broader replayable semantic rewrite certificate,
 KAK/Clifford scaffold, or scoped obstruction report that explicitly carries,
 shares, or eliminates theta while addressing at least 30 arbitrary rotation
 occurrences / 600
-proxy-T units, or satisfy the remaining CM gates for the shared-theta physical cost model after CM-02/CM-03; broaden benchmarks; package certificates for independent
+proxy-T units, or satisfy CM-08 for the shared-theta physical cost model after CM-02/CM-07; broaden benchmarks; package certificates for independent
 reproduction.
 
-**Current internal maturity:** 47/100.
+**Current internal maturity:** 52/100.
 
 ## B2: Low-Overhead Quantum Error Correction
 
@@ -582,20 +583,20 @@ and 35/35 occurrences with 0 mismatches, and a logical layout/routing scaffold
 assigns anchor/route packets for all occurrences. A factory-amortization
 scaffold then accounts for 35 baseline synthesis requests collapsing to 4
 shared-object requests. The updated cost-model scaffold now passes CM-02,
-CM-03, CM-04, CM-05, and CM-06 and is 5/8 passed, 3/8 failed. It is still not accepted,
+CM-03, CM-04, CM-05, CM-06, and CM-07 and is 6/8 passed, 2/8 failed. It is still not accepted,
 and B7 ledger reduction remains 0.
 
 **Remaining path to a serious solution:** produce a symbolic KAK/Clifford-
 scaffold proof, scoped obstruction, or certified broader `cone_01`
 occurrence-removing rewrite for `gcm_h6` with explicit theta-carrier
-accounting, or satisfy the remaining CM gates for the shared-theta physical cost model after CM-02/CM-03; strengthen B1 non-Clifford/T-depth
+accounting, or satisfy CM-08 for the shared-theta physical cost model after CM-02/CM-07; strengthen B1 non-Clifford/T-depth
 optimization until a certified occurrence-removing rewrite improves minimum
 factory STV;
 separate claims by data-path versus T-factory dominated regimes; include
 physical layout, routing, and feed-forward constraints; run a full algorithm
 resource ledger.
 
-**Current internal maturity:** 44/100.
+**Current internal maturity:** 49/100.
 
 ## B8: Classical Verification of Quantum Outputs
 
