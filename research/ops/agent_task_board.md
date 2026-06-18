@@ -42,7 +42,8 @@ Status values:
 | T-B5-003a | B5/B10 | merged | codex | Builder/Baseline Adversary | Exact-state-seeded MPS/Schmidt truncation pressure reference: same 9 B10 D5 Hubbard rows, bond dimensions 2/4/8/16, selected bond dimension 16, mean/max response error 0.000442/0.001695, min exact-ground-state overlap 0.999101, 6 rows beating the small-cluster non-oracle embedding denominator; explicitly not variational DMRG, not deployable tensor solver, and not quantum/accuracy-per-resource win. |
 | T-B5-003b | B5/B10 | merged | codex | Builder/Baseline Adversary | Non-exact-state-seeded variational MPS/ALS pressure prototype: same 9 B10 D5 Hubbard rows, bond dimensions 2/4, 3 restarts x 8 sweeps, selected mean/max response error 0.01806/0.03907, min overlap 0.9626, 0 rows beating exact-state-seeded MPS pressure reference; explicitly not production DMRG and not quantum/accuracy-per-resource win. |
 | T-B5-003 | B5/B10 | open | unassigned | Builder/Baseline Adversary | Replace the MPS/ALS prototype with mature canonical-environment variational DMRG/MPS, or compare a candidate quantum impurity/response kernel after state-preparation, measurement, optimizer-loop, and classical denominator costs. |
-| T-B6-001 | B6 | open | unassigned | Baseline Adversary | Real/curated materials table with family/time leakage audit. |
+| T-B6-001 | B6 | merged | codex | Baseline Adversary | Curated retrospective materials table with family/time leakage audit: 26 records / 12 families, post-2008 split, high-Tc threshold 30 K, all-physics AP@10 0.89 vs random AP@10 mean 0.5346, post-split physics AP 0.9094 vs family-prior AP 0.9379 and random AP mean 0.9030, validation errors 0; explicitly not a material-discovery or solved-mechanism claim. |
+| T-B6-002 | B6/B5 | open | unassigned | Builder/Baseline Adversary | Replace qualitative B6 descriptor values with computed structural/electronic descriptors and at least one B5-linked observable; expand post-2008 negative controls and rerun family/time leakage audit. |
 | T-B7-001 | B1/B7 | merged | codex | Integrator | B7 min-STV regime classifier after U3 phase-factored B1 pass. |
 | T-B7-002 | B7 | merged | codex | Integrator | Replace fixed rotation T-cost proxy with an FT synthesis ledger for the `sat_n11` min-STV regime. |
 | T-B7-003 | B1/B7 | merged | codex | Builder | Quantify the new FT-ledger min-STV boundary: `gcm_h6` at 1.086008x under throughput-heavy factories. |
@@ -96,7 +97,7 @@ Reviewers needed:
 | chemistry-baseline-agent | T-B3-002 |
 | verification-agent | T-B4-002 |
 | correlated-matter-agent | T-B5-003 |
-| materials-agent | T-B6-001 |
+| materials-agent | T-B6-002 |
 | theory-agent | T-B9-004, T-B10-001, or T-B10-009 |
 | audit-agent | T-AUDIT-001 |
 

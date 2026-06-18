@@ -83,6 +83,11 @@ The current B5/B10 line has recently moved from small-cluster denominators to
 seeded and non-seeded MPS pressure references. This is progress, but it is not
 a completed DMRG result and not a quantum advantage claim.
 
+B6 has moved from a synthetic descriptor toy to a curated retrospective
+materials leakage audit: 26 records across 12 families, explicit post-2008
+time split, family-prior comparison, and no material-discovery or solved
+mechanism claim.
+
 ## Repository Layout
 
 ```text

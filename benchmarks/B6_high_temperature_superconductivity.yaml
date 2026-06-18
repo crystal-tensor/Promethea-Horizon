@@ -48,6 +48,33 @@ next_actions:
   - add_random_and_family_prior_baselines
   - run_retrospective_validation_on_known_superconductor_families
 current_results:
+  b6_curated_materials_leakage_audit_v0:
+    status: curated_retrospective_leakage_audit
+    model_status: curated_materials_table_with_time_family_leakage_audit
+    result: ../results/B6_curated_materials_leakage_audit_v0.json
+    markdown: ../research/B6_curated_materials_leakage_audit.md
+    record_count: 26
+    family_count: 12
+    split_year: 2008
+    post_split_record_count: 8
+    post_split_positive_count: 7
+    high_tc_threshold_k: 30.0
+    top_k: 10
+    all_physics_precision_at_k: 0.9
+    all_physics_average_precision_at_k: 0.89
+    all_random_average_precision_at_k_mean: 0.5345944165426587
+    post_split_physics_average_precision_at_k: 0.9093537414965986
+    post_split_family_prior_average_precision_at_k: 0.9379251700680272
+    post_split_leaky_family_combined_average_precision_at_k: 0.8260204081632654
+    post_split_random_average_precision_at_k_mean: 0.9030476057610545
+    leaky_family_combined_minus_physics_ap: -0.08333333333333326
+    family_holdout_mean_physics_ap: 0.9722222222222222
+    family_holdout_mean_random_ap: 0.8528645833333333
+    validation_error_count: 0
+    material_discovery_claimed: false
+    mechanism_solved: false
+    complete_materials_database: false
+    next_required_artifact: computed structural/electronic descriptors and B5-linked observables
   toy_superconductivity_descriptor_ranker_v0:
     status: toy_descriptor_ranking
     model_status: toy_descriptor_ranking_not_material_discovery_claim

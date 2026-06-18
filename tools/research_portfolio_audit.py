@@ -3493,7 +3493,9 @@ def audit(root: Path) -> dict:
     b6_manifest = yaml.safe_load(read(b6_manifest_path))
     b6_results = b6_manifest.get("current_results", {})
     b6_descriptor = b6_results.get("toy_superconductivity_descriptor_ranker_v0")
+    b6_curated = b6_results.get("b6_curated_materials_leakage_audit_v0")
     b6_status = {}
+    b6_curated_status = {}
     if not b6_descriptor:
         warnings.append("B6 manifest has no superconductivity descriptor ranking result")
     else:
@@ -3532,6 +3534,82 @@ def audit(root: Path) -> dict:
             "top_family_counts": b6_descriptor.get("top_family_counts"),
             "result_exists": result_exists,
             "result": result_path,
+        }
+    if not b6_curated:
+        warnings.append("B6 manifest has no curated materials leakage audit result")
+    else:
+        result_path = b6_curated.get("result")
+        markdown_path = b6_curated.get("markdown")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"B6 curated leakage audit result path missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"B6 curated leakage audit markdown path missing: {markdown_path}")
+        if b6_curated.get("model_status") != "curated_materials_table_with_time_family_leakage_audit":
+            errors.append("B6 curated leakage audit must disclose curated leakage-audit model status")
+        if b6_curated.get("material_discovery_claimed") is not False:
+            errors.append("B6 curated leakage audit must not claim material discovery")
+        if b6_curated.get("mechanism_solved") is not False:
+            errors.append("B6 curated leakage audit must not claim solved high-Tc mechanism")
+        if b6_curated.get("complete_materials_database") is not False:
+            errors.append("B6 curated leakage audit must not claim complete database coverage")
+        if int(b6_curated.get("record_count", 0)) < 24:
+            errors.append("B6 curated leakage audit must contain at least 24 records")
+        if int(b6_curated.get("family_count", 0)) < 8:
+            errors.append("B6 curated leakage audit must contain at least 8 families")
+        if int(b6_curated.get("post_split_record_count", 0)) < 6:
+            errors.append("B6 curated leakage audit post-split set is too small")
+        if int(b6_curated.get("validation_error_count", -1)) != 0:
+            errors.append("B6 curated leakage audit validation errors must be zero")
+        if result_exists:
+            payload = json.loads(read((benchmarks / result_path).resolve()))
+            if payload.get("benchmark_id") != "B6":
+                errors.append(f"B6 curated leakage audit benchmark_id={payload.get('benchmark_id')!r}, expected 'B6'")
+            if payload.get("method") != "b6_curated_materials_leakage_audit_v0":
+                errors.append("B6 curated leakage audit method mismatch")
+            if payload.get("status") != "curated_retrospective_leakage_audit_not_material_discovery_claim":
+                errors.append("B6 curated leakage audit status must be a non-discovery claim")
+            if payload.get("record_count") != b6_curated.get("record_count"):
+                errors.append("B6 curated leakage audit record_count differs from manifest")
+            if payload.get("family_count") != b6_curated.get("family_count"):
+                errors.append("B6 curated leakage audit family_count differs from manifest")
+            if payload.get("post_split_record_count") != b6_curated.get("post_split_record_count"):
+                errors.append("B6 curated leakage audit post_split_record_count differs from manifest")
+            if len(payload.get("validation_errors", [])) != b6_curated.get("validation_error_count"):
+                errors.append("B6 curated leakage audit validation-error count mismatch")
+            claim_boundary = payload.get("claim_boundary", {})
+            if claim_boundary.get("material_discovery_claimed") is not False:
+                errors.append("B6 curated leakage audit payload claims material discovery")
+            if claim_boundary.get("mechanism_solved") is not False:
+                errors.append("B6 curated leakage audit payload claims solved mechanism")
+            metrics = payload.get("metrics", {})
+            if metrics.get("post_split_physics_average_precision_at_k") != b6_curated.get("post_split_physics_average_precision_at_k"):
+                errors.append("B6 curated leakage audit post-split physics AP differs from manifest")
+        b6_curated_status = {
+            "status": b6_curated.get("status"),
+            "model_status": b6_curated.get("model_status"),
+            "record_count": b6_curated.get("record_count"),
+            "family_count": b6_curated.get("family_count"),
+            "split_year": b6_curated.get("split_year"),
+            "post_split_record_count": b6_curated.get("post_split_record_count"),
+            "post_split_positive_count": b6_curated.get("post_split_positive_count"),
+            "top_k": b6_curated.get("top_k"),
+            "all_physics_average_precision_at_k": b6_curated.get("all_physics_average_precision_at_k"),
+            "all_random_average_precision_at_k_mean": b6_curated.get("all_random_average_precision_at_k_mean"),
+            "post_split_physics_average_precision_at_k": b6_curated.get("post_split_physics_average_precision_at_k"),
+            "post_split_family_prior_average_precision_at_k": b6_curated.get("post_split_family_prior_average_precision_at_k"),
+            "post_split_random_average_precision_at_k_mean": b6_curated.get("post_split_random_average_precision_at_k_mean"),
+            "family_holdout_mean_physics_ap": b6_curated.get("family_holdout_mean_physics_ap"),
+            "family_holdout_mean_random_ap": b6_curated.get("family_holdout_mean_random_ap"),
+            "validation_error_count": b6_curated.get("validation_error_count"),
+            "material_discovery_claimed": b6_curated.get("material_discovery_claimed"),
+            "mechanism_solved": b6_curated.get("mechanism_solved"),
+            "complete_materials_database": b6_curated.get("complete_materials_database"),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown": markdown_path,
         }
 
     b7_manifest = yaml.safe_load(read(b7_manifest_path))
@@ -6278,6 +6356,7 @@ def audit(root: Path) -> dict:
         "b6": {
             "manifest": str(b6_manifest_path),
             "descriptor_ranking": b6_status,
+            "curated_materials_leakage_audit": b6_curated_status,
         },
         "b7": {
             "manifest": str(b7_manifest_path),
@@ -6417,6 +6496,7 @@ def audit(root: Path) -> dict:
             "b5_variational_mps_als_response_reference": str(
                 research / "B5_variational_mps_als_response_reference.md"
             ),
+            "b6_curated_materials_leakage_audit": str(research / "B6_curated_materials_leakage_audit.md"),
             "b10_formal_theorem_targets": str(research / "B10_formal_theorem_targets.md"),
             "b10_t2_minimum_refresh_spoofer_boundary": str(research / "B8_generative_spoofer_refresh.md"),
             "b10_t2_refresh_proof_obligation_gate": str(research / "B10_t2_refresh_proof_obligation_gate.md"),
@@ -6966,6 +7046,15 @@ def markdown_report(report: dict) -> str:
             f"- Known high-Tc recall@k: {report['b6']['descriptor_ranking'].get('known_high_tc_recall_at_k')}",
             f"- Top family counts: {report['b6']['descriptor_ranking'].get('top_family_counts')}",
             f"- Result exists: {report['b6']['descriptor_ranking'].get('result_exists')}",
+            f"- Curated leakage audit status: {report['b6']['curated_materials_leakage_audit'].get('status')}",
+            f"- Curated records / families / split year: {report['b6']['curated_materials_leakage_audit'].get('record_count')} / {report['b6']['curated_materials_leakage_audit'].get('family_count')} / {report['b6']['curated_materials_leakage_audit'].get('split_year')}",
+            f"- Curated post-split records / positives: {report['b6']['curated_materials_leakage_audit'].get('post_split_record_count')} / {report['b6']['curated_materials_leakage_audit'].get('post_split_positive_count')}",
+            f"- Curated all physics AP@k / random AP@k mean: {report['b6']['curated_materials_leakage_audit'].get('all_physics_average_precision_at_k')} / {report['b6']['curated_materials_leakage_audit'].get('all_random_average_precision_at_k_mean')}",
+            f"- Curated post-split physics AP / family-prior AP / random AP mean: {report['b6']['curated_materials_leakage_audit'].get('post_split_physics_average_precision_at_k')} / {report['b6']['curated_materials_leakage_audit'].get('post_split_family_prior_average_precision_at_k')} / {report['b6']['curated_materials_leakage_audit'].get('post_split_random_average_precision_at_k_mean')}",
+            f"- Curated family-holdout physics AP / random AP mean: {report['b6']['curated_materials_leakage_audit'].get('family_holdout_mean_physics_ap')} / {report['b6']['curated_materials_leakage_audit'].get('family_holdout_mean_random_ap')}",
+            f"- Curated discovery/mechanism/database claims: {report['b6']['curated_materials_leakage_audit'].get('material_discovery_claimed')} / {report['b6']['curated_materials_leakage_audit'].get('mechanism_solved')} / {report['b6']['curated_materials_leakage_audit'].get('complete_materials_database')}",
+            f"- Curated validation errors: {report['b6']['curated_materials_leakage_audit'].get('validation_error_count')}",
+            f"- Curated result/markdown exists: {report['b6']['curated_materials_leakage_audit'].get('result_exists')} / {report['b6']['curated_materials_leakage_audit'].get('markdown_exists')}",
             "",
             "## B7 Fault-Tolerance Co-Design Status",
             "",

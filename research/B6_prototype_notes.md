@@ -15,6 +15,12 @@ superconducting families before moving to real materials databases.
 - Benchmark manifest: `../benchmarks/B6_high_temperature_superconductivity.yaml`
 - Descriptor ranker: `../tools/b6_superconductivity_descriptor_ranker.py`
 - First result: `../results/B6_superconductivity_descriptor_ranker_v0.json`
+- Curated leakage-audit script:
+  `../tools/b6_curated_materials_leakage_audit.py`
+- Curated leakage-audit result:
+  `../results/B6_curated_materials_leakage_audit_v0.json`
+- Curated leakage-audit report:
+  `../research/B6_curated_materials_leakage_audit.md`
 
 ## Descriptor Model
 
@@ -83,6 +89,41 @@ Interpretation:
 - The descriptor should eventually be replaced by outputs from B5-style
   Hubbard, plaquette, or electron-phonon solvers.
 
+## Curated Materials Leakage Audit
+
+T-B6-001 upgrades the B6 evidence from a synthetic candidate table to a small
+curated retrospective materials table. It is still not a material discovery
+claim, not a solved high-Tc mechanism, and not a complete superconductivity
+database.
+
+Current curated audit metrics:
+
+| Metric | Value |
+|---|---:|
+| Records | 26 |
+| Families | 12 |
+| Split year | 2008 |
+| Post-split records / positives | 8 / 7 |
+| High-Tc threshold | 30 K |
+| All physics AP@10 | 0.890000 |
+| All random AP@10 mean | 0.534594 |
+| Post-split physics AP | 0.909354 |
+| Post-split family-prior AP | 0.937925 |
+| Post-split random AP mean | 0.903048 |
+| Family-holdout physics AP | 0.972222 |
+| Family-holdout random AP | 0.852865 |
+| Validation errors | 0 |
+
+Interpretation:
+
+- The audit now explicitly compares descriptor-only ranking with family-prior
+  and leaky family-combined baselines.
+- The post-split set is too small and too positive-heavy, so high post-split AP
+  is not strong validation; it is a pressure test that exposes the need for more
+  negative controls.
+- The next serious B6 result must replace qualitative descriptors with computed
+  structural/electronic features and B5-linked observables.
+
 ## Limits
 
 - Candidates are synthetic, not actual compounds.
@@ -95,10 +136,12 @@ Interpretation:
 
 Build the first useful B6 comparison:
 
-1. Add random and family-prior baselines.
+1. Replace qualitative descriptor values with computed structural/electronic
+   descriptors.
 2. Connect at least one descriptor to the B5 Hubbard/plaquette solver.
-3. Replace synthetic rows with real candidate records from a materials source.
+3. Expand post-2008 negative controls so random and family-prior baselines
+   cannot saturate.
 4. Run retrospective validation on known cuprate, pnictide, hydride, nickelate,
-   and organic families.
+   and organic families with explicit family holdouts.
 5. Track whether active learning chooses candidates that improve descriptor
    uncertainty rather than only reselecting obvious families.

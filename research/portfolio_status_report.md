@@ -40,7 +40,7 @@ Overall audit: PASS
 - B IDs are B1..B10: True
 - Problem IDs match attack pack: True
 - All required fields present: True
-- Maturity scores: {'B1': 37, 'B2': 32, 'B3': 30, 'B4': 20, 'B5': 21, 'B6': 10, 'B7': 33, 'B8': 32, 'B9': 12, 'B10': 39}
+- Maturity scores: {'B1': 37, 'B2': 32, 'B3': 30, 'B4': 20, 'B5': 21, 'B6': 16, 'B7': 33, 'B8': 32, 'B9': 12, 'B10': 39}
 
 ## Technical Resolution Program
 
@@ -477,6 +477,15 @@ Overall audit: PASS
 - Known high-Tc recall@k: 0.2777777777777778
 - Top family counts: {'cuprate_like': 8, 'iron_pnictide_like': 2, 'nickelate_like': 2}
 - Result exists: True
+- Curated leakage audit status: curated_retrospective_leakage_audit
+- Curated records / families / split year: 26 / 12 / 2008
+- Curated post-split records / positives: 8 / 7
+- Curated all physics AP@k / random AP@k mean: 0.89 / 0.5345944165426587
+- Curated post-split physics AP / family-prior AP / random AP mean: 0.9093537414965986 / 0.9379251700680272 / 0.9030476057610545
+- Curated family-holdout physics AP / random AP mean: 0.9722222222222222 / 0.8528645833333333
+- Curated discovery/mechanism/database claims: False / False / False
+- Curated validation errors: 0
+- Curated result/markdown exists: True / True
 
 ## B7 Fault-Tolerance Co-Design Status
 

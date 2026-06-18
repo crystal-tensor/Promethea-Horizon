@@ -357,14 +357,20 @@ pipeline must separate family-prior leakage from physics signal and prioritize
 experimentally testable candidates.
 
 **Completed here:** toy descriptor-ranking harness with 72 candidates and
-precision@12 of 0.833333 on synthetic known-high-Tc labels.
+precision@12 of 0.833333 on synthetic known-high-Tc labels. T-B6-001 adds a
+curated retrospective leakage audit with 26 materials records across 12
+families, a post-2008 time split, high-Tc threshold 30 K, all-physics AP@10
+0.89 versus random AP@10 mean 0.5346, post-split physics AP 0.9094 versus
+family-prior AP 0.9379 and random AP mean 0.9030, family-holdout physics AP
+0.9722 versus random AP 0.8529, validation errors 0, and explicit non-claim of
+material discovery, solved mechanism, or complete database coverage.
 
-**Remaining path to a serious solution:** connect to a real or curated
-retrospective materials table; enforce time/family splits; audit descriptor
-leakage; add structure and correlation descriptors; use B5 observables where
+**Remaining path to a serious solution:** replace qualitative descriptor values
+with computed structural/electronic descriptors; expand post-split negative
+controls; add structure and correlation descriptors; use B5 observables where
 available; produce a short candidate list.
 
-**Current internal maturity:** 10/100.
+**Current internal maturity:** 16/100.
 
 ## B7: Architecture-Level Fault-Tolerance Co-Design
 
