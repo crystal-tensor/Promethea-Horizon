@@ -362,6 +362,17 @@ reduction, and B7 improvement all remain 0. The next route must exact-decompose
 or absorb the five remaining line-1381 off-grid local-U3 parameters and emit
 symbolic full-circuit replay certificates before any B7 saving can be counted.
 
+The line-1381 exact-decomposition pressure gate now tests those five remaining
+off-grid local-U3 parameters against the simple acceptance contracts: pi/4
+grid, low-denominator power-of-two pi grid, rational-pi grid up to denominator
+512, and source-angle absorption. All five parameters remain unaccepted:
+pi/4, dyadic-pi, rational-pi, source-absorption, symbolic decomposition,
+full-circuit replay, occurrence removal, proxy-T reduction, and B7 ledger
+improvement all stay at 0. This closes the cheap exact-decomposition route but
+does not prove a global obstruction; the next route must use broader symbolic
+synthesis, context-aware absorption, or full-circuit replay with honest
+resource pricing.
+
 ## Repository Layout
 
 ```text

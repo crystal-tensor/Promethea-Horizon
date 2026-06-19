@@ -611,6 +611,19 @@ Overall audit: PASS
 - Accepted occurrence/proxy-T reduction / B7 claim: 0 / 0 / False
 - Validation errors: 0
 
+## B1/B7 cone_01 Line-1381 Exact-Decomposition Pressure Gate
+
+- Exists: True
+- Status: cone01_line1381_exact_decomposition_pressure_not_accepted
+- Target line / remaining off-grid parameters: 1381 / 5
+- Parameter indices: [3, 4, 9, 16, 17]
+- Pi/4 / dyadic-pi / rational-pi exact parameters: 0 / 0 / 0
+- Source-absorbed / accepted exact-decomposition parameters: 0 / 0
+- Remaining unaccepted parameters: 5
+- Min / max best rational-pi error: 9.065022593679473e-07 / 0.00027215955680759407
+- Accepted replay / occurrence / proxy-T reduction / B7 claim: 0 / 0 / 0 / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Theta-Sharing Ledger Gate
 
 - Exists: True

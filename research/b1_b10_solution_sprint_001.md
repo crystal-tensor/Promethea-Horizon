@@ -1604,6 +1604,17 @@ must exact-decompose or absorb the five line-1381 off-grid local-U3 parameters
 and emit symbolic full-circuit replay certificates before any saving can be
 counted.
 
+Sprint update 18an: T-B1-004an now consumes T-B1-004am and turns that next
+question into an explicit exact-decomposition pressure gate. The five remaining
+line-1381 off-grid local-U3 parameters are tested against pi/4-grid,
+low-denominator dyadic-pi, rational-pi denominator <=512, and source-absorption
+contracts. All five remain unaccepted: accepted exact decomposition, symbolic
+decomposition, full-circuit replay certificate count, occurrence removal,
+proxy-T reduction, and B7 improvement are all 0. The cheap
+exact-decomposition route is now closed; the next sprint gate must move to
+broader symbolic synthesis, context-aware absorption, or full-circuit replay
+with honest resource pricing.
+
 ## Sprint Promotion Matrix
 
 | Track | Can become paper after this sprint? | Can become patent after this sprint? | Can become fundable/tool after this sprint? |
