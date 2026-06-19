@@ -396,6 +396,17 @@ improvement remain 0. This closes a bounded two-/three-rotation context route;
 four-or-more-rotation symbolic absorption, commutation-aware replay, and
 different occurrence-removing scaffolds remain open.
 
+The follow-on four-rotation context gate tests the next bounded rung before
+leaving the local context path. For each of the same five line-1381 parameters,
+it evaluates 2,172,016 signed width-4 combinations from the same 44 context
+rotation arguments, or 10,860,080 total signed combination tests. The result is
+again negative: 0/5 parameters have exact width-4 absorption back to the pi/4
+grid, the best width-4 grid error remains 1.5819911093339911e-3, and accepted
+full-circuit replay, occurrence removal, proxy-T reduction, and B7 ledger
+improvement remain 0. This closes an exactly-four-rotation context route; a
+future route must justify five-or-more symbolic absorption, commutation-aware
+full-circuit replay, or a different occurrence-removing scaffold.
+
 ## Repository Layout
 
 ```text

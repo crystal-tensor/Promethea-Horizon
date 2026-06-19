@@ -1638,6 +1638,19 @@ proxy-T reduction, and B7 improvement remain 0. The next sprint gate must move
 to four-or-more-rotation symbolic absorption, commutation-aware full-circuit
 replay, or another occurrence-removing scaffold.
 
+Sprint update 18aq: T-B1-004aq now consumes T-B1-004ap and tests the next
+bounded context rung: signed sums of exactly four same-support context
+rotations. The gate reviews the same 44 local context rotation arguments and
+evaluates 2,172,016 width-4 signed combinations per parameter, 10,860,080
+signed combination tests in total across the five remaining line-1381
+parameters. The result remains negative: 0/5 parameters have exact width-4
+absorption back to the pi/4 grid, the best width-4 grid error remains
+0.0015819911093339911, and accepted full-circuit replay, occurrence removal,
+proxy-T reduction, and B7 improvement remain 0. The next sprint gate should
+favor commutation-aware full-circuit replay or another occurrence-removing
+scaffold unless a five-or-more-rotation symbolic search has a stronger
+structural reason than local bounded enumeration.
+
 ## Sprint Promotion Matrix
 
 | Track | Can become paper after this sprint? | Can become patent after this sprint? | Can become fundable/tool after this sprint? |

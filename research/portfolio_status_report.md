@@ -651,6 +651,19 @@ Overall audit: PASS
 - Accepted replay / occurrence / proxy-T reduction / B7 claim: 0 / 0 / 0 / False
 - Validation errors: 0
 
+## B1/B7 cone_01 Line-1381 Four-Rotation Context Gate
+
+- Exists: True
+- Status: cone01_line1381_four_rotation_context_not_accepted
+- Target line / support qubits: 1381 / [4, 8]
+- Window / context radius: 1369-1379 / 64
+- Search width / context rotation arguments: 4 / 44
+- Signed combinations per parameter / total tests: 2172016 / 10860080
+- Width-4 exact absorption parameters: 0
+- Min / max best width-4 context grid error: 0.0015819911093339911 / 0.026659551749408372
+- Accepted replay / occurrence / proxy-T reduction / B7 claim: 0 / 0 / 0 / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Theta-Sharing Ledger Gate
 
 - Exists: True
