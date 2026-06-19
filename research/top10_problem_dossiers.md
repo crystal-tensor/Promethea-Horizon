@@ -146,7 +146,7 @@ ledger sees this as replacement rather than removal: 3 unique carrier
 signatures cover 11 flat occurrences, 11 carrier occurrences are inserted for
 11 originals, net arbitrary-occurrence delta is 0, optimistic template reuse is
 160 proxy-T but unaccepted, and even full carrier absorption would still leave
-a 19-occurrence / 380 proxy-T B7 gap. The single-carrier shareability gate then rejects natural carrier coalescence: the 11 occurrences split into 3 distinct signatures, cross-pattern shareable signature count is 0, largest signature covers 8 occurrences, optimistic reuse is only 160 proxy-T, and accepted reduction remains 0.
+a 19-occurrence / 380 proxy-T B7 gap. The single-carrier shareability gate then rejects natural carrier coalescence: the 11 occurrences split into 3 distinct signatures, cross-pattern shareable signature count is 0, largest signature covers 8 occurrences, optimistic reuse is only 160 proxy-T, and accepted reduction remains 0. The carrier absorption inventory gate then checks 2049 native optimized rotation arguments: 2/3 carrier patterns have inventory and same-target angle matches, `flat_pattern_02` has no inventory-angle match, 0/3 patterns have line-local absorption candidates, and accepted reduction remains 0.
 
 **Remaining path to a serious solution:** connect to calibrated/live-like
 heavy-hex baselines; cover dynamic circuits and reset/measurement semantics;
@@ -155,7 +155,7 @@ KAK/Clifford scaffold, or scoped obstruction report that explicitly carries,
 shares, or eliminates theta while addressing at least 30 arbitrary rotation
 occurrences / 600
 proxy-T units, turn the single-carrier exact packets into replayable occurrence-removing
-certificates that beat the T-B1-004v replacement ledger and T-B1-004w shareability boundary, or produce a method beyond direct pi/4 projection or shared grid
+certificates that beat the T-B1-004v replacement ledger and T-B1-004w shareability boundary and T-B1-004x inventory-only boundary, or produce a method beyond direct pi/4 projection or shared grid
 signatures for the carrier-bearing packets only as part of a larger
 30-occurrence certificate set, or reverse the rejected CM-08 with accepted physical model
 evidence after CM-02/CM-07; broaden benchmarks; package certificates for independent
@@ -674,7 +674,7 @@ reduction remain 0. The single-carrier ledger pressure gate then shows
 that the current ledger treats this as replacement rather than removal: 11
 inserted carrier occurrences replace 11 original flat occurrences, accepted
 reduction remains 0, optimistic template reuse is unaccepted, and even absorbing
-all carriers would still leave a 19-occurrence / 380 proxy-T target gap. The single-carrier shareability gate then rejects natural carrier coalescence: 3 distinct signatures, 0 cross-pattern shareable signatures, largest signature 8 occurrences, optimistic reuse 160 proxy-T, and no accepted B7 reduction.
+all carriers would still leave a 19-occurrence / 380 proxy-T target gap. The single-carrier shareability gate then rejects natural carrier coalescence: 3 distinct signatures, 0 cross-pattern shareable signatures, largest signature 8 occurrences, optimistic reuse 160 proxy-T, and no accepted B7 reduction. The carrier absorption inventory gate then finds 2049 native rotation arguments, 2/3 carrier patterns with inventory/same-target matches, `flat_pattern_02` with no inventory-angle match, 0/3 line-local absorption candidates, and no accepted B7 reduction.
 
 **Remaining path to a serious solution:** produce a symbolic KAK/Clifford-
 scaffold proof, scoped obstruction, or certified broader `cone_01`

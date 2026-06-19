@@ -425,6 +425,19 @@ Overall audit: PASS
 - Shareability/ledger/rewrite/semantic/resource/B7 claims: False / False / False / False / False / False
 - Validation errors: 0
 
+## B1/B7 cone_01 Carrier Absorption Inventory Gate
+
+- Exists: True
+- Status: cone01_carrier_absorption_inventory_negative_gate
+- Inventory QASM / rotation arguments: results/b1_native_t_resource_optimizer/qasmbench_medium_exact/gcm_h6.qasm / 2049
+- Pattern groups / covered occurrences / carrier signatures: 3 / 11 / 3
+- Inventory / same-target / line-local candidate patterns: 2 / 2 / 0
+- Patterns without inventory / same-target match: ['flat_pattern_02'] / ['flat_pattern_02']
+- All-pattern inventory / same-target / line-local coverage: False / False / False
+- Accepted certificates / occurrence / proxy-T reduction: 0 / 0 / 0
+- Absorption/ledger/rewrite/semantic/resource/B7 claims: False / False / False / False / False / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Theta-Sharing Ledger Gate
 
 - Exists: True

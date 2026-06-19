@@ -168,6 +168,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_single_carrier_shareability_path = (
         results / "B1_B7_cone01_single_carrier_shareability_gate_v0.json"
     )
+    b1_b7_cone01_carrier_absorption_inventory_path = (
+        results / "B1_B7_cone01_carrier_absorption_inventory_gate_v0.json"
+    )
     b1_b7_cone01_theta_sharing_path = results / "B1_B7_cone01_theta_sharing_ledger_gate_v0.json"
     b1_b7_cone01_shared_theta_synthesis_object_path = (
         results / "B1_B7_cone01_shared_theta_synthesis_object_gate_v0.json"
@@ -691,6 +694,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_single_carrier_shareability_manifest = current_results.get(
         "b1_b7_cone01_single_carrier_shareability_gate_v0"
+    )
+    b1_b7_cone01_carrier_absorption_inventory_manifest = current_results.get(
+        "b1_b7_cone01_carrier_absorption_inventory_gate_v0"
     )
     b1_b7_cone01_theta_sharing_manifest = current_results.get(
         "b1_b7_cone01_theta_sharing_ledger_gate_v0"
@@ -3122,6 +3128,177 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 single-carrier shareability report: "
             f"{b1_b7_cone01_single_carrier_shareability_path}"
+        )
+
+    b1_b7_cone01_carrier_absorption_inventory = {
+        "path": str(b1_b7_cone01_carrier_absorption_inventory_path),
+        "exists": b1_b7_cone01_carrier_absorption_inventory_path.exists(),
+    }
+    if not b1_b7_cone01_carrier_absorption_inventory_manifest:
+        errors.append("B1 manifest missing current result: b1_b7_cone01_carrier_absorption_inventory_gate_v0")
+    else:
+        if (
+            b1_b7_cone01_carrier_absorption_inventory_manifest.get("status")
+            != "cone01_carrier_absorption_inventory_negative_gate"
+        ):
+            errors.append("B1/B7 cone_01 carrier absorption inventory gate status must remain negative")
+        for field in ["report", "markdown_report", "inventory_qasm"]:
+            value = b1_b7_cone01_carrier_absorption_inventory_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(
+                    f"B1/B7 cone_01 carrier absorption inventory missing existing {field} path: {value}"
+                )
+    if b1_b7_cone01_carrier_absorption_inventory_path.exists():
+        carrier_abs_payload = json.loads(read(b1_b7_cone01_carrier_absorption_inventory_path))
+        carrier_abs_summary = carrier_abs_payload.get("summary", {})
+        carrier_abs_claims = carrier_abs_payload.get("claim_boundary", {})
+        b1_b7_cone01_carrier_absorption_inventory.update(
+            {
+                "status": carrier_abs_payload.get("status"),
+                "model_status": carrier_abs_payload.get("model_status"),
+                "method": carrier_abs_payload.get("method"),
+                "workload": carrier_abs_payload.get("workload"),
+                "source_method": carrier_abs_payload.get("source_method"),
+                "source_shareability_method": carrier_abs_payload.get("source_shareability_method"),
+                "inventory_qasm": carrier_abs_summary.get("inventory_qasm"),
+                "rotation_argument_inventory_count": carrier_abs_summary.get(
+                    "rotation_argument_inventory_count"
+                ),
+                "pattern_group_count": carrier_abs_summary.get("pattern_group_count"),
+                "covered_invariant_flat_occurrence_count": carrier_abs_summary.get(
+                    "covered_invariant_flat_occurrence_count"
+                ),
+                "carrier_signature_count": carrier_abs_summary.get("carrier_signature_count"),
+                "inventory_absorption_candidate_pattern_count": carrier_abs_summary.get(
+                    "inventory_absorption_candidate_pattern_count"
+                ),
+                "same_target_inventory_candidate_pattern_count": carrier_abs_summary.get(
+                    "same_target_inventory_candidate_pattern_count"
+                ),
+                "line_local_absorption_candidate_pattern_count": carrier_abs_summary.get(
+                    "line_local_absorption_candidate_pattern_count"
+                ),
+                "patterns_without_inventory_angle_match": carrier_abs_summary.get(
+                    "patterns_without_inventory_angle_match"
+                ),
+                "patterns_without_same_target_angle_match": carrier_abs_summary.get(
+                    "patterns_without_same_target_angle_match"
+                ),
+                "all_patterns_have_inventory_angle_match": carrier_abs_summary.get(
+                    "all_patterns_have_inventory_angle_match"
+                ),
+                "all_patterns_have_same_target_angle_match": carrier_abs_summary.get(
+                    "all_patterns_have_same_target_angle_match"
+                ),
+                "all_patterns_have_line_local_absorption_candidate": carrier_abs_summary.get(
+                    "all_patterns_have_line_local_absorption_candidate"
+                ),
+                "accepted_absorption_certificate_count": carrier_abs_summary.get(
+                    "accepted_absorption_certificate_count"
+                ),
+                "accepted_occurrence_removal": carrier_abs_summary.get("accepted_occurrence_removal"),
+                "accepted_proxy_t_reduction": carrier_abs_summary.get("accepted_proxy_t_reduction"),
+                "missing_occurrences_after_gate": carrier_abs_summary.get("missing_occurrences_after_gate"),
+                "missing_proxy_t_after_gate": carrier_abs_summary.get("missing_proxy_t_after_gate"),
+                "carrier_absorption_certificate_claimed": carrier_abs_summary.get(
+                    "carrier_absorption_certificate_claimed"
+                ),
+                "carrier_ledger_reduction_claimed": carrier_abs_summary.get(
+                    "carrier_ledger_reduction_claimed"
+                ),
+                "rewrite_claimed": carrier_abs_claims.get("rewrite_claimed"),
+                "semantic_certificate_claimed": carrier_abs_claims.get("semantic_certificate_claimed"),
+                "resource_saving_claimed": carrier_abs_claims.get("resource_saving_claimed"),
+                "b7_ledger_improvement_claimed": carrier_abs_claims.get("b7_ledger_improvement_claimed"),
+                "validation_error_count": carrier_abs_summary.get("validation_error_count"),
+                "carrier_absorption_inventory_row_count": len(
+                    carrier_abs_payload.get("carrier_absorption_inventory_rows", [])
+                ),
+            }
+        )
+        if carrier_abs_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 carrier absorption inventory report must have benchmark_id B1")
+        if carrier_abs_payload.get("method") != "b1_b7_cone01_carrier_absorption_inventory_gate_v0":
+            errors.append("B1/B7 cone_01 carrier absorption inventory method mismatch")
+        if carrier_abs_payload.get("status") != "cone01_carrier_absorption_inventory_negative_gate":
+            errors.append("B1/B7 cone_01 carrier absorption inventory status mismatch")
+        if (
+            carrier_abs_payload.get("model_status")
+            != "carrier_inventory_matches_do_not_form_line_local_absorption_certificate"
+        ):
+            errors.append("B1/B7 cone_01 carrier absorption inventory model_status mismatch")
+        if carrier_abs_payload.get("source_method") != "b1_b7_cone01_single_carrier_ledger_gate_v0":
+            errors.append("B1/B7 cone_01 carrier absorption inventory source method mismatch")
+        if (
+            carrier_abs_payload.get("source_shareability_method")
+            != "b1_b7_cone01_single_carrier_shareability_gate_v0"
+        ):
+            errors.append("B1/B7 cone_01 carrier absorption inventory shareability source method mismatch")
+        for field in [
+            "rotation_argument_inventory_count",
+            "pattern_group_count",
+            "covered_invariant_flat_occurrence_count",
+            "carrier_signature_count",
+            "inventory_absorption_candidate_pattern_count",
+            "same_target_inventory_candidate_pattern_count",
+            "line_local_absorption_candidate_pattern_count",
+            "patterns_without_inventory_angle_match",
+            "patterns_without_same_target_angle_match",
+            "all_patterns_have_inventory_angle_match",
+            "all_patterns_have_same_target_angle_match",
+            "all_patterns_have_line_local_absorption_candidate",
+            "accepted_absorption_certificate_count",
+            "accepted_occurrence_removal",
+            "accepted_proxy_t_reduction",
+            "missing_occurrences_after_gate",
+            "missing_proxy_t_after_gate",
+            "carrier_absorption_certificate_claimed",
+            "carrier_ledger_reduction_claimed",
+            "rewrite_claimed",
+            "semantic_certificate_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+            "validation_error_count",
+        ]:
+            if carrier_abs_summary.get(field) != b1_b7_cone01_carrier_absorption_inventory_manifest.get(field):
+                errors.append(f"B1/B7 cone_01 carrier absorption inventory {field} mismatch")
+        if carrier_abs_summary.get("inventory_absorption_candidate_pattern_count") != 2:
+            errors.append("B1/B7 cone_01 carrier absorption inventory must find 2 inventory candidates")
+        if carrier_abs_summary.get("same_target_inventory_candidate_pattern_count") != 2:
+            errors.append("B1/B7 cone_01 carrier absorption inventory must find 2 same-target candidates")
+        if carrier_abs_summary.get("line_local_absorption_candidate_pattern_count") != 0:
+            errors.append("B1/B7 cone_01 carrier absorption inventory must find 0 line-local candidates")
+        if carrier_abs_summary.get("patterns_without_inventory_angle_match") != ["flat_pattern_02"]:
+            errors.append("B1/B7 cone_01 carrier absorption inventory missing-pattern list mismatch")
+        if carrier_abs_summary.get("accepted_absorption_certificate_count") != 0:
+            errors.append("B1/B7 cone_01 carrier absorption inventory accepted certificates must be 0")
+        if carrier_abs_summary.get("accepted_occurrence_removal") != 0:
+            errors.append("B1/B7 cone_01 carrier absorption inventory accepted removal must be 0")
+        if carrier_abs_summary.get("accepted_proxy_t_reduction") != 0:
+            errors.append("B1/B7 cone_01 carrier absorption inventory accepted proxy-T reduction must be 0")
+        if len(carrier_abs_payload.get("carrier_absorption_inventory_rows", [])) != 3:
+            errors.append("B1/B7 cone_01 carrier absorption inventory row count must be 3")
+        for row in carrier_abs_payload.get("carrier_absorption_inventory_rows", []):
+            if row.get("accepted_absorption_certificate") is not False:
+                errors.append("B1/B7 cone_01 carrier absorption rows must not accept certificates")
+            if row.get("line_local_absorption_candidate") is not False:
+                errors.append("B1/B7 cone_01 carrier absorption rows must remain line-local negative")
+        for field in [
+            "carrier_absorption_certificate_claimed",
+            "carrier_ledger_reduction_claimed",
+            "rewrite_claimed",
+            "semantic_certificate_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if carrier_abs_summary.get(field) is not False or carrier_abs_claims.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 carrier absorption inventory must not claim {field}")
+        if carrier_abs_summary.get("validation_error_count") != 0:
+            errors.append("B1/B7 cone_01 carrier absorption inventory validation errors must remain zero")
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 carrier absorption inventory report: "
+            f"{b1_b7_cone01_carrier_absorption_inventory_path}"
         )
 
     b1_b7_cone01_theta_sharing = {
@@ -13029,6 +13206,7 @@ def audit(root: Path) -> dict:
             "b7_cone01_single_carrier_dressing_gate": b1_b7_cone01_single_carrier_dressing,
             "b7_cone01_single_carrier_ledger_gate": b1_b7_cone01_single_carrier_ledger,
             "b7_cone01_single_carrier_shareability_gate": b1_b7_cone01_single_carrier_shareability,
+            "b7_cone01_carrier_absorption_inventory_gate": b1_b7_cone01_carrier_absorption_inventory,
             "b7_cone01_theta_sharing_ledger_gate": b1_b7_cone01_theta_sharing,
             "b7_cone01_shared_theta_synthesis_object_gate": b1_b7_cone01_shared_theta_synthesis_object,
             "b7_cone01_shared_theta_replay_verifier_gate": b1_b7_cone01_shared_theta_replay_verifier,
@@ -13236,6 +13414,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_single_carrier_shareability_gate": str(
                 b1_b7_cone01_single_carrier_shareability_path
+            ),
+            "b1_b7_cone01_carrier_absorption_inventory_gate": str(
+                b1_b7_cone01_carrier_absorption_inventory_path
             ),
             "b1_b7_cone01_theta_sharing_ledger_gate": str(b1_b7_cone01_theta_sharing_path),
             "b1_b7_cone01_shared_theta_synthesis_object_gate": str(
@@ -13890,6 +14071,19 @@ def markdown_report(report: dict) -> str:
             f"- Accepted occurrence/proxy-T reduction: {report['b1']['b7_cone01_single_carrier_shareability_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_single_carrier_shareability_gate'].get('accepted_proxy_t_reduction')}",
             f"- Shareability/ledger/rewrite/semantic/resource/B7 claims: {report['b1']['b7_cone01_single_carrier_shareability_gate'].get('carrier_shareability_certificate_claimed')} / {report['b1']['b7_cone01_single_carrier_shareability_gate'].get('carrier_ledger_reduction_claimed')} / {report['b1']['b7_cone01_single_carrier_shareability_gate'].get('rewrite_claimed')} / {report['b1']['b7_cone01_single_carrier_shareability_gate'].get('semantic_certificate_claimed')} / {report['b1']['b7_cone01_single_carrier_shareability_gate'].get('resource_saving_claimed')} / {report['b1']['b7_cone01_single_carrier_shareability_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_single_carrier_shareability_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 Carrier Absorption Inventory Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('status')}",
+            f"- Inventory QASM / rotation arguments: {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('inventory_qasm')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('rotation_argument_inventory_count')}",
+            f"- Pattern groups / covered occurrences / carrier signatures: {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('pattern_group_count')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('covered_invariant_flat_occurrence_count')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('carrier_signature_count')}",
+            f"- Inventory / same-target / line-local candidate patterns: {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('inventory_absorption_candidate_pattern_count')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('same_target_inventory_candidate_pattern_count')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('line_local_absorption_candidate_pattern_count')}",
+            f"- Patterns without inventory / same-target match: {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('patterns_without_inventory_angle_match')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('patterns_without_same_target_angle_match')}",
+            f"- All-pattern inventory / same-target / line-local coverage: {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('all_patterns_have_inventory_angle_match')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('all_patterns_have_same_target_angle_match')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('all_patterns_have_line_local_absorption_candidate')}",
+            f"- Accepted certificates / occurrence / proxy-T reduction: {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('accepted_absorption_certificate_count')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('accepted_proxy_t_reduction')}",
+            f"- Absorption/ledger/rewrite/semantic/resource/B7 claims: {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('carrier_absorption_certificate_claimed')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('carrier_ledger_reduction_claimed')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('rewrite_claimed')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('semantic_certificate_claimed')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('resource_saving_claimed')} / {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_carrier_absorption_inventory_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Theta-Sharing Ledger Gate",
             "",

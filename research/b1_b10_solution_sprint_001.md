@@ -1022,6 +1022,18 @@ only 160 proxy-T, below the 600 proxy-T B7 target. Even accepting all shared
 objects would still remove at most 11 occurrences and miss the B7 target by 19;
 accepted occurrence removal and accepted proxy-T reduction remain 0.
 
+**Sprint update 18x:** `T-B1-004x` is now merged as the carrier absorption
+inventory gate. The new artifact
+`research/B1_B7_cone01_carrier_absorption_inventory_gate.md` consumes
+T-B1-004v/w and compares the three carrier signatures against the native
+optimized `gcm_h6` rotation inventory. The inventory contains 2049 rotation
+arguments. Two of three carrier patterns have angle inventory matches and
+same-target matches, but `flat_pattern_02` has no inventory-angle match and
+zero patterns have line-local absorption candidates. This means inventory
+matches alone cannot turn the carrier route into a resource claim; accepted
+absorption certificates, occurrence removal, proxy-T reduction, and B7 ledger
+improvement all remain 0.
+
 ## B8: Classical Verification of Quantum Outputs
 
 **Technical target:** keep verifier soundness low under adaptive leakage by
