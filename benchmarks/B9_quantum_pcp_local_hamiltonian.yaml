@@ -132,10 +132,30 @@ current_results:
     validation_error_count: 0
     result: ../results/B9_cluster_stabilizer_parametric_certificate_v0.json
     markdown_report: ../research/B9_cluster_stabilizer_parametric_certificate.md
+  proof_environment_readiness_gate_v0:
+    status: proof_environment_readiness_blocked_not_formal_theorem
+    method: b9_proof_environment_readiness_gate_v0
+    source: cluster_stabilizer_parametric_certificate_v0
+    named_family: cluster_stabilizer_open_uniform_reweight
+    readiness_gate_count: 9
+    passed_gate_count: 4
+    failed_gate_count: 5
+    failed_gate_ids: [PE-03, PE-04, PE-05, PE-08, PE-09]
+    blocking_obligation_count: 5
+    proof_environment_ready: false
+    independent_proof_check_ready: false
+    proof_assistant_checked: false
+    formal_theorem_proved: false
+    explicit_not_quantum_pcp_proof: true
+    global_gap_amplification_impossibility_claimed: false
+    validation_error_count: 0
+    result: ../results/B9_proof_environment_readiness_gate_v0.json
+    markdown_report: ../research/B9_proof_environment_readiness_gate.md
 prototype_artifacts:
   local_hamiltonian_gap_lab: ../tools/b9_local_hamiltonian_gap_lab.py
   failed_gap_amplification_lemma_builder: ../tools/b9_failed_gap_amplification_lemma.py
   symbolic_gap_skeleton_builder: ../tools/b9_symbolic_gap_skeleton.py
   named_family_width_locality_bound_builder: ../tools/b9_named_family_width_locality_bounds.py
   cluster_stabilizer_parametric_certificate: ../tools/b9_cluster_stabilizer_parametric_certificate.py
+  proof_environment_readiness_gate: ../tools/b9_proof_environment_readiness_gate.py
   prototype_notes: ../research/B9_prototype_notes.md

@@ -764,16 +764,21 @@ checked theorem.
 T-B9-004a adds a repo-local parametric certificate checker for the same family:
 it checks the n >= 4 formula-level term counts, support set {2,3}, max locality
 3, exact uniform scale 27/20, finite rows n=4,5,6, and normalized-gap
-invariance by exact rational algebra. The certificate is still rejected as
+invariance by exact rational algebra.
+T-B9-004b adds a proof-environment readiness gate: only 4/9 gates pass; Lean
+exits with failure, Lake is absent, no Lake/mathlib project files exist, the
+named-family theorem remains a placeholder `True` obligation, and no
+proof-assistant checked theorem exists. The certificate is still rejected as
 raw-gap-only rescaling, and it is still not a proof-assistant theorem.
 
-**Remaining path to a serious solution:** create a real Lean/mathlib or
-equivalent proof-checkable project; formalize the open-boundary
-cluster-stabilizer family for all n >= 4; prove support-size, uniform-scaling,
-spectral-width, and normalized-gap invariance lemmas; then decide whether the
-checked statement informs the full conjecture.
+**Remaining path to a serious solution:** pin a real Lean 4/Lake/mathlib or
+equivalent proof-checkable project; replace the placeholder `True` theorem with
+an indexed Hamiltonian-family theorem; formalize the open-boundary
+cluster-stabilizer family for all n >= 4; prove support-size,
+uniform-scaling, spectral-width, and normalized-gap invariance lemmas; then
+decide whether the checked statement informs the full conjecture.
 
-**Current internal maturity:** 13/100.
+**Current internal maturity:** 15/100.
 
 ## B10: Mapping the Boundary of BQP
 

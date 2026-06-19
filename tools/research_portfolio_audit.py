@@ -9841,6 +9841,7 @@ def audit(root: Path) -> dict:
     b9_symbolic_gap_skeleton = b9_results.get("symbolic_gap_amplification_skeleton_v0")
     b9_named_family_bound = b9_results.get("named_family_width_locality_bound_v0")
     b9_parametric_certificate = b9_results.get("cluster_stabilizer_parametric_certificate_v0")
+    b9_proof_environment_gate = b9_results.get("proof_environment_readiness_gate_v0")
     b9_status = {}
     if not b9_gap_lab:
         warnings.append("B9 manifest has no local-Hamiltonian gap-lab result")
@@ -10160,6 +10161,101 @@ def audit(root: Path) -> dict:
             errors.append("B9 parametric certificate must not claim global impossibility")
         if payload.get("validation_error_count") != 0 or len(payload.get("validation_errors", [])) != 0:
             errors.append("B9 parametric certificate validation errors must be zero")
+
+    b9_proof_environment_gate_status = {}
+    if not b9_proof_environment_gate:
+        warnings.append("B9 manifest has no proof-environment readiness gate")
+    else:
+        result_path = b9_proof_environment_gate.get("result")
+        markdown_path = b9_proof_environment_gate.get("markdown_report")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"B9 proof-environment readiness result path missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"B9 proof-environment readiness markdown missing: {markdown_path}")
+        payload = json.loads(read((benchmarks / result_path).resolve())) if result_exists else {}
+        claim_boundary = payload.get("claim_boundary", {})
+        b9_proof_environment_gate_status = {
+            "status": b9_proof_environment_gate.get("status"),
+            "method": b9_proof_environment_gate.get("method"),
+            "source_method": payload.get("source_method"),
+            "named_family": payload.get("named_family"),
+            "readiness_gate_count": payload.get("readiness_gate_count"),
+            "passed_gate_count": payload.get("passed_gate_count"),
+            "failed_gate_count": payload.get("failed_gate_count"),
+            "failed_gate_ids": payload.get("failed_gate_ids"),
+            "blocking_obligation_count": payload.get("blocking_obligation_count"),
+            "proof_environment_ready": payload.get("proof_environment_ready"),
+            "independent_proof_check_ready": payload.get("independent_proof_check_ready"),
+            "proof_assistant_checked": payload.get("proof_assistant_checked"),
+            "formal_theorem_proved": payload.get("formal_theorem_proved"),
+            "explicit_not_quantum_pcp_proof": payload.get("explicit_not_quantum_pcp_proof"),
+            "global_gap_amplification_impossibility_claimed": payload.get(
+                "global_gap_amplification_impossibility_claimed"
+            ),
+            "lean_available": payload.get("lean_probe", {}).get("available"),
+            "lean_return_code": payload.get("lean_probe", {}).get("return_code"),
+            "lake_available": payload.get("lake_probe", {}).get("available"),
+            "lake_project_present": payload.get("lake_project_probe", {}).get("lake_project_present"),
+            "contains_placeholder_true_theorem": payload.get("lean_file_probe", {}).get(
+                "contains_placeholder_true_theorem"
+            ),
+            "validation_error_count": payload.get("validation_error_count"),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown_report": markdown_path,
+        }
+        if payload.get("status") != "proof_environment_readiness_blocked_not_formal_theorem":
+            errors.append("B9 proof-environment readiness status mismatch")
+        if payload.get("method") != b9_proof_environment_gate.get("method"):
+            errors.append("B9 proof-environment readiness method mismatch")
+        if payload.get("source_method") != "b9_cluster_stabilizer_parametric_certificate_v0":
+            errors.append("B9 proof-environment readiness source method mismatch")
+        if payload.get("named_family") != "cluster_stabilizer_open_uniform_reweight":
+            errors.append("B9 proof-environment readiness family mismatch")
+        for field in [
+            "readiness_gate_count",
+            "passed_gate_count",
+            "failed_gate_count",
+            "failed_gate_ids",
+            "blocking_obligation_count",
+        ]:
+            if payload.get(field) != b9_proof_environment_gate.get(field):
+                errors.append(f"B9 proof-environment readiness {field} mismatch")
+        if payload.get("readiness_gate_count") != 9:
+            errors.append("B9 proof-environment readiness should evaluate nine gates")
+        if payload.get("passed_gate_count") != 4:
+            errors.append("B9 proof-environment readiness should currently pass four gates")
+        if payload.get("failed_gate_count") != 5:
+            errors.append("B9 proof-environment readiness should currently fail five gates")
+        if payload.get("failed_gate_ids") != ["PE-03", "PE-04", "PE-05", "PE-08", "PE-09"]:
+            errors.append("B9 proof-environment readiness failed gate ids mismatch")
+        if payload.get("blocking_obligation_count") != 5:
+            errors.append("B9 proof-environment readiness should record five blocking obligations")
+        if payload.get("proof_environment_ready") is not False:
+            errors.append("B9 proof-environment readiness must remain blocked")
+        if payload.get("independent_proof_check_ready") is not False:
+            errors.append("B9 proof-environment readiness must not claim independent proof-check readiness")
+        if payload.get("proof_assistant_checked") is not False:
+            errors.append("B9 proof-environment readiness must not claim proof-assistant checking")
+        if payload.get("formal_theorem_proved") is not False:
+            errors.append("B9 proof-environment readiness must not claim a formal theorem")
+        if payload.get("explicit_not_quantum_pcp_proof") is not True:
+            errors.append("B9 proof-environment readiness must explicitly avoid Quantum PCP proof claims")
+        if payload.get("global_gap_amplification_impossibility_claimed") is not False:
+            errors.append("B9 proof-environment readiness must not claim global impossibility")
+        if claim_boundary.get("proof_environment_ready") is not False:
+            errors.append("B9 proof-environment claim boundary must keep proof environment blocked")
+        if claim_boundary.get("local_verifier_checked") is not True:
+            errors.append("B9 proof-environment claim boundary should retain local verifier evidence")
+        if payload.get("lean_file_probe", {}).get("contains_placeholder_true_theorem") is not True:
+            errors.append("B9 proof-environment should expose the placeholder True theorem")
+        if payload.get("lake_project_probe", {}).get("lake_project_present") is not False:
+            errors.append("B9 proof-environment should require a real Lake project")
+        if payload.get("validation_error_count") != 0 or len(payload.get("validation_errors", [])) != 0:
+            errors.append("B9 proof-environment readiness validation errors must be zero")
 
     b10_manifest = yaml.safe_load(read(b10_manifest_path))
     b10_results = b10_manifest.get("current_results", {})
@@ -11741,6 +11837,7 @@ def audit(root: Path) -> dict:
             "symbolic_gap_skeleton": b9_symbolic_gap_skeleton_status,
             "named_family_width_locality_bound": b9_named_family_bound_status,
             "cluster_stabilizer_parametric_certificate": b9_parametric_certificate_status,
+            "proof_environment_readiness_gate": b9_proof_environment_gate_status,
         },
         "b10": {
             "manifest": str(b10_manifest_path),
@@ -11964,6 +12061,7 @@ def audit(root: Path) -> dict:
             "b9_cluster_stabilizer_parametric_certificate": str(
                 research / "B9_cluster_stabilizer_parametric_certificate.md"
             ),
+            "b9_proof_environment_readiness_gate": str(research / "B9_proof_environment_readiness_gate.md"),
             "b7_dependency_schedule_bridge": str(research / "B7_b1_b2_dependency_schedule_bridge.md"),
             "b7_workload_dag_factory_schedule": str(research / "B7_workload_dag_factory_schedule.md"),
             "b7_logical_t_factory_schedule": str(research / "B7_logical_t_factory_schedule.md"),
@@ -13149,6 +13247,15 @@ def markdown_report(report: dict) -> str:
             f"- Parametric certificate explicitly not Quantum PCP proof: {report['b9']['cluster_stabilizer_parametric_certificate'].get('explicit_not_quantum_pcp_proof')}",
             f"- Parametric certificate validation errors: {report['b9']['cluster_stabilizer_parametric_certificate'].get('validation_error_count')}",
             f"- Parametric certificate result/markdown exists: {report['b9']['cluster_stabilizer_parametric_certificate'].get('result_exists')} / {report['b9']['cluster_stabilizer_parametric_certificate'].get('markdown_exists')}",
+            f"- Proof-environment readiness status: {report['b9']['proof_environment_readiness_gate'].get('status')}",
+            f"- Proof-environment readiness gates passed/total: {report['b9']['proof_environment_readiness_gate'].get('passed_gate_count')} / {report['b9']['proof_environment_readiness_gate'].get('readiness_gate_count')}",
+            f"- Proof-environment failed gate IDs: {report['b9']['proof_environment_readiness_gate'].get('failed_gate_ids')}",
+            f"- Proof-environment blocking obligations: {report['b9']['proof_environment_readiness_gate'].get('blocking_obligation_count')}",
+            f"- Proof-environment ready/formal theorem: {report['b9']['proof_environment_readiness_gate'].get('proof_environment_ready')} / {report['b9']['proof_environment_readiness_gate'].get('formal_theorem_proved')}",
+            f"- Proof-environment Lean/Lake/project/placeholder: {report['b9']['proof_environment_readiness_gate'].get('lean_return_code')} / {report['b9']['proof_environment_readiness_gate'].get('lake_available')} / {report['b9']['proof_environment_readiness_gate'].get('lake_project_present')} / {report['b9']['proof_environment_readiness_gate'].get('contains_placeholder_true_theorem')}",
+            f"- Proof-environment explicitly not Quantum PCP proof: {report['b9']['proof_environment_readiness_gate'].get('explicit_not_quantum_pcp_proof')}",
+            f"- Proof-environment validation errors: {report['b9']['proof_environment_readiness_gate'].get('validation_error_count')}",
+            f"- Proof-environment result/markdown exists: {report['b9']['proof_environment_readiness_gate'].get('result_exists')} / {report['b9']['proof_environment_readiness_gate'].get('markdown_exists')}",
             "",
             "## B10 BQP Boundary Graph Status",
             "",

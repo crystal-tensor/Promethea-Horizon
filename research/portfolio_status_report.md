@@ -40,7 +40,7 @@ Overall audit: PASS
 - B IDs are B1..B10: True
 - Problem IDs match attack pack: True
 - All required fields present: True
-- Maturity scores: {'B1': 53, 'B2': 48, 'B3': 30, 'B4': 27, 'B5': 27, 'B6': 21, 'B7': 50, 'B8': 39, 'B9': 13, 'B10': 50}
+- Maturity scores: {'B1': 53, 'B2': 48, 'B3': 30, 'B4': 27, 'B5': 27, 'B6': 21, 'B7': 50, 'B8': 39, 'B9': 15, 'B10': 50}
 
 ## Technical Resolution Program
 
@@ -1122,6 +1122,15 @@ Overall audit: PASS
 - Parametric certificate explicitly not Quantum PCP proof: True
 - Parametric certificate validation errors: 0
 - Parametric certificate result/markdown exists: True / True
+- Proof-environment readiness status: proof_environment_readiness_blocked_not_formal_theorem
+- Proof-environment readiness gates passed/total: 4 / 9
+- Proof-environment failed gate IDs: ['PE-03', 'PE-04', 'PE-05', 'PE-08', 'PE-09']
+- Proof-environment blocking obligations: 5
+- Proof-environment ready/formal theorem: False / False
+- Proof-environment Lean/Lake/project/placeholder: 1 / False / False / True
+- Proof-environment explicitly not Quantum PCP proof: True
+- Proof-environment validation errors: 0
+- Proof-environment result/markdown exists: True / True
 
 ## B10 BQP Boundary Graph Status
 

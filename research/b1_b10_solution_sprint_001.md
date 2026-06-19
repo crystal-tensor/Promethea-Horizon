@@ -1235,6 +1235,22 @@ a local verifier gap, but it is not a Lean/mathlib proof, Quantum PCP proof,
 NLTS theorem, or global gap-amplification impossibility. Next: keep
 `T-B9-004` open for an independently proof-checkable formalization.
 
+**Sprint update 60:** `T-B9-004b` is now merged as a proof-environment
+readiness blocker for the same named family. The new tool
+`tools/b9_proof_environment_readiness_gate.py` consumes
+`results/B9_cluster_stabilizer_parametric_certificate_v0.json` and emits
+`results/B9_proof_environment_readiness_gate_v0.json` plus
+`research/B9_proof_environment_readiness_gate.md`. It converts the formal
+proof gap into nine explicit readiness gates: the local certificate exists and
+the exact-rational verifier passes, but only 4/9 gates pass overall. The
+current `lean` command exits with failure, `lake` is absent, no Lake/mathlib
+project files are present, the named-family theorem is still a placeholder
+`True` obligation, and no proof-assistant checked theorem exists. This keeps
+`T-B9-004` open with a sharper target: pin Lean 4/Lake/mathlib, make the
+skeleton check in that project, replace the placeholder theorem, and formalize
+support-size, uniform-scaling, spectral-width, and normalized-gap invariance
+for all integer n >= 4.
+
 ## B10: Boundary of BQP
 
 **Technical target:** separate robust quantum advantage claims from hidden

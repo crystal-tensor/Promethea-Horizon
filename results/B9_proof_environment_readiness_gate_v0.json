@@ -1,0 +1,136 @@
+{
+  "benchmark_id": "B9",
+  "blocking_obligation_count": 5,
+  "blocking_obligations": [
+    "pin a Lean 4 toolchain with a lakefile and mathlib dependency",
+    "make the cluster-stabilizer skeleton check inside that project",
+    "replace the placeholder True theorem with an indexed Hamiltonian family statement",
+    "formalize support-size, uniform-scaling, spectral-width, and normalized-gap invariance for all n >= 4",
+    "record proof-assistant checked theorem output before upgrading any B9 claim"
+  ],
+  "claim_boundary": {
+    "explicit_not_quantum_pcp_proof": true,
+    "formal_theorem_proved": false,
+    "global_gap_amplification_impossibility_claimed": false,
+    "local_verifier_checked": true,
+    "nlts_theorem_claimed": false,
+    "proof_assistant_checked": false,
+    "proof_environment_ready": false
+  },
+  "explicit_not_quantum_pcp_proof": true,
+  "failed_gate_count": 5,
+  "failed_gate_ids": [
+    "PE-03",
+    "PE-04",
+    "PE-05",
+    "PE-08",
+    "PE-09"
+  ],
+  "formal_theorem_proved": false,
+  "global_gap_amplification_impossibility_claimed": false,
+  "independent_proof_check_ready": false,
+  "lake_probe": {
+    "available": false,
+    "command": "lake",
+    "detail": "lake executable not found on PATH",
+    "executable": null,
+    "return_code": null,
+    "stderr": "",
+    "stdout": ""
+  },
+  "lake_project_probe": {
+    "lake_project_present": false,
+    "present_files": [],
+    "required_files": [
+      "lakefile.lean",
+      "lakefile.toml",
+      "lean-toolchain"
+    ]
+  },
+  "lean_file_probe": {
+    "contains_admit": false,
+    "contains_placeholder_true_theorem": true,
+    "contains_sorry": false,
+    "exists": true,
+    "imports_mathlib": true,
+    "line_count": 52,
+    "path": "research/proof_skeletons/B9_cluster_stabilizer_width_locality_bound.lean"
+  },
+  "lean_probe": {
+    "available": true,
+    "command": "lean",
+    "detail": "lean exited with 1",
+    "executable": "/Users/avalok/Library/Python/3.9/bin/lean",
+    "return_code": 1,
+    "stderr": "/Users/avalok/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(\nTraceback (most recent call last):\n  File \"/Users/avalok/Library/Python/3.9/bin/lean\", line 3, in <module>\n    from lean.main import main\n  File \"/Users/avalok/Library/Python/3.9/lib/python/site-packages/lean/main.py\", line 87, in <module>\n    from lean.commands import lean\n  File \"/Users/avalok/Library/Python/3.9/lib/python/site-packages/lean/commands/__init__.py\", line 14, in <module>\n    from lean.commands.lean import lean\n  File \"/Users/avalok/Library/Python/3.9/lib/python/site-packages/lean/commands/lean.py\", line 17, in <module>\n    from lean.click import verbose_option\n  File \"/Users/avalok/Library/Python/3.9/lib/python/site-packages/lean/click.py\", line 21, in <module>\n    from lean.container import container\n  File \"/Users/avalok/Library/Python/3.9/lib/python/site-packages/lean/container.py\", line 17, in <module>\n    from lean.components.api.api_client import APIClient\n  File \"/Users/avalok/Library/Python/3.9/lib/python/site-packages/lean/components/api/api_client.py\", line 16, in <module>\n    from lean.components.api.auth0_client import Auth0Client\n  File \"/Users/avalok/Library/Python/3.9/lib/python/site-packages/lean/components/api/auth0_client.py\", line 15, in <module>\n    from lean.components.util.logger import Logger\n  File \"/Users/avalok/Library/Python/3.9/lib/python/site-packages/lean/components/util/logger.py\", line 18, in <module>\n    from lean.models.logger import Option\n  File \"/Users/avalok/Library/Python/3.9/lib/python/site-packages/lean/models/__init__.py\", line 49, in <module>\n    raise FileNotFoundError(\nFileNotFoundError: Modules json not found in the given path /Users/avalok/Library/Python/3.9/lib/python/site-packages/lean/modules-1.14.json: HTTPSConnectionPool(host='cdn.",
+    "stdout": ""
+  },
+  "method": "b9_proof_environment_readiness_gate_v0",
+  "model_status": "tooling_and_theorem_obligation_gate_not_quantum_pcp_proof",
+  "named_family": "cluster_stabilizer_open_uniform_reweight",
+  "passed_gate_count": 4,
+  "proof_assistant_checked": false,
+  "proof_environment_ready": false,
+  "readiness_gate_count": 9,
+  "readiness_gates": [
+    {
+      "evidence": "results/B9_cluster_stabilizer_parametric_certificate_v0.json",
+      "id": "PE-01",
+      "name": "local parametric certificate exists",
+      "passed": true
+    },
+    {
+      "evidence": "source validation_error_count == 0",
+      "id": "PE-02",
+      "name": "local exact-rational verifier passed",
+      "passed": true
+    },
+    {
+      "evidence": "lean exited with 1",
+      "id": "PE-03",
+      "name": "Lean executable available",
+      "passed": false
+    },
+    {
+      "evidence": "lake executable not found on PATH",
+      "id": "PE-04",
+      "name": "Lake executable available",
+      "passed": false
+    },
+    {
+      "evidence": "present files: []",
+      "id": "PE-05",
+      "name": "Lean/mathlib project files present",
+      "passed": false
+    },
+    {
+      "evidence": "research/proof_skeletons/B9_cluster_stabilizer_width_locality_bound.lean",
+      "id": "PE-06",
+      "name": "Lean skeleton imports Mathlib",
+      "passed": true
+    },
+    {
+      "evidence": "research/proof_skeletons/B9_cluster_stabilizer_width_locality_bound.lean",
+      "id": "PE-07",
+      "name": "Lean skeleton has no sorry/admit token",
+      "passed": true
+    },
+    {
+      "evidence": "cluster_stabilizer_open_uniform_reweight_obligation must not prove only True",
+      "id": "PE-08",
+      "name": "Named-family theorem is not a placeholder",
+      "passed": false
+    },
+    {
+      "evidence": "source proof_assistant_checked/formal_theorem_proved flags",
+      "id": "PE-09",
+      "name": "Source theorem is proof-assistant checked",
+      "passed": false
+    }
+  ],
+  "source_method": "b9_cluster_stabilizer_parametric_certificate_v0",
+  "source_result": "results/B9_cluster_stabilizer_parametric_certificate_v0.json",
+  "status": "proof_environment_readiness_blocked_not_formal_theorem",
+  "validation_error_count": 0,
+  "validation_errors": []
+}
