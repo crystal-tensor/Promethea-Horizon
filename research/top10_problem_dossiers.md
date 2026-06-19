@@ -119,6 +119,12 @@ numerical nonlocal fingerprint and match nearest pi/4-grid nonlocal
 fingerprints, but same-envelope grid replacement still has 0 exact passes with
 residual norms 0.2125-0.3644. All 3 packets therefore remain local-dressing or
 rewrite-certificate obligations, not resource-saving certificates.
+The local-dressing search gate then numerically matches all 3 nearest-grid
+representatives to the original flat patterns with arbitrary SU(2)xSU(2)
+local dressing, max residual 4.710277376051325e-16. This confirms the
+nonlocal-class packet is actionable, but the dressing contains off-pi/4-grid
+local Euler parameters, so accepted occurrence removal and accepted proxy-T
+reduction both remain 0.
 
 **Remaining path to a serious solution:** connect to calibrated/live-like
 heavy-hex baselines; cover dynamic circuits and reset/measurement semantics;
@@ -126,12 +132,13 @@ turn `cone_01` into a broader replayable semantic rewrite certificate,
 KAK/Clifford scaffold, or scoped obstruction report that explicitly carries,
 shares, or eliminates theta while addressing at least 30 arbitrary rotation
 occurrences / 600
-proxy-T units, solve the 3 invariant-flat KAK packets with local-dressing or
-rewrite certificates only as part of a larger 30-occurrence certificate set, or reverse the rejected CM-08 with accepted physical model
+proxy-T units, absorb/share/exactify or replay-certify the off-grid dressing
+parameters for the 3 invariant-flat KAK packets only as part of a larger
+30-occurrence certificate set, or reverse the rejected CM-08 with accepted physical model
 evidence after CM-02/CM-07; broaden benchmarks; package certificates for independent
 reproduction.
 
-**Current internal maturity:** 55/100.
+**Current internal maturity:** 56/100.
 
 ## B2: Low-Overhead Quantum Error Correction
 
@@ -625,20 +632,24 @@ The flat-pattern KAK packet then shows those 3 packets share one nonlocal
 fingerprint and all 3 nearest-grid candidates match that fingerprint, but there
 are 0 same-envelope exact passes and 3 local-dressing/rewrite obligations.
 B7 accepted ledger reduction remains 0.
+The local-dressing search gate then numerically solves those 3 dressing
+obligations at max residual 4.710277376051325e-16, but the off-grid local Euler
+parameters are not accepted resource savings. Accepted occurrence removal and
+accepted proxy-T reduction remain 0.
 
 **Remaining path to a serious solution:** produce a symbolic KAK/Clifford-
 scaffold proof, scoped obstruction, or certified broader `cone_01`
 occurrence-removing rewrite for `gcm_h6` with explicit theta-carrier
-accounting, solve the 3 invariant-flat residual KAK packets with
-local-dressing/rewrite certificates only as part of a larger 30-occurrence
-certificate set, or reverse the rejected CM-08 with accepted physical model evidence after CM-02/CM-07; strengthen B1 non-Clifford/T-depth
+accounting, absorb/share/exactify or replay-certify the off-grid local dressing
+parameters for the 3 invariant-flat residual KAK packets only as part of a
+larger 30-occurrence certificate set, or reverse the rejected CM-08 with accepted physical model evidence after CM-02/CM-07; strengthen B1 non-Clifford/T-depth
 optimization until a certified occurrence-removing rewrite improves minimum
 factory STV;
 separate claims by data-path versus T-factory dominated regimes; include
 physical layout, routing, and feed-forward constraints; run a full algorithm
 resource ledger.
 
-**Current internal maturity:** 52/100.
+**Current internal maturity:** 53/100.
 
 ## B8: Classical Verification of Quantum Outputs
 

@@ -150,6 +150,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_flat_pattern_kak_packet_path = (
         results / "B1_B7_cone01_flat_pattern_kak_packet_v0.json"
     )
+    b1_b7_cone01_local_dressing_search_path = (
+        results / "B1_B7_cone01_local_dressing_search_gate_v0.json"
+    )
     b1_b7_cone01_theta_sharing_path = results / "B1_B7_cone01_theta_sharing_ledger_gate_v0.json"
     b1_b7_cone01_shared_theta_synthesis_object_path = (
         results / "B1_B7_cone01_shared_theta_synthesis_object_gate_v0.json"
@@ -655,6 +658,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_flat_pattern_kak_packet_manifest = current_results.get(
         "b1_b7_cone01_flat_pattern_kak_packet_v0"
+    )
+    b1_b7_cone01_local_dressing_search_manifest = current_results.get(
+        "b1_b7_cone01_local_dressing_search_gate_v0"
     )
     b1_b7_cone01_theta_sharing_manifest = current_results.get(
         "b1_b7_cone01_theta_sharing_ledger_gate_v0"
@@ -2129,6 +2135,139 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 flat-pattern KAK packet report: "
             f"{b1_b7_cone01_flat_pattern_kak_packet_path}"
+        )
+
+    b1_b7_cone01_local_dressing_search = {
+        "path": str(b1_b7_cone01_local_dressing_search_path),
+        "exists": b1_b7_cone01_local_dressing_search_path.exists(),
+    }
+    if not b1_b7_cone01_local_dressing_search_manifest:
+        errors.append("B1 manifest missing current result: b1_b7_cone01_local_dressing_search_gate_v0")
+    else:
+        if (
+            b1_b7_cone01_local_dressing_search_manifest.get("status")
+            != "cone01_local_dressing_search_not_resource_certificate"
+        ):
+            errors.append("B1/B7 cone_01 local-dressing search must remain non-resource evidence")
+        for field in ["report", "markdown_report"]:
+            value = b1_b7_cone01_local_dressing_search_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(f"B1/B7 cone_01 local-dressing search missing existing {field} path: {value}")
+    if b1_b7_cone01_local_dressing_search_path.exists():
+        dressing_payload = json.loads(read(b1_b7_cone01_local_dressing_search_path))
+        dressing_summary = dressing_payload.get("summary", {})
+        dressing_claims = dressing_payload.get("claim_boundary", {})
+        b1_b7_cone01_local_dressing_search.update(
+            {
+                "status": dressing_payload.get("status"),
+                "model_status": dressing_payload.get("model_status"),
+                "method": dressing_payload.get("method"),
+                "workload": dressing_payload.get("workload"),
+                "source_method": dressing_payload.get("source_method"),
+                "pattern_group_count": dressing_summary.get("pattern_group_count"),
+                "covered_invariant_flat_occurrence_count": dressing_summary.get(
+                    "covered_invariant_flat_occurrence_count"
+                ),
+                "local_dressing_search_seed_count": dressing_summary.get(
+                    "local_dressing_search_seed_count"
+                ),
+                "local_dressing_exact_pass_count": dressing_summary.get("local_dressing_exact_pass_count"),
+                "max_local_dressing_residual_norm": dressing_summary.get(
+                    "max_local_dressing_residual_norm"
+                ),
+                "all_patterns_have_numeric_local_dressing": dressing_summary.get(
+                    "all_patterns_have_numeric_local_dressing"
+                ),
+                "max_off_pi_over_four_grid_dressing_parameter_count": dressing_summary.get(
+                    "max_off_pi_over_four_grid_dressing_parameter_count"
+                ),
+                "accepted_occurrence_removal": dressing_summary.get("accepted_occurrence_removal"),
+                "accepted_proxy_t_reduction": dressing_summary.get("accepted_proxy_t_reduction"),
+                "missing_occurrences_after_gate": dressing_summary.get("missing_occurrences_after_gate"),
+                "missing_proxy_t_after_gate": dressing_summary.get("missing_proxy_t_after_gate"),
+                "rewrite_claimed": dressing_claims.get("rewrite_claimed"),
+                "semantic_certificate_claimed": dressing_claims.get("semantic_certificate_claimed"),
+                "kak_theorem_claimed": dressing_claims.get("kak_theorem_claimed"),
+                "resource_saving_claimed": dressing_claims.get("resource_saving_claimed"),
+                "b7_ledger_improvement_claimed": dressing_claims.get("b7_ledger_improvement_claimed"),
+                "validation_error_count": dressing_summary.get("validation_error_count"),
+                "pattern_dressing_result_count": len(dressing_payload.get("pattern_dressing_results", [])),
+            }
+        )
+        if dressing_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 local-dressing search report must have benchmark_id B1")
+        if dressing_payload.get("method") != "b1_b7_cone01_local_dressing_search_gate_v0":
+            errors.append("B1/B7 cone_01 local-dressing search method mismatch")
+        if dressing_payload.get("status") != "cone01_local_dressing_search_not_resource_certificate":
+            errors.append("B1/B7 cone_01 local-dressing search status mismatch")
+        if (
+            dressing_payload.get("model_status")
+            != "numeric_local_dressing_requires_absorption_or_resource_accounting"
+        ):
+            errors.append("B1/B7 cone_01 local-dressing search model_status mismatch")
+        if dressing_payload.get("source_method") != "b1_b7_cone01_flat_pattern_kak_packet_v0":
+            errors.append("B1/B7 cone_01 local-dressing search source method mismatch")
+        for field in [
+            "pattern_group_count",
+            "covered_invariant_flat_occurrence_count",
+            "local_dressing_search_seed_count",
+            "local_dressing_exact_pass_count",
+            "max_local_dressing_residual_norm",
+            "all_patterns_have_numeric_local_dressing",
+            "max_off_pi_over_four_grid_dressing_parameter_count",
+            "accepted_occurrence_removal",
+            "accepted_proxy_t_reduction",
+            "missing_occurrences_after_gate",
+            "missing_proxy_t_after_gate",
+            "rewrite_claimed",
+            "semantic_certificate_claimed",
+            "kak_theorem_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+            "validation_error_count",
+        ]:
+            if dressing_summary.get(field) != b1_b7_cone01_local_dressing_search_manifest.get(field):
+                errors.append(f"B1/B7 cone_01 local-dressing search {field} mismatch")
+        if dressing_summary.get("pattern_group_count") != 3:
+            errors.append("B1/B7 cone_01 local-dressing search must contain 3 pattern groups")
+        if dressing_summary.get("covered_invariant_flat_occurrence_count") != 11:
+            errors.append("B1/B7 cone_01 local-dressing search must cover 11 occurrences")
+        if dressing_summary.get("local_dressing_exact_pass_count") != 3:
+            errors.append("B1/B7 cone_01 local-dressing search must exact-pass all 3 packets")
+        if dressing_summary.get("max_local_dressing_residual_norm", 1.0) > 1e-8:
+            errors.append("B1/B7 cone_01 local-dressing search residual must be exact-tolerance small")
+        if dressing_summary.get("max_off_pi_over_four_grid_dressing_parameter_count", 0) <= 0:
+            errors.append("B1/B7 cone_01 local-dressing search must retain off-grid local parameters")
+        if dressing_summary.get("accepted_occurrence_removal") != 0:
+            errors.append("B1/B7 cone_01 local-dressing search must not accept occurrence removal")
+        if dressing_summary.get("accepted_proxy_t_reduction") != 0:
+            errors.append("B1/B7 cone_01 local-dressing search must not accept proxy-T reduction")
+        if dressing_summary.get("missing_occurrences_after_gate") != 30:
+            errors.append("B1/B7 cone_01 local-dressing search must leave 30 missing occurrences")
+        if dressing_summary.get("missing_proxy_t_after_gate") != 600:
+            errors.append("B1/B7 cone_01 local-dressing search must leave 600 missing proxy-T")
+        if len(dressing_payload.get("pattern_dressing_results", [])) != 3:
+            errors.append("B1/B7 cone_01 local-dressing search pattern result count must remain 3")
+        for row in dressing_payload.get("pattern_dressing_results", []):
+            if row.get("accepted_occurrence_removal") != 0:
+                errors.append(f"B1/B7 cone_01 local-dressing search accepted removal nonzero for {row.get('pattern_id')}")
+            if row.get("dressed_unitary_residual_crosscheck", 1.0) > 1e-8:
+                errors.append(f"B1/B7 cone_01 local-dressing search crosscheck failed for {row.get('pattern_id')}")
+        for field in [
+            "rewrite_claimed",
+            "semantic_certificate_claimed",
+            "kak_theorem_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if dressing_summary.get(field) is not False or dressing_claims.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 local-dressing search must not claim {field}")
+        if dressing_summary.get("validation_error_count") != 0:
+            errors.append("B1/B7 cone_01 local-dressing search validation errors must remain zero")
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 local-dressing search report: "
+            f"{b1_b7_cone01_local_dressing_search_path}"
         )
 
     b1_b7_cone01_theta_sharing = {
@@ -12030,6 +12169,7 @@ def audit(root: Path) -> dict:
             "b7_cone01_local_invariant_obligation_gate": b1_b7_cone01_local_invariant_obligation,
             "b7_cone01_invariant_flat_residual_gate": b1_b7_cone01_invariant_flat_residual,
             "b7_cone01_flat_pattern_kak_packet": b1_b7_cone01_flat_pattern_kak_packet,
+            "b7_cone01_local_dressing_search_gate": b1_b7_cone01_local_dressing_search,
             "b7_cone01_theta_sharing_ledger_gate": b1_b7_cone01_theta_sharing,
             "b7_cone01_shared_theta_synthesis_object_gate": b1_b7_cone01_shared_theta_synthesis_object,
             "b7_cone01_shared_theta_replay_verifier_gate": b1_b7_cone01_shared_theta_replay_verifier,
@@ -12219,6 +12359,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_flat_pattern_kak_packet": str(
                 b1_b7_cone01_flat_pattern_kak_packet_path
+            ),
+            "b1_b7_cone01_local_dressing_search_gate": str(
+                b1_b7_cone01_local_dressing_search_path
             ),
             "b1_b7_cone01_theta_sharing_ledger_gate": str(b1_b7_cone01_theta_sharing_path),
             "b1_b7_cone01_shared_theta_synthesis_object_gate": str(
@@ -12791,6 +12934,18 @@ def markdown_report(report: dict) -> str:
             f"- Missing occurrences/proxy-T after all patterns are solved: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('missing_occurrences_after_all_patterns_solved')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('missing_proxy_t_after_all_patterns_solved')}",
             f"- Rewrite/semantic/KAK/resource/B7-ledger claims: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('rewrite_claimed')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('semantic_certificate_claimed')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('kak_theorem_claimed')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('resource_saving_claimed')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 Local-Dressing Search Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_local_dressing_search_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_local_dressing_search_gate'].get('status')}",
+            f"- Pattern groups / covered occurrences: {report['b1']['b7_cone01_local_dressing_search_gate'].get('pattern_group_count')} / {report['b1']['b7_cone01_local_dressing_search_gate'].get('covered_invariant_flat_occurrence_count')}",
+            f"- Local-dressing exact passes / max residual: {report['b1']['b7_cone01_local_dressing_search_gate'].get('local_dressing_exact_pass_count')} / {report['b1']['b7_cone01_local_dressing_search_gate'].get('max_local_dressing_residual_norm')}",
+            f"- Max off-grid dressing parameters: {report['b1']['b7_cone01_local_dressing_search_gate'].get('max_off_pi_over_four_grid_dressing_parameter_count')}",
+            f"- Accepted occurrence/proxy-T reduction: {report['b1']['b7_cone01_local_dressing_search_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_local_dressing_search_gate'].get('accepted_proxy_t_reduction')}",
+            f"- Missing occurrences/proxy-T after gate: {report['b1']['b7_cone01_local_dressing_search_gate'].get('missing_occurrences_after_gate')} / {report['b1']['b7_cone01_local_dressing_search_gate'].get('missing_proxy_t_after_gate')}",
+            f"- Rewrite/semantic/KAK/resource/B7-ledger claims: {report['b1']['b7_cone01_local_dressing_search_gate'].get('rewrite_claimed')} / {report['b1']['b7_cone01_local_dressing_search_gate'].get('semantic_certificate_claimed')} / {report['b1']['b7_cone01_local_dressing_search_gate'].get('kak_theorem_claimed')} / {report['b1']['b7_cone01_local_dressing_search_gate'].get('resource_saving_claimed')} / {report['b1']['b7_cone01_local_dressing_search_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_local_dressing_search_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Theta-Sharing Ledger Gate",
             "",

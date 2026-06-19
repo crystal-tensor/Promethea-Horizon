@@ -40,7 +40,7 @@ Overall audit: PASS
 - B IDs are B1..B10: True
 - Problem IDs match attack pack: True
 - All required fields present: True
-- Maturity scores: {'B1': 55, 'B2': 48, 'B3': 30, 'B4': 27, 'B5': 27, 'B6': 21, 'B7': 52, 'B8': 39, 'B9': 15, 'B10': 50}
+- Maturity scores: {'B1': 56, 'B2': 48, 'B3': 30, 'B4': 27, 'B5': 27, 'B6': 21, 'B7': 53, 'B8': 39, 'B9': 15, 'B10': 50}
 
 ## Technical Resolution Program
 
@@ -340,6 +340,18 @@ Overall audit: PASS
 - Best/max same-envelope grid residual: 0.21253656711362615 / 0.3643516233170534
 - All patterns solved clears B7 target: False
 - Missing occurrences/proxy-T after all patterns are solved: 19 / 380
+- Rewrite/semantic/KAK/resource/B7-ledger claims: False / False / False / False / False
+- Validation errors: 0
+
+## B1/B7 cone_01 Local-Dressing Search Gate
+
+- Exists: True
+- Status: cone01_local_dressing_search_not_resource_certificate
+- Pattern groups / covered occurrences: 3 / 11
+- Local-dressing exact passes / max residual: 3 / 4.710277376051325e-16
+- Max off-grid dressing parameters: 9
+- Accepted occurrence/proxy-T reduction: 0 / 0
+- Missing occurrences/proxy-T after gate: 30 / 600
 - Rewrite/semantic/KAK/resource/B7-ledger claims: False / False / False / False / False
 - Validation errors: 0
 

@@ -949,6 +949,18 @@ patterns. It is still not a KAK theorem, not a semantic certificate, not a
 rewrite, not a resource saving, and not enough for B7 because the packets cover
 only 11 of the 30 required occurrences.
 
+**Sprint update 18r:** `T-B1-004r` is now merged as the local-dressing search
+gate for those three flat-pattern packets. The new artifact
+`research/B1_B7_cone01_local_dressing_search_gate.md` shows that all 3
+nearest-grid representatives can be matched back to their original patterns by
+arbitrary SU(2)xSU(2) local dressing, with max residual
+4.710277376051325e-16. This confirms the q-step nonlocal-class signal is
+operationally meaningful. It also preserves the main blocker: the best
+dressings contain off-pi/4-grid local Euler parameters, accepted occurrence
+removal remains 0, and accepted proxy-T reduction remains 0. The next route must
+absorb, share, exactify, or replay-certify those dressing parameters before B7
+can count anything.
+
 ## B8: Classical Verification of Quantum Outputs
 
 **Technical target:** keep verifier soundness low under adaptive leakage by
