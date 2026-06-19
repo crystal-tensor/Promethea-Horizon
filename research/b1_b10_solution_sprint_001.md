@@ -936,6 +936,19 @@ occurrences / 380 proxy-T units. This keeps the flat-window route as a concrete
 work packet while preventing it from being counted as a rewrite, KAK theorem,
 semantic certificate, resource saving, or B7 ledger improvement.
 
+**Sprint update 18q:** `T-B1-004q` is now merged as the flat-pattern KAK packet
+for the same residual route. The new artifact
+`research/B1_B7_cone01_flat_pattern_kak_packet.md` converts the 3 residual
+pattern groups into compact nonlocal-invariant packets. All 3 pattern groups
+share one numerical nonlocal fingerprint and all 3 match their nearest
+pi/4-grid nonlocal fingerprint, but same-envelope grid replacement still has
+0 exact passes with residuals between 0.21253656711362615 and
+0.3643516233170534. The result is useful because it narrows the next proof or
+synthesis task to local dressing / rewrite certificates for three normalized
+patterns. It is still not a KAK theorem, not a semantic certificate, not a
+rewrite, not a resource saving, and not enough for B7 because the packets cover
+only 11 of the 30 required occurrences.
+
 ## B8: Classical Verification of Quantum Outputs
 
 **Technical target:** keep verifier soundness low under adaptive leakage by

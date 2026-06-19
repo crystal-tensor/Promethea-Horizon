@@ -40,7 +40,7 @@ Overall audit: PASS
 - B IDs are B1..B10: True
 - Problem IDs match attack pack: True
 - All required fields present: True
-- Maturity scores: {'B1': 54, 'B2': 48, 'B3': 30, 'B4': 27, 'B5': 27, 'B6': 21, 'B7': 51, 'B8': 39, 'B9': 15, 'B10': 50}
+- Maturity scores: {'B1': 55, 'B2': 48, 'B3': 30, 'B4': 27, 'B5': 27, 'B6': 21, 'B7': 52, 'B8': 39, 'B9': 15, 'B10': 50}
 
 ## Technical Resolution Program
 
@@ -328,6 +328,19 @@ Overall audit: PASS
 - Missing occurrences/proxy-T after all flat windows are solved: 19 / 380
 - Residual packets / pattern groups: 11 / 3
 - Rewrite/resource/semantic/KAK/B7-ledger claims: False / False / False / False / False
+- Validation errors: 0
+
+## B1/B7 cone_01 Flat-Pattern KAK Packet
+
+- Exists: True
+- Status: cone01_flat_pattern_kak_packet_not_rewrite_certificate
+- Pattern groups / covered occurrences: 3 / 11
+- Unique nonlocal fingerprints / nearest-grid matches: 1 / 3
+- Same-envelope grid exact passes / local-dressing obligations: 0 / 3
+- Best/max same-envelope grid residual: 0.21253656711362615 / 0.3643516233170534
+- All patterns solved clears B7 target: False
+- Missing occurrences/proxy-T after all patterns are solved: 19 / 380
+- Rewrite/semantic/KAK/resource/B7-ledger claims: False / False / False / False / False
 - Validation errors: 0
 
 ## B1/B7 cone_01 Theta-Sharing Ledger Gate

@@ -114,6 +114,11 @@ The invariant-flat residual gate then turns those 11 flat windows into 3
 normalized work packets, all sharing partner q[14]. Even if all 11 were solved,
 they would remove at most 11 occurrences / 220 proxy-T units and would still
 miss the B7 1.20x target by 19 occurrences / 380 proxy-T units.
+The flat-pattern KAK packet then shows all 3 residual work packets share one
+numerical nonlocal fingerprint and match nearest pi/4-grid nonlocal
+fingerprints, but same-envelope grid replacement still has 0 exact passes with
+residual norms 0.2125-0.3644. All 3 packets therefore remain local-dressing or
+rewrite-certificate obligations, not resource-saving certificates.
 
 **Remaining path to a serious solution:** connect to calibrated/live-like
 heavy-hex baselines; cover dynamic circuits and reset/measurement semantics;
@@ -121,12 +126,12 @@ turn `cone_01` into a broader replayable semantic rewrite certificate,
 KAK/Clifford scaffold, or scoped obstruction report that explicitly carries,
 shares, or eliminates theta while addressing at least 30 arbitrary rotation
 occurrences / 600
-proxy-T units, close the 11 invariant-flat windows with stronger invariant or
-synthesis evidence only as part of a larger 30-occurrence certificate set, or reverse the rejected CM-08 with accepted physical model
+proxy-T units, solve the 3 invariant-flat KAK packets with local-dressing or
+rewrite certificates only as part of a larger 30-occurrence certificate set, or reverse the rejected CM-08 with accepted physical model
 evidence after CM-02/CM-07; broaden benchmarks; package certificates for independent
 reproduction.
 
-**Current internal maturity:** 54/100.
+**Current internal maturity:** 55/100.
 
 ## B2: Low-Overhead Quantum Error Correction
 
@@ -616,19 +621,24 @@ and the 30-window B7 threshold remains uncleared.
 The invariant-flat residual gate now isolates those 11 windows into 3 normalized
 work packets and proves that this subset alone can cover only 11/30 required
 occurrence removals, leaving 19 occurrences / 380 proxy-T missing.
+The flat-pattern KAK packet then shows those 3 packets share one nonlocal
+fingerprint and all 3 nearest-grid candidates match that fingerprint, but there
+are 0 same-envelope exact passes and 3 local-dressing/rewrite obligations.
+B7 accepted ledger reduction remains 0.
 
 **Remaining path to a serious solution:** produce a symbolic KAK/Clifford-
 scaffold proof, scoped obstruction, or certified broader `cone_01`
 occurrence-removing rewrite for `gcm_h6` with explicit theta-carrier
-accounting, solve the 3 invariant-flat residual pattern groups only as part of
-a larger 30-occurrence certificate set, or reverse the rejected CM-08 with accepted physical model evidence after CM-02/CM-07; strengthen B1 non-Clifford/T-depth
+accounting, solve the 3 invariant-flat residual KAK packets with
+local-dressing/rewrite certificates only as part of a larger 30-occurrence
+certificate set, or reverse the rejected CM-08 with accepted physical model evidence after CM-02/CM-07; strengthen B1 non-Clifford/T-depth
 optimization until a certified occurrence-removing rewrite improves minimum
 factory STV;
 separate claims by data-path versus T-factory dominated regimes; include
 physical layout, routing, and feed-forward constraints; run a full algorithm
 resource ledger.
 
-**Current internal maturity:** 51/100.
+**Current internal maturity:** 52/100.
 
 ## B8: Classical Verification of Quantum Outputs
 

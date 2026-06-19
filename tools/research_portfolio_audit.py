@@ -147,6 +147,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_invariant_flat_residual_path = (
         results / "B1_B7_cone01_invariant_flat_residual_gate_v0.json"
     )
+    b1_b7_cone01_flat_pattern_kak_packet_path = (
+        results / "B1_B7_cone01_flat_pattern_kak_packet_v0.json"
+    )
     b1_b7_cone01_theta_sharing_path = results / "B1_B7_cone01_theta_sharing_ledger_gate_v0.json"
     b1_b7_cone01_shared_theta_synthesis_object_path = (
         results / "B1_B7_cone01_shared_theta_synthesis_object_gate_v0.json"
@@ -649,6 +652,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_invariant_flat_residual_manifest = current_results.get(
         "b1_b7_cone01_invariant_flat_residual_gate_v0"
+    )
+    b1_b7_cone01_flat_pattern_kak_packet_manifest = current_results.get(
+        "b1_b7_cone01_flat_pattern_kak_packet_v0"
     )
     b1_b7_cone01_theta_sharing_manifest = current_results.get(
         "b1_b7_cone01_theta_sharing_ledger_gate_v0"
@@ -1975,6 +1981,154 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 invariant-flat residual gate report: "
             f"{b1_b7_cone01_invariant_flat_residual_path}"
+        )
+
+    b1_b7_cone01_flat_pattern_kak_packet = {
+        "path": str(b1_b7_cone01_flat_pattern_kak_packet_path),
+        "exists": b1_b7_cone01_flat_pattern_kak_packet_path.exists(),
+    }
+    if not b1_b7_cone01_flat_pattern_kak_packet_manifest:
+        errors.append("B1 manifest missing current result: b1_b7_cone01_flat_pattern_kak_packet_v0")
+    else:
+        if (
+            b1_b7_cone01_flat_pattern_kak_packet_manifest.get("status")
+            != "cone01_flat_pattern_kak_packet_not_rewrite_certificate"
+        ):
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet must remain a work packet")
+        for field in ["report", "markdown_report"]:
+            value = b1_b7_cone01_flat_pattern_kak_packet_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(f"B1/B7 cone_01 flat-pattern KAK packet missing existing {field} path: {value}")
+    if b1_b7_cone01_flat_pattern_kak_packet_path.exists():
+        kak_payload = json.loads(read(b1_b7_cone01_flat_pattern_kak_packet_path))
+        kak_summary = kak_payload.get("summary", {})
+        kak_claims = kak_payload.get("claim_boundary", {})
+        b1_b7_cone01_flat_pattern_kak_packet.update(
+            {
+                "status": kak_payload.get("status"),
+                "model_status": kak_payload.get("model_status"),
+                "method": kak_payload.get("method"),
+                "workload": kak_payload.get("workload"),
+                "source_method": kak_payload.get("source_method"),
+                "pattern_group_count": kak_summary.get("pattern_group_count"),
+                "covered_invariant_flat_occurrence_count": kak_summary.get(
+                    "covered_invariant_flat_occurrence_count"
+                ),
+                "source_invariant_flat_window_count": kak_summary.get("source_invariant_flat_window_count"),
+                "unique_nonlocal_fingerprint_count": kak_summary.get("unique_nonlocal_fingerprint_count"),
+                "all_patterns_share_nonlocal_fingerprint": kak_summary.get(
+                    "all_patterns_share_nonlocal_fingerprint"
+                ),
+                "nearest_grid_nonlocal_match_count": kak_summary.get("nearest_grid_nonlocal_match_count"),
+                "same_envelope_grid_exact_pass_count": kak_summary.get(
+                    "same_envelope_grid_exact_pass_count"
+                ),
+                "local_dressing_or_rewrite_obligation_count": kak_summary.get(
+                    "local_dressing_or_rewrite_obligation_count"
+                ),
+                "best_same_envelope_grid_residual_norm": kak_summary.get(
+                    "best_same_envelope_grid_residual_norm"
+                ),
+                "max_same_envelope_grid_residual_norm": kak_summary.get(
+                    "max_same_envelope_grid_residual_norm"
+                ),
+                "max_occurrence_removal_if_all_patterns_solved": kak_summary.get(
+                    "max_occurrence_removal_if_all_patterns_solved"
+                ),
+                "max_proxy_t_reduction_if_all_patterns_solved": kak_summary.get(
+                    "max_proxy_t_reduction_if_all_patterns_solved"
+                ),
+                "all_patterns_solved_clears_b7_target": kak_summary.get(
+                    "all_patterns_solved_clears_b7_target"
+                ),
+                "missing_occurrences_after_all_patterns_solved": kak_summary.get(
+                    "missing_occurrences_after_all_patterns_solved"
+                ),
+                "missing_proxy_t_after_all_patterns_solved": kak_summary.get(
+                    "missing_proxy_t_after_all_patterns_solved"
+                ),
+                "rewrite_claimed": kak_claims.get("rewrite_claimed"),
+                "semantic_certificate_claimed": kak_claims.get("semantic_certificate_claimed"),
+                "kak_theorem_claimed": kak_claims.get("kak_theorem_claimed"),
+                "resource_saving_claimed": kak_claims.get("resource_saving_claimed"),
+                "b7_ledger_improvement_claimed": kak_claims.get("b7_ledger_improvement_claimed"),
+                "validation_error_count": kak_summary.get("validation_error_count"),
+                "pattern_packet_count": len(kak_payload.get("pattern_packets", [])),
+            }
+        )
+        if kak_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet report must have benchmark_id B1")
+        if kak_payload.get("method") != "b1_b7_cone01_flat_pattern_kak_packet_v0":
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet method mismatch")
+        if kak_payload.get("status") != "cone01_flat_pattern_kak_packet_not_rewrite_certificate":
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet status mismatch")
+        if (
+            kak_payload.get("model_status")
+            != "nonlocal_class_packet_requires_local_dressing_or_rewrite_certificate"
+        ):
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet model_status mismatch")
+        if kak_payload.get("source_method") != "b1_b7_cone01_invariant_flat_residual_gate_v0":
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet source method mismatch")
+        for field in [
+            "pattern_group_count",
+            "covered_invariant_flat_occurrence_count",
+            "source_invariant_flat_window_count",
+            "unique_nonlocal_fingerprint_count",
+            "all_patterns_share_nonlocal_fingerprint",
+            "nearest_grid_nonlocal_match_count",
+            "same_envelope_grid_exact_pass_count",
+            "local_dressing_or_rewrite_obligation_count",
+            "best_same_envelope_grid_residual_norm",
+            "max_same_envelope_grid_residual_norm",
+            "max_occurrence_removal_if_all_patterns_solved",
+            "max_proxy_t_reduction_if_all_patterns_solved",
+            "all_patterns_solved_clears_b7_target",
+            "missing_occurrences_after_all_patterns_solved",
+            "missing_proxy_t_after_all_patterns_solved",
+            "rewrite_claimed",
+            "semantic_certificate_claimed",
+            "kak_theorem_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+            "validation_error_count",
+        ]:
+            if kak_summary.get(field) != b1_b7_cone01_flat_pattern_kak_packet_manifest.get(field):
+                errors.append(f"B1/B7 cone_01 flat-pattern KAK packet {field} mismatch")
+        if kak_summary.get("pattern_group_count") != 3:
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet must contain 3 pattern groups")
+        if kak_summary.get("covered_invariant_flat_occurrence_count") != 11:
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet must cover 11 occurrences")
+        if kak_summary.get("unique_nonlocal_fingerprint_count") != 1:
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet must expose one nonlocal fingerprint")
+        if kak_summary.get("nearest_grid_nonlocal_match_count") != 3:
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet must match 3 nearest-grid fingerprints")
+        if kak_summary.get("same_envelope_grid_exact_pass_count") != 0:
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet must not have exact same-envelope grid passes")
+        if kak_summary.get("local_dressing_or_rewrite_obligation_count") != 3:
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet must leave 3 local-dressing obligations")
+        if kak_summary.get("all_patterns_solved_clears_b7_target") is not False:
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet must not clear the B7 target")
+        if kak_summary.get("missing_occurrences_after_all_patterns_solved") != 19:
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet missing occurrence count must remain 19")
+        if kak_summary.get("missing_proxy_t_after_all_patterns_solved") != 380:
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet missing proxy-T count must remain 380")
+        if len(kak_payload.get("pattern_packets", [])) != 3:
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet pattern packet count must remain 3")
+        for field in [
+            "rewrite_claimed",
+            "semantic_certificate_claimed",
+            "kak_theorem_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if kak_summary.get(field) is not False or kak_claims.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 flat-pattern KAK packet must not claim {field}")
+        if kak_summary.get("validation_error_count") != 0:
+            errors.append("B1/B7 cone_01 flat-pattern KAK packet validation errors must remain zero")
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 flat-pattern KAK packet report: "
+            f"{b1_b7_cone01_flat_pattern_kak_packet_path}"
         )
 
     b1_b7_cone01_theta_sharing = {
@@ -11875,6 +12029,7 @@ def audit(root: Path) -> dict:
             "b7_cone01_parameter_transfer_gate": b1_b7_cone01_parameter_transfer,
             "b7_cone01_local_invariant_obligation_gate": b1_b7_cone01_local_invariant_obligation,
             "b7_cone01_invariant_flat_residual_gate": b1_b7_cone01_invariant_flat_residual,
+            "b7_cone01_flat_pattern_kak_packet": b1_b7_cone01_flat_pattern_kak_packet,
             "b7_cone01_theta_sharing_ledger_gate": b1_b7_cone01_theta_sharing,
             "b7_cone01_shared_theta_synthesis_object_gate": b1_b7_cone01_shared_theta_synthesis_object,
             "b7_cone01_shared_theta_replay_verifier_gate": b1_b7_cone01_shared_theta_replay_verifier,
@@ -12061,6 +12216,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_invariant_flat_residual_gate": str(
                 b1_b7_cone01_invariant_flat_residual_path
+            ),
+            "b1_b7_cone01_flat_pattern_kak_packet": str(
+                b1_b7_cone01_flat_pattern_kak_packet_path
             ),
             "b1_b7_cone01_theta_sharing_ledger_gate": str(b1_b7_cone01_theta_sharing_path),
             "b1_b7_cone01_shared_theta_synthesis_object_gate": str(
@@ -12620,6 +12778,19 @@ def markdown_report(report: dict) -> str:
             f"- Residual packets / pattern groups: {report['b1']['b7_cone01_invariant_flat_residual_gate'].get('residual_window_packet_count')} / {report['b1']['b7_cone01_invariant_flat_residual_gate'].get('flat_pattern_group_count')}",
             f"- Rewrite/resource/semantic/KAK/B7-ledger claims: {report['b1']['b7_cone01_invariant_flat_residual_gate'].get('rewrite_claimed')} / {report['b1']['b7_cone01_invariant_flat_residual_gate'].get('resource_saving_claimed')} / {report['b1']['b7_cone01_invariant_flat_residual_gate'].get('semantic_certificate_claimed')} / {report['b1']['b7_cone01_invariant_flat_residual_gate'].get('kak_theorem_claimed')} / {report['b1']['b7_cone01_invariant_flat_residual_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_invariant_flat_residual_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 Flat-Pattern KAK Packet",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('status')}",
+            f"- Pattern groups / covered occurrences: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('pattern_group_count')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('covered_invariant_flat_occurrence_count')}",
+            f"- Unique nonlocal fingerprints / nearest-grid matches: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('unique_nonlocal_fingerprint_count')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('nearest_grid_nonlocal_match_count')}",
+            f"- Same-envelope grid exact passes / local-dressing obligations: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('same_envelope_grid_exact_pass_count')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('local_dressing_or_rewrite_obligation_count')}",
+            f"- Best/max same-envelope grid residual: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('best_same_envelope_grid_residual_norm')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('max_same_envelope_grid_residual_norm')}",
+            f"- All patterns solved clears B7 target: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('all_patterns_solved_clears_b7_target')}",
+            f"- Missing occurrences/proxy-T after all patterns are solved: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('missing_occurrences_after_all_patterns_solved')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('missing_proxy_t_after_all_patterns_solved')}",
+            f"- Rewrite/semantic/KAK/resource/B7-ledger claims: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('rewrite_claimed')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('semantic_certificate_claimed')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('kak_theorem_claimed')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('resource_saving_claimed')} / {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_flat_pattern_kak_packet'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Theta-Sharing Ledger Gate",
             "",
