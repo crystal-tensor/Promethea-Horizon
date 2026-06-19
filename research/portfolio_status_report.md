@@ -597,6 +597,20 @@ Overall audit: PASS
 - Exact repair off-grid params / accepted rewrite / occurrence / proxy-T reduction / B7 claim: 5 / 0 / 0 / 0 / False
 - Validation errors: 0
 
+## B1/B7 cone_01 Repaired Packet Resource Boundary Gate
+
+- Exists: True
+- Status: cone01_repaired_packet_resource_boundary_not_ledger_accepted
+- Bounded exact repairs / packet count: 3 / 3
+- Candidate CNOT reduction if all packets accepted: 9
+- Source / original replacement / repaired off-grid params: 1 / 40 / 5
+- Original / repaired incremental off-grid params: 39 / 4
+- Original / repaired incremental proxy-T pressure: 780 / 80
+- Off-grid/proxy-T reduction vs original candidate: 35 / 700
+- Remaining off-grid repair packets / accepted full-circuit replay: 1 / 0
+- Accepted occurrence/proxy-T reduction / B7 claim: 0 / 0 / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Theta-Sharing Ledger Gate
 
 - Exists: True

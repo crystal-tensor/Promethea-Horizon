@@ -1593,6 +1593,17 @@ Accepted full-circuit rewrite, symbolic decomposition, occurrence removal,
 proxy-T reduction, and B7 improvement all remain 0 because the repairs still
 need symbolic full-circuit replay and off-grid local-U3 resource accounting.
 
+Sprint update 18am: T-B1-004am now consumes the line-1378, line-268, and
+line-1381 repairs together as a repaired-packet resource-boundary gate. The
+route keeps 3/3 bounded packet repairs and the candidate 9-CNOT reduction
+signal, but it lowers replacement off-grid local-U3 parameters from 40 to 5
+and incremental proxy-T pressure from 780 to 80. This is a narrower blocker,
+not a B7 ledger win: accepted full-circuit replay certificates, occurrence
+removal, proxy-T reduction, and B7 improvement remain 0. The next sprint gate
+must exact-decompose or absorb the five line-1381 off-grid local-U3 parameters
+and emit symbolic full-circuit replay certificates before any saving can be
+counted.
+
 ## Sprint Promotion Matrix
 
 | Track | Can become paper after this sprint? | Can become patent after this sprint? | Can become fundable/tool after this sprint? |

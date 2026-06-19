@@ -352,6 +352,16 @@ off-grid local-U3 parameters, no symbolic full-circuit replay certificate has
 been emitted, and accepted occurrence removal, proxy-T reduction, and B7 ledger
 improvement remain 0.
 
+The repaired-packet resource-boundary gate now consumes the three bounded
+packet repairs together. It preserves the 3/3 packet-repair status and the
+candidate 9-CNOT reduction signal, while reducing replacement off-grid local-U3
+parameters from 40 to 5 and incremental proxy-T pressure from 780 to 80. That
+is a meaningful narrowing of the resource blocker, but not a ledger win:
+accepted full-circuit replay certificates, occurrence removal, proxy-T
+reduction, and B7 improvement all remain 0. The next route must exact-decompose
+or absorb the five remaining line-1381 off-grid local-U3 parameters and emit
+symbolic full-circuit replay certificates before any B7 saving can be counted.
+
 ## Repository Layout
 
 ```text

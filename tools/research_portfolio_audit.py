@@ -213,6 +213,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_five_parameter_line1381_exact_repair_path = (
         results / "B1_B7_cone01_five_parameter_line1381_exact_repair_gate_v0.json"
     )
+    b1_b7_cone01_repaired_packet_resource_boundary_path = (
+        results / "B1_B7_cone01_repaired_packet_resource_boundary_gate_v0.json"
+    )
     b1_b7_cone01_theta_sharing_path = results / "B1_B7_cone01_theta_sharing_ledger_gate_v0.json"
     b1_b7_cone01_shared_theta_synthesis_object_path = (
         results / "B1_B7_cone01_shared_theta_synthesis_object_gate_v0.json"
@@ -781,6 +784,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_five_parameter_line1381_exact_repair_manifest = current_results.get(
         "b1_b7_cone01_five_parameter_line1381_exact_repair_gate_v0"
+    )
+    b1_b7_cone01_repaired_packet_resource_boundary_manifest = current_results.get(
+        "b1_b7_cone01_repaired_packet_resource_boundary_gate_v0"
     )
     b1_b7_cone01_theta_sharing_manifest = current_results.get(
         "b1_b7_cone01_theta_sharing_ledger_gate_v0"
@@ -6055,6 +6061,199 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 five-parameter line-1381 exact repair report: "
             f"{b1_b7_cone01_five_parameter_line1381_exact_repair_path}"
+        )
+
+    b1_b7_cone01_repaired_packet_resource_boundary = {
+        "path": str(b1_b7_cone01_repaired_packet_resource_boundary_path),
+        "exists": b1_b7_cone01_repaired_packet_resource_boundary_path.exists(),
+    }
+    if not b1_b7_cone01_repaired_packet_resource_boundary_manifest:
+        errors.append(
+            "B1 manifest missing current result: "
+            "b1_b7_cone01_repaired_packet_resource_boundary_gate_v0"
+        )
+    else:
+        if (
+            b1_b7_cone01_repaired_packet_resource_boundary_manifest.get("status")
+            != "cone01_repaired_packet_resource_boundary_not_ledger_accepted"
+        ):
+            errors.append("B1/B7 cone_01 repaired packet resource boundary gate status mismatch")
+        for field in ["report", "markdown_report"]:
+            value = b1_b7_cone01_repaired_packet_resource_boundary_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(
+                    "B1/B7 cone_01 repaired packet resource boundary gate missing "
+                    f"existing {field} path: {value}"
+                )
+    if b1_b7_cone01_repaired_packet_resource_boundary_path.exists():
+        repaired_payload = json.loads(read(b1_b7_cone01_repaired_packet_resource_boundary_path))
+        repaired_summary = repaired_payload.get("summary", {})
+        repaired_claims = repaired_payload.get("claim_boundary", {})
+        b1_b7_cone01_repaired_packet_resource_boundary.update(
+            {
+                "status": repaired_payload.get("status"),
+                "model_status": repaired_payload.get("model_status"),
+                "method": repaired_payload.get("method"),
+                "workload": repaired_payload.get("workload"),
+                "packet_count": repaired_summary.get("packet_count"),
+                "bounded_packet_exact_repair_count": repaired_summary.get(
+                    "bounded_packet_exact_repair_count"
+                ),
+                "candidate_cnot_reduction_if_all_packets_accepted": repaired_summary.get(
+                    "candidate_cnot_reduction_if_all_packets_accepted"
+                ),
+                "source_off_pi_over_four_parameter_count": repaired_summary.get(
+                    "source_off_pi_over_four_parameter_count"
+                ),
+                "original_replacement_off_pi_over_four_parameter_count": repaired_summary.get(
+                    "original_replacement_off_pi_over_four_parameter_count"
+                ),
+                "repaired_off_pi_over_four_parameter_count": repaired_summary.get(
+                    "repaired_off_pi_over_four_parameter_count"
+                ),
+                "original_incremental_off_pi_over_four_parameter_count": repaired_summary.get(
+                    "original_incremental_off_pi_over_four_parameter_count"
+                ),
+                "repaired_incremental_off_pi_over_four_parameter_count": repaired_summary.get(
+                    "repaired_incremental_off_pi_over_four_parameter_count"
+                ),
+                "original_incremental_proxy_t_pressure": repaired_summary.get(
+                    "original_incremental_proxy_t_pressure"
+                ),
+                "repaired_incremental_proxy_t_pressure": repaired_summary.get(
+                    "repaired_incremental_proxy_t_pressure"
+                ),
+                "off_grid_parameter_reduction_vs_original_candidate": repaired_summary.get(
+                    "off_grid_parameter_reduction_vs_original_candidate"
+                ),
+                "proxy_t_pressure_reduction_vs_original_candidate": repaired_summary.get(
+                    "proxy_t_pressure_reduction_vs_original_candidate"
+                ),
+                "packets_with_remaining_off_grid_repair_count": repaired_summary.get(
+                    "packets_with_remaining_off_grid_repair_count"
+                ),
+                "accepted_full_circuit_replay_certificate_count": repaired_summary.get(
+                    "accepted_full_circuit_replay_certificate_count"
+                ),
+                "accepted_occurrence_removal": repaired_summary.get("accepted_occurrence_removal"),
+                "accepted_proxy_t_reduction": repaired_summary.get("accepted_proxy_t_reduction"),
+                "missing_occurrences_after_gate": repaired_summary.get(
+                    "missing_occurrences_after_gate"
+                ),
+                "missing_proxy_t_after_gate": repaired_summary.get("missing_proxy_t_after_gate"),
+                "bounded_packet_repair_claimed_as_full_circuit_rewrite": repaired_summary.get(
+                    "bounded_packet_repair_claimed_as_full_circuit_rewrite"
+                ),
+                "symbolic_exact_decomposition_claimed": repaired_summary.get(
+                    "symbolic_exact_decomposition_claimed"
+                ),
+                "resource_saving_claimed": repaired_summary.get("resource_saving_claimed"),
+                "b7_ledger_improvement_claimed": repaired_summary.get(
+                    "b7_ledger_improvement_claimed"
+                ),
+                "validation_error_count": repaired_summary.get("validation_error_count"),
+                "repaired_packet_resource_boundary_row_count": len(
+                    repaired_payload.get("repaired_packet_resource_boundary_rows", [])
+                ),
+            }
+        )
+        if repaired_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 repaired packet resource boundary report must have benchmark_id B1")
+        if repaired_payload.get("method") != "b1_b7_cone01_repaired_packet_resource_boundary_gate_v0":
+            errors.append("B1/B7 cone_01 repaired packet resource boundary method mismatch")
+        if repaired_payload.get("status") != "cone01_repaired_packet_resource_boundary_not_ledger_accepted":
+            errors.append("B1/B7 cone_01 repaired packet resource boundary status mismatch")
+        if (
+            repaired_payload.get("model_status")
+            != "three_of_three_packets_repaired_but_off_grid_resource_boundary_remains"
+        ):
+            errors.append("B1/B7 cone_01 repaired packet resource boundary model_status mismatch")
+        for field in [
+            "packet_count",
+            "bounded_packet_exact_repair_count",
+            "candidate_cnot_reduction_if_all_packets_accepted",
+            "source_off_pi_over_four_parameter_count",
+            "original_replacement_off_pi_over_four_parameter_count",
+            "repaired_off_pi_over_four_parameter_count",
+            "original_incremental_off_pi_over_four_parameter_count",
+            "repaired_incremental_off_pi_over_four_parameter_count",
+            "original_incremental_proxy_t_pressure",
+            "repaired_incremental_proxy_t_pressure",
+            "off_grid_parameter_reduction_vs_original_candidate",
+            "proxy_t_pressure_reduction_vs_original_candidate",
+            "packets_with_remaining_off_grid_repair_count",
+            "accepted_full_circuit_replay_certificate_count",
+            "accepted_occurrence_removal",
+            "accepted_proxy_t_reduction",
+            "missing_occurrences_after_gate",
+            "missing_proxy_t_after_gate",
+            "bounded_packet_repair_claimed_as_full_circuit_rewrite",
+            "symbolic_exact_decomposition_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+            "validation_error_count",
+        ]:
+            if (
+                repaired_summary.get(field)
+                != b1_b7_cone01_repaired_packet_resource_boundary_manifest.get(field)
+            ):
+                errors.append(f"B1/B7 cone_01 repaired packet resource boundary {field} mismatch")
+        expected_repaired_fields = {
+            "packet_count": 3,
+            "bounded_packet_exact_repair_count": 3,
+            "candidate_cnot_reduction_if_all_packets_accepted": 9,
+            "source_off_pi_over_four_parameter_count": 1,
+            "original_replacement_off_pi_over_four_parameter_count": 40,
+            "repaired_off_pi_over_four_parameter_count": 5,
+            "original_incremental_off_pi_over_four_parameter_count": 39,
+            "repaired_incremental_off_pi_over_four_parameter_count": 4,
+            "original_incremental_proxy_t_pressure": 780,
+            "repaired_incremental_proxy_t_pressure": 80,
+            "off_grid_parameter_reduction_vs_original_candidate": 35,
+            "proxy_t_pressure_reduction_vs_original_candidate": 700,
+            "packets_with_remaining_off_grid_repair_count": 1,
+            "accepted_full_circuit_replay_certificate_count": 0,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "missing_occurrences_after_gate": 30,
+            "missing_proxy_t_after_gate": 600,
+            "validation_error_count": 0,
+        }
+        for field, value in expected_repaired_fields.items():
+            if repaired_summary.get(field) != value:
+                errors.append(
+                    f"B1/B7 cone_01 repaired packet resource boundary expected {field}={value}"
+                )
+        for field in [
+            "bounded_packet_repair_claimed_as_full_circuit_rewrite",
+            "symbolic_exact_decomposition_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if repaired_summary.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 repaired packet resource boundary must not claim {field}")
+            if repaired_claims.get(field) is not False:
+                errors.append(
+                    f"B1/B7 cone_01 repaired packet resource boundary claim boundary must not claim {field}"
+                )
+        rows = repaired_payload.get("repaired_packet_resource_boundary_rows", [])
+        if [row.get("candidate_line_number") for row in rows] != [1378, 268, 1381]:
+            errors.append("B1/B7 cone_01 repaired packet resource boundary rows must be lines 1378, 268, 1381")
+        expected_off_grid_by_line = {1378: 0, 268: 0, 1381: 5}
+        for row in rows:
+            line = row.get("candidate_line_number")
+            if row.get("bounded_packet_exact_repair") is not True:
+                errors.append("B1/B7 cone_01 repaired packet resource boundary rows must be exact repaired")
+            if row.get("repaired_off_pi_over_four_parameter_count") != expected_off_grid_by_line.get(line):
+                errors.append(f"B1/B7 cone_01 repaired packet resource boundary line {line} off-grid mismatch")
+            if row.get("accepted_full_circuit_replay_certificate") is not False:
+                errors.append("B1/B7 cone_01 repaired packet resource boundary rows must not accept replay")
+            if row.get("accepted_occurrence_removal") != 0:
+                errors.append("B1/B7 cone_01 repaired packet resource boundary rows must not remove occurrences")
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 repaired packet resource boundary report: "
+            f"{b1_b7_cone01_repaired_packet_resource_boundary_path}"
         )
 
     b1_b7_cone01_theta_sharing = {
@@ -15987,6 +16186,9 @@ def audit(root: Path) -> dict:
             "b7_cone01_five_parameter_line1381_exact_repair_gate": (
                 b1_b7_cone01_five_parameter_line1381_exact_repair
             ),
+            "b7_cone01_repaired_packet_resource_boundary_gate": (
+                b1_b7_cone01_repaired_packet_resource_boundary
+            ),
             "b7_cone01_theta_sharing_ledger_gate": b1_b7_cone01_theta_sharing,
             "b7_cone01_shared_theta_synthesis_object_gate": b1_b7_cone01_shared_theta_synthesis_object,
             "b7_cone01_shared_theta_replay_verifier_gate": b1_b7_cone01_shared_theta_replay_verifier,
@@ -16239,6 +16441,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_five_parameter_line1381_exact_repair_gate": str(
                 b1_b7_cone01_five_parameter_line1381_exact_repair_path
+            ),
+            "b1_b7_cone01_repaired_packet_resource_boundary_gate": str(
+                b1_b7_cone01_repaired_packet_resource_boundary_path
             ),
             "b1_b7_cone01_theta_sharing_ledger_gate": str(b1_b7_cone01_theta_sharing_path),
             "b1_b7_cone01_shared_theta_synthesis_object_gate": str(
@@ -17065,6 +17270,20 @@ def markdown_report(report: dict) -> str:
             f"- All-packet candidate CNOT reduction / partial candidate CNOT reduction: {report['b1']['b7_cone01_five_parameter_line1381_exact_repair_gate'].get('candidate_cnot_reduction_if_all_packets_accepted')} / {report['b1']['b7_cone01_five_parameter_line1381_exact_repair_gate'].get('partial_candidate_cnot_reduction_if_accepted')}",
             f"- Exact repair off-grid params / accepted rewrite / occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_five_parameter_line1381_exact_repair_gate'].get('five_parameter_exact_repair_off_pi_over_four_parameter_count')} / {report['b1']['b7_cone01_five_parameter_line1381_exact_repair_gate'].get('accepted_five_parameter_repair_as_full_circuit_rewrite_count')} / {report['b1']['b7_cone01_five_parameter_line1381_exact_repair_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_five_parameter_line1381_exact_repair_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_five_parameter_line1381_exact_repair_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_five_parameter_line1381_exact_repair_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 Repaired Packet Resource Boundary Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('status')}",
+            f"- Bounded exact repairs / packet count: {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('bounded_packet_exact_repair_count')} / {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('packet_count')}",
+            f"- Candidate CNOT reduction if all packets accepted: {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('candidate_cnot_reduction_if_all_packets_accepted')}",
+            f"- Source / original replacement / repaired off-grid params: {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('source_off_pi_over_four_parameter_count')} / {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('original_replacement_off_pi_over_four_parameter_count')} / {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('repaired_off_pi_over_four_parameter_count')}",
+            f"- Original / repaired incremental off-grid params: {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('original_incremental_off_pi_over_four_parameter_count')} / {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('repaired_incremental_off_pi_over_four_parameter_count')}",
+            f"- Original / repaired incremental proxy-T pressure: {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('original_incremental_proxy_t_pressure')} / {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('repaired_incremental_proxy_t_pressure')}",
+            f"- Off-grid/proxy-T reduction vs original candidate: {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('off_grid_parameter_reduction_vs_original_candidate')} / {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('proxy_t_pressure_reduction_vs_original_candidate')}",
+            f"- Remaining off-grid repair packets / accepted full-circuit replay: {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('packets_with_remaining_off_grid_repair_count')} / {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('accepted_full_circuit_replay_certificate_count')}",
+            f"- Accepted occurrence/proxy-T reduction / B7 claim: {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_repaired_packet_resource_boundary_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Theta-Sharing Ledger Gate",
             "",
