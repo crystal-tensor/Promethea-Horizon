@@ -562,6 +562,15 @@ The census route is therefore pricing-dominated by the current patch boundary:
 selected replacement changes, accepted occurrence removal, proxy-T reduction,
 and B7 ledger credit all remain 0.
 
+T-B1-004bh sharpens the remaining line-1381 blocker. It snaps each one of the
+five current off-pi/4 local-U3 parameters back to the pi/4 grid, then
+re-optimizes the other four parameters on the same two-CNOT scaffold. All 5/5
+leave-one-out trials fail the exact replay threshold: the best residual is
+0.09892087709180968, which is about 9.89e6 times the 1e-8 exact tolerance. This
+does not prove global five-parameter minimality, but it blocks a cheap
+single-parameter removal claim. Occurrence removal, proxy-T reduction, local-U3
+acceptance, and B7 ledger credit remain 0.
+
 ## Repository Layout
 
 ```text

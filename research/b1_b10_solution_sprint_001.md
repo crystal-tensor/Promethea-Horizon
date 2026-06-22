@@ -1816,3 +1816,14 @@ exact census candidate has 13 off-pi/4 parameters, priced as 260 proxy-T
 pressure units. The census candidate is therefore not adopted as a better B7
 route. Selected replacement change, occurrence removal, proxy-T reduction, and
 B7 improvement remain 0.
+
+Sprint update 18bh: B1/B7 now has a line-1381 leave-one-out parameter gate.
+T-B1-004bh keeps the current five-parameter exact line-1381 repair, snaps each
+one of the five off-pi/4 local-U3 parameters back to the pi/4 grid, and
+re-optimizes the other four parameters on the same two-CNOT scaffold. Exact
+passes are 0/5. The best leave-one-out residual is 0.09892087709180968 at
+parameter index 3, about 9.89e6 times the 1e-8 exact tolerance; the worst is
+0.288314847983953 at parameter index 4. This blocks a cheap single-parameter
+free-removal claim, but it is not a global minimality theorem and does not
+eliminate, absorb, symbolically decompose, or price the five line-1381
+parameters. Occurrence removal, proxy-T reduction, and B7 improvement remain 0.
