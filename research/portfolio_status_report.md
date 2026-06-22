@@ -922,6 +922,18 @@ Overall audit: PASS
 - Targeted three-free pricing accepted / B7 claim: False / False
 - Validation errors: 0
 
+## B1/B7 cone_01 Union-Region Three-CNOT Pricing Screen Gate
+
+- Exists: True
+- Status: cone01_union_region_three_cnot_pricing_screen_rejected
+- Orientation sequences / exact sequences: 8 / 8
+- Best residual / sequence: 5.810128819011275e-13 / 10-01-10
+- Best exact sequence / off-grid / proxy-T: 10-10-01 / 18 / 360
+- Current line-1381 off-grid / proxy-T / replacement CNOT: 5 / 100 / 2
+- Prices below current / structurally dominates current: False / False
+- Three-CNOT pricing accepted / B7 claim: False / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Line-1381 Leave-One-Out Parameter Gate
 
 - Exists: True

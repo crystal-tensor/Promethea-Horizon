@@ -750,3 +750,14 @@ Forbidden without evidence:
 ## License
 
 This project is released under the Apache License 2.0. See `LICENSE`.
+
+T-B1-004bq changes scaffold instead of continuing cheap parameter-cleanup tests.
+It allows 3 CNOTs for the same line-1378/1381 union target and searches all 8
+CNOT direction sequences with arbitrary local-U3 layers. All 8 sequences reach
+local exact replay, but the best exact priced candidate still has 18 off-pi/4
+local-U3 parameters, or 360 proxy-T pressure units, on sequence `10-10-01`.
+That is worse than both the current line-1381 5-parameter / 100-proxy-T
+boundary and the best 2-CNOT census 13-parameter / 260-proxy-T candidate; the
+3-CNOT scaffold also fails to structurally dominate the current 2-CNOT
+line-1381 replacement. Occurrence removal, proxy-T reduction, local-U3 pricing
+acceptance, and B7 ledger credit remain 0.

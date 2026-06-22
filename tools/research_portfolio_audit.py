@@ -288,6 +288,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_union_region_three_free_expansion_pricing_path = (
         results / "B1_B7_cone01_union_region_three_free_expansion_pricing_gate_v0.json"
     )
+    b1_b7_cone01_union_region_three_cnot_pricing_screen_path = (
+        results / "B1_B7_cone01_union_region_three_cnot_pricing_screen_gate_v0.json"
+    )
     b1_b7_cone01_line1381_leave_one_out_parameter_path = (
         results / "B1_B7_cone01_line1381_leave_one_out_parameter_gate_v0.json"
     )
@@ -946,6 +949,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_union_region_three_free_expansion_pricing_manifest = current_results.get(
         "b1_b7_cone01_union_region_three_free_expansion_pricing_gate_v0"
+    )
+    b1_b7_cone01_union_region_three_cnot_pricing_screen_manifest = current_results.get(
+        "b1_b7_cone01_union_region_three_cnot_pricing_screen_gate_v0"
     )
     b1_b7_cone01_line1381_leave_one_out_parameter_manifest = current_results.get(
         "b1_b7_cone01_line1381_leave_one_out_parameter_gate_v0"
@@ -11218,6 +11224,251 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 union-region targeted three-free expansion pricing report: "
             f"{b1_b7_cone01_union_region_three_free_expansion_pricing_path}"
+        )
+
+    b1_b7_cone01_union_region_three_cnot_pricing_screen = {
+        "path": str(b1_b7_cone01_union_region_three_cnot_pricing_screen_path),
+        "exists": b1_b7_cone01_union_region_three_cnot_pricing_screen_path.exists(),
+    }
+    if not b1_b7_cone01_union_region_three_cnot_pricing_screen_manifest:
+        errors.append(
+            "B1 manifest missing current result: "
+            "b1_b7_cone01_union_region_three_cnot_pricing_screen_gate_v0"
+        )
+    else:
+        if (
+            b1_b7_cone01_union_region_three_cnot_pricing_screen_manifest.get("status")
+            != "cone01_union_region_three_cnot_pricing_screen_rejected"
+        ):
+            errors.append("B1/B7 cone_01 union-region three-CNOT pricing screen status mismatch")
+        for field in ["report", "markdown_report"]:
+            value = b1_b7_cone01_union_region_three_cnot_pricing_screen_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(
+                    "B1/B7 cone_01 union-region three-CNOT pricing screen missing "
+                    f"existing {field} path: {value}"
+                )
+    if b1_b7_cone01_union_region_three_cnot_pricing_screen_path.exists():
+        three_cnot_payload = json.loads(
+            read(b1_b7_cone01_union_region_three_cnot_pricing_screen_path)
+        )
+        three_cnot_summary = three_cnot_payload.get("summary", {})
+        three_cnot_claims = three_cnot_payload.get("claim_boundary", {})
+        b1_b7_cone01_union_region_three_cnot_pricing_screen.update(
+            {
+                "status": three_cnot_payload.get("status"),
+                "model_status": three_cnot_payload.get("model_status"),
+                "method": three_cnot_payload.get("method"),
+                "workload": three_cnot_payload.get("workload"),
+                "target_line_number": three_cnot_summary.get("target_line_number"),
+                "union_window": three_cnot_summary.get("union_window"),
+                "support_qubits": three_cnot_summary.get("support_qubits"),
+                "source_cnot_count": three_cnot_summary.get("source_cnot_count"),
+                "searched_cnot_count": three_cnot_summary.get("searched_cnot_count"),
+                "searched_orientation_sequence_count": three_cnot_summary.get(
+                    "searched_orientation_sequence_count"
+                ),
+                "orientation_sequence_ids": three_cnot_summary.get(
+                    "orientation_sequence_ids"
+                ),
+                "search_seed_count_per_sequence": three_cnot_summary.get(
+                    "search_seed_count_per_sequence"
+                ),
+                "search_max_nfev": three_cnot_summary.get("search_max_nfev"),
+                "three_cnot_exact_sequence_count": three_cnot_summary.get(
+                    "three_cnot_exact_sequence_count"
+                ),
+                "three_cnot_exact_sequence_ids": three_cnot_summary.get(
+                    "three_cnot_exact_sequence_ids"
+                ),
+                "best_sequence_id": three_cnot_summary.get("best_sequence_id"),
+                "best_residual_norm": three_cnot_summary.get("best_residual_norm"),
+                "best_max_abs_entry_error": three_cnot_summary.get(
+                    "best_max_abs_entry_error"
+                ),
+                "best_exact_sequence_id": three_cnot_summary.get(
+                    "best_exact_sequence_id"
+                ),
+                "best_exact_residual_norm": three_cnot_summary.get(
+                    "best_exact_residual_norm"
+                ),
+                "best_exact_max_abs_entry_error": three_cnot_summary.get(
+                    "best_exact_max_abs_entry_error"
+                ),
+                "best_exact_off_pi_over_four_parameter_count": three_cnot_summary.get(
+                    "best_exact_off_pi_over_four_parameter_count"
+                ),
+                "best_exact_proxy_t_pressure": three_cnot_summary.get(
+                    "best_exact_proxy_t_pressure"
+                ),
+                "current_line1381_off_grid_parameter_count": three_cnot_summary.get(
+                    "current_line1381_off_grid_parameter_count"
+                ),
+                "current_line1381_proxy_t_pressure": three_cnot_summary.get(
+                    "current_line1381_proxy_t_pressure"
+                ),
+                "current_line1381_replacement_cnot_count": three_cnot_summary.get(
+                    "current_line1381_replacement_cnot_count"
+                ),
+                "three_cnot_structurally_dominates_current_line1381_replacement": three_cnot_summary.get(
+                    "three_cnot_structurally_dominates_current_line1381_replacement"
+                ),
+                "three_cnot_prices_below_current_line1381_boundary": three_cnot_summary.get(
+                    "three_cnot_prices_below_current_line1381_boundary"
+                ),
+                "best_two_cnot_census_proxy_t_pressure": three_cnot_summary.get(
+                    "best_two_cnot_census_proxy_t_pressure"
+                ),
+                "targeted_three_free_proxy_t_pressure_if_accepted": three_cnot_summary.get(
+                    "targeted_three_free_proxy_t_pressure_if_accepted"
+                ),
+                "three_cnot_pricing_candidate_found": three_cnot_summary.get(
+                    "three_cnot_pricing_candidate_found"
+                ),
+                "three_cnot_pricing_accepted": three_cnot_summary.get(
+                    "three_cnot_pricing_accepted"
+                ),
+                "local_u3_pricing_completed": three_cnot_summary.get(
+                    "local_u3_pricing_completed"
+                ),
+                "accepted_full_circuit_replay_certificate_count": three_cnot_summary.get(
+                    "accepted_full_circuit_replay_certificate_count"
+                ),
+                "accepted_full_circuit_qasm_patch_count": three_cnot_summary.get(
+                    "accepted_full_circuit_qasm_patch_count"
+                ),
+                "accepted_occurrence_removal": three_cnot_summary.get(
+                    "accepted_occurrence_removal"
+                ),
+                "accepted_proxy_t_reduction": three_cnot_summary.get(
+                    "accepted_proxy_t_reduction"
+                ),
+                "missing_occurrences_after_gate": three_cnot_summary.get(
+                    "missing_occurrences_after_gate"
+                ),
+                "missing_proxy_t_after_gate": three_cnot_summary.get(
+                    "missing_proxy_t_after_gate"
+                ),
+                "resource_saving_claimed": three_cnot_summary.get("resource_saving_claimed"),
+                "b7_ledger_improvement_claimed": three_cnot_summary.get(
+                    "b7_ledger_improvement_claimed"
+                ),
+                "validation_error_count": three_cnot_summary.get("validation_error_count"),
+            }
+        )
+        if three_cnot_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 union-region three-CNOT pricing screen must have benchmark_id B1")
+        if (
+            three_cnot_payload.get("method")
+            != "b1_b7_cone01_union_region_three_cnot_pricing_screen_gate_v0"
+        ):
+            errors.append("B1/B7 cone_01 union-region three-CNOT pricing screen method mismatch")
+        if (
+            three_cnot_payload.get("status")
+            != "cone01_union_region_three_cnot_pricing_screen_rejected"
+        ):
+            errors.append("B1/B7 cone_01 union-region three-CNOT pricing screen status mismatch")
+        if (
+            three_cnot_payload.get("model_status")
+            != "three_cnot_union_candidates_do_not_price_better_than_current_boundary"
+        ):
+            errors.append("B1/B7 cone_01 union-region three-CNOT pricing screen model_status mismatch")
+        expected_three_cnot_fields = {
+            "target_line_number": 1381,
+            "union_window": [1369, 1379],
+            "support_qubits": [4, 8],
+            "source_cnot_count": 5,
+            "searched_cnot_count": 3,
+            "searched_orientation_sequence_count": 8,
+            "orientation_sequence_ids": [
+                "01-01-01",
+                "01-01-10",
+                "01-10-01",
+                "01-10-10",
+                "10-01-01",
+                "10-01-10",
+                "10-10-01",
+                "10-10-10",
+            ],
+            "search_seed_count_per_sequence": 28,
+            "search_max_nfev": 3600,
+            "three_cnot_exact_sequence_count": 8,
+            "three_cnot_exact_sequence_ids": [
+                "01-01-01",
+                "01-01-10",
+                "01-10-01",
+                "01-10-10",
+                "10-01-01",
+                "10-01-10",
+                "10-10-01",
+                "10-10-10",
+            ],
+            "best_sequence_id": "10-01-10",
+            "best_residual_norm": 5.810128819011275e-13,
+            "best_max_abs_entry_error": 3.3995362509440694e-13,
+            "best_exact_sequence_id": "10-10-01",
+            "best_exact_residual_norm": 6.047584909121987e-13,
+            "best_exact_max_abs_entry_error": 3.3549975708996263e-13,
+            "best_exact_off_pi_over_four_parameter_count": 18,
+            "best_exact_proxy_t_pressure": 360,
+            "current_line1381_off_grid_parameter_count": 5,
+            "current_line1381_proxy_t_pressure": 100,
+            "current_line1381_replacement_cnot_count": 2,
+            "three_cnot_structurally_dominates_current_line1381_replacement": False,
+            "three_cnot_prices_below_current_line1381_boundary": False,
+            "best_two_cnot_census_proxy_t_pressure": 260,
+            "targeted_three_free_proxy_t_pressure_if_accepted": 60,
+            "three_cnot_pricing_candidate_found": False,
+            "three_cnot_pricing_accepted": False,
+            "local_u3_pricing_completed": False,
+            "accepted_full_circuit_replay_certificate_count": 0,
+            "accepted_full_circuit_qasm_patch_count": 0,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "missing_occurrences_after_gate": 30,
+            "missing_proxy_t_after_gate": 600,
+            "resource_saving_claimed": False,
+            "b7_ledger_improvement_claimed": False,
+            "validation_error_count": 0,
+        }
+        for field, value in expected_three_cnot_fields.items():
+            if three_cnot_summary.get(field) != value:
+                errors.append(
+                    "B1/B7 cone_01 union-region three-CNOT pricing screen "
+                    f"expected {field}={value}"
+                )
+            if (
+                b1_b7_cone01_union_region_three_cnot_pricing_screen_manifest
+                and field in b1_b7_cone01_union_region_three_cnot_pricing_screen_manifest
+                and three_cnot_summary.get(field)
+                != b1_b7_cone01_union_region_three_cnot_pricing_screen_manifest.get(field)
+            ):
+                errors.append(
+                    "B1/B7 cone_01 union-region three-CNOT pricing screen "
+                    f"{field} mismatch"
+                )
+        rows = three_cnot_payload.get("union_region_three_cnot_pricing_rows", [])
+        if len(rows) != 8:
+            errors.append("B1/B7 cone_01 union-region three-CNOT pricing screen must have 8 rows")
+        if any(row.get("exact_pass") is not True for row in rows):
+            errors.append("B1/B7 cone_01 union-region three-CNOT pricing rows must all pass local exactness")
+        for field in [
+            "three_cnot_pricing_accepted",
+            "local_u3_pricing_completed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if three_cnot_summary.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 union-region three-CNOT pricing screen must not claim {field}")
+            if three_cnot_claims.get(field) is not False:
+                errors.append(
+                    "B1/B7 cone_01 union-region three-CNOT pricing screen claim boundary "
+                    f"must not claim {field}"
+                )
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 union-region three-CNOT pricing screen report: "
+            f"{b1_b7_cone01_union_region_three_cnot_pricing_screen_path}"
         )
 
     b1_b7_cone01_line1381_leave_one_out_parameter = {
@@ -22285,6 +22536,9 @@ def audit(root: Path) -> dict:
             "b7_cone01_union_region_three_free_expansion_pricing_gate": (
                 b1_b7_cone01_union_region_three_free_expansion_pricing
             ),
+            "b7_cone01_union_region_three_cnot_pricing_screen_gate": (
+                b1_b7_cone01_union_region_three_cnot_pricing_screen
+            ),
             "b7_cone01_line1381_leave_one_out_parameter_gate": (
                 b1_b7_cone01_line1381_leave_one_out_parameter
             ),
@@ -22627,6 +22881,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_union_region_three_free_expansion_pricing_gate": str(
                 b1_b7_cone01_union_region_three_free_expansion_pricing_path
+            ),
+            "b1_b7_cone01_union_region_three_cnot_pricing_screen_gate": str(
+                b1_b7_cone01_union_region_three_cnot_pricing_screen_path
             ),
             "b1_b7_cone01_line1381_leave_one_out_parameter_gate": str(
                 b1_b7_cone01_line1381_leave_one_out_parameter_path
@@ -23793,6 +24050,18 @@ def markdown_report(report: dict) -> str:
             f"- Targeted three-free proxy-T if accepted / current line-1381 proxy-T / source census proxy-T: {report['b1']['b7_cone01_union_region_three_free_expansion_pricing_gate'].get('targeted_three_free_proxy_t_pressure_if_accepted')} / {report['b1']['b7_cone01_union_region_three_free_expansion_pricing_gate'].get('current_line1381_proxy_t_pressure')} / {report['b1']['b7_cone01_union_region_three_free_expansion_pricing_gate'].get('best_source_proxy_t_pressure')}",
             f"- Targeted three-free pricing accepted / B7 claim: {report['b1']['b7_cone01_union_region_three_free_expansion_pricing_gate'].get('targeted_three_free_pricing_accepted')} / {report['b1']['b7_cone01_union_region_three_free_expansion_pricing_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_union_region_three_free_expansion_pricing_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 Union-Region Three-CNOT Pricing Screen Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('status')}",
+            f"- Orientation sequences / exact sequences: {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('searched_orientation_sequence_count')} / {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('three_cnot_exact_sequence_count')}",
+            f"- Best residual / sequence: {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('best_residual_norm')} / {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('best_sequence_id')}",
+            f"- Best exact sequence / off-grid / proxy-T: {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('best_exact_sequence_id')} / {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('best_exact_off_pi_over_four_parameter_count')} / {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('best_exact_proxy_t_pressure')}",
+            f"- Current line-1381 off-grid / proxy-T / replacement CNOT: {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('current_line1381_off_grid_parameter_count')} / {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('current_line1381_proxy_t_pressure')} / {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('current_line1381_replacement_cnot_count')}",
+            f"- Prices below current / structurally dominates current: {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('three_cnot_prices_below_current_line1381_boundary')} / {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('three_cnot_structurally_dominates_current_line1381_replacement')}",
+            f"- Three-CNOT pricing accepted / B7 claim: {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('three_cnot_pricing_accepted')} / {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_union_region_three_cnot_pricing_screen_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Line-1381 Leave-One-Out Parameter Gate",
             "",

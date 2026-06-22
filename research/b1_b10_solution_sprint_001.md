@@ -1913,3 +1913,15 @@ times the 1e-8 exact tolerance; the worst best-sequence residual is
 lower bound, but it blocks the most direct 60-proxy-T extension of the failed
 two-free route. Occurrence removal, proxy-T reduction, local-U3 pricing
 acceptance, and B7 ledger improvement remain 0.
+
+Sprint update 18bq: B1/B7 now has a union-region 3-CNOT pricing screen. Instead
+of freeing more cheap local parameters, T-B1-004bq changes scaffold and allows
+3 CNOTs across all 8 direction sequences for the same line-1378/1381 union
+target. All 8 sequences are locally exact, with best residual
+5.810128819011275e-13 on sequence `10-01-10`; however the best exact priced
+candidate is sequence `10-10-01` with 18 off-pi/4 local-U3 parameters, or 360
+proxy-T pressure units. This is worse than the current line-1381 5-parameter /
+100-proxy-T boundary and does not structurally dominate the 2-CNOT line-1381
+replacement. The next useful work must change scaffold in a way that actually
+reduces priced local-U3 burden, prove symbolic/context absorption, or find a
+different occurrence-removing route.
