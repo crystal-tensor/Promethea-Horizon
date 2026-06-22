@@ -2038,3 +2038,18 @@ amplitude delta is 1.3928889642636009e-13, and max probability delta is
 subspace replay artifact only; Qiskit-loader replay, symbolic/arbitrary-input
 equivalence, local-U3 pricing, occurrence removal, proxy-T reduction, and B7
 ledger improvement remain 0.
+
+Sprint update 18cb: B1/B7 now has a project-local OpenQASM 3 finite linear-span
+replay certificate. T-B1-004cb consumes T-B1-004ca, rebuilds the candidate
+through the project-local OpenQASM 3 parser, and computes the restricted error
+operator on the six-dimensional basis-anchor span under the same zero-input
+global phase. The certificate passes with spectral norm 2.7889440543898627e-13,
+Frobenius norm 6.134324404657074e-13, max basis L2 error
+2.534056605707275e-13, max basis amplitude delta 1.3928889642636009e-13,
+max basis probability delta 7.771561172376096e-16, max source/candidate Gram
+delta 1.9984014443252818e-15, and max cross-Gram delta
+4.403624367368429e-14. This accepts one project-local OpenQASM 3 finite-span
+certificate only; it covers 6/524,288 input dimensions and does not claim
+Qiskit-loader replay, full-space symbolic/local-unitary equivalence,
+local-U3 pricing, occurrence removal, proxy-T reduction, or B7 ledger
+improvement.

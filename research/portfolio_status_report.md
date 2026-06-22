@@ -831,6 +831,22 @@ Overall audit: PASS
 - Accepted OpenQASM 3 anchored replay / occurrence / proxy-T reduction / B7 claim: 1 / 0 / 0 / False
 - Validation errors: 0
 
+## B1/B7 cone_01 OpenQASM 3 Linear-Span Replay Certificate Gate
+
+- Exists: True
+- Status: cone01_openqasm3_linear_span_replay_certificate_passed_not_full_unitary
+- OpenQASM 3 path: results/B1_B7_cone01_openqasm3_candidate_export_gate/gcm_h6_line268_line1381_candidate_openqasm3.qasm
+- Project-local parser passed / error count: True / 0
+- Certified subspace / full space / fraction: 6 / 524288 / 1.1444091796875e-05
+- Linear-span spectral / Frobenius norm: 2.7889440543898627e-13 / 6.134324404657074e-13
+- Max basis L2 / amplitude / probability delta: 2.534056605707275e-13 / 1.3928889642636009e-13 / 7.771561172376096e-16
+- Max source-candidate Gram / cross-Gram delta: 1.9984014443252818e-15 / 4.403624367368429e-14
+- Coherent pair witnesses passed / count: True / 15
+- Source / OpenQASM 3 CNOT count / delta: 795 / 789 / 6
+- Accepted OpenQASM 3 linear-span / Qiskit loader / symbolic artifacts: 1 / 0 / 0
+- Accepted occurrence / proxy-T reduction / B7 claim: 0 / 0 / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Full-Statevector Replay Probe Gate
 
 - Exists: True

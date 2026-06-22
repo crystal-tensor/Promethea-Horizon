@@ -264,6 +264,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_openqasm3_global_phase_subspace_replay_path = (
         results / "B1_B7_cone01_openqasm3_global_phase_subspace_replay_gate_v0.json"
     )
+    b1_b7_cone01_openqasm3_linear_span_replay_certificate_path = (
+        results / "B1_B7_cone01_openqasm3_linear_span_replay_certificate_gate_v0.json"
+    )
     b1_b7_cone01_full_statevector_replay_probe_path = (
         results / "B1_B7_cone01_full_statevector_replay_probe_gate_v0.json"
     )
@@ -955,6 +958,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_openqasm3_global_phase_subspace_replay_manifest = current_results.get(
         "b1_b7_cone01_openqasm3_global_phase_subspace_replay_gate_v0"
+    )
+    b1_b7_cone01_openqasm3_linear_span_replay_certificate_manifest = current_results.get(
+        "b1_b7_cone01_openqasm3_linear_span_replay_certificate_gate_v0"
     )
     b1_b7_cone01_full_statevector_replay_probe_manifest = current_results.get(
         "b1_b7_cone01_full_statevector_replay_probe_gate_v0"
@@ -9867,6 +9873,265 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 OpenQASM 3 global-phase replay report: "
             f"{b1_b7_cone01_openqasm3_global_phase_subspace_replay_path}"
+        )
+
+    b1_b7_cone01_openqasm3_linear_span_replay_certificate = {
+        "path": str(b1_b7_cone01_openqasm3_linear_span_replay_certificate_path),
+        "exists": b1_b7_cone01_openqasm3_linear_span_replay_certificate_path.exists(),
+    }
+    if not b1_b7_cone01_openqasm3_linear_span_replay_certificate_manifest:
+        errors.append(
+            "B1 manifest missing current result: "
+            "b1_b7_cone01_openqasm3_linear_span_replay_certificate_gate_v0"
+        )
+    else:
+        if (
+            b1_b7_cone01_openqasm3_linear_span_replay_certificate_manifest.get("status")
+            != "cone01_openqasm3_linear_span_replay_certificate_passed_not_full_unitary"
+        ):
+            errors.append("B1/B7 cone_01 OpenQASM 3 linear-span replay status mismatch")
+        for field in ["report", "markdown_report", "openqasm3_candidate_path"]:
+            value = b1_b7_cone01_openqasm3_linear_span_replay_certificate_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(
+                    "B1/B7 cone_01 OpenQASM 3 linear-span replay missing "
+                    f"existing {field} path: {value}"
+                )
+    if b1_b7_cone01_openqasm3_linear_span_replay_certificate_path.exists():
+        qasm3_span_payload = json.loads(
+            read(b1_b7_cone01_openqasm3_linear_span_replay_certificate_path)
+        )
+        qasm3_span_summary = qasm3_span_payload.get("summary", {})
+        qasm3_span_claims = qasm3_span_payload.get("claim_boundary", {})
+        b1_b7_cone01_openqasm3_linear_span_replay_certificate.update(
+            {
+                "status": qasm3_span_payload.get("status"),
+                "model_status": qasm3_span_payload.get("model_status"),
+                "method": qasm3_span_payload.get("method"),
+                "workload": qasm3_span_payload.get("workload"),
+                "openqasm3_candidate_path": qasm3_span_summary.get(
+                    "openqasm3_candidate_path"
+                ),
+                "project_local_openqasm3_parser_passed": qasm3_span_summary.get(
+                    "project_local_openqasm3_parser_passed"
+                ),
+                "project_local_openqasm3_parser_error_count": qasm3_span_summary.get(
+                    "project_local_openqasm3_parser_error_count"
+                ),
+                "project_local_operation_counts": qasm3_span_summary.get(
+                    "project_local_operation_counts"
+                ),
+                "qubit_count": qasm3_span_summary.get("qubit_count"),
+                "bit_count": qasm3_span_summary.get("bit_count"),
+                "statement_count": qasm3_span_summary.get("statement_count"),
+                "operation_row_count": qasm3_span_summary.get("operation_row_count"),
+                "statevector_dimension": qasm3_span_summary.get("statevector_dimension"),
+                "global_phase_anchor_label": qasm3_span_summary.get(
+                    "global_phase_anchor_label"
+                ),
+                "global_phase_anchor_radians": qasm3_span_summary.get(
+                    "global_phase_anchor_radians"
+                ),
+                "certified_input_subspace_dimension": qasm3_span_summary.get(
+                    "certified_input_subspace_dimension"
+                ),
+                "full_input_space_dimension": qasm3_span_summary.get(
+                    "full_input_space_dimension"
+                ),
+                "certified_input_subspace_fraction": qasm3_span_summary.get(
+                    "certified_input_subspace_fraction"
+                ),
+                "coherent_pair_witness_count": qasm3_span_summary.get(
+                    "coherent_pair_witness_count"
+                ),
+                "coherent_pair_witness_passed": qasm3_span_summary.get(
+                    "coherent_pair_witness_passed"
+                ),
+                "finite_openqasm3_linear_span_certificate_passed": qasm3_span_summary.get(
+                    "finite_openqasm3_linear_span_certificate_passed"
+                ),
+                "linear_span_error_spectral_norm": qasm3_span_summary.get(
+                    "linear_span_error_spectral_norm"
+                ),
+                "linear_span_error_frobenius_norm": qasm3_span_summary.get(
+                    "linear_span_error_frobenius_norm"
+                ),
+                "max_basis_l2_error": qasm3_span_summary.get("max_basis_l2_error"),
+                "max_basis_amplitude_delta": qasm3_span_summary.get(
+                    "max_basis_amplitude_delta"
+                ),
+                "max_basis_probability_delta": qasm3_span_summary.get(
+                    "max_basis_probability_delta"
+                ),
+                "max_source_candidate_gram_delta": qasm3_span_summary.get(
+                    "max_source_candidate_gram_delta"
+                ),
+                "max_cross_gram_delta": qasm3_span_summary.get("max_cross_gram_delta"),
+                "source_cnot_count": qasm3_span_summary.get("source_cnot_count"),
+                "openqasm3_cnot_count": qasm3_span_summary.get("openqasm3_cnot_count"),
+                "openqasm3_cnot_delta": qasm3_span_summary.get("openqasm3_cnot_delta"),
+                "accepted_project_local_openqasm3_linear_span_certificate_count": (
+                    qasm3_span_summary.get(
+                        "accepted_project_local_openqasm3_linear_span_certificate_count"
+                    )
+                ),
+                "accepted_qiskit_loader_parse_artifact_count": qasm3_span_summary.get(
+                    "accepted_qiskit_loader_parse_artifact_count"
+                ),
+                "accepted_symbolic_unitary_equivalence_count": qasm3_span_summary.get(
+                    "accepted_symbolic_unitary_equivalence_count"
+                ),
+                "accepted_full_circuit_replay_certificate_count": qasm3_span_summary.get(
+                    "accepted_full_circuit_replay_certificate_count"
+                ),
+                "accepted_full_circuit_qasm_patch_count": qasm3_span_summary.get(
+                    "accepted_full_circuit_qasm_patch_count"
+                ),
+                "accepted_local_u3_pricing_certificate_count": qasm3_span_summary.get(
+                    "accepted_local_u3_pricing_certificate_count"
+                ),
+                "accepted_occurrence_removal": qasm3_span_summary.get(
+                    "accepted_occurrence_removal"
+                ),
+                "accepted_proxy_t_reduction": qasm3_span_summary.get(
+                    "accepted_proxy_t_reduction"
+                ),
+                "missing_occurrences_after_gate": qasm3_span_summary.get(
+                    "missing_occurrences_after_gate"
+                ),
+                "missing_proxy_t_after_gate": qasm3_span_summary.get(
+                    "missing_proxy_t_after_gate"
+                ),
+                "qiskit_loader_parse_claimed": qasm3_span_summary.get(
+                    "qiskit_loader_parse_claimed"
+                ),
+                "symbolic_unitary_equivalence_claimed": qasm3_span_summary.get(
+                    "symbolic_unitary_equivalence_claimed"
+                ),
+                "arbitrary_input_equivalence_claimed": qasm3_span_summary.get(
+                    "arbitrary_input_equivalence_claimed"
+                ),
+                "full_hilbert_space_certificate_claimed": qasm3_span_summary.get(
+                    "full_hilbert_space_certificate_claimed"
+                ),
+                "local_u3_pricing_accepted": qasm3_span_summary.get(
+                    "local_u3_pricing_accepted"
+                ),
+                "resource_saving_claimed": qasm3_span_summary.get("resource_saving_claimed"),
+                "b7_ledger_improvement_claimed": qasm3_span_summary.get(
+                    "b7_ledger_improvement_claimed"
+                ),
+                "validation_error_count": qasm3_span_summary.get("validation_error_count"),
+            }
+        )
+        if qasm3_span_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 OpenQASM 3 linear-span replay must have benchmark_id B1")
+        if (
+            qasm3_span_payload.get("method")
+            != "b1_b7_cone01_openqasm3_linear_span_replay_certificate_gate_v0"
+        ):
+            errors.append("B1/B7 cone_01 OpenQASM 3 linear-span replay method mismatch")
+        if (
+            qasm3_span_payload.get("status")
+            != "cone01_openqasm3_linear_span_replay_certificate_passed_not_full_unitary"
+        ):
+            errors.append("B1/B7 cone_01 OpenQASM 3 linear-span replay status mismatch")
+        if (
+            qasm3_span_payload.get("model_status")
+            != "project_local_openqasm3_candidate_has_six_dimensional_linear_span_certificate_without_b7_credit"
+        ):
+            errors.append("B1/B7 cone_01 OpenQASM 3 linear-span replay model_status mismatch")
+        expected_qasm3_span_fields = {
+            "project_local_openqasm3_parser_passed": True,
+            "project_local_openqasm3_parser_error_count": 0,
+            "project_local_operation_counts": {"U": 487, "rz": 601, "cx": 789, "measure": 1},
+            "qubit_count": 19,
+            "bit_count": 1,
+            "statement_count": 1884,
+            "operation_row_count": 1878,
+            "statevector_dimension": 524288,
+            "global_phase_anchor_label": "zero",
+            "certified_input_subspace_dimension": 6,
+            "full_input_space_dimension": 524288,
+            "coherent_pair_witness_count": 15,
+            "coherent_pair_witness_passed": True,
+            "finite_openqasm3_linear_span_certificate_passed": True,
+            "source_cnot_count": 795,
+            "openqasm3_cnot_count": 789,
+            "openqasm3_cnot_delta": 6,
+            "accepted_project_local_openqasm3_linear_span_certificate_count": 1,
+            "accepted_qiskit_loader_parse_artifact_count": 0,
+            "accepted_symbolic_unitary_equivalence_count": 0,
+            "accepted_full_circuit_replay_certificate_count": 0,
+            "accepted_full_circuit_qasm_patch_count": 0,
+            "accepted_local_u3_pricing_certificate_count": 0,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "missing_occurrences_after_gate": 30,
+            "missing_proxy_t_after_gate": 600,
+            "qiskit_loader_parse_claimed": False,
+            "symbolic_unitary_equivalence_claimed": False,
+            "arbitrary_input_equivalence_claimed": False,
+            "full_hilbert_space_certificate_claimed": False,
+            "local_u3_pricing_accepted": False,
+            "resource_saving_claimed": False,
+            "b7_ledger_improvement_claimed": False,
+            "validation_error_count": 0,
+        }
+        for field, value in expected_qasm3_span_fields.items():
+            if qasm3_span_summary.get(field) != value:
+                errors.append(f"B1/B7 cone_01 OpenQASM 3 linear-span replay expected {field}={value}")
+            if (
+                b1_b7_cone01_openqasm3_linear_span_replay_certificate_manifest
+                and field in b1_b7_cone01_openqasm3_linear_span_replay_certificate_manifest
+                and qasm3_span_summary.get(field)
+                != b1_b7_cone01_openqasm3_linear_span_replay_certificate_manifest.get(field)
+            ):
+                errors.append(f"B1/B7 cone_01 OpenQASM 3 linear-span replay {field} mismatch")
+        numeric_bounds = {
+            "linear_span_error_spectral_norm": 1e-10,
+            "max_basis_l2_error": 1e-10,
+            "max_basis_amplitude_delta": 1e-10,
+            "max_basis_probability_delta": 1e-10,
+            "max_source_candidate_gram_delta": 1e-10,
+            "max_cross_gram_delta": 1e-10,
+        }
+        for field, upper_bound in numeric_bounds.items():
+            if float(qasm3_span_summary.get(field, 1.0)) > upper_bound:
+                errors.append(
+                    f"B1/B7 cone_01 OpenQASM 3 linear-span replay {field} exceeds {upper_bound}"
+                )
+        expected_fraction = 6 / 524288
+        if (
+            abs(
+                float(qasm3_span_summary.get("certified_input_subspace_fraction", 0.0))
+                - expected_fraction
+            )
+            > 1e-18
+        ):
+            errors.append("B1/B7 cone_01 OpenQASM 3 linear-span replay subspace fraction mismatch")
+        if qasm3_span_payload.get("project_local_parser_errors"):
+            errors.append("B1/B7 cone_01 OpenQASM 3 linear-span replay parser errors not empty")
+        for field in [
+            "qiskit_loader_parse_claimed",
+            "symbolic_unitary_equivalence_claimed",
+            "arbitrary_input_equivalence_claimed",
+            "full_hilbert_space_certificate_claimed",
+            "local_u3_pricing_accepted",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if qasm3_span_summary.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 OpenQASM 3 linear-span replay must not claim {field}")
+            if qasm3_span_claims.get(field) is not False:
+                errors.append(
+                    "B1/B7 cone_01 OpenQASM 3 linear-span replay claim boundary "
+                    f"must not claim {field}"
+                )
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 OpenQASM 3 linear-span replay report: "
+            f"{b1_b7_cone01_openqasm3_linear_span_replay_certificate_path}"
         )
 
     b1_b7_cone01_full_statevector_replay_probe = {
@@ -24652,6 +24917,9 @@ def audit(root: Path) -> dict:
             "b7_cone01_openqasm3_global_phase_subspace_replay_gate": (
                 b1_b7_cone01_openqasm3_global_phase_subspace_replay
             ),
+            "b7_cone01_openqasm3_linear_span_replay_certificate_gate": (
+                b1_b7_cone01_openqasm3_linear_span_replay_certificate
+            ),
             "b7_cone01_full_statevector_replay_probe_gate": (
                 b1_b7_cone01_full_statevector_replay_probe
             ),
@@ -25027,6 +25295,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_openqasm3_global_phase_subspace_replay_gate": str(
                 b1_b7_cone01_openqasm3_global_phase_subspace_replay_path
+            ),
+            "b1_b7_cone01_openqasm3_linear_span_replay_certificate_gate": str(
+                b1_b7_cone01_openqasm3_linear_span_replay_certificate_path
             ),
             "b1_b7_cone01_full_statevector_replay_probe_gate": str(
                 b1_b7_cone01_full_statevector_replay_probe_path
@@ -26159,6 +26430,22 @@ def markdown_report(report: dict) -> str:
             f"- Subspace replay passed / symbolic unitary claimed / arbitrary input claimed: {report['b1']['b7_cone01_openqasm3_global_phase_subspace_replay_gate'].get('openqasm3_global_phase_subspace_replay_passed')} / {report['b1']['b7_cone01_openqasm3_global_phase_subspace_replay_gate'].get('symbolic_unitary_equivalence_claimed')} / {report['b1']['b7_cone01_openqasm3_global_phase_subspace_replay_gate'].get('arbitrary_input_equivalence_claimed')}",
             f"- Accepted OpenQASM 3 anchored replay / occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_openqasm3_global_phase_subspace_replay_gate'].get('accepted_project_local_openqasm3_global_phase_subspace_replay_artifact_count')} / {report['b1']['b7_cone01_openqasm3_global_phase_subspace_replay_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_openqasm3_global_phase_subspace_replay_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_openqasm3_global_phase_subspace_replay_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_openqasm3_global_phase_subspace_replay_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 OpenQASM 3 Linear-Span Replay Certificate Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('status')}",
+            f"- OpenQASM 3 path: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('openqasm3_candidate_path')}",
+            f"- Project-local parser passed / error count: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('project_local_openqasm3_parser_passed')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('project_local_openqasm3_parser_error_count')}",
+            f"- Certified subspace / full space / fraction: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('certified_input_subspace_dimension')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('full_input_space_dimension')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('certified_input_subspace_fraction')}",
+            f"- Linear-span spectral / Frobenius norm: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('linear_span_error_spectral_norm')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('linear_span_error_frobenius_norm')}",
+            f"- Max basis L2 / amplitude / probability delta: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('max_basis_l2_error')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('max_basis_amplitude_delta')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('max_basis_probability_delta')}",
+            f"- Max source-candidate Gram / cross-Gram delta: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('max_source_candidate_gram_delta')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('max_cross_gram_delta')}",
+            f"- Coherent pair witnesses passed / count: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('coherent_pair_witness_passed')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('coherent_pair_witness_count')}",
+            f"- Source / OpenQASM 3 CNOT count / delta: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('source_cnot_count')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('openqasm3_cnot_count')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('openqasm3_cnot_delta')}",
+            f"- Accepted OpenQASM 3 linear-span / Qiskit loader / symbolic artifacts: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('accepted_project_local_openqasm3_linear_span_certificate_count')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('accepted_qiskit_loader_parse_artifact_count')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('accepted_symbolic_unitary_equivalence_count')}",
+            f"- Accepted occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_openqasm3_linear_span_replay_certificate_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Full-Statevector Replay Probe Gate",
             "",
