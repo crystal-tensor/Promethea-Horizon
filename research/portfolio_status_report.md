@@ -794,6 +794,20 @@ Overall audit: PASS
 - Accepted replay / occurrence / proxy-T reduction / B7 claim: 0 / 0 / 0 / False
 - Validation errors: 0
 
+## B1/B7 cone_01 Composable Patch Certificate Gate
+
+- Exists: True
+- Status: cone01_composable_patch_certificate_passed_without_b7_resource_credit
+- Selected patches / lines / dropped overlap lines: 2 / [268, 1381] / [1378]
+- Non-overlap / local-unitary certificates / semantic certificate: True / True / True
+- QASM2 candidate exists / emitted: True / True
+- Source / candidate CNOT count / delta: 795 / 789 / 6
+- Max selected patch residual / entry error: 6.513210005207597e-13 / 4.525273102184799e-13
+- Selected CNOT reduction / off-grid local-U3 params: 6 / 5
+- Accepted replay / QASM patch / occurrence / proxy-T reduction: 1 / 1 / 0 / 0
+- Symbolic equivalence / local-U3 pricing / line1378 recovered / B7 claim: False / False / False / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Theta-Sharing Ledger Gate
 
 - Exists: True

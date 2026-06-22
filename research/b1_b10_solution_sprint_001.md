@@ -1750,3 +1750,13 @@ probability delta is 7.771561172376096e-16, and all 15 coherent pair witnesses
 remain passed. This certifies only 6/524,288 input dimensions; full-space
 symbolic equivalence, occurrence removal, proxy-T reduction, local-U3 pricing,
 and B7 improvement remain 0.
+
+Sprint update 18bb: B1/B7 now has a composable patch certificate for the
+selected line-268 plus line-1381 QASM2 candidate. T-B1-004bb checks that the
+selected windows are non-overlapping, both local-unitary replacement
+certificates pass, the QASM2 candidate exists, and the structural CNOT count is
+795 -> 789. Max selected patch residual norm is 6.513210005207597e-13 and max
+entry error is 4.525273102184799e-13. One tolerance-bounded full-circuit
+semantic replay/QASM patch artifact is accepted, but B7 occurrence removal,
+proxy-T reduction, local-U3 pricing, line-1378 recovery, and ledger improvement
+remain 0.

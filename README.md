@@ -509,6 +509,15 @@ coherent pair witnesses remain passed. This certifies only 6 of 524,288 input
 dimensions, so it is not a full Hilbert-space unitary proof; accepted B7
 occurrence, proxy-T, and ledger credit remain 0.
 
+T-B1-004bb turns the selected non-overlap line-268 plus line-1381 patch subset
+into a tolerance-bounded full-circuit semantic patch certificate for the QASM2
+candidate. The two selected windows are non-overlapping, both local-unitary
+replacement certificates pass, the emitted QASM2 candidate exists, and the
+candidate keeps the 795 -> 789 CNOT delta. The certificate accepts 1
+full-circuit replay/QASM patch artifact, but B7 resource credit remains 0
+because line 1378 is still dropped and line 1381 still has 5 unpriced off-grid
+local-U3 parameters.
+
 ## Repository Layout
 
 ```text

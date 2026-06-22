@@ -258,6 +258,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_linear_span_replay_certificate_path = (
         results / "B1_B7_cone01_linear_span_replay_certificate_gate_v0.json"
     )
+    b1_b7_cone01_composable_patch_certificate_path = (
+        results / "B1_B7_cone01_composable_patch_certificate_gate_v0.json"
+    )
     b1_b7_cone01_theta_sharing_path = results / "B1_B7_cone01_theta_sharing_ledger_gate_v0.json"
     b1_b7_cone01_shared_theta_synthesis_object_path = (
         results / "B1_B7_cone01_shared_theta_synthesis_object_gate_v0.json"
@@ -871,6 +874,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_linear_span_replay_certificate_manifest = current_results.get(
         "b1_b7_cone01_linear_span_replay_certificate_gate_v0"
+    )
+    b1_b7_cone01_composable_patch_certificate_manifest = current_results.get(
+        "b1_b7_cone01_composable_patch_certificate_gate_v0"
     )
     b1_b7_cone01_theta_sharing_manifest = current_results.get(
         "b1_b7_cone01_theta_sharing_ledger_gate_v0"
@@ -9147,6 +9153,185 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 linear-span replay report: "
             f"{b1_b7_cone01_linear_span_replay_certificate_path}"
+        )
+
+    b1_b7_cone01_composable_patch_certificate = {
+        "path": str(b1_b7_cone01_composable_patch_certificate_path),
+        "exists": b1_b7_cone01_composable_patch_certificate_path.exists(),
+    }
+    if not b1_b7_cone01_composable_patch_certificate_manifest:
+        errors.append(
+            "B1 manifest missing current result: "
+            "b1_b7_cone01_composable_patch_certificate_gate_v0"
+        )
+    else:
+        if (
+            b1_b7_cone01_composable_patch_certificate_manifest.get("status")
+            != "cone01_composable_patch_certificate_passed_without_b7_resource_credit"
+        ):
+            errors.append("B1/B7 cone_01 composable patch certificate status mismatch")
+        for field in ["report", "markdown_report"]:
+            value = b1_b7_cone01_composable_patch_certificate_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(
+                    "B1/B7 cone_01 composable patch certificate missing "
+                    f"existing {field} path: {value}"
+                )
+    if b1_b7_cone01_composable_patch_certificate_path.exists():
+        patch_payload = json.loads(read(b1_b7_cone01_composable_patch_certificate_path))
+        patch_summary = patch_payload.get("summary", {})
+        patch_claims = patch_payload.get("claim_boundary", {})
+        b1_b7_cone01_composable_patch_certificate.update(
+            {
+                "status": patch_payload.get("status"),
+                "model_status": patch_payload.get("model_status"),
+                "method": patch_payload.get("method"),
+                "workload": patch_payload.get("workload"),
+                "selected_patch_count": patch_summary.get("selected_patch_count"),
+                "selected_line_numbers": patch_summary.get("selected_line_numbers"),
+                "dropped_overlap_candidate_line_numbers": patch_summary.get(
+                    "dropped_overlap_candidate_line_numbers"
+                ),
+                "all_selected_windows_nonoverlap": patch_summary.get(
+                    "all_selected_windows_nonoverlap"
+                ),
+                "all_local_unitary_certificates_passed": patch_summary.get(
+                    "all_local_unitary_certificates_passed"
+                ),
+                "tolerance_bounded_full_circuit_semantic_certificate_passed": patch_summary.get(
+                    "tolerance_bounded_full_circuit_semantic_certificate_passed"
+                ),
+                "qasm2_candidate_exists": patch_summary.get("qasm2_candidate_exists"),
+                "qasm2_candidate_rewrite_emitted": patch_summary.get(
+                    "qasm2_candidate_rewrite_emitted"
+                ),
+                "source_cnot_count": patch_summary.get("source_cnot_count"),
+                "candidate_cnot_count": patch_summary.get("candidate_cnot_count"),
+                "candidate_cnot_delta": patch_summary.get("candidate_cnot_delta"),
+                "selected_candidate_cnot_reduction": patch_summary.get(
+                    "selected_candidate_cnot_reduction"
+                ),
+                "selected_replacement_off_pi_over_four_parameter_count": patch_summary.get(
+                    "selected_replacement_off_pi_over_four_parameter_count"
+                ),
+                "max_selected_patch_residual_norm": patch_summary.get(
+                    "max_selected_patch_residual_norm"
+                ),
+                "max_selected_patch_entry_error": patch_summary.get(
+                    "max_selected_patch_entry_error"
+                ),
+                "accepted_full_circuit_replay_certificate_count": patch_summary.get(
+                    "accepted_full_circuit_replay_certificate_count"
+                ),
+                "accepted_full_circuit_qasm_patch_count": patch_summary.get(
+                    "accepted_full_circuit_qasm_patch_count"
+                ),
+                "accepted_occurrence_removal": patch_summary.get("accepted_occurrence_removal"),
+                "accepted_proxy_t_reduction": patch_summary.get("accepted_proxy_t_reduction"),
+                "missing_occurrences_after_gate": patch_summary.get(
+                    "missing_occurrences_after_gate"
+                ),
+                "missing_proxy_t_after_gate": patch_summary.get("missing_proxy_t_after_gate"),
+                "symbolic_unitary_equivalence_claimed": patch_summary.get(
+                    "symbolic_unitary_equivalence_claimed"
+                ),
+                "full_space_symbolic_equivalence_claimed": patch_summary.get(
+                    "full_space_symbolic_equivalence_claimed"
+                ),
+                "arbitrary_input_semantic_certificate_claimed": patch_summary.get(
+                    "arbitrary_input_semantic_certificate_claimed"
+                ),
+                "local_u3_resource_pricing_accepted": patch_summary.get(
+                    "local_u3_resource_pricing_accepted"
+                ),
+                "line1378_delta_recovered": patch_summary.get("line1378_delta_recovered"),
+                "resource_saving_claimed": patch_summary.get("resource_saving_claimed"),
+                "b7_ledger_improvement_claimed": patch_summary.get(
+                    "b7_ledger_improvement_claimed"
+                ),
+                "validation_error_count": patch_summary.get("validation_error_count"),
+            }
+        )
+        if patch_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 composable patch certificate must have benchmark_id B1")
+        if patch_payload.get("method") != "b1_b7_cone01_composable_patch_certificate_gate_v0":
+            errors.append("B1/B7 cone_01 composable patch certificate method mismatch")
+        if (
+            patch_payload.get("status")
+            != "cone01_composable_patch_certificate_passed_without_b7_resource_credit"
+        ):
+            errors.append("B1/B7 cone_01 composable patch certificate status mismatch")
+        if (
+            patch_payload.get("model_status")
+            != "nonoverlap_qasm2_candidate_has_tolerance_bounded_semantic_patch_certificate"
+        ):
+            errors.append("B1/B7 cone_01 composable patch certificate model_status mismatch")
+        expected_patch_fields = {
+            "selected_patch_count": 2,
+            "selected_line_numbers": [268, 1381],
+            "dropped_overlap_candidate_line_numbers": [1378],
+            "all_selected_windows_nonoverlap": True,
+            "all_local_unitary_certificates_passed": True,
+            "tolerance_bounded_full_circuit_semantic_certificate_passed": True,
+            "qasm2_candidate_exists": True,
+            "qasm2_candidate_rewrite_emitted": True,
+            "source_cnot_count": 795,
+            "candidate_cnot_count": 789,
+            "candidate_cnot_delta": 6,
+            "selected_candidate_cnot_reduction": 6,
+            "selected_replacement_off_pi_over_four_parameter_count": 5,
+            "accepted_full_circuit_replay_certificate_count": 1,
+            "accepted_full_circuit_qasm_patch_count": 1,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "missing_occurrences_after_gate": 30,
+            "missing_proxy_t_after_gate": 600,
+            "symbolic_unitary_equivalence_claimed": False,
+            "full_space_symbolic_equivalence_claimed": False,
+            "arbitrary_input_semantic_certificate_claimed": True,
+            "local_u3_resource_pricing_accepted": False,
+            "line1378_delta_recovered": False,
+            "resource_saving_claimed": False,
+            "b7_ledger_improvement_claimed": False,
+            "validation_error_count": 0,
+        }
+        for field, value in expected_patch_fields.items():
+            if patch_summary.get(field) != value:
+                errors.append(f"B1/B7 cone_01 composable patch expected {field}={value}")
+            if (
+                b1_b7_cone01_composable_patch_certificate_manifest
+                and field in b1_b7_cone01_composable_patch_certificate_manifest
+                and patch_summary.get(field)
+                != b1_b7_cone01_composable_patch_certificate_manifest.get(field)
+            ):
+                errors.append(f"B1/B7 cone_01 composable patch {field} mismatch")
+        if float(patch_summary.get("max_selected_patch_residual_norm", 1.0)) > 1e-10:
+            errors.append("B1/B7 cone_01 composable patch residual too high")
+        if float(patch_summary.get("max_selected_patch_entry_error", 1.0)) > 1e-10:
+            errors.append("B1/B7 cone_01 composable patch entry error too high")
+        for row in patch_summary.get("row_certificates", []):
+            if row.get("local_unitary_certificate_passed") is not True:
+                errors.append(
+                    "B1/B7 cone_01 composable patch local certificate failed "
+                    f"for line {row.get('candidate_line_number')}"
+                )
+        for field in [
+            "symbolic_unitary_equivalence_claimed",
+            "full_space_symbolic_equivalence_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if patch_summary.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 composable patch must not claim {field}")
+            if patch_claims.get(field) is not False:
+                errors.append(
+                    "B1/B7 cone_01 composable patch claim boundary "
+                    f"must not claim {field}"
+                )
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 composable patch certificate report: "
+            f"{b1_b7_cone01_composable_patch_certificate_path}"
         )
 
     b1_b7_cone01_theta_sharing = {
@@ -19124,6 +19309,9 @@ def audit(root: Path) -> dict:
             "b7_cone01_linear_span_replay_certificate_gate": (
                 b1_b7_cone01_linear_span_replay_certificate
             ),
+            "b7_cone01_composable_patch_certificate_gate": (
+                b1_b7_cone01_composable_patch_certificate
+            ),
             "b7_cone01_theta_sharing_ledger_gate": b1_b7_cone01_theta_sharing,
             "b7_cone01_shared_theta_synthesis_object_gate": b1_b7_cone01_shared_theta_synthesis_object,
             "b7_cone01_shared_theta_replay_verifier_gate": b1_b7_cone01_shared_theta_replay_verifier,
@@ -19421,6 +19609,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_linear_span_replay_certificate_gate": str(
                 b1_b7_cone01_linear_span_replay_certificate_path
+            ),
+            "b1_b7_cone01_composable_patch_certificate_gate": str(
+                b1_b7_cone01_composable_patch_certificate_path
             ),
             "b1_b7_cone01_theta_sharing_ledger_gate": str(b1_b7_cone01_theta_sharing_path),
             "b1_b7_cone01_shared_theta_synthesis_object_gate": str(
@@ -20444,6 +20635,20 @@ def markdown_report(report: dict) -> str:
             f"- Linear-span passed / symbolic unitary claimed / full-space claimed: {report['b1']['b7_cone01_linear_span_replay_certificate_gate'].get('finite_linear_span_certificate_passed')} / {report['b1']['b7_cone01_linear_span_replay_certificate_gate'].get('symbolic_unitary_equivalence_claimed')} / {report['b1']['b7_cone01_linear_span_replay_certificate_gate'].get('full_hilbert_space_certificate_claimed')}",
             f"- Accepted replay / occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_linear_span_replay_certificate_gate'].get('accepted_full_circuit_replay_certificate_count')} / {report['b1']['b7_cone01_linear_span_replay_certificate_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_linear_span_replay_certificate_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_linear_span_replay_certificate_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_linear_span_replay_certificate_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 Composable Patch Certificate Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('status')}",
+            f"- Selected patches / lines / dropped overlap lines: {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('selected_patch_count')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('selected_line_numbers')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('dropped_overlap_candidate_line_numbers')}",
+            f"- Non-overlap / local-unitary certificates / semantic certificate: {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('all_selected_windows_nonoverlap')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('all_local_unitary_certificates_passed')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('tolerance_bounded_full_circuit_semantic_certificate_passed')}",
+            f"- QASM2 candidate exists / emitted: {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('qasm2_candidate_exists')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('qasm2_candidate_rewrite_emitted')}",
+            f"- Source / candidate CNOT count / delta: {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('source_cnot_count')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('candidate_cnot_count')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('candidate_cnot_delta')}",
+            f"- Max selected patch residual / entry error: {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('max_selected_patch_residual_norm')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('max_selected_patch_entry_error')}",
+            f"- Selected CNOT reduction / off-grid local-U3 params: {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('selected_candidate_cnot_reduction')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('selected_replacement_off_pi_over_four_parameter_count')}",
+            f"- Accepted replay / QASM patch / occurrence / proxy-T reduction: {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('accepted_full_circuit_replay_certificate_count')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('accepted_full_circuit_qasm_patch_count')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('accepted_proxy_t_reduction')}",
+            f"- Symbolic equivalence / local-U3 pricing / line1378 recovered / B7 claim: {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('symbolic_unitary_equivalence_claimed')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('local_u3_resource_pricing_accepted')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('line1378_delta_recovered')} / {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_composable_patch_certificate_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Theta-Sharing Ledger Gate",
             "",

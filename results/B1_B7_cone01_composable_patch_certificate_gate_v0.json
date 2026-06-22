@@ -1,0 +1,106 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "arbitrary_input_semantic_certificate_claimed": true,
+    "b7_ledger_improvement_claimed": false,
+    "full_space_symbolic_equivalence_claimed": false,
+    "resource_saving_claimed": false,
+    "supported_claim": "The selected line-268 plus line-1381 non-overlap QASM2 candidate has a tolerance-bounded full-circuit semantic patch certificate assembled from composable local-unitary replacement rows.",
+    "symbolic_unitary_equivalence_claimed": false,
+    "unsupported_claims": [
+      "This is not a symbolic exact full-circuit proof.",
+      "This does not recover the dropped line-1378 CNOT delta.",
+      "This does not price the remaining line-1381 off-grid local-U3 parameters.",
+      "This is not an accepted B7 occurrence-removing certificate.",
+      "This does not improve the B7 ledger."
+    ]
+  },
+  "linked_b7_problem_id": 21,
+  "method": "b1_b7_cone01_composable_patch_certificate_gate_v0",
+  "model_status": "nonoverlap_qasm2_candidate_has_tolerance_bounded_semantic_patch_certificate",
+  "source_linear_span_result": "results/B1_B7_cone01_linear_span_replay_certificate_gate_v0.json",
+  "source_nonoverlap_subset_result": "results/B1_B7_cone01_nonoverlap_patch_subset_gate_v0.json",
+  "source_qasm2_candidate_result": "results/B1_B7_cone01_qasm2_candidate_rewrite_gate_v0.json",
+  "status": "cone01_composable_patch_certificate_passed_without_b7_resource_credit",
+  "summary": {
+    "accepted_full_circuit_qasm_patch_count": 1,
+    "accepted_full_circuit_replay_certificate_count": 1,
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "all_local_unitary_certificates_passed": true,
+    "all_selected_windows_nonoverlap": true,
+    "arbitrary_input_semantic_certificate_claimed": true,
+    "b7_ledger_improvement_claimed": false,
+    "candidate_cnot_count": 789,
+    "candidate_cnot_delta": 6,
+    "candidate_qasm": "results/B1_B7_cone01_qasm2_candidate_rewrite_gate/gcm_h6_line268_line1381_candidate.qasm",
+    "dropped_overlap_candidate_line_numbers": [
+      1378
+    ],
+    "full_space_symbolic_equivalence_claimed": false,
+    "line1378_delta_recovered": false,
+    "local_u3_resource_pricing_accepted": false,
+    "lost_candidate_cnot_reduction_due_to_overlap": 3,
+    "max_selected_patch_entry_error": 4.525273102184799e-13,
+    "max_selected_patch_residual_norm": 6.513210005207597e-13,
+    "missing_occurrences_after_gate": 30,
+    "missing_proxy_t_after_gate": 600,
+    "nonoverlap_window_pair_count": 0,
+    "qasm2_candidate_exists": true,
+    "qasm2_candidate_rewrite_emitted": true,
+    "resource_saving_claimed": false,
+    "row_certificates": [
+      {
+        "bounded_patch_max_abs_entry_error": 4.525273102184799e-13,
+        "bounded_patch_residual_norm": 6.39893112687052e-13,
+        "candidate_cnot_reduction": 3,
+        "candidate_line_number": 268,
+        "local_unitary_certificate_passed": true,
+        "replacement_cnot_count": 2,
+        "replacement_off_pi_over_four_parameter_count": 0,
+        "same_support_local_replacement": true,
+        "source_cnot_count": 5,
+        "support_qubits": [
+          2,
+          14
+        ],
+        "window_end_line": 267,
+        "window_start_line": 256
+      },
+      {
+        "bounded_patch_max_abs_entry_error": 3.4460057102876843e-13,
+        "bounded_patch_residual_norm": 6.513210005207597e-13,
+        "candidate_cnot_reduction": 3,
+        "candidate_line_number": 1381,
+        "local_unitary_certificate_passed": true,
+        "replacement_cnot_count": 2,
+        "replacement_off_pi_over_four_parameter_count": 5,
+        "same_support_local_replacement": true,
+        "source_cnot_count": 5,
+        "support_qubits": [
+          4,
+          8
+        ],
+        "window_end_line": 1379,
+        "window_start_line": 1369
+      }
+    ],
+    "selected_candidate_cnot_reduction": 6,
+    "selected_line_numbers": [
+      268,
+      1381
+    ],
+    "selected_patch_count": 2,
+    "selected_replacement_off_pi_over_four_parameter_count": 5,
+    "semantic_certificate_is_tolerance_bounded": true,
+    "source_cnot_count": 795,
+    "source_linear_span_method": "b1_b7_cone01_linear_span_replay_certificate_gate_v0",
+    "source_nonoverlap_subset_method": "b1_b7_cone01_nonoverlap_patch_subset_gate_v0",
+    "source_qasm": "results/b1_native_t_resource_optimizer/qasmbench_medium_exact/gcm_h6.qasm",
+    "source_qasm2_candidate_method": "b1_b7_cone01_qasm2_candidate_rewrite_gate_v0",
+    "symbolic_unitary_equivalence_claimed": false,
+    "tolerance_bounded_full_circuit_semantic_certificate_passed": true,
+    "validation_error_count": 0
+  },
+  "workload": "qasmbench_medium_exact/gcm_h6.qasm"
+}

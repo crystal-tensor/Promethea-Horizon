@@ -25,6 +25,8 @@ Latest B1/B7 addendum: **T-B1-004az now upgrades that evidence to global-phase a
 
 Latest B1/B7 addendum: **T-B1-004ba now converts the six T-B1-004az basis anchors into a finite linear-span replay certificate. Under the same zero-input global phase anchor, the restricted source/candidate error operator over the 6-dimensional input span has spectral norm 2.7889440543898627e-13, max basis L2 error 2.534056605707275e-13, and max basis probability delta 7.771561172376096e-16; all 15 coherent pair witnesses remain passed. This is certificate-grade only for 6/524,288 input dimensions, not full-space symbolic equivalence or B7 ledger credit.**
 
+Latest B1/B7 addendum: **T-B1-004bb now converts the selected line-268 plus line-1381 non-overlap QASM2 rewrite into a composable tolerance-bounded full-circuit semantic patch certificate. Both selected local-unitary patch certificates pass, the selected windows do not overlap, the emitted QASM2 candidate exists, max selected patch residual norm is 6.513210005207597e-13, max entry error is 4.525273102184799e-13, and the structural count remains 795 -> 789 CNOTs. Accepted replay/QASM patch artifacts become 1, but accepted occurrence removal, proxy-T reduction, local-U3 pricing, line-1378 recovery, and B7 ledger improvement remain 0.**
+
 The first research pass created:
 
 - a 100-problem catalog,
