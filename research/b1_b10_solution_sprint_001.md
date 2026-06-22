@@ -1694,3 +1694,18 @@ the current 6-CNOT structural delta. This is a replay-consumable candidate
 artifact only: full-circuit replay, line-1378 merged-region recovery, local-U3
 resource pricing, occurrence removal, proxy-T reduction, and B7 improvement all
 remain unaccepted.
+
+Sprint update 18aw: B1/B7 now has a full-statevector replay probe for the
+T-B1-004av QASM2 candidate. T-B1-004aw removes final measurements from the
+source and candidate `gcm_h6` circuits, then compares the 19-qubit
+benchmark-default-input statevectors. Statevector dimension is 524,288; fidelity
+is 0.9999999999999551; infidelity is 4.4853010194856324e-14; max
+global-phase-aligned amplitude delta is 1.3908205762322243e-13; max probability
+delta is 5.551115123125783e-16; measured q[4] marginal delta is
+5.551115123125783e-16. This upgrades the branch from a structural candidate to
+a whole-circuit numerical replay-pressure artifact, but it is still not
+symbolic arbitrary-input equivalence, not accepted local-U3 pricing, not
+occurrence removal, not proxy-T reduction, and not B7 improvement. The next
+sprint gate should either turn this into symbolic or multi-input replay
+evidence with resource pricing, or synthesize a merged line-1378/line-1381
+region that recovers the dropped 3-CNOT delta.

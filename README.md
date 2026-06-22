@@ -461,6 +461,16 @@ not a recovered line-1378 merge, not a priced local-U3 resource result, and not
 a B7 ledger saving. Accepted full-circuit patch, replay, occurrence removal,
 proxy-T reduction, and B7 improvement remain 0.
 
+T-B1-004aw then runs the first full-statevector replay probe on that QASM2
+candidate. After removing final measurements, the source and candidate
+19-qubit circuits have statevector dimension 524,288, state fidelity
+0.9999999999999551, max global-phase-aligned amplitude delta
+1.3908205762322243e-13, max probability delta 5.551115123125783e-16, and
+measured q[4] marginal delta 5.551115123125783e-16. The probe passes for the
+benchmark default input state, but it is still not a symbolic unitary proof for
+arbitrary inputs and still does not accept B7 occurrence, proxy-T, or ledger
+credit.
+
 ## Repository Layout
 
 ```text

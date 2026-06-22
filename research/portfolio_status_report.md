@@ -726,6 +726,18 @@ Overall audit: PASS
 - B7 ledger improvement claimed: False
 - Validation errors: 0
 
+## B1/B7 cone_01 Full-Statevector Replay Probe Gate
+
+- Exists: True
+- Status: cone01_default_input_statevector_replay_probe_passed_not_symbolic_certificate
+- Qubits / statevector dimension: 19 / 524288
+- Source / candidate CNOT count / delta: 795 / 789 / 6
+- State fidelity / infidelity: 0.9999999999999551 / 4.4853010194856324e-14
+- Max amplitude / probability / measured marginal delta: 1.3908205762322243e-13 / 5.551115123125783e-16 / 5.551115123125783e-16
+- Replay probe passed / symbolic unitary claimed / arbitrary input claimed: True / False / False
+- Accepted replay / occurrence / proxy-T reduction / B7 claim: 0 / 0 / 0 / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Theta-Sharing Ledger Gate
 
 - Exists: True
