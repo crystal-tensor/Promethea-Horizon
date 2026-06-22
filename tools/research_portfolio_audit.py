@@ -252,6 +252,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_phase_consistent_replay_path = (
         results / "B1_B7_cone01_phase_consistent_replay_gate_v0.json"
     )
+    b1_b7_cone01_global_phase_subspace_replay_path = (
+        results / "B1_B7_cone01_global_phase_subspace_replay_gate_v0.json"
+    )
     b1_b7_cone01_theta_sharing_path = results / "B1_B7_cone01_theta_sharing_ledger_gate_v0.json"
     b1_b7_cone01_shared_theta_synthesis_object_path = (
         results / "B1_B7_cone01_shared_theta_synthesis_object_gate_v0.json"
@@ -859,6 +862,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_phase_consistent_replay_manifest = current_results.get(
         "b1_b7_cone01_phase_consistent_replay_gate_v0"
+    )
+    b1_b7_cone01_global_phase_subspace_replay_manifest = current_results.get(
+        "b1_b7_cone01_global_phase_subspace_replay_gate_v0"
     )
     b1_b7_cone01_theta_sharing_manifest = current_results.get(
         "b1_b7_cone01_theta_sharing_ledger_gate_v0"
@@ -8788,6 +8794,179 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 phase-consistent replay report: "
             f"{b1_b7_cone01_phase_consistent_replay_path}"
+        )
+
+    b1_b7_cone01_global_phase_subspace_replay = {
+        "path": str(b1_b7_cone01_global_phase_subspace_replay_path),
+        "exists": b1_b7_cone01_global_phase_subspace_replay_path.exists(),
+    }
+    if not b1_b7_cone01_global_phase_subspace_replay_manifest:
+        errors.append(
+            "B1 manifest missing current result: "
+            "b1_b7_cone01_global_phase_subspace_replay_gate_v0"
+        )
+    else:
+        if (
+            b1_b7_cone01_global_phase_subspace_replay_manifest.get("status")
+            != "cone01_global_phase_subspace_replay_passed_not_symbolic_certificate"
+        ):
+            errors.append("B1/B7 cone_01 global-phase subspace replay gate status mismatch")
+        for field in ["report", "markdown_report"]:
+            value = b1_b7_cone01_global_phase_subspace_replay_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(
+                    "B1/B7 cone_01 global-phase subspace replay gate missing "
+                    f"existing {field} path: {value}"
+                )
+    if b1_b7_cone01_global_phase_subspace_replay_path.exists():
+        subspace_payload = json.loads(read(b1_b7_cone01_global_phase_subspace_replay_path))
+        subspace_summary = subspace_payload.get("summary", {})
+        subspace_claims = subspace_payload.get("claim_boundary", {})
+        b1_b7_cone01_global_phase_subspace_replay.update(
+            {
+                "status": subspace_payload.get("status"),
+                "model_status": subspace_payload.get("model_status"),
+                "method": subspace_payload.get("method"),
+                "workload": subspace_payload.get("workload"),
+                "qubit_count": subspace_summary.get("qubit_count"),
+                "statevector_dimension": subspace_summary.get("statevector_dimension"),
+                "global_phase_anchor_label": subspace_summary.get("global_phase_anchor_label"),
+                "global_phase_anchor_radians": subspace_summary.get("global_phase_anchor_radians"),
+                "input_case_count": subspace_summary.get("input_case_count"),
+                "anchor_case_count": subspace_summary.get("anchor_case_count"),
+                "coherent_superposition_case_count": subspace_summary.get(
+                    "coherent_superposition_case_count"
+                ),
+                "failed_input_case_count": subspace_summary.get("failed_input_case_count"),
+                "global_phase_subspace_replay_passed": subspace_summary.get(
+                    "global_phase_subspace_replay_passed"
+                ),
+                "max_global_anchor_phase_delta_radians": subspace_summary.get(
+                    "max_global_anchor_phase_delta_radians"
+                ),
+                "min_overlap_magnitude": subspace_summary.get("min_overlap_magnitude"),
+                "min_state_fidelity": subspace_summary.get("min_state_fidelity"),
+                "max_infidelity": subspace_summary.get("max_infidelity"),
+                "max_global_anchor_aligned_amplitude_delta": subspace_summary.get(
+                    "max_global_anchor_aligned_amplitude_delta"
+                ),
+                "max_probability_delta": subspace_summary.get("max_probability_delta"),
+                "source_cnot_count": subspace_summary.get("source_cnot_count"),
+                "candidate_cnot_count": subspace_summary.get("candidate_cnot_count"),
+                "candidate_cnot_delta": subspace_summary.get("candidate_cnot_delta"),
+                "symbolic_unitary_equivalence_claimed": subspace_summary.get(
+                    "symbolic_unitary_equivalence_claimed"
+                ),
+                "arbitrary_input_equivalence_claimed": subspace_summary.get(
+                    "arbitrary_input_equivalence_claimed"
+                ),
+                "accepted_full_circuit_replay_certificate_count": subspace_summary.get(
+                    "accepted_full_circuit_replay_certificate_count"
+                ),
+                "accepted_full_circuit_qasm_patch_count": subspace_summary.get(
+                    "accepted_full_circuit_qasm_patch_count"
+                ),
+                "accepted_occurrence_removal": subspace_summary.get(
+                    "accepted_occurrence_removal"
+                ),
+                "accepted_proxy_t_reduction": subspace_summary.get(
+                    "accepted_proxy_t_reduction"
+                ),
+                "missing_occurrences_after_gate": subspace_summary.get(
+                    "missing_occurrences_after_gate"
+                ),
+                "missing_proxy_t_after_gate": subspace_summary.get(
+                    "missing_proxy_t_after_gate"
+                ),
+                "resource_saving_claimed": subspace_summary.get("resource_saving_claimed"),
+                "b7_ledger_improvement_claimed": subspace_summary.get(
+                    "b7_ledger_improvement_claimed"
+                ),
+                "validation_error_count": subspace_summary.get("validation_error_count"),
+            }
+        )
+        if subspace_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 global-phase subspace replay report must have benchmark_id B1")
+        if subspace_payload.get("method") != "b1_b7_cone01_global_phase_subspace_replay_gate_v0":
+            errors.append("B1/B7 cone_01 global-phase subspace replay method mismatch")
+        if (
+            subspace_payload.get("status")
+            != "cone01_global_phase_subspace_replay_passed_not_symbolic_certificate"
+        ):
+            errors.append("B1/B7 cone_01 global-phase subspace replay status mismatch")
+        if (
+            subspace_payload.get("model_status")
+            != "qasm2_candidate_has_global_phase_anchored_subspace_replay_without_b7_credit"
+        ):
+            errors.append("B1/B7 cone_01 global-phase subspace replay model_status mismatch")
+        expected_subspace_fields = {
+            "qubit_count": 19,
+            "statevector_dimension": 524288,
+            "source_cnot_count": 795,
+            "candidate_cnot_count": 789,
+            "candidate_cnot_delta": 6,
+            "final_measurement_removed_for_statevector": True,
+            "global_phase_anchor_label": "zero",
+            "input_case_count": 21,
+            "anchor_case_count": 6,
+            "coherent_superposition_case_count": 15,
+            "global_phase_subspace_replay_passed": True,
+            "failed_input_case_count": 0,
+            "symbolic_unitary_equivalence_claimed": False,
+            "arbitrary_input_equivalence_claimed": False,
+            "accepted_full_circuit_replay_certificate_count": 0,
+            "accepted_full_circuit_qasm_patch_count": 0,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "missing_occurrences_after_gate": 30,
+            "missing_proxy_t_after_gate": 600,
+            "resource_saving_claimed": False,
+            "b7_ledger_improvement_claimed": False,
+            "validation_error_count": 0,
+        }
+        for field, value in expected_subspace_fields.items():
+            if subspace_summary.get(field) != value:
+                errors.append(f"B1/B7 cone_01 global-phase subspace replay expected {field}={value}")
+            if (
+                b1_b7_cone01_global_phase_subspace_replay_manifest
+                and field in b1_b7_cone01_global_phase_subspace_replay_manifest
+                and subspace_summary.get(field)
+                != b1_b7_cone01_global_phase_subspace_replay_manifest.get(field)
+            ):
+                errors.append(f"B1/B7 cone_01 global-phase subspace replay {field} mismatch")
+        if subspace_summary.get("failed_input_cases") != []:
+            errors.append("B1/B7 cone_01 global-phase subspace replay has failed input cases")
+        if float(subspace_summary.get("max_global_anchor_phase_delta_radians", 1.0)) > 1e-10:
+            errors.append("B1/B7 cone_01 global-phase subspace replay phase delta too high")
+        if float(subspace_summary.get("max_infidelity", 1.0)) > 1e-10:
+            errors.append("B1/B7 cone_01 global-phase subspace replay infidelity too high")
+        if float(subspace_summary.get("max_global_anchor_aligned_amplitude_delta", 1.0)) > 1e-10:
+            errors.append("B1/B7 cone_01 global-phase subspace replay amplitude delta too high")
+        if float(subspace_summary.get("max_probability_delta", 1.0)) > 1e-10:
+            errors.append("B1/B7 cone_01 global-phase subspace replay probability delta too high")
+        for case in subspace_summary.get("input_cases", []):
+            if case.get("passed") is not True:
+                errors.append(
+                    "B1/B7 cone_01 global-phase subspace replay failed case "
+                    f"{case.get('label')}"
+                )
+        for field in [
+            "symbolic_unitary_equivalence_claimed",
+            "arbitrary_input_equivalence_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if subspace_summary.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 global-phase subspace replay must not claim {field}")
+            if subspace_claims.get(field) is not False:
+                errors.append(
+                    "B1/B7 cone_01 global-phase subspace replay claim boundary "
+                    f"must not claim {field}"
+                )
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 global-phase subspace replay report: "
+            f"{b1_b7_cone01_global_phase_subspace_replay_path}"
         )
 
     b1_b7_cone01_theta_sharing = {
@@ -18759,6 +18938,9 @@ def audit(root: Path) -> dict:
             "b7_cone01_phase_consistent_replay_gate": (
                 b1_b7_cone01_phase_consistent_replay
             ),
+            "b7_cone01_global_phase_subspace_replay_gate": (
+                b1_b7_cone01_global_phase_subspace_replay
+            ),
             "b7_cone01_theta_sharing_ledger_gate": b1_b7_cone01_theta_sharing,
             "b7_cone01_shared_theta_synthesis_object_gate": b1_b7_cone01_shared_theta_synthesis_object,
             "b7_cone01_shared_theta_replay_verifier_gate": b1_b7_cone01_shared_theta_replay_verifier,
@@ -19050,6 +19232,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_phase_consistent_replay_gate": str(
                 b1_b7_cone01_phase_consistent_replay_path
+            ),
+            "b1_b7_cone01_global_phase_subspace_replay_gate": str(
+                b1_b7_cone01_global_phase_subspace_replay_path
             ),
             "b1_b7_cone01_theta_sharing_ledger_gate": str(b1_b7_cone01_theta_sharing_path),
             "b1_b7_cone01_shared_theta_synthesis_object_gate": str(
@@ -20044,6 +20229,21 @@ def markdown_report(report: dict) -> str:
             f"- Phase-consistent replay passed / symbolic unitary claimed / arbitrary input claimed: {report['b1']['b7_cone01_phase_consistent_replay_gate'].get('phase_consistent_replay_passed')} / {report['b1']['b7_cone01_phase_consistent_replay_gate'].get('symbolic_unitary_equivalence_claimed')} / {report['b1']['b7_cone01_phase_consistent_replay_gate'].get('arbitrary_input_equivalence_claimed')}",
             f"- Accepted replay / occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_phase_consistent_replay_gate'].get('accepted_full_circuit_replay_certificate_count')} / {report['b1']['b7_cone01_phase_consistent_replay_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_phase_consistent_replay_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_phase_consistent_replay_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_phase_consistent_replay_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 Global-Phase Subspace Replay Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('status')}",
+            f"- Input cases / failed cases: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('input_case_count')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('failed_input_case_count')}",
+            f"- Basis anchors / coherent superpositions: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('anchor_case_count')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('coherent_superposition_case_count')}",
+            f"- Global phase anchor / radians: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('global_phase_anchor_label')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('global_phase_anchor_radians')}",
+            f"- Source / candidate CNOT count / delta: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('source_cnot_count')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('candidate_cnot_count')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('candidate_cnot_delta')}",
+            f"- Max anchor phase delta / min overlap magnitude: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('max_global_anchor_phase_delta_radians')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('min_overlap_magnitude')}",
+            f"- Min fidelity / max infidelity: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('min_state_fidelity')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('max_infidelity')}",
+            f"- Max anchored amplitude / probability delta: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('max_global_anchor_aligned_amplitude_delta')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('max_probability_delta')}",
+            f"- Subspace replay passed / symbolic unitary claimed / arbitrary input claimed: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('global_phase_subspace_replay_passed')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('symbolic_unitary_equivalence_claimed')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('arbitrary_input_equivalence_claimed')}",
+            f"- Accepted replay / occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('accepted_full_circuit_replay_certificate_count')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_global_phase_subspace_replay_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Theta-Sharing Ledger Gate",
             "",

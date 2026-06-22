@@ -1729,3 +1729,14 @@ overlap phase spread 1.3722356584366935e-13 radians, min overlap magnitude
 reduces the independent-global-phase alignment risk, but it is still sampled
 evidence, not symbolic arbitrary-input equivalence, and accepted occurrence
 removal, proxy-T reduction, local-U3 pricing, and B7 improvement remain 0.
+
+Sprint update 18az: B1/B7 now has global-phase anchored subspace replay
+pressure. T-B1-004az consumes T-B1-004ay, fixes one global phase from the zero
+input, and reuses that phase across 6 computational-basis anchors and 15
+coherent pair superpositions. All 21 pass, with max global-anchor phase delta
+3.142993331217661e-14 radians, min overlap magnitude 0.9999999999999772, min
+state fidelity 0.9999999999999547, max infidelity 4.529709940470639e-14, and
+max probability delta 1.074140776324839e-14. This is stronger sampled subspace
+evidence, but still not symbolic arbitrary-input equivalence; accepted
+occurrence removal, proxy-T reduction, local-U3 pricing, and B7 improvement
+remain 0.

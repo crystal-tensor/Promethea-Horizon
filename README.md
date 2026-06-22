@@ -490,6 +490,16 @@ independent per-input global-phase alignment hides an input-dependent phase
 mismatch, but it is still sampled evidence, not symbolic arbitrary-input
 equivalence, and accepted B7 occurrence, proxy-T, and ledger credit remain 0.
 
+T-B1-004az fixes one global phase from the zero-input replay and reuses that
+same phase across a sampled subspace: 6 computational-basis anchors and 15
+coherent pair superpositions. All 21 cases pass; max global-anchor phase delta
+is 3.142993331217661e-14 radians, min overlap magnitude is
+0.9999999999999772, min state fidelity is 0.9999999999999547, and max
+probability delta is 1.074140776324839e-14. This is stronger than
+independently aligned sampled replay, but it is still a sampled subspace
+check, not symbolic unitary equivalence, and accepted B7 occurrence, proxy-T,
+and ledger credit remain 0.
+
 ## Repository Layout
 
 ```text

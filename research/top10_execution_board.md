@@ -21,6 +21,8 @@ Latest B1/B7 addendum: **T-B1-004ax now upgrades that replay pressure from one d
 
 Latest B1/B7 addendum: **T-B1-004ay now adds phase-consistent replay pressure with 4 phase-anchor inputs and 4 superposition inputs. All 8 pass with overlap phase spread 1.3722356584366935e-13 radians, min overlap magnitude 0.9999999999999772, min fidelity 0.9999999999999547, and max probability delta 1.074140776324839e-14. This reduces the hidden input-dependent phase concern, but it is still sampled replay evidence, not symbolic arbitrary-input equivalence or B7 ledger credit.**
 
+Latest B1/B7 addendum: **T-B1-004az now upgrades that evidence to global-phase anchored sampled subspace replay. One zero-input global phase anchor is reused across 6 computational-basis anchors and 15 coherent pair superpositions; all 21 pass with max global-anchor phase delta 3.142993331217661e-14 radians, min overlap magnitude 0.9999999999999772, min fidelity 0.9999999999999547, and max probability delta 1.074140776324839e-14. This is still sampled subspace evidence, not symbolic arbitrary-input equivalence or B7 ledger credit.**
+
 The first research pass created:
 
 - a 100-problem catalog,
