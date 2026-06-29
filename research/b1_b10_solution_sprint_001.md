@@ -2156,3 +2156,18 @@ infidelity is `4.529709940470639e-14`, max aligned amplitude delta is
 Qiskit-loader global-phase subspace replay artifact only; arbitrary-input or
 symbolic equivalence, local-U3 pricing, occurrence removal, proxy-T reduction,
 and B7 ledger improvement remain 0.
+
+Sprint update 18ck: B1/B7 now has a Qiskit-loader finite linear-span replay
+certificate. T-B1-004ck consumes the Qiskit-loader global-phase subspace replay
+gate and the project-local OpenQASM 3 linear-span certificate, keeps the same
+zero-input global phase anchor, and computes the replay error operator over the
+6-dimensional basis-anchor span. The loader-backed certificate passes with
+spectral norm `2.7889440543898627e-13`, Frobenius error
+`6.134324404657074e-13`, max basis L2 error `2.534056605707275e-13`, max basis
+amplitude delta `1.3928889642636009e-13`, max basis probability delta
+`7.771561172376096e-16`, max source/candidate Gram delta
+`1.9984014443252818e-15`, max cross-Gram delta
+`4.403624367368429e-14`, and validation errors 0. This accepts one
+Qiskit-loader finite-span certificate for 6/524,288 input dimensions only;
+arbitrary-input or symbolic equivalence, local-U3 pricing, occurrence removal,
+proxy-T reduction, and B7 ledger improvement remain 0.

@@ -291,6 +291,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_path = (
         results / "B1_B7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate_v0.json"
     )
+    b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_path = (
+        results / "B1_B7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate_v0.json"
+    )
     b1_b7_cone01_full_statevector_replay_probe_path = (
         results / "B1_B7_cone01_full_statevector_replay_probe_gate_v0.json"
     )
@@ -1012,6 +1015,11 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_manifest = (
         current_results.get(
             "b1_b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate_v0"
+        )
+    )
+    b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_manifest = (
+        current_results.get(
+            "b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate_v0"
         )
     )
     b1_b7_cone01_full_statevector_replay_probe_manifest = current_results.get(
@@ -12115,6 +12123,297 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 Qiskit-loader global-phase report: "
             f"{b1_b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_path}"
+        )
+
+    b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate = {
+        "path": str(b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_path),
+        "exists": b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_path.exists(),
+    }
+    if not b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_manifest:
+        errors.append(
+            "B1 manifest missing current result: "
+            "b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate_v0"
+        )
+    else:
+        if (
+            b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_manifest.get(
+                "status"
+            )
+            != "cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_passed"
+        ):
+            errors.append("B1/B7 cone_01 Qiskit-loader linear-span status mismatch")
+        for field in ["report", "markdown_report", "openqasm3_candidate_path"]:
+            value = (
+                b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_manifest.get(
+                    field
+                )
+            )
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(
+                    "B1/B7 cone_01 Qiskit-loader linear-span missing "
+                    f"existing {field} path: {value}"
+                )
+    if b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_path.exists():
+        qasm3_loader_span_payload = json.loads(
+            read(b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_path)
+        )
+        qasm3_loader_span_summary = qasm3_loader_span_payload.get("summary", {})
+        qasm3_loader_span_claims = qasm3_loader_span_payload.get("claim_boundary", {})
+        b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate.update(
+            {
+                "status": qasm3_loader_span_payload.get("status"),
+                "model_status": qasm3_loader_span_payload.get("model_status"),
+                "method": qasm3_loader_span_payload.get("method"),
+                "workload": qasm3_loader_span_payload.get("workload"),
+                "openqasm3_candidate_path": qasm3_loader_span_summary.get(
+                    "openqasm3_candidate_path"
+                ),
+                "qiskit_version": qasm3_loader_span_summary.get("qiskit_version"),
+                "qiskit_qasm3_import_version": qasm3_loader_span_summary.get(
+                    "qiskit_qasm3_import_version"
+                ),
+                "openqasm3_package_version": qasm3_loader_span_summary.get(
+                    "openqasm3_package_version"
+                ),
+                "qiskit_loader_passed": qasm3_loader_span_summary.get(
+                    "qiskit_loader_passed"
+                ),
+                "qiskit_num_qubits": qasm3_loader_span_summary.get("qiskit_num_qubits"),
+                "qiskit_num_clbits": qasm3_loader_span_summary.get("qiskit_num_clbits"),
+                "qiskit_count_ops": qasm3_loader_span_summary.get("qiskit_count_ops"),
+                "qiskit_depth": qasm3_loader_span_summary.get("qiskit_depth"),
+                "global_phase_anchor_label": qasm3_loader_span_summary.get(
+                    "global_phase_anchor_label"
+                ),
+                "global_phase_anchor_radians": qasm3_loader_span_summary.get(
+                    "global_phase_anchor_radians"
+                ),
+                "certified_input_subspace_dimension": qasm3_loader_span_summary.get(
+                    "certified_input_subspace_dimension"
+                ),
+                "full_input_space_dimension": qasm3_loader_span_summary.get(
+                    "full_input_space_dimension"
+                ),
+                "certified_input_subspace_fraction": qasm3_loader_span_summary.get(
+                    "certified_input_subspace_fraction"
+                ),
+                "basis_anchor_case_count": qasm3_loader_span_summary.get(
+                    "basis_anchor_case_count"
+                ),
+                "linear_span_error_spectral_norm": qasm3_loader_span_summary.get(
+                    "linear_span_error_spectral_norm"
+                ),
+                "linear_span_error_frobenius_norm": qasm3_loader_span_summary.get(
+                    "linear_span_error_frobenius_norm"
+                ),
+                "max_basis_l2_error": qasm3_loader_span_summary.get("max_basis_l2_error"),
+                "max_basis_amplitude_delta": qasm3_loader_span_summary.get(
+                    "max_basis_amplitude_delta"
+                ),
+                "max_basis_probability_delta": qasm3_loader_span_summary.get(
+                    "max_basis_probability_delta"
+                ),
+                "max_source_candidate_gram_delta": qasm3_loader_span_summary.get(
+                    "max_source_candidate_gram_delta"
+                ),
+                "max_cross_gram_delta": qasm3_loader_span_summary.get(
+                    "max_cross_gram_delta"
+                ),
+                "source_cnot_count": qasm3_loader_span_summary.get("source_cnot_count"),
+                "qiskit_cnot_count": qasm3_loader_span_summary.get("qiskit_cnot_count"),
+                "qiskit_cnot_delta": qasm3_loader_span_summary.get("qiskit_cnot_delta"),
+                "qiskit_loader_linear_span_certificate_passed": (
+                    qasm3_loader_span_summary.get(
+                        "qiskit_loader_linear_span_certificate_passed"
+                    )
+                ),
+                "accepted_qiskit_loader_parse_artifact_count": qasm3_loader_span_summary.get(
+                    "accepted_qiskit_loader_parse_artifact_count"
+                ),
+                "accepted_qiskit_loader_replay_artifact_count": qasm3_loader_span_summary.get(
+                    "accepted_qiskit_loader_replay_artifact_count"
+                ),
+                "accepted_qiskit_loader_global_phase_subspace_replay_artifact_count": (
+                    qasm3_loader_span_summary.get(
+                        "accepted_qiskit_loader_global_phase_subspace_replay_artifact_count"
+                    )
+                ),
+                "accepted_qiskit_loader_linear_span_certificate_count": (
+                    qasm3_loader_span_summary.get(
+                        "accepted_qiskit_loader_linear_span_certificate_count"
+                    )
+                ),
+                "accepted_full_circuit_replay_certificate_count": (
+                    qasm3_loader_span_summary.get(
+                        "accepted_full_circuit_replay_certificate_count"
+                    )
+                ),
+                "accepted_symbolic_unitary_equivalence_count": qasm3_loader_span_summary.get(
+                    "accepted_symbolic_unitary_equivalence_count"
+                ),
+                "accepted_local_u3_pricing_certificate_count": qasm3_loader_span_summary.get(
+                    "accepted_local_u3_pricing_certificate_count"
+                ),
+                "accepted_occurrence_removal": qasm3_loader_span_summary.get(
+                    "accepted_occurrence_removal"
+                ),
+                "accepted_proxy_t_reduction": qasm3_loader_span_summary.get(
+                    "accepted_proxy_t_reduction"
+                ),
+                "missing_occurrences_after_gate": qasm3_loader_span_summary.get(
+                    "missing_occurrences_after_gate"
+                ),
+                "missing_proxy_t_after_gate": qasm3_loader_span_summary.get(
+                    "missing_proxy_t_after_gate"
+                ),
+                "qiskit_loader_parse_claimed": qasm3_loader_span_summary.get(
+                    "qiskit_loader_parse_claimed"
+                ),
+                "qiskit_loader_replay_claimed": qasm3_loader_span_summary.get(
+                    "qiskit_loader_replay_claimed"
+                ),
+                "qiskit_loader_global_phase_subspace_replay_claimed": (
+                    qasm3_loader_span_summary.get(
+                        "qiskit_loader_global_phase_subspace_replay_claimed"
+                    )
+                ),
+                "qiskit_loader_linear_span_certificate_claimed": (
+                    qasm3_loader_span_summary.get(
+                        "qiskit_loader_linear_span_certificate_claimed"
+                    )
+                ),
+                "symbolic_unitary_equivalence_claimed": qasm3_loader_span_summary.get(
+                    "symbolic_unitary_equivalence_claimed"
+                ),
+                "arbitrary_input_equivalence_claimed": qasm3_loader_span_summary.get(
+                    "arbitrary_input_equivalence_claimed"
+                ),
+                "full_hilbert_space_certificate_claimed": qasm3_loader_span_summary.get(
+                    "full_hilbert_space_certificate_claimed"
+                ),
+                "local_u3_pricing_accepted": qasm3_loader_span_summary.get(
+                    "local_u3_pricing_accepted"
+                ),
+                "resource_saving_claimed": qasm3_loader_span_summary.get(
+                    "resource_saving_claimed"
+                ),
+                "b7_ledger_improvement_claimed": qasm3_loader_span_summary.get(
+                    "b7_ledger_improvement_claimed"
+                ),
+                "validation_error_count": qasm3_loader_span_summary.get(
+                    "validation_error_count"
+                ),
+            }
+        )
+        if qasm3_loader_span_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 Qiskit-loader linear-span must have benchmark_id B1")
+        if (
+            qasm3_loader_span_payload.get("method")
+            != "b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate_v0"
+        ):
+            errors.append("B1/B7 cone_01 Qiskit-loader linear-span method mismatch")
+        if (
+            qasm3_loader_span_payload.get("status")
+            != "cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_passed"
+        ):
+            errors.append("B1/B7 cone_01 Qiskit-loader linear-span status mismatch")
+        if (
+            qasm3_loader_span_payload.get("model_status")
+            != "qiskit_loader_openqasm3_has_six_dimensional_linear_span_certificate_without_b7_credit"
+        ):
+            errors.append("B1/B7 cone_01 Qiskit-loader linear-span model_status mismatch")
+        expected_qasm3_loader_span_fields = {
+            "qiskit_version": "2.4.1",
+            "qiskit_qasm3_import_version": "0.6.0",
+            "openqasm3_package_version": "1.0.1",
+            "qiskit_loader_passed": True,
+            "qiskit_num_qubits": 19,
+            "qiskit_num_clbits": 1,
+            "qiskit_count_ops": {"cx": 789, "measure": 1, "rz": 601, "u": 487},
+            "qiskit_depth": 1483,
+            "global_phase_anchor_label": "zero",
+            "certified_input_subspace_dimension": 6,
+            "full_input_space_dimension": 524288,
+            "certified_input_subspace_fraction": 1.1444091796875e-05,
+            "basis_anchor_case_count": 6,
+            "linear_span_error_spectral_norm": 2.7889440543898627e-13,
+            "linear_span_error_frobenius_norm": 6.134324404657074e-13,
+            "max_basis_l2_error": 2.534056605707275e-13,
+            "max_basis_amplitude_delta": 1.3928889642636009e-13,
+            "max_basis_probability_delta": 7.771561172376096e-16,
+            "max_source_candidate_gram_delta": 1.9984014443252818e-15,
+            "max_cross_gram_delta": 4.403624367368429e-14,
+            "source_cnot_count": 795,
+            "qiskit_cnot_count": 789,
+            "qiskit_cnot_delta": 6,
+            "qiskit_loader_linear_span_certificate_passed": True,
+            "accepted_qiskit_loader_parse_artifact_count": 1,
+            "accepted_qiskit_loader_replay_artifact_count": 1,
+            "accepted_qiskit_loader_global_phase_subspace_replay_artifact_count": 1,
+            "accepted_qiskit_loader_linear_span_certificate_count": 1,
+            "accepted_full_circuit_replay_certificate_count": 0,
+            "accepted_symbolic_unitary_equivalence_count": 0,
+            "accepted_local_u3_pricing_certificate_count": 0,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "missing_occurrences_after_gate": 30,
+            "missing_proxy_t_after_gate": 600,
+            "qiskit_loader_parse_claimed": True,
+            "qiskit_loader_replay_claimed": True,
+            "qiskit_loader_global_phase_subspace_replay_claimed": True,
+            "qiskit_loader_linear_span_certificate_claimed": True,
+            "symbolic_unitary_equivalence_claimed": False,
+            "arbitrary_input_equivalence_claimed": False,
+            "full_hilbert_space_certificate_claimed": False,
+            "local_u3_pricing_accepted": False,
+            "resource_saving_claimed": False,
+            "b7_ledger_improvement_claimed": False,
+            "validation_error_count": 0,
+        }
+        for field, value in expected_qasm3_loader_span_fields.items():
+            if qasm3_loader_span_summary.get(field) != value:
+                errors.append(
+                    f"B1/B7 cone_01 Qiskit-loader linear-span expected {field}={value}"
+                )
+            if (
+                b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_manifest
+                and field
+                in b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_manifest
+                and qasm3_loader_span_summary.get(field)
+                != b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_manifest.get(
+                    field
+                )
+            ):
+                errors.append(f"B1/B7 cone_01 Qiskit-loader linear-span {field} mismatch")
+        for field, upper_bound in {
+            "linear_span_error_spectral_norm": 1e-10,
+            "max_basis_l2_error": 1e-10,
+            "max_basis_amplitude_delta": 1e-10,
+            "max_basis_probability_delta": 1e-10,
+            "max_source_candidate_gram_delta": 1e-10,
+            "max_cross_gram_delta": 1e-10,
+        }.items():
+            if float(qasm3_loader_span_summary.get(field, 1.0)) > upper_bound:
+                errors.append(f"B1/B7 cone_01 Qiskit-loader linear-span {field} too high")
+        for field in [
+            "symbolic_unitary_equivalence_claimed",
+            "arbitrary_input_equivalence_claimed",
+            "full_hilbert_space_certificate_claimed",
+            "local_u3_pricing_accepted",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if qasm3_loader_span_summary.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 Qiskit-loader linear-span must not claim {field}")
+            if qasm3_loader_span_claims.get(field) is not False:
+                errors.append(
+                    "B1/B7 cone_01 Qiskit-loader linear-span claim boundary "
+                    f"must not claim {field}"
+                )
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 Qiskit-loader linear-span report: "
+            f"{b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_path}"
         )
 
     b1_b7_cone01_full_statevector_replay_probe = {
@@ -26927,6 +27226,9 @@ def audit(root: Path) -> dict:
             "b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate": (
                 b1_b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay
             ),
+            "b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate": (
+                b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate
+            ),
             "b7_cone01_full_statevector_replay_probe_gate": (
                 b1_b7_cone01_full_statevector_replay_probe
             ),
@@ -27329,6 +27631,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate": str(
                 b1_b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_path
+            ),
+            "b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate": str(
+                b1_b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_path
             ),
             "b1_b7_cone01_full_statevector_replay_probe_gate": str(
                 b1_b7_cone01_full_statevector_replay_probe_path
@@ -28596,6 +28901,22 @@ def markdown_report(report: dict) -> str:
             f"- Accepted Qiskit-loader parse / replay / phase / global-anchor artifacts: {report['b1']['b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate'].get('accepted_qiskit_loader_parse_artifact_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate'].get('accepted_qiskit_loader_replay_artifact_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate'].get('accepted_qiskit_loader_phase_consistent_replay_artifact_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate'].get('accepted_qiskit_loader_global_phase_subspace_replay_artifact_count')}",
             f"- Accepted occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_openqasm3_qiskit_loader_global_phase_subspace_replay_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 OpenQASM 3 Qiskit-Loader Linear-Span Replay Certificate Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('status')}",
+            f"- OpenQASM 3 path: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('openqasm3_candidate_path')}",
+            f"- Qiskit / qiskit-qasm3-import / openqasm3 versions: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('qiskit_version')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('qiskit_qasm3_import_version')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('openqasm3_package_version')}",
+            f"- Qubits / clbits / depth / operation counts: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('qiskit_num_qubits')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('qiskit_num_clbits')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('qiskit_depth')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('qiskit_count_ops')}",
+            f"- Global phase anchor / certified subspace / full space: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('global_phase_anchor_label')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('certified_input_subspace_dimension')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('full_input_space_dimension')}",
+            f"- Linear-span spectral / Frobenius error: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('linear_span_error_spectral_norm')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('linear_span_error_frobenius_norm')}",
+            f"- Max basis L2 / amplitude / probability delta: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('max_basis_l2_error')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('max_basis_amplitude_delta')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('max_basis_probability_delta')}",
+            f"- Max source-candidate Gram / cross-Gram delta: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('max_source_candidate_gram_delta')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('max_cross_gram_delta')}",
+            f"- Source / Qiskit CNOT count / delta: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('source_cnot_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('qiskit_cnot_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('qiskit_cnot_delta')}",
+            f"- Accepted Qiskit-loader parse / replay / global-anchor / linear-span artifacts: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('accepted_qiskit_loader_parse_artifact_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('accepted_qiskit_loader_replay_artifact_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('accepted_qiskit_loader_global_phase_subspace_replay_artifact_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('accepted_qiskit_loader_linear_span_certificate_count')}",
+            f"- Accepted occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Full-Statevector Replay Probe Gate",
             "",

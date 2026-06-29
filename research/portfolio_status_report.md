@@ -966,6 +966,22 @@ Overall audit: PASS
 - Accepted occurrence / proxy-T reduction / B7 claim: 0 / 0 / False
 - Validation errors: 0
 
+## B1/B7 cone_01 OpenQASM 3 Qiskit-Loader Linear-Span Replay Certificate Gate
+
+- Exists: True
+- Status: cone01_openqasm3_qiskit_loader_linear_span_replay_certificate_passed
+- OpenQASM 3 path: results/B1_B7_cone01_openqasm3_candidate_export_gate/gcm_h6_line268_line1381_candidate_openqasm3.qasm
+- Qiskit / qiskit-qasm3-import / openqasm3 versions: 2.4.1 / 0.6.0 / 1.0.1
+- Qubits / clbits / depth / operation counts: 19 / 1 / 1483 / {'cx': 789, 'measure': 1, 'rz': 601, 'u': 487}
+- Global phase anchor / certified subspace / full space: zero / 6 / 524288
+- Linear-span spectral / Frobenius error: 2.7889440543898627e-13 / 6.134324404657074e-13
+- Max basis L2 / amplitude / probability delta: 2.534056605707275e-13 / 1.3928889642636009e-13 / 7.771561172376096e-16
+- Max source-candidate Gram / cross-Gram delta: 1.9984014443252818e-15 / 4.403624367368429e-14
+- Source / Qiskit CNOT count / delta: 795 / 789 / 6
+- Accepted Qiskit-loader parse / replay / global-anchor / linear-span artifacts: 1 / 1 / 1 / 1
+- Accepted occurrence / proxy-T reduction / B7 claim: 0 / 0 / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Full-Statevector Replay Probe Gate
 
 - Exists: True
