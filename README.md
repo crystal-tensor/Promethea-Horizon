@@ -995,3 +995,16 @@ amplitude delta `1.3928889642636009e-13`, max basis probability delta
 artifact for 6 of 524,288 input dimensions, but it is still not full-space
 symbolic equivalence, arbitrary-input equivalence, local-U3 pricing, occurrence
 removal, proxy-T reduction, or B7 ledger credit.
+
+T-B1-004cl lifts the composable patch evidence onto the Qiskit-loader path. It
+consumes the project-local OpenQASM 3 composable patch-lift gate, the
+Qiskit-loader global-phase gate, and the Qiskit-loader finite-span certificate
+for the same exported candidate. The selected patch lines remain 268 and 1381,
+the dropped overlap line remains 1378, the normalized instruction stream still
+has 0 mismatches across 1,878 instructions, and the loader-backed finite-span
+certificate keeps spectral norm `2.7889440543898627e-13`, max basis L2 error
+`2.534056605707275e-13`, max probability delta `7.771561172376096e-16`, and
+max cross-Gram delta `4.403624367368429e-14`. This accepts one
+Qiskit-loader-backed composable patch-lift support artifact, but it is still
+not full-space symbolic equivalence, arbitrary-input equivalence, local-U3
+pricing, occurrence removal, proxy-T reduction, or B7 ledger credit.

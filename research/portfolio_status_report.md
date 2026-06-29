@@ -982,6 +982,20 @@ Overall audit: PASS
 - Accepted occurrence / proxy-T reduction / B7 claim: 0 / 0 / False
 - Validation errors: 0
 
+## B1/B7 cone_01 OpenQASM 3 Qiskit-Loader Composable Patch Lift Support Gate
+
+- Exists: True
+- Status: cone01_openqasm3_qiskit_loader_composable_patch_lift_supported_without_b7_credit
+- OpenQASM 3 path: results/B1_B7_cone01_openqasm3_candidate_export_gate/gcm_h6_line268_line1381_candidate_openqasm3.qasm
+- Qiskit / qiskit-qasm3-import / openqasm3 versions: 2.4.1 / 0.6.0 / 1.0.1
+- Selected lines / dropped overlap lines: [268, 1381] / [1378]
+- Nonoverlap / local-unitary certificates: True / True
+- Qiskit global-phase / finite-span passed: True / True
+- Qiskit span spectral / max basis L2 / max probability delta: 2.7889440543898627e-13 / 2.534056605707275e-13 / 7.771561172376096e-16
+- Accepted parse / global-phase / linear-span / patch-lift support artifacts: 1 / 1 / 1 / 1
+- Accepted occurrence / proxy-T reduction / B7 claim: 0 / 0 / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Full-Statevector Replay Probe Gate
 
 - Exists: True

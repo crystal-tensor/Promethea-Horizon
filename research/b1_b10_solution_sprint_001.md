@@ -2171,3 +2171,17 @@ amplitude delta `1.3928889642636009e-13`, max basis probability delta
 Qiskit-loader finite-span certificate for 6/524,288 input dimensions only;
 arbitrary-input or symbolic equivalence, local-U3 pricing, occurrence removal,
 proxy-T reduction, and B7 ledger improvement remain 0.
+
+Sprint update 18cl: B1/B7 now has Qiskit-loader support for the OpenQASM 3
+composable patch lift. T-B1-004cl consumes the project-local OpenQASM 3
+composable patch-lift gate, the Qiskit-loader global-phase subspace replay gate,
+and the Qiskit-loader finite linear-span certificate for the same exported
+candidate. The supported patch set remains selected lines [268, 1381] with
+dropped overlap line [1378], stream mismatches 0 over 1,878 normalized
+instructions, Qiskit-loader finite-span spectral norm
+`2.7889440543898627e-13`, max basis L2 error `2.534056605707275e-13`, max
+probability delta `7.771561172376096e-16`, max cross-Gram delta
+`4.403624367368429e-14`, and validation errors 0. This accepts one
+Qiskit-loader composable patch-lift support artifact only; arbitrary-input or
+symbolic equivalence, local-U3 pricing, occurrence removal, proxy-T reduction,
+and B7 ledger improvement remain 0.
