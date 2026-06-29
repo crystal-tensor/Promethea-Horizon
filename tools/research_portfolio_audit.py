@@ -273,6 +273,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_openqasm3_provenance_seal_path = (
         results / "B1_B7_cone01_openqasm3_provenance_seal_gate_v0.json"
     )
+    b1_b7_cone01_openqasm3_source_map_path = (
+        results / "B1_B7_cone01_openqasm3_source_map_gate_v0.json"
+    )
     b1_b7_cone01_full_statevector_replay_probe_path = (
         results / "B1_B7_cone01_full_statevector_replay_probe_gate_v0.json"
     )
@@ -973,6 +976,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_openqasm3_provenance_seal_manifest = current_results.get(
         "b1_b7_cone01_openqasm3_provenance_seal_gate_v0"
+    )
+    b1_b7_cone01_openqasm3_source_map_manifest = current_results.get(
+        "b1_b7_cone01_openqasm3_source_map_gate_v0"
     )
     b1_b7_cone01_full_statevector_replay_probe_manifest = current_results.get(
         "b1_b7_cone01_full_statevector_replay_probe_gate_v0"
@@ -10573,6 +10579,247 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 OpenQASM 3 provenance seal report: "
             f"{b1_b7_cone01_openqasm3_provenance_seal_path}"
+        )
+
+    b1_b7_cone01_openqasm3_source_map = {
+        "path": str(b1_b7_cone01_openqasm3_source_map_path),
+        "exists": b1_b7_cone01_openqasm3_source_map_path.exists(),
+    }
+    if not b1_b7_cone01_openqasm3_source_map_manifest:
+        errors.append(
+            "B1 manifest missing current result: "
+            "b1_b7_cone01_openqasm3_source_map_gate_v0"
+        )
+    else:
+        if (
+            b1_b7_cone01_openqasm3_source_map_manifest.get("status")
+            != "cone01_openqasm3_source_map_passed_without_b7_resource_credit"
+        ):
+            errors.append("B1/B7 cone_01 OpenQASM 3 source-map status mismatch")
+        for field in ["report", "markdown_report", "openqasm3_candidate_path", "qasm2_candidate_path"]:
+            value = b1_b7_cone01_openqasm3_source_map_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(
+                    "B1/B7 cone_01 OpenQASM 3 source-map missing "
+                    f"existing {field} path: {value}"
+                )
+    if b1_b7_cone01_openqasm3_source_map_path.exists():
+        qasm3_source_map_payload = json.loads(read(b1_b7_cone01_openqasm3_source_map_path))
+        qasm3_source_map_summary = qasm3_source_map_payload.get("summary", {})
+        qasm3_source_map_claims = qasm3_source_map_payload.get("claim_boundary", {})
+        source_map_rows = qasm3_source_map_payload.get("source_map", [])
+        patch_line_map = qasm3_source_map_summary.get("patch_line_map", [])
+        b1_b7_cone01_openqasm3_source_map.update(
+            {
+                "status": qasm3_source_map_payload.get("status"),
+                "model_status": qasm3_source_map_payload.get("model_status"),
+                "method": qasm3_source_map_payload.get("method"),
+                "workload": qasm3_source_map_payload.get("workload"),
+                "qasm2_candidate_path": qasm3_source_map_summary.get("qasm2_candidate_path"),
+                "openqasm3_candidate_path": qasm3_source_map_summary.get(
+                    "openqasm3_candidate_path"
+                ),
+                "qasm2_raw_line_count": qasm3_source_map_summary.get("qasm2_raw_line_count"),
+                "openqasm3_raw_line_count": qasm3_source_map_summary.get(
+                    "openqasm3_raw_line_count"
+                ),
+                "normalized_instruction_count": qasm3_source_map_summary.get(
+                    "normalized_instruction_count"
+                ),
+                "normalized_streams_match": qasm3_source_map_summary.get(
+                    "normalized_streams_match"
+                ),
+                "normalized_stream_sha256": qasm3_source_map_summary.get(
+                    "normalized_stream_sha256"
+                ),
+                "source_map_row_count": qasm3_source_map_summary.get("source_map_row_count"),
+                "raw_line_delta_count": qasm3_source_map_summary.get("raw_line_delta_count"),
+                "source_map_sha256": qasm3_source_map_summary.get("source_map_sha256"),
+                "selected_line_numbers": qasm3_source_map_summary.get("selected_line_numbers"),
+                "dropped_overlap_candidate_line_numbers": qasm3_source_map_summary.get(
+                    "dropped_overlap_candidate_line_numbers"
+                ),
+                "patch_instruction_indices": [
+                    row.get("instruction_index") for row in patch_line_map
+                ],
+                "patch_operation_kinds": [row.get("operation") for row in patch_line_map],
+                "openqasm3_source_map_passed": qasm3_source_map_summary.get(
+                    "openqasm3_source_map_passed"
+                ),
+                "accepted_project_local_openqasm3_source_map_count": (
+                    qasm3_source_map_summary.get(
+                        "accepted_project_local_openqasm3_source_map_count"
+                    )
+                ),
+                "accepted_qiskit_loader_parse_artifact_count": qasm3_source_map_summary.get(
+                    "accepted_qiskit_loader_parse_artifact_count"
+                ),
+                "accepted_symbolic_unitary_equivalence_count": qasm3_source_map_summary.get(
+                    "accepted_symbolic_unitary_equivalence_count"
+                ),
+                "accepted_local_u3_pricing_certificate_count": qasm3_source_map_summary.get(
+                    "accepted_local_u3_pricing_certificate_count"
+                ),
+                "accepted_occurrence_removal": qasm3_source_map_summary.get(
+                    "accepted_occurrence_removal"
+                ),
+                "accepted_proxy_t_reduction": qasm3_source_map_summary.get(
+                    "accepted_proxy_t_reduction"
+                ),
+                "missing_occurrences_after_gate": qasm3_source_map_summary.get(
+                    "missing_occurrences_after_gate"
+                ),
+                "missing_proxy_t_after_gate": qasm3_source_map_summary.get(
+                    "missing_proxy_t_after_gate"
+                ),
+                "qiskit_loader_parse_claimed": qasm3_source_map_summary.get(
+                    "qiskit_loader_parse_claimed"
+                ),
+                "symbolic_unitary_equivalence_claimed": qasm3_source_map_summary.get(
+                    "symbolic_unitary_equivalence_claimed"
+                ),
+                "arbitrary_input_equivalence_claimed": qasm3_source_map_summary.get(
+                    "arbitrary_input_equivalence_claimed"
+                ),
+                "full_hilbert_space_certificate_claimed": qasm3_source_map_summary.get(
+                    "full_hilbert_space_certificate_claimed"
+                ),
+                "local_u3_pricing_accepted": qasm3_source_map_summary.get(
+                    "local_u3_pricing_accepted"
+                ),
+                "resource_saving_claimed": qasm3_source_map_summary.get(
+                    "resource_saving_claimed"
+                ),
+                "b7_ledger_improvement_claimed": qasm3_source_map_summary.get(
+                    "b7_ledger_improvement_claimed"
+                ),
+                "validation_error_count": qasm3_source_map_summary.get(
+                    "validation_error_count"
+                ),
+            }
+        )
+        if qasm3_source_map_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 OpenQASM 3 source-map must have benchmark_id B1")
+        if qasm3_source_map_payload.get("method") != "b1_b7_cone01_openqasm3_source_map_gate_v0":
+            errors.append("B1/B7 cone_01 OpenQASM 3 source-map method mismatch")
+        if (
+            qasm3_source_map_payload.get("status")
+            != "cone01_openqasm3_source_map_passed_without_b7_resource_credit"
+        ):
+            errors.append("B1/B7 cone_01 OpenQASM 3 source-map status mismatch")
+        if (
+            qasm3_source_map_payload.get("model_status")
+            != "openqasm3_patch_lift_instruction_source_map_is_stable_without_b7_credit"
+        ):
+            errors.append("B1/B7 cone_01 OpenQASM 3 source-map model_status mismatch")
+        expected_qasm3_source_map_fields = {
+            "qasm2_raw_line_count": 1884,
+            "openqasm3_raw_line_count": 1884,
+            "normalized_instruction_count": 1878,
+            "normalized_streams_match": True,
+            "normalized_stream_sha256": "7cd50bea1f5a3c191c5735c0891d3f70f8c07a9cfca9d6e93724e6d49cb36343",
+            "source_map_row_count": 1878,
+            "raw_line_delta_count": 0,
+            "selected_line_numbers": [268, 1381],
+            "dropped_overlap_candidate_line_numbers": [1378],
+            "openqasm3_source_map_passed": True,
+            "accepted_project_local_openqasm3_source_map_count": 1,
+            "accepted_qiskit_loader_parse_artifact_count": 0,
+            "accepted_symbolic_unitary_equivalence_count": 0,
+            "accepted_local_u3_pricing_certificate_count": 0,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "missing_occurrences_after_gate": 30,
+            "missing_proxy_t_after_gate": 600,
+            "qiskit_loader_parse_claimed": False,
+            "symbolic_unitary_equivalence_claimed": False,
+            "arbitrary_input_equivalence_claimed": False,
+            "full_hilbert_space_certificate_claimed": False,
+            "local_u3_pricing_accepted": False,
+            "resource_saving_claimed": False,
+            "b7_ledger_improvement_claimed": False,
+            "validation_error_count": 0,
+        }
+        for field, value in expected_qasm3_source_map_fields.items():
+            if qasm3_source_map_summary.get(field) != value:
+                errors.append(f"B1/B7 cone_01 OpenQASM 3 source-map expected {field}={value}")
+            if (
+                b1_b7_cone01_openqasm3_source_map_manifest
+                and field in b1_b7_cone01_openqasm3_source_map_manifest
+                and qasm3_source_map_summary.get(field)
+                != b1_b7_cone01_openqasm3_source_map_manifest.get(field)
+            ):
+                errors.append(f"B1/B7 cone_01 OpenQASM 3 source-map {field} mismatch")
+        if not isinstance(source_map_rows, list) or len(source_map_rows) != 1878:
+            errors.append("B1/B7 cone_01 OpenQASM 3 source-map rows missing or wrong length")
+        else:
+            recomputed_source_map_hash = hashlib.sha256(
+                json.dumps(source_map_rows, sort_keys=True, separators=(",", ":")).encode(
+                    "utf-8"
+                )
+            ).hexdigest()
+            if recomputed_source_map_hash != qasm3_source_map_summary.get("source_map_sha256"):
+                errors.append("B1/B7 cone_01 OpenQASM 3 source-map digest mismatch")
+            operation_counts = {}
+            raw_line_delta_count = 0
+            for row in source_map_rows:
+                operation_counts[row.get("operation")] = operation_counts.get(
+                    row.get("operation"), 0
+                ) + 1
+                if row.get("qasm2_line_number") != row.get("openqasm3_line_number"):
+                    raw_line_delta_count += 1
+            if operation_counts != {"U": 487, "rz": 601, "cx": 789, "measure": 1}:
+                errors.append("B1/B7 cone_01 OpenQASM 3 source-map operation counts mismatch")
+            if raw_line_delta_count != qasm3_source_map_summary.get("raw_line_delta_count"):
+                errors.append("B1/B7 cone_01 OpenQASM 3 source-map raw-line delta mismatch")
+        expected_patch_rows = [
+            {
+                "instruction_index": 263,
+                "operation": "rz",
+                "qasm2_line_number": 268,
+                "openqasm3_line_number": 268,
+            },
+            {
+                "instruction_index": 1375,
+                "operation": "U",
+                "qasm2_line_number": 1381,
+                "openqasm3_line_number": 1381,
+            },
+            {
+                "instruction_index": 1372,
+                "operation": "U",
+                "qasm2_line_number": 1378,
+                "openqasm3_line_number": 1378,
+            },
+        ]
+        for expected_row, actual_row in zip(expected_patch_rows, patch_line_map):
+            for field, value in expected_row.items():
+                if actual_row.get(field) != value:
+                    errors.append(
+                        f"B1/B7 cone_01 OpenQASM 3 source-map patch {field} mismatch"
+                    )
+        if len(patch_line_map) != 3:
+            errors.append("B1/B7 cone_01 OpenQASM 3 source-map patch line map length mismatch")
+        for field in [
+            "qiskit_loader_parse_claimed",
+            "symbolic_unitary_equivalence_claimed",
+            "arbitrary_input_equivalence_claimed",
+            "full_hilbert_space_certificate_claimed",
+            "local_u3_pricing_accepted",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if qasm3_source_map_summary.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 OpenQASM 3 source-map must not claim {field}")
+            if qasm3_source_map_claims.get(field) is not False:
+                errors.append(
+                    "B1/B7 cone_01 OpenQASM 3 source-map claim boundary "
+                    f"must not claim {field}"
+                )
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 OpenQASM 3 source-map report: "
+            f"{b1_b7_cone01_openqasm3_source_map_path}"
         )
 
     b1_b7_cone01_full_statevector_replay_probe = {
@@ -25367,6 +25614,9 @@ def audit(root: Path) -> dict:
             "b7_cone01_openqasm3_provenance_seal_gate": (
                 b1_b7_cone01_openqasm3_provenance_seal
             ),
+            "b7_cone01_openqasm3_source_map_gate": (
+                b1_b7_cone01_openqasm3_source_map
+            ),
             "b7_cone01_full_statevector_replay_probe_gate": (
                 b1_b7_cone01_full_statevector_replay_probe
             ),
@@ -25751,6 +26001,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_openqasm3_provenance_seal_gate": str(
                 b1_b7_cone01_openqasm3_provenance_seal_path
+            ),
+            "b1_b7_cone01_openqasm3_source_map_gate": str(
+                b1_b7_cone01_openqasm3_source_map_path
             ),
             "b1_b7_cone01_full_statevector_replay_probe_gate": str(
                 b1_b7_cone01_full_statevector_replay_probe_path
@@ -26929,6 +27182,20 @@ def markdown_report(report: dict) -> str:
             f"- Accepted provenance seal / Qiskit loader / symbolic artifacts: {report['b1']['b7_cone01_openqasm3_provenance_seal_gate'].get('accepted_project_local_openqasm3_provenance_seal_count')} / {report['b1']['b7_cone01_openqasm3_provenance_seal_gate'].get('accepted_qiskit_loader_parse_artifact_count')} / {report['b1']['b7_cone01_openqasm3_provenance_seal_gate'].get('accepted_symbolic_unitary_equivalence_count')}",
             f"- Accepted occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_openqasm3_provenance_seal_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_openqasm3_provenance_seal_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_openqasm3_provenance_seal_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_openqasm3_provenance_seal_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 OpenQASM 3 Source-Map Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('status')}",
+            f"- QASM2 / OpenQASM 3 paths: {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('qasm2_candidate_path')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('openqasm3_candidate_path')}",
+            f"- Raw QASM2 / OpenQASM 3 line counts: {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('qasm2_raw_line_count')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('openqasm3_raw_line_count')}",
+            f"- Normalized stream match / instruction count / hash: {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('normalized_streams_match')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('normalized_instruction_count')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('normalized_stream_sha256')}",
+            f"- Source-map rows / raw-line drift count / hash: {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('source_map_row_count')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('raw_line_delta_count')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('source_map_sha256')}",
+            f"- Selected lines / dropped overlap lines: {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('selected_line_numbers')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('dropped_overlap_candidate_line_numbers')}",
+            f"- Patch instruction indices / operations: {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('patch_instruction_indices')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('patch_operation_kinds')}",
+            f"- Accepted source-map / Qiskit loader / symbolic artifacts: {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('accepted_project_local_openqasm3_source_map_count')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('accepted_qiskit_loader_parse_artifact_count')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('accepted_symbolic_unitary_equivalence_count')}",
+            f"- Accepted occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_openqasm3_source_map_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Full-Statevector Replay Probe Gate",
             "",

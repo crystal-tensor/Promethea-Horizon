@@ -912,3 +912,14 @@ provenance seal digest is
 accepts one project-local OpenQASM 3 provenance-seal artifact, but it still does
 not claim Qiskit-loader parsing, symbolic equivalence, local-U3 pricing,
 occurrence removal, proxy-T reduction, or B7 ledger credit.
+
+T-B1-004ce adds a source-map gate for the OpenQASM 3 patch-lift chain. It builds
+a one-to-one instruction map between the QASM2 candidate and the OpenQASM 3
+candidate over all 1,878 normalized instructions, records the map digest
+`92a499ea6d549426095fbb0fc878f7033027991621a6d5ea1c03cd25d82e9e1e`, and
+confirms raw-line drift count 0. The selected patch lines remain line 268 and
+line 1381, mapped to instruction indices 263 and 1375; the dropped overlap line
+1378 maps to instruction index 1372. This accepts one project-local OpenQASM 3
+source-map artifact, but it still does not claim Qiskit-loader parsing,
+symbolic equivalence, local-U3 pricing, occurrence removal, proxy-T reduction,
+or B7 ledger credit.

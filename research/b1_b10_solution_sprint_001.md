@@ -2080,3 +2080,14 @@ selected patch residual `6.513210005207597e-13`, max selected entry error
 patch-lift artifact only; Qiskit-loader replay, full-space symbolic/local-unitary
 equivalence, local-U3 pricing, occurrence removal, proxy-T reduction, and B7
 ledger improvement remain 0.
+
+Sprint update 18ce: B1/B7 now has an OpenQASM 3 source-map gate. T-B1-004ce
+consumes the provenance-sealed QASM2/OpenQASM 3 patch-lift chain and builds a
+one-to-one instruction source map across all 1,878 normalized instructions. The
+raw-line drift count is 0, the source-map hash is
+`92a499ea6d549426095fbb0fc878f7033027991621a6d5ea1c03cd25d82e9e1e`, selected
+line 268 maps to instruction index 263, selected line 1381 maps to instruction
+index 1375, and dropped overlap line 1378 maps to instruction index 1372. This
+accepts one project-local source-map artifact only; Qiskit-loader replay,
+full-space symbolic/local-unitary equivalence, local-U3 pricing, occurrence
+removal, proxy-T reduction, and B7 ledger improvement remain 0.

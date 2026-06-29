@@ -877,6 +877,20 @@ Overall audit: PASS
 - Accepted occurrence / proxy-T reduction / B7 claim: 0 / 0 / False
 - Validation errors: 0
 
+## B1/B7 cone_01 OpenQASM 3 Source-Map Gate
+
+- Exists: True
+- Status: cone01_openqasm3_source_map_passed_without_b7_resource_credit
+- QASM2 / OpenQASM 3 paths: results/B1_B7_cone01_qasm2_candidate_rewrite_gate/gcm_h6_line268_line1381_candidate.qasm / results/B1_B7_cone01_openqasm3_candidate_export_gate/gcm_h6_line268_line1381_candidate_openqasm3.qasm
+- Raw QASM2 / OpenQASM 3 line counts: 1884 / 1884
+- Normalized stream match / instruction count / hash: True / 1878 / 7cd50bea1f5a3c191c5735c0891d3f70f8c07a9cfca9d6e93724e6d49cb36343
+- Source-map rows / raw-line drift count / hash: 1878 / 0 / 92a499ea6d549426095fbb0fc878f7033027991621a6d5ea1c03cd25d82e9e1e
+- Selected lines / dropped overlap lines: [268, 1381] / [1378]
+- Patch instruction indices / operations: [263, 1375, 1372] / ['rz', 'U', 'U']
+- Accepted source-map / Qiskit loader / symbolic artifacts: 1 / 0 / 0
+- Accepted occurrence / proxy-T reduction / B7 claim: 0 / 0 / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Full-Statevector Replay Probe Gate
 
 - Exists: True
