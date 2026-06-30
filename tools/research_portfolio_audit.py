@@ -27654,11 +27654,13 @@ def audit(root: Path) -> dict:
     b6_formula = b6_results.get("b6_formula_descriptor_screen_v0")
     b6_structural = b6_results.get("b6_structural_electronic_proxy_screen_v0")
     b6_crystallographic_gate = b6_results.get("b6_crystallographic_reproducibility_gate_v0")
+    b6_crystallographic_contract = b6_results.get("b6_crystallographic_evidence_contract_gate_v0")
     b6_status = {}
     b6_curated_status = {}
     b6_formula_status = {}
     b6_structural_status = {}
     b6_crystallographic_gate_status = {}
+    b6_crystallographic_contract_status = {}
     if not b6_descriptor:
         warnings.append("B6 manifest has no superconductivity descriptor ranking result")
     else:
@@ -28095,6 +28097,150 @@ def audit(root: Path) -> dict:
             "gate_pass_count": b6_crystallographic_gate.get("gate_pass_count"),
             "gate_fail_count": b6_crystallographic_gate.get("gate_fail_count"),
             "failed_requirement_ids": b6_crystallographic_gate.get("failed_requirement_ids"),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown": markdown_path,
+        }
+
+    if not b6_crystallographic_contract:
+        warnings.append("B6 manifest has no crystallographic evidence contract gate result")
+    else:
+        result_path = b6_crystallographic_contract.get("result")
+        markdown_path = b6_crystallographic_contract.get("markdown")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"B6 crystallographic contract result path missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"B6 crystallographic contract markdown path missing: {markdown_path}")
+        if b6_crystallographic_contract.get("method") != "b6_crystallographic_evidence_contract_gate_v0":
+            errors.append("B6 crystallographic contract method mismatch")
+        if (
+            b6_crystallographic_contract.get("status")
+            != "crystallographic_evidence_contract_open_not_material_discovery_claim"
+        ):
+            errors.append("B6 crystallographic contract status mismatch")
+        expected_source_failed = ["R6", "R7", "R8", "R9", "R10"]
+        expected_contract_failed = ["K4", "K5", "K6", "K7", "K8"]
+        expected_packets = [
+            "B6-R6-reproducible-crystallographic-backend",
+            "B6-R7-source-validation-cleanup",
+            "B6-R8-family-prior-denominator",
+            "B6-R9-dft-observable-channel",
+            "B6-R10-b5-observable-channel",
+        ]
+        for field, expected in [
+            ("source_failed_requirement_ids", expected_source_failed),
+            ("failed_contract_requirement_ids", expected_contract_failed),
+            ("contract_packet_ids", expected_packets),
+        ]:
+            if b6_crystallographic_contract.get(field) != expected:
+                errors.append(f"B6 crystallographic contract {field} mismatch")
+        for field, expected in [
+            ("contract_requirement_count", 8),
+            ("passed_contract_requirement_count", 3),
+            ("failed_contract_requirement_count", 5),
+            ("contract_packet_count", 5),
+            ("record_count", 56),
+            ("family_count", 28),
+            ("negative_control_count", 18),
+            ("post_split_record_count", 27),
+            ("source_validation_error_count", 2),
+        ]:
+            if b6_crystallographic_contract.get(field) != expected:
+                errors.append(f"B6 crystallographic contract {field} mismatch")
+        for field, expected in [
+            ("post_split_crystallo_ap", 0.2476190476190476),
+            ("post_split_family_prior_ap", 0.4901360544217687),
+        ]:
+            if b6_crystallographic_contract.get(field) != expected:
+                errors.append(f"B6 crystallographic contract {field} mismatch")
+        if b6_crystallographic_contract.get("pymatgen_available") is not False:
+            errors.append("B6 crystallographic contract should keep pymatgen_available false")
+        if result_exists:
+            payload = json.loads(read((benchmarks / result_path).resolve()))
+            if payload.get("benchmark_id") != "B6":
+                errors.append("B6 crystallographic contract benchmark_id mismatch")
+            for field in [
+                "method",
+                "status",
+                "model_status",
+                "source_method",
+                "source_status",
+                "source_failed_requirement_ids",
+                "record_count",
+                "family_count",
+                "negative_control_count",
+                "post_split_record_count",
+                "post_split_crystallo_ap",
+                "post_split_family_prior_ap",
+                "source_validation_error_count",
+                "pymatgen_available",
+                "contract_requirement_count",
+                "passed_contract_requirement_count",
+                "failed_contract_requirement_count",
+                "failed_contract_requirement_ids",
+                "contract_packet_count",
+                "contract_packet_ids",
+            ]:
+                if payload.get(field) != b6_crystallographic_contract.get(field):
+                    errors.append(f"B6 crystallographic contract payload {field} differs from manifest")
+            claim_boundary = payload.get("claim_boundary", {})
+            if claim_boundary.get("crystallographic_evidence_contract_built") is not True:
+                errors.append("B6 crystallographic contract must disclose contract construction")
+            for claim_key in [
+                "material_discovery_claimed",
+                "mechanism_solved",
+                "complete_materials_database",
+                "reproducible_crystallographic_descriptor_claim",
+                "dft_observable_claimed",
+                "b5_computed_observable_claimed",
+                "solution_claimed",
+            ]:
+                if claim_boundary.get(claim_key) is not False:
+                    errors.append(f"B6 crystallographic contract payload claims {claim_key}")
+            if payload.get("validation_errors") != []:
+                errors.append("B6 crystallographic contract should have no payload validation errors")
+        b6_crystallographic_contract_status = {
+            "status": b6_crystallographic_contract.get("status"),
+            "method": b6_crystallographic_contract.get("method"),
+            "model_status": b6_crystallographic_contract.get("model_status"),
+            "source_method": b6_crystallographic_contract.get("source_method"),
+            "source_status": b6_crystallographic_contract.get("source_status"),
+            "source_failed_requirement_ids": b6_crystallographic_contract.get(
+                "source_failed_requirement_ids"
+            ),
+            "record_count": b6_crystallographic_contract.get("record_count"),
+            "family_count": b6_crystallographic_contract.get("family_count"),
+            "negative_control_count": b6_crystallographic_contract.get("negative_control_count"),
+            "post_split_record_count": b6_crystallographic_contract.get(
+                "post_split_record_count"
+            ),
+            "post_split_crystallo_ap": b6_crystallographic_contract.get(
+                "post_split_crystallo_ap"
+            ),
+            "post_split_family_prior_ap": b6_crystallographic_contract.get(
+                "post_split_family_prior_ap"
+            ),
+            "source_validation_error_count": b6_crystallographic_contract.get(
+                "source_validation_error_count"
+            ),
+            "pymatgen_available": b6_crystallographic_contract.get("pymatgen_available"),
+            "contract_requirement_count": b6_crystallographic_contract.get(
+                "contract_requirement_count"
+            ),
+            "passed_contract_requirement_count": b6_crystallographic_contract.get(
+                "passed_contract_requirement_count"
+            ),
+            "failed_contract_requirement_count": b6_crystallographic_contract.get(
+                "failed_contract_requirement_count"
+            ),
+            "failed_contract_requirement_ids": b6_crystallographic_contract.get(
+                "failed_contract_requirement_ids"
+            ),
+            "contract_packet_count": b6_crystallographic_contract.get("contract_packet_count"),
+            "contract_packet_ids": b6_crystallographic_contract.get("contract_packet_ids"),
             "result_exists": result_exists,
             "markdown_exists": markdown_exists,
             "result": result_path,
@@ -32033,6 +32179,7 @@ def audit(root: Path) -> dict:
             "formula_descriptor_screen": b6_formula_status,
             "structural_electronic_proxy_screen": b6_structural_status,
             "crystallographic_reproducibility_gate": b6_crystallographic_gate_status,
+            "crystallographic_evidence_contract_gate": b6_crystallographic_contract_status,
         },
         "b7": {
             "manifest": str(b7_manifest_path),
@@ -32564,6 +32711,9 @@ def audit(root: Path) -> dict:
             ),
             "b6_crystallographic_reproducibility_gate": str(
                 research / "B6_crystallographic_reproducibility_gate.md"
+            ),
+            "b6_crystallographic_evidence_contract_gate": str(
+                research / "B6_crystallographic_evidence_contract_gate.md"
             ),
             "b10_formal_theorem_targets": str(research / "B10_formal_theorem_targets.md"),
             "b10_t2_minimum_refresh_spoofer_boundary": str(research / "B8_generative_spoofer_refresh.md"),
@@ -34759,6 +34909,11 @@ def markdown_report(report: dict) -> str:
             f"- Crystallographic post-split AP / family-prior AP: {report['b6']['crystallographic_reproducibility_gate'].get('post_split_crystallo_ap')} / {report['b6']['crystallographic_reproducibility_gate'].get('post_split_family_prior_ap')}",
             f"- Crystallographic source validation errors / pymatgen available: {report['b6']['crystallographic_reproducibility_gate'].get('source_validation_error_count')} / {report['b6']['crystallographic_reproducibility_gate'].get('pymatgen_available')}",
             f"- Crystallographic gate result/markdown exists: {report['b6']['crystallographic_reproducibility_gate'].get('result_exists')} / {report['b6']['crystallographic_reproducibility_gate'].get('markdown_exists')}",
+            f"- Crystallographic evidence contract status: {report['b6']['crystallographic_evidence_contract_gate'].get('status')}",
+            f"- Crystallographic evidence contract source failures / contract failures: {report['b6']['crystallographic_evidence_contract_gate'].get('source_failed_requirement_ids')} / {report['b6']['crystallographic_evidence_contract_gate'].get('failed_contract_requirement_ids')}",
+            f"- Crystallographic evidence contract passed / failed / packets: {report['b6']['crystallographic_evidence_contract_gate'].get('passed_contract_requirement_count')} / {report['b6']['crystallographic_evidence_contract_gate'].get('failed_contract_requirement_count')} / {report['b6']['crystallographic_evidence_contract_gate'].get('contract_packet_count')}",
+            f"- Crystallographic evidence contract packet IDs: {report['b6']['crystallographic_evidence_contract_gate'].get('contract_packet_ids')}",
+            f"- Crystallographic evidence contract result/markdown exists: {report['b6']['crystallographic_evidence_contract_gate'].get('result_exists')} / {report['b6']['crystallographic_evidence_contract_gate'].get('markdown_exists')}",
             "",
             "## B7 Fault-Tolerance Co-Design Status",
             "",

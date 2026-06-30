@@ -229,6 +229,14 @@ AP 0.4901, and there are still no DFT or B5-computed observables. This is not a
 material-discovery, solved-mechanism, DFT-observable, B5-observable, or
 solution claim.
 
+`T-B6-005` converts those failed crystallographic-readiness checks into a
+reproducible evidence contract. The contract checks 8 requirements: 3 pass and
+5 fail. Failed gates `K4`-`K8` map directly to five PR packets: reproducible
+crystallographic backend, source-validation cleanup, post-split family-prior
+denominator defeat, DFT observable channel, and B5-computed observable channel.
+This is still not a material-discovery, mechanism, complete-database, DFT,
+B5-observable, or solution claim.
+
 B2 has moved past the earlier reduced-round artifact into a leakage-flagged
 erasure analytic boundary: 480 configurations, 42 proxy target-volume improved
 rows, 33 distance-5/7 improved rows, no reduced rounds, and no new-code,

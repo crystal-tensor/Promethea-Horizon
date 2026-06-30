@@ -1,0 +1,169 @@
+{
+  "benchmark_id": "B6",
+  "claim_boundary": {
+    "b5_computed_observable_claimed": false,
+    "complete_materials_database": false,
+    "crystallographic_evidence_contract_built": true,
+    "dft_observable_claimed": false,
+    "material_discovery_claimed": false,
+    "mechanism_solved": false,
+    "reproducible_crystallographic_descriptor_claim": false,
+    "solution_claimed": false
+  },
+  "contract_packet_count": 5,
+  "contract_packet_ids": [
+    "B6-R6-reproducible-crystallographic-backend",
+    "B6-R7-source-validation-cleanup",
+    "B6-R8-family-prior-denominator",
+    "B6-R9-dft-observable-channel",
+    "B6-R10-b5-observable-channel"
+  ],
+  "contract_packets": [
+    {
+      "acceptance_criteria": [
+        "record pymatgen or equivalent package version",
+        "rerun descriptor extraction deterministically",
+        "preserve the 56-record / 28-family / 18-negative-control scope"
+      ],
+      "claim_boundary": "Packet evidence may support B6 descriptor reproducibility only after audit; it must not claim material discovery, solved mechanism, complete database, DFT observables, B5 observables, or superconductivity solution unless the corresponding contract gate passes.",
+      "id": "B6-R6-reproducible-crystallographic-backend",
+      "source_gate": "R6",
+      "title": "Pin a reproducible crystallographic descriptor backend"
+    },
+    {
+      "acceptance_criteria": [
+        "validation_error_count is 0",
+        "negative controls are not silently excluded from top-k analysis",
+        "family-prior dominance is reported and addressed"
+      ],
+      "claim_boundary": "Packet evidence may support B6 descriptor reproducibility only after audit; it must not claim material discovery, solved mechanism, complete database, DFT observables, B5 observables, or superconductivity solution unless the corresponding contract gate passes.",
+      "id": "B6-R7-source-validation-cleanup",
+      "source_gate": "R7",
+      "title": "Remove source validation blockers"
+    },
+    {
+      "acceptance_criteria": [
+        "post_split_crystallo_ap is greater than post_split_family_prior_ap",
+        "same post-2008 holdout rows are used",
+        "no family leakage or post-hoc reranking is introduced"
+      ],
+      "claim_boundary": "Packet evidence may support B6 descriptor reproducibility only after audit; it must not claim material discovery, solved mechanism, complete database, DFT observables, B5 observables, or superconductivity solution unless the corresponding contract gate passes.",
+      "id": "B6-R8-family-prior-denominator",
+      "source_gate": "R8",
+      "title": "Beat the post-split family-prior denominator"
+    },
+    {
+      "acceptance_criteria": [
+        "DFT feature definitions and units are stored",
+        "source structures are traceable",
+        "claim boundary states whether DFT is computed or absent"
+      ],
+      "claim_boundary": "Packet evidence may support B6 descriptor reproducibility only after audit; it must not claim material discovery, solved mechanism, complete database, DFT observables, B5 observables, or superconductivity solution unless the corresponding contract gate passes.",
+      "id": "B6-R9-dft-observable-channel",
+      "source_gate": "R9",
+      "title": "Attach DFT observables"
+    },
+    {
+      "acceptance_criteria": [
+        "B5 observable source artifact is named",
+        "observable units and row alignment are stored",
+        "B6 ranking does not claim mechanism without B5 support"
+      ],
+      "claim_boundary": "Packet evidence may support B6 descriptor reproducibility only after audit; it must not claim material discovery, solved mechanism, complete database, DFT observables, B5 observables, or superconductivity solution unless the corresponding contract gate passes.",
+      "id": "B6-R10-b5-observable-channel",
+      "source_gate": "R10",
+      "title": "Attach B5-computed observables"
+    }
+  ],
+  "contract_requirement_count": 8,
+  "failed_contract_requirement_count": 5,
+  "failed_contract_requirement_ids": [
+    "K4",
+    "K5",
+    "K6",
+    "K7",
+    "K8"
+  ],
+  "family_count": 28,
+  "method": "b6_crystallographic_evidence_contract_gate_v0",
+  "model_status": "crystallographic_reproducibility_blockers_decomposed_for_prs",
+  "negative_control_count": 18,
+  "passed_contract_requirement_count": 3,
+  "post_split_crystallo_ap": 0.2476190476190476,
+  "post_split_family_prior_ap": 0.4901360544217687,
+  "post_split_record_count": 27,
+  "pymatgen_available": false,
+  "record_count": 56,
+  "requirements": [
+    {
+      "evidence": "benchmark_id=B6; method=b6_crystallographic_reproducibility_gate_v0; status=crystallographic_reproducibility_gate_failed_not_material_discovery_claim; failed=['R6', 'R7', 'R8', 'R9', 'R10']",
+      "id": "K1",
+      "label": "source reproducibility gate is present and bounded",
+      "missing_to_promote": "Keep the contract tied to the failed T-B6-004 gate.",
+      "passed": true
+    },
+    {
+      "evidence": "records=56; families=28; negatives=18; post_split=27",
+      "id": "K2",
+      "label": "table size and holdout scope are contract-ready",
+      "missing_to_promote": "Preserve the same audited B6 crystallographic row scope.",
+      "passed": true
+    },
+    {
+      "evidence": "no_forbidden_claims=True",
+      "id": "K3",
+      "label": "forbidden discovery and mechanism claims are absent",
+      "missing_to_promote": "Keep all claims bounded until reproducibility, baselines, and observables pass.",
+      "passed": true
+    },
+    {
+      "evidence": "pymatgen_available=False",
+      "id": "K4",
+      "label": "reproducible crystallographic backend is available",
+      "missing_to_promote": "Pin pymatgen or an equivalent descriptor backend with deterministic version metadata.",
+      "passed": false
+    },
+    {
+      "evidence": "source_validation_error_count=2",
+      "id": "K5",
+      "label": "source validation blockers are removed",
+      "missing_to_promote": "Remove source validation blockers and rerun the crystallographic screen.",
+      "passed": false
+    },
+    {
+      "evidence": "post_split_crystallo_ap=0.2476190476190476; post_split_family_prior_ap=0.4901360544217687",
+      "id": "K6",
+      "label": "post-split crystallographic AP beats family prior",
+      "missing_to_promote": "Beat the family-prior denominator on the post-split holdout.",
+      "passed": false
+    },
+    {
+      "evidence": "dft_observable_claimed=False",
+      "id": "K7",
+      "label": "DFT observable channel is attached",
+      "missing_to_promote": "Attach computed DFT observables or keep the descriptor as non-DFT proxy evidence.",
+      "passed": false
+    },
+    {
+      "evidence": "b5_computed_observable_claimed=False",
+      "id": "K8",
+      "label": "B5 computed observable channel is attached",
+      "missing_to_promote": "Attach B5-computed response observables or keep B6 disconnected from B5 mechanisms.",
+      "passed": false
+    }
+  ],
+  "source_failed_requirement_ids": [
+    "R6",
+    "R7",
+    "R8",
+    "R9",
+    "R10"
+  ],
+  "source_gate": "results/B6_crystallographic_reproducibility_gate_v0.json",
+  "source_method": "b6_crystallographic_reproducibility_gate_v0",
+  "source_status": "crystallographic_reproducibility_gate_failed_not_material_discovery_claim",
+  "source_validation_error_count": 2,
+  "status": "crystallographic_evidence_contract_open_not_material_discovery_claim",
+  "title": "B6 crystallographic evidence contract gate",
+  "validation_errors": []
+}

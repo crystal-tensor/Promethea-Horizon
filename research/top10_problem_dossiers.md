@@ -636,6 +636,13 @@ runtime, source validation errors remain 2, post-split crystallographic AP is
 present. This is a useful readiness boundary, not a material discovery,
 mechanism solution, complete database, DFT-observable result, B5-observable
 result, reproducible descriptor claim, or computed quantum advantage claim.
+T-B6-005a now converts those failed reproducibility requirements into a
+crystallographic evidence contract. The contract checks 8 requirements, passes
+3, fails K4-K8, preserves R6-R10, and emits 5 PR packets: reproducible
+crystallographic backend, source-validation cleanup, family-prior denominator
+defeat, DFT observable channel, and B5-computed observable channel. This is a
+handoff contract for materials and B5 agents, not a discovery, mechanism, DFT,
+B5-observable, or solution claim.
 
 **Remaining path to a serious solution:** pin a reproducible crystallographic
 backend or equivalent descriptor implementation; remove the source validation

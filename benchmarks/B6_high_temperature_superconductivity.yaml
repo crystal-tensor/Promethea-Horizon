@@ -145,6 +145,41 @@ current_results:
     b5_computed_observable_claimed: false
     solution_claimed: false
     next_required_artifact: pinned pymatgen or equivalent backend, zero source validation blockers, post-split AP above family prior, and DFT/B5 observables
+  b6_crystallographic_evidence_contract_gate_v0:
+    status: crystallographic_evidence_contract_open_not_material_discovery_claim
+    method: b6_crystallographic_evidence_contract_gate_v0
+    model_status: crystallographic_reproducibility_blockers_decomposed_for_prs
+    source_method: b6_crystallographic_reproducibility_gate_v0
+    source_status: crystallographic_reproducibility_gate_failed_not_material_discovery_claim
+    source_failed_requirement_ids: [R6, R7, R8, R9, R10]
+    record_count: 56
+    family_count: 28
+    negative_control_count: 18
+    post_split_record_count: 27
+    post_split_crystallo_ap: 0.2476190476190476
+    post_split_family_prior_ap: 0.4901360544217687
+    source_validation_error_count: 2
+    pymatgen_available: false
+    contract_requirement_count: 8
+    passed_contract_requirement_count: 3
+    failed_contract_requirement_count: 5
+    failed_contract_requirement_ids: [K4, K5, K6, K7, K8]
+    contract_packet_count: 5
+    contract_packet_ids:
+      - B6-R6-reproducible-crystallographic-backend
+      - B6-R7-source-validation-cleanup
+      - B6-R8-family-prior-denominator
+      - B6-R9-dft-observable-channel
+      - B6-R10-b5-observable-channel
+    material_discovery_claimed: false
+    mechanism_solved: false
+    complete_materials_database: false
+    reproducible_crystallographic_descriptor_claim: false
+    dft_observable_claimed: false
+    b5_computed_observable_claimed: false
+    solution_claimed: false
+    result: ../results/B6_crystallographic_evidence_contract_gate_v0.json
+    markdown: ../research/B6_crystallographic_evidence_contract_gate.md
   b6_curated_materials_leakage_audit_v0:
     status: curated_retrospective_leakage_audit
     model_status: curated_materials_table_with_time_family_leakage_audit
@@ -201,4 +236,5 @@ current_results:
 prototype_artifacts:
   descriptor_ranker: ../tools/b6_superconductivity_descriptor_ranker.py
   structural_electronic_proxy_screen: ../tools/b6_structural_electronic_proxy_screen.py
+  crystallographic_evidence_contract_gate: ../tools/b6_crystallographic_evidence_contract_gate.py
   prototype_notes: ../research/B6_prototype_notes.md

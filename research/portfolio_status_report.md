@@ -2043,6 +2043,11 @@ Overall audit: PASS
 - Crystallographic post-split AP / family-prior AP: 0.2476190476190476 / 0.4901360544217687
 - Crystallographic source validation errors / pymatgen available: 2 / False
 - Crystallographic gate result/markdown exists: True / True
+- Crystallographic evidence contract status: crystallographic_evidence_contract_open_not_material_discovery_claim
+- Crystallographic evidence contract source failures / contract failures: ['R6', 'R7', 'R8', 'R9', 'R10'] / ['K4', 'K5', 'K6', 'K7', 'K8']
+- Crystallographic evidence contract passed / failed / packets: 3 / 5 / 5
+- Crystallographic evidence contract packet IDs: ['B6-R6-reproducible-crystallographic-backend', 'B6-R7-source-validation-cleanup', 'B6-R8-family-prior-denominator', 'B6-R9-dft-observable-channel', 'B6-R10-b5-observable-channel']
+- Crystallographic evidence contract result/markdown exists: True / True
 
 ## B7 Fault-Tolerance Co-Design Status
 

@@ -598,13 +598,24 @@ errors remain 2, post-split crystallographic AP is 0.2476 vs family-prior AP
 discovery/mechanism/database/DFT-observable/B5-observable/reproducible-descriptor
 or solution claim.
 
+Sprint update: `T-B6-005` now converts the failed T-B6-004 requirements into a
+crystallographic evidence contract. The contract checks 8 requirements, passes
+3, fails K4-K8, and emits 5 PR packets: reproducible crystallographic backend,
+source-validation cleanup, family-prior denominator defeat, DFT observable
+channel, and B5-computed observable channel. It is a multi-agent handoff
+surface, not a material-discovery, mechanism, complete-database, DFT,
+B5-observable, or solution claim.
+
 **Next PR:** fix the `T-B6-004` failed requirements. Expected artifacts:
 
 - `benchmarks/B6_high_temperature_superconductivity.yaml`
 - `tools/B6_crystallographic_descriptor_screen.py` or an equivalent pinned backend
 - `tools/b6_crystallographic_reproducibility_gate.py`
+- `tools/b6_crystallographic_evidence_contract_gate.py`
 - `results/B6_crystallographic_reproducibility_gate_v0.json`
+- `results/B6_crystallographic_evidence_contract_gate_v0.json`
 - `research/B6_crystallographic_reproducibility_gate.md`
+- `research/B6_crystallographic_evidence_contract_gate.md`
 
 **Acceptance gate:** computed descriptors are reported separately from
 family-prior and formula-proxy baselines under random, time-forward, and
