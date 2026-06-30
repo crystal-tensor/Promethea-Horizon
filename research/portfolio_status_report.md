@@ -664,6 +664,19 @@ Overall audit: PASS
 - Accepted replay / occurrence / proxy-T reduction / B7 claim: 0 / 0 / 0 / False
 - Validation errors: 0
 
+## B1/B7 cone_01 Line-1381 Five-Rotation Context Gate
+
+- Exists: True
+- Status: cone01_line1381_five_rotation_context_not_accepted
+- Target line / support qubits: 1381 / [4, 8]
+- Window / context radius: 1369-1379 / 64
+- Search width / MITM split / context rotation arguments: 5 / 2+3 / 44
+- Signed combinations per parameter / virtual tests: 34752256 / 173761280
+- Width-5 exact absorption parameters: 0
+- Min / max best width-5 context grid error: 0.001581991109333103 / 0.026659551749407484
+- Accepted replay / occurrence / proxy-T reduction / B7 claim: 0 / 0 / 0 / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Line-1381 Commutation Corridor Gate
 
 - Exists: True

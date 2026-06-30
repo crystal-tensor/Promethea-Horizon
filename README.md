@@ -1062,3 +1062,15 @@ acceptance checks, and the refreshed B7 ledger still rejects theta sharing with
 and prevents replay evidence from being counted as B7 resource credit; accepted
 occurrence removal, accepted proxy-T reduction, resource saving, and B7 ledger
 improvement remain 0.
+
+T-B1-004cq returns to the line-1381 resource wall and tests whether the five
+remaining off-grid local-U3 parameters can be absorbed by signed sums of exactly
+five nearby same-support context rotations. A meet-in-the-middle split covers
+34,752,256 virtual width-5 signed combinations per parameter, or 173,761,280
+virtual tests across all five parameters, using the same 44 context rotation
+arguments in the 1305-1443 line window. The result is still negative: 0/5
+parameters have exact width-5 absorption back to the pi/4 grid, with best grid
+error range `0.001581991109333103` to `0.026659551749407484`. This closes the
+bounded width-5 local context route, but it is not a global obstruction theorem.
+No full-circuit replay certificate, occurrence removal, proxy-T reduction,
+resource saving, or B7 ledger improvement is accepted.

@@ -2239,3 +2239,13 @@ a rejected theta cost model at 6/8 checks, and a refreshed B7 ledger that still
 rejects theta sharing with 600 proxy-T of missing reduction. This accepts one
 resource-boundary artifact only; resource saving, occurrence removal, proxy-T
 reduction, and B7 ledger improvement remain 0.
+
+Sprint update 18cq: B1/B7 now closes the bounded exactly-five-rotation context
+escape hatch for line 1381. T-B1-004cq uses a 2+3 meet-in-the-middle search over
+the same 44 same-support context rotation arguments in lines 1305-1443, covering
+34,752,256 virtual width-5 signed combinations per remaining parameter and
+173,761,280 virtual tests across all five parameters. Result: 0/5 parameters
+have exact absorption back to the pi/4 grid; min/max best width-5 grid error is
+`0.001581991109333103` / `0.026659551749407484`. This is a scoped negative
+boundary, not a global theorem. It keeps occurrence removal, proxy-T reduction,
+resource saving, and B7 ledger improvement at 0.

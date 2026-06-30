@@ -228,6 +228,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_line1381_four_rotation_context_path = (
         results / "B1_B7_cone01_line1381_four_rotation_context_gate_v0.json"
     )
+    b1_b7_cone01_line1381_five_rotation_context_path = (
+        results / "B1_B7_cone01_line1381_five_rotation_context_gate_v0.json"
+    )
     b1_b7_cone01_line1381_commutation_corridor_path = (
         results / "B1_B7_cone01_line1381_commutation_corridor_gate_v0.json"
     )
@@ -964,6 +967,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_line1381_four_rotation_context_manifest = current_results.get(
         "b1_b7_cone01_line1381_four_rotation_context_gate_v0"
+    )
+    b1_b7_cone01_line1381_five_rotation_context_manifest = current_results.get(
+        "b1_b7_cone01_line1381_five_rotation_context_gate_v0"
     )
     b1_b7_cone01_line1381_commutation_corridor_manifest = current_results.get(
         "b1_b7_cone01_line1381_commutation_corridor_gate_v0"
@@ -7494,6 +7500,250 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 line-1381 four-rotation context report: "
             f"{b1_b7_cone01_line1381_four_rotation_context_path}"
+        )
+
+    b1_b7_cone01_line1381_five_rotation_context = {
+        "path": str(b1_b7_cone01_line1381_five_rotation_context_path),
+        "exists": b1_b7_cone01_line1381_five_rotation_context_path.exists(),
+    }
+    if not b1_b7_cone01_line1381_five_rotation_context_manifest:
+        errors.append(
+            "B1 manifest missing current result: "
+            "b1_b7_cone01_line1381_five_rotation_context_gate_v0"
+        )
+    else:
+        if (
+            b1_b7_cone01_line1381_five_rotation_context_manifest.get("status")
+            != "cone01_line1381_five_rotation_context_not_accepted"
+        ):
+            errors.append("B1/B7 cone_01 line-1381 five-rotation context gate status mismatch")
+        for field in ["report", "markdown_report"]:
+            value = b1_b7_cone01_line1381_five_rotation_context_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(
+                    "B1/B7 cone_01 line-1381 five-rotation context gate missing "
+                    f"existing {field} path: {value}"
+                )
+    if b1_b7_cone01_line1381_five_rotation_context_path.exists():
+        five_context_payload = json.loads(read(b1_b7_cone01_line1381_five_rotation_context_path))
+        five_context_summary = five_context_payload.get("summary", {})
+        five_context_claims = five_context_payload.get("claim_boundary", {})
+        b1_b7_cone01_line1381_five_rotation_context.update(
+            {
+                "status": five_context_payload.get("status"),
+                "model_status": five_context_payload.get("model_status"),
+                "method": five_context_payload.get("method"),
+                "workload": five_context_payload.get("workload"),
+                "target_candidate_line_number": five_context_summary.get(
+                    "target_candidate_line_number"
+                ),
+                "support_qubits": five_context_summary.get("support_qubits"),
+                "window_start_line": five_context_summary.get("window_start_line"),
+                "window_end_line": five_context_summary.get("window_end_line"),
+                "context_radius": five_context_summary.get("context_radius"),
+                "context_start_line": five_context_summary.get("context_start_line"),
+                "context_end_line": five_context_summary.get("context_end_line"),
+                "rotation_argument_inventory_count": five_context_summary.get(
+                    "rotation_argument_inventory_count"
+                ),
+                "context_rotation_argument_count": five_context_summary.get(
+                    "context_rotation_argument_count"
+                ),
+                "tested_remaining_parameter_count": five_context_summary.get(
+                    "tested_remaining_parameter_count"
+                ),
+                "search_width": five_context_summary.get("search_width"),
+                "left_width": five_context_summary.get("left_width"),
+                "right_width": five_context_summary.get("right_width"),
+                "left_signed_combination_count": five_context_summary.get(
+                    "left_signed_combination_count"
+                ),
+                "right_signed_combination_count": five_context_summary.get(
+                    "right_signed_combination_count"
+                ),
+                "width5_signed_combination_count_per_parameter": five_context_summary.get(
+                    "width5_signed_combination_count_per_parameter"
+                ),
+                "virtual_total_signed_combination_tests": five_context_summary.get(
+                    "virtual_total_signed_combination_tests"
+                ),
+                "width5_exact_absorption_parameter_count": five_context_summary.get(
+                    "width5_exact_absorption_parameter_count"
+                ),
+                "five_rotation_exact_absorption_parameter_count": five_context_summary.get(
+                    "five_rotation_exact_absorption_parameter_count"
+                ),
+                "min_best_width5_context_grid_error": five_context_summary.get(
+                    "min_best_width5_context_grid_error"
+                ),
+                "max_best_width5_context_grid_error": five_context_summary.get(
+                    "max_best_width5_context_grid_error"
+                ),
+                "accepted_five_rotation_context_absorption_count": five_context_summary.get(
+                    "accepted_five_rotation_context_absorption_count"
+                ),
+                "accepted_full_circuit_replay_certificate_count": five_context_summary.get(
+                    "accepted_full_circuit_replay_certificate_count"
+                ),
+                "accepted_occurrence_removal": five_context_summary.get(
+                    "accepted_occurrence_removal"
+                ),
+                "accepted_proxy_t_reduction": five_context_summary.get(
+                    "accepted_proxy_t_reduction"
+                ),
+                "missing_occurrences_after_gate": five_context_summary.get(
+                    "missing_occurrences_after_gate"
+                ),
+                "missing_proxy_t_after_gate": five_context_summary.get(
+                    "missing_proxy_t_after_gate"
+                ),
+                "five_rotation_context_absorption_claimed": five_context_summary.get(
+                    "five_rotation_context_absorption_claimed"
+                ),
+                "full_circuit_rewrite_claimed": five_context_summary.get(
+                    "full_circuit_rewrite_claimed"
+                ),
+                "resource_saving_claimed": five_context_summary.get("resource_saving_claimed"),
+                "b7_ledger_improvement_claimed": five_context_summary.get(
+                    "b7_ledger_improvement_claimed"
+                ),
+                "validation_error_count": five_context_summary.get("validation_error_count"),
+                "line1381_five_rotation_context_row_count": len(
+                    five_context_payload.get("line1381_five_rotation_context_rows", [])
+                ),
+            }
+        )
+        if five_context_payload.get("benchmark_id") != "B1":
+            errors.append(
+                "B1/B7 cone_01 line-1381 five-rotation context report must have benchmark_id B1"
+            )
+        if (
+            five_context_payload.get("method")
+            != "b1_b7_cone01_line1381_five_rotation_context_gate_v0"
+        ):
+            errors.append("B1/B7 cone_01 line-1381 five-rotation context method mismatch")
+        if (
+            five_context_payload.get("status")
+            != "cone01_line1381_five_rotation_context_not_accepted"
+        ):
+            errors.append("B1/B7 cone_01 line-1381 five-rotation context status mismatch")
+        if (
+            five_context_payload.get("model_status")
+            != "remaining_five_line1381_parameters_have_no_five_rotation_context_absorption"
+        ):
+            errors.append("B1/B7 cone_01 line-1381 five-rotation context model_status mismatch")
+        for field in [
+            "target_candidate_line_number",
+            "support_qubits",
+            "window_start_line",
+            "window_end_line",
+            "context_radius",
+            "context_start_line",
+            "context_end_line",
+            "rotation_argument_inventory_count",
+            "context_rotation_argument_count",
+            "tested_remaining_parameter_count",
+            "search_width",
+            "left_width",
+            "right_width",
+            "left_signed_combination_count",
+            "right_signed_combination_count",
+            "width5_signed_combination_count_per_parameter",
+            "virtual_total_signed_combination_tests",
+            "width5_exact_absorption_parameter_count",
+            "five_rotation_exact_absorption_parameter_count",
+            "accepted_five_rotation_context_absorption_count",
+            "accepted_full_circuit_replay_certificate_count",
+            "accepted_occurrence_removal",
+            "accepted_proxy_t_reduction",
+            "missing_occurrences_after_gate",
+            "missing_proxy_t_after_gate",
+            "five_rotation_context_absorption_claimed",
+            "full_circuit_rewrite_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+            "validation_error_count",
+        ]:
+            if (
+                five_context_summary.get(field)
+                != b1_b7_cone01_line1381_five_rotation_context_manifest.get(field)
+            ):
+                errors.append(
+                    f"B1/B7 cone_01 line-1381 five-rotation context {field} mismatch"
+                )
+        expected_five_context_fields = {
+            "target_candidate_line_number": 1381,
+            "support_qubits": [4, 8],
+            "window_start_line": 1369,
+            "window_end_line": 1379,
+            "context_radius": 64,
+            "context_start_line": 1305,
+            "context_end_line": 1443,
+            "rotation_argument_inventory_count": 2049,
+            "context_rotation_argument_count": 44,
+            "tested_remaining_parameter_count": 5,
+            "search_width": 5,
+            "left_width": 2,
+            "right_width": 3,
+            "left_signed_combination_count": 3784,
+            "right_signed_combination_count": 105952,
+            "width5_signed_combination_count_per_parameter": 34752256,
+            "virtual_total_signed_combination_tests": 173761280,
+            "width5_exact_absorption_parameter_count": 0,
+            "five_rotation_exact_absorption_parameter_count": 0,
+            "accepted_five_rotation_context_absorption_count": 0,
+            "accepted_full_circuit_replay_certificate_count": 0,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "missing_occurrences_after_gate": 30,
+            "missing_proxy_t_after_gate": 600,
+            "validation_error_count": 0,
+        }
+        for field, value in expected_five_context_fields.items():
+            if five_context_summary.get(field) != value:
+                errors.append(
+                    f"B1/B7 cone_01 line-1381 five-rotation context expected {field}={value}"
+                )
+        for field in [
+            "five_rotation_context_absorption_claimed",
+            "full_circuit_rewrite_claimed",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if five_context_summary.get(field) is not False:
+                errors.append(
+                    f"B1/B7 cone_01 line-1381 five-rotation context must not claim {field}"
+                )
+            if five_context_claims.get(field) is not False:
+                errors.append(
+                    "B1/B7 cone_01 line-1381 five-rotation context claim boundary "
+                    f"must not claim {field}"
+                )
+        rows = five_context_payload.get("line1381_five_rotation_context_rows", [])
+        if len(rows) != 5:
+            errors.append("B1/B7 cone_01 line-1381 five-rotation context row count must be 5")
+        elif [row.get("parameter_index") for row in rows] != [3, 4, 9, 16, 17]:
+            errors.append(
+                "B1/B7 cone_01 line-1381 five-rotation context parameter indices mismatch"
+            )
+        for row in rows:
+            if row.get("accepted_five_rotation_context_absorption") is not False:
+                errors.append(
+                    "B1/B7 cone_01 line-1381 five-rotation context rows must not accept absorption"
+                )
+            if row.get("exact_five_rotation_absorption") is not False:
+                errors.append(
+                    "B1/B7 cone_01 line-1381 five-rotation context rows must not exact absorb"
+                )
+            result = row.get("five_rotation_result", {})
+            if result.get("exact_absorption_candidate_count") != 0:
+                errors.append(
+                    "B1/B7 cone_01 line-1381 five-rotation context rows must keep exact hits at 0"
+                )
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 line-1381 five-rotation context report: "
+            f"{b1_b7_cone01_line1381_five_rotation_context_path}"
         )
 
     b1_b7_cone01_line1381_commutation_corridor = {
@@ -28356,6 +28606,9 @@ def audit(root: Path) -> dict:
             "b7_cone01_line1381_four_rotation_context_gate": (
                 b1_b7_cone01_line1381_four_rotation_context
             ),
+            "b7_cone01_line1381_five_rotation_context_gate": (
+                b1_b7_cone01_line1381_five_rotation_context
+            ),
             "b7_cone01_line1381_commutation_corridor_gate": (
                 b1_b7_cone01_line1381_commutation_corridor
             ),
@@ -28776,6 +29029,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_line1381_four_rotation_context_gate": str(
                 b1_b7_cone01_line1381_four_rotation_context_path
+            ),
+            "b1_b7_cone01_line1381_five_rotation_context_gate": str(
+                b1_b7_cone01_line1381_five_rotation_context_path
             ),
             "b1_b7_cone01_line1381_commutation_corridor_gate": str(
                 b1_b7_cone01_line1381_commutation_corridor_path
@@ -29822,6 +30078,19 @@ def markdown_report(report: dict) -> str:
             f"- Min / max best width-4 context grid error: {report['b1']['b7_cone01_line1381_four_rotation_context_gate'].get('min_best_width4_context_grid_error')} / {report['b1']['b7_cone01_line1381_four_rotation_context_gate'].get('max_best_width4_context_grid_error')}",
             f"- Accepted replay / occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_line1381_four_rotation_context_gate'].get('accepted_full_circuit_replay_certificate_count')} / {report['b1']['b7_cone01_line1381_four_rotation_context_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_line1381_four_rotation_context_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_line1381_four_rotation_context_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_line1381_four_rotation_context_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 Line-1381 Five-Rotation Context Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('status')}",
+            f"- Target line / support qubits: {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('target_candidate_line_number')} / {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('support_qubits')}",
+            f"- Window / context radius: {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('window_start_line')}-{report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('window_end_line')} / {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('context_radius')}",
+            f"- Search width / MITM split / context rotation arguments: {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('search_width')} / {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('left_width')}+{report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('right_width')} / {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('context_rotation_argument_count')}",
+            f"- Signed combinations per parameter / virtual tests: {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('width5_signed_combination_count_per_parameter')} / {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('virtual_total_signed_combination_tests')}",
+            f"- Width-5 exact absorption parameters: {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('width5_exact_absorption_parameter_count')}",
+            f"- Min / max best width-5 context grid error: {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('min_best_width5_context_grid_error')} / {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('max_best_width5_context_grid_error')}",
+            f"- Accepted replay / occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('accepted_full_circuit_replay_certificate_count')} / {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_line1381_five_rotation_context_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Line-1381 Commutation Corridor Gate",
             "",
