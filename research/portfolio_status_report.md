@@ -1041,6 +1041,18 @@ Overall audit: PASS
 - Accepted seeded-product replay / occurrence / proxy-T reduction / B7 claim: 1 / 0 / 0 / False
 - Validation errors: 0
 
+## B1/B7 cone_01 OpenQASM 3 Qiskit-Loader Seeded Resource-Boundary Gate
+
+- Exists: True
+- Status: cone01_openqasm3_qiskit_loader_seeded_resource_boundary_no_b7_credit
+- Source seeded replay / line-1381 / theta cost / refreshed B7 gates: results/B1_B7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate_v0.json / results/B1_B7_cone01_line1381_local_u3_pricing_gate_v0.json / results/B1_B7_cone01_theta_sharing_cost_model_gate_v0.json / results/B1_B7_cone01_shared_theta_refreshed_b7_ledger_gate_v0.json
+- Seeded replay passed / cases / min fidelity / max probability delta: True / 16 / 0.9999999999999389 / 8.020927672047762e-16
+- Line-1381 off-grid local-U3 / proxy-T pressure / line-1378 recovered: 5 / 100 / False
+- Theta cost accepted / pass / fail / refreshed B7 accepts theta sharing: False / 6 / 2 / False
+- Missing proxy-T ledger reduction / blocker failed count: 600 / 5
+- Accepted boundary / occurrence / proxy-T reduction / B7 claim: 1 / 0 / 0 / False
+- Validation errors: 0
+
 ## B1/B7 cone_01 Full-Statevector Replay Probe Gate
 
 - Exists: True

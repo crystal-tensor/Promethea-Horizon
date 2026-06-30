@@ -306,6 +306,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_path = (
         results / "B1_B7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate_v0.json"
     )
+    b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_path = (
+        results / "B1_B7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate_v0.json"
+    )
     b1_b7_cone01_full_statevector_replay_probe_path = (
         results / "B1_B7_cone01_full_statevector_replay_probe_gate_v0.json"
     )
@@ -1050,6 +1053,11 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_manifest = (
         current_results.get(
             "b1_b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate_v0"
+        )
+    )
+    b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_manifest = (
+        current_results.get(
+            "b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate_v0"
         )
     )
     b1_b7_cone01_full_statevector_replay_probe_manifest = current_results.get(
@@ -13383,6 +13391,222 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 Qiskit-loader seeded product-state replay report: "
             f"{b1_b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_path}"
+        )
+
+    b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary = {
+        "path": str(b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_path),
+        "exists": b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_path.exists(),
+    }
+    if not b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_manifest:
+        errors.append(
+            "B1 manifest missing current result: "
+            "b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate_v0"
+        )
+    else:
+        if (
+            b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_manifest.get(
+                "status"
+            )
+            != "cone01_openqasm3_qiskit_loader_seeded_resource_boundary_no_b7_credit"
+        ):
+            errors.append(
+                "B1/B7 cone_01 Qiskit-loader seeded resource-boundary manifest status mismatch"
+            )
+        for field in ["report", "markdown_report"]:
+            value = (
+                b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_manifest.get(
+                    field
+                )
+            )
+            if value and not path_exists_from(benchmarks, value):
+                errors.append(
+                    "B1/B7 cone_01 Qiskit-loader seeded resource-boundary manifest "
+                    f"{field} missing: {value}"
+                )
+    if b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_path.exists():
+        qasm3_loader_boundary_payload = json.loads(
+            read(b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_path)
+        )
+        qasm3_loader_boundary_summary = qasm3_loader_boundary_payload.get("summary", {})
+        qasm3_loader_boundary_claims = qasm3_loader_boundary_payload.get(
+            "claim_boundary", {}
+        )
+        b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary.update(
+            {
+                "status": qasm3_loader_boundary_payload.get("status"),
+                "method": qasm3_loader_boundary_payload.get("method"),
+                "source_qiskit_loader_seeded_product_replay_gate": (
+                    qasm3_loader_boundary_summary.get(
+                        "source_qiskit_loader_seeded_product_replay_gate"
+                    )
+                ),
+                "source_line1381_local_u3_pricing_gate": (
+                    qasm3_loader_boundary_summary.get(
+                        "source_line1381_local_u3_pricing_gate"
+                    )
+                ),
+                "source_theta_sharing_cost_model_gate": (
+                    qasm3_loader_boundary_summary.get(
+                        "source_theta_sharing_cost_model_gate"
+                    )
+                ),
+                "source_shared_theta_refreshed_b7_ledger_gate": (
+                    qasm3_loader_boundary_summary.get(
+                        "source_shared_theta_refreshed_b7_ledger_gate"
+                    )
+                ),
+                "qiskit_loader_seeded_product_replay_passed": (
+                    qasm3_loader_boundary_summary.get(
+                        "qiskit_loader_seeded_product_replay_passed"
+                    )
+                ),
+                "seeded_product_input_case_count": qasm3_loader_boundary_summary.get(
+                    "seeded_product_input_case_count"
+                ),
+                "seeded_product_min_state_fidelity": (
+                    qasm3_loader_boundary_summary.get(
+                        "seeded_product_min_state_fidelity"
+                    )
+                ),
+                "seeded_product_max_probability_delta": (
+                    qasm3_loader_boundary_summary.get(
+                        "seeded_product_max_probability_delta"
+                    )
+                ),
+                "line1381_replacement_off_pi_over_four_parameter_count": (
+                    qasm3_loader_boundary_summary.get(
+                        "line1381_replacement_off_pi_over_four_parameter_count"
+                    )
+                ),
+                "line1381_unpriced_proxy_t_pressure": (
+                    qasm3_loader_boundary_summary.get(
+                        "line1381_unpriced_proxy_t_pressure"
+                    )
+                ),
+                "line1378_delta_recovered": qasm3_loader_boundary_summary.get(
+                    "line1378_delta_recovered"
+                ),
+                "theta_cost_model_accepted": qasm3_loader_boundary_summary.get(
+                    "theta_cost_model_accepted"
+                ),
+                "theta_cost_model_acceptance_pass_count": (
+                    qasm3_loader_boundary_summary.get(
+                        "theta_cost_model_acceptance_pass_count"
+                    )
+                ),
+                "theta_cost_model_acceptance_fail_count": (
+                    qasm3_loader_boundary_summary.get(
+                        "theta_cost_model_acceptance_fail_count"
+                    )
+                ),
+                "refreshed_b7_ledger_accepts_theta_sharing": (
+                    qasm3_loader_boundary_summary.get(
+                        "refreshed_b7_ledger_accepts_theta_sharing"
+                    )
+                ),
+                "missing_proxy_t_ledger_reduction_for_gcm_h6_1_20": (
+                    qasm3_loader_boundary_summary.get(
+                        "missing_proxy_t_ledger_reduction_for_gcm_h6_1_20"
+                    )
+                ),
+                "resource_boundary_blocker_count": qasm3_loader_boundary_summary.get(
+                    "resource_boundary_blocker_count"
+                ),
+                "resource_boundary_failed_blocker_count": (
+                    qasm3_loader_boundary_summary.get(
+                        "resource_boundary_failed_blocker_count"
+                    )
+                ),
+                "resource_boundary_passed": qasm3_loader_boundary_summary.get(
+                    "resource_boundary_passed"
+                ),
+                "accepted_qiskit_loader_seeded_resource_boundary_count": (
+                    qasm3_loader_boundary_summary.get(
+                        "accepted_qiskit_loader_seeded_resource_boundary_count"
+                    )
+                ),
+                "accepted_occurrence_removal": qasm3_loader_boundary_summary.get(
+                    "accepted_occurrence_removal"
+                ),
+                "accepted_proxy_t_reduction": qasm3_loader_boundary_summary.get(
+                    "accepted_proxy_t_reduction"
+                ),
+                "resource_saving_claimed": qasm3_loader_boundary_summary.get(
+                    "resource_saving_claimed"
+                ),
+                "b7_ledger_improvement_claimed": qasm3_loader_boundary_summary.get(
+                    "b7_ledger_improvement_claimed"
+                ),
+                "validation_error_count": len(
+                    qasm3_loader_boundary_payload.get("validation_errors", [])
+                ),
+            }
+        )
+        if (
+            qasm3_loader_boundary_payload.get("method")
+            != "b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate_v0"
+        ):
+            errors.append("B1/B7 cone_01 Qiskit-loader seeded resource-boundary method mismatch")
+        if (
+            qasm3_loader_boundary_payload.get("status")
+            != "cone01_openqasm3_qiskit_loader_seeded_resource_boundary_no_b7_credit"
+        ):
+            errors.append("B1/B7 cone_01 Qiskit-loader seeded resource-boundary status mismatch")
+        expected_boundary_fields = {
+            "qiskit_loader_seeded_product_replay_passed": True,
+            "seeded_product_input_case_count": 16,
+            "seeded_product_min_state_fidelity": 0.9999999999999389,
+            "seeded_product_max_probability_delta": 8.020927672047762e-16,
+            "line1381_replacement_off_pi_over_four_parameter_count": 5,
+            "line1381_unpriced_proxy_t_pressure": 100,
+            "line1378_delta_recovered": False,
+            "theta_cost_model_accepted": False,
+            "theta_cost_model_acceptance_pass_count": 6,
+            "theta_cost_model_acceptance_fail_count": 2,
+            "refreshed_b7_ledger_accepts_theta_sharing": False,
+            "missing_proxy_t_ledger_reduction_for_gcm_h6_1_20": 600,
+            "resource_boundary_blocker_count": 5,
+            "resource_boundary_failed_blocker_count": 5,
+            "resource_boundary_passed": True,
+            "accepted_qiskit_loader_seeded_resource_boundary_count": 1,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "resource_saving_claimed": False,
+            "b7_ledger_improvement_claimed": False,
+        }
+        for field, expected in expected_boundary_fields.items():
+            if qasm3_loader_boundary_summary.get(field) != expected:
+                errors.append(
+                    f"B1/B7 cone_01 Qiskit-loader seeded resource-boundary {field} mismatch"
+                )
+            if (
+                b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_manifest
+                and field
+                in b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_manifest
+                and expected
+                != b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_manifest.get(
+                    field
+                )
+            ):
+                errors.append(
+                    "B1/B7 cone_01 Qiskit-loader seeded resource-boundary manifest "
+                    f"{field} mismatch"
+                )
+        for field in ["resource_saving_claimed", "b7_ledger_improvement_claimed"]:
+            if qasm3_loader_boundary_summary.get(field) is not False:
+                errors.append(
+                    "B1/B7 cone_01 Qiskit-loader seeded resource-boundary "
+                    f"must not claim {field}"
+                )
+            if qasm3_loader_boundary_claims.get(field) is not False:
+                errors.append(
+                    "B1/B7 cone_01 Qiskit-loader seeded resource-boundary claim boundary "
+                    f"must not claim {field}"
+                )
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 Qiskit-loader seeded resource-boundary report: "
+            f"{b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_path}"
         )
 
     b1_b7_cone01_full_statevector_replay_probe = {
@@ -28210,6 +28434,9 @@ def audit(root: Path) -> dict:
             "b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate": (
                 b1_b7_cone01_openqasm3_qiskit_loader_seeded_product_replay
             ),
+            "b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate": (
+                b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary
+            ),
             "b7_cone01_full_statevector_replay_probe_gate": (
                 b1_b7_cone01_full_statevector_replay_probe
             ),
@@ -28627,6 +28854,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate": str(
                 b1_b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_path
+            ),
+            "b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate": str(
+                b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_path
             ),
             "b1_b7_cone01_full_statevector_replay_probe_gate": str(
                 b1_b7_cone01_full_statevector_replay_probe_path
@@ -29969,6 +30199,18 @@ def markdown_report(report: dict) -> str:
             f"- Max amplitude / L2 amplitude / probability delta: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate'].get('max_global_phase_aligned_amplitude_delta')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate'].get('max_l2_global_phase_aligned_amplitude_delta')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate'].get('max_probability_delta')}",
             f"- Accepted seeded-product replay / occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate'].get('accepted_qiskit_loader_seeded_product_replay_artifact_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_product_replay_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 OpenQASM 3 Qiskit-Loader Seeded Resource-Boundary Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('status')}",
+            f"- Source seeded replay / line-1381 / theta cost / refreshed B7 gates: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('source_qiskit_loader_seeded_product_replay_gate')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('source_line1381_local_u3_pricing_gate')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('source_theta_sharing_cost_model_gate')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('source_shared_theta_refreshed_b7_ledger_gate')}",
+            f"- Seeded replay passed / cases / min fidelity / max probability delta: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('qiskit_loader_seeded_product_replay_passed')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('seeded_product_input_case_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('seeded_product_min_state_fidelity')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('seeded_product_max_probability_delta')}",
+            f"- Line-1381 off-grid local-U3 / proxy-T pressure / line-1378 recovered: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('line1381_replacement_off_pi_over_four_parameter_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('line1381_unpriced_proxy_t_pressure')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('line1378_delta_recovered')}",
+            f"- Theta cost accepted / pass / fail / refreshed B7 accepts theta sharing: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('theta_cost_model_accepted')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('theta_cost_model_acceptance_pass_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('theta_cost_model_acceptance_fail_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('refreshed_b7_ledger_accepts_theta_sharing')}",
+            f"- Missing proxy-T ledger reduction / blocker failed count: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('missing_proxy_t_ledger_reduction_for_gcm_h6_1_20')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('resource_boundary_failed_blocker_count')}",
+            f"- Accepted boundary / occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('accepted_qiskit_loader_seeded_resource_boundary_count')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Validation errors: {report['b1']['b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Full-Statevector Replay Probe Gate",
             "",

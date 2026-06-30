@@ -2227,3 +2227,15 @@ All 16 cases pass with min fidelity `0.9999999999999389`, max infidelity
 0 failed cases. This accepts one seeded product-state replay artifact only;
 arbitrary-input or symbolic equivalence, local-U3 pricing, occurrence removal,
 proxy-T reduction, and B7 ledger improvement remain 0.
+
+Sprint update 18cp: B1/B7 now has an explicit seeded replay resource-boundary
+gate. T-B1-004cp consumes the seeded product-state replay result, the line-1381
+local-U3 pricing gate, the theta-sharing cost-model gate, and the refreshed B7
+ledger gate. It accepts the seeded replay evidence as semantic pressure, then
+records all current resource blockers as still failed: 5 off-grid line-1381
+local-U3 parameters, 100 unpriced proxy-T pressure, unrecovered line-1378
+overlap delta, 0 accepted occurrence removal against the 30-occurrence target,
+a rejected theta cost model at 6/8 checks, and a refreshed B7 ledger that still
+rejects theta sharing with 600 proxy-T of missing reduction. This accepts one
+resource-boundary artifact only; resource saving, occurrence removal, proxy-T
+reduction, and B7 ledger improvement remain 0.

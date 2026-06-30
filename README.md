@@ -1048,3 +1048,17 @@ amplitude delta `1.3496991625769186e-14`, max L2 aligned amplitude delta
 0 failed cases. This accepts one seeded product-state replay artifact, but it
 does not establish arbitrary-input or symbolic equivalence, local-U3 pricing,
 occurrence removal, proxy-T reduction, or B7 ledger credit.
+
+T-B1-004cp adds the resource-boundary decision gate that the seeded replay
+branch needed. It consumes the seeded product-state replay result, the line-1381
+local-U3 pricing gate, the theta-sharing cost-model gate, and the refreshed B7
+ledger gate. The gate accepts the seeded replay evidence as semantic pressure,
+but records all five current resource blockers as still failed: line 1381 keeps
+5 off-grid local-U3 parameters and 100 unpriced proxy-T pressure, line 1378's
+overlap delta is still unrecovered, accepted occurrence removal is still 0
+against the 30-occurrence target, the theta cost model remains rejected at 6/8
+acceptance checks, and the refreshed B7 ledger still rejects theta sharing with
+600 proxy-T of missing reduction. This accepts one resource-boundary artifact
+and prevents replay evidence from being counted as B7 resource credit; accepted
+occurrence removal, accepted proxy-T reduction, resource saving, and B7 ledger
+improvement remain 0.
