@@ -317,6 +317,19 @@ observable error.
 **Failure value:** if the quantum resource estimate loses to denominators, the
 negative result feeds B10 boundary notes.
 
+**Sprint update 60:** `T-B3-012` / `T-B10-015` is now merged as the B3/B10
+same-access measurement-rescue gate. It consumes the grouped-covariance,
+chemical derivative, compiled UCC/ADAPT pilot, cross-molecule pressure, FCI
+denominator, B10 B3/B5 comparison, and B10 access-contract artifacts. The gate
+checks 10 same-access requirements: 5 pass and 5 fail. The failed requirements
+are full cross-molecule compiled-state covariance (`M5`), multi-parameter or
+converged chemistry ansatz evidence (`M6`), selected-CI/FCI denominator wins
+(`M7`), optimizer-loop shots below the positive-route stress ceiling (`M8`),
+and a B10 access contract that no longer rejects the current B3 sampling bridge
+(`M9`). B3 remains demoted with 0 denominator wins, max optimizer-loop shots
+lower bound 475,043,013,690,000, and no reaction-dynamics, quantum-advantage,
+or BQP-separation claim.
+
 ## B4: Verifiable Quantum Advantage
 
 **Technical target:** instantiate a circuit-level task that is checkable by the
@@ -1418,6 +1431,11 @@ claim.
 production-readiness conditions, keeps seeded MPS pressure strongest, records 0
 non-seeded rows beating seeded pressure, and preserves the no-production-DMRG,
 no-same-access-positive-route, no-quantum-advantage boundary.
+`T-B3-012` / `T-B10-015` now adds the B3 same-access measurement-rescue gate:
+10 requirements checked, 5 passed and 5 failed. It keeps B3 demoted because
+full compiled-state covariance, multi-parameter/converged chemistry, denominator
+wins, acceptable optimizer-loop shots, and an unrefuted B10 sampling bridge are
+all still missing.
 
 **Next PR:** `T-B10-014` or `T-B10-009`. Expected artifacts:
 

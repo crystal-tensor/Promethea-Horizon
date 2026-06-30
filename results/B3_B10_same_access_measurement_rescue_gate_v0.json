@@ -1,0 +1,142 @@
+{
+  "b3_demoted": true,
+  "benchmark_id": "B3_B10",
+  "claim_boundary": {
+    "bqp_separation_claimed": false,
+    "quantum_advantage_claimed": false,
+    "reaction_dynamics_solution_claimed": false,
+    "what_is_not_supported": "This is not a molecular reaction dynamics solution, not a quantum advantage claim, not a BQP separation, and not a positive same-access B3 route.",
+    "what_is_supported": "B3 has row-aligned denominator pressure, grouped covariance, derivative propagation, and a one-row compiled covariance pilot, but the same-access measurement rescue fails."
+  },
+  "dependency_benchmarks": [
+    "B3",
+    "B10"
+  ],
+  "failed_gate_count": 5,
+  "failed_gate_ids": [
+    "M5",
+    "M6",
+    "M7",
+    "M8",
+    "M9"
+  ],
+  "gates": [
+    {
+      "evidence": "grouped=4; derivative=4; pressure=4; fci=4",
+      "gate_id": "M1",
+      "label": "Same molecule rows exist across grouped covariance, derivative, pressure, and FCI tables",
+      "passed": true,
+      "required_next": "Keep all future rescue attempts row-aligned across B3 and B10 denominator artifacts."
+    },
+    {
+      "evidence": "grouped_covariance_included=True; max_reduction=5.58305864065559",
+      "gate_id": "M2",
+      "label": "Grouped covariance is represented rather than independent-term-only measurement",
+      "passed": true,
+      "required_next": "Retain grouped covariance and compare against non-QWC or classical-shadow style alternatives."
+    },
+    {
+      "evidence": "derivative_error_propagation_included=True; max_inflation=10000.0",
+      "gate_id": "M3",
+      "label": "Derivative-level observable error propagation is included",
+      "passed": true,
+      "required_next": "Keep derivative error propagation inside every positive-route cost ledger."
+    },
+    {
+      "evidence": "compiled_covariance=True; instances=1",
+      "gate_id": "M4",
+      "label": "Compiled-state covariance pilot exists",
+      "passed": true,
+      "required_next": "Extend the compiled-state covariance from one pilot row to all reaction rows."
+    },
+    {
+      "evidence": "full_compiled_state_covariance_computed=False; sampled_pressure_rows=4",
+      "gate_id": "M5",
+      "label": "Full cross-molecule compiled-state covariance exists",
+      "passed": false,
+      "required_next": "Compute full compiled-state covariance or a stronger bounded substitute for every molecule."
+    },
+    {
+      "evidence": "ansatz_parameter_count=1; converged_vqe_or_adapt_energy=False",
+      "gate_id": "M6",
+      "label": "Multi-parameter or converged chemistry ansatz exists",
+      "passed": false,
+      "required_next": "Move beyond the one-parameter UCC double seed and record convergence evidence."
+    },
+    {
+      "evidence": "selected_ci_larger_basis_denominator_beaten_count=0",
+      "gate_id": "M7",
+      "label": "Selected-CI/FCI larger-basis denominator is beaten",
+      "passed": false,
+      "required_next": "Produce at least one same-access denominator win after measurement, derivative, and optimizer costs."
+    },
+    {
+      "evidence": "max_optimizer_loop_total_shots_lower_bound=475043013690000; max_optimizer_loop_two_qubit_executions_lower_bound=281225464104480000",
+      "gate_id": "M8",
+      "label": "Optimizer-loop budget is below the positive-route stress ceiling",
+      "passed": false,
+      "required_next": "Reduce optimizer-loop shots by at least three orders of magnitude before reopening a positive claim."
+    },
+    {
+      "evidence": "sampling_access_bridge_refuted_for_current_evidence=True; b3_demoted=True",
+      "gate_id": "M9",
+      "label": "B10 access contract allows a current B3 sampling bridge",
+      "passed": false,
+      "required_next": "Replace the current B3 sampling bridge with a same-access route that B10 no longer rejects."
+    },
+    {
+      "evidence": "B3 grouped/derivative/cross advantage claims=False/False/False; B10 advantage/BQP=False/False",
+      "gate_id": "M10",
+      "label": "Forbidden claims remain absent",
+      "passed": true,
+      "required_next": "Keep forbidden claims absent until a same-access denominator win and theorem boundary exist."
+    }
+  ],
+  "method": "b3_b10_same_access_measurement_rescue_gate_v0",
+  "next_required_artifacts": [
+    "full cross-molecule compiled-state covariance or stronger measurement estimator",
+    "multi-parameter converged UCC/ADAPT/VQE or alternative chemistry state-prep evidence",
+    "same-access denominator win after derivative and optimizer-loop costs",
+    "B10 access-contract update showing the B3 sampling bridge is no longer refuted"
+  ],
+  "passed_gate_count": 5,
+  "problem_ids": [
+    49,
+    11
+  ],
+  "same_access_gate_count": 10,
+  "same_access_measurement_rescue_ready": false,
+  "source_methods": {
+    "b10_asymptotic_access_contract": "b10_t1_asymptotic_access_contract_v0",
+    "b10_b3_b5_comparison": "b10_t1_b3_b5_denominator_boundary_comparison_v0",
+    "b10_b3_fci_reference": "b10_t1_d5_b3_fci_reference_table_v0",
+    "b3_compiled_ucc_adapt_pilot": "b3_compiled_ucc_adapt_covariance_pilot_v0",
+    "b3_cross_molecule_pressure": "b3_cross_molecule_ucc_adapt_pressure_v0",
+    "b3_derivative_boundary": "b3_chemical_state_prep_derivative_boundary_v0",
+    "b3_grouped_covariance": "b3_grouped_covariance_shot_floor_v0"
+  },
+  "source_target_id": "B10-T1",
+  "status": "same_access_measurement_rescue_failed_not_advantage_claim",
+  "summary": {
+    "ansatz_parameter_count": 1,
+    "b10_b3_demoted": true,
+    "b10_sampling_access_bridge_refuted_for_current_evidence": true,
+    "bqp_separation_claimed": false,
+    "compiled_pilot_instance_count": 1,
+    "converged_vqe_or_adapt_energy": false,
+    "cross_molecule_pressure_instance_count": 4,
+    "derivative_shot_floor_inflation": 10000.0,
+    "full_compiled_state_covariance_computed": false,
+    "grouped_covariance_max_reduction": 5.58305864065559,
+    "max_optimizer_loop_total_shots_lower_bound": 475043013690000,
+    "max_optimizer_loop_two_qubit_executions_lower_bound": 281225464104480000,
+    "quantum_advantage_claimed": false,
+    "reaction_dynamics_solution_claimed": false,
+    "row_aligned_instance_count": 4,
+    "selected_ci_larger_basis_denominator_beaten_count": 0,
+    "validation_error_count": 0
+  },
+  "title": "B3/B10 Same-Access Measurement Rescue Gate",
+  "validation_errors": [],
+  "version": "0.1"
+}

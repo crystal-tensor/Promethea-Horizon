@@ -22328,6 +22328,7 @@ def audit(root: Path) -> dict:
     b3_chemical_state_prep_derivative = b3_results.get("chemical_state_prep_derivative_boundary_v0")
     b3_compiled_ucc_adapt_covariance = b3_results.get("compiled_ucc_adapt_covariance_pilot_v0")
     b3_cross_molecule_ucc_adapt_pressure = b3_results.get("cross_molecule_ucc_adapt_pressure_v0")
+    b3_b10_same_access_measurement_rescue = b3_results.get("same_access_measurement_rescue_gate_v0")
     b3_status = {}
     if not b3_resource:
         warnings.append("B3 manifest has no PySCF resource proxy result")
@@ -23565,6 +23566,126 @@ def audit(root: Path) -> dict:
             "result": result_path,
             "markdown_report": markdown_path,
         }
+
+    def audit_b3_b10_same_access_measurement_rescue(entry, label):
+        status = {}
+        if not entry:
+            warnings.append(f"{label} manifest has no B3/B10 same-access measurement rescue gate")
+            return status
+        result_path = entry.get("result")
+        markdown_path = entry.get("markdown_report")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"{label} same-access measurement rescue result path missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"{label} same-access measurement rescue markdown missing: {markdown_path}")
+        payload = json.loads(read((benchmarks / result_path).resolve())) if result_exists else {}
+        summary = payload.get("summary", {})
+        status = {
+            "status": entry.get("status"),
+            "method": entry.get("method"),
+            "source_target_id": payload.get("source_target_id"),
+            "dependency_benchmarks": payload.get("dependency_benchmarks"),
+            "same_access_gate_count": payload.get("same_access_gate_count"),
+            "passed_gate_count": payload.get("passed_gate_count"),
+            "failed_gate_count": payload.get("failed_gate_count"),
+            "failed_gate_ids": payload.get("failed_gate_ids"),
+            "row_aligned_instance_count": summary.get("row_aligned_instance_count"),
+            "grouped_covariance_max_reduction": summary.get("grouped_covariance_max_reduction"),
+            "derivative_shot_floor_inflation": summary.get("derivative_shot_floor_inflation"),
+            "compiled_pilot_instance_count": summary.get("compiled_pilot_instance_count"),
+            "full_compiled_state_covariance_computed": summary.get(
+                "full_compiled_state_covariance_computed"
+            ),
+            "ansatz_parameter_count": summary.get("ansatz_parameter_count"),
+            "converged_vqe_or_adapt_energy": summary.get("converged_vqe_or_adapt_energy"),
+            "selected_ci_larger_basis_denominator_beaten_count": summary.get(
+                "selected_ci_larger_basis_denominator_beaten_count"
+            ),
+            "max_optimizer_loop_total_shots_lower_bound": summary.get(
+                "max_optimizer_loop_total_shots_lower_bound"
+            ),
+            "max_optimizer_loop_two_qubit_executions_lower_bound": summary.get(
+                "max_optimizer_loop_two_qubit_executions_lower_bound"
+            ),
+            "b10_sampling_access_bridge_refuted_for_current_evidence": summary.get(
+                "b10_sampling_access_bridge_refuted_for_current_evidence"
+            ),
+            "same_access_measurement_rescue_ready": payload.get(
+                "same_access_measurement_rescue_ready"
+            ),
+            "b3_demoted": payload.get("b3_demoted"),
+            "quantum_advantage_claimed": summary.get("quantum_advantage_claimed"),
+            "bqp_separation_claimed": summary.get("bqp_separation_claimed"),
+            "reaction_dynamics_solution_claimed": summary.get("reaction_dynamics_solution_claimed"),
+            "validation_error_count": len(payload.get("validation_errors", [])),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown_report": markdown_path,
+        }
+        if payload.get("benchmark_id") != "B3_B10":
+            errors.append(f"{label} same-access measurement rescue benchmark_id must be B3_B10")
+        if payload.get("status") != entry.get("status"):
+            errors.append(f"{label} same-access measurement rescue status mismatch")
+        if payload.get("method") != entry.get("method"):
+            errors.append(f"{label} same-access measurement rescue method mismatch")
+        if payload.get("source_target_id") != entry.get("source_target_id"):
+            errors.append(f"{label} same-access measurement rescue source target mismatch")
+        for field in [
+            "same_access_gate_count",
+            "passed_gate_count",
+            "failed_gate_count",
+            "failed_gate_ids",
+            "same_access_measurement_rescue_ready",
+            "b3_demoted",
+        ]:
+            if payload.get(field) != entry.get(field):
+                errors.append(f"{label} same-access measurement rescue {field} mismatch")
+        for field in [
+            "row_aligned_instance_count",
+            "grouped_covariance_max_reduction",
+            "derivative_shot_floor_inflation",
+            "compiled_pilot_instance_count",
+            "full_compiled_state_covariance_computed",
+            "ansatz_parameter_count",
+            "converged_vqe_or_adapt_energy",
+            "selected_ci_larger_basis_denominator_beaten_count",
+            "max_optimizer_loop_total_shots_lower_bound",
+            "max_optimizer_loop_two_qubit_executions_lower_bound",
+            "b10_sampling_access_bridge_refuted_for_current_evidence",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "reaction_dynamics_solution_claimed",
+            "validation_error_count",
+        ]:
+            if summary.get(field) != entry.get(field):
+                errors.append(f"{label} same-access measurement rescue summary {field} mismatch")
+        if payload.get("passed_gate_count") != 5 or payload.get("failed_gate_count") != 5:
+            errors.append(f"{label} same-access measurement rescue should remain a 5/5 split")
+        if payload.get("failed_gate_ids") != ["M5", "M6", "M7", "M8", "M9"]:
+            errors.append(f"{label} same-access measurement rescue failed gate IDs changed")
+        if payload.get("same_access_measurement_rescue_ready") is not False:
+            errors.append(f"{label} same-access measurement rescue must not be marked ready")
+        if payload.get("b3_demoted") is not True:
+            errors.append(f"{label} same-access measurement rescue must keep B3 demoted")
+        if summary.get("selected_ci_larger_basis_denominator_beaten_count") != 0:
+            errors.append(f"{label} same-access measurement rescue must not claim denominator wins")
+        if summary.get("max_optimizer_loop_total_shots_lower_bound", 0) <= 10**12:
+            errors.append(f"{label} same-access measurement rescue should expose optimizer-shot blocker")
+        if summary.get("quantum_advantage_claimed") is not False:
+            errors.append(f"{label} same-access measurement rescue must not claim quantum advantage")
+        if summary.get("bqp_separation_claimed") is not False:
+            errors.append(f"{label} same-access measurement rescue must not claim BQP separation")
+        if len(payload.get("validation_errors", [])) != 0:
+            errors.append(f"{label} same-access measurement rescue validation errors must be zero")
+        return status
+
+    b3_b10_same_access_measurement_rescue_status = audit_b3_b10_same_access_measurement_rescue(
+        b3_b10_same_access_measurement_rescue,
+        "B3",
+    )
 
     def audit_late_bound_contract(entry, label):
         status = {}
@@ -28406,6 +28527,9 @@ def audit(root: Path) -> dict:
     b10_t1_d5_b3_correlated_table = b10_results.get("b10_t1_d5_b3_correlated_reference_table_v0")
     b10_t1_d5_b3_fci_table = b10_results.get("b10_t1_d5_b3_fci_reference_table_v0")
     b10_t1_b3_b5_comparison = b10_results.get("b10_t1_b3_b5_denominator_boundary_comparison_v0")
+    b10_b3_b10_same_access_measurement_rescue = b10_results.get(
+        "b3_b10_same_access_measurement_rescue_gate_v0"
+    )
     b10_t1_missing_assumption_note = b10_results.get("b10_t1_missing_assumption_note_v0")
     b10_t1_asymptotic_access_contract = b10_results.get("b10_t1_asymptotic_access_contract_v0")
     b10_t1_b5_same_access_bridge = b10_results.get("b10_t1_b5_same_access_sampling_or_dmrg_bridge_v0")
@@ -29447,6 +29571,11 @@ def audit(root: Path) -> dict:
         if claim_boundary.get("quantum_advantage_claimed") is not False:
             errors.append("B10-T1 B3/B5 denominator comparison payload claims quantum advantage")
 
+    b10_b3_b10_same_access_measurement_rescue_status = audit_b3_b10_same_access_measurement_rescue(
+        b10_b3_b10_same_access_measurement_rescue,
+        "B10",
+    )
+
     b10_t1_missing_assumption_note_status = {}
     if not b10_t1_missing_assumption_note:
         warnings.append("B10 manifest has no B10-T1 missing-assumption theorem note")
@@ -30097,6 +30226,7 @@ def audit(root: Path) -> dict:
             "chemical_state_prep_derivative_boundary": b3_chemical_state_prep_derivative_status,
             "compiled_ucc_adapt_covariance_pilot": b3_compiled_ucc_adapt_covariance_status,
             "cross_molecule_ucc_adapt_pressure": b3_cross_molecule_ucc_adapt_pressure_status,
+            "same_access_measurement_rescue_gate": b3_b10_same_access_measurement_rescue_status,
         },
         "b4": {
             "manifest": str(b4_manifest_path),
@@ -30207,6 +30337,7 @@ def audit(root: Path) -> dict:
             "t1_d5_b3_correlated_reference_table": b10_t1_d5_b3_correlated_table_status,
             "t1_d5_b3_fci_reference_table": b10_t1_d5_b3_fci_table_status,
             "t1_b3_b5_denominator_boundary_comparison": b10_t1_b3_b5_comparison_status,
+            "b3_b10_same_access_measurement_rescue_gate": b10_b3_b10_same_access_measurement_rescue_status,
             "t1_missing_assumption_note": b10_t1_missing_assumption_note_status,
             "t1_asymptotic_access_contract": b10_t1_asymptotic_access_contract_status,
             "t1_b5_same_access_sampling_or_dmrg_bridge": b10_t1_b5_same_access_bridge_status,
@@ -30586,6 +30717,9 @@ def audit(root: Path) -> dict:
             "b3_cross_molecule_ucc_adapt_pressure": str(
                 research / "B3_cross_molecule_ucc_adapt_pressure.md"
             ),
+            "b3_same_access_measurement_rescue_gate": str(
+                research / "B3_B10_same_access_measurement_rescue_gate.md"
+            ),
             "b5_boundary_field_embedding_baseline": str(
                 research / "B5_boundary_field_embedding_baseline.md"
             ),
@@ -30636,6 +30770,9 @@ def audit(root: Path) -> dict:
             "b10_t1_d5_b3_fci_reference_table": str(research / "B10_t1_d5_b3_fci_reference_table.md"),
             "b10_t1_b3_b5_denominator_boundary_comparison": str(
                 research / "B10_t1_b3_b5_denominator_boundary_comparison.md"
+            ),
+            "b10_b3_same_access_measurement_rescue_gate": str(
+                research / "B3_B10_same_access_measurement_rescue_gate.md"
             ),
             "b10_t1_missing_assumption_note": str(research / "B10_t1_missing_assumption_note.md"),
             "b10_t1_asymptotic_access_contract": str(research / "B10_t1_asymptotic_access_contract.md"),
@@ -32528,6 +32665,13 @@ def markdown_report(report: dict) -> str:
             f"- Cross-molecule pressure demotion recommendation: {report['b3']['cross_molecule_ucc_adapt_pressure'].get('demotion_recommended')} / {report['b3']['cross_molecule_ucc_adapt_pressure'].get('b3_status_recommendation')}",
             f"- Cross-molecule pressure validation errors: {report['b3']['cross_molecule_ucc_adapt_pressure'].get('validation_error_count')}",
             f"- Cross-molecule pressure result/markdown exists: {report['b3']['cross_molecule_ucc_adapt_pressure'].get('result_exists')} / {report['b3']['cross_molecule_ucc_adapt_pressure'].get('markdown_exists')}",
+            f"- B3/B10 same-access rescue status: {report['b3']['same_access_measurement_rescue_gate'].get('status')}",
+            f"- B3/B10 same-access gates passed/failed: {report['b3']['same_access_measurement_rescue_gate'].get('passed_gate_count')} / {report['b3']['same_access_measurement_rescue_gate'].get('failed_gate_count')}",
+            f"- B3/B10 same-access failed gates: {report['b3']['same_access_measurement_rescue_gate'].get('failed_gate_ids')}",
+            f"- B3/B10 denominator wins / optimizer shots: {report['b3']['same_access_measurement_rescue_gate'].get('selected_ci_larger_basis_denominator_beaten_count')} / {report['b3']['same_access_measurement_rescue_gate'].get('max_optimizer_loop_total_shots_lower_bound')}",
+            f"- B3/B10 rescue ready / B3 demoted / BQP separation / quantum advantage: {report['b3']['same_access_measurement_rescue_gate'].get('same_access_measurement_rescue_ready')} / {report['b3']['same_access_measurement_rescue_gate'].get('b3_demoted')} / {report['b3']['same_access_measurement_rescue_gate'].get('bqp_separation_claimed')} / {report['b3']['same_access_measurement_rescue_gate'].get('quantum_advantage_claimed')}",
+            f"- B3/B10 same-access validation errors: {report['b3']['same_access_measurement_rescue_gate'].get('validation_error_count')}",
+            f"- B3/B10 same-access result/markdown exists: {report['b3']['same_access_measurement_rescue_gate'].get('result_exists')} / {report['b3']['same_access_measurement_rescue_gate'].get('markdown_exists')}",
             "",
             "## B4 Trap Protocol Status",
             "",
@@ -33164,6 +33308,12 @@ def markdown_report(report: dict) -> str:
             f"- B10-T1 B3 demoted / B5 positive-ready / BQP separation / quantum advantage: {report['b10']['t1_b3_b5_denominator_boundary_comparison'].get('b3_demoted')} / {report['b10']['t1_b3_b5_denominator_boundary_comparison'].get('b5_positive_claim_ready')} / {report['b10']['t1_b3_b5_denominator_boundary_comparison'].get('bqp_separation_claimed')} / {report['b10']['t1_b3_b5_denominator_boundary_comparison'].get('quantum_advantage_claimed')}",
             f"- B10-T1 B3/B5 comparison validation errors: {report['b10']['t1_b3_b5_denominator_boundary_comparison'].get('validation_error_count')}",
             f"- B10-T1 B3/B5 comparison result/markdown exists: {report['b10']['t1_b3_b5_denominator_boundary_comparison'].get('result_exists')} / {report['b10']['t1_b3_b5_denominator_boundary_comparison'].get('markdown_exists')}",
+            f"- B10-T1 B3 same-access rescue status: {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('status')}",
+            f"- B10-T1 B3 same-access gates passed/failed: {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('passed_gate_count')} / {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('failed_gate_count')}",
+            f"- B10-T1 B3 same-access failed gates: {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('failed_gate_ids')}",
+            f"- B10-T1 B3 same-access rescue ready / B3 demoted: {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('same_access_measurement_rescue_ready')} / {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('b3_demoted')}",
+            f"- B10-T1 B3 same-access validation errors: {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('validation_error_count')}",
+            f"- B10-T1 B3 same-access result/markdown exists: {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('result_exists')} / {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('markdown_exists')}",
             f"- B10-T1 missing-assumption note status: {report['b10']['t1_missing_assumption_note'].get('status')}",
             f"- B10-T1 missing-assumption theorem skeletons / missing assumptions / proof obligations: {report['b10']['t1_missing_assumption_note'].get('theorem_skeleton_count')} / {report['b10']['t1_missing_assumption_note'].get('missing_assumption_count')} / {report['b10']['t1_missing_assumption_note'].get('proof_obligation_count')}",
             f"- B10-T1 missing-assumption dequantization theorem / sampling-access theorem / BQP separation / quantum advantage: {report['b10']['t1_missing_assumption_note'].get('dequantization_theorem_proved')} / {report['b10']['t1_missing_assumption_note'].get('sampling_access_theorem_proved')} / {report['b10']['t1_missing_assumption_note'].get('bqp_separation_claimed')} / {report['b10']['t1_missing_assumption_note'].get('quantum_advantage_claimed')}",

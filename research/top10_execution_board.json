@@ -39,19 +39,19 @@
       "title": "Low-overhead quantum error-correcting codes"
     },
     {
-      "30_day_gate": "Do not continue B3 as a breakthrough candidate unless a rescue-only T-B3-012 proposes real multi-parameter UCCSD/ADAPT covariance or stronger-than-QWC measurement with a credible denominator win path.",
+      "30_day_gate": "Only continue B3 as a rescue attempt if T-B3-013 supplies full cross-molecule compiled-state covariance or a stronger-than-QWC estimator plus multi-parameter/converged chemistry evidence.",
       "b_id": "B3",
-      "current_maturity": "demoted_cross_molecule_negative_boundary",
+      "current_maturity": "same_access_measurement_rescue_failed_negative_boundary",
       "dependencies": [
         "B1",
         "B7"
       ],
       "downstream_translation_route": "Deferred until resource estimates become source-backed and reaction-specific.",
-      "kill_condition": "Keep current one-parameter UCC/ADAPT + QWC route demoted; kill further B3 work without a concrete rescue mechanism.",
-      "next_artifact": "B3 T-B3-012 rescue-only multi-parameter covariance/measurement report, or B3 negative-boundary note for B10-T1.",
+      "kill_condition": "Keep B3 demoted while denominator wins remain 0, optimizer-loop shots remain above 1e12, or B10 still rejects the sampling bridge.",
+      "next_artifact": "T-B3-013 full covariance / multi-parameter chemistry rescue or formal negative note.",
       "priority_lane": "coupled_application",
       "problem_id": 49,
-      "strongest_evidence": "T-B3-011 cross-molecule UCC/ADAPT pressure/demotion boundary: H2/LiH/H2O/N2 bounded high-coefficient sampled covariance pressure has 35 sampled groups total, 384 shots/group, mean/max variance error 0.0833/0.5029, max optimizer-loop shots lower bound 475,043,013,690,000, max optimizer-loop 2Q lower bound 281,225,464,104,480,000, and denominator wins remain 0.",
+      "strongest_evidence": "T-B3-012/T-B10-015 same-access measurement-rescue gate: 10 requirements checked, 5 passed and 5 failed (M5-M9). B3 has row-aligned grouped covariance, derivative propagation, compiled-pilot evidence, and FCI denominators, but lacks full cross-molecule compiled-state covariance, multi-parameter/converged chemistry, denominator wins, acceptable optimizer-loop shots, and an unrefuted B10 sampling bridge. Denominator wins remain 0; max optimizer-loop shots lower bound is 475,043,013,690,000.",
       "title": "Quantum algorithms for molecular reaction dynamics"
     },
     {
@@ -150,9 +150,9 @@
       "title": "Quantum PCP and local Hamiltonian hardness"
     },
     {
-      "30_day_gate": "T-B10-014 must replace the contract/cost/smoke-gate negative boundary with mature production DMRG/MPS or a real same-access response oracle with state-preparation, mixing, measurement, confidence, and optimizer-loop costs.",
+      "30_day_gate": "T-B10-015 follow-up must either convert the failed B3 measurement-rescue gate into a formal negative boundary note or replace the missing M5-M9 evidence; T-B10-014 remains the B5 production-DMRG or response-oracle gate.",
       "b_id": "B10",
-      "current_maturity": "b5_same_access_production_contract_failed_boundary",
+      "current_maturity": "b3_b10_same_access_measurement_rescue_failed_plus_b5_contract_failed",
       "dependencies": [
         "B5",
         "B3",
@@ -160,12 +160,12 @@
         "B8"
       ],
       "downstream_translation_route": "Deferred until one formal target yields a source-backed restricted theorem, reusable negative lemma, or strong proof-attempt record.",
-      "kill_condition": "Keep B10-T1 negative unless a same-access sampler or production DMRG/quantum response comparison beats the full denominator ladder without hidden access advantages.",
+      "kill_condition": "Keep B10-T1 negative unless B3 or B5 beats the full denominator ladder under the same access model without hidden access advantages.",
       "kill_or_merge_condition": "Keep B10-T1 negative unless a production DMRG/MPS reference or same-access response oracle beats the full denominator ladder without hidden access advantages.",
-      "next_artifact": "T-B10-014 same-access positive-route attempt or explicit negative theorem/contract refinement.",
+      "next_artifact": "T-B10-015 B3 same-access negative theorem note or T-B10-014 B5 production positive-route attempt.",
       "priority_lane": "theory_and_negative_results",
       "problem_id": 11,
-      "strongest_evidence": "B10-T1 now includes same-access bridge, response-sampler cost stress, B5 readiness, B5 smoke gate, and T-B5-006b production contract. The contract passes only 2/10 gates; there is still no production DMRG, no sampling oracle, no positive same-access route, no quantum advantage, and no BQP separation.",
+      "strongest_evidence": "B10-T1 now includes B3/B10 same-access measurement-rescue gate plus B5 same-access production contract. The B3 gate passes 5/10 and fails M5-M9 with 0 denominator wins and max optimizer-loop shots lower bound 475,043,013,690,000; the B5 contract passes only 2/10. There is still no production DMRG, no sampling oracle, no same-access positive route, no quantum advantage, and no BQP separation.",
       "title": "Mapping the boundary of BQP"
     }
   ],
