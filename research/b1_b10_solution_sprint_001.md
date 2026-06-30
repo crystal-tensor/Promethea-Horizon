@@ -2716,3 +2716,19 @@ discarded weight, wall-clock seconds, peak memory, and sweep/matvec count. This
 is the next PR intake surface for W1, not production DMRG, not a deployable
 denominator, not a same-access positive route, not quantum advantage, and not
 BQP separation.
+
+Sprint update 70: B5/B10 now has a W1 production-row blocker queue gate.
+T-B5-006m/T-B10-014k adds
+`tools/b5_b10_w1_production_row_blocker_queue_gate.py` and emits
+`results/B5_B10_w1_production_row_blocker_queue_gate_v0.json` plus
+`research/B5_B10_w1_production_row_blocker_queue_gate.md`. The gate consumes
+the 9 production-row intake templates and the W1 implementation contract, then
+turns the 72 missing production fields into a row-prioritized, packetized queue
+for solver agents. It checks 9 requirements, passes 6, and fails only Q6-Q8:
+no production row has been submitted, no production row has been accepted, and
+no blocker packet has a completed production row. The queue partitions the
+missing fields into `W1-E4-env-residuals` with 36 fields,
+`W1-E5-convergence` with 9 fields, and `W1-E7-cost-ledger` with 27 fields.
+This is useful coordination pressure for future PRs, not production DMRG, not
+a seeded-pressure win, not a same-access positive route, not quantum advantage,
+and not BQP separation.

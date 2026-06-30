@@ -180,6 +180,17 @@ norm, discarded weight, wall-clock time, peak memory, and sweep/matvec count.
 Submitted production rows and accepted production rows remain 0, so this is a
 PR intake template, not production DMRG, not a deployable denominator, not a
 same-access positive route, not quantum advantage, and not BQP separation.
+`T-B5-006m` / `T-B10-014k` now turns that intake surface into an agent-ready
+blocker queue. It consumes the 9 templates and the W1 implementation contract,
+checks 9 queue requirements, passes 6, and fails only `Q6`-`Q8` because no
+production row has been submitted or accepted yet. The gate partitions all 72
+missing production fields into three PR-sized packets: `W1-E4-env-residuals`
+with 36 missing fields, `W1-E5-convergence` with 9 missing fields, and
+`W1-E7-cost-ledger` with 27 missing fields. The queue is useful because it
+tells solver, baseline, and cost-ledger agents exactly which row artifacts to
+submit first while preserving the locked row-contract hash. It is still not
+production DMRG, not a seeded-pressure win, not a same-access positive route,
+not quantum advantage, and not BQP separation.
 The latest B10-T1 stress test still finds no positive same-access route because
 0 rows beat explicit D5 matvec-equivalent costs by shots. This is progress, but
 it is not a production DMRG result, not a deployable tensor solver, not a

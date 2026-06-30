@@ -331,6 +331,40 @@ current_results:
     validation_error_count: 0
     result: ../results/B5_B10_w1_production_row_intake_template_gate_v0.json
     markdown_report: ../research/B5_B10_w1_production_row_intake_template_gate.md
+  w1_production_row_blocker_queue_v0:
+    status: w1_production_row_blocker_queue_open_no_rows_submitted
+    model_status: w1_missing_fields_partitioned_into_pr_sized_solver_queue
+    method: b5_b10_w1_production_row_blocker_queue_gate_v0
+    source_intake_template_result: ../results/B5_B10_w1_production_row_intake_template_gate_v0.json
+    source_implementation_contract_result: ../results/B5_B10_w1_implementation_contract_gate_v0.json
+    row_contract_hash: 7ee407e20f51bd0c003d885c8d43282359f84bea9729f0da203b9b2c2970a9fc
+    queue_requirement_count: 9
+    queue_requirements_passed: 6
+    queue_requirements_failed: 3
+    failed_queue_requirement_ids: [Q6, Q7, Q8]
+    row_queue_count: 9
+    packet_queue_count: 3
+    production_required_key_count: 8
+    missing_production_field_total: 72
+    submitted_production_row_count: 0
+    accepted_production_row_count: 0
+    packet_missing_counts:
+      W1-E4-env-residuals: 36
+      W1-E5-convergence: 9
+      W1-E7-cost-ledger: 27
+    blocker_queue_hash: d8ebff668c041665746bfba1bfc97dc73189673b68ca273769e8eac09ce9f197
+    w1_queue_ready_for_agent_prs: true
+    production_dmrg_claimed: false
+    same_access_positive_route_claimed: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    condition_count: 9
+    conditions_satisfied: 6
+    conditions_failed: 3
+    validation_error_count: 0
+    caveat: blocker_queue_not_production_dmrg_not_positive_route
+    result: ../results/B5_B10_w1_production_row_blocker_queue_gate_v0.json
+    markdown_report: ../research/B5_B10_w1_production_row_blocker_queue_gate.md
   seeded_pressure_replacement_audit_v0:
     status: seeded_pressure_replacement_failed_remains_blocker
     model_status: w2_replacement_audit_completed_no_deployable_denominator
@@ -696,6 +730,7 @@ current_results:
       cluster4: 0.05921856583390095
     result: ../results/B5_hubbard_embedding_baseline_v0.json
 prototype_artifacts:
+  w1_production_row_blocker_queue_gate: ../tools/b5_b10_w1_production_row_blocker_queue_gate.py
   w1_prototype_environment_scout: ../tools/b5_b10_w1_prototype_environment_scout.py
   w1_implementation_contract_gate: ../tools/b5_b10_w1_implementation_contract_gate.py
   canonical_residual_blocker_gate: ../tools/b5_w1_canonical_residual_blocker_gate.py
