@@ -1095,3 +1095,14 @@ leakage rises to 0.5, and full private-material leakage restores acceptance to
 1.0. This is a transcript-noise pressure gate only; it still does not use real
 backend properties, execute hardware, prove protocol soundness, prove sampling
 hardness, claim quantum advantage, or separate BQP.
+
+`T-B4-002d` / `T-B8-003h` adds a deterministic parametric learned/generative
+spoofer-pressure diagnostic on top of that noise bridge. It covers 4 spoofer
+families across 2,880 pressure rows. The result is intentionally negative:
+the artifact is valid with 0 validation errors, but only 6/8 pressure gates
+pass. Max no-leak spoofer acceptance reaches 0.1196875 and max backend-like
+refreshed no-leak spoofer acceptance reaches 0.109140625, both above the 0.10
+diagnostic pressure threshold. Three-private-bit leakage reaches 0.6575 and
+full private-material leakage reaches 1.0. This is not actual ML training, real
+backend evidence, hardware execution, protocol soundness, sampling hardness,
+quantum advantage, or BQP separation.

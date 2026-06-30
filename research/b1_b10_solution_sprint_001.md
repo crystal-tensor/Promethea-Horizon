@@ -2278,3 +2278,18 @@ private-material leakage restores acceptance to `1.0`. This is progress because
 the protocol now faces explicit transcript-noise pressure, but it is still not
 real backend evidence, hardware execution, cryptographic/protocol soundness,
 sampling hardness, quantum advantage, or BQP separation.
+
+Sprint update 59d: B4/B8 now has a deterministic learned/generative spoofer
+pressure diagnostic over that noise bridge. T-B4-002d/T-B8-003h adds
+`tools/B4_B8_private_challenge_noise_spoofer_pressure.py` and emits
+`results/B4_B8_private_challenge_noise_spoofer_pressure_v0.json` plus
+`research/B4_B8_private_challenge_noise_spoofer_pressure.md`. The diagnostic
+expands the 720 source transcript/noise/leakage cases into 2,880 pressure rows
+across 4 spoofer families. The result is intentionally negative: 6/8 gates
+pass, max no-leak spoofer acceptance reaches `0.1196875`, and max backend-like
+refreshed no-leak spoofer acceptance reaches `0.109140625`, both above the
+0.10 pressure threshold. Three-private-bit leakage reaches `0.6575` and full
+private-material leakage reaches `1.0`. This is not actual ML training or a
+soundness proof; it is a pressure diagnostic that says the next B4/B8 step must
+move to real learned/generative attacks, real backend or hardware transcripts,
+and private-predicate redesign.
