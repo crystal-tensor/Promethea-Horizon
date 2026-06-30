@@ -48,6 +48,7 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
     seeded_replacement = load_json(args.seeded_replacement)
     response_oracle = load_json(args.response_oracle)
     two_site = load_json(args.two_site_reference)
+    denominator = load_json(args.denominator_engine)
 
     row_summary = row_contract["summary"]
     readiness_summary = readiness["summary"]
@@ -56,6 +57,7 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
     seeded_summary = seeded_replacement["summary"]
     oracle_summary = response_oracle["summary"]
     two_site_summary = two_site["summary"]
+    denominator_summary = denominator["summary"]
 
     requirements = [
         requirement(
@@ -87,6 +89,9 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
             {
                 "readiness_production_dmrg": readiness_summary.get("production_dmrg"),
                 "contract_production_dmrg_available": production_summary.get("production_dmrg_available"),
+                "denominator_engine_executed": denominator_summary.get("w1_denominator_engine_executed"),
+                "denominator_engine_accepted": denominator_summary.get("w1_denominator_engine_accepted"),
+                "denominator_production_dmrg_available": denominator_summary.get("production_dmrg_available"),
                 "seeded_exact_state_seeded": seeded_summary.get("seeded_exact_state_seeded"),
             },
             "Implement a production DMRG/MPS denominator that does not initialize from the exact target state.",
@@ -101,6 +106,12 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
                     "canonical_environment_production_dmrg"
                 ),
                 "smoke_passed_row_count": smoke_summary.get("smoke_passed_row_count"),
+                "denominator_stored_left_right_environments": denominator_summary.get(
+                    "stored_left_right_environments"
+                ),
+                "denominator_orthonormal_residual_ledger_present": denominator_summary.get(
+                    "orthonormal_residual_ledger_present"
+                ),
             },
             "Add canonical-center sweeps, stored left/right environments, and orthonormal residual checks for every row.",
         ),
@@ -116,6 +127,8 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
                 "energy_variance_passed_rows": smoke_summary.get("energy_variance_passed_rows"),
                 "discarded_weight_passed_rows": smoke_summary.get("discarded_weight_passed_rows"),
                 "energy_monotonicity_passed_rows": smoke_summary.get("energy_monotonicity_passed_rows"),
+                "denominator_convergence_passed_rows": denominator_summary.get("convergence_passed_rows"),
+                "denominator_sweep_ledger_rows": denominator_summary.get("sweep_ledger_rows"),
             },
             "Produce convergence ledgers that pass all four production diagnostics on the full nine-row contract.",
         ),
@@ -131,6 +144,9 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
                 "best_replacement_rows_beating_seeded_pressure": seeded_summary.get(
                     "best_replacement_rows_beating_seeded_pressure"
                 ),
+                "denominator_rows_beating_seeded_pressure": denominator_summary.get(
+                    "rows_beating_seeded_mps_pressure"
+                ),
             },
             "Beat the exact-state-seeded pressure reference globally with a deployable non-seeded production denominator.",
         ),
@@ -145,6 +161,9 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
                     "blocking_sampling_requirement_count"
                 ),
                 "oracle_remaining_failed_ids": oracle_summary.get("failed_oracle_requirement_ids"),
+                "denominator_failed_requirement_ids": denominator_summary.get(
+                    "failed_denominator_requirement_ids"
+                ),
             },
             "Add wall-clock, matvec, sweep, memory, optimizer-loop, and denominator-ladder cost accounting.",
         ),
@@ -170,6 +189,15 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
                 ),
                 "two_site_rows_beating_variational_mps_als_reference": two_site_summary.get(
                     "two_site_dmrg_rows_beating_variational_mps_als_reference"
+                ),
+                "w1_denominator_selected_candidate_family": denominator_summary.get(
+                    "selected_candidate_family"
+                ),
+                "w1_denominator_mean_candidate_relative_response_error": denominator_summary.get(
+                    "mean_candidate_relative_response_error"
+                ),
+                "w1_denominator_mean_seeded_pressure_relative_response_error": denominator_summary.get(
+                    "mean_seeded_pressure_relative_response_error"
                 ),
                 "prototype_fixed_sector_norms_pass": readiness_summary.get("prototype_fixed_sector_norms_pass"),
             },
@@ -210,6 +238,10 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
         validation_errors.append("row contract must contain nine rows")
     if smoke_summary.get("environment_ledger_rows") != 9:
         validation_errors.append("smoke gate should expose nine environment-ledger rows")
+    if denominator_summary.get("row_contract_count") != 9:
+        validation_errors.append("W1 denominator engine must preserve nine rows")
+    if denominator_summary.get("failed_denominator_requirement_ids") != ["E4", "E5", "E6", "E7"]:
+        validation_errors.append("unexpected W1 denominator-engine failed IDs")
     if failed_ids != ["D3", "D4", "D5", "D6", "D7", "D8", "D9"]:
         validation_errors.append(f"unexpected W1 failed requirement IDs: {failed_ids}")
     if passed != 3 or failed != 7:
@@ -237,6 +269,23 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
         "readiness_gate_count": readiness_summary.get("readiness_gate_count"),
         "readiness_passed_gate_count": readiness_summary.get("passed_gate_count"),
         "canonical_environment_smoke_passed_rows": smoke_summary.get("smoke_passed_row_count"),
+        "w1_denominator_engine_executed": denominator_summary.get("w1_denominator_engine_executed"),
+        "w1_denominator_engine_accepted": denominator_summary.get("w1_denominator_engine_accepted"),
+        "w1_denominator_failed_requirement_ids": denominator_summary.get(
+            "failed_denominator_requirement_ids"
+        ),
+        "w1_denominator_selected_candidate_family": denominator_summary.get("selected_candidate_family"),
+        "w1_denominator_sweep_ledger_rows": denominator_summary.get("sweep_ledger_rows"),
+        "w1_denominator_convergence_passed_rows": denominator_summary.get("convergence_passed_rows"),
+        "w1_denominator_rows_beating_seeded_pressure": denominator_summary.get(
+            "rows_beating_seeded_mps_pressure"
+        ),
+        "w1_denominator_mean_candidate_relative_response_error": denominator_summary.get(
+            "mean_candidate_relative_response_error"
+        ),
+        "w1_denominator_mean_seeded_pressure_relative_response_error": denominator_summary.get(
+            "mean_seeded_pressure_relative_response_error"
+        ),
         "fixed_sector_norm_passed_rows": smoke_summary.get("fixed_sector_norm_passed_rows"),
         "energy_variance_passed_rows": smoke_summary.get("energy_variance_passed_rows"),
         "discarded_weight_passed_rows": smoke_summary.get("discarded_weight_passed_rows"),
@@ -288,6 +337,7 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
         "source_production_contract_result": str(args.production_contract),
         "source_seeded_replacement_result": str(args.seeded_replacement),
         "source_response_oracle_result": str(args.response_oracle),
+        "source_denominator_engine_result": str(args.denominator_engine),
         "summary": summary,
         "requirements": requirements,
         "claim_boundary": {
@@ -396,6 +446,11 @@ def main() -> int:
         "--two-site-reference",
         type=Path,
         default=Path("results/B5_two_site_dmrg_response_reference_v0.json"),
+    )
+    parser.add_argument(
+        "--denominator-engine",
+        type=Path,
+        default=Path("results/B5_production_dmrg_mps_denominator_v0.json"),
     )
     parser.add_argument("--json-output", type=Path, default=Path("results/B5_B10_production_dmrg_mps_acceptance_gate_v0.json"))
     parser.add_argument("--markdown-output", type=Path, default=Path("research/B5_B10_production_dmrg_mps_acceptance_gate.md"))

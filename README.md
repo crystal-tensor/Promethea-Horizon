@@ -130,6 +130,17 @@ ledgers, `D6` seeded-pressure replacement, `D7` same-access cost ledger, `D8`
 B10 positive-route readiness, and `D9` prototype-over-seeded pressure). The
 gate preserves all 9 rows and 9 environment-ledger rows, but confirms that W1
 is still blocked on the denominator engine itself.
+The first W1 denominator-engine ledger is now also executed. It checks 8
+denominator-engine requirements under the same row-contract hash: 4 pass and
+4 fail (`E4` production canonical environments/residuals, `E5` all-row
+convergence, `E6` seeded-pressure replacement, and `E7` same-access production
+cost ledger). The ledger preserves all 9 rows and 216 sweep-ledger rows, but
+has 0 convergence-passed rows and 0 rows beating seeded pressure. The selected
+candidate family remains `variational_mps_als`, with mean candidate relative
+response error `0.01805548365563228` versus seeded pressure
+`0.0004416259745141553`. This is useful negative evidence and a runnable
+denominator-engine shell, not production DMRG, not a deployable tensor solver,
+not a same-access positive route, and not a quantum advantage claim.
 The latest B10-T1 stress test still finds no positive same-access route because
 0 rows beat explicit D5 matvec-equivalent costs by shots. This is progress, but
 it is not a production DMRG result, not a deployable tensor solver, not a

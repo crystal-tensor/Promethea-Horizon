@@ -49,6 +49,9 @@
     {
       "evidence": {
         "contract_production_dmrg_available": false,
+        "denominator_engine_accepted": false,
+        "denominator_engine_executed": true,
+        "denominator_production_dmrg_available": false,
         "readiness_production_dmrg": false,
         "seeded_exact_state_seeded": true
       },
@@ -60,6 +63,8 @@
     {
       "evidence": {
         "canonical_environment_production_dmrg": false,
+        "denominator_orthonormal_residual_ledger_present": false,
+        "denominator_stored_left_right_environments": false,
         "smoke_passed_row_count": 0
       },
       "label": "Stored canonical left/right environments and orthonormal residuals pass",
@@ -69,6 +74,8 @@
     },
     {
       "evidence": {
+        "denominator_convergence_passed_rows": 0,
+        "denominator_sweep_ledger_rows": 216,
         "discarded_weight_passed_rows": 3,
         "energy_monotonicity_passed_rows": 3,
         "energy_variance_passed_rows": 3,
@@ -83,6 +90,7 @@
       "evidence": {
         "best_replacement_candidate_id": "variational_mps_als",
         "best_replacement_rows_beating_seeded_pressure": 0,
+        "denominator_rows_beating_seeded_pressure": 0,
         "deployable_replacement_count": 0,
         "seeded_pressure_replaced": false
       },
@@ -94,6 +102,12 @@
     {
       "evidence": {
         "blocking_sampling_requirement_count": 5,
+        "denominator_failed_requirement_ids": [
+          "E4",
+          "E5",
+          "E6",
+          "E7"
+        ],
         "oracle_remaining_failed_ids": [
           "O3",
           "O4",
@@ -122,7 +136,10 @@
       "evidence": {
         "prototype_fixed_sector_norms_pass": false,
         "two_site_rows_beating_seeded_mps_pressure_reference": 0,
-        "two_site_rows_beating_variational_mps_als_reference": 4
+        "two_site_rows_beating_variational_mps_als_reference": 4,
+        "w1_denominator_mean_candidate_relative_response_error": 0.01805548365563228,
+        "w1_denominator_mean_seeded_pressure_relative_response_error": 0.0004416259745141553,
+        "w1_denominator_selected_candidate_family": "variational_mps_als"
       },
       "label": "W1 improves over the strongest current non-production tensor prototype",
       "passed": false,
@@ -143,7 +160,8 @@
       "requirement_id": "D10"
     }
   ],
-  "runtime_seconds": 0.0006878376007080078,
+  "runtime_seconds": 0.0007648468017578125,
+  "source_denominator_engine_result": "results/B5_production_dmrg_mps_denominator_v0.json",
   "source_production_contract_result": "results/B5_B10_same_access_production_contract_gate_v0.json",
   "source_readiness_gate_result": "results/B5_canonical_dmrg_readiness_gate_v0.json",
   "source_response_oracle_result": "results/B5_B10_response_oracle_cost_ledger_v0.json",
@@ -209,6 +227,20 @@
     "seeded_mean_relative_response_error": 0.0004416259745141553,
     "seeded_pressure_replaced": false,
     "validation_error_count": 0,
+    "w1_denominator_convergence_passed_rows": 0,
+    "w1_denominator_engine_accepted": false,
+    "w1_denominator_engine_executed": true,
+    "w1_denominator_failed_requirement_ids": [
+      "E4",
+      "E5",
+      "E6",
+      "E7"
+    ],
+    "w1_denominator_mean_candidate_relative_response_error": 0.01805548365563228,
+    "w1_denominator_mean_seeded_pressure_relative_response_error": 0.0004416259745141553,
+    "w1_denominator_rows_beating_seeded_pressure": 0,
+    "w1_denominator_selected_candidate_family": "variational_mps_als",
+    "w1_denominator_sweep_ledger_rows": 216,
     "w1_production_dmrg_acceptance_gate_executed": true,
     "w1_production_dmrg_denominator_available": false,
     "w1_remains_blocked_on_denominator_engine": true

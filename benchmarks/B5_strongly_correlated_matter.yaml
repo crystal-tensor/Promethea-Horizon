@@ -137,6 +137,53 @@ current_results:
     validation_error_count: 0
     result: ../results/B5_B10_production_dmrg_mps_acceptance_gate_v0.json
     markdown_report: ../research/B5_B10_production_dmrg_mps_acceptance_gate.md
+  production_dmrg_mps_denominator_v0:
+    status: w1_denominator_engine_v0_failed_not_production_dmrg
+    model_status: w1_denominator_candidate_executed_but_acceptance_failed
+    method: b5_production_dmrg_mps_denominator_v0
+    source_row_contract_result: ../results/B5_B10_row_contract_harness_v0.json
+    row_contract_count: 9
+    row_contract_hash: 7ee407e20f51bd0c003d885c8d43282359f84bea9729f0da203b9b2c2970a9fc
+    candidate_family_count: 2
+    selected_candidate_family: variational_mps_als
+    denominator_requirement_count: 8
+    denominator_requirements_passed: 4
+    denominator_requirements_failed: 4
+    failed_denominator_requirement_ids: [E4, E5, E6, E7]
+    w1_denominator_engine_executed: true
+    w1_denominator_engine_accepted: false
+    w1_denominator_engine_failed_not_production_dmrg: true
+    production_dmrg_available: false
+    canonical_environment_production_dmrg: false
+    stored_left_right_environments: false
+    orthonormal_residual_ledger_present: false
+    discarded_weight_ledger_present: false
+    sweep_ledger_rows: 216
+    fixed_sector_norm_passed_rows: 0
+    energy_variance_passed_rows: 3
+    energy_monotonicity_passed_rows: 6
+    convergence_passed_rows: 0
+    rows_beating_seeded_mps_pressure: 0
+    mean_candidate_relative_response_error: 0.01805548365563228
+    mean_seeded_pressure_relative_response_error: 0.0004416259745141553
+    remaining_positive_route_packets: [W1]
+    catalog_change_required: false
+    same_access_positive_route_ready: false
+    b10_t1_positive_route_ready: false
+    production_dmrg_claimed: false
+    quantum_response_win_claimed: false
+    accuracy_per_resource_win_claimed: false
+    same_access_positive_route_claimed: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    dequantization_theorem_claimed: false
+    sampling_access_theorem_claimed: false
+    condition_count: 8
+    conditions_satisfied: 4
+    conditions_failed: 4
+    validation_error_count: 0
+    result: ../results/B5_production_dmrg_mps_denominator_v0.json
+    markdown_report: ../research/B5_production_dmrg_mps_denominator.md
   seeded_pressure_replacement_audit_v0:
     status: seeded_pressure_replacement_failed_remains_blocker
     model_status: w2_replacement_audit_completed_no_deployable_denominator
@@ -502,6 +549,7 @@ current_results:
       cluster4: 0.05921856583390095
     result: ../results/B5_hubbard_embedding_baseline_v0.json
 prototype_artifacts:
+  production_dmrg_mps_denominator: ../tools/b5_production_dmrg_mps_denominator.py
   production_dmrg_mps_acceptance_gate: ../tools/b5_b10_production_dmrg_mps_acceptance_gate.py
   response_oracle_cost_ledger: ../tools/b5_b10_response_oracle_cost_ledger.py
   seeded_pressure_replacement_audit: ../tools/b5_seeded_pressure_replacement_audit.py

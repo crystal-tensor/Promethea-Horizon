@@ -819,6 +819,48 @@ current_results:
     caveat: w1_acceptance_gate_not_production_dmrg_not_response_oracle_not_advantage
     result: ../results/B5_B10_production_dmrg_mps_acceptance_gate_v0.json
     markdown_report: ../research/B5_B10_production_dmrg_mps_acceptance_gate.md
+  b10_t1_b5_production_dmrg_mps_denominator_v0:
+    status: w1_denominator_engine_v0_failed_not_production_dmrg
+    model_status: w1_denominator_candidate_executed_but_acceptance_failed
+    method: b5_production_dmrg_mps_denominator_v0
+    source: b5_b10_row_contract_harness_v0
+    source_target_id: B10-T1
+    dependency_benchmarks:
+      - B5
+      - B10
+    row_contract_count: 9
+    row_contract_hash: 7ee407e20f51bd0c003d885c8d43282359f84bea9729f0da203b9b2c2970a9fc
+    selected_candidate_family: variational_mps_als
+    denominator_requirement_count: 8
+    denominator_requirements_passed: 4
+    denominator_requirements_failed: 4
+    failed_denominator_requirement_ids: [E4, E5, E6, E7]
+    w1_denominator_engine_executed: true
+    w1_denominator_engine_accepted: false
+    production_dmrg_available: false
+    sweep_ledger_rows: 216
+    convergence_passed_rows: 0
+    rows_beating_seeded_mps_pressure: 0
+    mean_candidate_relative_response_error: 0.01805548365563228
+    mean_seeded_pressure_relative_response_error: 0.0004416259745141553
+    remaining_positive_route_packets: [W1]
+    same_access_positive_route_ready: false
+    b10_t1_positive_route_ready: false
+    production_dmrg_claimed: false
+    quantum_response_win_claimed: false
+    accuracy_per_resource_win_claimed: false
+    same_access_positive_route_claimed: false
+    bqp_separation_claimed: false
+    quantum_advantage_claimed: false
+    dequantization_theorem_claimed: false
+    sampling_access_theorem_claimed: false
+    condition_count: 8
+    conditions_satisfied: 4
+    conditions_failed: 4
+    validation_error_count: 0
+    caveat: w1_denominator_engine_v0_not_production_dmrg_not_positive_route
+    result: ../results/B5_production_dmrg_mps_denominator_v0.json
+    markdown_report: ../research/B5_production_dmrg_mps_denominator.md
 prototype_artifacts:
   boundary_graph_builder: ../tools/b10_bqp_boundary_graph.py
   formal_theorem_target_builder: ../tools/b10_formal_theorem_targets.py
@@ -841,6 +883,7 @@ prototype_artifacts:
   t1_b5_seeded_pressure_replacement_audit: ../tools/b5_seeded_pressure_replacement_audit.py
   t1_b5_response_oracle_cost_ledger: ../tools/b5_b10_response_oracle_cost_ledger.py
   t1_b5_production_dmrg_mps_acceptance_gate: ../tools/b5_b10_production_dmrg_mps_acceptance_gate.py
+  t1_b5_production_dmrg_mps_denominator: ../tools/b5_production_dmrg_mps_denominator.py
   t2_refresh_proof_obligation_gate_builder: ../tools/b10_t2_refresh_proof_obligation_gate.py
   t2_restricted_soundness_lemma_builder: ../tools/b10_t2_restricted_soundness_lemma.py
   t2_transcript_leakage_simulator_builder: ../tools/b10_t2_transcript_leakage_simulator.py

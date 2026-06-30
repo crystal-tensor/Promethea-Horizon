@@ -25296,6 +25296,7 @@ def audit(root: Path) -> dict:
     b5_production_dmrg_mps_acceptance_gate = b5_results.get(
         "production_dmrg_mps_acceptance_gate_v0"
     )
+    b5_production_dmrg_mps_denominator = b5_results.get("production_dmrg_mps_denominator_v0")
     b5_two_site_dmrg = b5_results.get("two_site_finite_dmrg_response_reference_v0")
     b5_var_mps = b5_results.get("variational_mps_als_response_reference_v0")
     b5_mps = b5_results.get("mps_schmidt_truncation_response_reference_v0")
@@ -26495,6 +26496,150 @@ def audit(root: Path) -> dict:
 
     b5_production_dmrg_mps_acceptance_gate_status = audit_b5_production_dmrg_mps_acceptance_gate(
         b5_production_dmrg_mps_acceptance_gate, "B5"
+    )
+
+    def audit_b5_production_dmrg_mps_denominator(entry, label):
+        status = {}
+        if not entry:
+            warnings.append(f"{label} manifest has no B5 W1 production DMRG/MPS denominator")
+            return status
+        result_path = entry.get("result")
+        markdown_path = entry.get("markdown_report")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"{label} W1 denominator result path missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"{label} W1 denominator markdown missing: {markdown_path}")
+        payload = json.loads(read((benchmarks / result_path).resolve())) if result_exists else {}
+        summary = payload.get("summary", {})
+        claims = payload.get("claim_boundary", {})
+        status = {
+            "status": entry.get("status"),
+            "method": entry.get("method"),
+            "model_status": entry.get("model_status"),
+            "row_contract_count": summary.get("row_contract_count"),
+            "row_contract_hash": summary.get("row_contract_hash"),
+            "selected_candidate_family": summary.get("selected_candidate_family"),
+            "denominator_requirement_count": summary.get("denominator_requirement_count"),
+            "denominator_requirements_passed": summary.get("denominator_requirements_passed"),
+            "denominator_requirements_failed": summary.get("denominator_requirements_failed"),
+            "failed_denominator_requirement_ids": summary.get("failed_denominator_requirement_ids"),
+            "w1_denominator_engine_executed": summary.get("w1_denominator_engine_executed"),
+            "w1_denominator_engine_accepted": summary.get("w1_denominator_engine_accepted"),
+            "production_dmrg_available": summary.get("production_dmrg_available"),
+            "sweep_ledger_rows": summary.get("sweep_ledger_rows"),
+            "convergence_passed_rows": summary.get("convergence_passed_rows"),
+            "rows_beating_seeded_mps_pressure": summary.get("rows_beating_seeded_mps_pressure"),
+            "mean_candidate_relative_response_error": summary.get(
+                "mean_candidate_relative_response_error"
+            ),
+            "mean_seeded_pressure_relative_response_error": summary.get(
+                "mean_seeded_pressure_relative_response_error"
+            ),
+            "remaining_positive_route_packets": summary.get("remaining_positive_route_packets"),
+            "same_access_positive_route_ready": summary.get("same_access_positive_route_ready"),
+            "b10_t1_positive_route_ready": summary.get("b10_t1_positive_route_ready"),
+            "production_dmrg_claimed": summary.get("production_dmrg_claimed"),
+            "quantum_response_win_claimed": summary.get("quantum_response_win_claimed"),
+            "accuracy_per_resource_win_claimed": summary.get("accuracy_per_resource_win_claimed"),
+            "same_access_positive_route_claimed": summary.get("same_access_positive_route_claimed"),
+            "quantum_advantage_claimed": summary.get("quantum_advantage_claimed"),
+            "bqp_separation_claimed": summary.get("bqp_separation_claimed"),
+            "condition_count": summary.get("condition_count"),
+            "conditions_satisfied": summary.get("conditions_satisfied"),
+            "conditions_failed": summary.get("conditions_failed"),
+            "validation_error_count": len(payload.get("validation_errors", [])),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown_report": markdown_path,
+        }
+        if payload.get("benchmark_id") != "B5":
+            errors.append(f"{label} W1 denominator benchmark_id must be B5")
+        if payload.get("linked_benchmark_id") != "B10":
+            errors.append(f"{label} W1 denominator linked_benchmark_id must be B10")
+        if payload.get("source_target_id") != "B10-T1":
+            errors.append(f"{label} W1 denominator source_target_id must be B10-T1")
+        if payload.get("method") != entry.get("method"):
+            errors.append(f"{label} W1 denominator method mismatch")
+        if payload.get("status") != entry.get("status"):
+            errors.append(f"{label} W1 denominator status mismatch")
+        if payload.get("model_status") != entry.get("model_status"):
+            errors.append(f"{label} W1 denominator model-status mismatch")
+        for field in [
+            "row_contract_count",
+            "row_contract_hash",
+            "selected_candidate_family",
+            "denominator_requirement_count",
+            "denominator_requirements_passed",
+            "denominator_requirements_failed",
+            "failed_denominator_requirement_ids",
+            "w1_denominator_engine_executed",
+            "w1_denominator_engine_accepted",
+            "production_dmrg_available",
+            "sweep_ledger_rows",
+            "convergence_passed_rows",
+            "rows_beating_seeded_mps_pressure",
+            "mean_candidate_relative_response_error",
+            "mean_seeded_pressure_relative_response_error",
+            "remaining_positive_route_packets",
+            "same_access_positive_route_ready",
+            "b10_t1_positive_route_ready",
+            "production_dmrg_claimed",
+            "quantum_response_win_claimed",
+            "accuracy_per_resource_win_claimed",
+            "same_access_positive_route_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "condition_count",
+            "conditions_satisfied",
+            "conditions_failed",
+        ]:
+            if summary.get(field) != entry.get(field):
+                errors.append(f"{label} W1 denominator {field} mismatch")
+        if summary.get("row_contract_count") != 9:
+            errors.append(f"{label} W1 denominator must preserve nine rows")
+        if summary.get("denominator_requirement_count") != 8:
+            errors.append(f"{label} W1 denominator should expose eight requirements")
+        if summary.get("denominator_requirements_passed") != 4 or summary.get(
+            "denominator_requirements_failed"
+        ) != 4:
+            errors.append(f"{label} W1 denominator should be 4/4 passed/failed")
+        if summary.get("failed_denominator_requirement_ids") != ["E4", "E5", "E6", "E7"]:
+            errors.append(f"{label} W1 denominator failed IDs changed")
+        if summary.get("w1_denominator_engine_executed") is not True:
+            errors.append(f"{label} W1 denominator must execute")
+        for field in [
+            "w1_denominator_engine_accepted",
+            "production_dmrg_available",
+            "same_access_positive_route_ready",
+            "b10_t1_positive_route_ready",
+            "production_dmrg_claimed",
+            "quantum_response_win_claimed",
+            "accuracy_per_resource_win_claimed",
+            "same_access_positive_route_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+        ]:
+            if summary.get(field) is not False:
+                errors.append(f"{label} W1 denominator must keep {field}=False")
+            if field in claims and claims.get(field) is not False:
+                errors.append(f"{label} W1 denominator claim boundary must keep {field}=False")
+        if summary.get("convergence_passed_rows") != 0:
+            errors.append(f"{label} W1 denominator should have 0 convergence-passed rows")
+        if summary.get("rows_beating_seeded_mps_pressure") != 0:
+            errors.append(f"{label} W1 denominator should not beat seeded pressure")
+        if len(payload.get("rows", [])) != 9:
+            errors.append(f"{label} W1 denominator row count mismatch")
+        if len(payload.get("requirements", [])) != 8:
+            errors.append(f"{label} W1 denominator requirement count mismatch")
+        if len(payload.get("validation_errors", [])) != entry.get("validation_error_count"):
+            errors.append(f"{label} W1 denominator validation-error count mismatch")
+        return status
+
+    b5_production_dmrg_mps_denominator_status = audit_b5_production_dmrg_mps_denominator(
+        b5_production_dmrg_mps_denominator, "B5"
     )
 
     b5_boundary_field_status = {}
@@ -29585,6 +29730,9 @@ def audit(root: Path) -> dict:
     b10_t1_b5_production_dmrg_mps_acceptance_gate = b10_results.get(
         "b10_t1_b5_production_dmrg_mps_acceptance_gate_v0"
     )
+    b10_t1_b5_production_dmrg_mps_denominator = b10_results.get(
+        "b10_t1_b5_production_dmrg_mps_denominator_v0"
+    )
     b10_status = {}
     if not b10_graph:
         warnings.append("B10 manifest has no BQP-boundary graph result")
@@ -30970,6 +31118,11 @@ def audit(root: Path) -> dict:
             b10_t1_b5_production_dmrg_mps_acceptance_gate, "B10"
         )
     )
+    b10_t1_b5_production_dmrg_mps_denominator_status = (
+        audit_b5_production_dmrg_mps_denominator(
+            b10_t1_b5_production_dmrg_mps_denominator, "B10"
+        )
+    )
 
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
@@ -31327,6 +31480,7 @@ def audit(root: Path) -> dict:
             "seeded_pressure_replacement_audit": b5_seeded_pressure_replacement_status,
             "response_oracle_cost_ledger": b5_response_oracle_cost_ledger_status,
             "production_dmrg_mps_acceptance_gate": b5_production_dmrg_mps_acceptance_gate_status,
+            "production_dmrg_mps_denominator": b5_production_dmrg_mps_denominator_status,
             "canonical_environment_smoke_gate": b5_canonical_smoke_status,
             "canonical_dmrg_readiness_gate": b5_dmrg_readiness_status,
             "two_site_finite_dmrg_response_reference": b5_two_site_dmrg_status,
@@ -31429,6 +31583,9 @@ def audit(root: Path) -> dict:
             "t1_b5_response_oracle_cost_ledger": b10_t1_b5_response_oracle_cost_ledger_status,
             "t1_b5_production_dmrg_mps_acceptance_gate": (
                 b10_t1_b5_production_dmrg_mps_acceptance_gate_status
+            ),
+            "t1_b5_production_dmrg_mps_denominator": (
+                b10_t1_b5_production_dmrg_mps_denominator_status
             ),
         },
         "status_artifacts": {
@@ -31847,6 +32004,9 @@ def audit(root: Path) -> dict:
             "b5_b10_production_dmrg_mps_acceptance_gate": str(
                 research / "B5_B10_production_dmrg_mps_acceptance_gate.md"
             ),
+            "b5_production_dmrg_mps_denominator": str(
+                research / "B5_production_dmrg_mps_denominator.md"
+            ),
             "b5_canonical_environment_smoke_gate": str(
                 research / "B5_canonical_environment_smoke_gate.md"
             ),
@@ -31908,6 +32068,9 @@ def audit(root: Path) -> dict:
             ),
             "b10_t1_b5_production_dmrg_mps_acceptance_gate": str(
                 research / "B5_B10_production_dmrg_mps_acceptance_gate.md"
+            ),
+            "b10_t1_b5_production_dmrg_mps_denominator": str(
+                research / "B5_production_dmrg_mps_denominator.md"
             ),
             "b9_failed_gap_amplification_lemma": str(research / "B9_failed_gap_amplification_lemma.md"),
             "b9_symbolic_gap_skeleton": str(research / "B9_symbolic_gap_skeleton.md"),
@@ -33975,6 +34138,11 @@ def markdown_report(report: dict) -> str:
             f"- B5/B10 W1 production DMRG/MPS failed IDs: {report['b5']['production_dmrg_mps_acceptance_gate'].get('failed_production_dmrg_requirement_ids')}",
             f"- B5/B10 W1 production DMRG/MPS denominator available / remaining packets: {report['b5']['production_dmrg_mps_acceptance_gate'].get('w1_production_dmrg_denominator_available')} / {report['b5']['production_dmrg_mps_acceptance_gate'].get('remaining_positive_route_packets')}",
             f"- B5/B10 W1 production DMRG/MPS result/markdown exists: {report['b5']['production_dmrg_mps_acceptance_gate'].get('result_exists')} / {report['b5']['production_dmrg_mps_acceptance_gate'].get('markdown_exists')}",
+            f"- B5 W1 denominator engine status: {report['b5']['production_dmrg_mps_denominator'].get('status')}",
+            f"- B5 W1 denominator engine requirements passed/failed: {report['b5']['production_dmrg_mps_denominator'].get('denominator_requirements_passed')} / {report['b5']['production_dmrg_mps_denominator'].get('denominator_requirements_failed')}",
+            f"- B5 W1 denominator engine failed IDs: {report['b5']['production_dmrg_mps_denominator'].get('failed_denominator_requirement_ids')}",
+            f"- B5 W1 denominator engine convergence / seeded wins: {report['b5']['production_dmrg_mps_denominator'].get('convergence_passed_rows')} / {report['b5']['production_dmrg_mps_denominator'].get('rows_beating_seeded_mps_pressure')}",
+            f"- B5 W1 denominator engine result/markdown exists: {report['b5']['production_dmrg_mps_denominator'].get('result_exists')} / {report['b5']['production_dmrg_mps_denominator'].get('markdown_exists')}",
             "",
             "## B6 Superconductivity Descriptor Status",
             "",
@@ -34536,6 +34704,11 @@ def markdown_report(report: dict) -> str:
             f"- B10-T1 B5 W1 production DMRG/MPS failed IDs: {report['b10']['t1_b5_production_dmrg_mps_acceptance_gate'].get('failed_production_dmrg_requirement_ids')}",
             f"- B10-T1 B5 W1 production DMRG/MPS denominator available / remaining packets: {report['b10']['t1_b5_production_dmrg_mps_acceptance_gate'].get('w1_production_dmrg_denominator_available')} / {report['b10']['t1_b5_production_dmrg_mps_acceptance_gate'].get('remaining_positive_route_packets')}",
             f"- B10-T1 B5 W1 production DMRG/MPS result/markdown exists: {report['b10']['t1_b5_production_dmrg_mps_acceptance_gate'].get('result_exists')} / {report['b10']['t1_b5_production_dmrg_mps_acceptance_gate'].get('markdown_exists')}",
+            f"- B10-T1 B5 W1 denominator engine status: {report['b10']['t1_b5_production_dmrg_mps_denominator'].get('status')}",
+            f"- B10-T1 B5 W1 denominator engine requirements passed/failed: {report['b10']['t1_b5_production_dmrg_mps_denominator'].get('denominator_requirements_passed')} / {report['b10']['t1_b5_production_dmrg_mps_denominator'].get('denominator_requirements_failed')}",
+            f"- B10-T1 B5 W1 denominator engine failed IDs: {report['b10']['t1_b5_production_dmrg_mps_denominator'].get('failed_denominator_requirement_ids')}",
+            f"- B10-T1 B5 W1 denominator engine convergence / seeded wins: {report['b10']['t1_b5_production_dmrg_mps_denominator'].get('convergence_passed_rows')} / {report['b10']['t1_b5_production_dmrg_mps_denominator'].get('rows_beating_seeded_mps_pressure')}",
+            f"- B10-T1 B5 W1 denominator engine result/markdown exists: {report['b10']['t1_b5_production_dmrg_mps_denominator'].get('result_exists')} / {report['b10']['t1_b5_production_dmrg_mps_denominator'].get('markdown_exists')}",
             "",
         ]
     )

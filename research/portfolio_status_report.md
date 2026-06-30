@@ -40,7 +40,7 @@ Overall audit: PASS
 - B IDs are B1..B10: True
 - Problem IDs match attack pack: True
 - All required fields present: True
-- Maturity scores: {'B1': 63, 'B2': 48, 'B3': 28, 'B4': 29, 'B5': 29, 'B6': 24, 'B7': 59, 'B8': 41, 'B9': 15, 'B10': 53}
+- Maturity scores: {'B1': 63, 'B2': 48, 'B3': 28, 'B4': 29, 'B5': 30, 'B6': 24, 'B7': 59, 'B8': 41, 'B9': 15, 'B10': 53}
 
 ## Technical Resolution Program
 
@@ -1975,6 +1975,11 @@ Overall audit: PASS
 - B5/B10 W1 production DMRG/MPS failed IDs: ['D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9']
 - B5/B10 W1 production DMRG/MPS denominator available / remaining packets: False / ['W1']
 - B5/B10 W1 production DMRG/MPS result/markdown exists: True / True
+- B5 W1 denominator engine status: w1_denominator_engine_v0_failed_not_production_dmrg
+- B5 W1 denominator engine requirements passed/failed: 4 / 4
+- B5 W1 denominator engine failed IDs: ['E4', 'E5', 'E6', 'E7']
+- B5 W1 denominator engine convergence / seeded wins: 0 / 0
+- B5 W1 denominator engine result/markdown exists: True / True
 
 ## B6 Superconductivity Descriptor Status
 
@@ -2536,6 +2541,11 @@ Overall audit: PASS
 - B10-T1 B5 W1 production DMRG/MPS failed IDs: ['D3', 'D4', 'D5', 'D6', 'D7', 'D8', 'D9']
 - B10-T1 B5 W1 production DMRG/MPS denominator available / remaining packets: False / ['W1']
 - B10-T1 B5 W1 production DMRG/MPS result/markdown exists: True / True
+- B10-T1 B5 W1 denominator engine status: w1_denominator_engine_v0_failed_not_production_dmrg
+- B10-T1 B5 W1 denominator engine requirements passed/failed: 4 / 4
+- B10-T1 B5 W1 denominator engine failed IDs: ['E4', 'E5', 'E6', 'E7']
+- B10-T1 B5 W1 denominator engine convergence / seeded wins: 0 / 0
+- B10-T1 B5 W1 denominator engine result/markdown exists: True / True
 
 ## Errors
 

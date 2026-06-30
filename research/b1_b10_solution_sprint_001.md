@@ -2477,3 +2477,22 @@ positive route, and the current prototypes do not beat seeded pressure. This
 is progress because W1 now has a machine-checkable acceptance contract, but it
 is still not production DMRG, not a deployable denominator, not a same-access
 positive route, not quantum advantage, and not BQP separation.
+
+Sprint update 65: B5/B10 now has the first W1 denominator-engine v0 ledger.
+T-B5-006h/T-B10-014f adds `tools/b5_production_dmrg_mps_denominator.py` and
+emits `results/B5_production_dmrg_mps_denominator_v0.json` plus
+`research/B5_production_dmrg_mps_denominator.md`. The ledger preserves the
+T-B5-006d row-contract hash
+`7ee407e20f51bd0c003d885c8d43282359f84bea9729f0da203b9b2c2970a9fc`, consumes
+the W2/W3/W1 acceptance evidence, and checks 8 denominator-engine requirements.
+It passes E1 row contract, E2 non-exact-state-seeded candidate execution, E3
+sweep-ledger availability, and E8 forbidden-claim discipline. It fails E4-E7:
+production canonical environments/residuals are absent, all-row convergence is
+absent, seeded pressure is not replaced, and the same-access production cost
+ledger is incomplete. The result is a deliberately hard negative: 216 sweep
+rows, 0 convergence-passed rows, 0 rows beating seeded pressure, mean candidate
+relative response error `0.01805548365563228`, and mean seeded-pressure error
+`0.0004416259745141553`. This is useful because it turns W1 from an empty
+implementation slot into an audited failing denominator-engine shell. It is
+still not production DMRG, not a deployable denominator, not a same-access
+positive route, not quantum advantage, and not BQP separation.

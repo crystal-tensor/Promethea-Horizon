@@ -549,6 +549,13 @@ D3-D9. The missing pieces are the actual non-exact-state-seeded production
 denominator, stored canonical environments/residuals, 9/9 convergence ledgers,
 seeded-pressure replacement, same-access cost ledger, B10 positive-route
 readiness, and prototype-over-seeded pressure.
+T-B5-006h/T-B10-014f executes W1 denominator-engine v0. It checks 8
+denominator-engine requirements, passes E1 row contract, E2
+non-exact-state-seeded candidate execution, E3 sweep-ledger availability, and
+E8 forbidden-claim discipline, then fails E4 production canonical
+environments/residuals, E5 all-row convergence, E6 seeded-pressure replacement,
+and E7 same-access production cost ledger. It preserves 216 sweep rows but has
+0 convergence-passed rows and 0 rows beating seeded pressure.
 
 **Remaining path to a serious solution:** run T-B5-006 by implementing mature
 canonical-environment DMRG/MPS for the same response rows, with stored
@@ -557,10 +564,12 @@ exact-state seeding, and full cost accounting; or compare a fully costed
 quantum impurity/response kernel against exact D5, non-oracle embedding, seeded
 MPS pressure, one-site ALS, two-site finite-DMRG-style, readiness-gate, and
 smoke-gate denominators while satisfying the same-access production contract.
-Use T-B5-006c/T-B5-006d/T-B5-006e/T-B5-006f/T-B5-006g as the execution queue: W2, W3, and W1 acceptance
-are now negative audits, so the actual W1 production DMRG/MPS denominator engine is the remaining technical
-reopen route and must preserve the row-contract hash, while W6 keeps claim
-discipline fixed.
+Use T-B5-006c/T-B5-006d/T-B5-006e/T-B5-006f/T-B5-006g/T-B5-006h as the execution queue:
+W2, W3, W1 acceptance, and W1 denominator-engine v0 are now negative audits, so
+the actual W1 production DMRG/MPS denominator is the remaining technical reopen
+route and must preserve the row-contract hash while supplying canonical
+environments/residuals, all-row convergence, seeded-pressure replacement, and
+same-access production cost accounting.
 
 **Current internal maturity:** 29/100.
 
@@ -1076,12 +1085,16 @@ requirements checked, 3 passed, 5 failed, no constructed response oracle, and
 T-B5-006g/T-B10-014e now adds W1 acceptance: 10 production-denominator
 requirements checked, 3 passed, 7 failed, failed IDs D3-D9, and no production
 denominator available.
+T-B5-006h/T-B10-014f now adds W1 denominator-engine v0: 8 requirements checked,
+4 passed, 4 failed, failed IDs E4-E7, 216 sweep rows preserved, 0
+convergence-passed rows, and 0 rows beating seeded pressure.
 
 **Remaining path to a serious solution:** treat B3 as demoted unless a
 multi-parameter UCCSD/ADAPT or stronger measurement rescue succeeds; run
-T-B10-014 through B5 W1 by replacing the readiness/cost negative boundary and
-T-B5-006g acceptance failure with canonical-environment production DMRG/MPS for
-the same B5 Hubbard response rows while preserving the row-contract hash, or by
+T-B10-014 through B5 W1 by replacing the readiness/cost negative boundary, the
+T-B5-006g acceptance failure, and the T-B5-006h denominator-engine v0 failure
+with canonical-environment production DMRG/MPS for the same B5 Hubbard response
+rows while preserving the row-contract hash, or by
 supplying a future real same-access response oracle with
 preparation, mixing, variance, confidence, optimizer-loop, and classical
 denominator costs strong enough to survive the full denominator ladder; turn the B10-T2
