@@ -489,6 +489,43 @@ current_results:
     validation_error_count: 0
     result: ../results/B4_B8_real_backend_soundness_margin_gate_v0.json
     markdown_report: ../research/B4_B8_real_backend_soundness_margin_gate.md
+  real_backend_transcript_intake_template_gate_v0:
+    status: real_backend_transcript_intake_template_open_missing_rows
+    model_status: hardware_transcript_schema_and_margin_packets_built_no_real_rows
+    method: b4_b8_real_backend_transcript_intake_template_gate_v0
+    source_margin_gate_result: ../results/B4_B8_real_backend_soundness_margin_gate_v0.json
+    source_packet_scout_result: ../results/B4_B8_real_backend_packet_scout_v0.json
+    source_target_id: B10-T2
+    dependency_benchmarks: [B4, B8, B10]
+    intake_requirement_count: 8
+    intake_requirements_passed: 5
+    intake_requirements_failed: 3
+    failed_intake_requirement_ids: [T5, T6, T7]
+    failed_margin_requirement_ids: [M4, M5, M6]
+    packet_count: 3
+    packet_ids:
+      - B4B8-M4-leakage-blind-no-leak-retest
+      - B4B8-M5-full-leakage-containment-or-exclusion
+      - B4B8-M6-real-backend-transcript-rows
+    required_row_key_count: 19
+    production_required_key_count: 10
+    holdout_row_count: 160
+    real_backend_transcript_rows: 0
+    submitted_real_backend_rows: 0
+    accepted_real_backend_rows: 0
+    no_leak_allowed_accepts_per_160: 16
+    full_leak_allowed_accepts_per_160: 40
+    real_backend_transcript_intake_ready: false
+    real_backend_margin_retest_ready: false
+    protocol_soundness_proved: false
+    cryptographic_soundness_proved: false
+    sampling_hardness_proved: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    validation_error_count: 0
+    caveat: transcript_template_only_no_real_backend_rows_or_soundness_claim
+    result: ../results/B4_B8_real_backend_transcript_intake_template_gate_v0.json
+    markdown_report: ../research/B4_B8_real_backend_transcript_intake_template_gate.md
   toy_hidden_trap_protocol_sim_v0:
     status: toy_statistical_protocol
     model_status: toy_statistical_protocol_not_quantum_advantage_claim
@@ -559,3 +596,4 @@ prototype_artifacts:
   real_backend_transcript_contract_gate: ../tools/b4_b8_real_backend_transcript_contract_gate.py
   real_backend_packet_scout: ../tools/b4_b8_real_backend_packet_scout.py
   real_backend_soundness_margin_gate: ../tools/b4_b8_real_backend_soundness_margin_gate.py
+  real_backend_transcript_intake_template_gate: ../tools/b4_b8_real_backend_transcript_intake_template_gate.py

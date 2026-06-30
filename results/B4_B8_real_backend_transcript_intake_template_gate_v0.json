@@ -1,0 +1,357 @@
+{
+  "benchmark": "B4/B8",
+  "benchmark_id": "B4_B8",
+  "claim_boundary": {
+    "bqp_separation_claimed": false,
+    "cryptographic_soundness_proved": false,
+    "next_gate": "Submit real-backend transcript rows satisfying the 19-key schema, keep leakage-blind no-leak accepts <= 16/160, and either exclude full leakage or keep full-leak accepts <= 40/160.",
+    "protocol_soundness_proved": false,
+    "quantum_advantage_claimed": false,
+    "sampling_hardness_proved": false,
+    "what_is_not_supported": "No real backend rows are submitted or accepted, the margin gate is not ready to rerun, and no protocol soundness, quantum advantage, sampling hardness, or BQP separation is established.",
+    "what_is_supported": "The failed real-backend margin gates M4-M6 have been converted into hashable transcript intake packets with explicit row keys and acceptance budgets."
+  },
+  "dependency_benchmarks": [
+    "B4",
+    "B8",
+    "B10"
+  ],
+  "intake_packets": [
+    {
+      "acceptance_rule": "Submit leakage-blind no-leak real-backend transcript rows and rerun the margin gate with accepted_count <= 16/160.",
+      "accepted_real_backend_rows": 0,
+      "blocks_margin_gate": "M4",
+      "current_budget": {
+        "absolute_margin": -0.24999999999999997,
+        "allowed_accepts": 16,
+        "denominator": 160,
+        "excess_accepts": 40,
+        "observed_accepts": 56,
+        "passes_threshold": false,
+        "rate": 0.35,
+        "reduction_factor_needed": 3.4999999999999996,
+        "threshold": 0.1
+      },
+      "owner_role": "adversary_margin_agent",
+      "packet_id": "B4B8-M4-leakage-blind-no-leak-retest",
+      "production_required_keys": [
+        "backend_name",
+        "backend_properties_hash",
+        "job_id_hash",
+        "shot_count",
+        "leakage_condition",
+        "accepted_count",
+        "total_count",
+        "acceptance_rate",
+        "raw_counts_sha256",
+        "postprocess_script_sha256"
+      ],
+      "ready_for_margin_retest": false,
+      "required_row_keys": [
+        "transcript_id",
+        "backend_name",
+        "backend_properties_hash",
+        "job_id_hash",
+        "circuit_id",
+        "qasm_sha256",
+        "refresh_mode",
+        "shot_count",
+        "private_predicate_bit_count",
+        "hidden_predicate_mask_hash",
+        "leakage_condition",
+        "accepted_count",
+        "total_count",
+        "acceptance_rate",
+        "readout_mitigation_tag",
+        "calibration_timestamp_utc",
+        "raw_counts_sha256",
+        "postprocess_script_sha256",
+        "claim_boundary"
+      ],
+      "submitted_real_backend_rows": 0,
+      "template_hash": "32f8a2b7c6ecfe5614f68390cee567af28693c94b515b75185f58b6375f6730f"
+    },
+    {
+      "acceptance_rule": "Either exclude full-private-material leakage by protocol design or submit real-backend rows with accepted_count <= 40/160.",
+      "accepted_real_backend_rows": 0,
+      "blocks_margin_gate": "M5",
+      "current_budget": {
+        "absolute_margin": -0.75,
+        "allowed_accepts": 40,
+        "denominator": 160,
+        "excess_accepts": 120,
+        "observed_accepts": 160,
+        "passes_threshold": false,
+        "rate": 1.0,
+        "reduction_factor_needed": 4.0,
+        "threshold": 0.25
+      },
+      "owner_role": "protocol_boundary_agent",
+      "packet_id": "B4B8-M5-full-leakage-containment-or-exclusion",
+      "production_required_keys": [
+        "backend_name",
+        "backend_properties_hash",
+        "job_id_hash",
+        "shot_count",
+        "leakage_condition",
+        "accepted_count",
+        "total_count",
+        "acceptance_rate",
+        "raw_counts_sha256",
+        "postprocess_script_sha256"
+      ],
+      "ready_for_margin_retest": false,
+      "required_row_keys": [
+        "transcript_id",
+        "backend_name",
+        "backend_properties_hash",
+        "job_id_hash",
+        "circuit_id",
+        "qasm_sha256",
+        "refresh_mode",
+        "shot_count",
+        "private_predicate_bit_count",
+        "hidden_predicate_mask_hash",
+        "leakage_condition",
+        "accepted_count",
+        "total_count",
+        "acceptance_rate",
+        "readout_mitigation_tag",
+        "calibration_timestamp_utc",
+        "raw_counts_sha256",
+        "postprocess_script_sha256",
+        "claim_boundary"
+      ],
+      "submitted_real_backend_rows": 0,
+      "template_hash": "65279d4ef9e15c6de7a92c38f2710673036bc9fb2d7738295b517de68c861fbd"
+    },
+    {
+      "acceptance_rule": "Submit nonzero real-backend transcript rows with hashes for backend properties, jobs, raw counts, and postprocessing.",
+      "accepted_real_backend_rows": 0,
+      "blocks_margin_gate": "M6",
+      "current_budget": {
+        "real_backend_transcript_rows": 0,
+        "required_minimum_rows": 160
+      },
+      "owner_role": "hardware_execution_agent",
+      "packet_id": "B4B8-M6-real-backend-transcript-rows",
+      "production_required_keys": [
+        "backend_name",
+        "backend_properties_hash",
+        "job_id_hash",
+        "shot_count",
+        "leakage_condition",
+        "accepted_count",
+        "total_count",
+        "acceptance_rate",
+        "raw_counts_sha256",
+        "postprocess_script_sha256"
+      ],
+      "ready_for_margin_retest": false,
+      "required_row_keys": [
+        "transcript_id",
+        "backend_name",
+        "backend_properties_hash",
+        "job_id_hash",
+        "circuit_id",
+        "qasm_sha256",
+        "refresh_mode",
+        "shot_count",
+        "private_predicate_bit_count",
+        "hidden_predicate_mask_hash",
+        "leakage_condition",
+        "accepted_count",
+        "total_count",
+        "acceptance_rate",
+        "readout_mitigation_tag",
+        "calibration_timestamp_utc",
+        "raw_counts_sha256",
+        "postprocess_script_sha256",
+        "claim_boundary"
+      ],
+      "submitted_real_backend_rows": 0,
+      "template_hash": "a4ca526f27bf3324ed273d903aa7b8af52cca171bd181c8093d38fa48fe320ed"
+    }
+  ],
+  "last_updated": "2026-07-01",
+  "method": "b4_b8_real_backend_transcript_intake_template_gate_v0",
+  "model_status": "hardware_transcript_schema_and_margin_packets_built_no_real_rows",
+  "production_required_keys": [
+    "backend_name",
+    "backend_properties_hash",
+    "job_id_hash",
+    "shot_count",
+    "leakage_condition",
+    "accepted_count",
+    "total_count",
+    "acceptance_rate",
+    "raw_counts_sha256",
+    "postprocess_script_sha256"
+  ],
+  "required_row_keys": [
+    "transcript_id",
+    "backend_name",
+    "backend_properties_hash",
+    "job_id_hash",
+    "circuit_id",
+    "qasm_sha256",
+    "refresh_mode",
+    "shot_count",
+    "private_predicate_bit_count",
+    "hidden_predicate_mask_hash",
+    "leakage_condition",
+    "accepted_count",
+    "total_count",
+    "acceptance_rate",
+    "readout_mitigation_tag",
+    "calibration_timestamp_utc",
+    "raw_counts_sha256",
+    "postprocess_script_sha256",
+    "claim_boundary"
+  ],
+  "requirements": [
+    {
+      "evidence": {
+        "failed_margin_requirement_ids": [
+          "M4",
+          "M5",
+          "M6"
+        ],
+        "source_method": "b4_b8_real_backend_soundness_margin_gate_v0",
+        "source_status": "real_backend_soundness_margin_failed_missing_real_backend_rows"
+      },
+      "label": "Real-backend soundness margin gate is present and failed on M4-M6",
+      "passed": true,
+      "requirement_id": "T1"
+    },
+    {
+      "evidence": {
+        "failed_packet_scout_requirement_ids": [
+          "S5",
+          "S6",
+          "S7",
+          "S8",
+          "S9"
+        ],
+        "source_method": "b4_b8_real_backend_packet_scout_v0"
+      },
+      "label": "Packet scout still preserves the real-backend evidence blockers",
+      "passed": true,
+      "requirement_id": "T2"
+    },
+    {
+      "evidence": {
+        "blocks_margin_gate_sequence": [
+          "M4",
+          "M5",
+          "M6"
+        ],
+        "packet_count": 3,
+        "packet_ids": [
+          "B4B8-M4-leakage-blind-no-leak-retest",
+          "B4B8-M5-full-leakage-containment-or-exclusion",
+          "B4B8-M6-real-backend-transcript-rows"
+        ]
+      },
+      "label": "Three margin-failure intake packets are generated",
+      "passed": true,
+      "requirement_id": "T3"
+    },
+    {
+      "evidence": {
+        "production_required_key_count": 10,
+        "required_row_key_count": 19,
+        "template_table_hash": "ee83ca221aab4bab13b324f458b58efa7ce275cab511bcd0a1c793ba7087f405"
+      },
+      "label": "Transcript row schema is explicit and hashable",
+      "passed": true,
+      "requirement_id": "T4"
+    },
+    {
+      "evidence": {
+        "submitted_real_backend_rows": 0
+      },
+      "label": "Submitted real-backend transcript rows are present",
+      "passed": false,
+      "requirement_id": "T5"
+    },
+    {
+      "evidence": {
+        "accepted_real_backend_rows": 0,
+        "required_margin_packets": 3
+      },
+      "label": "Accepted real-backend transcript rows cover all margin packets",
+      "passed": false,
+      "requirement_id": "T6"
+    },
+    {
+      "evidence": {
+        "ready_packet_count": 0,
+        "required_packet_count": 3
+      },
+      "label": "Real-backend margin retest is ready",
+      "passed": false,
+      "requirement_id": "T7"
+    },
+    {
+      "evidence": {
+        "bqp_separation_claimed": false,
+        "protocol_soundness_proved": false,
+        "quantum_advantage_claimed": false
+      },
+      "label": "Forbidden soundness, advantage, and BQP claims remain false",
+      "passed": true,
+      "requirement_id": "T8"
+    }
+  ],
+  "runtime_seconds": 0.0001990795135498047,
+  "source_margin_gate_result": "results/B4_B8_real_backend_soundness_margin_gate_v0.json",
+  "source_packet_scout_result": "results/B4_B8_real_backend_packet_scout_v0.json",
+  "source_target_id": "B10-T2",
+  "status": "real_backend_transcript_intake_template_open_missing_rows",
+  "summary": {
+    "accepted_real_backend_rows": 0,
+    "bqp_separation_claimed": false,
+    "cryptographic_soundness_proved": false,
+    "failed_intake_requirement_ids": [
+      "T5",
+      "T6",
+      "T7"
+    ],
+    "failed_margin_requirement_ids": [
+      "M4",
+      "M5",
+      "M6"
+    ],
+    "full_leak_allowed_accepts_per_160": 40,
+    "full_leak_excess_accepts_per_160": 120,
+    "holdout_row_count": 160,
+    "intake_requirement_count": 8,
+    "intake_requirements_failed": 3,
+    "intake_requirements_passed": 5,
+    "leakage_blind_excess_accepts_per_160": 40,
+    "no_leak_allowed_accepts_per_160": 16,
+    "packet_count": 3,
+    "packet_ids": [
+      "B4B8-M4-leakage-blind-no-leak-retest",
+      "B4B8-M5-full-leakage-containment-or-exclusion",
+      "B4B8-M6-real-backend-transcript-rows"
+    ],
+    "production_required_key_count": 10,
+    "protocol_soundness_proved": false,
+    "quantum_advantage_claimed": false,
+    "real_backend_margin_retest_ready": false,
+    "real_backend_transcript_intake_ready": false,
+    "real_backend_transcript_rows": 0,
+    "required_row_key_count": 19,
+    "sampling_hardness_proved": false,
+    "source_margin_status": "real_backend_soundness_margin_failed_missing_real_backend_rows",
+    "source_packet_scout_status": "real_backend_packet_scout_failed_missing_real_backend_evidence",
+    "submitted_real_backend_rows": 0,
+    "template_table_hash": "ee83ca221aab4bab13b324f458b58efa7ce275cab511bcd0a1c793ba7087f405",
+    "validation_error_count": 0
+  },
+  "title": "B4/B8 Real-Backend Transcript Intake Template Gate v0",
+  "validation_errors": [],
+  "version": "0.1"
+}
