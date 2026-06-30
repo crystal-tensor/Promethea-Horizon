@@ -25527,6 +25527,171 @@ def audit(root: Path) -> dict:
             errors.append(f"{label} real-backend transcript contract payload validation-error count mismatch")
         return status
 
+    def audit_real_backend_packet_scout(entry, label):
+        status = {}
+        if not entry:
+            warnings.append(f"{label} manifest has no real-backend packet scout")
+            return status
+        result_path = entry.get("result")
+        markdown_path = entry.get("markdown_report")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"{label} real-backend packet scout result path missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"{label} real-backend packet scout markdown missing: {markdown_path}")
+        payload = json.loads(read((benchmarks / result_path).resolve())) if result_exists else {}
+        summary = payload.get("summary", {})
+        claims = payload.get("claim_boundary", {})
+        status = {
+            "status": entry.get("status"),
+            "model_status": entry.get("model_status"),
+            "method": entry.get("method"),
+            "source_contract_status": summary.get("source_contract_status"),
+            "source_readiness_status": summary.get("source_readiness_status"),
+            "packet_scout_requirement_count": summary.get("packet_scout_requirement_count"),
+            "packet_scout_requirements_passed": summary.get("packet_scout_requirements_passed"),
+            "packet_scout_requirements_failed": summary.get("packet_scout_requirements_failed"),
+            "failed_packet_scout_requirement_ids": summary.get(
+                "failed_packet_scout_requirement_ids"
+            ),
+            "contract_packet_count": summary.get("contract_packet_count"),
+            "contract_packet_ids": summary.get("contract_packet_ids"),
+            "source_transcript_case_count": summary.get("source_transcript_case_count"),
+            "train_row_count": summary.get("train_row_count"),
+            "holdout_row_count": summary.get("holdout_row_count"),
+            "fitted_evaluation_row_count": summary.get("fitted_evaluation_row_count"),
+            "backend_calibrated_aer_circuit_count": summary.get(
+                "backend_calibrated_aer_circuit_count"
+            ),
+            "qiskit_generic_backend_v2_used": summary.get("qiskit_generic_backend_v2_used"),
+            "backend_calibrated_noise_parameters_instantiated": summary.get(
+                "backend_calibrated_noise_parameters_instantiated"
+            ),
+            "real_backend_properties_used": summary.get("real_backend_properties_used"),
+            "hardware_execution_performed": summary.get("hardware_execution_performed"),
+            "real_backend_transcript_rows": summary.get("real_backend_transcript_rows"),
+            "leakage_separated_real_training_performed": summary.get(
+                "leakage_separated_real_training_performed"
+            ),
+            "private_safe_max_no_leak_fitted_acceptance": summary.get(
+                "private_safe_max_no_leak_fitted_acceptance"
+            ),
+            "leakage_blind_max_no_leak_fitted_acceptance": summary.get(
+                "leakage_blind_max_no_leak_fitted_acceptance"
+            ),
+            "leakage_aware_max_full_private_material_leak_fitted_acceptance": summary.get(
+                "leakage_aware_max_full_private_material_leak_fitted_acceptance"
+            ),
+            "real_backend_packet_scout_ready": summary.get("real_backend_packet_scout_ready"),
+            "real_backend_transcript_readiness": summary.get(
+                "real_backend_transcript_readiness"
+            ),
+            "protocol_soundness_proved": summary.get("protocol_soundness_proved"),
+            "cryptographic_soundness_proved": summary.get("cryptographic_soundness_proved"),
+            "sampling_hardness_proved": summary.get("sampling_hardness_proved"),
+            "quantum_advantage_claimed": summary.get("quantum_advantage_claimed"),
+            "bqp_separation_claimed": summary.get("bqp_separation_claimed"),
+            "real_backend_packet_scout_built": claims.get("real_backend_packet_scout_built"),
+            "validation_error_count": len(payload.get("validation_errors", [])),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown_report": markdown_path,
+        }
+        if payload.get("benchmark_id") != "B4_B8":
+            errors.append(f"{label} real-backend packet scout benchmark_id must be B4_B8")
+        if payload.get("status") != entry.get("status"):
+            errors.append(f"{label} real-backend packet scout status mismatch")
+        if payload.get("model_status") != entry.get("model_status"):
+            errors.append(f"{label} real-backend packet scout model_status mismatch")
+        if payload.get("method") != entry.get("method"):
+            errors.append(f"{label} real-backend packet scout method mismatch")
+        for field in [
+            "source_contract_status",
+            "source_readiness_status",
+            "packet_scout_requirement_count",
+            "packet_scout_requirements_passed",
+            "packet_scout_requirements_failed",
+            "failed_packet_scout_requirement_ids",
+            "contract_packet_count",
+            "backend_calibrated_aer_circuit_count",
+            "fitted_evaluation_row_count",
+            "holdout_row_count",
+            "real_backend_properties_used",
+            "hardware_execution_performed",
+            "real_backend_transcript_rows",
+            "leakage_separated_real_training_performed",
+            "leakage_blind_max_no_leak_fitted_acceptance",
+            "leakage_aware_max_full_private_material_leak_fitted_acceptance",
+            "real_backend_packet_scout_ready",
+            "real_backend_transcript_readiness",
+            "protocol_soundness_proved",
+            "cryptographic_soundness_proved",
+            "sampling_hardness_proved",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+        ]:
+            if summary.get(field) != entry.get(field):
+                errors.append(f"{label} real-backend packet scout {field} mismatch")
+        if summary.get("packet_scout_requirement_count") != 9:
+            errors.append(f"{label} real-backend packet scout should check 9 requirements")
+        if summary.get("packet_scout_requirements_passed") != 4:
+            errors.append(f"{label} real-backend packet scout should pass 4 requirements")
+        if summary.get("packet_scout_requirements_failed") != 5:
+            errors.append(f"{label} real-backend packet scout should fail 5 requirements")
+        if summary.get("failed_packet_scout_requirement_ids") != ["S5", "S6", "S7", "S8", "S9"]:
+            errors.append(f"{label} real-backend packet scout failures should be S5-S9")
+        if summary.get("contract_packet_count") != 5 or len(payload.get("rows", [])) != 5:
+            errors.append(f"{label} real-backend packet scout should expose 5 packet rows")
+        if summary.get("backend_calibrated_aer_circuit_count") != 5760:
+            errors.append(f"{label} real-backend packet scout should preserve 5760 bridge circuits")
+        if summary.get("fitted_evaluation_row_count") != 640:
+            errors.append(f"{label} real-backend packet scout should preserve 640 fitted eval rows")
+        if summary.get("holdout_row_count") != 160:
+            errors.append(f"{label} real-backend packet scout should preserve 160 holdout rows")
+        if summary.get("leakage_blind_max_no_leak_fitted_acceptance") != 0.35:
+            errors.append(f"{label} real-backend packet scout leakage-blind acceptance mismatch")
+        if summary.get("leakage_aware_max_full_private_material_leak_fitted_acceptance") != 1.0:
+            errors.append(f"{label} real-backend packet scout full-leak acceptance mismatch")
+        for field in [
+            "real_backend_properties_used",
+            "hardware_execution_performed",
+            "leakage_separated_real_training_performed",
+            "real_backend_packet_scout_ready",
+            "real_backend_transcript_readiness",
+            "protocol_soundness_proved",
+            "cryptographic_soundness_proved",
+            "sampling_hardness_proved",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+        ]:
+            if summary.get(field) is not False:
+                errors.append(f"{label} real-backend packet scout must keep {field}=False")
+        if summary.get("real_backend_transcript_rows") != 0:
+            errors.append(f"{label} real-backend packet scout should have 0 real transcript rows")
+        if claims.get("real_backend_packet_scout_built") is not True:
+            errors.append(f"{label} real-backend packet scout must disclose scout construction")
+        for field in [
+            "real_backend_properties_used",
+            "hardware_execution_performed",
+            "real_backend_transcript_readiness",
+            "protocol_soundness_proved",
+            "cryptographic_soundness_proved",
+            "sampling_hardness_proved",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+        ]:
+            if claims.get(field) is not False:
+                errors.append(f"{label} real-backend packet scout claim boundary must keep {field}=False")
+        if len(payload.get("requirements", [])) != 9:
+            errors.append(f"{label} real-backend packet scout requirement count mismatch")
+        if len(payload.get("validation_errors", [])) != entry.get("validation_error_count"):
+            errors.append(f"{label} real-backend packet scout validation-error count mismatch")
+        if payload.get("validation_error_count") != len(payload.get("validation_errors", [])):
+            errors.append(f"{label} real-backend packet scout payload validation-error count mismatch")
+        return status
+
     b4_manifest = yaml.safe_load(read(b4_manifest_path))
     b4_results = b4_manifest.get("current_results", {})
     b4_trap = b4_results.get("toy_hidden_trap_protocol_sim_v0")
@@ -25551,6 +25716,7 @@ def audit(root: Path) -> dict:
     b4_real_backend_transcript_contract = b4_results.get(
         "real_backend_transcript_contract_gate_v0"
     )
+    b4_real_backend_packet_scout = b4_results.get("real_backend_packet_scout_v0")
     b4_status = {}
     if not b4_trap:
         warnings.append("B4 manifest has no toy hidden-trap protocol result")
@@ -25820,6 +25986,9 @@ def audit(root: Path) -> dict:
     )
     b4_real_backend_transcript_contract_status = audit_real_backend_transcript_contract(
         b4_real_backend_transcript_contract, "B4"
+    )
+    b4_real_backend_packet_scout_status = audit_real_backend_packet_scout(
+        b4_real_backend_packet_scout, "B4"
     )
 
     b5_manifest = yaml.safe_load(read(b5_manifest_path))
@@ -30079,6 +30248,7 @@ def audit(root: Path) -> dict:
     b8_real_backend_transcript_contract = b8_results.get(
         "real_backend_transcript_contract_gate_v0"
     )
+    b8_real_backend_packet_scout = b8_results.get("real_backend_packet_scout_v0")
     b8_generative_spoofer = b8_results.get("generative_spoofer_refresh_stress_v0")
     b8_status = {}
     if not b8_verifier:
@@ -30393,6 +30563,9 @@ def audit(root: Path) -> dict:
     )
     b8_real_backend_transcript_contract_status = audit_real_backend_transcript_contract(
         b8_real_backend_transcript_contract, "B8"
+    )
+    b8_real_backend_packet_scout_status = audit_real_backend_packet_scout(
+        b8_real_backend_packet_scout, "B8"
     )
 
     b8_generative_spoofer_status = {}
@@ -32814,6 +32987,7 @@ def audit(root: Path) -> dict:
             "private_challenge_fitted_spoofer_attack": b4_private_challenge_fitted_spoofer_status,
             "real_backend_transcript_readiness_gate": b4_real_backend_transcript_readiness_status,
             "real_backend_transcript_contract_gate": b4_real_backend_transcript_contract_status,
+            "real_backend_packet_scout": b4_real_backend_packet_scout_status,
         },
         "b5": {
             "manifest": str(b5_manifest_path),
@@ -32888,6 +33062,7 @@ def audit(root: Path) -> dict:
             "private_challenge_fitted_spoofer_attack": b8_private_challenge_fitted_spoofer_status,
             "real_backend_transcript_readiness_gate": b8_real_backend_transcript_readiness_status,
             "real_backend_transcript_contract_gate": b8_real_backend_transcript_contract_status,
+            "real_backend_packet_scout": b8_real_backend_packet_scout_status,
             "generative_spoofer_refresh": b8_generative_spoofer_status,
         },
         "b9": {
@@ -33528,6 +33703,9 @@ def audit(root: Path) -> dict:
             ),
             "b4_b8_real_backend_transcript_contract_gate": str(
                 research / "B4_B8_real_backend_transcript_contract_gate.md"
+            ),
+            "b4_b8_real_backend_packet_scout": str(
+                research / "B4_B8_real_backend_packet_scout.md"
             ),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
@@ -35449,6 +35627,14 @@ def markdown_report(report: dict) -> str:
             f"- Real-backend transcript contract readiness / soundness / advantage: {report['b4']['real_backend_transcript_contract_gate'].get('real_backend_transcript_readiness')} / {report['b4']['real_backend_transcript_contract_gate'].get('protocol_soundness_proved')} / {report['b4']['real_backend_transcript_contract_gate'].get('quantum_advantage_claimed')}",
             f"- Real-backend transcript contract validation errors: {report['b4']['real_backend_transcript_contract_gate'].get('validation_error_count')}",
             f"- Real-backend transcript contract result/markdown exists: {report['b4']['real_backend_transcript_contract_gate'].get('result_exists')} / {report['b4']['real_backend_transcript_contract_gate'].get('markdown_exists')}",
+            f"- Real-backend packet scout status: {report['b4']['real_backend_packet_scout'].get('status')}",
+            f"- Real-backend packet scout passed / failed / failed IDs: {report['b4']['real_backend_packet_scout'].get('packet_scout_requirements_passed')} / {report['b4']['real_backend_packet_scout'].get('packet_scout_requirements_failed')} / {report['b4']['real_backend_packet_scout'].get('failed_packet_scout_requirement_ids')}",
+            f"- Real-backend packet scout packets / bridge circuits / fitted rows / holdout rows: {report['b4']['real_backend_packet_scout'].get('contract_packet_count')} / {report['b4']['real_backend_packet_scout'].get('backend_calibrated_aer_circuit_count')} / {report['b4']['real_backend_packet_scout'].get('fitted_evaluation_row_count')} / {report['b4']['real_backend_packet_scout'].get('holdout_row_count')}",
+            f"- Real-backend packet scout backend / hardware / transcript rows / real training: {report['b4']['real_backend_packet_scout'].get('real_backend_properties_used')} / {report['b4']['real_backend_packet_scout'].get('hardware_execution_performed')} / {report['b4']['real_backend_packet_scout'].get('real_backend_transcript_rows')} / {report['b4']['real_backend_packet_scout'].get('leakage_separated_real_training_performed')}",
+            f"- Real-backend packet scout leakage-blind / full-leak acceptance: {report['b4']['real_backend_packet_scout'].get('leakage_blind_max_no_leak_fitted_acceptance')} / {report['b4']['real_backend_packet_scout'].get('leakage_aware_max_full_private_material_leak_fitted_acceptance')}",
+            f"- Real-backend packet scout readiness / soundness / advantage: {report['b4']['real_backend_packet_scout'].get('real_backend_transcript_readiness')} / {report['b4']['real_backend_packet_scout'].get('protocol_soundness_proved')} / {report['b4']['real_backend_packet_scout'].get('quantum_advantage_claimed')}",
+            f"- Real-backend packet scout validation errors: {report['b4']['real_backend_packet_scout'].get('validation_error_count')}",
+            f"- Real-backend packet scout result/markdown exists: {report['b4']['real_backend_packet_scout'].get('result_exists')} / {report['b4']['real_backend_packet_scout'].get('markdown_exists')}",
             "",
             "## B5 Hubbard Embedding Status",
             "",
@@ -35859,6 +36045,14 @@ def markdown_report(report: dict) -> str:
             f"- Real-backend transcript contract readiness / soundness / advantage: {report['b8']['real_backend_transcript_contract_gate'].get('real_backend_transcript_readiness')} / {report['b8']['real_backend_transcript_contract_gate'].get('protocol_soundness_proved')} / {report['b8']['real_backend_transcript_contract_gate'].get('quantum_advantage_claimed')}",
             f"- Real-backend transcript contract validation errors: {report['b8']['real_backend_transcript_contract_gate'].get('validation_error_count')}",
             f"- Real-backend transcript contract result/markdown exists: {report['b8']['real_backend_transcript_contract_gate'].get('result_exists')} / {report['b8']['real_backend_transcript_contract_gate'].get('markdown_exists')}",
+            f"- Real-backend packet scout status: {report['b8']['real_backend_packet_scout'].get('status')}",
+            f"- Real-backend packet scout passed / failed / failed IDs: {report['b8']['real_backend_packet_scout'].get('packet_scout_requirements_passed')} / {report['b8']['real_backend_packet_scout'].get('packet_scout_requirements_failed')} / {report['b8']['real_backend_packet_scout'].get('failed_packet_scout_requirement_ids')}",
+            f"- Real-backend packet scout packets / bridge circuits / fitted rows / holdout rows: {report['b8']['real_backend_packet_scout'].get('contract_packet_count')} / {report['b8']['real_backend_packet_scout'].get('backend_calibrated_aer_circuit_count')} / {report['b8']['real_backend_packet_scout'].get('fitted_evaluation_row_count')} / {report['b8']['real_backend_packet_scout'].get('holdout_row_count')}",
+            f"- Real-backend packet scout backend / hardware / transcript rows / real training: {report['b8']['real_backend_packet_scout'].get('real_backend_properties_used')} / {report['b8']['real_backend_packet_scout'].get('hardware_execution_performed')} / {report['b8']['real_backend_packet_scout'].get('real_backend_transcript_rows')} / {report['b8']['real_backend_packet_scout'].get('leakage_separated_real_training_performed')}",
+            f"- Real-backend packet scout leakage-blind / full-leak acceptance: {report['b8']['real_backend_packet_scout'].get('leakage_blind_max_no_leak_fitted_acceptance')} / {report['b8']['real_backend_packet_scout'].get('leakage_aware_max_full_private_material_leak_fitted_acceptance')}",
+            f"- Real-backend packet scout readiness / soundness / advantage: {report['b8']['real_backend_packet_scout'].get('real_backend_transcript_readiness')} / {report['b8']['real_backend_packet_scout'].get('protocol_soundness_proved')} / {report['b8']['real_backend_packet_scout'].get('quantum_advantage_claimed')}",
+            f"- Real-backend packet scout validation errors: {report['b8']['real_backend_packet_scout'].get('validation_error_count')}",
+            f"- Real-backend packet scout result/markdown exists: {report['b8']['real_backend_packet_scout'].get('result_exists')} / {report['b8']['real_backend_packet_scout'].get('markdown_exists')}",
             f"- Generative spoofer status: {report['b8']['generative_spoofer_refresh'].get('status')}",
             f"- Generative spoofer configurations: {report['b8']['generative_spoofer_refresh'].get('configuration_count')}",
             f"- Generative spoofer maximum learned soundness: {report['b8']['generative_spoofer_refresh'].get('maximum_learned_soundness')}",

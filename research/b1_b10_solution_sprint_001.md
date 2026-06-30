@@ -2505,6 +2505,17 @@ handoff contract for the next B4/B8 implementation PRs, not real-backend
 readiness, protocol soundness, hardware execution, quantum advantage, or BQP
 separation.
 
+Sprint update 59h: B4/B8 now has a real-backend packet scout. T-B4-002h/T-B8-003l
+adds `tools/b4_b8_real_backend_packet_scout.py` and emits
+`results/B4_B8_real_backend_packet_scout_v0.json` plus
+`research/B4_B8_real_backend_packet_scout.md`. The scout consumes the contract,
+readiness guardrail, and fitted-spoofer holdout evidence; checks 9 scout
+requirements; passes 4; and fails S5-S9. It maps 5 PR packets, 5760
+backend-calibrated Aer circuits, 640 fitted evaluation rows, and 160 holdout
+rows, but keeps real backend transcript rows at 0 and keeps real-backend,
+hardware-execution, leakage-separated real-training, soundness, advantage, and
+BQP claims false.
+
 Sprint update 63: B5/B10 now has the W4 row-contract harness that the
 production implementation triage requested. T-B5-006d/T-B10-014b adds
 `tools/b5_b10_row_contract_harness.py` and emits

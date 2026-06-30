@@ -1899,6 +1899,14 @@ Overall audit: PASS
 - Real-backend transcript contract readiness / soundness / advantage: False / False / False
 - Real-backend transcript contract validation errors: 0
 - Real-backend transcript contract result/markdown exists: True / True
+- Real-backend packet scout status: real_backend_packet_scout_failed_missing_real_backend_evidence
+- Real-backend packet scout passed / failed / failed IDs: 4 / 5 / ['S5', 'S6', 'S7', 'S8', 'S9']
+- Real-backend packet scout packets / bridge circuits / fitted rows / holdout rows: 5 / 5760 / 640 / 160
+- Real-backend packet scout backend / hardware / transcript rows / real training: False / False / 0 / False
+- Real-backend packet scout leakage-blind / full-leak acceptance: 0.35 / 1.0
+- Real-backend packet scout readiness / soundness / advantage: False / False / False
+- Real-backend packet scout validation errors: 0
+- Real-backend packet scout result/markdown exists: True / True
 
 ## B5 Hubbard Embedding Status
 
@@ -2309,6 +2317,14 @@ Overall audit: PASS
 - Real-backend transcript contract readiness / soundness / advantage: False / False / False
 - Real-backend transcript contract validation errors: 0
 - Real-backend transcript contract result/markdown exists: True / True
+- Real-backend packet scout status: real_backend_packet_scout_failed_missing_real_backend_evidence
+- Real-backend packet scout passed / failed / failed IDs: 4 / 5 / ['S5', 'S6', 'S7', 'S8', 'S9']
+- Real-backend packet scout packets / bridge circuits / fitted rows / holdout rows: 5 / 5760 / 640 / 160
+- Real-backend packet scout backend / hardware / transcript rows / real training: False / False / 0 / False
+- Real-backend packet scout leakage-blind / full-leak acceptance: 0.35 / 1.0
+- Real-backend packet scout readiness / soundness / advantage: False / False / False
+- Real-backend packet scout validation errors: 0
+- Real-backend packet scout result/markdown exists: True / True
 - Generative spoofer status: trained_generative_spoofer_refresh_boundary_not_soundness_proof
 - Generative spoofer configurations: 144
 - Generative spoofer maximum learned soundness: 1.0

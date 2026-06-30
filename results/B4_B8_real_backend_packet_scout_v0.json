@@ -1,0 +1,212 @@
+{
+  "benchmark": "B4/B8",
+  "benchmark_id": "B4_B8",
+  "claim_boundary": {
+    "bqp_separation_claimed": false,
+    "cryptographic_soundness_proved": false,
+    "hardware_execution_performed": false,
+    "protocol_soundness_proved": false,
+    "quantum_advantage_claimed": false,
+    "real_backend_packet_scout_built": true,
+    "real_backend_properties_used": false,
+    "real_backend_transcript_readiness": false,
+    "sampling_hardness_proved": false,
+    "what_is_not_supported": "No real backend properties, hardware execution, leakage-separated real fitting, protocol soundness, sampling hardness, quantum advantage, or BQP separation is established.",
+    "what_is_supported": "The five real-backend transcript contract packets are mapped to the current simulated/fitted evidence and remain ready for PR handoff."
+  },
+  "elapsed_seconds": 0.0009539127349853516,
+  "last_updated": "2026-07-01",
+  "method": "b4_b8_real_backend_packet_scout_v0",
+  "model_status": "contract_packets_mapped_but_no_real_backend_or_hardware_transcripts",
+  "requirements": [
+    {
+      "evidence": {
+        "contract_packet_count": 5,
+        "source_status": "real_backend_transcript_contract_open_missing_hardware_evidence"
+      },
+      "label": "Real-backend transcript contract is present and open",
+      "passed": true,
+      "requirement_id": "S1"
+    },
+    {
+      "evidence": {
+        "backend_calibrated_aer_circuit_count": 5760,
+        "fitted_evaluation_row_count": 640,
+        "source_fitted_method": "b4_b8_private_challenge_fitted_spoofer_attack_v0"
+      },
+      "label": "Synthetic fitted-spoofer and backend-calibrated controls remain available",
+      "passed": true,
+      "requirement_id": "S2"
+    },
+    {
+      "evidence": {
+        "packet_ids": [
+          "B4B8-R5-real-backend-properties",
+          "B4B8-R6-hardware-execution",
+          "B4B8-R7-leakage-separated-real-fitting",
+          "B4B8-R8-leakage-blind-no-leak-margin",
+          "B4B8-R9-full-leakage-containment"
+        ],
+        "source_failures": [
+          "K5",
+          "K6",
+          "K7",
+          "K8",
+          "K9"
+        ]
+      },
+      "label": "Five contract packets map to five preserved readiness blockers",
+      "passed": true,
+      "requirement_id": "S3"
+    },
+    {
+      "evidence": {
+        "bqp_separation_claimed": false,
+        "protocol_soundness_proved": false,
+        "quantum_advantage_claimed": false
+      },
+      "label": "Forbidden advantage and soundness claims remain false",
+      "passed": true,
+      "requirement_id": "S4"
+    },
+    {
+      "evidence": {
+        "real_backend_properties_used": false
+      },
+      "label": "Real backend properties are present",
+      "passed": false,
+      "requirement_id": "S5"
+    },
+    {
+      "evidence": {
+        "hardware_execution_performed": false,
+        "real_backend_transcript_rows": 0
+      },
+      "label": "Hardware execution transcripts are present",
+      "passed": false,
+      "requirement_id": "S6"
+    },
+    {
+      "evidence": {
+        "leakage_separated_real_training_performed": false,
+        "real_backend_transcript_rows": 0
+      },
+      "label": "Leakage-separated training on real transcript rows is present",
+      "passed": false,
+      "requirement_id": "S7"
+    },
+    {
+      "evidence": {
+        "leakage_blind_max_no_leak_fitted_acceptance": 0.35,
+        "real_backend_transcript_rows": 0
+      },
+      "label": "Leakage-blind no-leak fitted acceptance reaches <= 0.10 on real rows",
+      "passed": false,
+      "requirement_id": "S8"
+    },
+    {
+      "evidence": {
+        "leakage_aware_max_full_private_material_leak_fitted_acceptance": 1.0,
+        "real_backend_transcript_rows": 0
+      },
+      "label": "Full-private-material leakage is contained or explicitly excluded on real rows",
+      "passed": false,
+      "requirement_id": "S9"
+    }
+  ],
+  "rows": [
+    {
+      "blocks_gate": "K5",
+      "current_real_evidence_rows": 0,
+      "owner_role": "backend_calibration_agent",
+      "packet_id": "B4B8-R5-real-backend-properties",
+      "ready_for_positive_claim": false,
+      "required_artifact_count": 4,
+      "source_failure_preserved": true
+    },
+    {
+      "blocks_gate": "K6",
+      "current_real_evidence_rows": 0,
+      "owner_role": "hardware_execution_agent",
+      "packet_id": "B4B8-R6-hardware-execution",
+      "ready_for_positive_claim": false,
+      "required_artifact_count": 4,
+      "source_failure_preserved": true
+    },
+    {
+      "blocks_gate": "K7",
+      "current_real_evidence_rows": 0,
+      "owner_role": "spoofer_baseline_agent",
+      "packet_id": "B4B8-R7-leakage-separated-real-fitting",
+      "ready_for_positive_claim": false,
+      "required_artifact_count": 4,
+      "source_failure_preserved": true
+    },
+    {
+      "blocks_gate": "K8",
+      "current_real_evidence_rows": 0,
+      "owner_role": "adversary_margin_agent",
+      "packet_id": "B4B8-R8-leakage-blind-no-leak-margin",
+      "ready_for_positive_claim": false,
+      "required_artifact_count": 4,
+      "source_failure_preserved": true
+    },
+    {
+      "blocks_gate": "K9",
+      "current_real_evidence_rows": 0,
+      "owner_role": "protocol_boundary_agent",
+      "packet_id": "B4B8-R9-full-leakage-containment",
+      "ready_for_positive_claim": false,
+      "required_artifact_count": 4,
+      "source_failure_preserved": true
+    }
+  ],
+  "status": "real_backend_packet_scout_failed_missing_real_backend_evidence",
+  "summary": {
+    "backend_calibrated_aer_circuit_count": 5760,
+    "backend_calibrated_noise_parameters_instantiated": true,
+    "bqp_separation_claimed": false,
+    "contract_packet_count": 5,
+    "contract_packet_ids": [
+      "B4B8-R5-real-backend-properties",
+      "B4B8-R6-hardware-execution",
+      "B4B8-R7-leakage-separated-real-fitting",
+      "B4B8-R8-leakage-blind-no-leak-margin",
+      "B4B8-R9-full-leakage-containment"
+    ],
+    "cryptographic_soundness_proved": false,
+    "failed_packet_scout_requirement_ids": [
+      "S5",
+      "S6",
+      "S7",
+      "S8",
+      "S9"
+    ],
+    "fitted_evaluation_row_count": 640,
+    "hardware_execution_performed": false,
+    "holdout_row_count": 160,
+    "leakage_aware_max_full_private_material_leak_fitted_acceptance": 1.0,
+    "leakage_blind_max_no_leak_fitted_acceptance": 0.35,
+    "leakage_separated_real_training_performed": false,
+    "packet_scout_requirement_count": 9,
+    "packet_scout_requirements_failed": 5,
+    "packet_scout_requirements_passed": 4,
+    "private_safe_max_no_leak_fitted_acceptance": 0.0625,
+    "protocol_soundness_proved": false,
+    "qiskit_generic_backend_v2_used": true,
+    "quantum_advantage_claimed": false,
+    "real_backend_packet_scout_ready": false,
+    "real_backend_properties_used": false,
+    "real_backend_transcript_readiness": false,
+    "real_backend_transcript_rows": 0,
+    "sampling_hardness_proved": false,
+    "source_contract_status": "real_backend_transcript_contract_open_missing_hardware_evidence",
+    "source_readiness_status": "real_backend_transcript_readiness_failed",
+    "source_transcript_case_count": 720,
+    "train_row_count": 560
+  },
+  "title": "B4/B8 real backend packet scout",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "version": "0.1"
+}

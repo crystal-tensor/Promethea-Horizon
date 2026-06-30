@@ -1278,3 +1278,13 @@ leakage-separated real fitting, leakage-blind no-leak margin, and full-leakage
 containment. The current state still has 0 real backend transcript rows,
 leakage-blind no-leak fitted acceptance 0.35, full-private-material leakage
 acceptance 1.0, and no protocol-soundness, hardware, advantage, or BQP claim.
+
+`T-B4-002h` / `T-B8-003l` now adds a real-backend packet scout. The scout
+consumes the contract, readiness guardrail, and fitted-spoofer holdout
+evidence. It checks 9 scout requirements: 4 pass and 5 fail (`S5`-`S9`). It
+maps all 5 real-backend PR packets, preserves 5760 backend-calibrated Aer
+circuits, 640 fitted evaluation rows, and 160 holdout rows, but still records
+0 real backend transcript rows, no real backend properties, no hardware
+execution, and no leakage-separated real training. This is a sharper evidence
+intake surface, not real-backend readiness, protocol soundness, sampling
+hardness, quantum advantage, or BQP separation.
