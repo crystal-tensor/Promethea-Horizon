@@ -1,0 +1,116 @@
+{
+  "acceptance_gate_count": 6,
+  "accepted_commutation_corridor_replay_candidate_count": 0,
+  "accepted_occurrence_removal": 0,
+  "accepted_proxy_t_reduction": 0,
+  "accepted_route_count": 0,
+  "b7_ledger_improvement_claimed": false,
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "resource_saving_claimed": false,
+    "supported_claim": "The current seeded replay, bounded context, commutation corridor, shared-theta cache, and all-grid removal shortcuts do not produce B7 credit.",
+    "unsupported_claims": [
+      "This is not a new circuit rewrite.",
+      "This is not a full-circuit replay certificate.",
+      "This does not prove a global lower bound for line 1381.",
+      "This does not accept any occurrence removal or proxy-T reduction."
+    ]
+  },
+  "failed_gate_count": 0,
+  "gate_results": {
+    "G1_all_source_artifacts_present": true,
+    "G2_no_current_shortcut_route_accepted_for_b7_credit": true,
+    "G3_seeded_replay_blockers_preserved": true,
+    "G4_context_and_corridor_routes_closed": true,
+    "G5_shared_theta_still_rejected_by_b7_ledger": true,
+    "G6_no_resource_saving_claim": true
+  },
+  "linked_b7_problem_id": "B7",
+  "method": "b1_b7_cone01_route_triage_decision_gate_v0",
+  "model_status": "decision_gate_over_existing_b1_b7_evidence_not_rewrite",
+  "optimistic_cache_proxy_t_reuse": 620,
+  "passed_gate_count": 6,
+  "recommended_next_route_count": 4,
+  "recommended_next_routes": [
+    "commutation_aware_full_circuit_replay_certificate",
+    "honest_line1381_local_u3_pricing_with_physical_synthesis_model",
+    "line1378_recovery_without_overlap_double_counting",
+    "alternate_occurrence_removing_scaffold"
+  ],
+  "refreshed_b7_ledger_accepts_theta_sharing": false,
+  "rejected_route_count": 5,
+  "resource_boundary_failed_blocker_count": 5,
+  "resource_saving_claimed": false,
+  "route_count": 5,
+  "route_rows": [
+    {
+      "accepted_for_b7_credit": false,
+      "blocking_metric": "resource_boundary_failed_blocker_count",
+      "blocking_value": 5,
+      "positive_signal": "16 seeded product-state replay cases pass with high fidelity",
+      "reason": "semantic replay does not clear line-1381 pricing, line-1378 recovery, occurrence removal, or B7 ledger gates",
+      "route_id": "R1_seeded_semantic_replay",
+      "source_method": "b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate_v0"
+    },
+    {
+      "accepted_for_b7_credit": false,
+      "blocking_metric": "width5_exact_absorption_parameter_count",
+      "blocking_value": 0,
+      "positive_signal": "bounded meet-in-the-middle context search is reproducible",
+      "reason": "0/5 remaining line-1381 parameters have exact width-5 context absorption",
+      "route_id": "R2_bounded_context_absorption",
+      "source_method": "b1_b7_cone01_line1381_five_rotation_context_gate_v0"
+    },
+    {
+      "accepted_for_b7_credit": false,
+      "blocking_metric": "accepted_commutation_corridor_replay_candidate_count",
+      "blocking_value": 0,
+      "positive_signal": "10 best context candidates and 32 references were inspected",
+      "reason": "no cheap replay-safe commutation corridor is accepted",
+      "route_id": "R3_commutation_corridor_shortcut",
+      "source_method": "b1_b7_cone01_line1381_commutation_corridor_gate_v0"
+    },
+    {
+      "accepted_for_b7_credit": false,
+      "blocking_metric": "cost_model_accepted",
+      "blocking_value": false,
+      "positive_signal": "optimistic 620 proxy-T cache signal and 6/8 cost-model gates",
+      "reason": "physical cost model remains unaccepted and refreshed B7 ledger rejects theta sharing",
+      "route_id": "R4_shared_theta_cache_saving",
+      "source_method": "b1_b7_cone01_theta_sharing_cost_model_gate_v0"
+    },
+    {
+      "accepted_for_b7_credit": false,
+      "blocking_metric": "leave_five_out_exact_pass_count",
+      "blocking_value": 0,
+      "positive_signal": "all-grid endpoint pressure test is reproducible",
+      "reason": "snapping all five off-grid parameters to the pi/4 grid fails exact replay",
+      "route_id": "R5_all_grid_parameter_removal",
+      "source_method": "b1_b7_cone01_line1381_leave_five_out_parameter_gate_v0"
+    }
+  ],
+  "source_methods": {
+    "line1381_all_grid_removal": "b1_b7_cone01_line1381_leave_five_out_parameter_gate_v0",
+    "line1381_commutation_corridor": "b1_b7_cone01_line1381_commutation_corridor_gate_v0",
+    "line1381_five_rotation_context": "b1_b7_cone01_line1381_five_rotation_context_gate_v0",
+    "qiskit_loader_seeded_resource_boundary": "b1_b7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate_v0",
+    "shared_theta_refreshed_b7_ledger": "b1_b7_cone01_shared_theta_refreshed_b7_ledger_gate_v0",
+    "theta_sharing_cost_model": "b1_b7_cone01_theta_sharing_cost_model_gate_v0"
+  },
+  "source_paths": {
+    "line1381_all_grid_removal": "results/B1_B7_cone01_line1381_leave_five_out_parameter_gate_v0.json",
+    "line1381_commutation_corridor": "results/B1_B7_cone01_line1381_commutation_corridor_gate_v0.json",
+    "line1381_five_rotation_context": "results/B1_B7_cone01_line1381_five_rotation_context_gate_v0.json",
+    "qiskit_loader_seeded_resource_boundary": "results/B1_B7_cone01_openqasm3_qiskit_loader_seeded_resource_boundary_gate_v0.json",
+    "shared_theta_refreshed_b7_ledger": "results/B1_B7_cone01_shared_theta_refreshed_b7_ledger_gate_v0.json",
+    "theta_sharing_cost_model": "results/B1_B7_cone01_theta_sharing_cost_model_gate_v0.json"
+  },
+  "status": "cone01_route_triage_rejects_current_shortcuts_no_b7_credit",
+  "theta_cost_model_accepted": false,
+  "timestamp": 1782826583.894942,
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "width5_exact_absorption_parameter_count": 0,
+  "workload": "qasmbench_medium_exact/gcm_h6.qasm"
+}

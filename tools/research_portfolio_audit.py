@@ -237,6 +237,9 @@ def audit(root: Path) -> dict:
     b1_b7_cone01_full_circuit_replay_obligation_path = (
         results / "B1_B7_cone01_full_circuit_replay_obligation_gate_v0.json"
     )
+    b1_b7_cone01_route_triage_decision_path = (
+        results / "B1_B7_cone01_route_triage_decision_gate_v0.json"
+    )
     b1_b7_cone01_bounded_replacement_patch_path = (
         results / "B1_B7_cone01_bounded_replacement_patch_gate_v0.json"
     )
@@ -976,6 +979,9 @@ def audit(root: Path) -> dict:
     )
     b1_b7_cone01_full_circuit_replay_obligation_manifest = current_results.get(
         "b1_b7_cone01_full_circuit_replay_obligation_gate_v0"
+    )
+    b1_b7_cone01_route_triage_decision_manifest = current_results.get(
+        "b1_b7_cone01_route_triage_decision_gate_v0"
     )
     b1_b7_cone01_bounded_replacement_patch_manifest = current_results.get(
         "b1_b7_cone01_bounded_replacement_patch_gate_v0"
@@ -7952,6 +7958,155 @@ def audit(root: Path) -> dict:
         errors.append(
             f"missing B1/B7 cone_01 line-1381 commutation corridor report: "
             f"{b1_b7_cone01_line1381_commutation_corridor_path}"
+        )
+
+    b1_b7_cone01_route_triage_decision = {
+        "path": str(b1_b7_cone01_route_triage_decision_path),
+        "exists": b1_b7_cone01_route_triage_decision_path.exists(),
+    }
+    if not b1_b7_cone01_route_triage_decision_manifest:
+        errors.append(
+            "B1 manifest missing current result: "
+            "b1_b7_cone01_route_triage_decision_gate_v0"
+        )
+    else:
+        if (
+            b1_b7_cone01_route_triage_decision_manifest.get("status")
+            != "cone01_route_triage_rejects_current_shortcuts_no_b7_credit"
+        ):
+            errors.append("B1/B7 cone_01 route triage decision gate status mismatch")
+        for field in ["report", "markdown_report"]:
+            value = b1_b7_cone01_route_triage_decision_manifest.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(
+                    "B1/B7 cone_01 route triage decision gate missing "
+                    f"existing {field} path: {value}"
+                )
+    if b1_b7_cone01_route_triage_decision_path.exists():
+        triage_payload = json.loads(read(b1_b7_cone01_route_triage_decision_path))
+        triage_claims = triage_payload.get("claim_boundary", {})
+        b1_b7_cone01_route_triage_decision.update(
+            {
+                "status": triage_payload.get("status"),
+                "model_status": triage_payload.get("model_status"),
+                "method": triage_payload.get("method"),
+                "workload": triage_payload.get("workload"),
+                "route_count": triage_payload.get("route_count"),
+                "accepted_route_count": triage_payload.get("accepted_route_count"),
+                "rejected_route_count": triage_payload.get("rejected_route_count"),
+                "resource_boundary_failed_blocker_count": triage_payload.get(
+                    "resource_boundary_failed_blocker_count"
+                ),
+                "width5_exact_absorption_parameter_count": triage_payload.get(
+                    "width5_exact_absorption_parameter_count"
+                ),
+                "accepted_commutation_corridor_replay_candidate_count": triage_payload.get(
+                    "accepted_commutation_corridor_replay_candidate_count"
+                ),
+                "theta_cost_model_accepted": triage_payload.get("theta_cost_model_accepted"),
+                "refreshed_b7_ledger_accepts_theta_sharing": triage_payload.get(
+                    "refreshed_b7_ledger_accepts_theta_sharing"
+                ),
+                "optimistic_cache_proxy_t_reuse": triage_payload.get(
+                    "optimistic_cache_proxy_t_reuse"
+                ),
+                "accepted_occurrence_removal": triage_payload.get("accepted_occurrence_removal"),
+                "accepted_proxy_t_reduction": triage_payload.get("accepted_proxy_t_reduction"),
+                "resource_saving_claimed": triage_payload.get("resource_saving_claimed"),
+                "b7_ledger_improvement_claimed": triage_payload.get(
+                    "b7_ledger_improvement_claimed"
+                ),
+                "recommended_next_route_count": triage_payload.get(
+                    "recommended_next_route_count"
+                ),
+                "acceptance_gate_count": triage_payload.get("acceptance_gate_count"),
+                "passed_gate_count": triage_payload.get("passed_gate_count"),
+                "failed_gate_count": triage_payload.get("failed_gate_count"),
+                "validation_error_count": triage_payload.get("validation_error_count"),
+                "route_row_count": len(triage_payload.get("route_rows", [])),
+            }
+        )
+        if triage_payload.get("benchmark_id") != "B1":
+            errors.append("B1/B7 cone_01 route triage report must have benchmark_id B1")
+        if triage_payload.get("linked_b7_problem_id") != "B7":
+            errors.append("B1/B7 cone_01 route triage report must link B7")
+        if triage_payload.get("method") != "b1_b7_cone01_route_triage_decision_gate_v0":
+            errors.append("B1/B7 cone_01 route triage method mismatch")
+        if triage_payload.get("status") != "cone01_route_triage_rejects_current_shortcuts_no_b7_credit":
+            errors.append("B1/B7 cone_01 route triage status mismatch")
+        if triage_payload.get("model_status") != "decision_gate_over_existing_b1_b7_evidence_not_rewrite":
+            errors.append("B1/B7 cone_01 route triage model_status mismatch")
+        for field in [
+            "route_count",
+            "accepted_route_count",
+            "rejected_route_count",
+            "resource_boundary_failed_blocker_count",
+            "width5_exact_absorption_parameter_count",
+            "accepted_commutation_corridor_replay_candidate_count",
+            "theta_cost_model_accepted",
+            "refreshed_b7_ledger_accepts_theta_sharing",
+            "optimistic_cache_proxy_t_reuse",
+            "accepted_occurrence_removal",
+            "accepted_proxy_t_reduction",
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+            "recommended_next_route_count",
+            "acceptance_gate_count",
+            "passed_gate_count",
+            "failed_gate_count",
+            "validation_error_count",
+        ]:
+            if (
+                b1_b7_cone01_route_triage_decision_manifest
+                and triage_payload.get(field)
+                != b1_b7_cone01_route_triage_decision_manifest.get(field)
+            ):
+                errors.append(f"B1/B7 cone_01 route triage {field} mismatch")
+        expected_triage_fields = {
+            "route_count": 5,
+            "accepted_route_count": 0,
+            "rejected_route_count": 5,
+            "resource_boundary_failed_blocker_count": 5,
+            "width5_exact_absorption_parameter_count": 0,
+            "accepted_commutation_corridor_replay_candidate_count": 0,
+            "theta_cost_model_accepted": False,
+            "refreshed_b7_ledger_accepts_theta_sharing": False,
+            "optimistic_cache_proxy_t_reuse": 620,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "recommended_next_route_count": 4,
+            "acceptance_gate_count": 6,
+            "passed_gate_count": 6,
+            "failed_gate_count": 0,
+            "validation_error_count": 0,
+        }
+        for field, value in expected_triage_fields.items():
+            if triage_payload.get(field) != value:
+                errors.append(f"B1/B7 cone_01 route triage expected {field}={value}")
+        for field in [
+            "resource_saving_claimed",
+            "b7_ledger_improvement_claimed",
+        ]:
+            if triage_payload.get(field) is not False:
+                errors.append(f"B1/B7 cone_01 route triage must not claim {field}")
+            if triage_claims.get(field) is not False:
+                errors.append(
+                    "B1/B7 cone_01 route triage claim boundary must not claim "
+                    f"{field}"
+                )
+        rows = triage_payload.get("route_rows", [])
+        if len(rows) != 5:
+            errors.append("B1/B7 cone_01 route triage row count must be 5")
+        if any(row.get("accepted_for_b7_credit") is not False for row in rows):
+            errors.append("B1/B7 cone_01 route triage rows must reject all current routes")
+        if len(triage_payload.get("validation_errors", [])) != triage_payload.get(
+            "validation_error_count"
+        ):
+            errors.append("B1/B7 cone_01 route triage validation-error count mismatch")
+    else:
+        errors.append(
+            f"missing B1/B7 cone_01 route triage decision report: "
+            f"{b1_b7_cone01_route_triage_decision_path}"
         )
 
     b1_b7_cone01_full_circuit_replay_obligation = {
@@ -29234,6 +29389,7 @@ def audit(root: Path) -> dict:
             "b7_cone01_line1381_commutation_corridor_gate": (
                 b1_b7_cone01_line1381_commutation_corridor
             ),
+            "b7_cone01_route_triage_decision_gate": b1_b7_cone01_route_triage_decision,
             "b7_cone01_full_circuit_replay_obligation_gate": (
                 b1_b7_cone01_full_circuit_replay_obligation
             ),
@@ -29665,6 +29821,9 @@ def audit(root: Path) -> dict:
             ),
             "b1_b7_cone01_line1381_commutation_corridor_gate": str(
                 b1_b7_cone01_line1381_commutation_corridor_path
+            ),
+            "b1_b7_cone01_route_triage_decision_gate": str(
+                b1_b7_cone01_route_triage_decision_path
             ),
             "b1_b7_cone01_full_circuit_replay_obligation_gate": str(
                 b1_b7_cone01_full_circuit_replay_obligation_path
@@ -30745,6 +30904,17 @@ def markdown_report(report: dict) -> str:
             f"- Clear external standalone-Z references / all-reference accepted candidates: {report['b1']['b7_cone01_line1381_commutation_corridor_gate'].get('clear_external_standalone_z_reference_count')} / {report['b1']['b7_cone01_line1381_commutation_corridor_gate'].get('candidate_all_references_corridor_accepted_count')}",
             f"- Accepted replay / occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_line1381_commutation_corridor_gate'].get('accepted_full_circuit_replay_certificate_count')} / {report['b1']['b7_cone01_line1381_commutation_corridor_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_line1381_commutation_corridor_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_line1381_commutation_corridor_gate'].get('b7_ledger_improvement_claimed')}",
             f"- Validation errors: {report['b1']['b7_cone01_line1381_commutation_corridor_gate'].get('validation_error_count')}",
+            "",
+            "## B1/B7 cone_01 Route Triage Decision Gate",
+            "",
+            f"- Exists: {report['b1']['b7_cone01_route_triage_decision_gate'].get('exists')}",
+            f"- Status: {report['b1']['b7_cone01_route_triage_decision_gate'].get('status')}",
+            f"- Routes triaged / accepted / rejected: {report['b1']['b7_cone01_route_triage_decision_gate'].get('route_count')} / {report['b1']['b7_cone01_route_triage_decision_gate'].get('accepted_route_count')} / {report['b1']['b7_cone01_route_triage_decision_gate'].get('rejected_route_count')}",
+            f"- Failed resource blockers / width-5 exact absorptions / accepted corridor candidates: {report['b1']['b7_cone01_route_triage_decision_gate'].get('resource_boundary_failed_blocker_count')} / {report['b1']['b7_cone01_route_triage_decision_gate'].get('width5_exact_absorption_parameter_count')} / {report['b1']['b7_cone01_route_triage_decision_gate'].get('accepted_commutation_corridor_replay_candidate_count')}",
+            f"- Theta accepted / refreshed B7 accepts theta / optimistic cache proxy-T: {report['b1']['b7_cone01_route_triage_decision_gate'].get('theta_cost_model_accepted')} / {report['b1']['b7_cone01_route_triage_decision_gate'].get('refreshed_b7_ledger_accepts_theta_sharing')} / {report['b1']['b7_cone01_route_triage_decision_gate'].get('optimistic_cache_proxy_t_reuse')}",
+            f"- Accepted occurrence / proxy-T reduction / B7 claim: {report['b1']['b7_cone01_route_triage_decision_gate'].get('accepted_occurrence_removal')} / {report['b1']['b7_cone01_route_triage_decision_gate'].get('accepted_proxy_t_reduction')} / {report['b1']['b7_cone01_route_triage_decision_gate'].get('b7_ledger_improvement_claimed')}",
+            f"- Recommended next route count / gates passed-failed: {report['b1']['b7_cone01_route_triage_decision_gate'].get('recommended_next_route_count')} / {report['b1']['b7_cone01_route_triage_decision_gate'].get('passed_gate_count')}-{report['b1']['b7_cone01_route_triage_decision_gate'].get('failed_gate_count')}",
+            f"- Validation errors: {report['b1']['b7_cone01_route_triage_decision_gate'].get('validation_error_count')}",
             "",
             "## B1/B7 cone_01 Full-Circuit Replay Obligation Gate",
             "",

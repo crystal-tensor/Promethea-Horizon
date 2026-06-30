@@ -1075,6 +1075,21 @@ bounded width-5 local context route, but it is not a global obstruction theorem.
 No full-circuit replay certificate, occurrence removal, proxy-T reduction,
 resource saving, or B7 ledger improvement is accepted.
 
+`T-B1-004cr` / `T-B7-010` adds a cone_01 route-triage decision gate over the
+current shortcut stack. It consumes the seeded replay resource-boundary,
+width-5 context absorption, commutation-corridor, shared-theta
+cost-model/refreshed-ledger, and all-grid line-1381 removal artifacts. The gate
+triages 5 shortcut routes and accepts 0 for B7 credit: seeded replay keeps 5
+failed resource blockers, width-5 context absorption has 0/5 exact hits, cheap
+commutation corridor has 0 accepted candidates, shared-theta cache saving
+remains rejected by the cost model and refreshed B7 ledger, and all-grid
+parameter removal has 0 exact passes. The next route must be a
+commutation-aware full-circuit replay certificate, honest line-1381 local-U3
+pricing under a physical synthesis model, line-1378 recovery without overlap
+double-counting, or a different occurrence-removing scaffold. No occurrence
+removal, proxy-T reduction, resource saving, or B7 ledger improvement is
+accepted.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.

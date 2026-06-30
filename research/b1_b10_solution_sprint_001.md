@@ -2250,6 +2250,20 @@ have exact absorption back to the pi/4 grid; min/max best width-5 grid error is
 boundary, not a global theorem. It keeps occurrence removal, proxy-T reduction,
 resource saving, and B7 ledger improvement at 0.
 
+Sprint update 18cr: B1/B7 now has a cone_01 route-triage decision gate.
+T-B1-004cr/T-B7-010 adds
+`tools/b1_b7_cone01_route_triage_decision_gate.py` and emits
+`results/B1_B7_cone01_route_triage_decision_gate_v0.json` plus
+`research/B1_B7_cone01_route_triage_decision_gate.md`. It consumes seeded
+replay, width-5 context absorption, commutation-corridor, shared-theta
+cost-model/refreshed-ledger, and all-grid line-1381 removal evidence. It
+triages 5 shortcut routes, accepts 0 for B7 credit, rejects 5, and records 4
+non-shortcut next routes: commutation-aware full-circuit replay, honest
+line-1381 local-U3 pricing, line-1378 recovery without overlap
+double-counting, or an alternate occurrence-removing scaffold. Accepted
+occurrence removal, proxy-T reduction, resource saving, and B7 ledger
+improvement remain 0.
+
 Sprint update 59b: B4/B8 now has the formal verifier-private challenge protocol
 model that the earlier private-predicate pressure gate was missing.
 T-B4-002b/T-B8-003f repairs

@@ -689,6 +689,17 @@ Overall audit: PASS
 - Accepted replay / occurrence / proxy-T reduction / B7 claim: 0 / 0 / 0 / False
 - Validation errors: 0
 
+## B1/B7 cone_01 Route Triage Decision Gate
+
+- Exists: True
+- Status: cone01_route_triage_rejects_current_shortcuts_no_b7_credit
+- Routes triaged / accepted / rejected: 5 / 0 / 5
+- Failed resource blockers / width-5 exact absorptions / accepted corridor candidates: 5 / 0 / 0
+- Theta accepted / refreshed B7 accepts theta / optimistic cache proxy-T: False / False / 620
+- Accepted occurrence / proxy-T reduction / B7 claim: 0 / 0 / False
+- Recommended next route count / gates passed-failed: 4 / 6-0
+- Validation errors: 0
+
 ## B1/B7 cone_01 Full-Circuit Replay Obligation Gate
 
 - Exists: True
