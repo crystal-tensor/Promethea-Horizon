@@ -40,7 +40,7 @@ Overall audit: PASS
 - B IDs are B1..B10: True
 - Problem IDs match attack pack: True
 - All required fields present: True
-- Maturity scores: {'B1': 63, 'B2': 48, 'B3': 32, 'B4': 29, 'B5': 27, 'B6': 24, 'B7': 59, 'B8': 41, 'B9': 15, 'B10': 52}
+- Maturity scores: {'B1': 63, 'B2': 48, 'B3': 28, 'B4': 29, 'B5': 27, 'B6': 24, 'B7': 59, 'B8': 41, 'B9': 15, 'B10': 52}
 
 ## Technical Resolution Program
 
@@ -1799,6 +1799,11 @@ Overall audit: PASS
 - B3/B10 rescue ready / B3 demoted / BQP separation / quantum advantage: False / True / False / False
 - B3/B10 same-access validation errors: 0
 - B3/B10 same-access result/markdown exists: True / True
+- B3/B10 negative boundary status: same_access_negative_boundary_note_not_advantage_claim
+- B3/B10 negative boundary conditions satisfied/unsatisfied: 9 / 0
+- B3/B10 negative boundary failed source gates: ['M5', 'M6', 'M7', 'M8', 'M9']
+- B3/B10 negative boundary demoted / positive route: True / False
+- B3/B10 negative boundary result/markdown exists: True / True
 
 ## B4 Trap Protocol Status
 
@@ -2448,6 +2453,10 @@ Overall audit: PASS
 - B10-T1 B3 same-access rescue ready / B3 demoted: False / True
 - B10-T1 B3 same-access validation errors: 0
 - B10-T1 B3 same-access result/markdown exists: True / True
+- B10-T1 B3 negative boundary status: same_access_negative_boundary_note_not_advantage_claim
+- B10-T1 B3 negative boundary conditions satisfied/unsatisfied: 9 / 0
+- B10-T1 B3 negative boundary demoted / positive route: True / False
+- B10-T1 B3 negative boundary result/markdown exists: True / True
 - B10-T1 missing-assumption note status: missing_assumption_note_not_dequantization_theorem
 - B10-T1 missing-assumption theorem skeletons / missing assumptions / proof obligations: 2 / 5 / 5
 - B10-T1 missing-assumption dequantization theorem / sampling-access theorem / BQP separation / quantum advantage: False / False / False / False

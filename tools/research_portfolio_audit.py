@@ -22329,6 +22329,7 @@ def audit(root: Path) -> dict:
     b3_compiled_ucc_adapt_covariance = b3_results.get("compiled_ucc_adapt_covariance_pilot_v0")
     b3_cross_molecule_ucc_adapt_pressure = b3_results.get("cross_molecule_ucc_adapt_pressure_v0")
     b3_b10_same_access_measurement_rescue = b3_results.get("same_access_measurement_rescue_gate_v0")
+    b3_b10_same_access_negative_boundary = b3_results.get("same_access_negative_boundary_note_v0")
     b3_status = {}
     if not b3_resource:
         warnings.append("B3 manifest has no PySCF resource proxy result")
@@ -23684,6 +23685,124 @@ def audit(root: Path) -> dict:
 
     b3_b10_same_access_measurement_rescue_status = audit_b3_b10_same_access_measurement_rescue(
         b3_b10_same_access_measurement_rescue,
+        "B3",
+    )
+
+    def audit_b3_b10_same_access_negative_boundary(entry, label):
+        status = {}
+        if not entry:
+            warnings.append(f"{label} manifest has no B3/B10 same-access negative boundary note")
+            return status
+        result_path = entry.get("result")
+        markdown_path = entry.get("markdown_report")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"{label} same-access negative boundary result path missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"{label} same-access negative boundary markdown missing: {markdown_path}")
+        payload = json.loads(read((benchmarks / result_path).resolve())) if result_exists else {}
+        metrics = payload.get("metrics", {})
+        decision = payload.get("demotion_decision", {})
+        claims = payload.get("claim_boundary", {})
+        status = {
+            "status": entry.get("status"),
+            "method": entry.get("method"),
+            "source_target_id": payload.get("source_target_id"),
+            "condition_count": payload.get("condition_count"),
+            "satisfied_condition_count": payload.get("satisfied_condition_count"),
+            "unsatisfied_condition_count": payload.get("unsatisfied_condition_count"),
+            "failed_source_gate_ids": metrics.get("failed_source_gate_ids"),
+            "row_aligned_instance_count": metrics.get("row_aligned_instance_count"),
+            "compiled_pilot_instance_count": metrics.get("compiled_pilot_instance_count"),
+            "full_compiled_state_covariance_computed": metrics.get(
+                "full_compiled_state_covariance_computed"
+            ),
+            "ansatz_parameter_count": metrics.get("ansatz_parameter_count"),
+            "converged_vqe_or_adapt_energy": metrics.get("converged_vqe_or_adapt_energy"),
+            "selected_ci_larger_basis_denominator_beaten_count": metrics.get(
+                "selected_ci_larger_basis_denominator_beaten_count"
+            ),
+            "max_optimizer_loop_total_shots_lower_bound": metrics.get(
+                "max_optimizer_loop_total_shots_lower_bound"
+            ),
+            "b10_sampling_access_bridge_refuted_for_current_evidence": metrics.get(
+                "b10_sampling_access_bridge_refuted_for_current_evidence"
+            ),
+            "b3_current_route_demoted": decision.get("b3_current_route_demoted"),
+            "b10_t1_same_access_positive_route_available": decision.get(
+                "b10_t1_same_access_positive_route_available"
+            ),
+            "quantum_advantage_claimed": claims.get("quantum_advantage_claimed"),
+            "bqp_separation_claimed": claims.get("bqp_separation_claimed"),
+            "reaction_dynamics_solution_claimed": claims.get(
+                "reaction_dynamics_solution_claimed"
+            ),
+            "validation_error_count": len(payload.get("validation_errors", [])),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown_report": markdown_path,
+        }
+        if payload.get("benchmark_id") != "B3_B10":
+            errors.append(f"{label} same-access negative boundary benchmark_id must be B3_B10")
+        if payload.get("status") != entry.get("status"):
+            errors.append(f"{label} same-access negative boundary status mismatch")
+        if payload.get("method") != entry.get("method"):
+            errors.append(f"{label} same-access negative boundary method mismatch")
+        if payload.get("source_target_id") != entry.get("source_target_id"):
+            errors.append(f"{label} same-access negative boundary source target mismatch")
+        for field in [
+            "condition_count",
+            "satisfied_condition_count",
+            "unsatisfied_condition_count",
+        ]:
+            if payload.get(field) != entry.get(field):
+                errors.append(f"{label} same-access negative boundary {field} mismatch")
+        for field in [
+            "row_aligned_instance_count",
+            "compiled_pilot_instance_count",
+            "full_compiled_state_covariance_computed",
+            "ansatz_parameter_count",
+            "converged_vqe_or_adapt_energy",
+            "selected_ci_larger_basis_denominator_beaten_count",
+            "max_optimizer_loop_total_shots_lower_bound",
+            "b10_sampling_access_bridge_refuted_for_current_evidence",
+        ]:
+            if metrics.get(field) != entry.get(field):
+                errors.append(f"{label} same-access negative boundary metrics {field} mismatch")
+        if metrics.get("failed_source_gate_ids") != entry.get("failed_source_gate_ids"):
+            errors.append(f"{label} same-access negative boundary failed source gates mismatch")
+        for field in [
+            "b3_current_route_demoted",
+            "b10_t1_same_access_positive_route_available",
+        ]:
+            if decision.get(field) != entry.get(field):
+                errors.append(f"{label} same-access negative boundary decision {field} mismatch")
+        if payload.get("condition_count") != 9 or payload.get("satisfied_condition_count") != 9:
+            errors.append(f"{label} same-access negative boundary should satisfy 9/9 conditions")
+        if payload.get("unsatisfied_condition_count") != 0:
+            errors.append(f"{label} same-access negative boundary has unsatisfied conditions")
+        if metrics.get("failed_source_gate_ids") != ["M5", "M6", "M7", "M8", "M9"]:
+            errors.append(f"{label} same-access negative boundary failed source gates changed")
+        if decision.get("b3_current_route_demoted") is not True:
+            errors.append(f"{label} same-access negative boundary must keep B3 demoted")
+        if decision.get("b10_t1_same_access_positive_route_available") is not False:
+            errors.append(f"{label} same-access negative boundary must not expose B10 positive route")
+        for claim_key in [
+            "reaction_dynamics_solution_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "positive_same_access_route_claimed",
+        ]:
+            if claims.get(claim_key) is not False:
+                errors.append(f"{label} same-access negative boundary must keep {claim_key}=False")
+        if len(payload.get("validation_errors", [])) != 0:
+            errors.append(f"{label} same-access negative boundary validation errors must be zero")
+        return status
+
+    b3_b10_same_access_negative_boundary_status = audit_b3_b10_same_access_negative_boundary(
+        b3_b10_same_access_negative_boundary,
         "B3",
     )
 
@@ -28619,6 +28738,9 @@ def audit(root: Path) -> dict:
     b10_b3_b10_same_access_measurement_rescue = b10_results.get(
         "b3_b10_same_access_measurement_rescue_gate_v0"
     )
+    b10_b3_b10_same_access_negative_boundary = b10_results.get(
+        "b3_b10_same_access_negative_boundary_note_v0"
+    )
     b10_t1_missing_assumption_note = b10_results.get("b10_t1_missing_assumption_note_v0")
     b10_t1_asymptotic_access_contract = b10_results.get("b10_t1_asymptotic_access_contract_v0")
     b10_t1_b5_same_access_bridge = b10_results.get("b10_t1_b5_same_access_sampling_or_dmrg_bridge_v0")
@@ -29664,6 +29786,10 @@ def audit(root: Path) -> dict:
         b10_b3_b10_same_access_measurement_rescue,
         "B10",
     )
+    b10_b3_b10_same_access_negative_boundary_status = audit_b3_b10_same_access_negative_boundary(
+        b10_b3_b10_same_access_negative_boundary,
+        "B10",
+    )
 
     b10_t1_missing_assumption_note_status = {}
     if not b10_t1_missing_assumption_note:
@@ -30316,6 +30442,7 @@ def audit(root: Path) -> dict:
             "compiled_ucc_adapt_covariance_pilot": b3_compiled_ucc_adapt_covariance_status,
             "cross_molecule_ucc_adapt_pressure": b3_cross_molecule_ucc_adapt_pressure_status,
             "same_access_measurement_rescue_gate": b3_b10_same_access_measurement_rescue_status,
+            "same_access_negative_boundary_note": b3_b10_same_access_negative_boundary_status,
         },
         "b4": {
             "manifest": str(b4_manifest_path),
@@ -30428,6 +30555,7 @@ def audit(root: Path) -> dict:
             "t1_d5_b3_fci_reference_table": b10_t1_d5_b3_fci_table_status,
             "t1_b3_b5_denominator_boundary_comparison": b10_t1_b3_b5_comparison_status,
             "b3_b10_same_access_measurement_rescue_gate": b10_b3_b10_same_access_measurement_rescue_status,
+            "b3_b10_same_access_negative_boundary_note": b10_b3_b10_same_access_negative_boundary_status,
             "t1_missing_assumption_note": b10_t1_missing_assumption_note_status,
             "t1_asymptotic_access_contract": b10_t1_asymptotic_access_contract_status,
             "t1_b5_same_access_sampling_or_dmrg_bridge": b10_t1_b5_same_access_bridge_status,
@@ -30810,6 +30938,9 @@ def audit(root: Path) -> dict:
             "b3_same_access_measurement_rescue_gate": str(
                 research / "B3_B10_same_access_measurement_rescue_gate.md"
             ),
+            "b3_same_access_negative_boundary_note": str(
+                research / "B3_B10_same_access_negative_boundary_note.md"
+            ),
             "b5_boundary_field_embedding_baseline": str(
                 research / "B5_boundary_field_embedding_baseline.md"
             ),
@@ -30866,6 +30997,9 @@ def audit(root: Path) -> dict:
             ),
             "b10_b3_same_access_measurement_rescue_gate": str(
                 research / "B3_B10_same_access_measurement_rescue_gate.md"
+            ),
+            "b10_b3_same_access_negative_boundary_note": str(
+                research / "B3_B10_same_access_negative_boundary_note.md"
             ),
             "b10_t1_missing_assumption_note": str(research / "B10_t1_missing_assumption_note.md"),
             "b10_t1_asymptotic_access_contract": str(research / "B10_t1_asymptotic_access_contract.md"),
@@ -32765,6 +32899,11 @@ def markdown_report(report: dict) -> str:
             f"- B3/B10 rescue ready / B3 demoted / BQP separation / quantum advantage: {report['b3']['same_access_measurement_rescue_gate'].get('same_access_measurement_rescue_ready')} / {report['b3']['same_access_measurement_rescue_gate'].get('b3_demoted')} / {report['b3']['same_access_measurement_rescue_gate'].get('bqp_separation_claimed')} / {report['b3']['same_access_measurement_rescue_gate'].get('quantum_advantage_claimed')}",
             f"- B3/B10 same-access validation errors: {report['b3']['same_access_measurement_rescue_gate'].get('validation_error_count')}",
             f"- B3/B10 same-access result/markdown exists: {report['b3']['same_access_measurement_rescue_gate'].get('result_exists')} / {report['b3']['same_access_measurement_rescue_gate'].get('markdown_exists')}",
+            f"- B3/B10 negative boundary status: {report['b3']['same_access_negative_boundary_note'].get('status')}",
+            f"- B3/B10 negative boundary conditions satisfied/unsatisfied: {report['b3']['same_access_negative_boundary_note'].get('satisfied_condition_count')} / {report['b3']['same_access_negative_boundary_note'].get('unsatisfied_condition_count')}",
+            f"- B3/B10 negative boundary failed source gates: {report['b3']['same_access_negative_boundary_note'].get('failed_source_gate_ids')}",
+            f"- B3/B10 negative boundary demoted / positive route: {report['b3']['same_access_negative_boundary_note'].get('b3_current_route_demoted')} / {report['b3']['same_access_negative_boundary_note'].get('b10_t1_same_access_positive_route_available')}",
+            f"- B3/B10 negative boundary result/markdown exists: {report['b3']['same_access_negative_boundary_note'].get('result_exists')} / {report['b3']['same_access_negative_boundary_note'].get('markdown_exists')}",
             "",
             "## B4 Trap Protocol Status",
             "",
@@ -33414,6 +33553,10 @@ def markdown_report(report: dict) -> str:
             f"- B10-T1 B3 same-access rescue ready / B3 demoted: {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('same_access_measurement_rescue_ready')} / {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('b3_demoted')}",
             f"- B10-T1 B3 same-access validation errors: {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('validation_error_count')}",
             f"- B10-T1 B3 same-access result/markdown exists: {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('result_exists')} / {report['b10']['b3_b10_same_access_measurement_rescue_gate'].get('markdown_exists')}",
+            f"- B10-T1 B3 negative boundary status: {report['b10']['b3_b10_same_access_negative_boundary_note'].get('status')}",
+            f"- B10-T1 B3 negative boundary conditions satisfied/unsatisfied: {report['b10']['b3_b10_same_access_negative_boundary_note'].get('satisfied_condition_count')} / {report['b10']['b3_b10_same_access_negative_boundary_note'].get('unsatisfied_condition_count')}",
+            f"- B10-T1 B3 negative boundary demoted / positive route: {report['b10']['b3_b10_same_access_negative_boundary_note'].get('b3_current_route_demoted')} / {report['b10']['b3_b10_same_access_negative_boundary_note'].get('b10_t1_same_access_positive_route_available')}",
+            f"- B10-T1 B3 negative boundary result/markdown exists: {report['b10']['b3_b10_same_access_negative_boundary_note'].get('result_exists')} / {report['b10']['b3_b10_same_access_negative_boundary_note'].get('markdown_exists')}",
             f"- B10-T1 missing-assumption note status: {report['b10']['t1_missing_assumption_note'].get('status')}",
             f"- B10-T1 missing-assumption theorem skeletons / missing assumptions / proof obligations: {report['b10']['t1_missing_assumption_note'].get('theorem_skeleton_count')} / {report['b10']['t1_missing_assumption_note'].get('missing_assumption_count')} / {report['b10']['t1_missing_assumption_note'].get('proof_obligation_count')}",
             f"- B10-T1 missing-assumption dequantization theorem / sampling-access theorem / BQP separation / quantum advantage: {report['b10']['t1_missing_assumption_note'].get('dequantization_theorem_proved')} / {report['b10']['t1_missing_assumption_note'].get('sampling_access_theorem_proved')} / {report['b10']['t1_missing_assumption_note'].get('bqp_separation_claimed')} / {report['b10']['t1_missing_assumption_note'].get('quantum_advantage_claimed')}",

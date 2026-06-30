@@ -359,22 +359,20 @@ not converged VQE/ADAPT, not sampled covariance for every group or molecule,
 and still has 0 denominator wins.
 T-B3-011 extends the pressure test across H2, LiH, H2O, and N2 using bounded
 high-coefficient sampled QWC subsets: 35 sampled groups total, 384 shots per
-group, mean/max relative variance error 0.0833/0.5029. Even under the optimistic
-lower-bound accounting that reuses HF grouped-covariance derivative floors, the
-max optimizer-loop shot lower bound is 475,043,013,690,000 and the max
-optimizer-loop two-qubit lower bound is 281,225,464,104,480,000. The result is
-a demotion boundary: the current one-parameter UCC/ADAPT plus QWC route should
-not remain a breakthrough candidate without a new state-preparation or
-measurement mechanism.
+group, mean/max relative variance error 0.0833/0.5029. T-B3-012 then checks the
+same-access rescue route and splits 5/10 passed, 5/10 failed. T-B3-013 now
+formalizes that failed rescue as a same-access negative boundary note with 9/9
+conditions satisfied. The route remains demoted because M5-M9 are still missing:
+full compiled-state covariance, multi-parameter/converged chemistry, denominator
+wins, optimizer-loop cost reduction, and B10 access-contract acceptance.
 
-**Remaining path to a serious solution:** keep B3 demoted unless a rescue-only
-attempt produces real multi-parameter UCCSD/ADAPT covariance or a
-stronger-than-QWC measurement strategy; compare against selected-CI, DMRG, and
-tensor-network denominators; promote only if preparation, measurement,
-optimizer-loop, and strong classical denominator costs are all beaten at fixed
-derivative-level observable error.
+**Remaining path to a serious solution:** keep B3 closed unless a rescue PR
+replaces M5-M9; compare against selected-CI, DMRG, and tensor-network
+denominators; promote only if preparation, measurement, optimizer-loop, and
+strong classical denominator costs are all beaten at fixed derivative-level
+observable error.
 
-**Current internal maturity:** 30/100.
+**Current internal maturity:** 28/100.
 
 ## B4: Verifiable Quantum Advantage Protocols
 
@@ -1185,7 +1183,7 @@ B4/B8 update: T-B4-002b/T-B8-003f turns the previous private-predicate pressure 
 
 B4/B8 update: T-B4-002c/T-B8-003g turns that formal protocol into a conservative transcript-noise bridge. The bridge evaluates 720 transcript/noise/leakage cases from 36 protocol rows, 4 noise profiles, and 5 leakage profiles. Backend-like no-refresh honest acceptance is 0.747047070414, so no-refresh fails the 0.8 honest threshold; challenge_refresh and refresh_plus_rotation recover to 0.805169120213 and 0.866618491942. No-leak adversary acceptance remains 0.0625, three-private-bit leakage reaches 0.5, and full private-material leakage reaches 1.0. This upgrades the dossier from analytic protocol only to noise-modeled transcript pressure, but it still leaves real backend properties, hardware randomized-measurement execution, learned/generative spoofer attacks, protocol soundness, sampling hardness, quantum advantage, and BQP separation unresolved.
 
-B3/B10 update: T-B3-012/T-B10-015 adds the same-access measurement-rescue gate. It consumes B3 grouped covariance, derivative propagation, compiled UCC/ADAPT pilot, cross-molecule pressure, B10 FCI denominators, the B10 B3/B5 comparison, and the B10 access contract. It passes 5/10 gates and fails M5-M9: full cross-molecule compiled-state covariance is absent, the chemistry ansatz is still one-parameter and unconverged, selected-CI/FCI denominator wins remain 0, max optimizer-loop shots lower bound remains 475,043,013,690,000, and the B10 access contract still rejects the current B3 sampling bridge. Dossier implication: B3 remains a negative-boundary track until a multi-parameter chemistry or stronger-than-QWC measurement rescue wins under the same access model.
+B3/B10 update: T-B3-013/T-B10-015b adds the same-access negative boundary note. It consumes the failed rescue gate, satisfies 9/9 negative-boundary conditions, and keeps B3 demoted until M5-M9 are replaced: full compiled-state covariance, multi-parameter/converged chemistry, denominator wins, optimizer-loop cost reduction, and B10 access-contract acceptance. Dossier implication: B3 is now closed as a mainline route unless a PR brings concrete same-access evidence that overturns those blockers.
 
 B4/B8 update: T-B4-002d/T-B8-003h adds the first pressure diagnostic above that noise bridge. Four parametric learned/generative spoofer families generate 2,880 pressure rows. The artifact is valid, but it fails the 0.10 no-leak diagnostic margin: max no-leak spoofer acceptance is 0.1196875 and backend-like refreshed no-leak acceptance is 0.109140625. Three-private-bit leakage reaches 0.6575 and full private-material leakage reaches 1.0. This is a useful negative result because it stops the project from treating the noise bridge as soundness; actual learned/generative attacks, real backend or hardware transcripts, and redesigned predicates remain required.
 

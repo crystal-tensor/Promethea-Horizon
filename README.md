@@ -96,19 +96,17 @@ The latest B10-T1 stress test still finds no positive same-access route because
 it is not a production DMRG result, not a deployable tensor solver, not a
 sampling oracle, and not a quantum advantage claim.
 
-B3/B10 now has a same-access measurement-rescue gate for the chemistry route.
-It consumes the B3 grouped-covariance, derivative-boundary, compiled
-UCC/ADAPT pilot, cross-molecule pressure, B10 FCI denominator, B10 B3/B5
-comparison, and B10 access-contract artifacts. The gate checks 10 same-access
-requirements: 5 pass and 5 fail. The failed gates are full cross-molecule
-compiled-state covariance (`M5`), multi-parameter or converged chemistry ansatz
-evidence (`M6`), selected-CI/FCI denominator wins (`M7`), optimizer-loop shots
-below the positive-route stress ceiling (`M8`), and a B10 access contract that
-no longer rejects the current B3 sampling bridge (`M9`). Current B3 evidence
-still has 0 denominator wins, max optimizer-loop shots lower bound
-475,043,013,690,000, max optimizer-loop two-qubit executions lower bound
-281,225,464,104,480,000, and B3 remains demoted. This is not a reaction
-dynamics solution, not quantum advantage, and not a BQP separation.
+B3/B10 now has a same-access negative boundary note for the chemistry route.
+It consumes the failed measurement-rescue gate and records 9/9 satisfied
+negative-boundary conditions. The source rescue gate still passes 5/10 and
+fails M5-M9: full cross-molecule compiled-state covariance, multi-parameter or
+converged chemistry ansatz evidence, selected-CI/FCI denominator wins,
+optimizer-loop shots below the positive-route stress ceiling, and B10 access
+contract acceptance. Current B3 evidence still has 0 denominator wins, max
+optimizer-loop shots lower bound 475,043,013,690,000, max optimizer-loop
+two-qubit executions lower bound 281,225,464,104,480,000, and B3 remains
+demoted. This is not a reaction dynamics solution, not quantum advantage, and
+not a BQP separation.
 
 B4/B8 now has an OpenQASM 3 randomized-measurement packet for the shared
 hidden-projection verifier spine. The packet exports 36 hardware-executable

@@ -39,19 +39,19 @@
       "title": "Low-overhead quantum error-correcting codes"
     },
     {
-      "30_day_gate": "Only continue B3 as a rescue attempt if T-B3-013 supplies full cross-molecule compiled-state covariance or a stronger-than-QWC estimator plus multi-parameter/converged chemistry evidence.",
+      "30_day_gate": "Do not spend more B3 effort unless a PR replaces M5-M9 with full covariance, multi-parameter/converged state preparation, same-access denominator wins, optimizer-loop cost reduction, and B10 access-contract acceptance.",
       "b_id": "B3",
-      "current_maturity": "same_access_measurement_rescue_failed_negative_boundary",
+      "current_maturity": "T-B3-013/B10 negative boundary note completed: the B3 same-access measurement-rescue failure is now formalized as a 9/9 satisfied negative-boundary condition set. The source rescue gate remains 5/10 passed and fails M5-M9: full compiled covariance, multi-parameter/converged chemistry, denominator wins, optimizer-loop ceiling, and B10 access-contract acceptance. Denominator wins remain 0 and max optimizer-loop shots lower bound remains 475,043,013,690,000.",
       "dependencies": [
         "B1",
         "B7"
       ],
       "downstream_translation_route": "Deferred until resource estimates become source-backed and reaction-specific.",
-      "kill_condition": "Keep B3 demoted while denominator wins remain 0, optimizer-loop shots remain above 1e12, or B10 still rejects the sampling bridge.",
-      "next_artifact": "T-B3-013 full covariance / multi-parameter chemistry rescue or formal negative note.",
+      "kill_condition": "Keep B3 demoted if M5-M9 remain unresolved or if any claimed rescue lacks same-access denominator and optimizer-loop accounting.",
+      "next_artifact": "Only a B3 positive-route reopen packet that replaces M5-M9, or a transfer of effort into B5/B10 production denominators.",
       "priority_lane": "coupled_application",
       "problem_id": 49,
-      "strongest_evidence": "T-B3-012/T-B10-015 same-access measurement-rescue gate: 10 requirements checked, 5 passed and 5 failed (M5-M9). B3 has row-aligned grouped covariance, derivative propagation, compiled-pilot evidence, and FCI denominators, but lacks full cross-molecule compiled-state covariance, multi-parameter/converged chemistry, denominator wins, acceptable optimizer-loop shots, and an unrefuted B10 sampling bridge. Denominator wins remain 0; max optimizer-loop shots lower bound is 475,043,013,690,000.",
+      "strongest_evidence": "The current one-parameter UCC/ADAPT + QWC chemistry route is formally demoted as a same-access negative boundary, with explicit reopen conditions rather than vague next steps.",
       "title": "Quantum algorithms for molecular reaction dynamics"
     },
     {
@@ -150,9 +150,9 @@
       "title": "Quantum PCP and local Hamiltonian hardness"
     },
     {
-      "30_day_gate": "T-B10-015 follow-up must either convert the failed B3 measurement-rescue gate into a formal negative boundary note or replace the missing M5-M9 evidence; T-B10-014 remains the B5 production-DMRG or response-oracle gate.",
+      "30_day_gate": "Prioritize B5/B10 production denominators or B10-T2 real backend verifier evidence; keep B3 closed unless the same-access negative boundary is overturned by new evidence.",
       "b_id": "B10",
-      "current_maturity": "b3_b10_same_access_measurement_rescue_failed_plus_b5_contract_failed",
+      "current_maturity": "B10-T1 now has two explicit failed positive-route branches: B3 T-B3-013 same-access negative boundary note and B5 T-B5-006b production contract failure. The B3 note satisfies 9/9 negative-boundary conditions and preserves no quantum advantage, no reaction-dynamics solution, and no BQP separation claims.",
       "dependencies": [
         "B5",
         "B3",
@@ -162,7 +162,7 @@
       "downstream_translation_route": "Deferred until one formal target yields a source-backed restricted theorem, reusable negative lemma, or strong proof-attempt record.",
       "kill_condition": "Keep B10-T1 negative unless B3 or B5 beats the full denominator ladder under the same access model without hidden access advantages.",
       "kill_or_merge_condition": "Keep B10-T1 negative unless a production DMRG/MPS reference or same-access response oracle beats the full denominator ladder without hidden access advantages.",
-      "next_artifact": "T-B10-015 B3 same-access negative theorem note or T-B10-014 B5 production positive-route attempt.",
+      "next_artifact": "T-B10-014 B5 production DMRG/MPS or same-access response-oracle artifact; B3 may reopen only if M5-M9 are replaced.",
       "priority_lane": "theory_and_negative_results",
       "problem_id": 11,
       "strongest_evidence": "B10-T1 now includes B3/B10 same-access measurement-rescue gate plus B5 same-access production contract. The B3 gate passes 5/10 and fails M5-M9 with 0 denominator wins and max optimizer-loop shots lower bound 475,043,013,690,000; the B5 contract passes only 2/10. There is still no production DMRG, no sampling oracle, no same-access positive route, no quantum advantage, and no BQP separation.",

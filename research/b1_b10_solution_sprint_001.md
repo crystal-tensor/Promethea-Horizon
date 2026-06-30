@@ -330,6 +330,17 @@ and a B10 access contract that no longer rejects the current B3 sampling bridge
 lower bound 475,043,013,690,000, and no reaction-dynamics, quantum-advantage,
 or BQP-separation claim.
 
+**Sprint update 61:** `T-B3-013` / `T-B10-015b` is now merged as the formal
+same-access negative boundary note over the failed B3 rescue route. It consumes
+`T-B3-012`, satisfies 9/9 negative-boundary conditions, records source rescue
+status 5/10 with failed gates `M5`-`M9`, keeps denominator wins at 0, and keeps
+the max optimizer-loop shots lower bound at 475,043,013,690,000. The route is
+closed as a mainline B3 attack unless a future PR replaces `M5`-`M9` with full
+compiled covariance, multi-parameter or converged chemistry, same-access
+denominator wins, optimizer-loop reduction, and B10 access-contract acceptance.
+This is a useful boundary result, not a reaction-dynamics solution, quantum
+advantage claim, BQP separation, or impossibility theorem.
+
 ## B4: Verifiable Quantum Advantage
 
 **Technical target:** instantiate a circuit-level task that is checkable by the
@@ -1440,6 +1451,10 @@ no-same-access-positive-route, no-quantum-advantage boundary.
 full compiled-state covariance, multi-parameter/converged chemistry, denominator
 wins, acceptable optimizer-loop shots, and an unrefuted B10 sampling bridge are
 all still missing.
+`T-B3-013` / `T-B10-015b` now converts that failed rescue into a formal
+same-access negative boundary note: 9/9 conditions satisfied, `M5`-`M9` are the
+explicit reopen blockers, denominator wins remain 0, and B3 stays closed unless
+those blockers are replaced by same-access evidence.
 
 **Next PR:** `T-B10-014` or `T-B10-009`. Expected artifacts:
 
