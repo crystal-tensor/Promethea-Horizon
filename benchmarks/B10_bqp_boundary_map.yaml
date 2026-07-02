@@ -1115,6 +1115,35 @@ current_results:
     caveat: blocker_queue_not_production_dmrg_not_bqp_boundary_claim
     result: ../results/B5_B10_w1_production_row_blocker_queue_gate_v0.json
     markdown_report: ../research/B5_B10_w1_production_row_blocker_queue_gate.md
+  t1_b5_w1_priority_row_submission_packet_gate_v0:
+    status: w1_priority_row_submission_packet_open_missing_artifact
+    model_status: priority_row_contract_packet_ready_no_production_row_submitted
+    method: b5_b10_w1_priority_row_submission_packet_gate_v0
+    source: b5_b10_w1_priority_row_submission_packet_gate_v0
+    source_target_id: B10-T1
+    dependency_benchmarks:
+      - B5
+      - B10
+    priority_row_id: D5H_s8_u2_eta0.25_n4x4_obs_density_site_4
+    packet_hash: 0d3620e8c5540bfd419718ab9d7ac5e4044e9f7736e0b23888f51114c13a3b8c
+    packet_requirement_count: 9
+    packet_requirements_passed: 6
+    packet_requirements_failed: 3
+    failed_packet_requirement_ids: [P6, P7, P8]
+    required_row_key_count: 17
+    production_required_key_count: 8
+    required_evidence_file_count: 8
+    submitted_artifact_exists: false
+    accepted_priority_row_count: 0
+    b10_t1_positive_route_ready: false
+    production_dmrg_claimed: false
+    same_access_positive_route_claimed: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    validation_error_count: 0
+    caveat: priority_row_packet_not_submitted_not_bqp_boundary_claim
+    result: ../results/B5_B10_w1_priority_row_submission_packet_gate_v0.json
+    markdown_report: ../research/B5_B10_w1_priority_row_submission_packet_gate.md
 prototype_artifacts:
   boundary_graph_builder: ../tools/b10_bqp_boundary_graph.py
   formal_theorem_target_builder: ../tools/b10_formal_theorem_targets.py
@@ -1133,6 +1162,7 @@ prototype_artifacts:
   t1_b5_same_access_sampling_or_dmrg_bridge_builder: ../tools/b10_t1_b5_same_access_sampling_or_dmrg_bridge.py
   t1_b5_w1_prototype_environment_scout: ../tools/b5_b10_w1_prototype_environment_scout.py
   t1_b5_w1_production_row_blocker_queue_gate: ../tools/b5_b10_w1_production_row_blocker_queue_gate.py
+  t1_b5_w1_priority_row_submission_packet_gate: ../tools/b5_b10_w1_priority_row_submission_packet_gate.py
   t1_b5_response_sampler_cost_stress_builder: ../tools/b10_t1_b5_response_sampler_cost_stress.py
   t1_b5_production_implementation_triage_gate: ../tools/b5_b10_production_implementation_triage_gate.py
   t1_b5_row_contract_harness: ../tools/b5_b10_row_contract_harness.py

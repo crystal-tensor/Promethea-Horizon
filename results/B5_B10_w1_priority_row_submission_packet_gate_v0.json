@@ -1,0 +1,250 @@
+{
+  "benchmark_id": "B5",
+  "claim_boundary": {
+    "bqp_separation_claimed": false,
+    "next_gate": "Submit results/B5_B10_w1_priority_row_submissions/D5H_s8_u2_eta0.25_n4x4_obs_density_site_4.json with source-backed production keys and same-access cost logs, then rerun this gate before any row acceptance.",
+    "production_dmrg_claimed": false,
+    "quantum_advantage_claimed": false,
+    "same_access_positive_route_claimed": false,
+    "what_is_not_supported": "No priority-row artifact has been submitted or accepted; no production DMRG denominator, same-access positive route, quantum advantage, or BQP separation is supported.",
+    "what_is_supported": "The priority W1 row now has a concrete submission packet and acceptance contract binding all 17 row keys, all 8 production-required keys, and the evidence files needed for environment, convergence, and cost review."
+  },
+  "dependency_benchmarks": [
+    "B5",
+    "B10"
+  ],
+  "last_updated": "2026-07-02",
+  "linked_benchmark_id": "B10",
+  "method": "b5_b10_w1_priority_row_submission_packet_gate_v0",
+  "model_status": "priority_row_contract_packet_ready_no_production_row_submitted",
+  "priority_row_submission_packet": {
+    "accepted_only_if": [
+      "all 17 required row keys are present",
+      "all 8 production-required keys are non-null and source-backed",
+      "row_contract_hash equals the locked B5/B10 W1 hash",
+      "canonical environment hashes are derived from submitted state/environment artifacts",
+      "orthonormal residual and discarded weight are numeric and threshold-declared",
+      "wall-clock, memory, and sweep/matvec counts are measured under same-access conditions",
+      "no prototype value is promoted into production evidence"
+    ],
+    "blocking_packet_ids": [
+      "W1-E4-env-residuals",
+      "W1-E5-convergence",
+      "W1-E7-cost-ledger"
+    ],
+    "priority": 1,
+    "production_required_keys": [
+      "canonical_center_site",
+      "left_environment_hash",
+      "right_environment_hash",
+      "orthonormal_residual_norm",
+      "discarded_weight",
+      "wall_clock_seconds",
+      "peak_memory_mb",
+      "matvec_or_sweep_count"
+    ],
+    "prototype_trace_hash": "0c5c5b059eafffa41eac3d17754a26440fec114a2c58e40abf9bcc3958d9d547",
+    "prototype_values_are_provenance_only": true,
+    "required_evidence_files": [
+      "canonical_mps_or_dmrg_state_manifest",
+      "left_environment_hash_source",
+      "right_environment_hash_source",
+      "orthonormal_residual_norm_calculation",
+      "discarded_weight_or_truncation_log",
+      "wall_clock_and_peak_memory_log",
+      "sweep_or_matvec_count_log",
+      "same_access_replay_command"
+    ],
+    "required_row_keys": [
+      "row_id",
+      "sites",
+      "u_over_t",
+      "row_contract_hash",
+      "canonical_center_site",
+      "left_environment_hash",
+      "right_environment_hash",
+      "orthonormal_residual_norm",
+      "discarded_weight",
+      "sweep_count",
+      "energy_variance",
+      "fixed_sector_norm",
+      "relative_response_error",
+      "seeded_pressure_relative_response_error",
+      "wall_clock_seconds",
+      "peak_memory_mb",
+      "matvec_or_sweep_count"
+    ],
+    "row_contract_hash": "7ee407e20f51bd0c003d885c8d43282359f84bea9729f0da203b9b2c2970a9fc",
+    "row_id": "D5H_s8_u2_eta0.25_n4x4_obs_density_site_4",
+    "sites": 8,
+    "submission_artifact_path": "results/B5_B10_w1_priority_row_submissions/D5H_s8_u2_eta0.25_n4x4_obs_density_site_4.json",
+    "template_hash": "5ab7ee67accd826db90f4b3662b4377850f795529fe9d01327725d0dc4ae92e3",
+    "u_over_t": 2.0
+  },
+  "requirements": [
+    {
+      "evidence": {
+        "row_contract_hash": "7ee407e20f51bd0c003d885c8d43282359f84bea9729f0da203b9b2c2970a9fc",
+        "source_status": "w1_production_row_blocker_queue_open_no_rows_submitted",
+        "validation_error_count": 0
+      },
+      "label": "Blocker queue preserves the locked W1 row contract",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "evidence": {
+        "actual_priority_row_id": "D5H_s8_u2_eta0.25_n4x4_obs_density_site_4",
+        "expected_priority_row_id": "D5H_s8_u2_eta0.25_n4x4_obs_density_site_4"
+      },
+      "label": "Priority row is fixed and matches the queue head",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "evidence": {
+        "priority_missing_fields": [
+          "canonical_center_site",
+          "left_environment_hash",
+          "right_environment_hash",
+          "orthonormal_residual_norm",
+          "discarded_weight",
+          "wall_clock_seconds",
+          "peak_memory_mb",
+          "matvec_or_sweep_count"
+        ],
+        "production_required_key_count": 8,
+        "required_row_key_count": 17
+      },
+      "label": "Submission packet carries the full 17-key row schema and 8 production keys",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "evidence": {
+        "required_evidence_files": [
+          "canonical_mps_or_dmrg_state_manifest",
+          "left_environment_hash_source",
+          "right_environment_hash_source",
+          "orthonormal_residual_norm_calculation",
+          "discarded_weight_or_truncation_log",
+          "wall_clock_and_peak_memory_log",
+          "sweep_or_matvec_count_log",
+          "same_access_replay_command"
+        ]
+      },
+      "label": "Packet binds every required evidence file class before acceptance",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "evidence": {
+        "prototype_trace_hash": "0c5c5b059eafffa41eac3d17754a26440fec114a2c58e40abf9bcc3958d9d547",
+        "prototype_values_are_provenance_only": true
+      },
+      "label": "Prototype values are explicitly provenance-only",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "evidence": {
+        "exists": false,
+        "submission_artifact_path": "results/B5_B10_w1_priority_row_submissions/D5H_s8_u2_eta0.25_n4x4_obs_density_site_4.json"
+      },
+      "label": "Priority-row production artifact has been submitted",
+      "passed": false,
+      "requirement_id": "P6"
+    },
+    {
+      "evidence": {
+        "missing_submitted_keys": [
+          "row_id",
+          "sites",
+          "u_over_t",
+          "row_contract_hash",
+          "canonical_center_site",
+          "left_environment_hash",
+          "right_environment_hash",
+          "orthonormal_residual_norm",
+          "discarded_weight",
+          "sweep_count",
+          "energy_variance",
+          "fixed_sector_norm",
+          "relative_response_error",
+          "seeded_pressure_relative_response_error",
+          "wall_clock_seconds",
+          "peak_memory_mb",
+          "matvec_or_sweep_count"
+        ],
+        "submitted_key_count": 0
+      },
+      "label": "Submitted artifact satisfies the locked 17-key schema",
+      "passed": false,
+      "requirement_id": "P7"
+    },
+    {
+      "evidence": {
+        "production_keys_present": [],
+        "production_required_keys": [
+          "canonical_center_site",
+          "left_environment_hash",
+          "right_environment_hash",
+          "orthonormal_residual_norm",
+          "discarded_weight",
+          "wall_clock_seconds",
+          "peak_memory_mb",
+          "matvec_or_sweep_count"
+        ],
+        "source_evidence_files_present": false
+      },
+      "label": "Submitted production keys are source-backed and non-null",
+      "passed": false,
+      "requirement_id": "P8"
+    },
+    {
+      "evidence": {
+        "bqp_separation_claimed": false,
+        "production_dmrg_claimed": false,
+        "quantum_advantage_claimed": false,
+        "same_access_positive_route_claimed": false
+      },
+      "label": "Forbidden positive-route claims remain false",
+      "passed": true,
+      "requirement_id": "P9"
+    }
+  ],
+  "runtime_seconds": 0.0006206035614013672,
+  "source_blocker_queue_result": "results/B5_B10_w1_production_row_blocker_queue_gate_v0.json",
+  "source_implementation_contract_result": "results/B5_B10_w1_implementation_contract_gate_v0.json",
+  "source_target_id": "B10-T1",
+  "status": "w1_priority_row_submission_packet_open_missing_artifact",
+  "summary": {
+    "accepted_priority_row_count": 0,
+    "bqp_separation_claimed": false,
+    "failed_packet_requirement_ids": [
+      "P6",
+      "P7",
+      "P8"
+    ],
+    "missing_submitted_key_count": 17,
+    "packet_hash": "0d3620e8c5540bfd419718ab9d7ac5e4044e9f7736e0b23888f51114c13a3b8c",
+    "packet_requirement_count": 9,
+    "packet_requirements_failed": 3,
+    "packet_requirements_passed": 6,
+    "priority_row_id": "D5H_s8_u2_eta0.25_n4x4_obs_density_site_4",
+    "production_dmrg_claimed": false,
+    "production_keys_present_count": 0,
+    "production_required_key_count": 8,
+    "quantum_advantage_claimed": false,
+    "required_evidence_file_count": 8,
+    "required_row_key_count": 17,
+    "row_contract_hash": "7ee407e20f51bd0c003d885c8d43282359f84bea9729f0da203b9b2c2970a9fc",
+    "same_access_positive_route_claimed": false,
+    "submitted_artifact_exists": false,
+    "submitted_key_count": 0,
+    "validation_error_count": 0
+  },
+  "title": "B5/B10 W1 Priority Row Submission Packet Gate",
+  "validation_errors": [],
+  "version": "0.1"
+}

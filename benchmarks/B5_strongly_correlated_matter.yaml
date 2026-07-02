@@ -365,6 +365,31 @@ current_results:
     caveat: blocker_queue_not_production_dmrg_not_positive_route
     result: ../results/B5_B10_w1_production_row_blocker_queue_gate_v0.json
     markdown_report: ../research/B5_B10_w1_production_row_blocker_queue_gate.md
+  w1_priority_row_submission_packet_gate_v0:
+    status: w1_priority_row_submission_packet_open_missing_artifact
+    model_status: priority_row_contract_packet_ready_no_production_row_submitted
+    method: b5_b10_w1_priority_row_submission_packet_gate_v0
+    source_blocker_queue_result: ../results/B5_B10_w1_production_row_blocker_queue_gate_v0.json
+    source_implementation_contract_result: ../results/B5_B10_w1_implementation_contract_gate_v0.json
+    priority_row_id: D5H_s8_u2_eta0.25_n4x4_obs_density_site_4
+    packet_hash: 0d3620e8c5540bfd419718ab9d7ac5e4044e9f7736e0b23888f51114c13a3b8c
+    packet_requirement_count: 9
+    packet_requirements_passed: 6
+    packet_requirements_failed: 3
+    failed_packet_requirement_ids: [P6, P7, P8]
+    required_row_key_count: 17
+    production_required_key_count: 8
+    required_evidence_file_count: 8
+    submitted_artifact_exists: false
+    accepted_priority_row_count: 0
+    production_dmrg_claimed: false
+    same_access_positive_route_claimed: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    validation_error_count: 0
+    caveat: priority_row_packet_not_submitted_not_production_dmrg
+    result: ../results/B5_B10_w1_priority_row_submission_packet_gate_v0.json
+    markdown_report: ../research/B5_B10_w1_priority_row_submission_packet_gate.md
   seeded_pressure_replacement_audit_v0:
     status: seeded_pressure_replacement_failed_remains_blocker
     model_status: w2_replacement_audit_completed_no_deployable_denominator
@@ -731,6 +756,7 @@ current_results:
     result: ../results/B5_hubbard_embedding_baseline_v0.json
 prototype_artifacts:
   w1_production_row_blocker_queue_gate: ../tools/b5_b10_w1_production_row_blocker_queue_gate.py
+  w1_priority_row_submission_packet_gate: ../tools/b5_b10_w1_priority_row_submission_packet_gate.py
   w1_prototype_environment_scout: ../tools/b5_b10_w1_prototype_environment_scout.py
   w1_implementation_contract_gate: ../tools/b5_b10_w1_implementation_contract_gate.py
   canonical_residual_blocker_gate: ../tools/b5_w1_canonical_residual_blocker_gate.py
