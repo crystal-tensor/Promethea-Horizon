@@ -34730,6 +34730,9 @@ def audit(root: Path) -> dict:
             "b7_w8_21_symbolic_certificate_priority_packet_gate": str(
                 research / "B7_w8_21_symbolic_certificate_priority_packet_gate.md"
             ),
+            "b7_w8_21_symbolic_certificate_provenance_manifest_gate": str(
+                research / "B7_w8_21_symbolic_certificate_provenance_manifest_gate.md"
+            ),
             "b7_w8_21_small_block_synthesis": str(research / "B7_w8_21_small_block_synthesis.md"),
             "b7_w8_21_broad_skeleton_search": str(research / "B7_w8_21_broad_skeleton_search.md"),
             "b7_w8_21_euler_local_search": str(research / "B7_w8_21_euler_local_search.md"),
