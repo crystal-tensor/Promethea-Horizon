@@ -1168,6 +1168,38 @@ current_results:
     caveat: one_shard_output_only_no_b10_t1_credit_or_bqp_boundary_claim
     result: ../results/B3_B10_F1_first_shard_output_gate_v0.json
     markdown_report: ../research/B3_B10_F1_first_shard_output_gate.md
+  b10_t1_b3_f1_h2o_shard_batch_gate_v0:
+    status: h2o_full_covariance_shard_batch_recorded_zero_credit
+    method: b3_b10_f1_h2o_shard_batch_gate_v0
+    source_h2o_shard_batch_gate: ../results/B3_B10_F1_h2o_shard_batch_gate_v0.json
+    source_work_order_gate: ../results/B3_B10_F1_full_covariance_work_order_gate_v0.json
+    source_shard_dir: ../results/B3_B10_F1_full_covariance_shards/h2o_symmetric_oh_stretch
+    source_target_id: T-B3-027/T-B10-015n
+    dependency_benchmark: B3
+    h2o_shard_batch_hash: c62e2dc04d15511319ee3f8d805ef70ea24f30a68408b68d6683f88550e723b5
+    produced_h2o_shard_count: 7
+    required_h2o_shard_count: 7
+    produced_global_shard_count: 7
+    required_total_shard_count: 65
+    remaining_global_shard_count: 58
+    h2o_compiled_cover_group_count: 3130
+    h2o_planning_proxy_group_count: 3129
+    h2o_total_nonzero_covariance_pair_count: 15099
+    assembled_row_count: 0
+    h2o_row_assembled: false
+    requirements_passed: 7
+    requirements_failed: 3
+    failed_requirement_ids: [P8, P9, P10]
+    accepted_full_covariance_row_count: 0
+    denominator_win_count: 0
+    b10_t1_credit_allowed: false
+    b10_bqp_separation_credit_allowed: false
+    quantum_advantage_claimed: false
+    explicit_not_bqp_separation: true
+    validation_error_count: 0
+    caveat: h2o_shards_complete_but_no_b10_t1_credit_or_bqp_boundary_claim
+    result: ../results/B3_B10_F1_h2o_shard_batch_gate_v0.json
+    markdown_report: ../research/B3_B10_F1_h2o_shard_batch_gate.md
   b10_t1_missing_assumption_note_v0:
     status: missing_assumption_note_not_dequantization_theorem
     method: b10_t1_missing_assumption_note_v0
@@ -1920,6 +1952,7 @@ prototype_artifacts:
   t1_b3_b10_f1_full_covariance_work_order_gate: ../tools/b3_b10_f1_full_covariance_work_order_gate.py
   t1_b3_b10_f1_full_covariance_row_worker: ../tools/b3_b10_f1_full_covariance_row_worker.py
   t1_b3_b10_f1_first_shard_output_gate: ../tools/b3_b10_f1_first_shard_output_gate.py
+  t1_b3_b10_f1_h2o_shard_batch_gate: ../tools/b3_b10_f1_h2o_shard_batch_gate.py
   t1_b5_w1_replay_validation_manifest_gate: ../tools/b5_b10_w1_replay_validation_manifest_gate.py
   t1_positive_route_acceptance_boundary: ../tools/b10_t1_positive_route_acceptance_boundary.py
   t1_missing_assumption_note_builder: ../tools/b10_t1_missing_assumption_note.py

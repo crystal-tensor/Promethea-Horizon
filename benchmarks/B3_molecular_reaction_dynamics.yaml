@@ -811,6 +811,38 @@ current_results:
     caveat: one_shard_output_only_no_assembled_rows_no_f1_artifact_no_credit
     result: ../results/B3_B10_F1_first_shard_output_gate_v0.json
     markdown_report: ../research/B3_B10_F1_first_shard_output_gate.md
+  b3_b10_f1_h2o_shard_batch_gate_v0:
+    status: h2o_full_covariance_shard_batch_recorded_zero_credit
+    method: b3_b10_f1_h2o_shard_batch_gate_v0
+    model_status: one_of_three_remaining_molecule_shard_batches_complete_no_row_credit
+    source_work_order_gate: ../results/B3_B10_F1_full_covariance_work_order_gate_v0.json
+    source_shard_dir: ../results/B3_B10_F1_full_covariance_shards/h2o_symmetric_oh_stretch
+    source_target_id: T-B3-027/T-B10-015n
+    h2o_shard_batch_hash: c62e2dc04d15511319ee3f8d805ef70ea24f30a68408b68d6683f88550e723b5
+    produced_h2o_shard_count: 7
+    required_h2o_shard_count: 7
+    produced_global_shard_count: 7
+    required_total_shard_count: 65
+    remaining_global_shard_count: 58
+    h2o_compiled_cover_group_count: 3130
+    h2o_planning_proxy_group_count: 3129
+    h2o_total_nonzero_covariance_pair_count: 15099
+    h2o_total_variance_sum: 30.157555924962423
+    completed_molecule_shard_batch_count: 1
+    assembled_row_count: 0
+    h2o_row_assembled: false
+    requirements_passed: 7
+    requirements_failed: 3
+    failed_requirement_ids: [P8, P9, P10]
+    accepted_full_covariance_row_count: 0
+    denominator_win_count: 0
+    b3_reopen_ready: false
+    b3_full_covariance_credit_allowed: false
+    b10_t1_credit_allowed: false
+    validation_error_count: 0
+    caveat: h2o_shards_complete_but_no_assembled_row_no_f1_artifact_no_credit
+    result: ../results/B3_B10_F1_h2o_shard_batch_gate_v0.json
+    markdown_report: ../research/B3_B10_F1_h2o_shard_batch_gate.md
 prototype_artifacts:
   resource_estimator: ../tools/b3_pyscf_resource_estimator.py
   quantum_observable_fci_comparison: ../tools/b3_quantum_observable_fci_comparison.py
@@ -839,4 +871,5 @@ prototype_artifacts:
   b3_b10_f1_full_covariance_work_order_gate: ../tools/b3_b10_f1_full_covariance_work_order_gate.py
   b3_b10_f1_full_covariance_row_worker: ../tools/b3_b10_f1_full_covariance_row_worker.py
   b3_b10_f1_first_shard_output_gate: ../tools/b3_b10_f1_first_shard_output_gate.py
+  b3_b10_f1_h2o_shard_batch_gate: ../tools/b3_b10_f1_h2o_shard_batch_gate.py
   prototype_notes: ../research/B3_prototype_notes.md

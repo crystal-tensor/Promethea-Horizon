@@ -34604,6 +34604,9 @@ def audit(root: Path) -> dict:
             "b3_b10_f1_first_shard_output_gate": str(
                 research / "B3_B10_F1_first_shard_output_gate.md"
             ),
+            "b3_b10_f1_h2o_shard_batch_gate": str(
+                research / "B3_B10_F1_h2o_shard_batch_gate.md"
+            ),
             "b5_boundary_field_embedding_baseline": str(
                 research / "B5_boundary_field_embedding_baseline.md"
             ),
