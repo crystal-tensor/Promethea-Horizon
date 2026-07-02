@@ -270,6 +270,27 @@ current_results:
     validation_error_count: 0
     result: ../results/B9_offline_proof_artifact_bundle_gate_v0.json
     markdown_report: ../research/B9_offline_proof_artifact_bundle_gate.md
+  checked_run_acquisition_gate_v0:
+    status: checked_run_acquisition_open_toolchain_not_cached
+    method: b9_checked_run_acquisition_gate_v0
+    model_status: elan_installed_lean_lake_wrappers_timeout_before_checked_output
+    source_offline_bundle_result: ../results/B9_offline_proof_artifact_bundle_gate_v0.json
+    acquisition_requirement_count: 7
+    acquisition_requirements_passed: 4
+    acquisition_requirements_failed: 3
+    failed_acquisition_requirement_ids: [A3, A4, A6]
+    lean4_available: false
+    lake_available: false
+    release_host_reachable: true
+    local_toolchain_cache_present: false
+    checked_transcript_present: false
+    proof_assistant_checked: false
+    formal_theorem_proved: false
+    explicit_not_quantum_pcp_proof: true
+    nlts_theorem_claimed: false
+    validation_error_count: 0
+    result: ../results/B9_checked_run_acquisition_gate_v0.json
+    markdown_report: ../research/B9_checked_run_acquisition_gate.md
 prototype_artifacts:
   local_hamiltonian_gap_lab: ../tools/b9_local_hamiltonian_gap_lab.py
   failed_gap_amplification_lemma_builder: ../tools/b9_failed_gap_amplification_lemma.py
@@ -281,4 +302,5 @@ prototype_artifacts:
   proof_project_scaffold_gate: ../tools/b9_proof_project_scaffold_gate.py
   toolchain_ci_contract_gate: ../tools/b9_toolchain_ci_contract_gate.py
   offline_proof_artifact_bundle_gate: ../tools/b9_offline_proof_artifact_bundle_gate.py
+  checked_run_acquisition_gate: ../tools/b9_checked_run_acquisition_gate.py
   prototype_notes: ../research/B9_prototype_notes.md

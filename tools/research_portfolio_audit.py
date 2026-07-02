@@ -34667,6 +34667,7 @@ def audit(root: Path) -> dict:
             "b9_offline_proof_artifact_bundle_gate": str(
                 research / "B9_offline_proof_artifact_bundle_gate.md"
             ),
+            "b9_checked_run_acquisition_gate": str(research / "B9_checked_run_acquisition_gate.md"),
             "b7_dependency_schedule_bridge": str(research / "B7_b1_b2_dependency_schedule_bridge.md"),
             "b7_workload_dag_factory_schedule": str(research / "B7_workload_dag_factory_schedule.md"),
             "b7_logical_t_factory_schedule": str(research / "B7_logical_t_factory_schedule.md"),

@@ -1,0 +1,300 @@
+{
+  "benchmark_id": "B9",
+  "claim_boundary": {
+    "explicit_not_quantum_pcp_proof": true,
+    "formal_theorem_proved": false,
+    "next_gate": "Provide an accepted transcript for lean --version, lake --version, and lake env lean B9/ClusterStabilizer/WidthLocality.lean, using either a reachable Lean release host, a trusted mirror/cache, or the reviewed GitHub workflow.",
+    "nlts_theorem_claimed": false,
+    "proof_assistant_checked": false,
+    "what_is_not_supported": "No proof-assistant checked theorem, Quantum PCP proof, NLTS theorem, or global gap-amplification impossibility theorem is established.",
+    "what_is_supported": "The B9 proof-run acquisition blocker is now explicit: the offline bundle is valid, the pinned Lean 4.12.0 declaration exists, but this environment does not yet provide a usable Lean 4/Lake checked run transcript."
+  },
+  "last_updated": "2026-07-02",
+  "linked_benchmark_id": "B10",
+  "method": "b9_checked_run_acquisition_gate_v0",
+  "model_status": "elan_installed_lean_lake_wrappers_timeout_before_checked_output",
+  "probes": {
+    "elan": [
+      {
+        "available": true,
+        "command": [
+          "~/.elan/bin/elan",
+          "--version"
+        ],
+        "executable": "~/.elan/bin/elan",
+        "returncode": 0,
+        "runtime_seconds": 0.011323213577270508,
+        "stderr": "",
+        "stdout": "elan 4.2.3 (b6cec7e10 2026-06-08)",
+        "timed_out": false
+      },
+      {
+        "available": false,
+        "command": [
+          "elan",
+          "--version"
+        ],
+        "executable": null,
+        "returncode": null,
+        "runtime_seconds": 0.0,
+        "stderr": "",
+        "stdout": "",
+        "timed_out": false
+      }
+    ],
+    "lake": [
+      {
+        "available": true,
+        "command": [
+          "~/.elan/bin/lake",
+          "--version"
+        ],
+        "executable": "~/.elan/bin/lake",
+        "returncode": null,
+        "runtime_seconds": 10.003285884857178,
+        "stderr": "",
+        "stdout": "",
+        "timed_out": true
+      },
+      {
+        "available": false,
+        "command": [
+          "lake",
+          "--version"
+        ],
+        "executable": null,
+        "returncode": null,
+        "runtime_seconds": 0.0,
+        "stderr": "",
+        "stdout": "",
+        "timed_out": false
+      }
+    ],
+    "lean": [
+      {
+        "available": true,
+        "command": [
+          "~/.elan/bin/lean",
+          "--version"
+        ],
+        "executable": "~/.elan/bin/lean",
+        "returncode": null,
+        "runtime_seconds": 10.004033088684082,
+        "stderr": "",
+        "stdout": "",
+        "timed_out": true
+      },
+      {
+        "available": true,
+        "command": [
+          "~/Library/Python/3.9/bin/lean",
+          "--version"
+        ],
+        "executable": "~/Library/Python/3.9/bin/lean",
+        "returncode": 0,
+        "runtime_seconds": 0.4173462390899658,
+        "stderr": "~/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(",
+        "stdout": "lean 1.0.225",
+        "timed_out": false
+      }
+    ],
+    "release_host": {
+      "error": null,
+      "host": "release.lean-lang.org",
+      "port": 443,
+      "reachable": true,
+      "runtime_seconds": 8.170585870742798
+    }
+  },
+  "problem_id": 17,
+  "requirements": [
+    {
+      "evidence": {
+        "offline_bundle_failed_ids": [
+          "B6",
+          "B7",
+          "B8"
+        ],
+        "offline_bundle_hash": "a06204258abc9e5b0e8620f542865f504f6997578c039ebb9f106f508cc7bc1f",
+        "offline_bundle_status": "offline_proof_artifact_bundle_open_missing_checked_run"
+      },
+      "label": "Offline proof bundle remains valid and hashable",
+      "passed": true,
+      "requirement_id": "A1"
+    },
+    {
+      "evidence": {
+        "lean_toolchain_exists": true,
+        "lean_toolchain_path": "lean-toolchain",
+        "lean_toolchain_sha256": "e6930c662006db4d6dc76c651d60a608e4f6a18bcfd53e6b0167d70a125285d5",
+        "lean_toolchain_text": "leanprover/lean4:v4.12.0"
+      },
+      "label": "Pinned Lean toolchain declaration is present",
+      "passed": true,
+      "requirement_id": "A2"
+    },
+    {
+      "evidence": {
+        "lean_probes": [
+          {
+            "available": true,
+            "command": [
+              "~/.elan/bin/lean",
+              "--version"
+            ],
+            "executable": "~/.elan/bin/lean",
+            "returncode": null,
+            "runtime_seconds": 10.004033088684082,
+            "stderr": "",
+            "stdout": "",
+            "timed_out": true
+          },
+          {
+            "available": true,
+            "command": [
+              "~/Library/Python/3.9/bin/lean",
+              "--version"
+            ],
+            "executable": "~/Library/Python/3.9/bin/lean",
+            "returncode": 0,
+            "runtime_seconds": 0.4173462390899658,
+            "stderr": "~/Library/Python/3.9/lib/python/site-packages/urllib3/__init__.py:35: NotOpenSSLWarning: urllib3 v2 only supports OpenSSL 1.1.1+, currently the 'ssl' module is compiled with 'LibreSSL 2.8.3'. See: https://github.com/urllib3/urllib3/issues/3020\n  warnings.warn(",
+            "stdout": "lean 1.0.225",
+            "timed_out": false
+          }
+        ]
+      },
+      "label": "Real Lean 4 executable is available without triggering an acquisition timeout",
+      "passed": false,
+      "requirement_id": "A3"
+    },
+    {
+      "evidence": {
+        "lake_probes": [
+          {
+            "available": true,
+            "command": [
+              "~/.elan/bin/lake",
+              "--version"
+            ],
+            "executable": "~/.elan/bin/lake",
+            "returncode": null,
+            "runtime_seconds": 10.003285884857178,
+            "stderr": "",
+            "stdout": "",
+            "timed_out": true
+          },
+          {
+            "available": false,
+            "command": [
+              "lake",
+              "--version"
+            ],
+            "executable": null,
+            "returncode": null,
+            "runtime_seconds": 0.0,
+            "stderr": "",
+            "stdout": "",
+            "timed_out": false
+          }
+        ]
+      },
+      "label": "Lake executable is available without triggering an acquisition timeout",
+      "passed": false,
+      "requirement_id": "A4"
+    },
+    {
+      "evidence": {
+        "elan_probes": [
+          {
+            "available": true,
+            "command": [
+              "~/.elan/bin/elan",
+              "--version"
+            ],
+            "executable": "~/.elan/bin/elan",
+            "returncode": 0,
+            "runtime_seconds": 0.011323213577270508,
+            "stderr": "",
+            "stdout": "elan 4.2.3 (b6cec7e10 2026-06-08)",
+            "timed_out": false
+          },
+          {
+            "available": false,
+            "command": [
+              "elan",
+              "--version"
+            ],
+            "executable": null,
+            "returncode": null,
+            "runtime_seconds": 0.0,
+            "stderr": "",
+            "stdout": "",
+            "timed_out": false
+          }
+        ],
+        "local_toolchain_cache_present": false,
+        "release_host_probe": {
+          "error": null,
+          "host": "release.lean-lang.org",
+          "port": 443,
+          "reachable": true,
+          "runtime_seconds": 8.170585870742798
+        }
+      },
+      "label": "Pinned Lean toolchain can be acquired or is already cached",
+      "passed": true,
+      "requirement_id": "A5"
+    },
+    {
+      "evidence": {
+        "checked_transcript": "results/B9_checked_run_width_locality_transcript_v0.txt",
+        "checked_transcript_present": false,
+        "lean_module": "B9/ClusterStabilizer/WidthLocality.lean",
+        "lean_module_exists": true,
+        "lean_module_sha256": "d885cfe38990798c8cbd281959ed995a17427b38991968a9f40801c2a3bfa43c"
+      },
+      "label": "Checked Lean module transcript is present",
+      "passed": false,
+      "requirement_id": "A6"
+    },
+    {
+      "evidence": {
+        "explicit_not_quantum_pcp_proof": true,
+        "formal_theorem_proved": false,
+        "nlts_theorem_claimed": false,
+        "proof_assistant_checked": false
+      },
+      "label": "Forbidden B9 theorem and Quantum PCP claims remain false",
+      "passed": true,
+      "requirement_id": "A7"
+    }
+  ],
+  "runtime_seconds": 28.608893871307373,
+  "source_offline_bundle_result": "results/B9_offline_proof_artifact_bundle_gate_v0.json",
+  "status": "checked_run_acquisition_open_toolchain_not_cached",
+  "summary": {
+    "acquisition_requirement_count": 7,
+    "acquisition_requirements_failed": 3,
+    "acquisition_requirements_passed": 4,
+    "checked_transcript_present": false,
+    "elan_probe_count": 2,
+    "explicit_not_quantum_pcp_proof": true,
+    "failed_acquisition_requirement_ids": [
+      "A3",
+      "A4",
+      "A6"
+    ],
+    "formal_theorem_proved": false,
+    "lake_available": false,
+    "lean4_available": false,
+    "local_toolchain_cache_present": false,
+    "nlts_theorem_claimed": false,
+    "proof_assistant_checked": false,
+    "release_host_reachable": true,
+    "validation_error_count": 0
+  },
+  "title": "B9 Checked-Run Acquisition Gate",
+  "validation_errors": [],
+  "version": "0.1"
+}
