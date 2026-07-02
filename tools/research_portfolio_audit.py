@@ -34565,6 +34565,9 @@ def audit(root: Path) -> dict:
             "b3_b10_full_covariance_row_replay_validation_manifest_gate": str(
                 research / "B3_B10_full_covariance_row_replay_validation_manifest_gate.md"
             ),
+            "b3_b10_full_covariance_row_acceptance_packet_gate": str(
+                research / "B3_B10_full_covariance_row_acceptance_packet_gate.md"
+            ),
             "b5_boundary_field_embedding_baseline": str(
                 research / "B5_boundary_field_embedding_baseline.md"
             ),

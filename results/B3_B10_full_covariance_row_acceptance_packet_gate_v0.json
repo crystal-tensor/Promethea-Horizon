@@ -1,0 +1,330 @@
+{
+  "benchmark_id": "B3_B10",
+  "claim_boundary": {
+    "accepted_full_covariance_row_count": 0,
+    "accepted_priority_reopen_rows": 0,
+    "b3_reopen_ready": false,
+    "bqp_separation_claimed": false,
+    "denominator_win_count": 0,
+    "next_gate": "Submit B3-R1-full-covariance-row-acceptance-packet with row scope, full covariance row table, compiled-state replay, covariance replay, derivative estimator replay, denominator replay, optimizer-loop cost ledger, same-access decision, B10 access boundary, row acceptance ledger, B3 reopen boundary, and claim boundary.",
+    "positive_same_access_route_claimed": false,
+    "quantum_advantage_claimed": false,
+    "reaction_dynamics_solution_claimed": false,
+    "what_is_not_supported": "No acceptance packet or full-covariance row has been submitted or accepted; B3 remains demoted and no reaction-dynamics solution, positive same-access route, quantum advantage, or BQP separation is supported.",
+    "what_is_supported": "The B3/B10 full-covariance reopen route now has an acceptance packet gate after row replay-validation and before any full compiled-state covariance row, B3 reopen, or B10 credit can count."
+  },
+  "dependency_benchmarks": [
+    "B3",
+    "B10"
+  ],
+  "full_covariance_row_acceptance_packet": {
+    "acceptance_packet_id": "B3-R1-full-covariance-row-acceptance-packet",
+    "accepted_only_if": [
+      "acceptance_packet_id equals B3-R1-full-covariance-row-acceptance-packet",
+      "provenance, denominator replay, row replay-validation, priority packet, and downstream packet IDs and hashes match the source gates",
+      "row scope, full covariance row table, compiled-state replay, Pauli grouping covariance replay, derivative estimator replay, selected-CI/FCI denominator replay, optimizer-loop cost ledger, same-access decision, and B10 access boundary are hash-bound",
+      "accepted_full_covariance_row_count and denominator_win_count are positive only after source evidence exists",
+      "optimizer_loop_total_shots_lower_bound preserves the locked 475,043,013,690,000-shot lower-bound pressure",
+      "B3 reopen boundary keeps multi-parameter converged chemistry and reaction-dynamics solution claims false",
+      "B10 access boundary keeps positive same-access route and BQP separation credit false",
+      "claim_boundary forbids B3 reopen, reaction-dynamics solution, quantum advantage, and BQP separation claims until a larger audited route closes"
+    ],
+    "accepted_priority_reopen_rows": 0,
+    "compiled_pilot_instance_count": 1,
+    "denominator_manifest_hash": "d2e3e564caaa97f8f2a61805637651e94f2f6d7f5c86d6fa5f80ab87b9e53fde",
+    "denominator_replay_manifest_id": "B3-R1-full-covariance-denominator-replay-manifest",
+    "downstream_packet_id": "B3-R1-full-compiled-covariance",
+    "max_optimizer_loop_total_shots_lower_bound": 475043013690000,
+    "packet_hash": "24b94105d0b0de8d88fb1a6f456cdf1769dcd2efac8186594900c3bc3fff1f69",
+    "priority_packet_hash": "373a08c345cd80c3b5e1e55e0367d08468ba92fb0bb95cb287a3833b282360ca",
+    "production_required_keys": [
+      "row_replay_validation_manifest_hash",
+      "row_scope_hash",
+      "full_covariance_row_table_hash",
+      "compiled_state_replay_hash",
+      "pauli_grouping_covariance_replay_hash",
+      "derivative_estimator_replay_hash",
+      "selected_ci_fci_denominator_replay_hash",
+      "optimizer_loop_cost_ledger_hash",
+      "same_access_decision_hash",
+      "b10_access_boundary_hash",
+      "row_acceptance_ledger_hash",
+      "negative_boundary_nonpromotion_hash",
+      "accepted_full_covariance_row_count",
+      "denominator_win_count",
+      "optimizer_loop_total_shots_lower_bound",
+      "b3_reopen_boundary",
+      "b10_access_boundary",
+      "claim_boundary"
+    ],
+    "provenance_manifest_hash": "fdd5573fad11326b92f633c9d477cd83422106724d3e15ccd4999ca76c1e2811",
+    "provenance_manifest_id": "B3-R1-full-covariance-provenance-manifest",
+    "required_evidence_files": [
+      "accepted_row_replay_validation_manifest",
+      "priority_reopen_packet",
+      "accepted_provenance_manifest",
+      "accepted_denominator_replay_manifest",
+      "row_scope_manifest",
+      "full_covariance_row_table",
+      "compiled_state_replay_or_sampler_trace",
+      "pauli_grouping_covariance_replay",
+      "derivative_estimator_replay",
+      "selected_ci_fci_denominator_replay",
+      "optimizer_loop_cost_ledger",
+      "same_access_decision_report",
+      "b10_access_boundary_note",
+      "row_acceptance_ledger",
+      "negative_boundary_nonpromotion_note",
+      "b3_reopen_boundary_note",
+      "claim_boundary_note"
+    ],
+    "required_keys": [
+      "acceptance_packet_id",
+      "provenance_manifest_id",
+      "denominator_replay_manifest_id",
+      "row_replay_validation_manifest_id",
+      "downstream_packet_id",
+      "priority_packet_hash",
+      "provenance_manifest_hash",
+      "denominator_manifest_hash",
+      "row_replay_validation_manifest_hash",
+      "row_scope_hash",
+      "full_covariance_row_table_hash",
+      "compiled_state_replay_hash",
+      "pauli_grouping_covariance_replay_hash",
+      "derivative_estimator_replay_hash",
+      "selected_ci_fci_denominator_replay_hash",
+      "optimizer_loop_cost_ledger_hash",
+      "same_access_decision_hash",
+      "b10_access_boundary_hash",
+      "row_acceptance_ledger_hash",
+      "negative_boundary_nonpromotion_hash",
+      "accepted_full_covariance_row_count",
+      "denominator_win_count",
+      "optimizer_loop_total_shots_lower_bound",
+      "b3_reopen_boundary",
+      "b10_access_boundary",
+      "claim_boundary",
+      "source_evidence_files_present"
+    ],
+    "row_aligned_instance_count": 4,
+    "row_replay_validation_manifest_hash": "1b1d0b18bd2c1027e36dcb70c281c4d5f5f52b9d47ac047f29841334651b955f",
+    "row_replay_validation_manifest_id": "B3-R1-full-covariance-row-replay-validation-manifest",
+    "selected_ci_larger_basis_denominator_beaten_count": 0,
+    "source_priority_packet_gate": "results/B3_B10_reopen_priority_packet_gate_v0.json",
+    "source_row_replay_validation_manifest_gate": "results/B3_B10_full_covariance_row_replay_validation_manifest_gate_v0.json",
+    "submission_artifact_path": "results/B3_B10_full_covariance_row_acceptance_packet_submissions/B3-R1-full-covariance-row-acceptance-packet.json"
+  },
+  "last_updated": "2026-07-03",
+  "method": "b3_b10_full_covariance_row_acceptance_packet_gate_v0",
+  "model_status": "row_acceptance_packet_required_before_full_covariance_row_credit",
+  "problem_ids": [
+    49,
+    11
+  ],
+  "requirements": [
+    {
+      "evidence": {
+        "failed_manifest_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "source_status": "b3_b10_full_covariance_row_replay_validation_manifest_open_missing_artifact",
+        "validation_error_count": 0
+      },
+      "label": "Row replay-validation manifest gate remains valid and blocked only on P6/P7/P8",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "evidence": {
+        "failed_priority_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "packet_hash": "373a08c345cd80c3b5e1e55e0367d08468ba92fb0bb95cb287a3833b282360ca",
+        "priority_packet_id": "B3-R1-full-compiled-covariance"
+      },
+      "label": "Priority full-covariance packet remains fixed and source-shaped",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "evidence": {
+        "production_required_key_count": 18,
+        "required_evidence_file_count": 17,
+        "required_key_count": 27
+      },
+      "label": "Acceptance packet carries locked full-covariance row schema and evidence classes",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "evidence": {
+        "compiled_pilot_instance_count": 1,
+        "max_optimizer_loop_total_shots_lower_bound": 475043013690000,
+        "row_aligned_instance_count": 4,
+        "selected_ci_larger_basis_denominator_beaten_count": 0
+      },
+      "label": "Four-row scope and denominator negative boundary remain preserved",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "evidence": {
+        "accepted_priority_reopen_rows": 0,
+        "b3_reopen_ready": false,
+        "bqp_separation_claimed": false,
+        "positive_same_access_route_available": false,
+        "quantum_advantage_claimed": false,
+        "reaction_dynamics_solution_claimed": false
+      },
+      "label": "Current state has no accepted full-covariance rows or B10 credit",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "evidence": {
+        "exists": false,
+        "submission_artifact_path": "results/B3_B10_full_covariance_row_acceptance_packet_submissions/B3-R1-full-covariance-row-acceptance-packet.json"
+      },
+      "label": "Full-covariance row acceptance packet has been submitted",
+      "passed": false,
+      "requirement_id": "P6"
+    },
+    {
+      "evidence": {
+        "missing_keys": [
+          "acceptance_packet_id",
+          "provenance_manifest_id",
+          "denominator_replay_manifest_id",
+          "row_replay_validation_manifest_id",
+          "downstream_packet_id",
+          "priority_packet_hash",
+          "provenance_manifest_hash",
+          "denominator_manifest_hash",
+          "row_replay_validation_manifest_hash",
+          "row_scope_hash",
+          "full_covariance_row_table_hash",
+          "compiled_state_replay_hash",
+          "pauli_grouping_covariance_replay_hash",
+          "derivative_estimator_replay_hash",
+          "selected_ci_fci_denominator_replay_hash",
+          "optimizer_loop_cost_ledger_hash",
+          "same_access_decision_hash",
+          "b10_access_boundary_hash",
+          "row_acceptance_ledger_hash",
+          "negative_boundary_nonpromotion_hash",
+          "accepted_full_covariance_row_count",
+          "denominator_win_count",
+          "optimizer_loop_total_shots_lower_bound",
+          "b3_reopen_boundary",
+          "b10_access_boundary",
+          "claim_boundary",
+          "source_evidence_files_present"
+        ],
+        "production_keys_present": [],
+        "production_required_keys": [
+          "row_replay_validation_manifest_hash",
+          "row_scope_hash",
+          "full_covariance_row_table_hash",
+          "compiled_state_replay_hash",
+          "pauli_grouping_covariance_replay_hash",
+          "derivative_estimator_replay_hash",
+          "selected_ci_fci_denominator_replay_hash",
+          "optimizer_loop_cost_ledger_hash",
+          "same_access_decision_hash",
+          "b10_access_boundary_hash",
+          "row_acceptance_ledger_hash",
+          "negative_boundary_nonpromotion_hash",
+          "accepted_full_covariance_row_count",
+          "denominator_win_count",
+          "optimizer_loop_total_shots_lower_bound",
+          "b3_reopen_boundary",
+          "b10_access_boundary",
+          "claim_boundary"
+        ],
+        "submitted_key_count": 0
+      },
+      "label": "Submitted acceptance packet satisfies the locked full-covariance row schema",
+      "passed": false,
+      "requirement_id": "P7"
+    },
+    {
+      "evidence": {
+        "b10_boundary_bound": false,
+        "b3_boundary_bound": false,
+        "claim_boundary_bound": false,
+        "manifest_bound": false,
+        "row_acceptance_valid": false,
+        "source_backed": false
+      },
+      "label": "Submitted acceptance packet is source-backed, manifest-bound, row-valid, B3-boundary-bound, B10-boundary-bound, and claim-boundary-bound",
+      "passed": false,
+      "requirement_id": "P8"
+    },
+    {
+      "evidence": {
+        "b3_reopen_ready": false,
+        "bqp_separation_claimed": false,
+        "positive_same_access_route_available": false,
+        "quantum_advantage_claimed": false,
+        "reaction_dynamics_solution_claimed": false
+      },
+      "label": "Forbidden reopen, solution, advantage, and BQP claims remain false",
+      "passed": true,
+      "requirement_id": "P9"
+    }
+  ],
+  "runtime_seconds": 0.000232,
+  "source_priority_packet_gate": "results/B3_B10_reopen_priority_packet_gate_v0.json",
+  "source_row_replay_validation_manifest_gate": "results/B3_B10_full_covariance_row_replay_validation_manifest_gate_v0.json",
+  "source_target_id": "B10-T1",
+  "status": "b3_b10_full_covariance_row_acceptance_packet_open_missing_artifact",
+  "summary": {
+    "acceptance_packet_hash": "24b94105d0b0de8d88fb1a6f456cdf1769dcd2efac8186594900c3bc3fff1f69",
+    "acceptance_packet_id": "B3-R1-full-covariance-row-acceptance-packet",
+    "acceptance_requirement_count": 9,
+    "acceptance_requirements_failed": 3,
+    "acceptance_requirements_passed": 6,
+    "accepted_full_covariance_row_count": 0,
+    "accepted_priority_reopen_rows": 0,
+    "b10_t1_credit_allowed": false,
+    "b3_reopen_ready": false,
+    "bqp_separation_claimed": false,
+    "compiled_pilot_instance_count": 1,
+    "denominator_manifest_hash": "d2e3e564caaa97f8f2a61805637651e94f2f6d7f5c86d6fa5f80ab87b9e53fde",
+    "denominator_replay_manifest_id": "B3-R1-full-covariance-denominator-replay-manifest",
+    "denominator_win_count": 0,
+    "downstream_packet_id": "B3-R1-full-compiled-covariance",
+    "failed_acceptance_requirement_ids": [
+      "P6",
+      "P7",
+      "P8"
+    ],
+    "max_optimizer_loop_total_shots_lower_bound": 475043013690000,
+    "missing_key_count": 27,
+    "positive_same_access_route_available": false,
+    "priority_packet_hash": "373a08c345cd80c3b5e1e55e0367d08468ba92fb0bb95cb287a3833b282360ca",
+    "production_keys_present_count": 0,
+    "production_required_key_count": 18,
+    "provenance_manifest_hash": "fdd5573fad11326b92f633c9d477cd83422106724d3e15ccd4999ca76c1e2811",
+    "provenance_manifest_id": "B3-R1-full-covariance-provenance-manifest",
+    "quantum_advantage_claimed": false,
+    "reaction_dynamics_solution_claimed": false,
+    "required_evidence_file_count": 17,
+    "required_key_count": 27,
+    "row_aligned_instance_count": 4,
+    "row_replay_validation_manifest_hash": "1b1d0b18bd2c1027e36dcb70c281c4d5f5f52b9d47ac047f29841334651b955f",
+    "row_replay_validation_manifest_id": "B3-R1-full-covariance-row-replay-validation-manifest",
+    "selected_ci_larger_basis_denominator_beaten_count": 0,
+    "submitted_acceptance_packet_exists": false,
+    "submitted_key_count": 0,
+    "validation_error_count": 0
+  },
+  "title": "B3/B10 Full-Covariance Row Acceptance Packet Gate",
+  "validation_errors": [],
+  "version": "0.1"
+}
