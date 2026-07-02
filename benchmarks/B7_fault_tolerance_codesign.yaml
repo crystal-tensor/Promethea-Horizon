@@ -79,6 +79,25 @@ current_results:
     caveat: dependency_schedule_bridge_not_lattice_surgery_or_physical_layout_claim
     result: ../results/B7_b1_b2_dependency_schedule_bridge_v0.json
     markdown_report: ../research/B7_b1_b2_dependency_schedule_bridge.md
+  b1_cone01_resource_escape_provenance_dependency_v0:
+    status: b1_cone01_resource_escape_dependency_credit_still_zero
+    method: b1_b7_cone01_resource_escape_provenance_manifest_gate_v0
+    source_b1_resource_escape_provenance_manifest: ../results/B1_B7_cone01_resource_escape_provenance_manifest_gate_v0.json
+    manifest_id: B1-B7-cone01-resource-escape-provenance-manifest
+    priority_packet_id: B1-B7-cone01-resource-escape
+    manifest_requirements_passed: 6
+    manifest_requirements_failed: 3
+    failed_manifest_requirement_ids: [P6, P7, P8]
+    selected_line_numbers: [268, 1381]
+    dropped_overlap_candidate_line_numbers: [1378]
+    line1381_off_grid_parameter_count: 5
+    line1378_delta_recovered: false
+    accepted_occurrence_removal: 0
+    accepted_proxy_t_reduction: 0
+    submitted_manifest_exists: false
+    b7_dependency_credit_allowed: false
+    b7_credit_delta: 0
+    caveat: provenance_manifest_only_no_resource_saving_no_b7_ledger_credit
   b2_calibrated_dependency_credit_gate_v0:
     status: b2_calibrated_dependency_credit_rejected_missing_hardware_evidence
     method: b7_b2_calibrated_dependency_credit_gate_v0
