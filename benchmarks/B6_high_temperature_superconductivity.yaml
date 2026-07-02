@@ -378,6 +378,35 @@ current_results:
     caveat: priority_packet_only_no_dft_rows_no_b5_rows_no_material_discovery_or_mechanism_solution
     result: ../results/B6_B5_observable_priority_packet_gate_v0.json
     markdown: ../research/B6_B5_observable_priority_packet_gate.md
+  b6_b5_observable_provenance_manifest_gate_v0:
+    status: observable_provenance_manifest_open_missing_artifact
+    method: b6_b5_observable_provenance_manifest_gate_v0
+    model_status: observable_provenance_manifest_required_before_priority_dft_b5_rows
+    source_priority_packet_gate: ../results/B6_B5_observable_priority_packet_gate_v0.json
+    manifest_id: B6B5-O1-monolayer-FeSe-STO-provenance-manifest
+    priority_material_id: monolayer_FeSe_STO_2012
+    manifest_hash: a7ddd0cbd869eadc8c93311a2e52d33b15942580dde01a78057333044f8058fe
+    manifest_requirement_count: 9
+    manifest_requirements_passed: 6
+    manifest_requirements_failed: 3
+    failed_manifest_requirement_ids: [P6, P7, P8]
+    required_key_count: 11
+    production_required_key_count: 7
+    required_evidence_file_count: 10
+    template_row_count: 12
+    submitted_manifest_exists: false
+    accepted_priority_dft_rows: 0
+    accepted_priority_b5_rows: 0
+    dft_observable_claimed: false
+    b5_computed_observable_claimed: false
+    material_discovery_claimed: false
+    mechanism_solved: false
+    solution_claimed: false
+    validation_error_count: 0
+    interpretation: rank1_b6_b5_observable_route_now_requires_a_source_bound_provenance_manifest_before_dft_b5_rows
+    caveat: provenance_manifest_only_no_dft_rows_no_b5_rows_no_material_discovery_or_mechanism_solution
+    result: ../results/B6_B5_observable_provenance_manifest_gate_v0.json
+    markdown: ../research/B6_B5_observable_provenance_manifest_gate.md
   b6_curated_materials_leakage_audit_v0:
     status: curated_retrospective_leakage_audit
     model_status: curated_materials_table_with_time_family_leakage_audit
@@ -441,4 +470,5 @@ prototype_artifacts:
   observable_contract_gate: ../tools/b6_observable_contract_gate.py
   observable_row_intake_template_gate: ../tools/b6_observable_row_intake_template_gate.py
   observable_priority_packet_gate: ../tools/b6_b5_observable_priority_packet_gate.py
+  observable_provenance_manifest_gate: ../tools/b6_b5_observable_provenance_manifest_gate.py
   prototype_notes: ../research/B6_prototype_notes.md

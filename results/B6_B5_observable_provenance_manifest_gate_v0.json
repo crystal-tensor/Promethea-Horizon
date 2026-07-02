@@ -1,0 +1,223 @@
+{
+  "benchmark_id": "B6",
+  "claim_boundary": {
+    "b5_computed_observable_claimed": false,
+    "dft_observable_claimed": false,
+    "material_discovery_claimed": false,
+    "mechanism_solved": false,
+    "next_gate": "Submit B6B5-O1-monolayer-FeSe-STO-provenance-manifest with structure reference, DFT protocol, parser, effective-model protocol, B5 solver protocol, same-access cost unit, source replay hashes, and claim boundary.",
+    "solution_claimed": false,
+    "what_is_not_supported": "No provenance manifest, DFT row, or B5-computed observable row has been submitted or accepted; no material discovery, mechanism-solved, observable, or solution claim is supported.",
+    "what_is_supported": "The rank-1 B6/B5 observable route now has a concrete provenance manifest packet that must be accepted before DFT/B5 observable rows can be considered."
+  },
+  "last_updated": "2026-07-02",
+  "linked_benchmark_id": "B5",
+  "method": "b6_b5_observable_provenance_manifest_gate_v0",
+  "model_status": "observable_provenance_manifest_required_before_priority_dft_b5_rows",
+  "observable_provenance_manifest_packet": {
+    "accepted_only_if": [
+      "manifest_id equals B6B5-O1-monolayer-FeSe-STO-provenance-manifest",
+      "material_id equals monolayer_FeSe_STO_2012",
+      "structure reference, DFT protocol, parser, effective-model protocol, B5 solver protocol, same-access cost unit, and replay hashes are present",
+      "source_table_hash, replay_formula_hash, and replay_table_hash match the priority observable packet",
+      "source evidence files are present and hash-bound",
+      "claim_boundary forbids DFT-observable, B5-observable, material-discovery, mechanism-solved, and solution claims"
+    ],
+    "downstream_priority_packet": "monolayer_FeSe_STO_2012",
+    "manifest_hash": "a7ddd0cbd869eadc8c93311a2e52d33b15942580dde01a78057333044f8058fe",
+    "manifest_id": "B6B5-O1-monolayer-FeSe-STO-provenance-manifest",
+    "material_id": "monolayer_FeSe_STO_2012",
+    "production_required_keys": [
+      "structure_reference_hash",
+      "dft_input_protocol_hash",
+      "dft_output_parser_hash",
+      "effective_model_protocol_hash",
+      "b5_solver_protocol_hash",
+      "same_access_cost_unit",
+      "source_replay_hashes"
+    ],
+    "required_evidence_files": [
+      "structure_reference_or_cif_manifest",
+      "structure_reference_hash_source",
+      "dft_input_protocol_note",
+      "dft_output_parser_note",
+      "effective_model_derivation_protocol",
+      "b5_solver_protocol_note",
+      "same_access_cost_unit_note",
+      "source_replay_hash_manifest",
+      "observable_join_key_audit",
+      "claim_boundary_note"
+    ],
+    "required_keys": [
+      "manifest_id",
+      "material_id",
+      "structure_reference_id",
+      "structure_reference_hash",
+      "dft_input_protocol_hash",
+      "dft_output_parser_hash",
+      "effective_model_protocol_hash",
+      "b5_solver_protocol_hash",
+      "same_access_cost_unit",
+      "source_replay_hashes",
+      "claim_boundary"
+    ],
+    "source_priority_packet_gate": "results/B6_B5_observable_priority_packet_gate_v0.json",
+    "submission_artifact_path": "results/B6_B5_observable_provenance_manifest_submissions/B6B5-O1-monolayer-FeSe-STO-provenance-manifest.json"
+  },
+  "problem_id": 37,
+  "requirements": [
+    {
+      "evidence": {
+        "failed_priority_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "source_status": "observable_priority_packet_open_missing_artifact",
+        "validation_error_count": 0
+      },
+      "label": "Priority observable packet remains valid and blocked only on P6/P7/P8",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "evidence": {
+        "priority_material_family": "iron_chalcogenide",
+        "priority_material_id": "monolayer_FeSe_STO_2012",
+        "priority_material_rank": 1
+      },
+      "label": "Provenance manifest is bound to the rank-1 monolayer FeSe/STO material",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "evidence": {
+        "production_required_key_count": 7,
+        "required_evidence_file_count": 10,
+        "required_key_count": 11
+      },
+      "label": "Manifest packet carries locked schema and evidence file classes",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "evidence": {
+        "replay_formula_hash": "e23239648dd11aa8e0db8ecdeb5824506a5a379c9ba2777965c3aafa5d5d8230",
+        "replay_table_hash": "c44099194d0bc04d74cd3c4c4e068bf51a9e114d11c6e0b5e3890786cda5b8de",
+        "source_table_hash": "ce134d0a5d295af982b77be0a8a43e90ea19e828af20cc80ac3f20b7664d2fdc",
+        "template_row_count": 12
+      },
+      "label": "Observable row denominator and replay hashes remain preserved",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "evidence": {
+        "accepted_priority_b5_rows": 0,
+        "accepted_priority_dft_rows": 0
+      },
+      "label": "Current state has no accepted DFT/B5 observable row",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "evidence": {
+        "exists": false,
+        "submission_artifact_path": "results/B6_B5_observable_provenance_manifest_submissions/B6B5-O1-monolayer-FeSe-STO-provenance-manifest.json"
+      },
+      "label": "Provenance manifest artifact has been submitted",
+      "passed": false,
+      "requirement_id": "P6"
+    },
+    {
+      "evidence": {
+        "missing_keys": [
+          "manifest_id",
+          "material_id",
+          "structure_reference_id",
+          "structure_reference_hash",
+          "dft_input_protocol_hash",
+          "dft_output_parser_hash",
+          "effective_model_protocol_hash",
+          "b5_solver_protocol_hash",
+          "same_access_cost_unit",
+          "source_replay_hashes",
+          "claim_boundary"
+        ],
+        "production_keys_present": [],
+        "production_required_keys": [
+          "structure_reference_hash",
+          "dft_input_protocol_hash",
+          "dft_output_parser_hash",
+          "effective_model_protocol_hash",
+          "b5_solver_protocol_hash",
+          "same_access_cost_unit",
+          "source_replay_hashes"
+        ],
+        "submitted_key_count": 0
+      },
+      "label": "Submitted manifest satisfies the locked provenance schema",
+      "passed": false,
+      "requirement_id": "P7"
+    },
+    {
+      "evidence": {
+        "material_bound": false,
+        "replay_bound": false,
+        "source_evidence_files_present": false
+      },
+      "label": "Submitted manifest is source-backed, material-bound, and replay-hash-bound",
+      "passed": false,
+      "requirement_id": "P8"
+    },
+    {
+      "evidence": {
+        "b5_computed_observable_claimed": false,
+        "dft_observable_claimed": false,
+        "material_discovery_claimed": false,
+        "mechanism_solved": false,
+        "solution_claimed": false
+      },
+      "label": "Forbidden observable, discovery, mechanism, and solution claims remain false",
+      "passed": true,
+      "requirement_id": "P9"
+    }
+  ],
+  "runtime_seconds": 0.000122,
+  "source_priority_packet_gate": "results/B6_B5_observable_priority_packet_gate_v0.json",
+  "status": "observable_provenance_manifest_open_missing_artifact",
+  "summary": {
+    "accepted_priority_b5_rows": 0,
+    "accepted_priority_dft_rows": 0,
+    "b5_computed_observable_claimed": false,
+    "dft_observable_claimed": false,
+    "failed_manifest_requirement_ids": [
+      "P6",
+      "P7",
+      "P8"
+    ],
+    "manifest_hash": "a7ddd0cbd869eadc8c93311a2e52d33b15942580dde01a78057333044f8058fe",
+    "manifest_id": "B6B5-O1-monolayer-FeSe-STO-provenance-manifest",
+    "manifest_requirement_count": 9,
+    "manifest_requirements_failed": 3,
+    "manifest_requirements_passed": 6,
+    "material_discovery_claimed": false,
+    "mechanism_solved": false,
+    "missing_key_count": 11,
+    "priority_material_id": "monolayer_FeSe_STO_2012",
+    "production_keys_present_count": 0,
+    "production_required_key_count": 7,
+    "replay_formula_hash": "e23239648dd11aa8e0db8ecdeb5824506a5a379c9ba2777965c3aafa5d5d8230",
+    "replay_table_hash": "c44099194d0bc04d74cd3c4c4e068bf51a9e114d11c6e0b5e3890786cda5b8de",
+    "required_evidence_file_count": 10,
+    "required_key_count": 11,
+    "solution_claimed": false,
+    "source_table_hash": "ce134d0a5d295af982b77be0a8a43e90ea19e828af20cc80ac3f20b7664d2fdc",
+    "submitted_manifest_exists": false,
+    "template_row_count": 12,
+    "validation_error_count": 0
+  },
+  "title": "B6/B5 Observable Provenance Manifest Gate",
+  "validation_errors": [],
+  "version": "0.1"
+}
