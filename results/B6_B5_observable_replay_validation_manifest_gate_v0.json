@@ -1,0 +1,275 @@
+{
+  "benchmark_id": "B6",
+  "claim_boundary": {
+    "b5_computed_observable_claimed": false,
+    "dft_observable_claimed": false,
+    "material_discovery_claimed": false,
+    "mechanism_solved": false,
+    "next_gate": "Submit B6B5-O1-monolayer-FeSe-STO-replay-validation-manifest with the accepted provenance manifest hash, backend replay scope, DFT/effective-model/B5 replay hashes, same-access ledger, negative-control audit, family-prior denominator, source replay hashes, and claim boundary.",
+    "solution_claimed": false,
+    "what_is_not_supported": "No replay-validation manifest, DFT row, or B5-computed observable row has been submitted or accepted; no material discovery, mechanism-solved, observable, or solution claim is supported.",
+    "what_is_supported": "The rank-1 B6/B5 observable route now has a replay-validation manifest packet that must bind the accepted provenance manifest, backend replay scope, DFT replay, B5 observable replay, negative controls, family-prior denominator, same-access cost, and claim boundary before observable rows can count."
+  },
+  "last_updated": "2026-07-02",
+  "linked_benchmark_id": "B5",
+  "method": "b6_b5_observable_replay_validation_manifest_gate_v0",
+  "model_status": "observable_replay_validation_manifest_required_before_dft_b5_rows",
+  "observable_replay_validation_manifest_packet": {
+    "accepted_only_if": [
+      "manifest_id equals B6B5-O1-monolayer-FeSe-STO-replay-validation-manifest",
+      "provenance_manifest_id equals B6B5-O1-monolayer-FeSe-STO-provenance-manifest",
+      "material_id equals monolayer_FeSe_STO_2012",
+      "provenance_manifest_hash matches the accepted observable provenance manifest hash",
+      "backend replay scope preserves 56 records, 28 families, 18 negative controls, 27 post-split rows, and the selected physics_risk_adjusted_v0 replay",
+      "DFT replay, effective-model replay, B5 observable solver replay, same-access cost ledger, negative-control audit, family-prior denominator, and source replay hashes are present",
+      "source_replay_hashes bind source_table_hash, replay_formula_hash, and replay_table_hash",
+      "claim_boundary forbids DFT-observable, B5-observable, material-discovery, mechanism-solved, and solution claims until rows are accepted"
+    ],
+    "family_count": 28,
+    "manifest_hash": "6e3902319b091401031dd158a9c37ccb46bd7143df247b4b60aa0e7b2037e622",
+    "manifest_id": "B6B5-O1-monolayer-FeSe-STO-replay-validation-manifest",
+    "material_id": "monolayer_FeSe_STO_2012",
+    "negative_control_count": 18,
+    "post_split_family_prior_ap": 0.4901360544217687,
+    "post_split_record_count": 27,
+    "production_required_keys": [
+      "provenance_manifest_hash",
+      "backend_replay_scope_hash",
+      "structure_reference_hash",
+      "dft_replay_command_hash",
+      "dft_output_parser_hash",
+      "effective_model_replay_hash",
+      "b5_observable_solver_replay_hash",
+      "same_access_cost_ledger_hash",
+      "negative_control_audit_hash",
+      "family_prior_denominator_hash",
+      "source_replay_hashes",
+      "claim_boundary"
+    ],
+    "provenance_manifest_hash": "a7ddd0cbd869eadc8c93311a2e52d33b15942580dde01a78057333044f8058fe",
+    "provenance_manifest_id": "B6B5-O1-monolayer-FeSe-STO-provenance-manifest",
+    "record_count": 56,
+    "required_evidence_files": [
+      "accepted_observable_provenance_manifest",
+      "backend_replay_scope_manifest",
+      "structure_reference_manifest",
+      "dft_replay_command",
+      "dft_output_parser_manifest",
+      "effective_model_replay_manifest",
+      "b5_observable_solver_replay",
+      "same_access_cost_ledger",
+      "negative_control_audit",
+      "family_prior_denominator_table",
+      "source_replay_hash_manifest",
+      "claim_boundary_note"
+    ],
+    "required_keys": [
+      "manifest_id",
+      "provenance_manifest_id",
+      "material_id",
+      "provenance_manifest_hash",
+      "backend_replay_scope_hash",
+      "structure_reference_hash",
+      "dft_replay_command_hash",
+      "dft_output_parser_hash",
+      "effective_model_replay_hash",
+      "b5_observable_solver_replay_hash",
+      "same_access_cost_ledger_hash",
+      "negative_control_audit_hash",
+      "family_prior_denominator_hash",
+      "source_replay_hashes",
+      "claim_boundary"
+    ],
+    "selected_negative_controls_in_top_k": 2,
+    "selected_post_split_ap": 1.0,
+    "selected_variant": "physics_risk_adjusted_v0",
+    "source_backend_replay_scout": "results/B6_backend_replay_scout_v0.json",
+    "source_intake_template_gate": "results/B6_B5_observable_row_intake_template_gate_v0.json",
+    "source_provenance_manifest_gate": "results/B6_B5_observable_provenance_manifest_gate_v0.json",
+    "submission_artifact_path": "results/B6_B5_observable_replay_validation_manifest_submissions/B6B5-O1-monolayer-FeSe-STO-replay-validation-manifest.json"
+  },
+  "problem_id": 37,
+  "requirements": [
+    {
+      "evidence": {
+        "failed_manifest_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "source_status": "observable_provenance_manifest_open_missing_artifact",
+        "validation_error_count": 0
+      },
+      "label": "Observable provenance manifest gate remains valid and blocked only on P6/P7/P8",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "evidence": {
+        "accepted_priority_b5_rows": 0,
+        "accepted_priority_dft_rows": 0,
+        "priority_material_id": "monolayer_FeSe_STO_2012",
+        "provenance_manifest_id": "B6B5-O1-monolayer-FeSe-STO-provenance-manifest"
+      },
+      "label": "Replay-validation manifest is bound to rank-1 monolayer FeSe/STO",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "evidence": {
+        "production_required_key_count": 12,
+        "required_evidence_file_count": 12,
+        "required_key_count": 15
+      },
+      "label": "Manifest packet carries locked replay-validation schema and evidence classes",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "evidence": {
+        "family_count": 28,
+        "negative_control_count": 18,
+        "post_split_family_prior_ap": 0.4901360544217687,
+        "post_split_record_count": 27,
+        "record_count": 56,
+        "selected_negative_controls_in_top_k": 2
+      },
+      "label": "Backend replay scope and family-prior denominator remain preserved",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "evidence": {
+        "accepted_b5_rows": 0,
+        "accepted_dft_rows": 0,
+        "b5_computed_observable_claimed": false,
+        "dft_observable_claimed": false,
+        "material_discovery_claimed": false,
+        "mechanism_solved": false,
+        "solution_claimed": false
+      },
+      "label": "Current state has no accepted DFT/B5 observable row and no discovery claim",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "evidence": {
+        "exists": false,
+        "submission_artifact_path": "results/B6_B5_observable_replay_validation_manifest_submissions/B6B5-O1-monolayer-FeSe-STO-replay-validation-manifest.json"
+      },
+      "label": "Replay-validation manifest artifact has been submitted",
+      "passed": false,
+      "requirement_id": "P6"
+    },
+    {
+      "evidence": {
+        "missing_keys": [
+          "manifest_id",
+          "provenance_manifest_id",
+          "material_id",
+          "provenance_manifest_hash",
+          "backend_replay_scope_hash",
+          "structure_reference_hash",
+          "dft_replay_command_hash",
+          "dft_output_parser_hash",
+          "effective_model_replay_hash",
+          "b5_observable_solver_replay_hash",
+          "same_access_cost_ledger_hash",
+          "negative_control_audit_hash",
+          "family_prior_denominator_hash",
+          "source_replay_hashes",
+          "claim_boundary"
+        ],
+        "production_keys_present": [],
+        "production_required_keys": [
+          "provenance_manifest_hash",
+          "backend_replay_scope_hash",
+          "structure_reference_hash",
+          "dft_replay_command_hash",
+          "dft_output_parser_hash",
+          "effective_model_replay_hash",
+          "b5_observable_solver_replay_hash",
+          "same_access_cost_ledger_hash",
+          "negative_control_audit_hash",
+          "family_prior_denominator_hash",
+          "source_replay_hashes",
+          "claim_boundary"
+        ],
+        "submitted_key_count": 0
+      },
+      "label": "Submitted manifest satisfies the locked replay-validation schema",
+      "passed": false,
+      "requirement_id": "P7"
+    },
+    {
+      "evidence": {
+        "claim_boundary_bound": false,
+        "manifest_bound": false,
+        "replay_bound": false,
+        "source_evidence_files_present": false
+      },
+      "label": "Submitted manifest is source-backed, provenance-bound, replay-bound, and claim-boundary-bound",
+      "passed": false,
+      "requirement_id": "P8"
+    },
+    {
+      "evidence": {
+        "b5_computed_observable_claimed": false,
+        "dft_observable_claimed": false,
+        "material_discovery_claimed": false,
+        "mechanism_solved": false,
+        "solution_claimed": false
+      },
+      "label": "Forbidden observable, discovery, mechanism, and solution claims remain false",
+      "passed": true,
+      "requirement_id": "P9"
+    }
+  ],
+  "runtime_seconds": 0.000308,
+  "source_backend_replay_scout": "results/B6_backend_replay_scout_v0.json",
+  "source_intake_template_gate": "results/B6_B5_observable_row_intake_template_gate_v0.json",
+  "source_provenance_manifest_gate": "results/B6_B5_observable_provenance_manifest_gate_v0.json",
+  "status": "observable_replay_validation_manifest_open_missing_artifact",
+  "summary": {
+    "accepted_priority_b5_rows": 0,
+    "accepted_priority_dft_rows": 0,
+    "b5_computed_observable_claimed": false,
+    "dft_observable_claimed": false,
+    "failed_manifest_requirement_ids": [
+      "P6",
+      "P7",
+      "P8"
+    ],
+    "family_count": 28,
+    "manifest_hash": "6e3902319b091401031dd158a9c37ccb46bd7143df247b4b60aa0e7b2037e622",
+    "manifest_id": "B6B5-O1-monolayer-FeSe-STO-replay-validation-manifest",
+    "manifest_requirement_count": 9,
+    "manifest_requirements_failed": 3,
+    "manifest_requirements_passed": 6,
+    "material_discovery_claimed": false,
+    "mechanism_solved": false,
+    "missing_key_count": 15,
+    "negative_control_count": 18,
+    "post_split_record_count": 27,
+    "priority_material_id": "monolayer_FeSe_STO_2012",
+    "production_keys_present_count": 0,
+    "production_required_key_count": 12,
+    "provenance_manifest_hash": "a7ddd0cbd869eadc8c93311a2e52d33b15942580dde01a78057333044f8058fe",
+    "provenance_manifest_id": "B6B5-O1-monolayer-FeSe-STO-provenance-manifest",
+    "record_count": 56,
+    "replay_formula_hash": "e23239648dd11aa8e0db8ecdeb5824506a5a379c9ba2777965c3aafa5d5d8230",
+    "replay_table_hash": "c44099194d0bc04d74cd3c4c4e068bf51a9e114d11c6e0b5e3890786cda5b8de",
+    "required_evidence_file_count": 12,
+    "required_key_count": 15,
+    "selected_negative_controls_in_top_k": 2,
+    "selected_variant": "physics_risk_adjusted_v0",
+    "solution_claimed": false,
+    "source_table_hash": "ce134d0a5d295af982b77be0a8a43e90ea19e828af20cc80ac3f20b7664d2fdc",
+    "submitted_key_count": 0,
+    "submitted_manifest_exists": false,
+    "validation_error_count": 0
+  },
+  "title": "B6/B5 Observable Replay-Validation Manifest Gate",
+  "validation_errors": [],
+  "version": "0.1"
+}
