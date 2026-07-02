@@ -1,0 +1,311 @@
+{
+  "benchmark_id": "B9",
+  "checked_transcript_acceptance_packet": {
+    "acceptance_packet_id": "B9-checked-width-locality-transcript-acceptance-packet",
+    "accepted_only_if": [
+      "acceptance_packet_id equals B9-checked-width-locality-transcript-acceptance-packet",
+      "packet, provenance, and replay-validation identifiers match source gates",
+      "priority, provenance, and replay-validation hashes match source gates",
+      "Lean toolchain, lakefile, and Lean module hashes match gate-time source hashes",
+      "Lean version, Lake version, lake env lean command, stdout, stderr, returncode, elapsed time, and checked transcript hash are bound",
+      "returncode is 0 and checked_transcript_accepted is true before any checked transcript can count",
+      "theorem_scope_statement and open_obligation_ledger keep this to a scoped checked transcript, not a Quantum PCP/NLTS theorem",
+      "claim_boundary forbids Quantum PCP proof, NLTS theorem, formal theorem, and global impossibility claims"
+    ],
+    "blocks_acquisition_requirements": [
+      "A3",
+      "A4",
+      "A6"
+    ],
+    "packet_hash": "74f1da0b8f20633ca8c4449887ca2245eb4cd73e72a2213c211af2c0f8c240e5",
+    "packet_id": "B9-checked-width-locality-transcript",
+    "priority_packet_hash": "948afb38dab74a9612316173024f06228bda70fce37dd1a957b9d95536a07969",
+    "production_required_keys": [
+      "replay_validation_manifest_hash",
+      "lean_toolchain_sha256",
+      "lakefile_sha256",
+      "lean_module_sha256",
+      "lean_version_stdout_sha256",
+      "lake_version_stdout_sha256",
+      "lake_env_lean_command",
+      "checked_transcript_sha256",
+      "checked_transcript_stdout_sha256",
+      "checked_transcript_stderr_sha256",
+      "returncode",
+      "elapsed_seconds",
+      "checked_transcript_accepted",
+      "offline_bundle_hash_manifest",
+      "theorem_scope_statement",
+      "open_obligation_ledger_hash",
+      "claim_boundary"
+    ],
+    "provenance_manifest_hash": "1b3716b5f1a8ca396557dad26298a99a469349733abcf6d345e9cd4bb467f1d1",
+    "provenance_manifest_id": "B9-checked-width-locality-transcript-provenance-manifest",
+    "replay_validation_manifest_hash": "453a3419bd263174f22caa2c22babaa6e90dad0fa12e2d51dac8bd4e2995a281",
+    "replay_validation_manifest_id": "B9-checked-width-locality-transcript-replay-validation-manifest",
+    "required_evidence_files": [
+      "accepted_replay_validation_manifest",
+      "lean_toolchain_file",
+      "lakefile",
+      "lean_module_source",
+      "lean_version_stdout",
+      "lake_version_stdout",
+      "lake_env_lean_command_transcript",
+      "checked_transcript_file",
+      "checked_transcript_stdout",
+      "checked_transcript_stderr",
+      "returncode_and_elapsed_time_ledger",
+      "offline_bundle_hash_manifest",
+      "theorem_scope_statement",
+      "open_obligation_ledger",
+      "reproduction_environment_note",
+      "claim_boundary_note"
+    ],
+    "required_keys": [
+      "acceptance_packet_id",
+      "packet_id",
+      "provenance_manifest_id",
+      "replay_validation_manifest_id",
+      "priority_packet_hash",
+      "provenance_manifest_hash",
+      "replay_validation_manifest_hash",
+      "lean_toolchain_sha256",
+      "lakefile_sha256",
+      "lean_module_sha256",
+      "lean_version_stdout_sha256",
+      "lake_version_stdout_sha256",
+      "lake_env_lean_command",
+      "checked_transcript_sha256",
+      "checked_transcript_stdout_sha256",
+      "checked_transcript_stderr_sha256",
+      "returncode",
+      "elapsed_seconds",
+      "checked_transcript_accepted",
+      "offline_bundle_hash_manifest",
+      "theorem_scope_statement",
+      "open_obligation_ledger_hash",
+      "claim_boundary",
+      "source_evidence_files_present"
+    ],
+    "source_hashes_at_gate_time": {
+      "lakefile_sha256": "4d24f18967fce6e70b985da8aa6d9501297625642bfc945d629780d85b0993bd",
+      "lean_module_sha256": "d885cfe38990798c8cbd281959ed995a17427b38991968a9f40801c2a3bfa43c",
+      "lean_toolchain_sha256": "e6930c662006db4d6dc76c651d60a608e4f6a18bcfd53e6b0167d70a125285d5"
+    },
+    "source_priority_packet_gate": "results/B9_checked_transcript_priority_packet_gate_v0.json",
+    "source_replay_validation_manifest_gate": "results/B9_checked_transcript_replay_validation_manifest_gate_v0.json",
+    "submission_artifact_path": "research/submissions/B9-checked-width-locality-transcript-acceptance-packet.json"
+  },
+  "claim_boundary": {
+    "explicit_not_quantum_pcp_proof": true,
+    "formal_theorem_proved": false,
+    "global_gap_amplification_impossibility_claimed": false,
+    "next_gate": "Submit B9-checked-width-locality-transcript-acceptance-packet with replay manifest hash, Lean/Lake version transcripts, lake env lean transcript, stdout/stderr hashes, returncode 0, offline bundle hash, theorem scope, open-obligation ledger, and claim boundary.",
+    "nlts_theorem_claimed": false,
+    "proof_assistant_checked": false,
+    "what_is_not_supported": "No checked transcript acceptance packet or checked transcript has been submitted or accepted; no formal theorem, Quantum PCP proof, NLTS theorem, or global impossibility claim is supported.",
+    "what_is_supported": "The B9/B10 proof-assistant route now has an acceptance packet defining what a source-backed Lean/Lake checked transcript must contain before it can count."
+  },
+  "last_updated": "2026-07-03",
+  "linked_benchmark_id": "B10",
+  "method": "b9_checked_transcript_acceptance_packet_gate_v0",
+  "model_status": "checked_transcript_acceptance_packet_required_before_formal_credit",
+  "requirements": [
+    {
+      "evidence": {
+        "failed_manifest_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "source_status": "checked_transcript_replay_validation_manifest_open_missing_artifact",
+        "validation_error_count": 0
+      },
+      "label": "Replay-validation manifest gate remains valid and blocked only on P6/P7/P8",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "evidence": {
+        "failed_priority_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "packet_hash": "948afb38dab74a9612316173024f06228bda70fce37dd1a957b9d95536a07969",
+        "priority_packet_id": "B9-checked-width-locality-transcript"
+      },
+      "label": "Priority checked transcript packet remains fixed and source-shaped",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "evidence": {
+        "production_required_key_count": 17,
+        "required_evidence_file_count": 16,
+        "required_key_count": 24
+      },
+      "label": "Acceptance packet carries locked checked transcript schema and evidence classes",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "evidence": {
+        "lakefile_sha256": "4d24f18967fce6e70b985da8aa6d9501297625642bfc945d629780d85b0993bd",
+        "lean_module_sha256": "d885cfe38990798c8cbd281959ed995a17427b38991968a9f40801c2a3bfa43c",
+        "lean_toolchain_sha256": "e6930c662006db4d6dc76c651d60a608e4f6a18bcfd53e6b0167d70a125285d5"
+      },
+      "label": "Pinned Lean project source hashes remain stable at the acceptance gate",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "evidence": {
+        "checked_transcript_present": false,
+        "explicit_not_quantum_pcp_proof": true,
+        "formal_theorem_proved": false,
+        "global_gap_amplification_impossibility_claimed": false,
+        "nlts_theorem_claimed": false,
+        "proof_assistant_checked": false
+      },
+      "label": "Current state has no accepted checked transcript or theorem claim",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "evidence": {
+        "exists": false,
+        "submission_artifact_path": "research/submissions/B9-checked-width-locality-transcript-acceptance-packet.json"
+      },
+      "label": "Checked transcript acceptance packet has been submitted",
+      "passed": false,
+      "requirement_id": "P6"
+    },
+    {
+      "evidence": {
+        "missing_keys": [
+          "acceptance_packet_id",
+          "packet_id",
+          "provenance_manifest_id",
+          "replay_validation_manifest_id",
+          "priority_packet_hash",
+          "provenance_manifest_hash",
+          "replay_validation_manifest_hash",
+          "lean_toolchain_sha256",
+          "lakefile_sha256",
+          "lean_module_sha256",
+          "lean_version_stdout_sha256",
+          "lake_version_stdout_sha256",
+          "lake_env_lean_command",
+          "checked_transcript_sha256",
+          "checked_transcript_stdout_sha256",
+          "checked_transcript_stderr_sha256",
+          "returncode",
+          "elapsed_seconds",
+          "checked_transcript_accepted",
+          "offline_bundle_hash_manifest",
+          "theorem_scope_statement",
+          "open_obligation_ledger_hash",
+          "claim_boundary",
+          "source_evidence_files_present"
+        ],
+        "production_keys_present": [],
+        "production_required_keys": [
+          "replay_validation_manifest_hash",
+          "lean_toolchain_sha256",
+          "lakefile_sha256",
+          "lean_module_sha256",
+          "lean_version_stdout_sha256",
+          "lake_version_stdout_sha256",
+          "lake_env_lean_command",
+          "checked_transcript_sha256",
+          "checked_transcript_stdout_sha256",
+          "checked_transcript_stderr_sha256",
+          "returncode",
+          "elapsed_seconds",
+          "checked_transcript_accepted",
+          "offline_bundle_hash_manifest",
+          "theorem_scope_statement",
+          "open_obligation_ledger_hash",
+          "claim_boundary"
+        ],
+        "submitted_key_count": 0
+      },
+      "label": "Submitted acceptance packet satisfies the locked checked transcript schema",
+      "passed": false,
+      "requirement_id": "P7"
+    },
+    {
+      "evidence": {
+        "checked_run_valid": false,
+        "claim_boundary_bound": false,
+        "manifest_bound": false,
+        "source_backed": false,
+        "source_hash_bound": false
+      },
+      "label": "Submitted acceptance packet is source-backed, manifest-bound, source-hash-bound, checked-run-valid, and claim-boundary-bound",
+      "passed": false,
+      "requirement_id": "P8"
+    },
+    {
+      "evidence": {
+        "explicit_not_quantum_pcp_proof": true,
+        "formal_theorem_proved": false,
+        "global_gap_amplification_impossibility_claimed": false,
+        "nlts_theorem_claimed": false
+      },
+      "label": "Forbidden Quantum PCP, NLTS, formal theorem, and global impossibility claims remain false",
+      "passed": true,
+      "requirement_id": "P9"
+    }
+  ],
+  "runtime_seconds": 0.000471,
+  "source_priority_packet_gate": "results/B9_checked_transcript_priority_packet_gate_v0.json",
+  "source_replay_validation_manifest_gate": "results/B9_checked_transcript_replay_validation_manifest_gate_v0.json",
+  "source_target_id": "B10-T3",
+  "status": "checked_transcript_acceptance_packet_open_missing_artifact",
+  "summary": {
+    "acceptance_packet_hash": "74f1da0b8f20633ca8c4449887ca2245eb4cd73e72a2213c211af2c0f8c240e5",
+    "acceptance_packet_id": "B9-checked-width-locality-transcript-acceptance-packet",
+    "acceptance_requirement_count": 9,
+    "acceptance_requirements_failed": 3,
+    "acceptance_requirements_passed": 6,
+    "blocks_acquisition_requirements": [
+      "A3",
+      "A4",
+      "A6"
+    ],
+    "checked_transcript_accepted": false,
+    "checked_transcript_present": false,
+    "explicit_not_quantum_pcp_proof": true,
+    "failed_acceptance_requirement_ids": [
+      "P6",
+      "P7",
+      "P8"
+    ],
+    "formal_theorem_proved": false,
+    "global_gap_amplification_impossibility_claimed": false,
+    "lakefile_sha256": "4d24f18967fce6e70b985da8aa6d9501297625642bfc945d629780d85b0993bd",
+    "lean_module_sha256": "d885cfe38990798c8cbd281959ed995a17427b38991968a9f40801c2a3bfa43c",
+    "lean_toolchain_sha256": "e6930c662006db4d6dc76c651d60a608e4f6a18bcfd53e6b0167d70a125285d5",
+    "missing_key_count": 24,
+    "nlts_theorem_claimed": false,
+    "packet_id": "B9-checked-width-locality-transcript",
+    "priority_packet_hash": "948afb38dab74a9612316173024f06228bda70fce37dd1a957b9d95536a07969",
+    "production_keys_present_count": 0,
+    "production_required_key_count": 17,
+    "proof_assistant_checked": false,
+    "provenance_manifest_hash": "1b3716b5f1a8ca396557dad26298a99a469349733abcf6d345e9cd4bb467f1d1",
+    "provenance_manifest_id": "B9-checked-width-locality-transcript-provenance-manifest",
+    "replay_validation_manifest_hash": "453a3419bd263174f22caa2c22babaa6e90dad0fa12e2d51dac8bd4e2995a281",
+    "replay_validation_manifest_id": "B9-checked-width-locality-transcript-replay-validation-manifest",
+    "required_evidence_file_count": 16,
+    "required_key_count": 24,
+    "submitted_acceptance_packet_exists": false,
+    "submitted_key_count": 0,
+    "validation_error_count": 0
+  },
+  "title": "B9 Checked Transcript Acceptance Packet Gate",
+  "validation_errors": [],
+  "version": "0.1"
+}
