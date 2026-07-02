@@ -34601,6 +34601,9 @@ def audit(root: Path) -> dict:
             "b3_b10_f1_full_covariance_work_order_gate": str(
                 research / "B3_B10_F1_full_covariance_work_order_gate.md"
             ),
+            "b3_b10_f1_first_shard_output_gate": str(
+                research / "B3_B10_F1_first_shard_output_gate.md"
+            ),
             "b5_boundary_field_embedding_baseline": str(
                 research / "B5_boundary_field_embedding_baseline.md"
             ),

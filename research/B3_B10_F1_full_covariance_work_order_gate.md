@@ -7,7 +7,7 @@
 
 ## Result
 
-The gate creates 3 work orders and 65 shard contracts for LiH/H2O/N2 full covariance. It passes 7/10 requirements and intentionally fails ['P8', 'P9', 'P10'] because no worker, shard outputs, or assembled rows exist yet.
+The gate creates 3 work orders and 65 shard contracts for LiH/H2O/N2 full covariance. It passes 8/10 requirements and intentionally fails ['P9', 'P10'] because no worker, shard outputs, or assembled rows exist yet.
 
 ## Work Orders
 
@@ -26,7 +26,7 @@ The gate creates 3 work orders and 65 shard contracts for LiH/H2O/N2 full covari
 - `P5` PASS: Each work order preserves the blocker reasons from the scout
 - `P6` PASS: Work-order and shard contract hashes are reproducible
 - `P7` PASS: No B3/B10 credit, denominator win, or accepted row is claimed
-- `P8` FAIL: Full covariance worker implementation exists
+- `P8` PASS: Full covariance worker implementation exists
 - `P9` FAIL: All shard outputs have been produced
 - `P10` FAIL: Remaining rows are assembled and ready for F1 acceptance
 

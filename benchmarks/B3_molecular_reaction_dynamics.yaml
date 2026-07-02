@@ -768,9 +768,37 @@ current_results:
     lih_shard_count: 39
     h2o_shard_count: 7
     n2_shard_count: 19
-    worker_exists: false
+    worker_exists: true
     shard_outputs_exist: false
     row_acceptance_ready_count: 0
+    requirements_passed: 8
+    requirements_failed: 2
+    failed_requirement_ids: [P9, P10]
+    accepted_full_covariance_row_count: 0
+    denominator_win_count: 0
+    b3_reopen_ready: false
+    b3_full_covariance_credit_allowed: false
+    b10_t1_credit_allowed: false
+    validation_error_count: 0
+    caveat: work_orders_and_worker_only_not_all_shard_outputs_no_assembled_rows_no_credit
+    result: ../results/B3_B10_F1_full_covariance_work_order_gate_v0.json
+    markdown_report: ../research/B3_B10_F1_full_covariance_work_order_gate.md
+  b3_b10_f1_first_shard_output_gate_v0:
+    status: first_full_covariance_shard_output_recorded_zero_credit
+    method: b3_b10_f1_first_shard_output_gate_v0
+    model_status: one_of_sixty_five_full_covariance_shards_produced_no_row_credit
+    source_work_order_gate: ../results/B3_B10_F1_full_covariance_work_order_gate_v0.json
+    source_shard_output: ../results/B3_B10_F1_full_covariance_shards/h2o_symmetric_oh_stretch/shard_001.json
+    source_target_id: T-B3-026/T-B10-015m
+    recorded_shard_id: h2o_symmetric_oh_stretch-full-covariance-shard-001
+    recorded_shard_hash: 0294e8bc505c5cca1512513058fda2dad6883fa93d5063bc6888a03cec52a2ad
+    produced_shard_count: 1
+    required_total_shard_count: 65
+    remaining_shard_count: 64
+    recorded_shard_group_count: 512
+    recorded_shard_nonzero_covariance_pair_count: 12389
+    recorded_shard_variance_sum: 29.503269119841715
+    assembled_row_count: 0
     requirements_passed: 7
     requirements_failed: 3
     failed_requirement_ids: [P8, P9, P10]
@@ -780,9 +808,9 @@ current_results:
     b3_full_covariance_credit_allowed: false
     b10_t1_credit_allowed: false
     validation_error_count: 0
-    caveat: work_orders_only_no_worker_no_shard_outputs_no_assembled_rows_no_credit
-    result: ../results/B3_B10_F1_full_covariance_work_order_gate_v0.json
-    markdown_report: ../research/B3_B10_F1_full_covariance_work_order_gate.md
+    caveat: one_shard_output_only_no_assembled_rows_no_f1_artifact_no_credit
+    result: ../results/B3_B10_F1_first_shard_output_gate_v0.json
+    markdown_report: ../research/B3_B10_F1_first_shard_output_gate.md
 prototype_artifacts:
   resource_estimator: ../tools/b3_pyscf_resource_estimator.py
   quantum_observable_fci_comparison: ../tools/b3_quantum_observable_fci_comparison.py
@@ -809,4 +837,6 @@ prototype_artifacts:
   b3_b10_f1_pilot_row_candidate_gate: ../tools/b3_b10_f1_pilot_row_candidate_gate.py
   b3_b10_f1_remaining_row_extension_scout: ../tools/b3_b10_f1_remaining_row_extension_scout.py
   b3_b10_f1_full_covariance_work_order_gate: ../tools/b3_b10_f1_full_covariance_work_order_gate.py
+  b3_b10_f1_full_covariance_row_worker: ../tools/b3_b10_f1_full_covariance_row_worker.py
+  b3_b10_f1_first_shard_output_gate: ../tools/b3_b10_f1_first_shard_output_gate.py
   prototype_notes: ../research/B3_prototype_notes.md

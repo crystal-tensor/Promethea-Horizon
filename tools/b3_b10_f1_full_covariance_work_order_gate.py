@@ -245,7 +245,8 @@ def build_payload(args: argparse.Namespace) -> dict[str, Any]:
 
     failed = [item["id"] for item in requirements if not item["passed"]]
     validation_errors: list[str] = []
-    if failed != ["P8", "P9", "P10"]:
+    expected_failures = ["P9", "P10"] if worker_exists else ["P8", "P9", "P10"]
+    if failed != expected_failures:
         validation_errors.append(f"unexpected_failed_requirement_ids:{failed}")
 
     summary = {

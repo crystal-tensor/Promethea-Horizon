@@ -1,0 +1,156 @@
+{
+  "benchmark_id": "B3_B10",
+  "claim_boundary": {
+    "next_gate": "Produce the remaining 64 shard outputs, assemble LiH/H2O/N2 rows, then submit the four-row F1 artifact.",
+    "what_is_not_supported": "This is not all shards, not an assembled row, not an accepted F1 artifact, not a denominator win, not B3/B10 credit, and not quantum advantage.",
+    "what_is_supported": "One H2O full-covariance shard output exists and matches its work-order contract."
+  },
+  "last_updated": "2026-07-03",
+  "method": "b3_b10_f1_first_shard_output_gate_v0",
+  "model_status": "one_of_sixty_five_full_covariance_shards_produced_no_row_credit",
+  "problem_ids": [
+    "B3",
+    "B10"
+  ],
+  "requirements": [
+    {
+      "description": "Work-order gate is current and recognizes the worker",
+      "evidence": {
+        "method": "b3_b10_f1_full_covariance_work_order_gate_v0",
+        "total_shard_count": 65,
+        "work_order_gate_hash": "36612931762bd47cf4b0da01550a00c8592c1570b91969806febfb7b2c121c4b",
+        "worker_exists": true
+      },
+      "id": "P1",
+      "passed": true
+    },
+    {
+      "description": "Shard output was produced by the full-covariance worker",
+      "evidence": {
+        "method": "b3_b10_f1_full_covariance_row_worker_v0",
+        "shard_file_hash": "62f1e36ae08fa3e3268afd71f0e26b77d2b42c9f561ff2be2269edbaf4ada76b",
+        "status": "full_covariance_shard_computed_zero_credit"
+      },
+      "id": "P2",
+      "passed": true
+    },
+    {
+      "description": "Shard output matches a work-order contract",
+      "evidence": {
+        "contract_hash": "d10950479ee0d503afc809065dbc10f697a6b5da59f690c64fe03491e593c3b6",
+        "expected_output": "results/B3_B10_F1_full_covariance_shards/h2o_symmetric_oh_stretch/shard_001.json",
+        "shard_id": "h2o_symmetric_oh_stretch-full-covariance-shard-001"
+      },
+      "id": "P3",
+      "passed": true
+    },
+    {
+      "description": "Shard covariance hash and group count are stable",
+      "evidence": {
+        "full_covariance_matrix_shard_hash": "0294e8bc505c5cca1512513058fda2dad6883fa93d5063bc6888a03cec52a2ad",
+        "group_count": 512,
+        "nonzero_covariance_pair_count": 12389
+      },
+      "id": "P4",
+      "passed": true
+    },
+    {
+      "description": "Required worker hashes are present",
+      "evidence": {
+        "compiled_state_replay_hash": "f241112bf3ad3b765035ebb40af1d87a0889d8de46a9a739d86fa86dd2151e80",
+        "measurement_basis_manifest_hash": "e26ca8b15a251a503586d96de28e0fcaf6edf65fc0cfca315e6b232ccc8e3f89",
+        "qwc_group_manifest_hash": "8fdad9160fc05b6b6a50d4bea8f725314529cf97246b0daa4f3369a14306595a"
+      },
+      "id": "P5",
+      "passed": true
+    },
+    {
+      "description": "Claim boundary preserves zero credit",
+      "evidence": {
+        "accepted_full_covariance_row_count": 0,
+        "b10_t1_credit_allowed": false,
+        "denominator_win_count": 0
+      },
+      "id": "P6",
+      "passed": true
+    },
+    {
+      "description": "Exactly one shard output is recorded by this gate",
+      "evidence": {
+        "produced_shard_count": 1,
+        "required_total_shard_count": 65
+      },
+      "id": "P7",
+      "passed": true
+    },
+    {
+      "description": "All 65 shard outputs have been produced",
+      "evidence": {
+        "produced_shard_count": 1,
+        "required_total_shard_count": 65
+      },
+      "id": "P8",
+      "passed": false
+    },
+    {
+      "description": "LiH/H2O/N2 rows are assembled from all shards",
+      "evidence": {
+        "assembled_row_count": 0
+      },
+      "id": "P9",
+      "passed": false
+    },
+    {
+      "description": "Four-row F1 artifact is accepted",
+      "evidence": {
+        "accepted_full_covariance_row_count": 0
+      },
+      "id": "P10",
+      "passed": false
+    }
+  ],
+  "shard_contract": {
+    "expected_output": "results/B3_B10_F1_full_covariance_shards/h2o_symmetric_oh_stretch/shard_001.json",
+    "expected_output_hash_key": "full_covariance_matrix_shard_hash",
+    "group_count": 512,
+    "group_end_exclusive": 512,
+    "group_start_inclusive": 0,
+    "molecule": "h2o_symmetric_oh_stretch",
+    "replay_command_template": "python3 tools/b3_b10_f1_full_covariance_row_worker.py --molecule h2o_symmetric_oh_stretch --group-start 0 --group-end 512 --state-source compiled_ucc_adapt --emit-shard-json",
+    "shard_contract_hash": "d10950479ee0d503afc809065dbc10f697a6b5da59f690c64fe03491e593c3b6",
+    "shard_id": "h2o_symmetric_oh_stretch-full-covariance-shard-001"
+  },
+  "source_shard_output": "results/B3_B10_F1_full_covariance_shards/h2o_symmetric_oh_stretch/shard_001.json",
+  "source_target_id": "T-B3-026/T-B10-015m",
+  "source_work_order_gate": "results/B3_B10_F1_full_covariance_work_order_gate_v0.json",
+  "status": "first_full_covariance_shard_output_recorded_zero_credit",
+  "summary": {
+    "accepted_full_covariance_row_count": 0,
+    "assembled_row_count": 0,
+    "b10_t1_credit_allowed": false,
+    "b3_reopen_ready": false,
+    "bqp_separation_claimed": false,
+    "denominator_win_count": 0,
+    "failed_requirement_ids": [
+      "P8",
+      "P9",
+      "P10"
+    ],
+    "produced_shard_count": 1,
+    "quantum_advantage_claimed": false,
+    "reaction_dynamics_solution_claimed": false,
+    "recorded_shard_group_count": 512,
+    "recorded_shard_hash": "0294e8bc505c5cca1512513058fda2dad6883fa93d5063bc6888a03cec52a2ad",
+    "recorded_shard_id": "h2o_symmetric_oh_stretch-full-covariance-shard-001",
+    "recorded_shard_nonzero_covariance_pair_count": 12389,
+    "recorded_shard_variance_sum": 29.503269119841715,
+    "remaining_shard_count": 64,
+    "required_total_shard_count": 65,
+    "requirements_failed": 3,
+    "requirements_passed": 7,
+    "validation_error_count": 0
+  },
+  "title": "B3/B10 F1 First Shard Output Gate",
+  "validation_errors": [],
+  "version": "0.1"
+}
