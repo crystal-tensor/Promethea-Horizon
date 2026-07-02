@@ -359,6 +359,34 @@ current_results:
     caveat: b4_b8_transcript_template_only_no_real_backend_or_bqp_boundary_claim
     result: ../results/B4_B8_real_backend_transcript_intake_template_gate_v0.json
     markdown_report: ../research/B4_B8_real_backend_transcript_intake_template_gate.md
+  b10_t2_b4_b8_real_backend_transcript_priority_packet_gate_v0:
+    status: real_backend_transcript_priority_packet_open_missing_artifact
+    model_status: priority_real_backend_transcript_packet_ready_no_rows_submitted
+    method: b4_b8_real_backend_transcript_priority_packet_gate_v0
+    source_intake_template_result: ../results/B4_B8_real_backend_transcript_intake_template_gate_v0.json
+    source_target_id: B10-T2
+    dependency_benchmark: B4/B8
+    priority_packet_id: B4B8-M6-real-backend-transcript-rows
+    packet_hash: e40246c4ddbfa3c31c69069a6551c20694211ceb1a1e71695ae41789d3010e21
+    priority_requirement_count: 9
+    priority_requirements_passed: 6
+    priority_requirements_failed: 3
+    failed_priority_requirement_ids: [P6, P7, P8]
+    required_row_key_count: 19
+    production_required_key_count: 10
+    required_evidence_file_count: 8
+    holdout_row_count: 160
+    real_backend_transcript_rows: 0
+    submitted_artifact_exists: false
+    accepted_priority_transcript_rows: 0
+    no_leak_allowed_accepts_per_160: 16
+    full_leak_allowed_accepts_per_160: 40
+    protocol_soundness_proved: false
+    quantum_advantage_claimed: false
+    explicit_not_bqp_separation: true
+    caveat: b4_b8_priority_packet_only_no_real_backend_or_bqp_boundary_claim
+    result: ../results/B4_B8_real_backend_transcript_priority_packet_gate_v0.json
+    markdown_report: ../research/B4_B8_real_backend_transcript_priority_packet_gate.md
   b10_t1_negative_boundary_proof_v0:
     status: negative_boundary_accounting_lemma_proved_under_explicit_io_model_not_bqp_separation
     method: b10_t1_linear_systems_io_accounting_negative_boundary_v0
@@ -1181,4 +1209,5 @@ prototype_artifacts:
   t2_backend_calibrated_verifier_bridge_builder: ../tools/b10_t2_backend_calibrated_verifier_bridge.py
   t2_b4_b8_real_backend_soundness_margin_gate: ../tools/b4_b8_real_backend_soundness_margin_gate.py
   t2_b4_b8_real_backend_transcript_intake_template_gate: ../tools/b4_b8_real_backend_transcript_intake_template_gate.py
+  t2_b4_b8_real_backend_transcript_priority_packet_gate: ../tools/b4_b8_real_backend_transcript_priority_packet_gate.py
   prototype_notes: ../research/B10_prototype_notes.md

@@ -528,6 +528,37 @@ current_results:
     caveat: transcript_template_only_no_real_backend_rows_or_soundness_claim
     result: ../results/B4_B8_real_backend_transcript_intake_template_gate_v0.json
     markdown_report: ../research/B4_B8_real_backend_transcript_intake_template_gate.md
+  real_backend_transcript_priority_packet_gate_v0:
+    status: real_backend_transcript_priority_packet_open_missing_artifact
+    model_status: priority_real_backend_transcript_packet_ready_no_rows_submitted
+    method: b4_b8_real_backend_transcript_priority_packet_gate_v0
+    source_intake_template_result: ../results/B4_B8_real_backend_transcript_intake_template_gate_v0.json
+    source_target_id: B10-T2
+    dependency_benchmarks: [B4, B8, B10]
+    priority_packet_id: B4B8-M6-real-backend-transcript-rows
+    packet_hash: e40246c4ddbfa3c31c69069a6551c20694211ceb1a1e71695ae41789d3010e21
+    priority_requirement_count: 9
+    priority_requirements_passed: 6
+    priority_requirements_failed: 3
+    failed_priority_requirement_ids: [P6, P7, P8]
+    required_row_key_count: 19
+    production_required_key_count: 10
+    required_evidence_file_count: 8
+    holdout_row_count: 160
+    real_backend_transcript_rows: 0
+    submitted_artifact_exists: false
+    accepted_priority_transcript_rows: 0
+    no_leak_allowed_accepts_per_160: 16
+    full_leak_allowed_accepts_per_160: 40
+    protocol_soundness_proved: false
+    cryptographic_soundness_proved: false
+    sampling_hardness_proved: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    validation_error_count: 0
+    caveat: priority_packet_only_no_real_backend_transcript_rows_or_soundness_claim
+    result: ../results/B4_B8_real_backend_transcript_priority_packet_gate_v0.json
+    markdown_report: ../research/B4_B8_real_backend_transcript_priority_packet_gate.md
   toy_hidden_invariant_output_verifier_v0:
     status: toy_invariant_property_test
     model_status: toy_invariant_property_test_not_full_distribution_verification
@@ -671,3 +702,4 @@ prototype_artifacts:
   real_backend_transcript_contract_gate: ../tools/b4_b8_real_backend_transcript_contract_gate.py
   real_backend_soundness_margin_gate: ../tools/b4_b8_real_backend_soundness_margin_gate.py
   real_backend_transcript_intake_template_gate: ../tools/b4_b8_real_backend_transcript_intake_template_gate.py
+  real_backend_transcript_priority_packet_gate: ../tools/b4_b8_real_backend_transcript_priority_packet_gate.py
