@@ -248,6 +248,28 @@ current_results:
     validation_error_count: 0
     result: ../results/B9_toolchain_ci_contract_gate_v0.json
     markdown_report: ../research/B9_toolchain_ci_contract_gate.md
+  offline_proof_artifact_bundle_gate_v0:
+    status: offline_proof_artifact_bundle_open_missing_checked_run
+    method: b9_offline_proof_artifact_bundle_gate_v0
+    model_status: lean_scaffold_and_local_verifier_hash_bundle_ready_no_checked_output
+    source_ci_contract_result: ../results/B9_toolchain_ci_contract_gate_v0.json
+    source_scaffold_gate_result: ../results/B9_proof_project_scaffold_gate_v0.json
+    source_parametric_certificate_result: ../results/B9_cluster_stabilizer_parametric_certificate_v0.json
+    bundle_requirement_count: 8
+    bundle_requirements_passed: 5
+    bundle_requirements_failed: 3
+    failed_bundle_requirement_ids: [B6, B7, B8]
+    bundle_artifact_count: 8
+    present_artifact_count: 8
+    checked_run_artifact_count: 0
+    proof_assistant_checked: false
+    formal_theorem_proved: false
+    explicit_not_quantum_pcp_proof: true
+    global_gap_amplification_impossibility_claimed: false
+    nlts_theorem_claimed: false
+    validation_error_count: 0
+    result: ../results/B9_offline_proof_artifact_bundle_gate_v0.json
+    markdown_report: ../research/B9_offline_proof_artifact_bundle_gate.md
 prototype_artifacts:
   local_hamiltonian_gap_lab: ../tools/b9_local_hamiltonian_gap_lab.py
   failed_gap_amplification_lemma_builder: ../tools/b9_failed_gap_amplification_lemma.py
@@ -258,4 +280,5 @@ prototype_artifacts:
   proof_environment_contract_gate: ../tools/b9_proof_environment_contract_gate.py
   proof_project_scaffold_gate: ../tools/b9_proof_project_scaffold_gate.py
   toolchain_ci_contract_gate: ../tools/b9_toolchain_ci_contract_gate.py
+  offline_proof_artifact_bundle_gate: ../tools/b9_offline_proof_artifact_bundle_gate.py
   prototype_notes: ../research/B9_prototype_notes.md

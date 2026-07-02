@@ -1,0 +1,207 @@
+{
+  "benchmark_id": "B9",
+  "bundle_artifacts": [
+    {
+      "exists": true,
+      "path": "lean-toolchain",
+      "role": "pinned Lean toolchain",
+      "sha256": "e6930c662006db4d6dc76c651d60a608e4f6a18bcfd53e6b0167d70a125285d5"
+    },
+    {
+      "exists": true,
+      "path": "lakefile.lean",
+      "role": "Lake project definition",
+      "sha256": "4d24f18967fce6e70b985da8aa6d9501297625642bfc945d629780d85b0993bd"
+    },
+    {
+      "exists": true,
+      "path": "B9/ClusterStabilizer/WidthLocality.lean",
+      "role": "Lake module theorem interface",
+      "sha256": "d885cfe38990798c8cbd281959ed995a17427b38991968a9f40801c2a3bfa43c"
+    },
+    {
+      "exists": true,
+      "path": "research/proof_skeletons/B9_cluster_stabilizer_width_locality_bound.lean",
+      "role": "research skeleton theorem interface",
+      "sha256": "d3d896c1b5818b26deecc747f3f5fd08cf53da6c76a86c191cd9de39c58e7651"
+    },
+    {
+      "exists": true,
+      "path": "research/ci/b9-lean-proof-scaffold.yml",
+      "role": "reviewed CI workflow template",
+      "sha256": "c04a7c9539ce0d00f6a01b20cfcfbd0e3f301979e1f0f745d4f93c58cf936314"
+    },
+    {
+      "exists": true,
+      "path": "results/B9_cluster_stabilizer_parametric_certificate_v0.json",
+      "role": "local exact-rational verifier result",
+      "sha256": "286ff2717f209986698b4402a8776065c7262138a32cb85f88fcd5aec27155e7"
+    },
+    {
+      "exists": true,
+      "path": "results/B9_proof_project_scaffold_gate_v0.json",
+      "role": "scaffold gate result",
+      "sha256": "c987c28dc5e9e4869f98db89d855ca1c8169f2d1f083e0feb979d49cdd509c2e"
+    },
+    {
+      "exists": true,
+      "path": "results/B9_toolchain_ci_contract_gate_v0.json",
+      "role": "CI contract result",
+      "sha256": "9505ffbda7606825164ace430ed646d7ca81e47b76708bc8c295bb2289da82de"
+    }
+  ],
+  "claim_boundary": {
+    "explicit_not_quantum_pcp_proof": true,
+    "formal_theorem_proved": false,
+    "global_gap_amplification_impossibility_claimed": false,
+    "next_gate": "Submit Lean 4/Lake checked output for B9/ClusterStabilizer/WidthLocality.lean or install the reviewed GitHub workflow with a token that has workflow scope.",
+    "nlts_theorem_claimed": false,
+    "proof_assistant_checked": false,
+    "what_is_not_supported": "No Lean/Lake checked run artifact, proof-assistant checked theorem, Quantum PCP proof, NLTS theorem, or global gap-amplification impossibility theorem is established.",
+    "what_is_supported": "The current B9 Lean scaffold, CI template, and local exact-rational verifier artifacts are bundled with stable hashes for offline proof-run PRs."
+  },
+  "last_updated": "2026-07-02",
+  "linked_benchmark_id": "B10",
+  "method": "b9_offline_proof_artifact_bundle_gate_v0",
+  "model_status": "lean_scaffold_and_local_verifier_hash_bundle_ready_no_checked_output",
+  "problem_id": 17,
+  "required_checked_run_artifacts": [
+    "lean --version output showing Lean 4",
+    "lake --version output",
+    "lake env lean B9/ClusterStabilizer/WidthLocality.lean transcript",
+    "hash of checked Lean module and lake manifest used for the run"
+  ],
+  "requirements": [
+    {
+      "evidence": {
+        "failed_ci_contract_requirement_ids": [
+          "C2",
+          "C3",
+          "C10"
+        ],
+        "source_status": "toolchain_ci_contract_workflow_scope_blocked",
+        "workflow_activation_blocked_by_oauth_scope": true
+      },
+      "label": "CI contract is blocked only by workflow activation and remote checked output",
+      "passed": true,
+      "requirement_id": "B1"
+    },
+    {
+      "evidence": {
+        "failed_scaffold_requirement_ids": [
+          "S7",
+          "S8"
+        ],
+        "project_probe": {
+          "contains_admit": false,
+          "contains_placeholder_true_theorem": false,
+          "contains_sorry": false,
+          "quantifies_n": true,
+          "rejects_normalized_gap_improvement": true,
+          "requires_n_ge_4": true,
+          "theorem_present": true,
+          "uses_locality_predicate": true,
+          "uses_normalized_gap_invariant": true,
+          "uses_raw_gap_predicate": true
+        },
+        "source_status": "proof_project_scaffold_open_not_checked"
+      },
+      "label": "Proof scaffold has non-placeholder theorem interfaces",
+      "passed": true,
+      "requirement_id": "B2"
+    },
+    {
+      "evidence": {
+        "finite_rows_checked": [
+          4,
+          5,
+          6
+        ],
+        "local_verifier_checked": true,
+        "source_status": "parametric_certificate_checked_by_local_verifier_not_formal_theorem",
+        "validation_error_count": 0
+      },
+      "label": "Local exact-rational verifier evidence remains checked",
+      "passed": true,
+      "requirement_id": "B3"
+    },
+    {
+      "evidence": {
+        "bundle_artifact_count": 8,
+        "bundle_hash": "a06204258abc9e5b0e8620f542865f504f6997578c039ebb9f106f508cc7bc1f",
+        "present_artifact_count": 8
+      },
+      "label": "All offline bundle source artifacts exist and are hashable",
+      "passed": true,
+      "requirement_id": "B4"
+    },
+    {
+      "evidence": {
+        "explicit_not_quantum_pcp_proof": true,
+        "formal_theorem_proved": false,
+        "nlts_theorem_claimed": false,
+        "proof_assistant_checked": false
+      },
+      "label": "Forbidden theorem and Quantum PCP claims remain false",
+      "passed": true,
+      "requirement_id": "B5"
+    },
+    {
+      "evidence": {
+        "checked_run_artifact_count": 0
+      },
+      "label": "Lean/Lake checked run artifact is present",
+      "passed": false,
+      "requirement_id": "B6"
+    },
+    {
+      "evidence": {
+        "formal_theorem_proved": false,
+        "proof_assistant_checked": false
+      },
+      "label": "Proof assistant checked theorem output is present",
+      "passed": false,
+      "requirement_id": "B7"
+    },
+    {
+      "evidence": {
+        "offline_checked_run_artifact_count": 0,
+        "remote_ci_run_artifact_present": false
+      },
+      "label": "Active remote CI artifact or equivalent offline attestation is accepted",
+      "passed": false,
+      "requirement_id": "B8"
+    }
+  ],
+  "runtime_seconds": 0.0018761157989501953,
+  "source_ci_contract_result": "results/B9_toolchain_ci_contract_gate_v0.json",
+  "source_parametric_certificate_result": "results/B9_cluster_stabilizer_parametric_certificate_v0.json",
+  "source_scaffold_gate_result": "results/B9_proof_project_scaffold_gate_v0.json",
+  "status": "offline_proof_artifact_bundle_open_missing_checked_run",
+  "summary": {
+    "bundle_artifact_count": 8,
+    "bundle_hash": "a06204258abc9e5b0e8620f542865f504f6997578c039ebb9f106f508cc7bc1f",
+    "bundle_requirement_count": 8,
+    "bundle_requirements_failed": 3,
+    "bundle_requirements_passed": 5,
+    "checked_run_artifact_count": 0,
+    "explicit_not_quantum_pcp_proof": true,
+    "failed_bundle_requirement_ids": [
+      "B6",
+      "B7",
+      "B8"
+    ],
+    "formal_theorem_proved": false,
+    "global_gap_amplification_impossibility_claimed": false,
+    "nlts_theorem_claimed": false,
+    "present_artifact_count": 8,
+    "proof_assistant_checked": false,
+    "source_ci_contract_status": "toolchain_ci_contract_workflow_scope_blocked",
+    "source_parametric_certificate_status": "parametric_certificate_checked_by_local_verifier_not_formal_theorem",
+    "source_scaffold_status": "proof_project_scaffold_open_not_checked",
+    "validation_error_count": 0
+  },
+  "title": "B9 Offline Proof Artifact Bundle Gate",
+  "validation_errors": [],
+  "version": "0.1"
+}
