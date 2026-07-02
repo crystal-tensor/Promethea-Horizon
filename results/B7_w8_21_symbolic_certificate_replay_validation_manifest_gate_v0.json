@@ -1,0 +1,272 @@
+{
+  "benchmark_id": "B7",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "global_lower_bound_claimed": false,
+    "new_rewrite_claimed": false,
+    "next_gate": "Submit results/B7_w8_21_symbolic_certificate_replay_validation_manifest_submissions/B7S1-w8-21-symbolic-certificate-replay-validation-manifest.json after the provenance manifest and before the symbolic certificate JSON artifact, then rerun this gate.",
+    "physical_resource_reduction_claimed": false,
+    "what_is_not_supported": "No replay-validation manifest or symbolic certificate has been submitted or accepted; no occurrence-removing rewrite, global lower bound, resource reduction, or B7 ledger improvement is supported.",
+    "what_is_supported": "The w8_21 symbolic certificate route now has a replay-validation manifest packet that must bind target-matrix replay, symbolic coordinates, local invariant expressions, scaffold exclusions, numeric search digest, notebook or theorem environment, reproduction command, candidate certificate, and B7 occurrence-ledger retest before any theory artifact can count."
+  },
+  "last_updated": "2026-07-02",
+  "linked_benchmark_id": "B1",
+  "method": "b7_w8_21_symbolic_certificate_replay_validation_manifest_gate_v0",
+  "model_status": "w8_21_symbolic_certificate_replay_manifest_required_before_theory_artifact_acceptance",
+  "problem_id": 21,
+  "replay_validation_manifest_packet": {
+    "accepted_only_if": [
+      "manifest_id equals B7S1-w8-21-symbolic-certificate-replay-validation-manifest",
+      "provenance_manifest_id equals B7S1-w8-21-symbolic-certificate-provenance-manifest",
+      "packet_id equals B7-S1-w8-21-symbolic-kak-obstruction",
+      "template_id equals w8_21",
+      "priority_packet_hash and provenance_manifest_hash match the source gates",
+      "target matrix, symbolic coordinates, local invariant expressions, scaffold exclusions, numeric search digest, notebook environment, and reproduction command are replay-bound",
+      "symbolic_certificate_candidate and B7 occurrence-ledger retest are hash-bound before any rewrite or resource credit can count",
+      "source evidence files are present and replay_hashes bind the provenance manifest, priority packet, template, 43,480 optimizer runs, and 8,880 three-CNOT runs",
+      "claim_boundary forbids rewrite, global-lower-bound, resource-reduction, and B7-ledger-credit claims until accepted"
+    ],
+    "manifest_hash": "c188a58bd77c77c59d988536d298f1e07614d71abff60c32129c7e718ead8306",
+    "manifest_id": "B7S1-w8-21-symbolic-certificate-replay-validation-manifest",
+    "packet_id": "B7-S1-w8-21-symbolic-kak-obstruction",
+    "prior_optimizer_runs": 43480,
+    "priority_packet_hash": "c86c79de1b0266fca7affbca1024d1ad4d67a839c4626f872da9d59d9744b48c",
+    "production_required_keys": [
+      "provenance_manifest_hash",
+      "normalized_target_matrix_replay_hash",
+      "symbolic_coordinate_system_replay_hash",
+      "local_invariant_expression_replay_hash",
+      "tested_scaffold_exclusion_replay_hash",
+      "numeric_search_digest_replay_hash",
+      "theorem_or_notebook_environment_replay_hash",
+      "reproduction_command_replay_hash",
+      "algebra_notebook_output_hash",
+      "symbolic_certificate_candidate_hash",
+      "b7_occurrence_ledger_retest_hash",
+      "claim_boundary"
+    ],
+    "provenance_manifest_hash": "99d1eebef3bfe4676c8f6e42763a5e1032dc64bab1548608d6f1401fc6b5d61b",
+    "provenance_manifest_id": "B7S1-w8-21-symbolic-certificate-provenance-manifest",
+    "required_evidence_files": [
+      "accepted_symbolic_certificate_provenance_manifest",
+      "normalized_two_qubit_target_matrix_replay",
+      "symbolic_coordinate_system_replay",
+      "local_invariant_expression_replay",
+      "tested_scaffold_exclusion_table_replay",
+      "numeric_search_digest_replay_binding_43480_runs",
+      "theorem_or_notebook_environment_replay",
+      "reproduction_command_replay",
+      "algebra_notebook_output",
+      "symbolic_certificate_candidate",
+      "b7_occurrence_ledger_retest",
+      "uncovered_route_statement",
+      "source_evidence_file_manifest",
+      "claim_boundary_note"
+    ],
+    "required_keys": [
+      "manifest_id",
+      "provenance_manifest_id",
+      "packet_id",
+      "template_id",
+      "priority_packet_hash",
+      "provenance_manifest_hash",
+      "normalized_target_matrix_replay_hash",
+      "symbolic_coordinate_system_replay_hash",
+      "local_invariant_expression_replay_hash",
+      "tested_scaffold_exclusion_replay_hash",
+      "numeric_search_digest_replay_hash",
+      "theorem_or_notebook_environment_replay_hash",
+      "reproduction_command_replay_hash",
+      "algebra_notebook_output_hash",
+      "symbolic_certificate_candidate_hash",
+      "b7_occurrence_ledger_retest_hash",
+      "uncovered_route_statement_hash",
+      "claim_boundary"
+    ],
+    "source_provenance_manifest_gate": "results/B7_w8_21_symbolic_certificate_provenance_manifest_gate_v0.json",
+    "submission_artifact_path": "results/B7_w8_21_symbolic_certificate_replay_validation_manifest_submissions/B7S1-w8-21-symbolic-certificate-replay-validation-manifest.json",
+    "target_removed_arbitrary_occurrences": 30,
+    "target_removed_t_ledger": 600,
+    "template_id": "w8_21",
+    "three_cnot_attempted_optimizer_runs": 8880,
+    "three_cnot_passing_candidate_count": 0
+  },
+  "requirements": [
+    {
+      "evidence": {
+        "failed_manifest_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "source_status": "w8_21_symbolic_certificate_provenance_manifest_open_missing_artifact",
+        "validation_error_count": 0
+      },
+      "label": "Symbolic certificate provenance manifest remains valid and blocked only on P6/P7/P8",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "evidence": {
+        "priority_packet_id": "B7-S1-w8-21-symbolic-kak-obstruction",
+        "provenance_manifest_hash": "99d1eebef3bfe4676c8f6e42763a5e1032dc64bab1548608d6f1401fc6b5d61b",
+        "provenance_manifest_id": "B7S1-w8-21-symbolic-certificate-provenance-manifest",
+        "template_id": "w8_21"
+      },
+      "label": "Replay manifest is bound to the w8_21 symbolic KAK obstruction packet and provenance manifest",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "evidence": {
+        "production_required_key_count": 12,
+        "required_evidence_file_count": 14,
+        "required_key_count": 18
+      },
+      "label": "Replay manifest packet carries locked replay schema and evidence file classes",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "evidence": {
+        "prior_optimizer_runs": 43480,
+        "target_removed_arbitrary_occurrences": 30,
+        "target_removed_t_ledger": 600,
+        "three_cnot_attempted_optimizer_runs": 8880,
+        "three_cnot_passing_candidate_count": 0
+      },
+      "label": "Prior numerical negative boundary and B7 target pressure remain preserved",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "evidence": {
+        "accepted_symbolic_certificate_count": 0,
+        "b7_ledger_improvement_claimed": false,
+        "global_lower_bound_claimed": false,
+        "new_rewrite_claimed": false,
+        "physical_resource_reduction_claimed": false,
+        "ready_for_b7_ledger_retest_count": 0
+      },
+      "label": "No accepted symbolic certificate, rewrite, resource reduction, or B7 ledger credit exists",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "evidence": {
+        "exists": false,
+        "submission_artifact_path": "results/B7_w8_21_symbolic_certificate_replay_validation_manifest_submissions/B7S1-w8-21-symbolic-certificate-replay-validation-manifest.json"
+      },
+      "label": "Symbolic certificate replay-validation manifest artifact has been submitted",
+      "passed": false,
+      "requirement_id": "P6"
+    },
+    {
+      "evidence": {
+        "missing_keys": [
+          "manifest_id",
+          "provenance_manifest_id",
+          "packet_id",
+          "template_id",
+          "priority_packet_hash",
+          "provenance_manifest_hash",
+          "normalized_target_matrix_replay_hash",
+          "symbolic_coordinate_system_replay_hash",
+          "local_invariant_expression_replay_hash",
+          "tested_scaffold_exclusion_replay_hash",
+          "numeric_search_digest_replay_hash",
+          "theorem_or_notebook_environment_replay_hash",
+          "reproduction_command_replay_hash",
+          "algebra_notebook_output_hash",
+          "symbolic_certificate_candidate_hash",
+          "b7_occurrence_ledger_retest_hash",
+          "uncovered_route_statement_hash",
+          "claim_boundary"
+        ],
+        "production_keys_present": [],
+        "production_required_keys": [
+          "provenance_manifest_hash",
+          "normalized_target_matrix_replay_hash",
+          "symbolic_coordinate_system_replay_hash",
+          "local_invariant_expression_replay_hash",
+          "tested_scaffold_exclusion_replay_hash",
+          "numeric_search_digest_replay_hash",
+          "theorem_or_notebook_environment_replay_hash",
+          "reproduction_command_replay_hash",
+          "algebra_notebook_output_hash",
+          "symbolic_certificate_candidate_hash",
+          "b7_occurrence_ledger_retest_hash",
+          "claim_boundary"
+        ],
+        "submitted_key_count": 0
+      },
+      "label": "Submitted replay manifest satisfies the locked replay schema",
+      "passed": false,
+      "requirement_id": "P7"
+    },
+    {
+      "evidence": {
+        "claim_boundary_bound": false,
+        "manifest_bound": false,
+        "replay_bound": false,
+        "source_evidence_files_present": false
+      },
+      "label": "Submitted replay manifest is source-backed, gate-bound, replay-hash-bound, and claim-boundary-safe",
+      "passed": false,
+      "requirement_id": "P8"
+    },
+    {
+      "evidence": {
+        "b7_ledger_improvement_claimed": false,
+        "global_lower_bound_claimed": false,
+        "new_rewrite_claimed": false,
+        "physical_resource_reduction_claimed": false
+      },
+      "label": "Forbidden symbolic-proof and B7 resource claims remain false",
+      "passed": true,
+      "requirement_id": "P9"
+    }
+  ],
+  "runtime_seconds": 0.00016,
+  "source_provenance_manifest_gate": "results/B7_w8_21_symbolic_certificate_provenance_manifest_gate_v0.json",
+  "status": "w8_21_symbolic_certificate_replay_validation_manifest_open_missing_artifact",
+  "summary": {
+    "accepted_symbolic_certificate_count": 0,
+    "b7_ledger_improvement_claimed": false,
+    "failed_manifest_requirement_ids": [
+      "P6",
+      "P7",
+      "P8"
+    ],
+    "global_lower_bound_claimed": false,
+    "manifest_hash": "c188a58bd77c77c59d988536d298f1e07614d71abff60c32129c7e718ead8306",
+    "manifest_id": "B7S1-w8-21-symbolic-certificate-replay-validation-manifest",
+    "manifest_requirement_count": 9,
+    "manifest_requirements_failed": 3,
+    "manifest_requirements_passed": 6,
+    "missing_key_count": 18,
+    "new_rewrite_claimed": false,
+    "physical_resource_reduction_claimed": false,
+    "prior_optimizer_runs": 43480,
+    "priority_packet_hash": "c86c79de1b0266fca7affbca1024d1ad4d67a839c4626f872da9d59d9744b48c",
+    "priority_packet_id": "B7-S1-w8-21-symbolic-kak-obstruction",
+    "production_keys_present_count": 0,
+    "production_required_key_count": 12,
+    "provenance_manifest_hash": "99d1eebef3bfe4676c8f6e42763a5e1032dc64bab1548608d6f1401fc6b5d61b",
+    "provenance_manifest_id": "B7S1-w8-21-symbolic-certificate-provenance-manifest",
+    "ready_for_b7_ledger_retest_count": 0,
+    "required_evidence_file_count": 14,
+    "required_key_count": 18,
+    "submitted_key_count": 0,
+    "submitted_manifest_exists": false,
+    "target_removed_arbitrary_occurrences": 30,
+    "target_removed_t_ledger": 600,
+    "template_id": "w8_21",
+    "three_cnot_attempted_optimizer_runs": 8880,
+    "three_cnot_passing_candidate_count": 0,
+    "validation_error_count": 0
+  },
+  "title": "B7 w8_21 Symbolic Certificate Replay-Validation Manifest Gate",
+  "validation_errors": [],
+  "version": "0.1"
+}

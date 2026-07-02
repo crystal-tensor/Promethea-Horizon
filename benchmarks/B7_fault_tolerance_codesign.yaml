@@ -579,6 +579,41 @@ current_results:
     caveat: provenance_manifest_only_no_symbolic_certificate_rewrite_or_b7_ledger_claim
     result: ../results/B7_w8_21_symbolic_certificate_provenance_manifest_gate_v0.json
     markdown_report: ../research/B7_w8_21_symbolic_certificate_provenance_manifest_gate.md
+  w8_21_symbolic_certificate_replay_validation_manifest_gate_v0:
+    status: w8_21_symbolic_certificate_replay_validation_manifest_open_missing_artifact
+    model_status: w8_21_symbolic_certificate_replay_manifest_required_before_theory_artifact_acceptance
+    method: b7_w8_21_symbolic_certificate_replay_validation_manifest_gate_v0
+    source_provenance_manifest_gate: ../results/B7_w8_21_symbolic_certificate_provenance_manifest_gate_v0.json
+    manifest_id: B7S1-w8-21-symbolic-certificate-replay-validation-manifest
+    provenance_manifest_id: B7S1-w8-21-symbolic-certificate-provenance-manifest
+    priority_packet_id: B7-S1-w8-21-symbolic-kak-obstruction
+    template_id: w8_21
+    priority_packet_hash: c86c79de1b0266fca7affbca1024d1ad4d67a839c4626f872da9d59d9744b48c
+    provenance_manifest_hash: 99d1eebef3bfe4676c8f6e42763a5e1032dc64bab1548608d6f1401fc6b5d61b
+    manifest_hash: c188a58bd77c77c59d988536d298f1e07614d71abff60c32129c7e718ead8306
+    manifest_requirement_count: 9
+    manifest_requirements_passed: 6
+    manifest_requirements_failed: 3
+    failed_manifest_requirement_ids: [P6, P7, P8]
+    required_key_count: 18
+    production_required_key_count: 12
+    required_evidence_file_count: 14
+    prior_optimizer_runs: 43480
+    three_cnot_attempted_optimizer_runs: 8880
+    three_cnot_passing_candidate_count: 0
+    target_removed_arbitrary_occurrences: 30
+    target_removed_t_ledger: 600
+    submitted_manifest_exists: false
+    accepted_symbolic_certificate_count: 0
+    ready_for_b7_ledger_retest_count: 0
+    new_rewrite_claimed: false
+    global_lower_bound_claimed: false
+    physical_resource_reduction_claimed: false
+    b7_ledger_improvement_claimed: false
+    validation_error_count: 0
+    caveat: replay_validation_manifest_only_no_symbolic_certificate_rewrite_or_b7_ledger_claim
+    result: ../results/B7_w8_21_symbolic_certificate_replay_validation_manifest_gate_v0.json
+    markdown_report: ../research/B7_w8_21_symbolic_certificate_replay_validation_manifest_gate.md
   w8_21_small_block_synthesis_v0:
     status: w8_21_small_block_synthesis_negative_boundary_not_physical_layout
     method: b7_w8_21_small_block_synthesis_v0
@@ -745,6 +780,7 @@ prototype_artifacts:
   w8_21_symbolic_obligation_intake_gate: ../tools/b7_w8_21_symbolic_obligation_intake_gate.py
   w8_21_symbolic_certificate_priority_packet_gate: ../tools/b7_w8_21_symbolic_certificate_priority_packet_gate.py
   w8_21_symbolic_certificate_provenance_manifest_gate: ../tools/b7_w8_21_symbolic_certificate_provenance_manifest_gate.py
+  w8_21_symbolic_certificate_replay_validation_manifest_gate: ../tools/b7_w8_21_symbolic_certificate_replay_validation_manifest_gate.py
   w8_21_small_block_synthesis: ../tools/b7_w8_21_small_block_synthesis.py
   w8_21_broad_skeleton_search: ../tools/b7_w8_21_broad_skeleton_search.py
   w8_21_euler_local_search: ../tools/b7_w8_21_euler_local_search.py
