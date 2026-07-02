@@ -34651,6 +34651,9 @@ def audit(root: Path) -> dict:
             "b6_b5_observable_replay_validation_manifest_gate": str(
                 research / "B6_B5_observable_replay_validation_manifest_gate.md"
             ),
+            "b6_b5_observable_row_replay_validation_manifest_gate": str(
+                research / "B6_B5_observable_row_replay_validation_manifest_gate.md"
+            ),
             "b10_formal_theorem_targets": str(research / "B10_formal_theorem_targets.md"),
             "b10_t2_minimum_refresh_spoofer_boundary": str(research / "B8_generative_spoofer_refresh.md"),
             "b10_t2_refresh_proof_obligation_gate": str(research / "B10_t2_refresh_proof_obligation_gate.md"),

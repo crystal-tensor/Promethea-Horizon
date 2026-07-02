@@ -445,6 +445,44 @@ current_results:
     caveat: replay_validation_manifest_only_no_dft_rows_no_b5_rows_no_material_discovery_or_mechanism_solution
     result: ../results/B6_B5_observable_replay_validation_manifest_gate_v0.json
     markdown: ../research/B6_B5_observable_replay_validation_manifest_gate.md
+  b6_b5_observable_row_replay_validation_manifest_gate_v0:
+    status: observable_row_replay_validation_manifest_open_missing_artifact
+    method: b6_b5_observable_row_replay_validation_manifest_gate_v0
+    model_status: observable_row_replay_validation_manifest_required_before_priority_dft_b5_rows
+    source_replay_validation_manifest_gate: ../results/B6_B5_observable_replay_validation_manifest_gate_v0.json
+    source_intake_template_gate: ../results/B6_B5_observable_row_intake_template_gate_v0.json
+    manifest_id: B6B5-O1-monolayer-FeSe-STO-row-replay-validation-manifest
+    source_replay_validation_manifest_id: B6B5-O1-monolayer-FeSe-STO-replay-validation-manifest
+    priority_material_id: monolayer_FeSe_STO_2012
+    replay_validation_manifest_hash: 6e3902319b091401031dd158a9c37ccb46bd7143df247b4b60aa0e7b2037e622
+    provenance_manifest_hash: a7ddd0cbd869eadc8c93311a2e52d33b15942580dde01a78057333044f8058fe
+    manifest_hash: 16fecc141f05a7b641e1d10009b1c0c2bb8e62927aa0a4d01360cef563a2edfb
+    manifest_requirement_count: 9
+    manifest_requirements_passed: 6
+    manifest_requirements_failed: 3
+    failed_manifest_requirement_ids: [P6, P7, P8]
+    required_key_count: 18
+    production_required_key_count: 15
+    required_evidence_file_count: 14
+    record_count: 56
+    family_count: 28
+    negative_control_count: 18
+    post_split_record_count: 27
+    template_row_count: 12
+    selected_negative_controls_in_top_k: 2
+    submitted_manifest_exists: false
+    accepted_priority_dft_rows: 0
+    accepted_priority_b5_rows: 0
+    dft_observable_claimed: false
+    b5_computed_observable_claimed: false
+    material_discovery_claimed: false
+    mechanism_solved: false
+    solution_claimed: false
+    validation_error_count: 0
+    interpretation: rank1_b6_b5_observable_route_now_requires_row_replay_validation_before_dft_b5_rows_can_count
+    caveat: row_replay_validation_manifest_only_no_dft_rows_no_b5_rows_no_material_discovery_or_mechanism_solution
+    result: ../results/B6_B5_observable_row_replay_validation_manifest_gate_v0.json
+    markdown: ../research/B6_B5_observable_row_replay_validation_manifest_gate.md
   b6_curated_materials_leakage_audit_v0:
     status: curated_retrospective_leakage_audit
     model_status: curated_materials_table_with_time_family_leakage_audit
@@ -510,4 +548,5 @@ prototype_artifacts:
   observable_priority_packet_gate: ../tools/b6_b5_observable_priority_packet_gate.py
   observable_provenance_manifest_gate: ../tools/b6_b5_observable_provenance_manifest_gate.py
   observable_replay_validation_manifest_gate: ../tools/b6_b5_observable_replay_validation_manifest_gate.py
+  observable_row_replay_validation_manifest_gate: ../tools/b6_b5_observable_row_replay_validation_manifest_gate.py
   prototype_notes: ../research/B6_prototype_notes.md
