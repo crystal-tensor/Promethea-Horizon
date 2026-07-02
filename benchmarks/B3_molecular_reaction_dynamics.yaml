@@ -669,6 +669,42 @@ current_results:
     caveat: p8a_templates_only_no_submitted_row_replay_no_accepted_rows_no_credit
     result: ../results/B3_B10_P8A_accepted_row_replay_intake_template_gate_v0.json
     markdown_report: ../research/B3_B10_P8A_accepted_row_replay_intake_template_gate.md
+  b3_b10_p8b_same_access_denominator_replay_intake_template_gate_v0:
+    status: b3_b10_p8b_same_access_denominator_replay_intake_open_missing_denominator_rows
+    method: b3_b10_p8b_same_access_denominator_replay_intake_template_gate_v0
+    model_status: p8b_denominator_replay_templates_ready_no_denominator_wins
+    source_p8_pressure_gate: ../results/B3_B10_F1_P8_acceptance_pressure_gate_v0.json
+    source_p8a_intake_gate: ../results/B3_B10_P8A_accepted_row_replay_intake_template_gate_v0.json
+    source_acceptance_packet_submission: ../results/B3_B10_full_covariance_row_acceptance_packet_submissions/B3-R1-full-covariance-row-acceptance-packet.json
+    source_target_id: B10-T1
+    dependency_benchmarks: [B3, B10]
+    intake_template_id: B3B10-P8B-same-access-denominator-replay-intake
+    source_pressure_packet_hash: 55384c1a143b50d9b334193c3e55151f33bc9511b90dd19a21f22198bf9fe0b0
+    source_p8a_template_table_hash: a82007811e0448e2436857aaf22ca5fcf30060a1d032370f8f8e8252848584a2
+    acceptance_submission_hash: 40a5a0903de970b798f94d371c4d3cd6ccbdab9e514044ba760e05ac5db756cc
+    row_bundle_hash: 64907f6c4fcdedede9e6edb0386a88bda478fc16ab06e462e3c68b1cfb2b5b53
+    template_table_hash: 95ea8fecbfb592aae2491ec95d4dc6b19d0b12e98b4dfdbee0087499cfe523ba
+    row_template_count: 4
+    required_row_key_count: 22
+    production_required_key_count: 11
+    prefilled_required_key_count_min: 11
+    submitted_denominator_row_count: 0
+    accepted_denominator_win_row_count: 0
+    accepted_full_covariance_row_count: 0
+    denominator_win_count: 0
+    production_missing_key_total: 44
+    intake_requirements_passed: 6
+    intake_requirements_failed: 3
+    failed_intake_requirement_ids: [B6, B7, B8]
+    ready_for_p8c_derivative_optimizer_replay: false
+    b3_reopen_ready: false
+    b10_t1_credit_allowed: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    validation_error_count: 0
+    caveat: p8b_templates_only_no_denominator_replay_artifacts_no_denominator_wins_no_credit
+    result: ../results/B3_B10_P8B_same_access_denominator_replay_intake_template_gate_v0.json
+    markdown_report: ../research/B3_B10_P8B_same_access_denominator_replay_intake_template_gate.md
   b3_b10_full_covariance_reopen_boundary_v0:
     status: b3_b10_full_covariance_reopen_boundary_synced
     method: b3_b10_full_covariance_reopen_boundary_v0
@@ -1371,6 +1407,7 @@ prototype_artifacts:
   b3_b10_f1_acceptance_packet_submission: ../tools/b3_b10_f1_acceptance_packet_submission.py
   b3_b10_f1_p8_acceptance_pressure_gate: ../tools/b3_b10_f1_p8_acceptance_pressure_gate.py
   b3_b10_p8a_accepted_row_replay_intake_template_gate: ../tools/b3_b10_p8a_accepted_row_replay_intake_template_gate.py
+  b3_b10_p8b_same_access_denominator_replay_intake_template_gate: ../tools/b3_b10_p8b_same_access_denominator_replay_intake_template_gate.py
   b3_b10_full_covariance_reopen_boundary: ../tools/b3_b10_full_covariance_reopen_boundary.py
   b3_b10_full_covariance_post_boundary_submission_triage: ../tools/b3_b10_full_covariance_post_boundary_submission_triage.py
   b3_b10_f1_full_covariance_row_packet_gate: ../tools/b3_b10_f1_full_covariance_row_packet_gate.py
