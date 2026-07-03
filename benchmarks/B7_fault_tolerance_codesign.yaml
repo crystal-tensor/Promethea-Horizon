@@ -342,6 +342,38 @@ current_results:
     caveat: r4_blocked_gate_only_no_b7_ledger_replay_or_credit_until_r1_r2_or_r3_accepts
     report: ../results/B1_B7_cone01_R4_b7_ledger_replay_blocked_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_R4_b7_ledger_replay_blocked_gate.md
+  b1_b7_cone01_r5_exit_route_priority_selector_v0:
+    status: cone01_r5_exit_route_priority_selector_ready_zero_credit
+    method: b1_b7_cone01_r5_exit_route_priority_selector_v0
+    source_b1_r5_exit_route_priority_selector: ../results/B1_B7_cone01_R5_exit_route_priority_selector_v0.json
+    source_post_boundary_triage: ../results/B1_B7_cone01_post_boundary_submission_triage_v0.json
+    source_b7_resource_boundary: ../results/B7_B1_cone01_resource_escape_boundary_v0.json
+    source_r1_gate: ../results/B1_B7_cone01_R1_line1381_resolution_packet_gate_v0.json
+    source_r2_gate: ../results/B1_B7_cone01_R2_line1378_overlap_recovery_packet_gate_v0.json
+    source_r3_gate: ../results/B1_B7_cone01_R3_occurrence_certificate_batch_gate_v0.json
+    source_r4_gate: ../results/B1_B7_cone01_R4_b7_ledger_replay_blocked_gate_v0.json
+    source_target_id: T-B1-004dg/T-B7-012p
+    selector_id: B1-B7-cone01-R5-exit-route-priority-selector
+    selector_hash: 82cfd3a6e39a56452d7155198f76c16ecf14327464c8cf65452c5a35637d94fb
+    selector_table_hash: 452ec111b43137fbb274b43a9af3f2fa5a5f1a235d47831d9238f163823e37a7
+    ranked_route_ids: [R1, R2, R3]
+    selected_route_id: R1
+    selected_packet_id: B1-B7-cone01-R1-line1381-resolution
+    selected_effort_score: 75
+    submitted_route_count: 0
+    accepted_exit_route_count: 0
+    accepted_occurrence_removal: 0
+    accepted_proxy_t_reduction: 0
+    b7_dependency_credit_allowed: false
+    b7_resource_credit_allowed: false
+    b7_ft_ledger_credit_allowed: false
+    b7_credit_delta: 0
+    b7_space_time_volume_credit: 0
+    r4_replay_allowed: false
+    validation_error_count: 0
+    caveat: r5_selector_only_r1_next_no_resource_saving_or_b7_credit
+    report: ../results/B1_B7_cone01_R5_exit_route_priority_selector_v0.json
+    markdown_report: ../research/B1_B7_cone01_R5_exit_route_priority_selector.md
   b2_calibrated_dependency_credit_gate_v0:
     status: b2_calibrated_dependency_credit_rejected_missing_hardware_evidence
     method: b7_b2_calibrated_dependency_credit_gate_v0
@@ -1140,6 +1172,7 @@ prototype_artifacts:
   b1_b7_cone01_r2_line1378_overlap_recovery_packet_gate: ../tools/b1_b7_cone01_r2_line1378_overlap_recovery_packet_gate.py
   b1_b7_cone01_r3_occurrence_certificate_batch_gate: ../tools/b1_b7_cone01_r3_occurrence_certificate_batch_gate.py
   b1_b7_cone01_r4_b7_ledger_replay_blocked_gate: ../tools/b1_b7_cone01_r4_b7_ledger_replay_blocked_gate.py
+  b1_b7_cone01_r5_exit_route_priority_selector: ../tools/b1_b7_cone01_r5_exit_route_priority_selector.py
   b1_b7_cone01_resource_escape_replay_validation_manifest_gate: ../tools/b1_b7_cone01_resource_escape_replay_validation_manifest_gate.py
   b1_b7_cone01_resource_escape_acceptance_packet_gate: ../tools/b1_b7_cone01_resource_escape_acceptance_packet_gate.py
   b2_calibration_source_manifest_gate: ../tools/b2_calibration_source_manifest_gate.py

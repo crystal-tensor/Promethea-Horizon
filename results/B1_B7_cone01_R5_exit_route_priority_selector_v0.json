@@ -1,0 +1,286 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "next_gate": "Submit a source-backed line1381 resolution manifest with a patch or parameter-elimination artifact, full replay or symbolic equivalence, physical pricing replay, resource-delta ledger, no-double-counting ledger, and claim boundary.",
+    "r4_replay_allowed": false,
+    "resource_saving_claimed": false,
+    "what_is_not_supported": "No R1 artifact, accepted exit route, occurrence removal, proxy-T reduction, B7 ledger credit, or resource saving is supported.",
+    "what_is_supported": "R5 ranks R1 as the lowest-burden next exit-route PR before any R4/B7 ledger replay."
+  },
+  "exit_route_selector_packet": {
+    "boundary_hash": "f99832a2905345cc099fbc07eb6cabc5c6e32868f76a5a2efa0f66471e31c8e5",
+    "r4_block_packet_hash": "9c62cf478bb831a75fb45d16ec80679f2c01dc786a9666e25ef6d6692245048d",
+    "ranked_routes": [
+      {
+        "accepted_exit_route_count": 0,
+        "accepted_occurrence_removal": 0,
+        "accepted_proxy_t_reduction": 0,
+        "b7_credit_delta": 0,
+        "domain_penalty": 5,
+        "effort_score": 75,
+        "evidence_file_classes": 8,
+        "failed_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "first_pr": "Submit a source-backed line1381 resolution manifest with a patch or parameter-elimination artifact, full replay or symbolic equivalence, physical pricing replay, resource-delta ledger, no-double-counting ledger, and claim boundary.",
+        "method": "b1_b7_cone01_r1_line1381_resolution_packet_gate_v0",
+        "packet_id": "B1-B7-cone01-R1-line1381-resolution",
+        "primary_blocker": "line1381 still has five off-grid local-U3 parameters and 100 proxy-T pressure",
+        "production_required_keys": 9,
+        "required_keys": 17,
+        "requirements_failed": 3,
+        "requirements_passed": 6,
+        "route": "R1",
+        "route_value": "directly clears the explicit line-1381 blocker named by the seeded resource boundary",
+        "status": "cone01_r1_line1381_resolution_packet_open_missing_artifact",
+        "submitted_artifact_exists": false,
+        "task_id": "T-B1-004dc/T-B7-012l"
+      },
+      {
+        "accepted_exit_route_count": 0,
+        "accepted_occurrence_removal": 0,
+        "accepted_proxy_t_reduction": 0,
+        "b7_credit_delta": 0,
+        "domain_penalty": 7,
+        "effort_score": 80,
+        "evidence_file_classes": 9,
+        "failed_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "first_pr": "Submit a merged line1378/line1381 source-bound rewrite artifact with overlap-additivity evidence, replay or symbolic equivalence, resource ledger, no-double-counting ledger, and claim boundary.",
+        "method": "b1_b7_cone01_r2_line1378_overlap_recovery_packet_gate_v0",
+        "packet_id": "B1-B7-cone01-R2-line1378-overlap-recovery",
+        "primary_blocker": "line1378 overlap delta remains dropped and unrecovered",
+        "production_required_keys": 9,
+        "required_keys": 18,
+        "requirements_failed": 3,
+        "requirements_passed": 6,
+        "route": "R2",
+        "route_value": "recovers a dropped overlap delta only if the merged line1378/line1381 region replays cleanly",
+        "status": "cone01_r2_line1378_overlap_recovery_packet_open_missing_artifact",
+        "submitted_artifact_exists": false,
+        "task_id": "T-B1-004dd/T-B7-012m"
+      },
+      {
+        "accepted_exit_route_count": 0,
+        "accepted_occurrence_removal": 0,
+        "accepted_proxy_t_reduction": 0,
+        "b7_credit_delta": 0,
+        "domain_penalty": 30,
+        "effort_score": 112,
+        "evidence_file_classes": 10,
+        "failed_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "first_pr": "Submit at least thirty stable occurrence certificates with replay bundle, full-circuit or local-equivalence replay, resource ledger, B7 ledger replay, no-double-counting ledger, source-lineage map, failure-mode coverage, and claim boundary.",
+        "method": "b1_b7_cone01_r3_occurrence_certificate_batch_gate_v0",
+        "packet_id": "B1-B7-cone01-R3-thirty-occurrence-certificates",
+        "primary_blocker": "thirty source-backed occurrence-removal certificates are still absent",
+        "production_required_keys": 12,
+        "required_keys": 19,
+        "requirements_failed": 3,
+        "requirements_passed": 6,
+        "route": "R3",
+        "route_value": "would clear the B7 30-occurrence / 600 proxy-T threshold if a full certificate batch exists",
+        "status": "cone01_r3_occurrence_certificate_batch_open_missing_artifact",
+        "submitted_artifact_exists": false,
+        "task_id": "T-B1-004de/T-B7-012n"
+      }
+    ],
+    "rejected_for_direct_b7_replay": [
+      "accepted_exit_route_count remains 0",
+      "accepted_occurrence_removal remains 0",
+      "accepted_proxy_t_reduction remains 0",
+      "R4 replay is still blocked"
+    ],
+    "selected_next_pr": "Submit a source-backed line1381 resolution manifest with a patch or parameter-elimination artifact, full replay or symbolic equivalence, physical pricing replay, resource-delta ledger, no-double-counting ledger, and claim boundary.",
+    "selected_packet_id": "B1-B7-cone01-R1-line1381-resolution",
+    "selected_route": "R1",
+    "selector_hash": "82cfd3a6e39a56452d7155198f76c16ecf14327464c8cf65452c5a35637d94fb",
+    "selector_id": "B1-B7-cone01-R5-exit-route-priority-selector",
+    "selector_table_hash": "452ec111b43137fbb274b43a9af3f2fa5a5f1a235d47831d9238f163823e37a7",
+    "source_b7_resource_boundary": "results/B7_B1_cone01_resource_escape_boundary_v0.json",
+    "source_post_boundary_triage": "results/B1_B7_cone01_post_boundary_submission_triage_v0.json",
+    "source_r1_gate": "results/B1_B7_cone01_R1_line1381_resolution_packet_gate_v0.json",
+    "source_r2_gate": "results/B1_B7_cone01_R2_line1378_overlap_recovery_packet_gate_v0.json",
+    "source_r3_gate": "results/B1_B7_cone01_R3_occurrence_certificate_batch_gate_v0.json",
+    "source_r4_gate": "results/B1_B7_cone01_R4_b7_ledger_replay_blocked_gate_v0.json",
+    "triage_hash": "475137115d142f24ae7d2e747ce5d6f8e9a6020eb8cb42deb5cee005bd734e0b"
+  },
+  "last_updated": "2026-07-03",
+  "linked_benchmark_id": "B7",
+  "method": "b1_b7_cone01_r5_exit_route_priority_selector_v0",
+  "model_status": "r1_selected_as_lowest_burden_exit_route_before_r4_replay",
+  "requirements": [
+    {
+      "evidence": {
+        "method": "b1_b7_cone01_post_boundary_submission_triage_v0",
+        "ready_packet_ids": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "validation_error_count": 0
+      },
+      "label": "Post-boundary triage is current and exposes R1/R2/R3 as ready",
+      "passed": true,
+      "requirement_id": "S1"
+    },
+    {
+      "evidence": {
+        "b7_ft_ledger_credit_allowed": false,
+        "b7_resource_credit_allowed": false,
+        "b7_space_time_volume_credit": 0,
+        "method": "b7_b1_cone01_resource_escape_boundary_v0"
+      },
+      "label": "B7 boundary still has zero credit",
+      "passed": true,
+      "requirement_id": "S2"
+    },
+    {
+      "evidence": {
+        "accepted_exit_route_count": 0,
+        "method": "b1_b7_cone01_r4_b7_ledger_replay_blocked_gate_v0",
+        "r4_block_packet_hash": "9c62cf478bb831a75fb45d16ec80679f2c01dc786a9666e25ef6d6692245048d",
+        "r4_replay_allowed": false
+      },
+      "label": "R4 replay remains blocked before exit-route acceptance",
+      "passed": true,
+      "requirement_id": "S3"
+    },
+    {
+      "evidence": {
+        "routes": [
+          {
+            "accepted_exit_route_count": 0,
+            "failed_requirement_ids": [
+              "P6",
+              "P7",
+              "P8"
+            ],
+            "route": "R1",
+            "submitted_artifact_exists": false
+          },
+          {
+            "accepted_exit_route_count": 0,
+            "failed_requirement_ids": [
+              "P6",
+              "P7",
+              "P8"
+            ],
+            "route": "R2",
+            "submitted_artifact_exists": false
+          },
+          {
+            "accepted_exit_route_count": 0,
+            "failed_requirement_ids": [
+              "P6",
+              "P7",
+              "P8"
+            ],
+            "route": "R3",
+            "submitted_artifact_exists": false
+          }
+        ]
+      },
+      "label": "R1/R2/R3 route gates are all still open on missing artifacts",
+      "passed": true,
+      "requirement_id": "S4"
+    },
+    {
+      "evidence": {
+        "ranked_routes": [
+          "R1",
+          "R2",
+          "R3"
+        ],
+        "selector_table_hash": "452ec111b43137fbb274b43a9af3f2fa5a5f1a235d47831d9238f163823e37a7"
+      },
+      "label": "Selector ranks exactly three exit routes",
+      "passed": true,
+      "requirement_id": "S5"
+    },
+    {
+      "evidence": {
+        "next_effort_score": 80,
+        "next_route": "R2",
+        "selected_effort_score": 75,
+        "selected_route": "R1"
+      },
+      "label": "R1 is selected as the lowest-burden next PR",
+      "passed": true,
+      "requirement_id": "S6"
+    },
+    {
+      "evidence": {
+        "accepted_exit_route_count": 0,
+        "accepted_occurrence_removal": 0,
+        "accepted_proxy_t_reduction": 0,
+        "submitted_route_count": 0
+      },
+      "label": "No accepted occurrence or proxy-T delta exists",
+      "passed": true,
+      "requirement_id": "S7"
+    },
+    {
+      "evidence": {
+        "b7_ledger_improvement_claimed": false,
+        "resource_saving_claimed": false
+      },
+      "label": "Forbidden resource claims remain false",
+      "passed": true,
+      "requirement_id": "S8"
+    }
+  ],
+  "runtime_seconds": 0.000484,
+  "source_b7_resource_boundary": "results/B7_B1_cone01_resource_escape_boundary_v0.json",
+  "source_post_boundary_triage": "results/B1_B7_cone01_post_boundary_submission_triage_v0.json",
+  "source_r1_gate": "results/B1_B7_cone01_R1_line1381_resolution_packet_gate_v0.json",
+  "source_r2_gate": "results/B1_B7_cone01_R2_line1378_overlap_recovery_packet_gate_v0.json",
+  "source_r3_gate": "results/B1_B7_cone01_R3_occurrence_certificate_batch_gate_v0.json",
+  "source_r4_gate": "results/B1_B7_cone01_R4_b7_ledger_replay_blocked_gate_v0.json",
+  "source_target_id": "T-B1-004dg/T-B7-012p",
+  "status": "cone01_r5_exit_route_priority_selector_ready_zero_credit",
+  "summary": {
+    "accepted_exit_route_count": 0,
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_space_time_volume_credit": 0,
+    "boundary_hash": "f99832a2905345cc099fbc07eb6cabc5c6e32868f76a5a2efa0f66471e31c8e5",
+    "failed_requirement_ids": [],
+    "r4_block_packet_hash": "9c62cf478bb831a75fb45d16ec80679f2c01dc786a9666e25ef6d6692245048d",
+    "r4_replay_allowed": false,
+    "ranked_route_ids": [
+      "R1",
+      "R2",
+      "R3"
+    ],
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "resource_saving_claimed": false,
+    "second_effort_score": 80,
+    "second_route_id": "R2",
+    "selected_effort_score": 75,
+    "selected_packet_id": "B1-B7-cone01-R1-line1381-resolution",
+    "selected_route_id": "R1",
+    "selector_hash": "82cfd3a6e39a56452d7155198f76c16ecf14327464c8cf65452c5a35637d94fb",
+    "selector_id": "B1-B7-cone01-R5-exit-route-priority-selector",
+    "selector_table_hash": "452ec111b43137fbb274b43a9af3f2fa5a5f1a235d47831d9238f163823e37a7",
+    "submitted_route_count": 0,
+    "triage_hash": "475137115d142f24ae7d2e747ce5d6f8e9a6020eb8cb42deb5cee005bd734e0b",
+    "validation_error_count": 0
+  },
+  "title": "B1/B7 Cone01 R5 Exit-Route Priority Selector",
+  "validation_errors": [],
+  "version": "0.1"
+}
