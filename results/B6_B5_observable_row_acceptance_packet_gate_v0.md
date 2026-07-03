@@ -10,8 +10,8 @@ Status: `observable_row_acceptance_packet_open_missing_artifact`
 - Row replay-validation manifest: `B6B5-O1-monolayer-FeSe-STO-row-replay-validation-manifest`
 - Row replay-validation hash: `d1791fc2d2fd7ed7493e3d6ded984e1bf27233ff3acd600f93215ec3ef66c038`
 - Acceptance packet hash: `3f3a4ac6c2ea7ede3bd3cb121c61d110d4c341ccbedbfba32bb308a28c529f98`
-- Requirements passed/failed: `6` / `3`
-- Failed requirement IDs: `['P1', 'P7', 'P8']`
+- Requirements passed/failed: `7` / `2`
+- Failed requirement IDs: `['P1', 'P8']`
 - Required key / production key / evidence file count: `28` / `19` / `17`
 - Replay scope records/families/negative controls: `56` / `28` / `18`
 - Template rows / negative controls in top-k: `12` / `2`
@@ -61,7 +61,7 @@ Acceptance predicates:
 - P4 [PASS]: Replay scope, template table, and negative-control denominator remain preserved
 - P5 [PASS]: Current state has no accepted DFT/B5 observable rows and no discovery claim
 - P6 [PASS]: Observable row acceptance packet has been submitted
-- P7 [FAIL]: Submitted acceptance packet satisfies the locked DFT/B5 observable row schema
+- P7 [PASS]: Submitted acceptance packet satisfies the locked DFT/B5 observable row schema
 - P8 [FAIL]: Submitted acceptance packet is source-backed, manifest-bound, row-valid, B5-boundary-bound, and claim-boundary-bound
 - P9 [PASS]: Forbidden observable, discovery, mechanism, and solution claims remain false
 
@@ -82,5 +82,5 @@ Acceptance predicates:
 ## Validation
 
 - validation_error_count: 2
-- unexpected observable row acceptance packet failures: ['P1', 'P7', 'P8']
+- unexpected observable row acceptance packet failures: ['P1', 'P8']
 - gate expected no submitted acceptance packet until an observable PR supplies one
