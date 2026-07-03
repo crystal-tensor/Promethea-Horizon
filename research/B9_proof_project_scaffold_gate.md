@@ -13,7 +13,7 @@ T-B9-004d creates a repository-local Lean/Lake scaffold and replaces the named-f
 - Failed scaffold requirement IDs: `['S7', 'S8']`
 - Lean toolchain: `lean-toolchain`
 - Lakefile: `lakefile.lean`
-- Lean project module: `B9/ClusterStabilizer/WidthLocality.lean`
+- Lean project module: `B9\ClusterStabilizer\WidthLocality.lean`
 
 ## Requirements
 
@@ -23,8 +23,8 @@ T-B9-004d creates a repository-local Lean/Lake scaffold and replaces the named-f
 | S2 | yes | source contract gate is refreshed after scaffold creation | failed_contract_requirement_ids=['K4', 'K5', 'K8'] |
 | S3 | yes | Lean toolchain file is pinned | lean-toolchain |
 | S4 | yes | Lake project file declares mathlib dependency | lakefile.lean |
-| S5 | yes | skeleton theorem interface is indexed and non-placeholder | research/proof_skeletons/B9_cluster_stabilizer_width_locality_bound.lean |
-| S6 | yes | Lake module mirrors the theorem interface | B9/ClusterStabilizer/WidthLocality.lean |
+| S5 | yes | skeleton theorem interface is indexed and non-placeholder | research\proof_skeletons\B9_cluster_stabilizer_width_locality_bound.lean |
+| S6 | yes | Lake module mirrors the theorem interface | B9\ClusterStabilizer\WidthLocality.lean |
 | S7 | no | actual Lean 4 executable is available | lean4_signature_detected=False |
 | S8 | no | the theorem is proof-assistant checked | proof_assistant_checked=False; formal_theorem_proved=False |
 
