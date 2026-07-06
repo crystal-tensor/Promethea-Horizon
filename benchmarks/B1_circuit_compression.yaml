@@ -3301,6 +3301,38 @@ current_results:
     caveat: r5_selector_only_r1_next_no_resource_saving_or_b7_credit
     report: ../results/B1_B7_cone01_R5_exit_route_priority_selector_v0.json
     markdown_report: ../research/B1_B7_cone01_R5_exit_route_priority_selector.md
+  b1_b7_cone01_r6_r1_source_evidence_inventory_gate_v0:
+    circuits: 1
+    status: cone01_r6_r1_source_evidence_inventory_ready_missing_submission
+    model_status: r1_line1381_existing_evidence_indexed_but_resolution_artifact_missing
+    method: b1_b7_cone01_r6_r1_source_evidence_inventory_gate_v0
+    source_r1_gate: ../results/B1_B7_cone01_R1_line1381_resolution_packet_gate_v0.json
+    source_r5_selector: ../results/B1_B7_cone01_R5_exit_route_priority_selector_v0.json
+    source_target_id: T-B1-004dh/T-B7-012q
+    inventory_id: B1-B7-cone01-R6-R1-source-evidence-inventory
+    inventory_hash: 43aeb8f22af8d3043489d73b50c5d57f3779e4f4ea02798479096c3448a3149b
+    inventory_table_hash: 750be454fc99ea616e71a67a24a69a6c310a57977660b27807bb0e44987f0316
+    r1_packet_hash: f8de5bf50928fa4aaeb43477169b850f4bb17be19fa6d9200367ab78fab01afe
+    r5_selector_hash: 82cfd3a6e39a56452d7155198f76c16ecf14327464c8cf65452c5a35637d94fb
+    requirements_passed: 8
+    requirements_failed: 0
+    indexed_evidence_row_count: 6
+    available_evidence_row_count: 6
+    line1381_blocker_row_count: 3
+    missing_submission_file_count: 8
+    selected_route_id: R1
+    line1381_off_grid_parameter_count: 5
+    line1381_unpriced_proxy_t_pressure: 100
+    accepted_occurrence_removal: 0
+    accepted_proxy_t_reduction: 0
+    b7_credit_delta: 0
+    b7_space_time_volume_credit: 0
+    resource_saving_claimed: false
+    b7_ledger_improvement_claimed: false
+    validation_error_count: 0
+    caveat: r6_inventory_only_no_r1_submission_no_resource_saving_or_b7_credit
+    report: ../results/B1_B7_cone01_R6_r1_source_evidence_inventory_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_R6_r1_source_evidence_inventory_gate.md
   b1_b7_cone01_full_statevector_replay_probe_gate_v0:
     circuits: 1
     status: cone01_default_input_statevector_replay_probe_passed_not_symbolic_certificate
@@ -4960,4 +4992,5 @@ prototype_artifacts:
   b1_b7_cone01_r3_occurrence_certificate_batch_gate: ../tools/b1_b7_cone01_r3_occurrence_certificate_batch_gate.py
   b1_b7_cone01_r4_b7_ledger_replay_blocked_gate: ../tools/b1_b7_cone01_r4_b7_ledger_replay_blocked_gate.py
   b1_b7_cone01_r5_exit_route_priority_selector: ../tools/b1_b7_cone01_r5_exit_route_priority_selector.py
+  b1_b7_cone01_r6_r1_source_evidence_inventory_gate: ../tools/b1_b7_cone01_r6_r1_source_evidence_inventory_gate.py
   synthetic_noise_proxy: ../tools/b1_synthetic_noise_proxy.py
