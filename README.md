@@ -6,7 +6,7 @@ Broader open-source mission: challenge the world's hardest 100 problems through
 AI multi-agent research, with a 2-3 year concentrated push on the Top 10
 technical frontier tracks.
 
-[Repository target](https://github.com/crystal-tensor/Axiom-Horizon)
+[Repository target](https://github.com/crystal-tensor/Prometheus-plan)
 
 ---
 
