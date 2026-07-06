@@ -1,0 +1,565 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "next_gate": "Close O1, O3, or O4; or falsify the bridge with a residual at or below tolerance, an exact-pass row, or a source mismatch.",
+    "resource_saving_claimed": false,
+    "what_is_not_supported": "R12 does not close optimizer completeness, parameterization invariance, or source-domain binding. NL-C02 is still not a checked negative lemma. No R5 reroute, R1 solution, occurrence removal, proxy-T reduction, B7 credit, resource saving, or impossibility theorem is supported.",
+    "what_is_supported": "R12 closes O2 for the current R11 residual-norm predicate by showing every normalized leave-out residual is strictly above exact_tolerance with a minimum margin above one million times tolerance."
+  },
+  "last_updated": "2026-07-06",
+  "linked_benchmark_id": "B7",
+  "method": "b1_b7_cone01_r12_nlc02_tolerance_bridge_gate_v0",
+  "model_status": "nlc02_o2_tolerance_bridge_closed_for_current_residual_model",
+  "nlc02_tolerance_bridge_packet": {
+    "accepted_arithmetic_model_scope": [
+      "uses the R11 normalized residual_norm field",
+      "uses the R11 exact_tolerance field",
+      "does not prove optimizer completeness",
+      "does not prove parameterization invariance",
+      "does not prove source-domain binding"
+    ],
+    "bridge_hash": "f35487dc67401193e1f455cf42e2fff05900792ddb72f97a5efad2787772b6d9",
+    "bridge_id": "B1-B7-cone01-R12-NL-C02-tolerance-to-exactness-bridge",
+    "bridge_statement": "For the current R11 residual-norm model, each normalized leave-out row has residual_norm > exact_tolerance, so no row satisfies the accepted exact-pass predicate.",
+    "candidate_id": "NL-C02",
+    "decision": {
+      "checked_negative_lemma_present": false,
+      "nlc02_full_lemma_ready": false,
+      "o2_closed_for_current_residual_model": true,
+      "reroute_allowed": false,
+      "why": "O2 is bridged for the declared residual-norm predicate, but O1, O3, and O4 remain open, so NL-C02 is still not a checked negative lemma."
+    },
+    "margin_rows": [
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.09892087709180968,
+        "residual_to_tolerance_ratio": 9892087.709180968,
+        "source_path": "results/B1_B7_cone01_line1381_leave_one_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3",
+        "subset_size": 1
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.288314847983953,
+        "residual_to_tolerance_ratio": 28831484.798395302,
+        "source_path": "results/B1_B7_cone01_line1381_leave_one_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "4",
+        "subset_size": 1
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.13580458968103096,
+        "residual_to_tolerance_ratio": 13580458.968103096,
+        "source_path": "results/B1_B7_cone01_line1381_leave_one_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "9",
+        "subset_size": 1
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.10596513340750167,
+        "residual_to_tolerance_ratio": 10596513.340750167,
+        "source_path": "results/B1_B7_cone01_line1381_leave_one_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "16",
+        "subset_size": 1
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.2136401293893235,
+        "residual_to_tolerance_ratio": 21364012.938932348,
+        "source_path": "results/B1_B7_cone01_line1381_leave_one_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "17",
+        "subset_size": 1
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.33448226670849784,
+        "residual_to_tolerance_ratio": 33448226.670849785,
+        "source_path": "results/B1_B7_cone01_line1381_leave_two_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,4",
+        "subset_size": 2
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.304124919729348,
+        "residual_to_tolerance_ratio": 30412491.9729348,
+        "source_path": "results/B1_B7_cone01_line1381_leave_two_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,9",
+        "subset_size": 2
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.1717720418187663,
+        "residual_to_tolerance_ratio": 17177204.18187663,
+        "source_path": "results/B1_B7_cone01_line1381_leave_two_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,16",
+        "subset_size": 2
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.21672567024982506,
+        "residual_to_tolerance_ratio": 21672567.024982505,
+        "source_path": "results/B1_B7_cone01_line1381_leave_two_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,17",
+        "subset_size": 2
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.293917719744866,
+        "residual_to_tolerance_ratio": 29391771.9744866,
+        "source_path": "results/B1_B7_cone01_line1381_leave_two_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "4,9",
+        "subset_size": 2
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.294771583996606,
+        "residual_to_tolerance_ratio": 29477158.399660602,
+        "source_path": "results/B1_B7_cone01_line1381_leave_two_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "4,16",
+        "subset_size": 2
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.3423538340607389,
+        "residual_to_tolerance_ratio": 34235383.40607389,
+        "source_path": "results/B1_B7_cone01_line1381_leave_two_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "4,17",
+        "subset_size": 2
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.13583443746892182,
+        "residual_to_tolerance_ratio": 13583443.746892182,
+        "source_path": "results/B1_B7_cone01_line1381_leave_two_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "9,16",
+        "subset_size": 2
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.37126174598217193,
+        "residual_to_tolerance_ratio": 37126174.59821719,
+        "source_path": "results/B1_B7_cone01_line1381_leave_two_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "9,17",
+        "subset_size": 2
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.41204448255804876,
+        "residual_to_tolerance_ratio": 41204448.255804874,
+        "source_path": "results/B1_B7_cone01_line1381_leave_two_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "16,17",
+        "subset_size": 2
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.45707756906586605,
+        "residual_to_tolerance_ratio": 45707756.9065866,
+        "source_path": "results/B1_B7_cone01_line1381_leave_three_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,4,9",
+        "subset_size": 3
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.40615311451229397,
+        "residual_to_tolerance_ratio": 40615311.45122939,
+        "source_path": "results/B1_B7_cone01_line1381_leave_three_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,4,16",
+        "subset_size": 3
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.35793848562010133,
+        "residual_to_tolerance_ratio": 35793848.56201013,
+        "source_path": "results/B1_B7_cone01_line1381_leave_three_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,4,17",
+        "subset_size": 3
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.3106228814074983,
+        "residual_to_tolerance_ratio": 31062288.140749827,
+        "source_path": "results/B1_B7_cone01_line1381_leave_three_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,9,16",
+        "subset_size": 3
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.4503230734514779,
+        "residual_to_tolerance_ratio": 45032307.34514779,
+        "source_path": "results/B1_B7_cone01_line1381_leave_three_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,9,17",
+        "subset_size": 3
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.4227361368613278,
+        "residual_to_tolerance_ratio": 42273613.68613278,
+        "source_path": "results/B1_B7_cone01_line1381_leave_three_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,16,17",
+        "subset_size": 3
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.29673862906454757,
+        "residual_to_tolerance_ratio": 29673862.906454757,
+        "source_path": "results/B1_B7_cone01_line1381_leave_three_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "4,9,16",
+        "subset_size": 3
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.5469360960062335,
+        "residual_to_tolerance_ratio": 54693609.60062335,
+        "source_path": "results/B1_B7_cone01_line1381_leave_three_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "4,9,17",
+        "subset_size": 3
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.7449029676343185,
+        "residual_to_tolerance_ratio": 74490296.76343185,
+        "source_path": "results/B1_B7_cone01_line1381_leave_three_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "4,16,17",
+        "subset_size": 3
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.4150816983155085,
+        "residual_to_tolerance_ratio": 41508169.83155085,
+        "source_path": "results/B1_B7_cone01_line1381_leave_three_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "9,16,17",
+        "subset_size": 3
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.45761708677312707,
+        "residual_to_tolerance_ratio": 45761708.67731271,
+        "source_path": "results/B1_B7_cone01_line1381_leave_four_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,4,9,16",
+        "subset_size": 4
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.6375472922360571,
+        "residual_to_tolerance_ratio": 63754729.22360571,
+        "source_path": "results/B1_B7_cone01_line1381_leave_four_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,4,9,17",
+        "subset_size": 4
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.7719645870589134,
+        "residual_to_tolerance_ratio": 77196458.70589134,
+        "source_path": "results/B1_B7_cone01_line1381_leave_four_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,4,16,17",
+        "subset_size": 4
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.47013626270433356,
+        "residual_to_tolerance_ratio": 47013626.27043336,
+        "source_path": "results/B1_B7_cone01_line1381_leave_four_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,9,16,17",
+        "subset_size": 4
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.8369082341779268,
+        "residual_to_tolerance_ratio": 83690823.41779268,
+        "source_path": "results/B1_B7_cone01_line1381_leave_four_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "4,9,16,17",
+        "subset_size": 4
+      },
+      {
+        "exact_pass": false,
+        "exact_tolerance": 1e-08,
+        "residual_norm": 0.8415210419190079,
+        "residual_to_tolerance_ratio": 84152104.19190079,
+        "source_path": "results/B1_B7_cone01_line1381_leave_five_out_parameter_gate_v0.json",
+        "strictly_above_tolerance": true,
+        "subset_key": "3,4,9,16,17",
+        "subset_size": 5
+      }
+    ],
+    "max_margin_row": {
+      "exact_pass": false,
+      "exact_tolerance": 1e-08,
+      "residual_norm": 0.8415210419190079,
+      "residual_to_tolerance_ratio": 84152104.19190079,
+      "source_path": "results/B1_B7_cone01_line1381_leave_five_out_parameter_gate_v0.json",
+      "strictly_above_tolerance": true,
+      "subset_key": "3,4,9,16,17",
+      "subset_size": 5
+    },
+    "min_margin_row": {
+      "exact_pass": false,
+      "exact_tolerance": 1e-08,
+      "residual_norm": 0.09892087709180968,
+      "residual_to_tolerance_ratio": 9892087.709180968,
+      "source_path": "results/B1_B7_cone01_line1381_leave_one_out_parameter_gate_v0.json",
+      "strictly_above_tolerance": true,
+      "subset_key": "3",
+      "subset_size": 1
+    },
+    "o2_obligation": {
+      "description": "Justify that residual_norm > exact_tolerance excludes exact replay in the accepted arithmetic model.",
+      "needed_for_checked_lemma": true,
+      "obligation_id": "O2",
+      "title": "Tolerance-to-exactness bridge"
+    },
+    "remaining_open_obligations": [
+      {
+        "description": "Prove that each leave-out optimization search is complete for the declared parameterization, or explicitly downgrade the lemma to a search-domain lemma.",
+        "needed_for_checked_lemma": true,
+        "obligation_id": "O1",
+        "title": "Optimizer completeness boundary"
+      },
+      {
+        "description": "Show that no equivalent reparameterization of the same local unitary falls outside the leave-out table while still clearing Route A.",
+        "needed_for_checked_lemma": true,
+        "obligation_id": "O3",
+        "title": "Parameterization invariance"
+      },
+      {
+        "description": "Bind the five-parameter domain to the R7/R8/R9 source hashes and rule out accidental drift in line1381 indexing.",
+        "needed_for_checked_lemma": true,
+        "obligation_id": "O4",
+        "title": "Source-domain binding"
+      }
+    ],
+    "source_hashes": {
+      "r11_skeleton_report": "664f2bb44f8bb284d0eb4d7ce57b733dc00e4b6b17d987131785a6d2dd42a169",
+      "r11_skeleton_result": "5620e936e70f0d9dffc8c785a5a80d915093f26d63fa39e045d2464b8d3da6ed"
+    },
+    "source_r11_row_table_hash": "0b7b5566197c780ca9e5e6c8d3ac86fe3a157e309c905a0499f23aadeb12b35c",
+    "source_r11_skeleton": "results/B1_B7_cone01_R11_nlc02_leaveout_proof_skeleton_gate_v0.json",
+    "source_r11_skeleton_hash": "4ec8ffb777d13acefabebfd213a61e0d7e7bc11d904ba227d8bbb6727fc833ab",
+    "source_target_id": "T-B1-004dn/T-B7-012w"
+  },
+  "requirements": [
+    {
+      "evidence": {
+        "r11_checked_negative_lemma_present": false,
+        "r11_method": "b1_b7_cone01_r11_nlc02_leaveout_proof_skeleton_gate_v0",
+        "r11_reroute_allowed": false,
+        "r11_validation_error_count": 0
+      },
+      "label": "R11 proof skeleton is validation-clean and still not a checked lemma",
+      "passed": true,
+      "requirement_id": "B1"
+    },
+    {
+      "evidence": {
+        "o2_obligation": {
+          "description": "Justify that residual_norm > exact_tolerance excludes exact replay in the accepted arithmetic model.",
+          "needed_for_checked_lemma": true,
+          "obligation_id": "O2",
+          "title": "Tolerance-to-exactness bridge"
+        }
+      },
+      "label": "R11 exposes O2 as an open tolerance-to-exactness obligation",
+      "passed": true,
+      "requirement_id": "B2"
+    },
+    {
+      "evidence": {
+        "margin_row_count": 31,
+        "r11_leave_out_row_count": 31
+      },
+      "label": "Bridge covers all 31 normalized leave-out rows",
+      "passed": true,
+      "requirement_id": "B3"
+    },
+    {
+      "evidence": {
+        "min_margin_row": {
+          "exact_pass": false,
+          "exact_tolerance": 1e-08,
+          "residual_norm": 0.09892087709180968,
+          "residual_to_tolerance_ratio": 9892087.709180968,
+          "source_path": "results/B1_B7_cone01_line1381_leave_one_out_parameter_gate_v0.json",
+          "strictly_above_tolerance": true,
+          "subset_key": "3",
+          "subset_size": 1
+        },
+        "min_ratio": 9892087.709180968,
+        "strict_row_count": 31
+      },
+      "label": "Every row is strictly above exact tolerance",
+      "passed": true,
+      "requirement_id": "B4"
+    },
+    {
+      "evidence": {
+        "min_ratio": 9892087.709180968,
+        "safety_margin_decades": 6.9952879584216126
+      },
+      "label": "Minimum margin is at least one million times the exact tolerance",
+      "passed": true,
+      "requirement_id": "B5"
+    },
+    {
+      "evidence": {
+        "exact_pass_row_count": 0
+      },
+      "label": "No exact-pass row is present in the margin table",
+      "passed": true,
+      "requirement_id": "B6"
+    },
+    {
+      "evidence": {
+        "bridge_hash": "f35487dc67401193e1f455cf42e2fff05900792ddb72f97a5efad2787772b6d9",
+        "source_hashes": {
+          "r11_skeleton_report": "664f2bb44f8bb284d0eb4d7ce57b733dc00e4b6b17d987131785a6d2dd42a169",
+          "r11_skeleton_result": "5620e936e70f0d9dffc8c785a5a80d915093f26d63fa39e045d2464b8d3da6ed"
+        }
+      },
+      "label": "Bridge packet remains hash-bound",
+      "passed": true,
+      "requirement_id": "B7"
+    },
+    {
+      "evidence": {
+        "remaining_obligations": [
+          "O1",
+          "O3",
+          "O4"
+        ]
+      },
+      "label": "Bridge closes only O2 and leaves O1/O3/O4 open",
+      "passed": true,
+      "requirement_id": "B8"
+    },
+    {
+      "evidence": {
+        "checked_negative_lemma_present": false,
+        "nlc02_full_lemma_ready": false,
+        "o2_closed_for_current_residual_model": true,
+        "reroute_allowed": false,
+        "why": "O2 is bridged for the declared residual-norm predicate, but O1, O3, and O4 remain open, so NL-C02 is still not a checked negative lemma."
+      },
+      "label": "Bridge is not upgraded into a checked negative lemma or reroute",
+      "passed": true,
+      "requirement_id": "B9"
+    },
+    {
+      "evidence": {
+        "accepted_occurrence_removal": 0,
+        "accepted_proxy_t_reduction": 0,
+        "accepted_route_count": 0,
+        "b7_credit_delta": 0,
+        "b7_ledger_improvement_claimed": false,
+        "b7_space_time_volume_credit": 0,
+        "resource_saving_claimed": false
+      },
+      "label": "Bridge preserves zero resource and B7 credit claims",
+      "passed": true,
+      "requirement_id": "B10"
+    }
+  ],
+  "runtime_seconds": 0.000309,
+  "source_target_id": "T-B1-004dn/T-B7-012w",
+  "status": "cone01_r12_nlc02_tolerance_bridge_ready_not_full_lemma",
+  "summary": {
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "accepted_route_count": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_space_time_volume_credit": 0,
+    "bridge_hash": "f35487dc67401193e1f455cf42e2fff05900792ddb72f97a5efad2787772b6d9",
+    "bridge_id": "B1-B7-cone01-R12-NL-C02-tolerance-to-exactness-bridge",
+    "bridge_row_count": 31,
+    "candidate_id": "NL-C02",
+    "checked_negative_lemma_present": false,
+    "exact_pass_row_count": 0,
+    "exact_tolerance": 1e-08,
+    "failed_requirement_ids": [],
+    "max_residual_norm": 0.8415210419190079,
+    "max_residual_to_tolerance_ratio": 84152104.19190079,
+    "min_residual_norm": 0.09892087709180968,
+    "min_residual_to_tolerance_ratio": 9892087.709180968,
+    "nlc02_full_lemma_ready": false,
+    "o2_closed_for_current_residual_model": true,
+    "remaining_open_obligation_count": 3,
+    "remaining_open_obligations": [
+      "O1",
+      "O3",
+      "O4"
+    ],
+    "requirement_count": 10,
+    "requirements_failed": 0,
+    "requirements_passed": 10,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "safety_margin_decades": 6.9952879584216126,
+    "source_r11_row_table_hash": "0b7b5566197c780ca9e5e6c8d3ac86fe3a157e309c905a0499f23aadeb12b35c",
+    "source_r11_skeleton_hash": "4ec8ffb777d13acefabebfd213a61e0d7e7bc11d904ba227d8bbb6727fc833ab",
+    "strictly_above_tolerance_row_count": 31,
+    "validation_error_count": 0
+  },
+  "title": "B1/B7 Cone01 R12 NL-C02 Tolerance-To-Exactness Bridge Gate",
+  "validation_errors": [],
+  "version": "0.1"
+}
