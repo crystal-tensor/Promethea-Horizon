@@ -1861,6 +1861,22 @@ must fill the missing source OpenQASM 3.0 and machine-check replay fields, then
 submit a positive occurrence/proxy-T delta ledger before any nonzero B7 ledger
 retest.
 
+`T-B1-004fs` / `T-B7-015b` now resolves the source OpenQASM 3.0 part of that
+prefill. R69 exports the original `gcm_h6` source circuit from OpenQASM 2.0 to
+OpenQASM 3.0, verifies that the normalized instruction stream is preserved
+(`1638` normalized instructions, stream hash
+`75ad2565015b8abf1cc2024749a07f7bd15ddbeba568a08a445659d01c454b5a`), and
+refreshes the R1 line1381 prefill. The draft moves from 24/29 fields to 26/29
+fields. The remaining placeholder fields are now only the machine-check replay
+triple: `machine_check_replay_command`, `machine_check_replay_stdout_path`, and
+`machine_check_replay_stdout_sha256`. Positive deltas still remain absent:
+accepted exit routes `0`, occurrence removal `0`, proxy-T reduction `0`,
+`b7_nonzero_retest_allowed=false`, and B7 credit `0`. R69 blocker queue hash
+`28b3f8e5d43a20e9315db4d576f6043547980e05421c14b5112e16f9f9d77292`.
+This is still not an accepted route. The next useful PR must add a
+machine-check replay command/stdout/hash, then submit positive occurrence and
+proxy-T delta evidence before any nonzero B7 ledger retest.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.

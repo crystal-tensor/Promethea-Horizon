@@ -34629,6 +34629,9 @@ def audit(root: Path) -> dict:
             "b1_b7_cone01_r68_exit_route_evidence_prefill_gate": str(
                 research / "B1_B7_cone01_R68_exit_route_evidence_prefill_gate.md"
             ),
+            "b1_b7_cone01_r69_source_openqasm3_prefill_gate": str(
+                research / "B1_B7_cone01_R69_source_openqasm3_prefill_gate.md"
+            ),
             "b7_w8_21_symbolic_certificate_replay_validation_manifest_gate": str(
                 research / "B7_w8_21_symbolic_certificate_replay_validation_manifest_gate.md"
             ),
