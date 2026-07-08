@@ -1,0 +1,152 @@
+{
+  "artifacts": {
+    "blocker_queue": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R76-post-r73-source-closure-blocker-queue.json",
+    "line1378_replay_stdout": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R76-line1378-no-double-counting-replay.stdout.txt",
+    "line1378_replay_verdict": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R76-line1378-no-double-counting-replay.verdict.json",
+    "line1378_source_artifact": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R76-line1378-no-double-counting-source-artifact.json",
+    "no_double_counting_ledger": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R76-line1378-no-double-counting-ledger.json",
+    "r73_intake_verdict": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R76-r1-d1-d2-d3-source-closure-intake.verdict.json",
+    "r73_submission": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R76-r1-d1-d2-d3-source-closure-submission.json"
+  },
+  "claim_boundary": {
+    "next_gate": "Rerun the hardened R72 source-backed delta preflight against the R76 D1/D2/D3 submission, then only proceed to downstream acceptance and B7 ledger retest if that gate passes.",
+    "what_is_not_supported": "R76 does not recover line1378 as a positive delta, does not accept a resource-escape route, does not close O3, does not permit reroute, and does not grant B7 credit.",
+    "what_is_supported": "R76 fills R73-D3 with a hash-bound source artifact, no-double-counting ledger, replay stdout, and verdict. The R73 D1/D2/D3 source-closure intake shape now passes."
+  },
+  "generated_at": "2026-07-08T18:36:51Z",
+  "requirements": [
+    {
+      "evidence": {
+        "source_overlap_additivity_hash": "cf80dec8c8c4f7f61182e6e47a71b638c6a4de2cbebc862a23fa7b8dd9c3e108",
+        "source_r2_result_sha256": "958dfeffd91208f847f92ee3fda5766645657a2382ac5447084fad0ef8cb4412"
+      },
+      "label": "R76 binds the locked R2 overlap-additivity source",
+      "passed": true,
+      "requirement_id": "L1"
+    },
+    {
+      "evidence": {
+        "line1378_window": [
+          1369,
+          1377
+        ],
+        "line1381_window": [
+          1369,
+          1379
+        ]
+      },
+      "label": "line1378 and line1381 windows match the R2 source facts",
+      "passed": true,
+      "requirement_id": "L2"
+    },
+    {
+      "evidence": {
+        "decision": "excluded_from_line1381_count",
+        "excluded_positive_line_windows": [
+          1378
+        ]
+      },
+      "label": "line1378 is excluded from the line1381 count instead of double-counted",
+      "passed": true,
+      "requirement_id": "L3"
+    },
+    {
+      "evidence": {
+        "ledger_sha256": "fb0200b36c68f2481a3873d2dbc18d5e6c3e1ab3eab92a427e569c2c00e4dc83",
+        "source_artifact_sha256": "affce9f99c9b69b904e9e14843bdbe2f87f564989dfdd5ea47244a8821d6edc0",
+        "stdout_sha256": "d937b993715151fc6b6cca39ebfe03e7c9bc352b9740a858f499c533adae00f2",
+        "verdict_sha256": "ed99b88034e2ca6bd3177c379121c1222a22fed9693fcd0682183768e8627a11"
+      },
+      "label": "R76 materializes hash-bound source artifact, ledger, stdout, and verdict",
+      "passed": true,
+      "requirement_id": "L4"
+    },
+    {
+      "evidence": {
+        "r73_d1_prefilled": true,
+        "r73_d2_prefilled": true,
+        "r73_d3_prefilled": true
+      },
+      "label": "R73-D1, D2, and D3 are source-backed under the R73 intake replay",
+      "passed": true,
+      "requirement_id": "L5"
+    },
+    {
+      "evidence": {
+        "accepted_exit_route_count": 0,
+        "accepted_occurrence_removal": 0,
+        "accepted_proxy_t_reduction": 0,
+        "b7_credit_delta": 0,
+        "r73_intake_accepted": true
+      },
+      "label": "R73 intake shape passes while accepted deltas and B7 credit stay zero",
+      "passed": true,
+      "requirement_id": "L6"
+    },
+    {
+      "evidence": {
+        "blocker_queue_hash": "78d235eba5c551c9ea75dff5f05b5324f9fa29cb34ec082f1699e6d919c9861b"
+      },
+      "label": "R76 emits the next hardened-preflight blocker queue",
+      "passed": true,
+      "requirement_id": "L7"
+    },
+    {
+      "evidence": {
+        "b7_ledger_improvement_claimed": false,
+        "o3_closed": false,
+        "reroute_allowed": false,
+        "resource_saving_claimed": false
+      },
+      "label": "R76 does not claim O3 closure, reroute, resource savings, or B7 ledger gain",
+      "passed": true,
+      "requirement_id": "L8"
+    }
+  ],
+  "summary": {
+    "accepted_exit_route_count": 0,
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_nonzero_retest_allowed": false,
+    "blocker_queue_hash": "78d235eba5c551c9ea75dff5f05b5324f9fa29cb34ec082f1699e6d919c9861b",
+    "failed_requirement_ids": [],
+    "intake_verdict_hash": "1e62802e2bc3a494382ca1ac1e33db489b495c817d4b9c9c42610efd4e447033",
+    "ledger_hash": "08eb3bcaf8758dc5c63486b0f911e13045a4596a72bd3dfd29ede251bd8c21b3",
+    "line1378_delta_recovered": false,
+    "line1378_recovery_or_exclusion_decision": "excluded_from_line1381_count",
+    "line1378_window": [
+      1369,
+      1377
+    ],
+    "line1378_window_contained_in_line1381": true,
+    "line1381_window": [
+      1369,
+      1379
+    ],
+    "method": "b1_b7_cone01_r76_line1378_no_double_counting_gate_v0",
+    "model_status": "r73_d1_d2_d3_prefilled_hardened_r72_rerun_still_required",
+    "o3_closed": false,
+    "payload_hash": "be475ad2de93a42b8eaf8764872a8f19a0b63aa83354933c359dd72854c15a6a",
+    "r73_d1_prefilled": true,
+    "r73_d2_prefilled": true,
+    "r73_d3_prefilled": true,
+    "r73_intake_accepted": true,
+    "r73_intake_failed_gate_count": 0,
+    "r73_intake_failed_gates": [],
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "source_artifact_hash": "31bec829ed8bce0168cf8053bf66d25aeeaa35c02488ee5de25a45a293629eb8",
+    "source_target_id": "T-B1-004fz/T-B7-015i",
+    "status": "cone01_r76_r73_source_closure_shape_passed_zero_credit",
+    "submission_hash": "b3b369b2dfafc9762df9d560c134a4aa42280ba8cc459ad80f34f85632b7978f",
+    "upstream_target_id": "T-B1-004fy/T-B7-015h",
+    "validation_error_count": 0
+  },
+  "title": "B1/B7 Cone01 R76 Line1378 No-Double-Counting Gate",
+  "version": "0.1"
+}

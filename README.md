@@ -2027,3 +2027,14 @@ The R73 intake now recognizes D1 and D2 as source-backed, but still rejects the
 submission on 3 gates because D3 line1378 no-double-counting remains open.
 Requirements pass 8/8; accepted exit routes, occurrence removal, accepted
 proxy-T reduction, and B7 credit remain 0.
+
+`T-B1-004fz` / `T-B7-015i` now fills the third R73 source packet without
+promoting it into credit. R76 binds the locked R2 overlap-additivity facts:
+`line1378_window=[1369,1377]`, `line1381_window=[1369,1379]`, and
+`line1378_window_contained_in_line1381=true`. It materializes a hash-bound
+source artifact, no-double-counting ledger, replay stdout, and verdict, then
+marks line1378 as `excluded_from_line1381_count` rather than double-counting the
+contained window. The R73 source-closure intake shape now passes with D1/D2/D3
+source-backed, but accepted exit routes, occurrence removal, accepted proxy-T
+reduction, and B7 credit remain 0. The next gate is a hardened R72/R73 rerun,
+not a resource or B7 promotion.
