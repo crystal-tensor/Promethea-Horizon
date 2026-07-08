@@ -1,0 +1,148 @@
+{
+  "artifact": "B1/B7 cone01 R87 G1 STV reprice ledger gate",
+  "blocker_queue_hash": "0b65c44240c6f14b6f9e754c6dc734c2972a69f596f6dd49b1842edf9d169562",
+  "blocker_queue_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R87-G1-stv-aware-blocker-queue.json",
+  "failed_requirement_ids": [],
+  "generated_at_unix": 1783543575,
+  "method": "b1_b7_cone01_r87_g1_stv_reprice_ledger_gate_v0",
+  "model_status": "r86_stv_reprice_gate_closed_without_filled_r83_or_b7_replay",
+  "payload_hash": "80c2e832a4172116c65625261f6f5a0b51288fac69082f128ba03daa7406e292",
+  "preflight_hash": "5bb78c88b7265a6af247b771d4ae0cc73938b4a9b7e39880b1ea8c8106fa064f",
+  "preflight_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R87-G1-stv-aware-preflight.verdict.json",
+  "requirement_count": 7,
+  "requirements": [
+    {
+      "evidence": {
+        "r86_payload_hash": "38bcbc0664810556e3917c9f3bcfd98198ac5debb39aecd4ab1ddc4f8f83e352",
+        "r86_transcript_hash": "cbdee2263c4dac2e649d0677652cfef8b91eb88460ade8211546936869ce034d"
+      },
+      "label": "R87 consumes the R86 replay-bound G1 row set",
+      "passed": true,
+      "requirement_id": "A1"
+    },
+    {
+      "evidence": {
+        "selected_row_count": 30,
+        "stv_ledger_hash": "6eeadbd0b333454e957b3f79dd8f06066950d8e997ea2a25ac70b887eebe369a"
+      },
+      "label": "R87 builds a 30-row STV/T-ledger reprice ledger",
+      "passed": true,
+      "requirement_id": "A2"
+    },
+    {
+      "evidence": {
+        "replay_bound_row_count": 30,
+        "source_r86_transcript_hash": "cbdee2263c4dac2e649d0677652cfef8b91eb88460ade8211546936869ce034d"
+      },
+      "label": "R87 keeps every reprice row replay-bound",
+      "passed": true,
+      "requirement_id": "A3"
+    },
+    {
+      "evidence": {
+        "before_t_ledger": 6224,
+        "candidate_after_t_ledger": 5624,
+        "candidate_margin_to_1_20_target": 8,
+        "candidate_t_ledger_reduction": 600,
+        "target_1_20_max_after_t_ledger": 5632
+      },
+      "label": "R87 candidate reprice crosses the 1.20x T-ledger target",
+      "passed": true,
+      "requirement_id": "A4"
+    },
+    {
+      "evidence": {
+        "closed_r86_failed_gates": [
+          "stv_reprice_ledger_present"
+        ],
+        "preflight_hash": "5bb78c88b7265a6af247b771d4ae0cc73938b4a9b7e39880b1ea8c8106fa064f",
+        "remaining_r86_failed_gates": [
+          "filled_r83_submission_present",
+          "downstream_b7_replay_present"
+        ]
+      },
+      "label": "R87 closes exactly the R86 STV reprice blocker and leaves two credit blockers open",
+      "passed": true,
+      "requirement_id": "A5"
+    },
+    {
+      "evidence": {
+        "accepted_b7_credit_delta": 0,
+        "accepted_b7_space_time_volume_credit": 0
+      },
+      "label": "R87 grants no B7, STV, reroute, O3, or resource-saving credit",
+      "passed": true,
+      "requirement_id": "A6"
+    },
+    {
+      "evidence": {
+        "blocker_ids": [
+          "R87-G1-1",
+          "R87-G1-2"
+        ],
+        "blocker_queue_hash": "0b65c44240c6f14b6f9e754c6dc734c2972a69f596f6dd49b1842edf9d169562"
+      },
+      "label": "R87 emits the next two blockers as PR-sized work",
+      "passed": true,
+      "requirement_id": "A7"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 7,
+  "source_target_id": "T-B1-004gk/T-B7-015t",
+  "status": "cone01_r87_g1_stv_reprice_ledger_ready_no_credit",
+  "stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R87-G1-stv-reprice-ledger.stdout.txt",
+  "stdout_sha256": "ba0335d3b4342375358e26d560977c8a562b33d2fbf4fd8f452b596d612aab7a",
+  "stv_ledger_hash": "6eeadbd0b333454e957b3f79dd8f06066950d8e997ea2a25ac70b887eebe369a",
+  "stv_ledger_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R87-G1-stv-reprice-ledger.json",
+  "summary": {
+    "accepted_b7_credit_delta": 0,
+    "accepted_b7_space_time_volume_credit": 0,
+    "accepted_t_ledger_reduction": 0,
+    "before_t_ledger": 6224,
+    "blocker_queue_hash": "0b65c44240c6f14b6f9e754c6dc734c2972a69f596f6dd49b1842edf9d169562",
+    "candidate_after_t_ledger": 5624,
+    "candidate_crosses_1_20_t_ledger_target": true,
+    "candidate_margin_to_1_20_target": 8,
+    "candidate_t_ledger_reduction": 600,
+    "closed_r86_failed_gates": [
+      "stv_reprice_ledger_present"
+    ],
+    "failed_gates": [
+      "filled_r83_submission_present",
+      "downstream_b7_replay_present"
+    ],
+    "failed_requirement_ids": [],
+    "method": "b1_b7_cone01_r87_g1_stv_reprice_ledger_gate_v0",
+    "minimum_accepted_t_ledger_reduction": 591,
+    "model_status": "r86_stv_reprice_gate_closed_without_filled_r83_or_b7_replay",
+    "o3_closed": false,
+    "payload_hash": "80c2e832a4172116c65625261f6f5a0b51288fac69082f128ba03daa7406e292",
+    "preflight_accepted": false,
+    "preflight_failed_gate_count": 2,
+    "preflight_hash": "5bb78c88b7265a6af247b771d4ae0cc73938b4a9b7e39880b1ea8c8106fa064f",
+    "remaining_r86_failed_gates": [
+      "filled_r83_submission_present",
+      "downstream_b7_replay_present"
+    ],
+    "replay_bound_row_count": 30,
+    "requirements_failed": 0,
+    "requirements_passed": 7,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "route_id": "R83-G1-30-arbitrary-rotation-batch",
+    "selected_row_count": 30,
+    "source_target_id": "T-B1-004gk/T-B7-015t",
+    "status": "cone01_r87_g1_stv_reprice_ledger_ready_no_credit",
+    "stdout_sha256": "ba0335d3b4342375358e26d560977c8a562b33d2fbf4fd8f452b596d612aab7a",
+    "stv_ledger_hash": "6eeadbd0b333454e957b3f79dd8f06066950d8e997ea2a25ac70b887eebe369a",
+    "stv_reprice_ledger_present": true,
+    "target_1_20_max_after_t_ledger": 5632,
+    "upstream_target_id": "T-B1-004gj/T-B7-015s",
+    "validation_error_count": 0
+  },
+  "upstream_target_id": "T-B1-004gj/T-B7-015s",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "version": "0.1"
+}

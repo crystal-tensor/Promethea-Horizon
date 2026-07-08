@@ -2168,3 +2168,18 @@ preflight hash `71d6cf3d82d7d6dbc70de94a0a7dad9a1477f537254635a53dba6efc6a90f1e5
 blocker queue hash `6a934fc9ec42e86b752426d5a7460c876eb7562224f12385c148c78355cc65a2`.
 B7 credit remains `0`; this is replay-stdout binding only, not STV repricing,
 same-unitary proof, or O3 closure.
+
+`T-B1-004gk` / `T-B7-015t` now closes the next blocker by producing a
+candidate STV/T-ledger reprice ledger for the R86 replay-bound G1 rows. R87
+keeps all `30` selected rows replay-bound and prices the candidate bundle from
+the R83 current-after-T ledger `6224` down to `5624`, a `600` unit candidate
+reduction and `8` units below the `5632` 1.20x target ceiling. The
+STV-aware preflight now sets `stv_reprice_ledger_present=true`, but still
+rejects credit on the two remaining gates: filled R83 production submission and
+downstream B7 replay. STV ledger hash
+`6eeadbd0b333454e957b3f79dd8f06066950d8e997ea2a25ac70b887eebe369a`;
+stdout hash `ba0335d3b4342375358e26d560977c8a562b33d2fbf4fd8f452b596d612aab7a`;
+preflight hash `5bb78c88b7265a6af247b771d4ae0cc73938b4a9b7e39880b1ea8c8106fa064f`;
+blocker queue hash `0b65c44240c6f14b6f9e754c6dc734c2972a69f596f6dd49b1842edf9d169562`.
+B7 credit remains `0`; this is a candidate STV ledger, not a filled R83 packet,
+downstream replay, or O3 closure.
