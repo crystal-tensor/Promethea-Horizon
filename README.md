@@ -1567,6 +1567,20 @@ saving claims remain 0/false. The next useful PR should submit the
 `O3-F4-C01` row artifact against this template, then rerun R47 and require
 exactly one row to pass without weakening the discriminator.
 
+`T-B1-004ey` / `T-B7-014h` makes the R48 row template executable by emitting
+a preflight verifier for `O3-F4-C01`. The verifier checks the 30-key contract,
+14 production-required keys, 8 file/hash pairs, 3 source-backed boolean states,
+the witness schema, and zero-credit claim-boundary tokens. It rejects the
+current placeholder template, as intended: accepted source-backed rows remain
+`0`; empty production keys are `12`; file-hash failures are `8`; source-backed
+boolean failures are `3`; schema and claim-boundary tokens pass. Verifier hash
+`004f8693b7ddd3d2124bb7acdc6f49a9ab0c6e5733287a8a10d076d8b2ce43af`;
+evaluation hash `c59108f40ddd483229a01c503d7e8311d228b054fdafb5486ac7c559f4614c10`.
+C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
+claims remain 0/false. The next useful PR should submit `O3-F4-C01` with all
+production keys and hash-matched files, rerun R49 until exactly one row passes,
+then rerun R47 without weakening the source-backed discriminator.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.

@@ -1,0 +1,115 @@
+{
+  "file_hash_pairs": [
+    [
+      "source_dataset_file",
+      "source_dataset_sha256"
+    ],
+    [
+      "source_trace_file",
+      "source_trace_sha256"
+    ],
+    [
+      "replay_environment_file",
+      "replay_environment_sha256"
+    ],
+    [
+      "source_circuit_file",
+      "source_circuit_sha256"
+    ],
+    [
+      "candidate_circuit_file",
+      "candidate_circuit_sha256"
+    ],
+    [
+      "replay_stdout_file",
+      "replay_stdout_sha256"
+    ],
+    [
+      "same_unitary_witness_file",
+      "same_unitary_witness_sha256"
+    ],
+    [
+      "verifier_signature_file",
+      "verifier_signature_sha256"
+    ]
+  ],
+  "hard_reject_if": [
+    "any required key is absent",
+    "any production-required key is empty",
+    "any file path is missing or hash-mismatched",
+    "any sha256 field is malformed",
+    "same_unitary_witness_schema is not source_backed_unitary_equivalence_v1",
+    "source_backed_replay is not true",
+    "same_unitary_certificate is not true",
+    "smoke_only_not_c2_acceptance is not false",
+    "claim boundary omits zero-credit tokens"
+  ],
+  "production_required_keys": [
+    "source_dataset_file",
+    "source_trace_file",
+    "external_lineage_note",
+    "replay_environment_file",
+    "source_circuit_file",
+    "candidate_circuit_file",
+    "replay_stdout_file",
+    "same_unitary_witness_file",
+    "same_unitary_witness_verifier",
+    "verifier_signature_file",
+    "source_backed_replay",
+    "same_unitary_certificate",
+    "smoke_only_not_c2_acceptance",
+    "claim_boundary"
+  ],
+  "required_boolean_state": {
+    "same_unitary_certificate": true,
+    "smoke_only_not_c2_acceptance": false,
+    "source_backed_replay": true
+  },
+  "required_claim_boundary_tokens": [
+    "no C2",
+    "O3",
+    "reroute",
+    "B7",
+    "STV"
+  ],
+  "required_keys": [
+    "artifact_id",
+    "challenge_id",
+    "source_target_id",
+    "upstream_target_id",
+    "source_dataset_id",
+    "source_dataset_file",
+    "source_dataset_sha256",
+    "source_trace_id",
+    "source_trace_file",
+    "source_trace_sha256",
+    "external_lineage_note",
+    "external_lineage_sha256",
+    "replay_environment_file",
+    "replay_environment_sha256",
+    "source_circuit_file",
+    "source_circuit_sha256",
+    "candidate_circuit_file",
+    "candidate_circuit_sha256",
+    "replay_stdout_file",
+    "replay_stdout_sha256",
+    "same_unitary_witness_file",
+    "same_unitary_witness_sha256",
+    "same_unitary_witness_schema",
+    "same_unitary_witness_verifier",
+    "verifier_signature_file",
+    "verifier_signature_sha256",
+    "source_backed_replay",
+    "same_unitary_certificate",
+    "smoke_only_not_c2_acceptance",
+    "claim_boundary"
+  ],
+  "required_schema": "source_backed_unitary_equivalence_v1",
+  "selected_challenge_id": "O3-F4-C01",
+  "source_r48_contract_hash": "17cc41b93dc2ecefde937859f55f5ab4ad80d264c60940d4a39d0202eedd598d",
+  "source_r48_template_hash": "7f08f0e608964a9c95874e7e487ae7521727ca7b0e03e8aa81916af4a8b2a052",
+  "source_target_id": "T-B1-004ey/T-B7-014h",
+  "upstream_target_id": "T-B1-004ex/T-B7-014g",
+  "verifier_hash": "004f8693b7ddd3d2124bb7acdc6f49a9ab0c6e5733287a8a10d076d8b2ce43af",
+  "verifier_id": "B1-B7-cone01-O3-F4-C2-C01-source-backed-row-preflight-verifier"
+}
