@@ -1963,3 +1963,15 @@ split. Full private-material leakage is 160/160, so it must be explicitly
 excluded or reduced to <=40/160. Real backend transcript rows remain 0, so this
 is a margin ledger for the next PR, not protocol soundness, hardware evidence,
 quantum advantage, or BQP separation.
+
+`T-B1-004ft` / `T-B7-015c` now closes the R69 machine-check replay placeholder
+gap for the R1 line1381 route prefill. It runs a deterministic replay command
+that binds the source OpenQASM 3 artifact, candidate OpenQASM 3 artifact, R59
+same-unitary certificate chain, R65 machine-check replay bundle, and R66
+zero-credit ledger boundary. The R1 prefill moves from 26/29 fields to 29/29
+fields, with replay stdout hash
+`10de947944fa9e737a1d072bde67669df766159fd0444a8c723f7b2a9905fdd1`.
+The structural CNOT delta remains 795 -> 789, but this is still not an accepted
+exit route: accepted route count, occurrence removal, proxy-T reduction, and B7
+credit all remain 0. The next required PR is a positive occurrence/proxy-T
+delta ledger that can survive the R67 accepted-exit-route contract.

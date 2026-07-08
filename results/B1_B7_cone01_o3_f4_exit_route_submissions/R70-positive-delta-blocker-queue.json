@@ -1,0 +1,36 @@
+{
+  "acceptance_blockers": [
+    {
+      "blocked_acceptance_rule": "occurrence_removal_delta and proxy_t_reduction_delta are positive",
+      "blocker_id": "R70-B1",
+      "current_values": {
+        "accepted_exit_route_count": 0,
+        "occurrence_removal_delta": 0,
+        "proxy_t_reduction_delta": 0
+      },
+      "needed_artifact": "positive occurrence and proxy-T delta ledger accepted by the R67 contract",
+      "priority": 1
+    },
+    {
+      "blocked_acceptance_rule": "B7 ledger retest only after nonzero accepted deltas",
+      "blocker_id": "R70-B2",
+      "current_values": {
+        "b7_credit_delta": 0,
+        "b7_nonzero_retest_requested": false
+      },
+      "needed_artifact": "downstream B7 nonzero retest after an accepted positive delta route",
+      "priority": 2
+    }
+  ],
+  "artifact": "R70 positive-delta blocker queue",
+  "blocker_queue_hash": "fb17b4e3685ba02cad242fcb37917f191fc65653a2adcfc57ac566d7391aeb9f",
+  "remaining_placeholder_fields": [],
+  "resolved_fields": [
+    "machine_check_replay_command",
+    "machine_check_replay_stdout_path",
+    "machine_check_replay_stdout_sha256"
+  ],
+  "selected_next_route": "R1-line1381-resolution",
+  "source_target_id": "T-B1-004ft/T-B7-015c",
+  "upstream_target_id": "T-B1-004fs/T-B7-015b"
+}

@@ -6046,6 +6046,45 @@ current_results:
     caveat: r69_fills_source_openqasm3_only_no_replay_no_delta_no_exit_route_or_b7_credit
     report: ../results/B1_B7_cone01_R69_source_openqasm3_prefill_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_R69_source_openqasm3_prefill_gate.md
+  b1_b7_cone01_r70_machine_check_replay_prefill_gate_v0:
+    circuits: 1
+    status: cone01_r70_r1_machine_check_replay_prefill_zero_credit
+    model_status: r69_prefill_machine_check_replay_fields_filled_positive_delta_still_blocked
+    method: b1_b7_cone01_r70_machine_check_replay_prefill_gate_v0
+    source_r69_prefill_gate: ../results/B1_B7_cone01_R69_source_openqasm3_prefill_gate_v0.json
+    source_r69_prefill: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R69-R1-line1381-prefill-source-openqasm3.json
+    r70_completed_prefill: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R70-R1-line1381-prefill-machine-check-replay.json
+    r70_machine_check_replay_stdout: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R70-R1-line1381-machine-check-replay.stdout.txt
+    r70_machine_check_replay_transcript: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R70-R1-line1381-machine-check-replay-transcript.json
+    r70_positive_delta_blocker_queue: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R70-positive-delta-blocker-queue.json
+    source_target_id: T-B1-004ft/T-B7-015c
+    upstream_target_id: T-B1-004fs/T-B7-015b
+    r69_prefilled_field_count: 26
+    r69_placeholder_field_count: 3
+    r70_prefilled_field_count: 29
+    r70_placeholder_field_count: 0
+    remaining_placeholder_fields: []
+    machine_check_replay_passed: true
+    machine_check_replay_stdout_sha256: 10de947944fa9e737a1d072bde67669df766159fd0444a8c723f7b2a9905fdd1
+    source_operation_counts: {U: 480, rz: 362, cx: 795, measure: 1}
+    candidate_operation_counts: {U: 487, rz: 601, cx: 789, measure: 1}
+    cx_delta_source_minus_candidate: 6
+    accepted_exit_route_count: 0
+    accepted_occurrence_removal: 0
+    accepted_proxy_t_reduction: 0
+    b7_nonzero_retest_allowed: false
+    b7_credit_delta: 0
+    o3_closed: false
+    reroute_allowed: false
+    resource_saving_claimed: false
+    b7_ledger_improvement_claimed: false
+    blocker_queue_hash: fb17b4e3685ba02cad242fcb37917f191fc65653a2adcfc57ac566d7391aeb9f
+    requirements_passed: 10
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r70_fills_machine_check_replay_only_no_positive_delta_no_exit_route_or_b7_credit
+    report: ../results/B1_B7_cone01_R70_machine_check_replay_prefill_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_R70_machine_check_replay_prefill_gate.md
   b1_b7_cone01_full_statevector_replay_probe_gate_v0:
     circuits: 1
     status: cone01_default_input_statevector_replay_probe_passed_not_symbolic_certificate
