@@ -1,0 +1,1295 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "next_gate": "Submit real same-access denominator rows with existing implementation and verifier transcript artifacts, then run R62 as the acceptance gate.",
+    "resource_saving_claimed": false,
+    "what_is_not_supported": "R62 does not accept any denominator row, does not complete C4/C5, does not audit C6 leakage, does not produce a C7 machine-check bundle, and does not grant O3/reroute/B7/STV credit.",
+    "what_is_supported": "R62 implements an executable hardened acceptance verifier and replays it against the 8 R61 metadata-only theater rows. The verifier rejects all 8 and emits hash-bound per-row transcripts."
+  },
+  "last_updated": "2026-07-08",
+  "linked_benchmark_id": "B7",
+  "method": "b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate_v0",
+  "model_status": "r61_hardened_schema_executable_verifier_rejects_metadata_only_rows",
+  "r62_hardened_acceptance_verifier_packet": {
+    "bundle": {
+      "accepted_denominator_row_count": 0,
+      "artifact": "R62 executable hardened denominator acceptance verifier bundle",
+      "attack_row_count": 8,
+      "b7_credit_delta": 0,
+      "b7_ledger_improvement_claimed": false,
+      "b7_space_time_volume_credit": 0,
+      "bundle_hash": "0900006a8639e0aa00e1d80c5cf3c5901520be262c0c930af2a4d5820245b6fd",
+      "c4_c5_same_access_denominator_acceptance_verifier_executable": true,
+      "c4_c5_same_access_denominator_comparison_complete": false,
+      "claim_boundary": "R62 implements and replays the hardened acceptance verifier against R61 theater rows. It rejects metadata-only rows, but accepts no denominator row and grants no C4/C5, O3, reroute, B7, STV, or resource credit.",
+      "executable_verifier_replayed_theater_rows": true,
+      "hardened_accept_count": 0,
+      "hardened_reject_count": 8,
+      "hardened_schema_version": "r61_c4_c5_same_access_denominator_row_hardened_v1",
+      "max_passed_check_count": 3,
+      "method": "b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate_v0",
+      "min_failed_check_count": 7,
+      "o3_closed": false,
+      "reroute_allowed": false,
+      "resource_saving_claimed": false,
+      "row_count": 8,
+      "source_r60_file_sha256": "8d874dea626c5d908f292f46c99030d17c0064589720cce2f2ab9118067a1294",
+      "source_r60_result": "results/B1_B7_cone01_R60_o3_f4_c4_c5_same_access_denominator_contract_gate_v0.json",
+      "source_r61_bundle_hash": "c86e614516aa87397edbc783a5db6895fd7574e1fc980a327941e954ecd50165",
+      "source_r61_file_sha256": "3106c625ad947736cf5ce6bfec4b82cb0d8c27d0f9bdcf425687cf2de25890bb",
+      "source_r61_result": "results/B1_B7_cone01_R61_o3_f4_c4_c5_denominator_theater_schema_review_gate_v0.json",
+      "source_target_id": "T-B1-004fl/T-B7-014u",
+      "transcript_files": {
+        "O3-F4-C01": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r62_hardened_acceptance_verifier_transcript.json",
+        "O3-F4-C02": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C02.r62_hardened_acceptance_verifier_transcript.json",
+        "O3-F4-C03": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C03.r62_hardened_acceptance_verifier_transcript.json",
+        "O3-F4-C04": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C04.r62_hardened_acceptance_verifier_transcript.json",
+        "O3-F4-C05": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C05.r62_hardened_acceptance_verifier_transcript.json",
+        "O3-F4-C06": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C06.r62_hardened_acceptance_verifier_transcript.json",
+        "O3-F4-C07": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r62_hardened_acceptance_verifier_transcript.json",
+        "O3-F4-C08": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C08.r62_hardened_acceptance_verifier_transcript.json"
+      },
+      "transcript_hashes": {
+        "O3-F4-C01": "173a38d1a4a3cc3153bfa4317036b80fed9bd3522e57863faa592cdec0926d4e",
+        "O3-F4-C02": "fa19c50fefcf62bb8108522283f0596e3d24dcd110198cb3bb21974ec06f20fe",
+        "O3-F4-C03": "ed4b8a4d8855f8d43f49ed3b11e202a09a62bb82174f0c26e4acb2b6457fa4e7",
+        "O3-F4-C04": "a905783cfcb03e480a431808cd07583dbd56a56ee81af90b82ae4360298543a5",
+        "O3-F4-C05": "6288b7444a35715119308ed1130f13c683814ac99ea53099df64400aaf214565",
+        "O3-F4-C06": "2202245257efaa8bba91351e9416cf68febfa5ed550f80ae2828336850d26c0c",
+        "O3-F4-C07": "643d824e60ce3d4d462394e80ae75f729089c8e9f56a92ee78d34a2896a33889",
+        "O3-F4-C08": "63e712fb04fdfe9508d0873bdb7e92507b20acacb2cdf6402826019e8f403ee0"
+      },
+      "upstream_target_id": "T-B1-004fk/T-B7-014t",
+      "verifier_implementation_path": "/Users/avalok/work/FurturePlan/tools/b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate.py",
+      "verifier_implementation_sha256": "1c8e8c447c1bf5d4846c42194a3c6c4ecb580b0ce673ec47cba7bb594394c199",
+      "verifier_transcript_count": 8
+    },
+    "bundle_output": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-all8.r62_hardened_acceptance_verifier_bundle.json",
+    "source_r60_result": "results/B1_B7_cone01_R60_o3_f4_c4_c5_same_access_denominator_contract_gate_v0.json",
+    "source_r61_result": "results/B1_B7_cone01_R61_o3_f4_c4_c5_denominator_theater_schema_review_gate_v0.json",
+    "verifier_transcripts": [
+      {
+        "accepted": false,
+        "artifact": "R62 hardened denominator acceptance verifier transcript",
+        "challenge_id": "O3-F4-C01",
+        "check_count": 10,
+        "checks": [
+          {
+            "check_id": "H1",
+            "evidence": {
+              "missing_fields": [],
+              "required_field_count": 24
+            },
+            "label": "all R60 required fields are present",
+            "passed": true
+          },
+          {
+            "check_id": "H2",
+            "evidence": {
+              "row_challenge_id": "O3-F4-C01",
+              "row_schema": "r60_c4_c5_same_access_denominator_row_v0",
+              "template_challenge_id": "O3-F4-C01",
+              "template_schema": "r60_c4_c5_same_access_denominator_row_v0"
+            },
+            "label": "challenge id and schema version match the template",
+            "passed": true
+          },
+          {
+            "check_id": "H3",
+            "evidence": {
+              "access_model_hash": "aed63fbc196f1ce1fc33d265c15b307fa67ce053687c4695231d44b21cf0d20d"
+            },
+            "label": "source, candidate, R59 certificate, metric, tolerance, and access-model hashes match",
+            "passed": true
+          },
+          {
+            "check_id": "H4",
+            "evidence": {
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r61_missing_denominator_impl.py"
+            },
+            "label": "denominator implementation exists in the repository",
+            "passed": false
+          },
+          {
+            "check_id": "H5",
+            "evidence": {
+              "command_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r61_missing_denominator_impl.py",
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r61_missing_denominator_impl.py",
+              "reproducible_command_replayed": false
+            },
+            "label": "reproducible command points at the reviewed implementation and was replayed",
+            "passed": false
+          },
+          {
+            "check_id": "H6",
+            "evidence": {
+              "transcript_exists": false,
+              "transcript_hash_ok": false,
+              "verifier_transcript_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r61_missing_denominator_transcript.json"
+            },
+            "label": "verifier transcript exists and hash-matches the row",
+            "passed": false
+          },
+          {
+            "check_id": "H7",
+            "evidence": {
+              "denominator_distance_source": "self_asserted_not_transcript_bound",
+              "distance_from_transcript": null,
+              "row_denominator_distance": 0.0
+            },
+            "label": "denominator distance is finite and transcript-bound",
+            "passed": false
+          },
+          {
+            "check_id": "H8",
+            "evidence": {
+              "leakage_audit_statement_type": "str",
+              "same_access_statement_type": "str",
+              "structured_leakage_audit": false
+            },
+            "label": "same-access and leakage audits are structured",
+            "passed": false
+          },
+          {
+            "check_id": "H9",
+            "evidence": {
+              "denominator_beats_r59_positive_distance": true,
+              "denominator_rejects_r59_negative_control_pressure": true,
+              "pressure_flags_transcript_bound": null
+            },
+            "label": "computed denominator pressure flags are transcript-derived",
+            "passed": false
+          },
+          {
+            "check_id": "H10",
+            "evidence": {
+              "claim_boundary": "Claims C4/C5 denominator win and permits B7 credit.",
+              "overclaims": true
+            },
+            "label": "claim boundary avoids O3/reroute/B7/STV overclaim",
+            "passed": false
+          }
+        ],
+        "claim_boundary": "Verifier transcript only. A rejected theater row cannot close C4/C5, O3, reroute, or B7/STV/resource credit.",
+        "failed_check_count": 7,
+        "failed_check_ids": [
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9",
+          "H10"
+        ],
+        "input_row_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r61_denominator_theater_attack_row.json",
+        "input_row_hash": "1ca693d40c640a320d324ea8c8b5cbc0ae223edfcdf10c94fbaa92a28eeda7fb",
+        "method": "b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate_v0",
+        "passed_check_count": 3,
+        "rejection_reasons": [
+          "denominator implementation exists in the repository",
+          "reproducible command points at the reviewed implementation and was replayed",
+          "verifier transcript exists and hash-matches the row",
+          "denominator distance is finite and transcript-bound",
+          "same-access and leakage audits are structured",
+          "computed denominator pressure flags are transcript-derived",
+          "claim boundary avoids O3/reroute/B7/STV overclaim"
+        ],
+        "source_target_id": "T-B1-004fl/T-B7-014u",
+        "template_hash": "99cb321b85c76f1daa37e6df9f8a5d39c825c21c5c2b2124e0edaf9669b9049f",
+        "transcript_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r62_hardened_acceptance_verifier_transcript.json",
+        "transcript_file_sha256": "c707a1adbb83cf631a4ff135020b0e982b0f11032c57e6425de44d54adda8575",
+        "transcript_hash": "173a38d1a4a3cc3153bfa4317036b80fed9bd3522e57863faa592cdec0926d4e",
+        "upstream_target_id": "T-B1-004fk/T-B7-014t"
+      },
+      {
+        "accepted": false,
+        "artifact": "R62 hardened denominator acceptance verifier transcript",
+        "challenge_id": "O3-F4-C02",
+        "check_count": 10,
+        "checks": [
+          {
+            "check_id": "H1",
+            "evidence": {
+              "missing_fields": [],
+              "required_field_count": 24
+            },
+            "label": "all R60 required fields are present",
+            "passed": true
+          },
+          {
+            "check_id": "H2",
+            "evidence": {
+              "row_challenge_id": "O3-F4-C02",
+              "row_schema": "r60_c4_c5_same_access_denominator_row_v0",
+              "template_challenge_id": "O3-F4-C02",
+              "template_schema": "r60_c4_c5_same_access_denominator_row_v0"
+            },
+            "label": "challenge id and schema version match the template",
+            "passed": true
+          },
+          {
+            "check_id": "H3",
+            "evidence": {
+              "access_model_hash": "26a512e2ed8be1d8697e608f9dcc5b1cb890c0a96b0cbba8dbefc437ac782151"
+            },
+            "label": "source, candidate, R59 certificate, metric, tolerance, and access-model hashes match",
+            "passed": true
+          },
+          {
+            "check_id": "H4",
+            "evidence": {
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C02.r61_missing_denominator_impl.py"
+            },
+            "label": "denominator implementation exists in the repository",
+            "passed": false
+          },
+          {
+            "check_id": "H5",
+            "evidence": {
+              "command_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C02.r61_missing_denominator_impl.py",
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C02.r61_missing_denominator_impl.py",
+              "reproducible_command_replayed": false
+            },
+            "label": "reproducible command points at the reviewed implementation and was replayed",
+            "passed": false
+          },
+          {
+            "check_id": "H6",
+            "evidence": {
+              "transcript_exists": false,
+              "transcript_hash_ok": false,
+              "verifier_transcript_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C02.r61_missing_denominator_transcript.json"
+            },
+            "label": "verifier transcript exists and hash-matches the row",
+            "passed": false
+          },
+          {
+            "check_id": "H7",
+            "evidence": {
+              "denominator_distance_source": "self_asserted_not_transcript_bound",
+              "distance_from_transcript": null,
+              "row_denominator_distance": 0.0
+            },
+            "label": "denominator distance is finite and transcript-bound",
+            "passed": false
+          },
+          {
+            "check_id": "H8",
+            "evidence": {
+              "leakage_audit_statement_type": "str",
+              "same_access_statement_type": "str",
+              "structured_leakage_audit": false
+            },
+            "label": "same-access and leakage audits are structured",
+            "passed": false
+          },
+          {
+            "check_id": "H9",
+            "evidence": {
+              "denominator_beats_r59_positive_distance": true,
+              "denominator_rejects_r59_negative_control_pressure": true,
+              "pressure_flags_transcript_bound": null
+            },
+            "label": "computed denominator pressure flags are transcript-derived",
+            "passed": false
+          },
+          {
+            "check_id": "H10",
+            "evidence": {
+              "claim_boundary": "Claims C4/C5 denominator win and permits B7 credit.",
+              "overclaims": true
+            },
+            "label": "claim boundary avoids O3/reroute/B7/STV overclaim",
+            "passed": false
+          }
+        ],
+        "claim_boundary": "Verifier transcript only. A rejected theater row cannot close C4/C5, O3, reroute, or B7/STV/resource credit.",
+        "failed_check_count": 7,
+        "failed_check_ids": [
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9",
+          "H10"
+        ],
+        "input_row_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C02.r61_denominator_theater_attack_row.json",
+        "input_row_hash": "6cec64c6cb7e85b2be8a08ac0e95cbf443a43e7c1be6435e2adbb1918f240414",
+        "method": "b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate_v0",
+        "passed_check_count": 3,
+        "rejection_reasons": [
+          "denominator implementation exists in the repository",
+          "reproducible command points at the reviewed implementation and was replayed",
+          "verifier transcript exists and hash-matches the row",
+          "denominator distance is finite and transcript-bound",
+          "same-access and leakage audits are structured",
+          "computed denominator pressure flags are transcript-derived",
+          "claim boundary avoids O3/reroute/B7/STV overclaim"
+        ],
+        "source_target_id": "T-B1-004fl/T-B7-014u",
+        "template_hash": "91590da2bd42573a78e60c62d5b8c0d853a918d524f2ada116256029510a6b84",
+        "transcript_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C02.r62_hardened_acceptance_verifier_transcript.json",
+        "transcript_file_sha256": "16cb78919ad6331d936c6c082b1b9695018298e7344e79d1e0ea63f60fe17463",
+        "transcript_hash": "fa19c50fefcf62bb8108522283f0596e3d24dcd110198cb3bb21974ec06f20fe",
+        "upstream_target_id": "T-B1-004fk/T-B7-014t"
+      },
+      {
+        "accepted": false,
+        "artifact": "R62 hardened denominator acceptance verifier transcript",
+        "challenge_id": "O3-F4-C03",
+        "check_count": 10,
+        "checks": [
+          {
+            "check_id": "H1",
+            "evidence": {
+              "missing_fields": [],
+              "required_field_count": 24
+            },
+            "label": "all R60 required fields are present",
+            "passed": true
+          },
+          {
+            "check_id": "H2",
+            "evidence": {
+              "row_challenge_id": "O3-F4-C03",
+              "row_schema": "r60_c4_c5_same_access_denominator_row_v0",
+              "template_challenge_id": "O3-F4-C03",
+              "template_schema": "r60_c4_c5_same_access_denominator_row_v0"
+            },
+            "label": "challenge id and schema version match the template",
+            "passed": true
+          },
+          {
+            "check_id": "H3",
+            "evidence": {
+              "access_model_hash": "9f462fc38d2c3440f749fe70c1bc60f8f3476140d835fbe1bad251df69dd3874"
+            },
+            "label": "source, candidate, R59 certificate, metric, tolerance, and access-model hashes match",
+            "passed": true
+          },
+          {
+            "check_id": "H4",
+            "evidence": {
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C03.r61_missing_denominator_impl.py"
+            },
+            "label": "denominator implementation exists in the repository",
+            "passed": false
+          },
+          {
+            "check_id": "H5",
+            "evidence": {
+              "command_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C03.r61_missing_denominator_impl.py",
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C03.r61_missing_denominator_impl.py",
+              "reproducible_command_replayed": false
+            },
+            "label": "reproducible command points at the reviewed implementation and was replayed",
+            "passed": false
+          },
+          {
+            "check_id": "H6",
+            "evidence": {
+              "transcript_exists": false,
+              "transcript_hash_ok": false,
+              "verifier_transcript_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C03.r61_missing_denominator_transcript.json"
+            },
+            "label": "verifier transcript exists and hash-matches the row",
+            "passed": false
+          },
+          {
+            "check_id": "H7",
+            "evidence": {
+              "denominator_distance_source": "self_asserted_not_transcript_bound",
+              "distance_from_transcript": null,
+              "row_denominator_distance": 0.0
+            },
+            "label": "denominator distance is finite and transcript-bound",
+            "passed": false
+          },
+          {
+            "check_id": "H8",
+            "evidence": {
+              "leakage_audit_statement_type": "str",
+              "same_access_statement_type": "str",
+              "structured_leakage_audit": false
+            },
+            "label": "same-access and leakage audits are structured",
+            "passed": false
+          },
+          {
+            "check_id": "H9",
+            "evidence": {
+              "denominator_beats_r59_positive_distance": true,
+              "denominator_rejects_r59_negative_control_pressure": true,
+              "pressure_flags_transcript_bound": null
+            },
+            "label": "computed denominator pressure flags are transcript-derived",
+            "passed": false
+          },
+          {
+            "check_id": "H10",
+            "evidence": {
+              "claim_boundary": "Claims C4/C5 denominator win and permits B7 credit.",
+              "overclaims": true
+            },
+            "label": "claim boundary avoids O3/reroute/B7/STV overclaim",
+            "passed": false
+          }
+        ],
+        "claim_boundary": "Verifier transcript only. A rejected theater row cannot close C4/C5, O3, reroute, or B7/STV/resource credit.",
+        "failed_check_count": 7,
+        "failed_check_ids": [
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9",
+          "H10"
+        ],
+        "input_row_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C03.r61_denominator_theater_attack_row.json",
+        "input_row_hash": "1de245f1247fdf2f719eb52825340086ce4fcf217e83d8870d18f0d486b7e297",
+        "method": "b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate_v0",
+        "passed_check_count": 3,
+        "rejection_reasons": [
+          "denominator implementation exists in the repository",
+          "reproducible command points at the reviewed implementation and was replayed",
+          "verifier transcript exists and hash-matches the row",
+          "denominator distance is finite and transcript-bound",
+          "same-access and leakage audits are structured",
+          "computed denominator pressure flags are transcript-derived",
+          "claim boundary avoids O3/reroute/B7/STV overclaim"
+        ],
+        "source_target_id": "T-B1-004fl/T-B7-014u",
+        "template_hash": "8b14dcbc4cf2513c36b305a7f0b1b914f1b87794137c627bc3d66e9b475deea0",
+        "transcript_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C03.r62_hardened_acceptance_verifier_transcript.json",
+        "transcript_file_sha256": "c0d74b9887c71a7b60a81d817220c1d9a02baa6d713a4cb35fa43ca6eaf949fe",
+        "transcript_hash": "ed4b8a4d8855f8d43f49ed3b11e202a09a62bb82174f0c26e4acb2b6457fa4e7",
+        "upstream_target_id": "T-B1-004fk/T-B7-014t"
+      },
+      {
+        "accepted": false,
+        "artifact": "R62 hardened denominator acceptance verifier transcript",
+        "challenge_id": "O3-F4-C04",
+        "check_count": 10,
+        "checks": [
+          {
+            "check_id": "H1",
+            "evidence": {
+              "missing_fields": [],
+              "required_field_count": 24
+            },
+            "label": "all R60 required fields are present",
+            "passed": true
+          },
+          {
+            "check_id": "H2",
+            "evidence": {
+              "row_challenge_id": "O3-F4-C04",
+              "row_schema": "r60_c4_c5_same_access_denominator_row_v0",
+              "template_challenge_id": "O3-F4-C04",
+              "template_schema": "r60_c4_c5_same_access_denominator_row_v0"
+            },
+            "label": "challenge id and schema version match the template",
+            "passed": true
+          },
+          {
+            "check_id": "H3",
+            "evidence": {
+              "access_model_hash": "7c3ea706f9c07a3c99e54f44b3b9e637c707ebba9cee7241518880ac8c270220"
+            },
+            "label": "source, candidate, R59 certificate, metric, tolerance, and access-model hashes match",
+            "passed": true
+          },
+          {
+            "check_id": "H4",
+            "evidence": {
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C04.r61_missing_denominator_impl.py"
+            },
+            "label": "denominator implementation exists in the repository",
+            "passed": false
+          },
+          {
+            "check_id": "H5",
+            "evidence": {
+              "command_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C04.r61_missing_denominator_impl.py",
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C04.r61_missing_denominator_impl.py",
+              "reproducible_command_replayed": false
+            },
+            "label": "reproducible command points at the reviewed implementation and was replayed",
+            "passed": false
+          },
+          {
+            "check_id": "H6",
+            "evidence": {
+              "transcript_exists": false,
+              "transcript_hash_ok": false,
+              "verifier_transcript_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C04.r61_missing_denominator_transcript.json"
+            },
+            "label": "verifier transcript exists and hash-matches the row",
+            "passed": false
+          },
+          {
+            "check_id": "H7",
+            "evidence": {
+              "denominator_distance_source": "self_asserted_not_transcript_bound",
+              "distance_from_transcript": null,
+              "row_denominator_distance": 0.0
+            },
+            "label": "denominator distance is finite and transcript-bound",
+            "passed": false
+          },
+          {
+            "check_id": "H8",
+            "evidence": {
+              "leakage_audit_statement_type": "str",
+              "same_access_statement_type": "str",
+              "structured_leakage_audit": false
+            },
+            "label": "same-access and leakage audits are structured",
+            "passed": false
+          },
+          {
+            "check_id": "H9",
+            "evidence": {
+              "denominator_beats_r59_positive_distance": true,
+              "denominator_rejects_r59_negative_control_pressure": true,
+              "pressure_flags_transcript_bound": null
+            },
+            "label": "computed denominator pressure flags are transcript-derived",
+            "passed": false
+          },
+          {
+            "check_id": "H10",
+            "evidence": {
+              "claim_boundary": "Claims C4/C5 denominator win and permits B7 credit.",
+              "overclaims": true
+            },
+            "label": "claim boundary avoids O3/reroute/B7/STV overclaim",
+            "passed": false
+          }
+        ],
+        "claim_boundary": "Verifier transcript only. A rejected theater row cannot close C4/C5, O3, reroute, or B7/STV/resource credit.",
+        "failed_check_count": 7,
+        "failed_check_ids": [
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9",
+          "H10"
+        ],
+        "input_row_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C04.r61_denominator_theater_attack_row.json",
+        "input_row_hash": "94097bdb4d4949a082e989019b8b8b743f687af1f86020f11f6b6818fd7da42c",
+        "method": "b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate_v0",
+        "passed_check_count": 3,
+        "rejection_reasons": [
+          "denominator implementation exists in the repository",
+          "reproducible command points at the reviewed implementation and was replayed",
+          "verifier transcript exists and hash-matches the row",
+          "denominator distance is finite and transcript-bound",
+          "same-access and leakage audits are structured",
+          "computed denominator pressure flags are transcript-derived",
+          "claim boundary avoids O3/reroute/B7/STV overclaim"
+        ],
+        "source_target_id": "T-B1-004fl/T-B7-014u",
+        "template_hash": "48e7cb034c5d9683f4242269a04482db97c6feb71e081bd7ff273df98842fd4a",
+        "transcript_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C04.r62_hardened_acceptance_verifier_transcript.json",
+        "transcript_file_sha256": "c27b098a9c436f1f1e8a00252e86d98cc85cf5985528b2e23f7afebc721cdfbf",
+        "transcript_hash": "a905783cfcb03e480a431808cd07583dbd56a56ee81af90b82ae4360298543a5",
+        "upstream_target_id": "T-B1-004fk/T-B7-014t"
+      },
+      {
+        "accepted": false,
+        "artifact": "R62 hardened denominator acceptance verifier transcript",
+        "challenge_id": "O3-F4-C05",
+        "check_count": 10,
+        "checks": [
+          {
+            "check_id": "H1",
+            "evidence": {
+              "missing_fields": [],
+              "required_field_count": 24
+            },
+            "label": "all R60 required fields are present",
+            "passed": true
+          },
+          {
+            "check_id": "H2",
+            "evidence": {
+              "row_challenge_id": "O3-F4-C05",
+              "row_schema": "r60_c4_c5_same_access_denominator_row_v0",
+              "template_challenge_id": "O3-F4-C05",
+              "template_schema": "r60_c4_c5_same_access_denominator_row_v0"
+            },
+            "label": "challenge id and schema version match the template",
+            "passed": true
+          },
+          {
+            "check_id": "H3",
+            "evidence": {
+              "access_model_hash": "54ce28d3a0c095875f9f0747560ffb0627a83ab5a813b806edb34af6420a104a"
+            },
+            "label": "source, candidate, R59 certificate, metric, tolerance, and access-model hashes match",
+            "passed": true
+          },
+          {
+            "check_id": "H4",
+            "evidence": {
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C05.r61_missing_denominator_impl.py"
+            },
+            "label": "denominator implementation exists in the repository",
+            "passed": false
+          },
+          {
+            "check_id": "H5",
+            "evidence": {
+              "command_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C05.r61_missing_denominator_impl.py",
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C05.r61_missing_denominator_impl.py",
+              "reproducible_command_replayed": false
+            },
+            "label": "reproducible command points at the reviewed implementation and was replayed",
+            "passed": false
+          },
+          {
+            "check_id": "H6",
+            "evidence": {
+              "transcript_exists": false,
+              "transcript_hash_ok": false,
+              "verifier_transcript_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C05.r61_missing_denominator_transcript.json"
+            },
+            "label": "verifier transcript exists and hash-matches the row",
+            "passed": false
+          },
+          {
+            "check_id": "H7",
+            "evidence": {
+              "denominator_distance_source": "self_asserted_not_transcript_bound",
+              "distance_from_transcript": null,
+              "row_denominator_distance": 0.0
+            },
+            "label": "denominator distance is finite and transcript-bound",
+            "passed": false
+          },
+          {
+            "check_id": "H8",
+            "evidence": {
+              "leakage_audit_statement_type": "str",
+              "same_access_statement_type": "str",
+              "structured_leakage_audit": false
+            },
+            "label": "same-access and leakage audits are structured",
+            "passed": false
+          },
+          {
+            "check_id": "H9",
+            "evidence": {
+              "denominator_beats_r59_positive_distance": true,
+              "denominator_rejects_r59_negative_control_pressure": true,
+              "pressure_flags_transcript_bound": null
+            },
+            "label": "computed denominator pressure flags are transcript-derived",
+            "passed": false
+          },
+          {
+            "check_id": "H10",
+            "evidence": {
+              "claim_boundary": "Claims C4/C5 denominator win and permits B7 credit.",
+              "overclaims": true
+            },
+            "label": "claim boundary avoids O3/reroute/B7/STV overclaim",
+            "passed": false
+          }
+        ],
+        "claim_boundary": "Verifier transcript only. A rejected theater row cannot close C4/C5, O3, reroute, or B7/STV/resource credit.",
+        "failed_check_count": 7,
+        "failed_check_ids": [
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9",
+          "H10"
+        ],
+        "input_row_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C05.r61_denominator_theater_attack_row.json",
+        "input_row_hash": "9c60c3dbb5d7664b4a977df985ccb2d4ea0910fc6d37978c9bdbad941f92d0dd",
+        "method": "b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate_v0",
+        "passed_check_count": 3,
+        "rejection_reasons": [
+          "denominator implementation exists in the repository",
+          "reproducible command points at the reviewed implementation and was replayed",
+          "verifier transcript exists and hash-matches the row",
+          "denominator distance is finite and transcript-bound",
+          "same-access and leakage audits are structured",
+          "computed denominator pressure flags are transcript-derived",
+          "claim boundary avoids O3/reroute/B7/STV overclaim"
+        ],
+        "source_target_id": "T-B1-004fl/T-B7-014u",
+        "template_hash": "22131e0e9085e0532d7b754763b0dbff3af2245231d7ecb0590c0cb9118a525c",
+        "transcript_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C05.r62_hardened_acceptance_verifier_transcript.json",
+        "transcript_file_sha256": "6a11b2b1eb88dc79d3b023f7c46eb3e72d91b6805fa65375804b2ca74d6ca2d5",
+        "transcript_hash": "6288b7444a35715119308ed1130f13c683814ac99ea53099df64400aaf214565",
+        "upstream_target_id": "T-B1-004fk/T-B7-014t"
+      },
+      {
+        "accepted": false,
+        "artifact": "R62 hardened denominator acceptance verifier transcript",
+        "challenge_id": "O3-F4-C06",
+        "check_count": 10,
+        "checks": [
+          {
+            "check_id": "H1",
+            "evidence": {
+              "missing_fields": [],
+              "required_field_count": 24
+            },
+            "label": "all R60 required fields are present",
+            "passed": true
+          },
+          {
+            "check_id": "H2",
+            "evidence": {
+              "row_challenge_id": "O3-F4-C06",
+              "row_schema": "r60_c4_c5_same_access_denominator_row_v0",
+              "template_challenge_id": "O3-F4-C06",
+              "template_schema": "r60_c4_c5_same_access_denominator_row_v0"
+            },
+            "label": "challenge id and schema version match the template",
+            "passed": true
+          },
+          {
+            "check_id": "H3",
+            "evidence": {
+              "access_model_hash": "8e137ad9c88972700bd8a282cad4ba02b1bb09702b2d799876d174bb71fd266a"
+            },
+            "label": "source, candidate, R59 certificate, metric, tolerance, and access-model hashes match",
+            "passed": true
+          },
+          {
+            "check_id": "H4",
+            "evidence": {
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C06.r61_missing_denominator_impl.py"
+            },
+            "label": "denominator implementation exists in the repository",
+            "passed": false
+          },
+          {
+            "check_id": "H5",
+            "evidence": {
+              "command_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C06.r61_missing_denominator_impl.py",
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C06.r61_missing_denominator_impl.py",
+              "reproducible_command_replayed": false
+            },
+            "label": "reproducible command points at the reviewed implementation and was replayed",
+            "passed": false
+          },
+          {
+            "check_id": "H6",
+            "evidence": {
+              "transcript_exists": false,
+              "transcript_hash_ok": false,
+              "verifier_transcript_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C06.r61_missing_denominator_transcript.json"
+            },
+            "label": "verifier transcript exists and hash-matches the row",
+            "passed": false
+          },
+          {
+            "check_id": "H7",
+            "evidence": {
+              "denominator_distance_source": "self_asserted_not_transcript_bound",
+              "distance_from_transcript": null,
+              "row_denominator_distance": 0.0
+            },
+            "label": "denominator distance is finite and transcript-bound",
+            "passed": false
+          },
+          {
+            "check_id": "H8",
+            "evidence": {
+              "leakage_audit_statement_type": "str",
+              "same_access_statement_type": "str",
+              "structured_leakage_audit": false
+            },
+            "label": "same-access and leakage audits are structured",
+            "passed": false
+          },
+          {
+            "check_id": "H9",
+            "evidence": {
+              "denominator_beats_r59_positive_distance": true,
+              "denominator_rejects_r59_negative_control_pressure": true,
+              "pressure_flags_transcript_bound": null
+            },
+            "label": "computed denominator pressure flags are transcript-derived",
+            "passed": false
+          },
+          {
+            "check_id": "H10",
+            "evidence": {
+              "claim_boundary": "Claims C4/C5 denominator win and permits B7 credit.",
+              "overclaims": true
+            },
+            "label": "claim boundary avoids O3/reroute/B7/STV overclaim",
+            "passed": false
+          }
+        ],
+        "claim_boundary": "Verifier transcript only. A rejected theater row cannot close C4/C5, O3, reroute, or B7/STV/resource credit.",
+        "failed_check_count": 7,
+        "failed_check_ids": [
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9",
+          "H10"
+        ],
+        "input_row_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C06.r61_denominator_theater_attack_row.json",
+        "input_row_hash": "5d92dac862c3b538c8c8a5846f1e2cfab58429549e66005b866ff8f19bf2443f",
+        "method": "b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate_v0",
+        "passed_check_count": 3,
+        "rejection_reasons": [
+          "denominator implementation exists in the repository",
+          "reproducible command points at the reviewed implementation and was replayed",
+          "verifier transcript exists and hash-matches the row",
+          "denominator distance is finite and transcript-bound",
+          "same-access and leakage audits are structured",
+          "computed denominator pressure flags are transcript-derived",
+          "claim boundary avoids O3/reroute/B7/STV overclaim"
+        ],
+        "source_target_id": "T-B1-004fl/T-B7-014u",
+        "template_hash": "c0fabe65a77bae432e66dbb90518aa312ef2791f6e22e05e3d52e5e403e560ba",
+        "transcript_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C06.r62_hardened_acceptance_verifier_transcript.json",
+        "transcript_file_sha256": "779ff021cf98e1c5dfef1d93146451d9a0dc30177f83d67a5777899e37acbfd3",
+        "transcript_hash": "2202245257efaa8bba91351e9416cf68febfa5ed550f80ae2828336850d26c0c",
+        "upstream_target_id": "T-B1-004fk/T-B7-014t"
+      },
+      {
+        "accepted": false,
+        "artifact": "R62 hardened denominator acceptance verifier transcript",
+        "challenge_id": "O3-F4-C07",
+        "check_count": 10,
+        "checks": [
+          {
+            "check_id": "H1",
+            "evidence": {
+              "missing_fields": [],
+              "required_field_count": 24
+            },
+            "label": "all R60 required fields are present",
+            "passed": true
+          },
+          {
+            "check_id": "H2",
+            "evidence": {
+              "row_challenge_id": "O3-F4-C07",
+              "row_schema": "r60_c4_c5_same_access_denominator_row_v0",
+              "template_challenge_id": "O3-F4-C07",
+              "template_schema": "r60_c4_c5_same_access_denominator_row_v0"
+            },
+            "label": "challenge id and schema version match the template",
+            "passed": true
+          },
+          {
+            "check_id": "H3",
+            "evidence": {
+              "access_model_hash": "14f7162ddfaaf631e1f38aa0e57aa121a2bd378d37fa9fecceeb0208844fad69"
+            },
+            "label": "source, candidate, R59 certificate, metric, tolerance, and access-model hashes match",
+            "passed": true
+          },
+          {
+            "check_id": "H4",
+            "evidence": {
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r61_missing_denominator_impl.py"
+            },
+            "label": "denominator implementation exists in the repository",
+            "passed": false
+          },
+          {
+            "check_id": "H5",
+            "evidence": {
+              "command_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r61_missing_denominator_impl.py",
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r61_missing_denominator_impl.py",
+              "reproducible_command_replayed": false
+            },
+            "label": "reproducible command points at the reviewed implementation and was replayed",
+            "passed": false
+          },
+          {
+            "check_id": "H6",
+            "evidence": {
+              "transcript_exists": false,
+              "transcript_hash_ok": false,
+              "verifier_transcript_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r61_missing_denominator_transcript.json"
+            },
+            "label": "verifier transcript exists and hash-matches the row",
+            "passed": false
+          },
+          {
+            "check_id": "H7",
+            "evidence": {
+              "denominator_distance_source": "self_asserted_not_transcript_bound",
+              "distance_from_transcript": null,
+              "row_denominator_distance": 0.0
+            },
+            "label": "denominator distance is finite and transcript-bound",
+            "passed": false
+          },
+          {
+            "check_id": "H8",
+            "evidence": {
+              "leakage_audit_statement_type": "str",
+              "same_access_statement_type": "str",
+              "structured_leakage_audit": false
+            },
+            "label": "same-access and leakage audits are structured",
+            "passed": false
+          },
+          {
+            "check_id": "H9",
+            "evidence": {
+              "denominator_beats_r59_positive_distance": true,
+              "denominator_rejects_r59_negative_control_pressure": true,
+              "pressure_flags_transcript_bound": null
+            },
+            "label": "computed denominator pressure flags are transcript-derived",
+            "passed": false
+          },
+          {
+            "check_id": "H10",
+            "evidence": {
+              "claim_boundary": "Claims C4/C5 denominator win and permits B7 credit.",
+              "overclaims": true
+            },
+            "label": "claim boundary avoids O3/reroute/B7/STV overclaim",
+            "passed": false
+          }
+        ],
+        "claim_boundary": "Verifier transcript only. A rejected theater row cannot close C4/C5, O3, reroute, or B7/STV/resource credit.",
+        "failed_check_count": 7,
+        "failed_check_ids": [
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9",
+          "H10"
+        ],
+        "input_row_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r61_denominator_theater_attack_row.json",
+        "input_row_hash": "9389c6b28acd39df991f328b40000e1e61ab291930b081ea32157f77e9c0a58f",
+        "method": "b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate_v0",
+        "passed_check_count": 3,
+        "rejection_reasons": [
+          "denominator implementation exists in the repository",
+          "reproducible command points at the reviewed implementation and was replayed",
+          "verifier transcript exists and hash-matches the row",
+          "denominator distance is finite and transcript-bound",
+          "same-access and leakage audits are structured",
+          "computed denominator pressure flags are transcript-derived",
+          "claim boundary avoids O3/reroute/B7/STV overclaim"
+        ],
+        "source_target_id": "T-B1-004fl/T-B7-014u",
+        "template_hash": "0a9ef8437fd3ab25188e9b62edd8b5bc81086f6ad57307db4c0b4c82c307bcac",
+        "transcript_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r62_hardened_acceptance_verifier_transcript.json",
+        "transcript_file_sha256": "8bcd56ddb898966008027986c61cc492404e75dc4eaf9a34cce36e3799b4e762",
+        "transcript_hash": "643d824e60ce3d4d462394e80ae75f729089c8e9f56a92ee78d34a2896a33889",
+        "upstream_target_id": "T-B1-004fk/T-B7-014t"
+      },
+      {
+        "accepted": false,
+        "artifact": "R62 hardened denominator acceptance verifier transcript",
+        "challenge_id": "O3-F4-C08",
+        "check_count": 10,
+        "checks": [
+          {
+            "check_id": "H1",
+            "evidence": {
+              "missing_fields": [],
+              "required_field_count": 24
+            },
+            "label": "all R60 required fields are present",
+            "passed": true
+          },
+          {
+            "check_id": "H2",
+            "evidence": {
+              "row_challenge_id": "O3-F4-C08",
+              "row_schema": "r60_c4_c5_same_access_denominator_row_v0",
+              "template_challenge_id": "O3-F4-C08",
+              "template_schema": "r60_c4_c5_same_access_denominator_row_v0"
+            },
+            "label": "challenge id and schema version match the template",
+            "passed": true
+          },
+          {
+            "check_id": "H3",
+            "evidence": {
+              "access_model_hash": "87dc68ce3aec5c953ad93b542f11b9b0c627bf3171720bc842d2f6d42b1e470f"
+            },
+            "label": "source, candidate, R59 certificate, metric, tolerance, and access-model hashes match",
+            "passed": true
+          },
+          {
+            "check_id": "H4",
+            "evidence": {
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C08.r61_missing_denominator_impl.py"
+            },
+            "label": "denominator implementation exists in the repository",
+            "passed": false
+          },
+          {
+            "check_id": "H5",
+            "evidence": {
+              "command_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C08.r61_missing_denominator_impl.py",
+              "denominator_implementation_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C08.r61_missing_denominator_impl.py",
+              "reproducible_command_replayed": false
+            },
+            "label": "reproducible command points at the reviewed implementation and was replayed",
+            "passed": false
+          },
+          {
+            "check_id": "H6",
+            "evidence": {
+              "transcript_exists": false,
+              "transcript_hash_ok": false,
+              "verifier_transcript_path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C08.r61_missing_denominator_transcript.json"
+            },
+            "label": "verifier transcript exists and hash-matches the row",
+            "passed": false
+          },
+          {
+            "check_id": "H7",
+            "evidence": {
+              "denominator_distance_source": "self_asserted_not_transcript_bound",
+              "distance_from_transcript": null,
+              "row_denominator_distance": 0.0
+            },
+            "label": "denominator distance is finite and transcript-bound",
+            "passed": false
+          },
+          {
+            "check_id": "H8",
+            "evidence": {
+              "leakage_audit_statement_type": "str",
+              "same_access_statement_type": "str",
+              "structured_leakage_audit": false
+            },
+            "label": "same-access and leakage audits are structured",
+            "passed": false
+          },
+          {
+            "check_id": "H9",
+            "evidence": {
+              "denominator_beats_r59_positive_distance": true,
+              "denominator_rejects_r59_negative_control_pressure": true,
+              "pressure_flags_transcript_bound": null
+            },
+            "label": "computed denominator pressure flags are transcript-derived",
+            "passed": false
+          },
+          {
+            "check_id": "H10",
+            "evidence": {
+              "claim_boundary": "Claims C4/C5 denominator win and permits B7 credit.",
+              "overclaims": true
+            },
+            "label": "claim boundary avoids O3/reroute/B7/STV overclaim",
+            "passed": false
+          }
+        ],
+        "claim_boundary": "Verifier transcript only. A rejected theater row cannot close C4/C5, O3, reroute, or B7/STV/resource credit.",
+        "failed_check_count": 7,
+        "failed_check_ids": [
+          "H4",
+          "H5",
+          "H6",
+          "H7",
+          "H8",
+          "H9",
+          "H10"
+        ],
+        "input_row_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C08.r61_denominator_theater_attack_row.json",
+        "input_row_hash": "511bfea01dab6a96656fd446e967438e11ce848cd6baf892f6bb19ce19341fa5",
+        "method": "b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate_v0",
+        "passed_check_count": 3,
+        "rejection_reasons": [
+          "denominator implementation exists in the repository",
+          "reproducible command points at the reviewed implementation and was replayed",
+          "verifier transcript exists and hash-matches the row",
+          "denominator distance is finite and transcript-bound",
+          "same-access and leakage audits are structured",
+          "computed denominator pressure flags are transcript-derived",
+          "claim boundary avoids O3/reroute/B7/STV overclaim"
+        ],
+        "source_target_id": "T-B1-004fl/T-B7-014u",
+        "template_hash": "e7d557e780ac857be14c4be00a31e36065267bb5ba7d3e866102842bab14ed43",
+        "transcript_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C08.r62_hardened_acceptance_verifier_transcript.json",
+        "transcript_file_sha256": "f63fc930367d15558d9b853604f8e5feb170b0e60141bf838ae12cf6b3c20d90",
+        "transcript_hash": "63e712fb04fdfe9508d0873bdb7e92507b20acacb2cdf6402826019e8f403ee0",
+        "upstream_target_id": "T-B1-004fk/T-B7-014t"
+      }
+    ]
+  },
+  "requirements": [
+    {
+      "evidence": {
+        "r61_bundle_hash": "c86e614516aa87397edbc783a5db6895fd7574e1fc980a327941e954ecd50165",
+        "r61_hardened_reject_count": 8,
+        "zero_credit_ok": true
+      },
+      "label": "R61 upstream hardened schema rejected all theater rows with zero credit",
+      "passed": true,
+      "requirement_id": "V1"
+    },
+    {
+      "evidence": {
+        "challenge_ids": [
+          "O3-F4-C01",
+          "O3-F4-C02",
+          "O3-F4-C03",
+          "O3-F4-C04",
+          "O3-F4-C05",
+          "O3-F4-C06",
+          "O3-F4-C07",
+          "O3-F4-C08"
+        ],
+        "verifier_transcript_count": 8
+      },
+      "label": "R62 emits one executable verifier transcript per R61 theater row",
+      "passed": true,
+      "requirement_id": "V2"
+    },
+    {
+      "evidence": {
+        "hardened_accept_count": 0,
+        "hardened_reject_count": 8
+      },
+      "label": "R62 executable verifier rejects all metadata-only theater rows",
+      "passed": true,
+      "requirement_id": "V3"
+    },
+    {
+      "evidence": {
+        "check_counts": {
+          "O3-F4-C01": 10,
+          "O3-F4-C02": 10,
+          "O3-F4-C03": 10,
+          "O3-F4-C04": 10,
+          "O3-F4-C05": 10,
+          "O3-F4-C06": 10,
+          "O3-F4-C07": 10,
+          "O3-F4-C08": 10
+        },
+        "failed_check_counts": {
+          "O3-F4-C01": 7,
+          "O3-F4-C02": 7,
+          "O3-F4-C03": 7,
+          "O3-F4-C04": 7,
+          "O3-F4-C05": 7,
+          "O3-F4-C06": 7,
+          "O3-F4-C07": 7,
+          "O3-F4-C08": 7
+        }
+      },
+      "label": "R62 verifier checks implementation, command replay, transcript hash, distance binding, leakage, pressure flags, and claim boundary",
+      "passed": true,
+      "requirement_id": "V4"
+    },
+    {
+      "evidence": {
+        "verifier_implementation_path": "/Users/avalok/work/FurturePlan/tools/b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate.py",
+        "verifier_implementation_sha256": "1c8e8c447c1bf5d4846c42194a3c6c4ecb580b0ce673ec47cba7bb594394c199"
+      },
+      "label": "R62 verifier implementation is hash-bound",
+      "passed": true,
+      "requirement_id": "V5"
+    },
+    {
+      "evidence": {
+        "accepted_denominator_row_count": 0,
+        "c4_c5_same_access_denominator_comparison_complete": false
+      },
+      "label": "R62 accepts no denominator rows and keeps C4/C5 incomplete",
+      "passed": true,
+      "requirement_id": "V6"
+    },
+    {
+      "evidence": {
+        "b7_credit_delta": 0,
+        "b7_space_time_volume_credit": 0,
+        "o3_closed": false,
+        "reroute_allowed": false
+      },
+      "label": "R62 preserves O3/reroute/B7 zero-credit boundaries",
+      "passed": true,
+      "requirement_id": "V7"
+    },
+    {
+      "evidence": {
+        "bundle_file_sha256": "429d8accc0e2e15127416b39c128a46c1d3fea6aa6c6afa0b34a2ce0fc6db949",
+        "bundle_hash": "0900006a8639e0aa00e1d80c5cf3c5901520be262c0c930af2a4d5820245b6fd",
+        "transcript_hashes": {
+          "O3-F4-C01": "173a38d1a4a3cc3153bfa4317036b80fed9bd3522e57863faa592cdec0926d4e",
+          "O3-F4-C02": "fa19c50fefcf62bb8108522283f0596e3d24dcd110198cb3bb21974ec06f20fe",
+          "O3-F4-C03": "ed4b8a4d8855f8d43f49ed3b11e202a09a62bb82174f0c26e4acb2b6457fa4e7",
+          "O3-F4-C04": "a905783cfcb03e480a431808cd07583dbd56a56ee81af90b82ae4360298543a5",
+          "O3-F4-C05": "6288b7444a35715119308ed1130f13c683814ac99ea53099df64400aaf214565",
+          "O3-F4-C06": "2202245257efaa8bba91351e9416cf68febfa5ed550f80ae2828336850d26c0c",
+          "O3-F4-C07": "643d824e60ce3d4d462394e80ae75f729089c8e9f56a92ee78d34a2896a33889",
+          "O3-F4-C08": "63e712fb04fdfe9508d0873bdb7e92507b20acacb2cdf6402826019e8f403ee0"
+        }
+      },
+      "label": "R62 bundle and verifier transcripts are hash-bound",
+      "passed": true,
+      "requirement_id": "V8"
+    }
+  ],
+  "runtime_seconds": 0.002997,
+  "source_target_id": "T-B1-004fl/T-B7-014u",
+  "status": "cone01_r62_hardened_denominator_acceptance_verifier_rejects_theater_zero_b7_credit",
+  "summary": {
+    "accepted_denominator_row_count": 0,
+    "attack_row_count": 8,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_space_time_volume_credit": 0,
+    "c4_c5_same_access_denominator_acceptance_verifier_executable": true,
+    "c4_c5_same_access_denominator_comparison_complete": false,
+    "executable_verifier_replayed_theater_rows": true,
+    "failed_requirement_ids": [],
+    "hardened_accept_count": 0,
+    "hardened_reject_count": 8,
+    "max_passed_check_count": 3,
+    "min_failed_check_count": 7,
+    "o3_closed": false,
+    "r62_bundle_file_sha256": "429d8accc0e2e15127416b39c128a46c1d3fea6aa6c6afa0b34a2ce0fc6db949",
+    "r62_bundle_hash": "0900006a8639e0aa00e1d80c5cf3c5901520be262c0c930af2a4d5820245b6fd",
+    "remaining_open_obligation_count": 5,
+    "remaining_open_obligations": [
+      "submit_C4_C5_same_access_denominator_rows_with_existing_transcripts",
+      "accept_8_denominator_rows_under_R62_verifier",
+      "C6_leakage_free_optimizer_trace",
+      "C7_machine_check_replay_bundle",
+      "B7_ledger_retest_after_C4_C7"
+    ],
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "source_r61_bundle_hash": "c86e614516aa87397edbc783a5db6895fd7574e1fc980a327941e954ecd50165",
+    "source_r61_file_sha256": "3106c625ad947736cf5ce6bfec4b82cb0d8c27d0f9bdcf425687cf2de25890bb",
+    "validation_error_count": 0,
+    "verifier_implementation_sha256": "1c8e8c447c1bf5d4846c42194a3c6c4ecb580b0ce673ec47cba7bb594394c199",
+    "verifier_transcript_count": 8
+  },
+  "title": "B1/B7 Cone01 R62 O3-F4 C4/C5 Hardened Denominator Acceptance Verifier Gate",
+  "upstream_target_id": "T-B1-004fk/T-B7-014t",
+  "validation_errors": [],
+  "version": "0.1"
+}

@@ -1761,6 +1761,22 @@ B7/STV/resource/ledger credit remain 0/false. The next useful PR should
 implement the R61 hardened acceptance verifier, then submit real denominator
 rows with existing implementation and transcript artifacts.
 
+`T-B1-004fl` / `T-B7-014u` now turns the R61 hardening rules into an
+executable acceptance verifier. R62 replays all 8 R61 metadata-only
+denominator-theater rows against 10 hardened checks per row: required fields,
+schema match, source/candidate/certificate hash binding, implementation path,
+replayed command, transcript hash, transcript-bound distance, structured
+same-access/leakage audit, transcript-derived pressure flags, and claim
+boundary. The verifier emits 8 per-row transcripts, rejects `8/8` theater
+rows, accepts `0/8`, has minimum failed checks per rejected row `7`, and
+maximum passed checks per rejected row `3`. R62 bundle hash
+`0900006a8639e0aa00e1d80c5cf3c5901520be262c0c930af2a4d5820245b6fd`.
+This is still not a denominator win: accepted denominator rows `0`, C4/C5
+comparison complete false, O3 open, `reroute_allowed=false`, and
+B7/STV/resource/ledger credit remain 0/false. The next useful PR must submit
+real source-backed C4/C5 denominator rows with existing implementation and
+verifier transcript artifacts under the R62 verifier.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
