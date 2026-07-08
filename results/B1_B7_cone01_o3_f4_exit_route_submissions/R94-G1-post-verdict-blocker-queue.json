@@ -1,0 +1,35 @@
+{
+  "artifact": "R94 post maintainer verdict blocker queue",
+  "blocker_queue_hash": "0f4774f61f1f607f934514f2d51bc09fd1ac2a3bf58bf031fb453b0d93027cad",
+  "method": "b1_b7_cone01_r94_maintainer_verdict_counter_contract_gate_v0",
+  "preflight_hash": "d857144c4623eb10eba2d69129349acd80ee71b5e25e4e923a572ee305992538",
+  "queue": [
+    {
+      "blocker_id": "R94-G1-1",
+      "needed_artifact": "non-fixture R93 packet with external attestation and independent environment evidence",
+      "priority": 1,
+      "target_gate": "filled_nonfixture_r93_packet"
+    },
+    {
+      "blocker_id": "R94-G1-2",
+      "needed_artifact": "review transcript binding the packet hash, command transcript, double-count decision, and claim boundary",
+      "priority": 2,
+      "target_gate": "maintainer_review_transcript"
+    },
+    {
+      "blocker_id": "R94-G1-3",
+      "needed_artifact": "accepted maintainer verdict with an allowed counter target and zero direct new-credit increment",
+      "priority": 3,
+      "target_gate": "counter_update_verdict"
+    },
+    {
+      "blocker_id": "R94-G1-4",
+      "needed_artifact": "separate B7 boundary retest before any 1.25x, layout, O3, or resource-saving claim",
+      "priority": 4,
+      "target_gate": "post_verdict_b7_boundary"
+    }
+  ],
+  "source_target_id": "T-B1-004gr/T-B7-016a",
+  "upstream_target_id": "T-B1-004gq/T-B7-015z",
+  "verdict_contract_hash": "8b9628a69d93855f005cfe0ea554f7ee4e7d7f4e57c109568a77082097814040"
+}

@@ -1,0 +1,63 @@
+{
+  "allowed_counter_targets": [
+    "accepted_external_reproduction_count",
+    "accepted_external_falsification_count",
+    "new_credit_candidate_pending_review",
+    "no_counter_change"
+  ],
+  "allowed_credit_decisions": [
+    "preserve_one_unit_proxy_credit",
+    "revoke_one_unit_proxy_credit",
+    "insufficient_evidence_no_counter",
+    "quarantine_new_credit_candidate",
+    "reject_double_counted_submission"
+  ],
+  "allowed_evidence_sufficiency": [
+    "sufficient_for_reproduction_counter",
+    "sufficient_for_falsification_counter",
+    "insufficient_evidence_no_counter",
+    "quarantine_new_credit_candidate"
+  ],
+  "allowed_review_modes": [
+    "external_reproduction_review",
+    "external_falsification_review",
+    "insufficient_evidence_review",
+    "new_credit_candidate_quarantine_review"
+  ],
+  "artifact": "R94 G1 maintainer verdict template",
+  "contract_id": "R94-G1-maintainer-verdict-counter-contract",
+  "fields": {
+    "accepted_external_falsification_count_after": null,
+    "accepted_external_reproduction_count_after": null,
+    "claim_boundary": null,
+    "counter_delta": null,
+    "counter_target": null,
+    "credit_decision": null,
+    "double_count_decision": null,
+    "evidence_sufficiency": null,
+    "maintainer_id": null,
+    "new_credit_delta": null,
+    "o3_closed": null,
+    "one_unit_credit_preserved": null,
+    "one_unit_credit_revoked": null,
+    "physical_layout_claimed": null,
+    "resource_saving_claimed": null,
+    "review_mode": null,
+    "review_timestamp_unix": null,
+    "review_transcript_path": null,
+    "review_transcript_sha256": null,
+    "reviewed_packet_path": null,
+    "reviewed_packet_sha256": null,
+    "source_r93_packet_hash": null,
+    "source_r93_preflight_hash": null,
+    "verdict_id": null
+  },
+  "instructions": [
+    "Bind the reviewed R93 packet path and SHA-256 before any verdict.",
+    "Attach a review transcript path and SHA-256.",
+    "Use counter_delta=0 unless the evidence sufficiency and counter target match.",
+    "Never use R94 alone to grant new credit, O3 closure, layout closure, or resource-saving claims."
+  ],
+  "verdict_contract_hash": "8b9628a69d93855f005cfe0ea554f7ee4e7d7f4e57c109568a77082097814040",
+  "verdict_template_hash": "1abfe2eee37de29a06935f53c371892d1eb43f21c9d769d76851974084d97ff4"
+}

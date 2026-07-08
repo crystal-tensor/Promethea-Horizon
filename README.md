@@ -2273,3 +2273,21 @@ packet-template hash
 preflight hash `6ec529295cde9e66d34ba062b0203bb1fe01dc56e0f4c6d777c6d59dcbc2bfc3`;
 blocker queue hash `ef1ee51bf9e5a542b5f34bdacabd236471c7700c4376c2ead7a61c6d9ee818e5`.
 The next real gate is a filled non-fixture packet plus maintainer verdict.
+
+`T-B1-004gr` / `T-B7-016a` now adds the R94 maintainer verdict and counter
+contract gate. R94 takes the R93 non-fixture intake blocker and defines the
+allowed maintainer verdict modes, evidence-sufficiency labels, counter targets,
+credit decisions, and counter-transition rules before an external reproduction
+or falsification counter can move. It emits a `24`-field verdict contract with
+`15` production-required fields and a fillable verdict template. The current
+empty maintainer verdict is rejected on `11` preflight gates with `11` missing
+production fields. Maintainer verdict accepted remains `false`, counter delta
+remains `0`, accepted external reproductions remain `0`, accepted external
+falsifications remain `0`, and `new_credit_delta` remains `0`. Verdict-contract
+hash `8b9628a69d93855f005cfe0ea554f7ee4e7d7f4e57c109568a77082097814040`;
+verdict-template hash
+`1abfe2eee37de29a06935f53c371892d1eb43f21c9d769d76851974084d97ff4`;
+preflight hash `d857144c4623eb10eba2d69129349acd80ee71b5e25e4e923a572ee305992538`;
+blocker queue hash `0f4774f61f1f607f934514f2d51bc09fd1ac2a3bf58bf031fb453b0d93027cad`.
+The next real gate is a filled R93 packet plus a source-backed maintainer
+review transcript.

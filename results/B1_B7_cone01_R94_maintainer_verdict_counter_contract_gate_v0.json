@@ -1,0 +1,153 @@
+{
+  "artifact": "B1/B7 cone01 R94 maintainer verdict counter contract gate",
+  "blocker_queue_hash": "0f4774f61f1f607f934514f2d51bc09fd1ac2a3bf58bf031fb453b0d93027cad",
+  "blocker_queue_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R94-G1-post-verdict-blocker-queue.json",
+  "empty_verdict_hash": "9d1ca002fc558ba95e4fef7694d1f4e0cdf59943f48469c1a12c2510d5fdc189",
+  "empty_verdict_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R94-G1-empty-maintainer-verdict.json",
+  "failed_requirement_ids": [],
+  "generated_at_unix": 1783547711,
+  "method": "b1_b7_cone01_r94_maintainer_verdict_counter_contract_gate_v0",
+  "model_status": "r93_nonfixture_intake_ready_but_maintainer_verdict_missing",
+  "payload_hash": "ee88fed94efe62cd8eec88f7fdab0528a225bd256b5d64c1f4bf1f1138791e1f",
+  "preflight_hash": "d857144c4623eb10eba2d69129349acd80ee71b5e25e4e923a572ee305992538",
+  "preflight_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R94-G1-maintainer-verdict-preflight.verdict.json",
+  "requirement_count": 7,
+  "requirements": [
+    {
+      "evidence": {
+        "r93_blocker_queue_hash": "ef1ee51bf9e5a542b5f34bdacabd236471c7700c4376c2ead7a61c6d9ee818e5",
+        "r93_intake_contract_hash": "0e1108d271259b7d602939e72b463695e7b0e7dd6a3685a3f7ee418dbb82e882",
+        "r93_payload_hash": "88d237ff435f9da1cdf9558a14d2bb7333dba0721003f5e305813be40b1cc5bf",
+        "r93_preflight_hash": "6ec529295cde9e66d34ba062b0203bb1fe01dc56e0f4c6d777c6d59dcbc2bfc3"
+      },
+      "label": "R94 binds the R93 result, intake contract, packet template, preflight, and blocker queue",
+      "passed": true,
+      "requirement_id": "A1"
+    },
+    {
+      "evidence": {
+        "production_required_field_count": 15,
+        "required_field_count": 24,
+        "verdict_contract_hash": "8b9628a69d93855f005cfe0ea554f7ee4e7d7f4e57c109568a77082097814040"
+      },
+      "label": "R94 emits a maintainer verdict contract with explicit counter transition rules",
+      "passed": true,
+      "requirement_id": "A2"
+    },
+    {
+      "evidence": {
+        "template_field_count": 24,
+        "verdict_template_hash": "1abfe2eee37de29a06935f53c371892d1eb43f21c9d769d76851974084d97ff4"
+      },
+      "label": "R94 emits a fillable maintainer verdict template",
+      "passed": true,
+      "requirement_id": "A3"
+    },
+    {
+      "evidence": {
+        "failed_gates": [
+          "production_required_fields_present",
+          "maintainer_identity_present",
+          "reviewed_packet_bound",
+          "review_transcript_bound",
+          "r93_packet_hash_bound",
+          "allowed_review_mode",
+          "allowed_evidence_sufficiency",
+          "allowed_counter_target",
+          "allowed_credit_decision",
+          "counter_delta_allowed",
+          "maintainer_verdict_accepted"
+        ],
+        "missing_production_field_count": 11,
+        "preflight_hash": "d857144c4623eb10eba2d69129349acd80ee71b5e25e4e923a572ee305992538"
+      },
+      "label": "R94 rejects the empty maintainer verdict before review evidence exists",
+      "passed": true,
+      "requirement_id": "A4"
+    },
+    {
+      "evidence": {
+        "accepted_external_falsification_count": 0,
+        "accepted_external_reproduction_count": 0,
+        "counter_delta": 0,
+        "new_credit_delta": 0
+      },
+      "label": "R94 keeps external counters and new credit at zero",
+      "passed": true,
+      "requirement_id": "A5"
+    },
+    {
+      "evidence": {
+        "o3_closed": false,
+        "physical_layout_claimed": false,
+        "resource_saving_claimed": false
+      },
+      "label": "R94 keeps O3, resource-saving, and physical-layout claims closed",
+      "passed": true,
+      "requirement_id": "A6"
+    },
+    {
+      "evidence": {
+        "blocker_ids": [
+          "R94-G1-1",
+          "R94-G1-2",
+          "R94-G1-3",
+          "R94-G1-4"
+        ],
+        "blocker_queue_hash": "0f4774f61f1f607f934514f2d51bc09fd1ac2a3bf58bf031fb453b0d93027cad"
+      },
+      "label": "R94 emits blockers for packet, transcript, verdict, and post-verdict B7 boundary",
+      "passed": true,
+      "requirement_id": "A7"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 7,
+  "source_target_id": "T-B1-004gr/T-B7-016a",
+  "status": "cone01_r94_maintainer_verdict_contract_open_no_verdict_yet",
+  "stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R94-G1-maintainer-verdict.stdout.txt",
+  "stdout_sha256": "ce503c586584ba529c9aa8b8270245f32f959ad462cd018880dfb287276efca1",
+  "summary": {
+    "accepted_external_falsification_count": 0,
+    "accepted_external_reproduction_count": 0,
+    "blocker_queue_hash": "0f4774f61f1f607f934514f2d51bc09fd1ac2a3bf58bf031fb453b0d93027cad",
+    "contract_id": "R94-G1-maintainer-verdict-counter-contract",
+    "counter_delta": 0,
+    "counter_transition_rule_count": 4,
+    "empty_verdict_hash": "9d1ca002fc558ba95e4fef7694d1f4e0cdf59943f48469c1a12c2510d5fdc189",
+    "empty_verdict_rejected": true,
+    "failed_requirement_ids": [],
+    "maintainer_verdict_accepted": false,
+    "method": "b1_b7_cone01_r94_maintainer_verdict_counter_contract_gate_v0",
+    "missing_production_field_count": 11,
+    "model_status": "r93_nonfixture_intake_ready_but_maintainer_verdict_missing",
+    "new_credit_delta": 0,
+    "o3_closed": false,
+    "payload_hash": "ee88fed94efe62cd8eec88f7fdab0528a225bd256b5d64c1f4bf1f1138791e1f",
+    "physical_layout_claimed": false,
+    "preflight_failed_gate_count": 11,
+    "preflight_hash": "d857144c4623eb10eba2d69129349acd80ee71b5e25e4e923a572ee305992538",
+    "production_required_field_count": 15,
+    "required_field_count": 24,
+    "requirements_failed": 0,
+    "requirements_passed": 7,
+    "resource_saving_claimed": false,
+    "route_id": "R83-G1-30-arbitrary-rotation-batch",
+    "source_target_id": "T-B1-004gr/T-B7-016a",
+    "status": "cone01_r94_maintainer_verdict_contract_open_no_verdict_yet",
+    "stdout_sha256": "ce503c586584ba529c9aa8b8270245f32f959ad462cd018880dfb287276efca1",
+    "upstream_target_id": "T-B1-004gq/T-B7-015z",
+    "validation_error_count": 0,
+    "verdict_contract_hash": "8b9628a69d93855f005cfe0ea554f7ee4e7d7f4e57c109568a77082097814040",
+    "verdict_mode_count": 4,
+    "verdict_template_hash": "1abfe2eee37de29a06935f53c371892d1eb43f21c9d769d76851974084d97ff4"
+  },
+  "upstream_target_id": "T-B1-004gq/T-B7-015z",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "verdict_contract_hash": "8b9628a69d93855f005cfe0ea554f7ee4e7d7f4e57c109568a77082097814040",
+  "verdict_contract_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R94-G1-maintainer-verdict-contract.json",
+  "verdict_template_hash": "1abfe2eee37de29a06935f53c371892d1eb43f21c9d769d76851974084d97ff4",
+  "verdict_template_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R94-G1-maintainer-verdict.template.json",
+  "version": "0.1"
+}
