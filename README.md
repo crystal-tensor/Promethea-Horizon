@@ -1683,6 +1683,20 @@ R56 E3 row hash
 C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
 claims remain 0/false.
 
+`T-B1-004fg` / `T-B7-014p` reruns the R47/R38 source-backed discriminator on
+exactly the R56/R55 preflight-passing `O3-F4-C01` row. R57 passes 8/8
+requirements and accepts exactly one source-backed row at the R47 discriminator
+layer: row count `1`, materialized rows passed `1`, source-backed rows passed
+`1`, source-backed flag failures `0`, source provenance failures `0`, witness
+schema failures `0`, binding mismatch count `0`. R57 fixture hash
+`d8c11f1daaedf3c6d434f4ebce92687a1795e008b15f76da1fc6139b79ba9936`;
+R57 evaluation hash
+`33b3749a7991a17ccf8b29697e08f204c145a485e5283c0ffa5d09c926ca4cff`;
+R57 discriminator row hash
+`c4bab44fe8e9c3499352fc9ed939f291810380a88ff744243f90760d331c711c`.
+This is not full C2 closure: all-8 acceptance remains false, O3 remains open,
+reroute remains false, and B7/STV/resource/ledger credit remain 0/false.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.

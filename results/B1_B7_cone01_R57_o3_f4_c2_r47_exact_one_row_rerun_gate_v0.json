@@ -1,0 +1,326 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "next_gate": "Scale the same R47 discriminator to all 8 rows before C3-C7 or any B7 ledger retest.",
+    "resource_saving_claimed": false,
+    "what_is_not_supported": "R57 does not scale C2 to all 8 rows, does not close O3, does not permit reroute, and does not grant B7/STV/resource/ledger credit.",
+    "what_is_supported": "R57 reruns the R47/R38 discriminator on exactly the R56 preflight-passing C01 row and accepts one source-backed row at the discriminator layer."
+  },
+  "last_updated": "2026-07-08",
+  "linked_benchmark_id": "B7",
+  "method": "b1_b7_cone01_r57_o3_f4_c2_r47_exact_one_row_rerun_gate_v0",
+  "model_status": "o3_f4_c2_c01_one_source_backed_row_accepted_all8_and_b7_still_open",
+  "r47_exact_one_row_packet": {
+    "e3_row_input": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e3_replacement_presubmission.json",
+    "evaluation": {
+      "accepted": false,
+      "binding_mismatch_count": 0,
+      "claim_boundary": "R57 accepts exactly one row at the R47 discriminator layer only; full C2 all-row closure, O3 closure, reroute, and B7 credit remain blocked.",
+      "contract_hash": "906da61aa3c205ebefe1caf001e3e2b86aeb74abcf89d1bbc6441f8c1137186f",
+      "discriminator_hash": "739204fd435eb58579b6e832c95b6c636e051da8a5cd51e165fa45852b1a6715",
+      "failed_reasons": [],
+      "fixture_hash": "d8c11f1daaedf3c6d434f4ebce92687a1795e008b15f76da1fc6139b79ba9936",
+      "full_contract_all8_accepted": false,
+      "input_artifact": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r57_r47_exact_one_row_fixture.json",
+      "input_artifact_sha256": "0011ca0858eae66b3c3b2dad57203e73a9b5c83fa58147f2e786aef22f2872c4",
+      "materialized_rows_passed": 1,
+      "r57_evaluation_hash": "33b3749a7991a17ccf8b29697e08f204c145a485e5283c0ffa5d09c926ca4cff",
+      "r57_exact_one_row_acceptance": true,
+      "required_row_count": 8,
+      "row_count": 1,
+      "row_results": [
+        {
+          "accepted": true,
+          "binding_hash_matches": true,
+          "challenge_id": "O3-F4-C01",
+          "failed_reasons": [],
+          "file_results": [
+            {
+              "actual_hash": "65ce74e3c3824fa7b38c393a0aa2439378c2e72eeb34ac8815a5cf0eeb19f81d",
+              "exists": true,
+              "expected_hash": "65ce74e3c3824fa7b38c393a0aa2439378c2e72eeb34ac8815a5cf0eeb19f81d",
+              "field": "replay_stdout_file",
+              "hash_matches": true,
+              "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e1_source_backed_replay.stdout.txt"
+            },
+            {
+              "actual_hash": "e0922fdb81e0370a7c231094b448235212e4591202410421736926a0fe1fffe3",
+              "exists": true,
+              "expected_hash": "e0922fdb81e0370a7c231094b448235212e4591202410421736926a0fe1fffe3",
+              "field": "source_circuit_file",
+              "hash_matches": true,
+              "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.source.qasm"
+            },
+            {
+              "actual_hash": "b7896e91e03ae5a50d58c547aaccffee9cedd2c714fa1ae22b0fb0280e3e0f6c",
+              "exists": true,
+              "expected_hash": "b7896e91e03ae5a50d58c547aaccffee9cedd2c714fa1ae22b0fb0280e3e0f6c",
+              "field": "candidate_circuit_file",
+              "hash_matches": true,
+              "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.candidate.qasm"
+            },
+            {
+              "actual_hash": "9367ab917681a2d79f3c91c84c25c318fa34b9fd81a3f19251a48c505987a347",
+              "exists": true,
+              "expected_hash": "9367ab917681a2d79f3c91c84c25c318fa34b9fd81a3f19251a48c505987a347",
+              "field": "same_unitary_witness_file",
+              "hash_matches": true,
+              "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e1_source_backed_replay_witness.json"
+            }
+          ],
+          "invalid_source_hash_fields": [],
+          "materialized_files_passed": true,
+          "max_unitary_replay_error": 0.0,
+          "missing_source_fields": [],
+          "replay_error_within_tolerance": true,
+          "same_unitary_certificate": true,
+          "smoke_only_not_c2_acceptance": false,
+          "source_backed_flags_passed": true,
+          "source_backed_replay": true,
+          "source_provenance_passed": true,
+          "witness_schema_passed": true,
+          "zero_credit_boundary_present": true
+        }
+      ],
+      "smoke_only_row_count": 0,
+      "source_backed_flag_failures": 0,
+      "source_backed_rows_passed": 1,
+      "source_provenance_failures": 0,
+      "witness_schema_failures": 0
+    },
+    "evaluation_output": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r57_r47_exact_one_row_evaluation.json",
+    "fixture": {
+      "all8_required_before_full_c2_closure": true,
+      "artifact_id": "B1-B7-cone01-O3-F4-C2-C01-r57-r47-exact-one-row-fixture",
+      "b7_credit_delta": 0,
+      "challenge_id": "O3-F4-C01",
+      "contract_hash": "906da61aa3c205ebefe1caf001e3e2b86aeb74abcf89d1bbc6441f8c1137186f",
+      "fixture_hash": "d8c11f1daaedf3c6d434f4ebce92687a1795e008b15f76da1fc6139b79ba9936",
+      "o3_closed": false,
+      "required_row_count_for_this_gate": 1,
+      "reroute_allowed": false,
+      "rows": [
+        {
+          "binding_payload": {
+            "candidate_circuit_hash": "b7896e91e03ae5a50d58c547aaccffee9cedd2c714fa1ae22b0fb0280e3e0f6c",
+            "challenge_id": "O3-F4-C01",
+            "max_unitary_replay_error": 0.0,
+            "replay_environment_hash": "dec2d3a17fa2c7a0a1050dbbb256745dee19c497c596f1409901d86963d87350",
+            "replay_stdout_hash": "65ce74e3c3824fa7b38c393a0aa2439378c2e72eeb34ac8815a5cf0eeb19f81d",
+            "same_unitary_witness_hash": "9367ab917681a2d79f3c91c84c25c318fa34b9fd81a3f19251a48c505987a347",
+            "source_circuit_hash": "e0922fdb81e0370a7c231094b448235212e4591202410421736926a0fe1fffe3",
+            "source_dataset_hash": "27c2e8ce786bb00e387337c6029f2277944393cc70311d39cc1fd34aeb5cadd8",
+            "source_presubmission_row_hash": "aadfa0c9d89cbe4e8adbd76ca889e641914bdc2c8bbf67348093f027ff319573",
+            "source_r56_evaluation_hash": "50554cd4d0b936ee58d47e9c9084ced573aa328fb953f9fbe88bb6a7e5d0eb8d",
+            "source_trace_hash": "ac0ade8a733d7a6aaec3fdd2d21feec6242efe7071c1835d9d32c91ea183e101",
+            "strict_tolerance": 1e-08,
+            "unitary_distance_metric": "single_qubit_rz_operator_norm",
+            "verifier_signature_hash": "cb2fa1a30b8b05f194646d6e9820198c336aeb17c060d58a15919a7bc1cf0900",
+            "verifier_version": "b1_b7_cone01_r57_o3_f4_c2_r47_exact_one_row_rerun_gate_v0"
+          },
+          "challenge_id": "O3-F4-C01",
+          "claim_boundary": "single-row R47 acceptance only; no C2 all-rows closure; O3 remains open; no reroute; no B7 credit; no STV credit",
+          "computed_unitary_distance": 0.0,
+          "declared_provenance_binding_hash": "566319996e8685398126ccd07a0136d5b24a8eb5b70aab5ab24e74bef39ea43e",
+          "execution_artifacts": {
+            "candidate_circuit_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.candidate.qasm",
+            "candidate_circuit_hash": "b7896e91e03ae5a50d58c547aaccffee9cedd2c714fa1ae22b0fb0280e3e0f6c",
+            "provenance_binding_hash": "566319996e8685398126ccd07a0136d5b24a8eb5b70aab5ab24e74bef39ea43e",
+            "replay_stdout_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e1_source_backed_replay.stdout.txt",
+            "replay_stdout_hash": "65ce74e3c3824fa7b38c393a0aa2439378c2e72eeb34ac8815a5cf0eeb19f81d",
+            "same_unitary_witness_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e1_source_backed_replay_witness.json",
+            "same_unitary_witness_hash": "9367ab917681a2d79f3c91c84c25c318fa34b9fd81a3f19251a48c505987a347",
+            "source_circuit_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.source.qasm",
+            "source_circuit_hash": "e0922fdb81e0370a7c231094b448235212e4591202410421736926a0fe1fffe3"
+          },
+          "max_unitary_replay_error": 0.0,
+          "r57_discriminator_row_hash": "c4bab44fe8e9c3499352fc9ed939f291810380a88ff744243f90760d331c711c",
+          "replay_environment_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_provenance/r39_c01/O3-F4-C01.replay_environment.json",
+          "replay_environment_sha256": "dec2d3a17fa2c7a0a1050dbbb256745dee19c497c596f1409901d86963d87350",
+          "same_unitary_certificate": true,
+          "same_unitary_witness_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e1_source_backed_replay_witness.json",
+          "same_unitary_witness_schema": "source_backed_unitary_equivalence_v1",
+          "same_unitary_witness_sha256": "9367ab917681a2d79f3c91c84c25c318fa34b9fd81a3f19251a48c505987a347",
+          "same_unitary_witness_verifier": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e2_same_unitary_verifier_transcript.json",
+          "smoke_only_not_c2_acceptance": false,
+          "source_backed_replay": true,
+          "source_dataset_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_provenance/r39_c01/O3-F4-C01.source_dataset.json",
+          "source_dataset_id": "qasmbench_medium_exact/gcm_h6.qasm::line1381::O3-F4-C01::r39_source_provenance",
+          "source_dataset_sha256": "27c2e8ce786bb00e387337c6029f2277944393cc70311d39cc1fd34aeb5cadd8",
+          "source_presubmission_row_hash": "aadfa0c9d89cbe4e8adbd76ca889e641914bdc2c8bbf67348093f027ff319573",
+          "source_target_id": "T-B1-004fg/T-B7-014p",
+          "source_trace_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_provenance/r39_c01/O3-F4-C01.source_trace.json",
+          "source_trace_id": "O3-F4-C01::r39_lineage_trace",
+          "source_trace_sha256": "ac0ade8a733d7a6aaec3fdd2d21feec6242efe7071c1835d9d32c91ea183e101",
+          "unitary_distance_metric": "single_qubit_rz_operator_norm",
+          "unitary_distance_passed": true,
+          "upstream_target_id": "T-B1-004ff/T-B7-014o",
+          "verifier_signature_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e3_verifier_signature_artifact.json",
+          "verifier_signature_sha256": "cb2fa1a30b8b05f194646d6e9820198c336aeb17c060d58a15919a7bc1cf0900"
+        }
+      ],
+      "source_e3_row_hash": "aadfa0c9d89cbe4e8adbd76ca889e641914bdc2c8bbf67348093f027ff319573",
+      "source_e3_row_input": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e3_replacement_presubmission.json",
+      "source_r56_evaluation_hash": "50554cd4d0b936ee58d47e9c9084ced573aa328fb953f9fbe88bb6a7e5d0eb8d",
+      "source_r56_result": "results/B1_B7_cone01_R56_o3_f4_c2_r51_rerun_on_e3_replacement_row_gate_v0.json",
+      "source_target_id": "T-B1-004fg/T-B7-014p",
+      "upstream_target_id": "T-B1-004ff/T-B7-014o"
+    },
+    "fixture_output": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r57_r47_exact_one_row_fixture.json",
+    "replacement_contract_output": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r57_source_backed_replacement.contract.json",
+    "source_r56_result": "results/B1_B7_cone01_R56_o3_f4_c2_r51_rerun_on_e3_replacement_row_gate_v0.json"
+  },
+  "requirements": [
+    {
+      "evidence": {
+        "r56_r47_rerun_performed": false,
+        "r56_r51_preflight_accepted": true,
+        "r56_r51_preflight_accepted_row_count": 1,
+        "r56_requirements_passed": 8
+      },
+      "label": "R56 is the upstream preflight gate and accepted exactly one row at R51",
+      "passed": true,
+      "requirement_id": "S1"
+    },
+    {
+      "evidence": {
+        "fixture_source_e3_row_hash": "aadfa0c9d89cbe4e8adbd76ca889e641914bdc2c8bbf67348093f027ff319573",
+        "r56_e3_row_hash": "aadfa0c9d89cbe4e8adbd76ca889e641914bdc2c8bbf67348093f027ff319573",
+        "r57_discriminator_row_hash": "c4bab44fe8e9c3499352fc9ed939f291810380a88ff744243f90760d331c711c"
+      },
+      "label": "R57 fixture is bound to the exact R56/R55 E3 replacement row",
+      "passed": true,
+      "requirement_id": "S2"
+    },
+    {
+      "evidence": {
+        "contract_hash": "906da61aa3c205ebefe1caf001e3e2b86aeb74abcf89d1bbc6441f8c1137186f",
+        "evaluation_contract_hash": "906da61aa3c205ebefe1caf001e3e2b86aeb74abcf89d1bbc6441f8c1137186f",
+        "input_artifact": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r57_r47_exact_one_row_fixture.json"
+      },
+      "label": "R57 reuses the R38/R47 source-backed discriminator contract",
+      "passed": true,
+      "requirement_id": "S3"
+    },
+    {
+      "evidence": {
+        "binding_hash_matches": true,
+        "failed_reasons": [],
+        "materialized_files_passed": true,
+        "row_accepted": true,
+        "source_backed_flags_passed": true,
+        "source_provenance_passed": true,
+        "witness_schema_passed": true,
+        "zero_credit_boundary_present": true
+      },
+      "label": "R57 row passes materialized files, source provenance, witness schema, binding, replay, and flags",
+      "passed": true,
+      "requirement_id": "S4"
+    },
+    {
+      "evidence": {
+        "r57_exact_one_row_acceptance": true,
+        "row_count": 1,
+        "source_backed_flag_failures": 0,
+        "source_backed_rows_passed": 1
+      },
+      "label": "R57 accepts exactly one source-backed row at the R47 layer",
+      "passed": true,
+      "requirement_id": "S5"
+    },
+    {
+      "evidence": {
+        "b7_credit_delta": 0,
+        "evaluation_accepted": false,
+        "full_contract_all8_accepted": false,
+        "o3_closed": false,
+        "reroute_allowed": false,
+        "zero_credit_ok": true
+      },
+      "label": "R57 does not promote exact-one-row acceptance into full C2/O3/reroute/B7 credit",
+      "passed": true,
+      "requirement_id": "S6"
+    },
+    {
+      "evidence": {
+        "remaining_open_obligations": [
+          "scale_R47_to_all_8_rows",
+          "C3_same_unitary_replay_certificate",
+          "C4_C5_same_access_denominator_comparison",
+          "C6_leakage_free_optimizer_trace",
+          "C7_machine_check_replay_bundle",
+          "B7_ledger_retest_after_full_C2_closure"
+        ]
+      },
+      "label": "R57 leaves all-8-row scaling and C3-C7 gates open",
+      "passed": true,
+      "requirement_id": "S7"
+    },
+    {
+      "evidence": {
+        "discriminator_hash": "739204fd435eb58579b6e832c95b6c636e051da8a5cd51e165fa45852b1a6715",
+        "evaluation_file_sha256": "eedc560a5cbb6399e17aaf6c08ba6d6a4d0eb413295035014bc83dca83c6f046",
+        "fixture_file_sha256": "0011ca0858eae66b3c3b2dad57203e73a9b5c83fa58147f2e786aef22f2872c4",
+        "fixture_hash": "d8c11f1daaedf3c6d434f4ebce92687a1795e008b15f76da1fc6139b79ba9936",
+        "r57_evaluation_hash": "33b3749a7991a17ccf8b29697e08f204c145a485e5283c0ffa5d09c926ca4cff"
+      },
+      "label": "R57 fixture and evaluation are hash-bound",
+      "passed": true,
+      "requirement_id": "S8"
+    }
+  ],
+  "runtime_seconds": 0.003627,
+  "source_target_id": "T-B1-004fg/T-B7-014p",
+  "status": "cone01_r57_o3_f4_c2_r47_accepts_exact_one_row_zero_b7_credit",
+  "summary": {
+    "accepted_source_backed_row_count": 1,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_space_time_volume_credit": 0,
+    "binding_mismatch_count": 0,
+    "c2_single_row_source_backed_accepted": true,
+    "c2_strict_replay_rows_accepted": false,
+    "discriminator_hash": "739204fd435eb58579b6e832c95b6c636e051da8a5cd51e165fa45852b1a6715",
+    "failed_requirement_ids": [],
+    "full_contract_all8_accepted": false,
+    "materialized_rows_passed": 1,
+    "o3_closed": false,
+    "r47_exact_one_row_accepted": true,
+    "r47_rerun_performed": true,
+    "r57_discriminator_row_hash": "c4bab44fe8e9c3499352fc9ed939f291810380a88ff744243f90760d331c711c",
+    "r57_evaluation_file_sha256": "eedc560a5cbb6399e17aaf6c08ba6d6a4d0eb413295035014bc83dca83c6f046",
+    "r57_evaluation_hash": "33b3749a7991a17ccf8b29697e08f204c145a485e5283c0ffa5d09c926ca4cff",
+    "r57_fixture_file_sha256": "0011ca0858eae66b3c3b2dad57203e73a9b5c83fa58147f2e786aef22f2872c4",
+    "r57_fixture_hash": "d8c11f1daaedf3c6d434f4ebce92687a1795e008b15f76da1fc6139b79ba9936",
+    "remaining_open_obligation_count": 6,
+    "remaining_open_obligations": [
+      "scale_R47_to_all_8_rows",
+      "C3_same_unitary_replay_certificate",
+      "C4_C5_same_access_denominator_comparison",
+      "C6_leakage_free_optimizer_trace",
+      "C7_machine_check_replay_bundle",
+      "B7_ledger_retest_after_full_C2_closure"
+    ],
+    "replacement_contract_hash": "906da61aa3c205ebefe1caf001e3e2b86aeb74abcf89d1bbc6441f8c1137186f",
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "row_count": 1,
+    "selected_challenge_id": "O3-F4-C01",
+    "smoke_only_row_count": 0,
+    "source_backed_flag_failures": 0,
+    "source_backed_rows_passed": 1,
+    "source_provenance_failures": 0,
+    "source_r56_e3_row_hash": "aadfa0c9d89cbe4e8adbd76ca889e641914bdc2c8bbf67348093f027ff319573",
+    "source_r56_evaluation_hash": "50554cd4d0b936ee58d47e9c9084ced573aa328fb953f9fbe88bb6a7e5d0eb8d",
+    "validation_error_count": 0,
+    "witness_schema_failures": 0
+  },
+  "title": "B1/B7 Cone01 R57 O3-F4 C2 R47 Exact-One-Row Rerun Gate",
+  "upstream_target_id": "T-B1-004ff/T-B7-014o",
+  "validation_errors": [],
+  "version": "0.1"
+}
