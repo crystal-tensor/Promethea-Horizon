@@ -2312,3 +2312,20 @@ preflight hash `881708dee9955519b1819027b0e49fb2c60cebd750a14255e81b3895b9de9383
 blocker queue hash `e9929538c9e3557b0cccab0e2399ad42b87fda3f9ab8fd9b8516109138335767`.
 The next real gate is a filled R95 transcript that can feed an R94 maintainer
 verdict.
+
+`T-B1-004gt` / `T-B7-016c` now adds the R96 review transcript validator gate.
+R96 converts the R95 transcript contract into runnable validator rules for a
+future source-backed maintainer review transcript. The validator inherits the
+R95 `30` required fields, `18` production-required fields, `6` evidence-file
+classes, and emits `18` validator gates. Running those rules on the current
+empty R95 transcript rejects it on `13` gates with `16` missing production
+fields. Review transcript accepted remains `false`, maintainer verdict accepted
+remains `false`, counter delta remains `0`, accepted external reproductions
+remain `0`, accepted external falsifications remain `0`, and
+`new_credit_delta` remains `0`. Validator-rules hash
+`9a0c3c7be2a9dc65a1ffc24d440c03f88a250999e666fbcc886109275cfc15e0`;
+empty-validation hash
+`ad2afc99328134a788d1b74bf36e55a87be2e261853199bc162fb85fe16b19f7`;
+blocker queue hash `fe11597c8f0457188373df4c2c5d1e73911abaf5d01262c63494e359f33b5ddf`.
+The next real gate is a filled R95 transcript that passes the R96 validator
+before any R94 maintainer verdict can count.

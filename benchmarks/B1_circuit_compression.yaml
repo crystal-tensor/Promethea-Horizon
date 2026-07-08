@@ -6940,6 +6940,42 @@ current_results:
     caveat: r95_defines_review_transcript_intake_but_accepts_no_transcript_verdict_or_new_credit
     report: ../results/B1_B7_cone01_R95_maintainer_review_transcript_intake_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_R95_maintainer_review_transcript_intake_gate.md
+  b1_b7_cone01_r96_review_transcript_validator_gate_v0:
+    circuits: 1
+    status: cone01_r96_review_transcript_validator_ready_no_valid_transcript_yet
+    model_status: r95_transcript_contract_ready_but_source_backed_transcript_missing
+    method: b1_b7_cone01_r96_review_transcript_validator_gate_v0
+    source_target_id: T-B1-004gt/T-B7-016c
+    upstream_target_id: T-B1-004gs/T-B7-016b
+    route_id: R83-G1-30-arbitrary-rotation-batch
+    source_b1_r95_maintainer_review_transcript_intake: ../results/B1_B7_cone01_R95_maintainer_review_transcript_intake_gate_v0.json
+    r96_validator_rules: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R96-G1-review-transcript-validator-rules.json
+    r96_empty_validation: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R96-G1-empty-review-transcript-validation.verdict.json
+    required_field_count: 30
+    production_required_field_count: 18
+    required_evidence_file_count: 6
+    validator_gate_count: 18
+    empty_transcript_rejected: true
+    review_transcript_accepted: false
+    maintainer_verdict_accepted: false
+    validation_failed_gate_count: 13
+    missing_production_field_count: 16
+    counter_delta: 0
+    accepted_external_reproduction_count: 0
+    accepted_external_falsification_count: 0
+    new_credit_delta: 0
+    o3_closed: false
+    resource_saving_claimed: false
+    physical_layout_claimed: false
+    validator_rules_hash: 9a0c3c7be2a9dc65a1ffc24d440c03f88a250999e666fbcc886109275cfc15e0
+    empty_validation_hash: ad2afc99328134a788d1b74bf36e55a87be2e261853199bc162fb85fe16b19f7
+    blocker_queue_hash: fe11597c8f0457188373df4c2c5d1e73911abaf5d01262c63494e359f33b5ddf
+    requirements_passed: 7
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r96_makes_r95_transcript_validation_runnable_but_accepts_no_transcript_or_new_credit
+    report: ../results/B1_B7_cone01_R96_review_transcript_validator_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_R96_review_transcript_validator_gate.md
   b1_b7_cone01_full_statevector_replay_probe_gate_v0:
     circuits: 1
     status: cone01_default_input_statevector_replay_probe_passed_not_symbolic_certificate

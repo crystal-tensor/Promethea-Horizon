@@ -1,0 +1,29 @@
+{
+  "artifact": "R96 post transcript validator blocker queue",
+  "blocker_queue_hash": "fe11597c8f0457188373df4c2c5d1e73911abaf5d01262c63494e359f33b5ddf",
+  "method": "b1_b7_cone01_r96_review_transcript_validator_gate_v0",
+  "queue": [
+    {
+      "blocker_id": "R96-G1-1",
+      "needed_artifact": "filled R95 transcript that passes all R96 validator gates",
+      "priority": 1,
+      "target_gate": "source_backed_r95_transcript_submission"
+    },
+    {
+      "blocker_id": "R96-G1-2",
+      "needed_artifact": "reviewer signature hash and independent reviewer identity",
+      "priority": 2,
+      "target_gate": "independent_reviewer_signature"
+    },
+    {
+      "blocker_id": "R96-G1-3",
+      "needed_artifact": "R94 maintainer verdict referencing the accepted R96 validation hash",
+      "priority": 3,
+      "target_gate": "r94_verdict_after_validated_transcript"
+    }
+  ],
+  "source_target_id": "T-B1-004gt/T-B7-016c",
+  "upstream_target_id": "T-B1-004gs/T-B7-016b",
+  "validation_hash": "ad2afc99328134a788d1b74bf36e55a87be2e261853199bc162fb85fe16b19f7",
+  "validator_rules_hash": "9a0c3c7be2a9dc65a1ffc24d440c03f88a250999e666fbcc886109275cfc15e0"
+}
