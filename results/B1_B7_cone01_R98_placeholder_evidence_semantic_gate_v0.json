@@ -1,0 +1,141 @@
+{
+  "artifact": "B1/B7 cone01 R98 placeholder evidence semantic gate",
+  "blocker_queue_hash": "68f0f0e8f86e34ee3e4e36ddb35afad48488e4dcff6a06c250f33feb491125aa",
+  "blocker_queue_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R98-G1-post-placeholder-semantic-blocker-queue.json",
+  "bundle_manifest_hash": "03a555b70877a9add69d3057b6c8561990d611e167b4aed946c1cb5fb11d0146",
+  "bundle_manifest_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R98-G1-placeholder-evidence-bundle-manifest.json",
+  "failed_requirement_ids": [],
+  "generated_at_unix": 1783549706,
+  "method": "b1_b7_cone01_r98_placeholder_evidence_semantic_gate_v0",
+  "model_status": "r97_materiality_ready_but_substantive_review_evidence_missing",
+  "payload_hash": "bc04b4f63af019766fdebf584f95503d19e79715c2ab8d2954e7e956b298d3b5",
+  "placeholder_transcript_hash": "bb13801253d24e26624eecd96ddfa1bb7badaf0901aae770ee3ae134ff008e18",
+  "placeholder_transcript_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R98-G1-placeholder-filled-review-transcript.json",
+  "requirement_count": 7,
+  "requirements": [
+    {
+      "evidence": {
+        "r97_materiality_rules_hash": "5a1392fe33f5069afae4d6422519842726059461307100a628eb051aff2809e5",
+        "r97_materiality_validation_hash": "d77d17cd95c8130f8ff19a05cfb06a308437daa183f9b211c96481900cd987ba",
+        "r97_payload_hash": "ef989635aef844480f67e8585d6ecb9036e9925b29ec6c6f822a2a6969c08d93"
+      },
+      "label": "R98 binds the R97 result, materiality rules, spoof validation, and blocker queue",
+      "passed": true,
+      "requirement_id": "A1"
+    },
+    {
+      "evidence": {
+        "bundle_manifest_hash": "03a555b70877a9add69d3057b6c8561990d611e167b4aed946c1cb5fb11d0146",
+        "evidence_file_count": 6
+      },
+      "label": "R98 emits a real placeholder evidence bundle with files whose hashes match",
+      "passed": true,
+      "requirement_id": "A2"
+    },
+    {
+      "evidence": {
+        "bundle_manifest_hash": "03a555b70877a9add69d3057b6c8561990d611e167b4aed946c1cb5fb11d0146",
+        "placeholder_transcript_hash": "bb13801253d24e26624eecd96ddfa1bb7badaf0901aae770ee3ae134ff008e18"
+      },
+      "label": "R98 emits a filled-looking transcript bound to the placeholder bundle",
+      "passed": true,
+      "requirement_id": "A3"
+    },
+    {
+      "evidence": {
+        "failed_gates": [
+          "no_placeholder_markers",
+          "command_transcript_has_replay_command",
+          "environment_manifest_has_recorded_identity",
+          "recomputed_rows_are_nonempty_and_marked_recomputed",
+          "double_count_test_has_explicit_false_decision",
+          "review_notes_have_substantive_rationale",
+          "semantic_validation_accepted"
+        ],
+        "semantic_validation_hash": "2fd9959eb5b9741ba0c32714bd8d5d4e5d7089bf7ec9a9d1558edd56d7a4c6d1"
+      },
+      "label": "R98 rejects placeholder evidence even though files exist and hashes match",
+      "passed": true,
+      "requirement_id": "A4"
+    },
+    {
+      "evidence": {
+        "accepted_external_falsification_count": 0,
+        "accepted_external_reproduction_count": 0,
+        "counter_delta": 0,
+        "maintainer_verdict_accepted": false,
+        "new_credit_delta": 0
+      },
+      "label": "R98 keeps maintainer verdict, external counters, and new credit at zero",
+      "passed": true,
+      "requirement_id": "A5"
+    },
+    {
+      "evidence": {
+        "o3_closed": false,
+        "physical_layout_claimed": false,
+        "resource_saving_claimed": false
+      },
+      "label": "R98 keeps O3, resource-saving, and physical-layout claims closed",
+      "passed": true,
+      "requirement_id": "A6"
+    },
+    {
+      "evidence": {
+        "blocker_ids": [
+          "R98-G1-1",
+          "R98-G1-2",
+          "R98-G1-3"
+        ],
+        "blocker_queue_hash": "68f0f0e8f86e34ee3e4e36ddb35afad48488e4dcff6a06c250f33feb491125aa"
+      },
+      "label": "R98 emits blockers for substantive replay, environment/rows, and review rationale",
+      "passed": true,
+      "requirement_id": "A7"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 7,
+  "semantic_validation_hash": "2fd9959eb5b9741ba0c32714bd8d5d4e5d7089bf7ec9a9d1558edd56d7a4c6d1",
+  "semantic_validation_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R98-G1-placeholder-evidence-semantic-validation.verdict.json",
+  "source_target_id": "T-B1-004gv/T-B7-016e",
+  "status": "cone01_r98_placeholder_evidence_rejected_no_semantic_review",
+  "stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R98-G1-placeholder-evidence-semantic.stdout.txt",
+  "stdout_sha256": "34f3e096eb17f512b3c5c7b4f901775a0a3ec7923f3f69cdf11fcf10981cd0b3",
+  "summary": {
+    "accepted_external_falsification_count": 0,
+    "accepted_external_reproduction_count": 0,
+    "all_files_exist": true,
+    "all_hashes_match": true,
+    "blocker_queue_hash": "68f0f0e8f86e34ee3e4e36ddb35afad48488e4dcff6a06c250f33feb491125aa",
+    "bundle_manifest_hash": "03a555b70877a9add69d3057b6c8561990d611e167b4aed946c1cb5fb11d0146",
+    "counter_delta": 0,
+    "evidence_file_count": 6,
+    "failed_requirement_ids": [],
+    "maintainer_verdict_accepted": false,
+    "method": "b1_b7_cone01_r98_placeholder_evidence_semantic_gate_v0",
+    "model_status": "r97_materiality_ready_but_substantive_review_evidence_missing",
+    "new_credit_delta": 0,
+    "o3_closed": false,
+    "payload_hash": "bc04b4f63af019766fdebf584f95503d19e79715c2ab8d2954e7e956b298d3b5",
+    "physical_layout_claimed": false,
+    "placeholder_transcript_hash": "bb13801253d24e26624eecd96ddfa1bb7badaf0901aae770ee3ae134ff008e18",
+    "placeholder_transcript_rejected": true,
+    "requirements_failed": 0,
+    "requirements_passed": 7,
+    "resource_saving_claimed": false,
+    "review_transcript_accepted": false,
+    "semantic_failed_gate_count": 7,
+    "semantic_validation_accepted": false,
+    "semantic_validation_hash": "2fd9959eb5b9741ba0c32714bd8d5d4e5d7089bf7ec9a9d1558edd56d7a4c6d1",
+    "source_target_id": "T-B1-004gv/T-B7-016e",
+    "status": "cone01_r98_placeholder_evidence_rejected_no_semantic_review",
+    "stdout_sha256": "34f3e096eb17f512b3c5c7b4f901775a0a3ec7923f3f69cdf11fcf10981cd0b3",
+    "upstream_target_id": "T-B1-004gu/T-B7-016d",
+    "validation_error_count": 0
+  },
+  "upstream_target_id": "T-B1-004gu/T-B7-016d",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "version": "0.1"
+}

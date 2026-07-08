@@ -2349,3 +2349,24 @@ materiality-validation hash
 blocker queue hash `86dd811d617c733bbba06642d6edd866645a8e2de2eab990df37e557c4008ff9`.
 The next real gate is a filled transcript with real in-repository evidence
 files whose bytes match every declared hash.
+
+`T-B1-004gv` / `T-B7-016e` now adds the R98 placeholder evidence semantic gate.
+R98 shows that file existence and SHA-256 materiality are necessary but still
+not sufficient. It creates `6` real placeholder evidence files, builds a
+filled-looking review transcript whose declared hashes match those files, and
+then rejects it on `7` semantic gates because the files contain placeholder
+content instead of a substantive replay command, recorded environment identity,
+nonempty recomputed rows, explicit double-count decision, and review rationale.
+Review transcript accepted remains `false`, maintainer verdict accepted remains
+`false`, counter delta remains `0`, accepted external reproductions remain `0`,
+accepted external falsifications remain `0`, and `new_credit_delta` remains
+`0`. Bundle-manifest hash
+`03a555b70877a9add69d3057b6c8561990d611e167b4aed946c1cb5fb11d0146`;
+placeholder-transcript hash
+`bb13801253d24e26624eecd96ddfa1bb7badaf0901aae770ee3ae134ff008e18`;
+semantic-validation hash
+`2fd9959eb5b9741ba0c32714bd8d5d4e5d7089bf7ec9a9d1558edd56d7a4c6d1`;
+blocker queue hash `68f0f0e8f86e34ee3e4e36ddb35afad48488e4dcff6a06c250f33feb491125aa`.
+The next real gate is a non-placeholder evidence bundle with an actual replay
+command, recorded environment, recomputed rows, double-count decision, and
+review rationale.
