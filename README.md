@@ -1434,6 +1434,20 @@ claims remain 0/false. The next useful PR must turn the dry-run scaffold into a
 real same-unitary verifier and replace the smoke flags with source-backed replay
 flags for `O3-F4-C01`.
 
+`T-B1-004eq` / `T-B7-013z` now makes the witness scaffold executable as a
+preflight, while still rejecting it as non-evidence for C2. It adds a
+hash-verifiable witness-preflight transcript and command manifest for
+`O3-F4-C01`. Source-provenance rows pass `1`; witness-schema rows pass `1`;
+witness-preflight rows pass `1`; witness-preflight failures drop from `8` to
+`7`; source-backed rows remain `0`; source-backed flag failures remain `8`.
+Single-row witness-preflight fixture hash
+`93cdfd2c153f052d28c1949e35a44e86a835d4c2ddab9d3859e42e079ff7437a`;
+evaluation hash `507326bb8120b51b1d4c1ea8a7d8d598178b76f2faddab1c9ce52b1904e008d8`.
+C2 remains unaccepted because R41 does not compute a unitary distance, does not
+turn the preflight into a same-unitary certificate, and does not mark the row
+source-backed. O3, reroute, B7 credit, STV credit, and resource-saving claims
+remain 0/false.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
