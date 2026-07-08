@@ -1,0 +1,30 @@
+{
+  "artifact": "R71 positive-delta PR packets",
+  "packet_hash": "1b5d7dc3ac4cba92d68c5fdd93104156bade30c9131330ef9dc3c125feb8a231",
+  "packets": [
+    {
+      "goal": "Submit line1381 occurrence-removal evidence with accepted_exit_route_count>=1 and occurrence_removal_delta>=1.",
+      "must_not_do": "Do not reuse structural CNOT delta alone as occurrence evidence.",
+      "packet_id": "R71-D1-line1381-positive-occurrence-delta"
+    },
+    {
+      "goal": "Submit a hash-bound proxy-T derivation with proxy_t_reduction_delta>=1.",
+      "must_not_do": "Do not count the R66 zero-credit ledger as positive proxy-T reduction.",
+      "packet_id": "R71-D2-proxy-t-positive-derivation"
+    },
+    {
+      "goal": "Prove line1378 overlap is excluded or accounted before line1381 delta is counted.",
+      "must_not_do": "Do not double-count the line1378/line1381 overlap window.",
+      "packet_id": "R71-D3-line1378-no-double-counting-audit"
+    },
+    {
+      "goal": "Run only after D1-D3 are accepted and a positive route is admitted.",
+      "must_not_do": "Do not request B7 credit from R70 or structural-only R71 evidence.",
+      "packet_id": "R71-D4-downstream-b7-nonzero-retest"
+    }
+  ],
+  "source_contract_hash": "6bd9e10356385dde634ce98fd2ceb7d258a42a3dfdbcce413082af9adea8f325",
+  "source_rejected_verdict_hash": "5fc20b5521825ddb1646027b92b2df79679b25e4d9274f85616f11bc94f4dd6b",
+  "source_target_id": "T-B1-004fu/T-B7-015d",
+  "upstream_target_id": "T-B1-004ft/T-B7-015c"
+}

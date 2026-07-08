@@ -1,0 +1,153 @@
+{
+  "artifacts": {
+    "contract": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R71-R1-positive-delta-ledger.contract.json",
+    "pr_packets": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R71-positive-delta-pr-packets.json",
+    "structural_only_fixture": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R71-R1-structural-only-delta.fixture.json",
+    "structural_only_verdict": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R71-R1-structural-only-delta.verdict.json",
+    "template": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R71-R1-positive-delta-ledger.template.json"
+  },
+  "claim_boundary": {
+    "next_gate": "Submit a source-backed positive delta ledger satisfying D1-D3, then run a downstream B7 nonzero retest.",
+    "what_is_not_supported": "R71 does not accept the structural-only fixture, does not accept an exit route, does not grant proxy-T or occurrence credit, and does not grant B7 credit.",
+    "what_is_supported": "R71 defines and runs a verifier for positive occurrence/proxy-T delta ledgers after the R70 full prefill."
+  },
+  "generated_at": "2026-07-08T17:32:39Z",
+  "requirements": [
+    {
+      "evidence": {
+        "r70_placeholder_field_count": 0,
+        "r70_prefilled_field_count": 29
+      },
+      "label": "R70 completed prefill is fully populated",
+      "passed": true,
+      "requirement_id": "V1"
+    },
+    {
+      "evidence": {
+        "acceptance_gate_count": 12,
+        "required_ledger_field_count": 23
+      },
+      "label": "R71 contract has required positive-delta fields and gates",
+      "passed": true,
+      "requirement_id": "V2"
+    },
+    {
+      "evidence": {
+        "template_hash": "01e196c34f639ce41293cb028331aa79e13a00620c84d0b2f26c5e88da31f1fb"
+      },
+      "label": "R71 template is intentionally incomplete",
+      "passed": true,
+      "requirement_id": "V3"
+    },
+    {
+      "evidence": {
+        "failed_gates": [
+          "occurrence_removal_positive",
+          "proxy_t_reduction_positive"
+        ],
+        "passed_gate_count": 12
+      },
+      "label": "structural-only delta fixture is rejected",
+      "passed": true,
+      "requirement_id": "V4"
+    },
+    {
+      "evidence": {
+        "b7_credit_delta": 0
+      },
+      "label": "R71 keeps B7 credit at zero until downstream nonzero retest",
+      "passed": true,
+      "requirement_id": "V5"
+    },
+    {
+      "evidence": {
+        "packet_hash": "1b5d7dc3ac4cba92d68c5fdd93104156bade30c9131330ef9dc3c125feb8a231"
+      },
+      "label": "R71 emits four next PR packets",
+      "passed": true,
+      "requirement_id": "V6"
+    },
+    {
+      "evidence": {},
+      "label": "R71 artifacts are written and hash-bound",
+      "passed": true,
+      "requirement_id": "V7"
+    }
+  ],
+  "structural_only_verdict": {
+    "accepted": false,
+    "accepted_exit_route_count": 1,
+    "artifact": "R71 positive-delta ledger verifier verdict",
+    "b7_credit_delta": 0,
+    "claim_boundary": "A ledger accepted by this verifier only permits a downstream nonzero B7 retest. It does not directly grant O3 closure, reroute, or B7 credit.",
+    "contract_hash": "6bd9e10356385dde634ce98fd2ceb7d258a42a3dfdbcce413082af9adea8f325",
+    "failed_gate_count": 2,
+    "failed_gates": [
+      "occurrence_removal_positive",
+      "proxy_t_reduction_positive"
+    ],
+    "gates": {
+      "accepted_exit_route_positive": true,
+      "b7_not_requested_before_delta_acceptance": true,
+      "claim_boundary_blocks_o3_reroute_b7": true,
+      "dropped_overlap_lines_match": true,
+      "line1378_no_double_counting_hash_matches": true,
+      "line1381_evidence_hash_matches": true,
+      "machine_replay_stdout_hash_matches": true,
+      "occurrence_removal_positive": false,
+      "proxy_t_reduction_positive": false,
+      "r66_packet_hash_matches": true,
+      "r70_prefill_file_hash_matches": true,
+      "required_fields_complete": true,
+      "selected_lines_match": true,
+      "structural_cnot_delta_positive": true
+    },
+    "ledger_id": "B1-B7-cone01-R71-structural-only-delta-fixture",
+    "method": "b1_b7_cone01_r71_positive_delta_ledger_verifier_gate_v0",
+    "missing_required_fields": [],
+    "occurrence_removal_delta": 0,
+    "passed_gate_count": 12,
+    "proxy_t_reduction_delta": 0,
+    "source_target_id": "T-B1-004fu/T-B7-015d",
+    "verdict_hash": "5fc20b5521825ddb1646027b92b2df79679b25e4d9274f85616f11bc94f4dd6b"
+  },
+  "summary": {
+    "acceptance_gate_count": 12,
+    "accepted_exit_route_count": 0,
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_nonzero_retest_allowed": false,
+    "contract_hash": "6bd9e10356385dde634ce98fd2ceb7d258a42a3dfdbcce413082af9adea8f325",
+    "failed_requirement_ids": [],
+    "method": "b1_b7_cone01_r71_positive_delta_ledger_verifier_gate_v0",
+    "model_status": "r70_complete_prefill_rejected_until_positive_delta_ledger_accepts",
+    "o3_closed": false,
+    "payload_hash": "6274a78d39110c97efe7903f3783e402ce4fa46febe59eed7f286cf7d789fb2a",
+    "pr_packet_hash": "1b5d7dc3ac4cba92d68c5fdd93104156bade30c9131330ef9dc3c125feb8a231",
+    "r70_placeholder_field_count": 0,
+    "r70_prefilled_field_count": 29,
+    "required_ledger_field_count": 23,
+    "requirement_count": 7,
+    "requirements_failed": 0,
+    "requirements_passed": 7,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "source_target_id": "T-B1-004fu/T-B7-015d",
+    "status": "cone01_r71_positive_delta_ledger_verifier_ready_zero_credit",
+    "structural_only_failed_gate_count": 2,
+    "structural_only_failed_gates": [
+      "occurrence_removal_positive",
+      "proxy_t_reduction_positive"
+    ],
+    "structural_only_fixture_accepted": false,
+    "structural_only_passed_gate_count": 12,
+    "structural_only_verdict_hash": "5fc20b5521825ddb1646027b92b2df79679b25e4d9274f85616f11bc94f4dd6b",
+    "template_hash": "01e196c34f639ce41293cb028331aa79e13a00620c84d0b2f26c5e88da31f1fb",
+    "upstream_target_id": "T-B1-004ft/T-B7-015c",
+    "validation_error_count": 0
+  },
+  "title": "B1/B7 Cone01 R71 Positive-Delta Ledger Verifier Gate",
+  "version": "0.1"
+}

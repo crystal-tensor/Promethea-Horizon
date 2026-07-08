@@ -1975,3 +1975,14 @@ The structural CNOT delta remains 795 -> 789, but this is still not an accepted
 exit route: accepted route count, occurrence removal, proxy-T reduction, and B7
 credit all remain 0. The next required PR is a positive occurrence/proxy-T
 delta ledger that can survive the R67 accepted-exit-route contract.
+
+`T-B1-004fu` / `T-B7-015d` now turns that positive-delta requirement into an
+executable verifier. R71 emits a 23-field positive-delta ledger contract, a
+fillable template, a structural-only rejected fixture, and four PR packets for
+line1381 occurrence delta, proxy-T derivation, line1378 no-double-counting, and
+downstream B7 retest. The verifier passes its own 7/7 requirements and rejects
+the structural-only fixture because `occurrence_removal_positive` and
+`proxy_t_reduction_positive` fail. This means the 795 -> 789 CNOT signal is
+preserved as useful evidence, but it is still not allowed to become accepted
+route credit, proxy-T credit, or B7 credit without a source-backed positive
+delta ledger.
