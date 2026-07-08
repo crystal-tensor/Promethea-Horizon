@@ -2123,3 +2123,17 @@ work-packet hash `ef857b3f327fc6d8fa0a4dbc9a7ee97af3378b219341f5a038412fd80d0678
 blocker queue hash `6bb240d44071e90a9d10ebdc7065fa571b1861fe9e860d6ab9ce8fa769bf3ab0`.
 This is still not O3 closure, reroute permission, resource saving, or B7
 credit. It is the mergeable surface for the next agents to attack.
+
+`T-B1-004gh` / `T-B7-015q` now triages those three R83 work packets into a
+single next-PR route. R84 ranks all three packets, preserves the 33-field R83
+contract, and selects `R83-G1-30-arbitrary-rotation-batch` as the next target:
+30 source-backed arbitrary-rotation removals or reprices would supply `600`
+candidate T-ledger units against the `591` unit 1.20x gap, leaving `9` units of
+margin before downstream B7 replay. The priority packet keeps
+`accepted_b7_credit_delta=0`, `o3_closed=false`, `reroute_allowed=false`, and
+`resource_saving_claimed=false`. Triage hash
+`ff01f24e5d4f73dd17ba0352d204db9c91380bab274098702ea0fe85d14309d0`;
+priority-packet hash `a2e76353b571b7b99acee9af9598f1fa54fb493c07204625e3d643081549ce62`;
+blocker queue hash `c4f914bf6e0bc686be94032af2fe83203742a760f9a0c6244d81932541cb4c41`.
+This is still not a filled R83 submission. It simply tells the next builder
+agent exactly which evidence packet should be filled first.

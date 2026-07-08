@@ -1,0 +1,30 @@
+{
+  "accepted_b7_credit_delta": 0,
+  "artifact": "R84 work-packet triage blocker queue",
+  "blocker_queue_hash": "c4f914bf6e0bc686be94032af2fe83203742a760f9a0c6244d81932541cb4c41",
+  "method": "b1_b7_cone01_r84_work_packet_triage_gate_v0",
+  "priority_packet_hash": "a2e76353b571b7b99acee9af9598f1fa54fb493c07204625e3d643081549ce62",
+  "queue": [
+    {
+      "blocker_id": "R84-B7-1",
+      "needed_artifact": "30 source-backed arbitrary-rotation removal/reprice rows",
+      "priority": 1,
+      "target_gate": "fill_R83_G1_rotation_rows"
+    },
+    {
+      "blocker_id": "R84-B7-2",
+      "needed_artifact": "logical-T mapping ledger, STV reprice ledger, and no-double-counting ledger",
+      "priority": 2,
+      "target_gate": "bind_G1_rows_to_logical_T_and_STV"
+    },
+    {
+      "blocker_id": "R84-B7-3",
+      "needed_artifact": "rerun B7 gap ledger before any nonzero B7 credit",
+      "priority": 3,
+      "target_gate": "downstream_B7_replay_after_filled_submission"
+    }
+  ],
+  "source_target_id": "T-B1-004gh/T-B7-015q",
+  "triage_hash": "ff01f24e5d4f73dd17ba0352d204db9c91380bab274098702ea0fe85d14309d0",
+  "upstream_target_id": "T-B1-004gg/T-B7-015p"
+}

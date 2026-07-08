@@ -1,0 +1,135 @@
+{
+  "artifact": "B1/B7 cone01 R84 work-packet triage gate",
+  "blocker_queue_hash": "c4f914bf6e0bc686be94032af2fe83203742a760f9a0c6244d81932541cb4c41",
+  "blocker_queue_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R84-work-packet-triage-blocker-queue.json",
+  "failed_requirement_ids": [],
+  "generated_at_unix": 1783542002,
+  "method": "b1_b7_cone01_r84_work_packet_triage_gate_v0",
+  "model_status": "r83_gap_closure_packets_ranked_for_next_filled_submission",
+  "payload_hash": "a2a10eb75dae2fed1d6e9331522af1fae8b298e18c8a5dafae086c9a64355383",
+  "priority_packet_hash": "a2e76353b571b7b99acee9af9598f1fa54fb493c07204625e3d643081549ce62",
+  "priority_packet_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R84-priority-gap-closure-packet.json",
+  "requirement_count": 7,
+  "requirements": [
+    {
+      "evidence": {
+        "r83_payload_hash": "5277295694acf0904c33fefff8c8e17f621000f49918d3526f663c430f07c7a8",
+        "r83_requirements_failed": 0,
+        "r83_result": "results/B1_B7_cone01_R83_b7_gap_closure_contract_gate_v0.json"
+      },
+      "label": "R83 upstream contract is complete and zero-credit",
+      "passed": true,
+      "requirement_id": "A1"
+    },
+    {
+      "evidence": {
+        "contract_hash": "3c306524d0fa44b789b6723608d8f919c1847dcce622ca90104b1d9af51f7c43",
+        "work_packet_hash": "ef857b3f327fc6d8fa0a4dbc9a7ee97af3378b219341f5a038412fd80d06785a"
+      },
+      "label": "R84 validates R83 contract and work-packet hashes",
+      "passed": true,
+      "requirement_id": "A2"
+    },
+    {
+      "evidence": {
+        "ranked_packet_ids": [
+          "R83-G1-30-arbitrary-rotation-batch",
+          "R83-G2-591-proxy-t-row-batch",
+          "R83-G3-full-b7-reprice"
+        ],
+        "triage_hash": "ff01f24e5d4f73dd17ba0352d204db9c91380bab274098702ea0fe85d14309d0"
+      },
+      "label": "R84 ranks all three R83 work packets",
+      "passed": true,
+      "requirement_id": "A3"
+    },
+    {
+      "evidence": {
+        "candidate_t_ledger_reduction": 600,
+        "margin_over_gap": 9,
+        "recommended_packet_id": "R83-G1-30-arbitrary-rotation-batch"
+      },
+      "label": "R84 selects the quantified 30-rotation batch as next PR",
+      "passed": true,
+      "requirement_id": "A4"
+    },
+    {
+      "evidence": {
+        "priority_packet_hash": "a2e76353b571b7b99acee9af9598f1fa54fb493c07204625e3d643081549ce62",
+        "required_submission_field_count": 33
+      },
+      "label": "R84 priority packet preserves all R83 production fields",
+      "passed": true,
+      "requirement_id": "A5"
+    },
+    {
+      "evidence": {
+        "accepted_b7_credit_delta": 0,
+        "o3_closed": false,
+        "reroute_allowed": false,
+        "resource_saving_claimed": false,
+        "template_preflight_accepted": false
+      },
+      "label": "R84 leaves placeholder rejection and claim boundary intact",
+      "passed": true,
+      "requirement_id": "A6"
+    },
+    {
+      "evidence": {
+        "blocker_ids": [
+          "R84-B7-1",
+          "R84-B7-2",
+          "R84-B7-3"
+        ],
+        "blocker_queue_hash": "c4f914bf6e0bc686be94032af2fe83203742a760f9a0c6244d81932541cb4c41"
+      },
+      "label": "R84 emits blockers for filled G1 evidence and downstream replay",
+      "passed": true,
+      "requirement_id": "A7"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 7,
+  "source_target_id": "T-B1-004gh/T-B7-015q",
+  "status": "cone01_r84_work_packet_triage_ready_no_credit",
+  "stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R84-work-packet-triage.stdout.txt",
+  "stdout_sha256": "92f2d49e0eabb832fadeeb6f4d866159afcdbd947555d6d86cf9402cd0ec4c98",
+  "summary": {
+    "accepted_b7_credit_delta": 0,
+    "accepted_b7_space_time_volume_credit": 0,
+    "blocker_queue_hash": "c4f914bf6e0bc686be94032af2fe83203742a760f9a0c6244d81932541cb4c41",
+    "candidate_after_t_ledger_if_accepted": 5624,
+    "failed_requirement_ids": [],
+    "method": "b1_b7_cone01_r84_work_packet_triage_gate_v0",
+    "minimum_accepted_t_ledger_reduction": 591,
+    "model_status": "r83_gap_closure_packets_ranked_for_next_filled_submission",
+    "o3_closed": false,
+    "payload_hash": "a2a10eb75dae2fed1d6e9331522af1fae8b298e18c8a5dafae086c9a64355383",
+    "priority_packet_hash": "a2e76353b571b7b99acee9af9598f1fa54fb493c07204625e3d643081549ce62",
+    "production_required_field_count": 33,
+    "ranked_work_packet_count": 3,
+    "recommended_packet_candidate_t_ledger_reduction": 600,
+    "recommended_packet_id": "R83-G1-30-arbitrary-rotation-batch",
+    "recommended_packet_margin_over_gap": 9,
+    "requirements_failed": 0,
+    "requirements_passed": 7,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "source_r83_contract_hash": "3c306524d0fa44b789b6723608d8f919c1847dcce622ca90104b1d9af51f7c43",
+    "source_r83_payload_hash": "5277295694acf0904c33fefff8c8e17f621000f49918d3526f663c430f07c7a8",
+    "source_r83_work_packet_hash": "ef857b3f327fc6d8fa0a4dbc9a7ee97af3378b219341f5a038412fd80d06785a",
+    "source_target_id": "T-B1-004gh/T-B7-015q",
+    "status": "cone01_r84_work_packet_triage_ready_no_credit",
+    "target_1_20_max_after_t_ledger": 5632,
+    "template_preflight_accepted": false,
+    "triage_hash": "ff01f24e5d4f73dd17ba0352d204db9c91380bab274098702ea0fe85d14309d0",
+    "upstream_target_id": "T-B1-004gg/T-B7-015p",
+    "validation_error_count": 0
+  },
+  "triage_hash": "ff01f24e5d4f73dd17ba0352d204db9c91380bab274098702ea0fe85d14309d0",
+  "triage_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R84-work-packet-triage.json",
+  "upstream_target_id": "T-B1-004gg/T-B7-015p",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "version": "0.1"
+}
