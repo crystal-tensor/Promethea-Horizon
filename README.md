@@ -1521,6 +1521,21 @@ next useful PR should add executable witness-preflight transcripts for
 `O3-F4-C02` through `O3-F4-C08`, then rerun the source-backed discriminator
 before C3-C7.
 
+`T-B1-004ev` / `T-B7-014e` now binds executable witness-preflight transcripts
+and command manifests for the 7 C2 rows that lacked preflight coverage after
+R45. Materialized rows pass `8`; source-provenance rows pass `8`; witness-
+schema rows pass `8`; witness-preflight rows now pass `8`; unitary-distance
+rows remain `8`; source-backed rows remain `0`; source-backed flag failures
+remain `8`. Remaining witness-preflight fixture hash
+`7665b3e23fe6663f2c4335a11b53ef0c9b5bb0bad9716cf0eb200f09274d5cbe`;
+evaluation hash `f2ab073dad9f63d0d592a3901b38b19d3741225ac25ea5f9b915c7a109cd478b`.
+C2 remains unaccepted because R46 is executable preflight coverage, not
+source-backed replay, not a same-unitary certificate, and not an O3 closure.
+O3, reroute, B7 credit, STV credit, and resource-saving claims remain 0/false.
+The next useful PR should rerun the source-backed discriminator against the
+all-row provenance/schema/preflight/distance bundle and keep it failing until
+real source-backed replay evidence exists.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
