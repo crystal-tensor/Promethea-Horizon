@@ -6321,6 +6321,36 @@ current_results:
     caveat: r77_passes_source_closure_axis_but_rejects_positive_route_promotion_and_b7_credit
     report: ../results/B1_B7_cone01_R77_r76_hardened_preflight_rerun_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_R77_r76_hardened_preflight_rerun_gate.md
+  b1_b7_cone01_r78_positive_route_packet_contract_gate_v0:
+    circuits: 1
+    status: cone01_r78_positive_route_packet_contract_emitted_zero_credit
+    model_status: post_r77_positive_route_packet_required_before_b7_retest
+    method: b1_b7_cone01_r78_positive_route_packet_contract_gate_v0
+    source_target_id: T-B1-004gb/T-B7-015k
+    upstream_target_id: T-B1-004ga/T-B7-015j
+    source_r77_r76_hardened_preflight_rerun: ../results/B1_B7_cone01_R77_r76_hardened_preflight_rerun_gate_v0.json
+    r78_positive_route_contract: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R78-positive-route-packet.contract.json
+    r78_positive_route_template: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R78-positive-route-packet.template.json
+    r78_current_empty_preflight: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R78-positive-route-packet.current-empty-preflight.verdict.json
+    r78_blocker_queue: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R78-positive-route-packet-blocker-queue.json
+    contract_targets: [accepted_exit_route_positive, accepted_occurrence_positive, accepted_proxy_t_positive]
+    production_required_field_count: 26
+    template_preflight_accepted: false
+    template_failed_gate_count: 5
+    template_missing_required_field_count: 15
+    accepted_exit_route_count: 0
+    accepted_occurrence_removal: 0
+    accepted_proxy_t_reduction: 0
+    b7_nonzero_retest_allowed: false
+    b7_credit_delta: 0
+    contract_hash: b19311a49942a304e8e2e8a471163d0f919d8224b207330a080b86f5ce3e058c
+    blocker_queue_hash: a5580cfc2c5d5972beab9bb7a7c525461494236928a1d1ffe32b39ade127c51c
+    requirements_passed: 8
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r78_contract_only_current_template_rejected_no_positive_route_or_b7_credit
+    report: ../results/B1_B7_cone01_R78_positive_route_packet_contract_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_R78_positive_route_packet_contract_gate.md
   b1_b7_cone01_full_statevector_replay_probe_gate_v0:
     circuits: 1
     status: cone01_default_input_statevector_replay_probe_passed_not_symbolic_certificate

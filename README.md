@@ -2049,3 +2049,15 @@ reduction remain 0, so `b7_nonzero_retest_allowed=false`, B7 credit remains 0,
 and O3/reroute/resource claims remain blocked. Requirements pass 8/8; the next
 useful artifact is a real accepted positive-route packet, not another
 source-closure packet.
+
+`T-B1-004gb` / `T-B7-015k` now turns that next artifact into a concrete
+contract. R78 emits the positive-route packet contract, template, current-empty
+preflight verdict, stdout, and blocker queue. The contract targets exactly the
+three post-R77 promotion gates: `accepted_exit_route_positive`,
+`accepted_occurrence_positive`, and `accepted_proxy_t_positive`, while preserving
+the R76 no-double-counting ledger. The current template is intentionally
+rejected on 5 gates with 15 missing production fields; accepted exit routes,
+occurrence removal, accepted proxy-T reduction, B7 nonzero retest permission,
+and B7 credit remain 0/false. Requirements pass 8/8; the next useful PR must
+fill R78-A/B/C/D with replay, certificate, occurrence, proxy-T, and
+no-double-counting preservation evidence.

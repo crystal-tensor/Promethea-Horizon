@@ -3221,6 +3221,40 @@ current_results:
     caveat: r77_keeps_b7_zero_until_positive_route_occurrence_and_proxy_t_acceptance_all_pass
     report: ../results/B1_B7_cone01_R77_r76_hardened_preflight_rerun_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_R77_r76_hardened_preflight_rerun_gate.md
+  b1_b7_cone01_r78_positive_route_packet_contract_gate_v0:
+    status: cone01_r78_positive_route_packet_contract_emitted_zero_credit
+    method: b1_b7_cone01_r78_positive_route_packet_contract_gate_v0
+    source_b1_r78_positive_route_packet_contract: ../results/B1_B7_cone01_R78_positive_route_packet_contract_gate_v0.json
+    source_b1_r77_r76_hardened_preflight_rerun: ../results/B1_B7_cone01_R77_r76_hardened_preflight_rerun_gate_v0.json
+    r78_positive_route_contract: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R78-positive-route-packet.contract.json
+    r78_current_empty_preflight: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R78-positive-route-packet.current-empty-preflight.verdict.json
+    r78_blocker_queue: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R78-positive-route-packet-blocker-queue.json
+    source_target_id: T-B1-004gb/T-B7-015k
+    upstream_target_id: T-B1-004ga/T-B7-015j
+    contract_targets: [accepted_exit_route_positive, accepted_occurrence_positive, accepted_proxy_t_positive]
+    template_preflight_accepted: false
+    template_failed_gate_count: 5
+    accepted_exit_route_count: 0
+    accepted_occurrence_removal: 0
+    accepted_proxy_t_reduction: 0
+    b7_dependency_credit_allowed: false
+    b7_resource_credit_allowed: false
+    b7_ft_ledger_credit_allowed: false
+    b7_nonzero_retest_allowed: false
+    b7_credit_delta: 0
+    b7_space_time_volume_credit: 0
+    o3_closed: false
+    reroute_allowed: false
+    resource_saving_claimed: false
+    b7_ledger_improvement_claimed: false
+    contract_hash: b19311a49942a304e8e2e8a471163d0f919d8224b207330a080b86f5ce3e058c
+    blocker_queue_hash: a5580cfc2c5d5972beab9bb7a7c525461494236928a1d1ffe32b39ade127c51c
+    requirements_passed: 8
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r78_does_not_unlock_b7_until_accepted_route_occurrence_proxy_t_and_no_double_counting_evidence_pass
+    report: ../results/B1_B7_cone01_R78_positive_route_packet_contract_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_R78_positive_route_packet_contract_gate.md
   b2_calibrated_dependency_credit_gate_v0:
     status: b2_calibrated_dependency_credit_rejected_missing_hardware_evidence
     method: b7_b2_calibrated_dependency_credit_gate_v0
