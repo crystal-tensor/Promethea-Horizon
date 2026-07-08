@@ -1654,6 +1654,21 @@ E2 replacement row hash
 C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
 claims remain 0/false.
 
+`T-B1-004fe` / `T-B7-014n` satisfies the third R52 evidence slot for
+`O3-F4-C01`: `E3-verifier-signature-artifact`. R55 replaces the R50 signature
+blocker note with a deterministic evidence signature bound to the R53 E1 witness,
+the R54 E2 transcript, and the R54 E2 replacement row. E1, E2, and E3 are now
+true; evidence slots satisfied are `3/3`; `smoke_only_not_c2_acceptance` is now
+false in the E3 replacement row; accepted source-backed rows remain `0` because
+R51 and R47 have not been rerun. E3 signature hash
+`071454fcb51b9379f8fd084bde287509b53b3f574358690d82ef9e25084c15d0`;
+E3 artifact hash
+`fd08ea43b47f64855901e80e09166ce2592994a0628e352322d753c2052620b4`;
+E3 replacement row hash
+`aadfa0c9d89cbe4e8adbd76ca889e641914bdc2c8bbf67348093f027ff319573`.
+C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
+claims remain 0/false.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
