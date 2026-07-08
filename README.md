@@ -1614,6 +1614,20 @@ evaluation hash `0e5f9400f588f2fa6b7baaeb7f40ddc31cfeb841c2583e21cc1757084b838bd
 C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
 claims remain 0/false.
 
+`T-B1-004fb` / `T-B7-014k` converts the three remaining R51 semantic blockers
+into a hash-bound evidence-triplet route for `O3-F4-C01`. R52 defines three
+replacement slots: `E1-source-backed-replay-witness` for `source_backed_replay`,
+`E2-real-same-unitary-verifier-transcript` for `same_unitary_certificate`, and
+`E3-verifier-signature-artifact` for `smoke_only_not_c2_acceptance=false`.
+The gate passes 8/8 requirements while rejecting direct promotion of the current
+smoke witness, R40 dry-run verifier, and R50 signature blocker note. Current
+evidence slots satisfied remain `0/3`; current blocker files present are `3`;
+accepted source-backed rows remain `0`. Route hash
+`77f3a833e73eb7556e484001da3e0b7abe63bca1c58455cf4d84424d51d823a7`;
+route packet hash `f447c154a88e83744de319ce50802c3997efe00dc2931dd5becd395e0deaf8e2`.
+C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
+claims remain 0/false.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.

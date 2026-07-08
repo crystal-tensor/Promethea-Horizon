@@ -1,0 +1,97 @@
+{
+  "acceptance_order": [
+    "E1-source-backed-replay-witness",
+    "E2-real-same-unitary-verifier-transcript",
+    "E3-verifier-signature-artifact",
+    "rerun R51",
+    "rerun R47"
+  ],
+  "current_blocker_assessment": {
+    "current_triplet_satisfies_evidence_slots": false,
+    "direct_promotion_of_current_row_rejected": true,
+    "dry_run_verifier_scope": "checks_schema_shape_only_not_unitary_equivalence",
+    "signature_blocker_scope": "not_a_verifier_signature_not_a_same_unitary_certificate",
+    "smoke_witness_scope": "single_qubit_rz_smoke_artifact_not_source_backed_c2_acceptance"
+  },
+  "current_files": {
+    "dry_run_verifier": {
+      "exists": true,
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/witness_scaffolds/r40_c01/O3-F4-C01.witness_verifier.json",
+      "sha256": "f9b06d64d61fdcde46279eb86b54b5f5ef942d00f5ca943dbbb95ebb56d59a68"
+    },
+    "signature_blocker": {
+      "exists": true,
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.verifier_signature_blocker.json",
+      "sha256": "c014f12b6db07bd318cb3d223f7d38d275e5fdaf5f2e0514f72de4d951426308"
+    },
+    "smoke_witness": {
+      "exists": true,
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/unitary_distance/r43_all_rows/O3-F4-C01.unitary_distance_witness.json",
+      "sha256": "cfbd5f69f901f12124a3395ef8522d149f507e8aa8d97624eda6d7d11fa33fd2"
+    }
+  },
+  "current_flag_failures": [
+    "source_backed_replay",
+    "same_unitary_certificate",
+    "smoke_only_not_c2_acceptance"
+  ],
+  "hard_reject_if": [
+    "any E-slot is satisfied by the current smoke witness, dry-run verifier, or blocker note",
+    "any boolean flag is flipped before its corresponding evidence slot passes",
+    "R51 does not pass 8/8 after the replacement row is submitted",
+    "R47 does not accept exactly one source-backed row before scaling",
+    "any result claims C2, O3 closure, reroute, B7 credit, STV credit, or resource saving"
+  ],
+  "required_evidence_slots": [
+    {
+      "must_replace": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/unitary_distance/r43_all_rows/O3-F4-C01.unitary_distance_witness.json",
+      "required_properties": [
+        "binds source_dataset_file and source_trace_file by sha256",
+        "binds source_circuit_file and candidate_circuit_file by sha256",
+        "runs a replay command whose stdout hash is captured",
+        "states why the replay is not only the R37/R43 smoke artifact"
+      ],
+      "slot_id": "E1-source-backed-replay-witness",
+      "unblocks_flag": "source_backed_replay"
+    },
+    {
+      "must_replace": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/witness_scaffolds/r40_c01/O3-F4-C01.witness_verifier.json",
+      "required_properties": [
+        "executes the verifier rather than only checking schema strings",
+        "records verifier command, version, inputs, stdout, and hash",
+        "checks same-unitary equivalence against the source-backed witness",
+        "rejects dry-run scope values such as checks_schema_shape_only_not_unitary_equivalence"
+      ],
+      "slot_id": "E2-real-same-unitary-verifier-transcript",
+      "unblocks_flag": "same_unitary_certificate"
+    },
+    {
+      "must_replace": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.verifier_signature_blocker.json",
+      "required_properties": [
+        "is not the R50 blocker note",
+        "signs the source-backed replay witness and verifier transcript hashes",
+        "keeps zero-credit claim-boundary tokens for no C2, O3, reroute, B7, and STV",
+        "allows smoke_only_not_c2_acceptance=false only after E1 and E2 pass"
+      ],
+      "slot_id": "E3-verifier-signature-artifact",
+      "unblocks_flag": "smoke_only_not_c2_acceptance"
+    }
+  ],
+  "route_hash": "77f3a833e73eb7556e484001da3e0b7abe63bca1c58455cf4d84424d51d823a7",
+  "route_id": "B1-B7-cone01-O3-F4-C2-C01-evidence-triplet-route",
+  "route_packet_hash": "f447c154a88e83744de319ce50802c3997efe00dc2931dd5becd395e0deaf8e2",
+  "selected_challenge_id": "O3-F4-C01",
+  "source_r50_presubmission_row_hash": "3f7be50125146f8d4c68fd83f3d7526a25960e89b9584416e8fa6b5f2068059f",
+  "source_r51_evaluation_hash": "0e5f9400f588f2fa6b7baaeb7f40ddc31cfeb841c2583e21cc1757084b838bde",
+  "source_target_id": "T-B1-004fb/T-B7-014k",
+  "upstream_target_id": "T-B1-004fa/T-B7-014j",
+  "zero_credit_boundary": {
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_space_time_volume_credit": 0,
+    "c2_accepted": false,
+    "o3_closed": false,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false
+  }
+}
