@@ -2329,3 +2329,23 @@ empty-validation hash
 blocker queue hash `fe11597c8f0457188373df4c2c5d1e73911abaf5d01262c63494e359f33b5ddf`.
 The next real gate is a filled R95 transcript that passes the R96 validator
 before any R94 maintainer verdict can count.
+
+`T-B1-004gu` / `T-B7-016d` now adds the R97 evidence-file materiality gate.
+R97 hardens the R96 validator by requiring declared review evidence files to
+exist and match their SHA-256 claims. It emits `10` materiality gates over `6`
+evidence-file pairs, then generates a filled-looking spoof transcript with fake
+hashes and missing files. The spoof is rejected on `5` materiality gates:
+missing evidence paths, nonmatching evidence hashes, fake reviewed-packet hash,
+fake reviewer-signature hash, and final materiality acceptance. Review
+transcript accepted remains `false`, maintainer verdict accepted remains
+`false`, counter delta remains `0`, accepted external reproductions remain `0`,
+accepted external falsifications remain `0`, and `new_credit_delta` remains
+`0`. Materiality-rules hash
+`5a1392fe33f5069afae4d6422519842726059461307100a628eb051aff2809e5`;
+spoof-transcript hash
+`d4bd97bed0ee7a3c57a927aa27707e8838ba40da79ab7921e4ba78a433d8bebd`;
+materiality-validation hash
+`d77d17cd95c8130f8ff19a05cfb06a308437daa183f9b211c96481900cd987ba`;
+blocker queue hash `86dd811d617c733bbba06642d6edd866645a8e2de2eab990df37e557c4008ff9`.
+The next real gate is a filled transcript with real in-repository evidence
+files whose bytes match every declared hash.

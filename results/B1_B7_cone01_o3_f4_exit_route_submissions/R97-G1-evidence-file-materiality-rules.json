@@ -1,0 +1,73 @@
+{
+  "accepted_external_falsification_count": 0,
+  "accepted_external_reproduction_count": 0,
+  "accepted_fake_sha_values": [],
+  "artifact": "R97 G1 evidence-file materiality rules",
+  "base_validator_gate_count": 18,
+  "base_validator_rules_hash": "9a0c3c7be2a9dc65a1ffc24d440c03f88a250999e666fbcc886109275cfc15e0",
+  "claim_boundary": "R97 hardens R96 by requiring declared review evidence files to exist and match their SHA-256 claims. A filled-looking spoof transcript with missing evidence files is rejected and no counter or B7 credit moves.",
+  "counter_delta": 0,
+  "evidence_file_pair_count": 6,
+  "evidence_file_pairs": [
+    [
+      "reviewed_r93_packet_path",
+      "reviewed_r93_packet_sha256"
+    ],
+    [
+      "command_transcript_path",
+      "command_transcript_sha256"
+    ],
+    [
+      "environment_manifest_path",
+      "environment_manifest_sha256"
+    ],
+    [
+      "recomputed_target_rows_path",
+      "recomputed_target_rows_sha256"
+    ],
+    [
+      "double_count_test_path",
+      "double_count_test_sha256"
+    ],
+    [
+      "review_notes_path",
+      "review_notes_sha256"
+    ]
+  ],
+  "maintainer_verdict_accepted": false,
+  "materiality_gates": [
+    "all_production_fields_present",
+    "allowed_labels_and_targets",
+    "all_evidence_paths_declared",
+    "all_evidence_paths_exist",
+    "all_evidence_hashes_match_declared_sha256",
+    "reviewed_packet_hash_not_fake",
+    "reviewer_signature_not_fake",
+    "zero_direct_new_credit",
+    "claim_boundary_safe",
+    "materiality_validation_accepted"
+  ],
+  "materiality_rules_hash": "5a1392fe33f5069afae4d6422519842726059461307100a628eb051aff2809e5",
+  "method": "b1_b7_cone01_r97_evidence_file_materiality_gate_v0",
+  "new_credit_delta": 0,
+  "o3_closed": false,
+  "physical_layout_claimed": false,
+  "resource_saving_claimed": false,
+  "route_id": "R83-G1-30-arbitrary-rotation-batch",
+  "source_r96_blocker_queue_hash": "fe11597c8f0457188373df4c2c5d1e73911abaf5d01262c63494e359f33b5ddf",
+  "source_r96_blocker_queue_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R96-G1-post-transcript-validator-blocker-queue.json",
+  "source_r96_blocker_queue_sha256": "81c7f923de3910b367812f65f78f76c74a6e1a8941a41b36bc7fd07147ebd78d",
+  "source_r96_empty_validation_hash": "ad2afc99328134a788d1b74bf36e55a87be2e261853199bc162fb85fe16b19f7",
+  "source_r96_empty_validation_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R96-G1-empty-review-transcript-validation.verdict.json",
+  "source_r96_empty_validation_sha256": "cd2d3e97d07d7426f13bc169b19f995f4a201cdca6e18665b0bc85bbf7a19510",
+  "source_r96_payload_hash": "c1f716a476a5fc7a23509461f352a3e18882b02f0d7251287f08e7cbfee418bd",
+  "source_r96_result_path": "results/B1_B7_cone01_R96_review_transcript_validator_gate_v0.json",
+  "source_r96_result_sha256": "6b3fca793cf25ebd9ef5893eeed63f1e77f3341bbe39901255547843d3e76bfb",
+  "source_r96_validator_rules_hash": "9a0c3c7be2a9dc65a1ffc24d440c03f88a250999e666fbcc886109275cfc15e0",
+  "source_r96_validator_rules_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R96-G1-review-transcript-validator-rules.json",
+  "source_r96_validator_rules_sha256": "7764f27f60cd6482cb3ff32844f8930d25d1217a20751ac9beebf785e75e85eb",
+  "source_target_id": "T-B1-004gu/T-B7-016d",
+  "transcript_accepted": false,
+  "upstream_target_id": "T-B1-004gt/T-B7-016c",
+  "validator_id": "R97-G1-evidence-file-materiality-validator"
+}

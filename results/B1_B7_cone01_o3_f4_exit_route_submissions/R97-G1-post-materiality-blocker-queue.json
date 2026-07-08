@@ -1,0 +1,29 @@
+{
+  "artifact": "R97 post evidence-file materiality blocker queue",
+  "blocker_queue_hash": "86dd811d617c733bbba06642d6edd866645a8e2de2eab990df37e557c4008ff9",
+  "materiality_rules_hash": "5a1392fe33f5069afae4d6422519842726059461307100a628eb051aff2809e5",
+  "materiality_validation_hash": "d77d17cd95c8130f8ff19a05cfb06a308437daa183f9b211c96481900cd987ba",
+  "method": "b1_b7_cone01_r97_evidence_file_materiality_gate_v0",
+  "queue": [
+    {
+      "blocker_id": "R97-G1-1",
+      "needed_artifact": "all declared evidence files must exist inside the repository artifact tree",
+      "priority": 1,
+      "target_gate": "real_evidence_file_bundle"
+    },
+    {
+      "blocker_id": "R97-G1-2",
+      "needed_artifact": "declared SHA-256 values must match the actual evidence file bytes",
+      "priority": 2,
+      "target_gate": "sha256_materiality_match"
+    },
+    {
+      "blocker_id": "R97-G1-3",
+      "needed_artifact": "reviewed packet hash and reviewer signature hash must be non-placeholder values",
+      "priority": 3,
+      "target_gate": "nonfake_packet_and_signature_hashes"
+    }
+  ],
+  "source_target_id": "T-B1-004gu/T-B7-016d",
+  "upstream_target_id": "T-B1-004gt/T-B7-016c"
+}
