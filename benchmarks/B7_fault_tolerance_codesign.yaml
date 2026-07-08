@@ -3663,6 +3663,44 @@ current_results:
     caveat: r89_proxy_ft_stv_1_20_credit_only_not_physical_layout_or_o3
     report: ../results/B1_B7_cone01_R89_g1_downstream_b7_replay_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_R89_g1_downstream_b7_replay_gate.md
+  b1_b7_cone01_r90_r89_independent_replay_review_gate_v0:
+    method: b1_b7_cone01_r90_r89_independent_replay_review_gate_v0
+    source_b1_r90_r89_independent_replay_review: ../results/B1_B7_cone01_R90_r89_independent_replay_review_gate_v0.json
+    source_b1_r89_g1_downstream_b7_replay: ../results/B1_B7_cone01_R89_g1_downstream_b7_replay_gate_v0.json
+    r90_review_ledger: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R90-G1-r89-independent-review-ledger.json
+    r90_verdict: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R90-G1-r89-double-count-kill-test.verdict.json
+    source_target_id: T-B1-004gn/T-B7-015w
+    upstream_target_id: T-B1-004gm/T-B7-015v
+    route_id: R83-G1-30-arbitrary-rotation-batch
+    independent_replay_reproduced: true
+    double_count_violation_found: false
+    credit_preserved_after_review: true
+    accepted_b7_credit_delta_after_review: 1
+    new_credit_delta: 0
+    revoked_credit_delta: 0
+    recomputed_candidate_after_t_ledger: 5624
+    recomputed_target_1_20_reached: true
+    recomputed_target_1_20_margin: 8
+    recomputed_target_1_25_reached: false
+    recomputed_target_1_25_margin: -224
+    b7_dependency_credit_allowed: false
+    b7_resource_credit_allowed: false
+    b7_ft_ledger_credit_allowed: true
+    b7_credit_delta: 1
+    b7_space_time_volume_credit: 1
+    o3_closed: false
+    reroute_allowed: false
+    resource_saving_claimed: false
+    physical_layout_claimed: false
+    review_ledger_hash: ee61a303c275756871e1a9a9535803d8db911486e5f06aec47e049ed20b792a6
+    verdict_hash: e62e53533dd9704ffef72501a161858b00b754cceb5b37a8cc619ef6aea63370
+    blocker_queue_hash: a3a74ced55860ffa04c7e36e15a8f0b7bde852132d77614cb99f17531758e36b
+    requirements_passed: 7
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r90_review_preserves_only_r89_proxy_1_20_credit_no_1_25_layout_or_o3_claim
+    report: ../results/B1_B7_cone01_R90_r89_independent_replay_review_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_R90_r89_independent_replay_review_gate.md
   b2_calibrated_dependency_credit_gate_v0:
     status: b2_calibrated_dependency_credit_rejected_missing_hardware_evidence
     method: b7_b2_calibrated_dependency_credit_gate_v0

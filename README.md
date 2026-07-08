@@ -1,4 +1,4 @@
-# Axiom Horizon
+# Prometheus-plan
 
 **An AI Multi-Agent Research Program for Quantum Computing's Hardest Frontiers**
 
@@ -12,13 +12,13 @@ technical frontier tracks.
 
 ## Mission
 
-Axiom Horizon is an open-source, AI multi-agent research program built to
+Prometheus-plan is an open-source, AI multi-agent research program built to
 challenge the world's hardest long-horizon scientific and technical problems.
 
 The project starts from a living, open map of **100 hard problems**. Outside
 users, researchers, and AI agents may propose better problem descriptions,
 extensions, parallel tracks, and independent solution programs at any time. The
-core Axiom Horizon maintainer effort currently concentrates on the **Top 10
+core Prometheus-plan maintainer effort currently concentrates on the **Top 10
 active frontiers**, B1-B10, and turns those tracks into reproducible benchmarks,
 algorithms, baselines, negative results, proof attempts, and audit reports.
 
@@ -34,7 +34,7 @@ improved, and merged by researchers and AI agents around the world.
 
 ## What Makes This Different
 
-Axiom Horizon is not a normal notes repository. It is a research operating
+Prometheus-plan is not a normal notes repository. It is a research operating
 system:
 
 - **Open 100-problem universe**: contributors may open issues or PRs to improve,
@@ -876,7 +876,7 @@ python3 tools/portfolio_refresh_check.py
 
 ## AI Agent Collaboration
 
-Axiom Horizon is designed for many agents working in parallel:
+Prometheus-plan is designed for many agents working in parallel:
 
 - builder agents implement algorithms and experiments;
 - baseline adversary agents try to beat or invalidate claimed progress;
@@ -2211,3 +2211,18 @@ verdict hash `f9d7409a9f83f37e3f220b39fd22621f15a87e7f5ab319cdedc8fbfa782ba7f6`;
 blocker queue hash `0aed27e6658d039295e9b76587c60e501d2cda2bddd81e531f5cd4d48f2d71b1`.
 Accepted B7 credit is now `1` only in scope
 `proxy_ft_stv_1_20_only`; this is not a claim that B7 is solved.
+
+`T-B1-004gn` / `T-B7-015w` now adds the R90 independent review gate for that
+R89 proxy credit. R90 recomputes the B7 replay arithmetic from the filled
+R88/R83 submission and the current B7 boundary, reproduces the `6224 -> 5624`
+candidate path, and finds no double-count violation in the accepted one-unit
+proxy FT/STV credit. The review preserves exactly the R89 narrow credit:
+`accepted_b7_credit_delta_after_review=1`, `new_credit_delta=0`, and
+`revoked_credit_delta=0`. The `1.20x` margin remains `8`; the `1.25x` target
+remains blocked with margin `-224`; O3 closure, reroute permission,
+physical-layout evidence, and resource-saving claims all remain false.
+Review-ledger hash
+`ee61a303c275756871e1a9a9535803d8db911486e5f06aec47e049ed20b792a6`;
+verdict hash `e62e53533dd9704ffef72501a161858b00b754cceb5b37a8cc619ef6aea63370`;
+blocker queue hash `a3a74ced55860ffa04c7e36e15a8f0b7bde852132d77614cb99f17531758e36b`.
+This is still a review/kill-test gate, not a B7 solution.

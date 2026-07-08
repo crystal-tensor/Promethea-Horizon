@@ -1,0 +1,144 @@
+{
+  "artifact": "B1/B7 cone01 R90 R89 independent replay review gate",
+  "blocker_queue_hash": "a3a74ced55860ffa04c7e36e15a8f0b7bde852132d77614cb99f17531758e36b",
+  "blocker_queue_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R90-G1-post-review-blocker-queue.json",
+  "failed_requirement_ids": [],
+  "generated_at_unix": 1783544950,
+  "method": "b1_b7_cone01_r90_r89_independent_replay_review_gate_v0",
+  "model_status": "r89_proxy_credit_reproduced_double_count_kill_test_clear_no_new_credit",
+  "payload_hash": "de0d593df7108f996c8f1337be2da8f114e6cb3c76f59d344114e237afb7a36f",
+  "requirement_count": 7,
+  "requirements": [
+    {
+      "evidence": {
+        "r89_payload_hash": "fe1aee2043d97768b7763e259a0836b543f479bc2d026722b5c0f2cf9411752f",
+        "r89_replay_ledger_hash": "4fa9daa77d27717e74965889eea20a0df05be43c9fdf68a5050348593f15b1f2",
+        "r89_verdict_hash": "f9d7409a9f83f37e3f220b39fd22621f15a87e7f5ab319cdedc8fbfa782ba7f6"
+      },
+      "label": "R90 binds the R89 result, replay ledger, verdict, and blocker queue by hash",
+      "passed": true,
+      "requirement_id": "A1"
+    },
+    {
+      "evidence": {
+        "recomputed_candidate_after_t_ledger": 5624,
+        "recomputed_target_1_20_margin": 8,
+        "recomputed_target_1_25_margin": -224
+      },
+      "label": "R90 independently reproduces the R89 replay arithmetic",
+      "passed": true,
+      "requirement_id": "A2"
+    },
+    {
+      "evidence": {
+        "component_credit_sum": 1,
+        "duplicate_positive_channels": [
+          "accepted_b7_ft_ledger_credit_delta",
+          "accepted_b7_space_time_volume_credit"
+        ],
+        "reported_accepted_b7_credit_delta": 1
+      },
+      "label": "R90 finds no double-count violation in the accepted proxy credit",
+      "passed": true,
+      "requirement_id": "A3"
+    },
+    {
+      "evidence": {
+        "accepted_b7_credit_delta_after_review": 1,
+        "new_credit_delta": 0,
+        "revoked_credit_delta": 0
+      },
+      "label": "R90 preserves exactly the R89 narrow credit and grants no new credit",
+      "passed": true,
+      "requirement_id": "A4"
+    },
+    {
+      "evidence": {
+        "recomputed_target_1_25_margin": -224,
+        "target_1_25_credit_claimed": false
+      },
+      "label": "R90 keeps the 1.25x target blocked",
+      "passed": true,
+      "requirement_id": "A5"
+    },
+    {
+      "evidence": {
+        "o3_closed": false,
+        "physical_layout_claimed": false,
+        "reroute_allowed": false,
+        "resource_saving_claimed": false
+      },
+      "label": "R90 keeps O3, reroute, physical-layout, and resource-saving claims closed",
+      "passed": true,
+      "requirement_id": "A6"
+    },
+    {
+      "evidence": {
+        "blocker_ids": [
+          "R90-G1-1",
+          "R90-G1-2",
+          "R90-G1-3"
+        ],
+        "blocker_queue_hash": "a3a74ced55860ffa04c7e36e15a8f0b7bde852132d77614cb99f17531758e36b"
+      },
+      "label": "R90 emits a next-blocker queue for external reproduction, 1.25x, and layout",
+      "passed": true,
+      "requirement_id": "A7"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 7,
+  "review_ledger_hash": "ee61a303c275756871e1a9a9535803d8db911486e5f06aec47e049ed20b792a6",
+  "review_ledger_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R90-G1-r89-independent-review-ledger.json",
+  "source_target_id": "T-B1-004gn/T-B7-015w",
+  "status": "cone01_r90_r89_independent_replay_review_preserves_narrow_credit",
+  "stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R90-G1-r89-independent-review.stdout.txt",
+  "stdout_sha256": "fc4d4e1627c58fdc8955bfd8a107586c8301908d6abc69ef2631fcc9e873c579",
+  "summary": {
+    "accepted_b7_credit_delta_after_review": 1,
+    "blocker_queue_hash": "a3a74ced55860ffa04c7e36e15a8f0b7bde852132d77614cb99f17531758e36b",
+    "component_credit_sum": 1,
+    "credit_preserved_after_review": true,
+    "double_count_violation_found": false,
+    "duplicate_positive_channels": [
+      "accepted_b7_ft_ledger_credit_delta",
+      "accepted_b7_space_time_volume_credit"
+    ],
+    "failed_gates": [],
+    "failed_requirement_ids": [],
+    "independent_replay_reproduced": true,
+    "method": "b1_b7_cone01_r90_r89_independent_replay_review_gate_v0",
+    "model_status": "r89_proxy_credit_reproduced_double_count_kill_test_clear_no_new_credit",
+    "new_credit_delta": 0,
+    "o3_closed": false,
+    "payload_hash": "de0d593df7108f996c8f1337be2da8f114e6cb3c76f59d344114e237afb7a36f",
+    "physical_layout_claimed": false,
+    "recomputed_candidate_after_t_ledger": 5624,
+    "recomputed_target_1_20_margin": 8,
+    "recomputed_target_1_20_reached": true,
+    "recomputed_target_1_25_margin": -224,
+    "recomputed_target_1_25_reached": false,
+    "reported_accepted_b7_credit_delta": 1,
+    "requirements_failed": 0,
+    "requirements_passed": 7,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "review_ledger_hash": "ee61a303c275756871e1a9a9535803d8db911486e5f06aec47e049ed20b792a6",
+    "revoked_credit_delta": 0,
+    "route_id": "R83-G1-30-arbitrary-rotation-batch",
+    "source_target_id": "T-B1-004gn/T-B7-015w",
+    "status": "cone01_r90_r89_independent_replay_review_preserves_narrow_credit",
+    "stdout_sha256": "fc4d4e1627c58fdc8955bfd8a107586c8301908d6abc69ef2631fcc9e873c579",
+    "upstream_target_id": "T-B1-004gm/T-B7-015v",
+    "validation_error_count": 0,
+    "verdict_accepted": true,
+    "verdict_failed_gate_count": 0,
+    "verdict_hash": "e62e53533dd9704ffef72501a161858b00b754cceb5b37a8cc619ef6aea63370"
+  },
+  "upstream_target_id": "T-B1-004gm/T-B7-015v",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "verdict_hash": "e62e53533dd9704ffef72501a161858b00b754cceb5b37a8cc619ef6aea63370",
+  "verdict_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R90-G1-r89-double-count-kill-test.verdict.json",
+  "version": "0.1"
+}
