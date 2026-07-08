@@ -1466,6 +1466,25 @@ source-backed replay flags only after independent source lineage and replay
 evidence exist, then replicate provenance, witness, preflight, and unitary
 distance packets for the remaining 7 rows.
 
+`T-B1-004es` / `T-B7-014b` now extends that unitary-distance computation from
+one smoke row to all 8 O3-F4 C2 smoke rows. R43 parses every OpenQASM 3.0
+single-qubit RZ source/candidate pair, computes the one-qubit RZ operator-norm
+distance, and records max computed distance `0.0` across the 8-row bundle.
+Materialized rows pass `8`; source-provenance rows still pass only `1`;
+witness-schema rows still pass only `1`; witness-preflight rows still pass only
+`1`; unitary-distance rows now pass `8`; unitary-distance failures drop to `0`;
+source-backed rows remain `0`; source-backed flag failures remain `8`.
+All-row unitary-distance fixture hash
+`544e83b2ed5c72b6590595bd0925497bf4438a850dcbc841fba100d8763088d5`;
+evaluation hash `969f78433eb87bbf1bc00d43279bb56035604ff01f27f3f3510a68fa957b6ed5`.
+C2 remains unaccepted because R43 is still a smoke-distance coverage gate, not
+source-backed replay, not a same-unitary certificate, and not an O3 closure.
+O3, reroute, B7 credit, STV credit, and resource-saving claims remain 0/false.
+The next useful PR is no longer "compute the remaining smoke distances"; it is
+to replace smoke rows with real source-backed replay evidence and add
+provenance, witness schema, and preflight packets for `O3-F4-C02` through
+`O3-F4-C08`.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
