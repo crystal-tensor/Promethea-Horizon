@@ -1,0 +1,136 @@
+{
+  "artifact_id": "B1-B7-cone01-O3-F4-numerical-refit-redteam-overfit-sentinel",
+  "b7_credit_delta": 1,
+  "candidate_id": "NL-C02",
+  "challenge_packet_hash": "020091be6ad6be922f5c60bbda55ff89333f01c804d931546b4b35ff195464a0",
+  "checked_negative_lemma_present": true,
+  "claim_boundary": {
+    "kill_conditions": [
+      "same-unitary replay fails",
+      "numerical-only lattice relation"
+    ],
+    "not_supported": "B7 credit, STV credit, reroute, and O3 closure are available after this refit",
+    "supported": "claims O3-F4 refit clears Route A and grants O3 closure"
+  },
+  "equivalence_certificate": {
+    "certificate_type": "numerical_only",
+    "denominator_comparison": null,
+    "pi_over_four_snap": true,
+    "same_unitary_replay_certificate": null
+  },
+  "expected_outputs": {},
+  "family_id": "O3-F4",
+  "machine_check_command": "",
+  "o3_closed": true,
+  "optimizer_trace": {
+    "challenge_packet_visible_to_optimizer": true,
+    "hidden_restart_count": 2048,
+    "leakage_note": "the trace reports final picked rows after seeing the challenge packet",
+    "reported_step_count": 8,
+    "status": "incomplete_trace"
+  },
+  "refit_objective": {
+    "loss_terms": [
+      "unitary_replay_error",
+      "pi_over_four_lattice_distance",
+      "route_a_effect"
+    ],
+    "objective": "same_unitary_refit_with_route_a_clearance_pressure",
+    "redteam_note": "objective names the right losses but does not satisfy same-unitary replay",
+    "status": "claimed"
+  },
+  "reroute_allowed": true,
+  "route_a_effect": "clears_route_a",
+  "seed_schedule": {
+    "challenge_ids": [
+      "O3-F4-C01",
+      "O3-F4-C02",
+      "O3-F4-C03",
+      "O3-F4-C04",
+      "O3-F4-C05",
+      "O3-F4-C06",
+      "O3-F4-C07",
+      "O3-F4-C08"
+    ],
+    "external_randomness_allowed": false,
+    "hidden_restart_count": 2048,
+    "status": "claimed_all_seeds_used"
+  },
+  "source_domain_hash": "8222f1c0cee51f1ad1a7e8f696938d261c01d7a1841559e451b4fc22a8a676d3",
+  "source_enforced_replay_hash": "0a9c84e725e45b01e1e42d6cf2f00effede669c02740576953f898657c828379",
+  "source_registry_hash": "3a4cd3b08574775d52ee0292e7e5861c968efd0dd281dd04481f6e3da1271eae",
+  "source_target_id": "T-B1-004ea/T-B7-013j",
+  "unitary_replay_protocol": {
+    "max_unitary_replay_error": 0.008,
+    "replay_rows": [
+      {
+        "challenge_id": "O3-F4-C01",
+        "claimed_replay_passed": true,
+        "redteam_note": "error intentionally exceeds tolerance while claim says passed",
+        "tolerance": 1e-08,
+        "unitary_replay_error": 0.001
+      },
+      {
+        "challenge_id": "O3-F4-C02",
+        "claimed_replay_passed": true,
+        "redteam_note": "error intentionally exceeds tolerance while claim says passed",
+        "tolerance": 1e-08,
+        "unitary_replay_error": 0.002
+      },
+      {
+        "challenge_id": "O3-F4-C03",
+        "claimed_replay_passed": true,
+        "redteam_note": "error intentionally exceeds tolerance while claim says passed",
+        "tolerance": 1e-08,
+        "unitary_replay_error": 0.003
+      },
+      {
+        "challenge_id": "O3-F4-C04",
+        "claimed_replay_passed": true,
+        "redteam_note": "error intentionally exceeds tolerance while claim says passed",
+        "tolerance": 1e-08,
+        "unitary_replay_error": 0.004
+      },
+      {
+        "challenge_id": "O3-F4-C05",
+        "claimed_replay_passed": true,
+        "redteam_note": "error intentionally exceeds tolerance while claim says passed",
+        "tolerance": 1e-08,
+        "unitary_replay_error": 0.005
+      },
+      {
+        "challenge_id": "O3-F4-C06",
+        "claimed_replay_passed": true,
+        "redteam_note": "error intentionally exceeds tolerance while claim says passed",
+        "tolerance": 1e-08,
+        "unitary_replay_error": 0.006
+      },
+      {
+        "challenge_id": "O3-F4-C07",
+        "claimed_replay_passed": true,
+        "redteam_note": "error intentionally exceeds tolerance while claim says passed",
+        "tolerance": 1e-08,
+        "unitary_replay_error": 0.007
+      },
+      {
+        "challenge_id": "O3-F4-C08",
+        "claimed_replay_passed": true,
+        "redteam_note": "error intentionally exceeds tolerance while claim says passed",
+        "tolerance": 1e-08,
+        "unitary_replay_error": 0.008
+      }
+    ],
+    "required_replay_cases": [
+      "O3-F4-C01",
+      "O3-F4-C02",
+      "O3-F4-C03",
+      "O3-F4-C04",
+      "O3-F4-C05",
+      "O3-F4-C06",
+      "O3-F4-C07",
+      "O3-F4-C08"
+    ],
+    "status": "claimed_pass",
+    "tolerance": 1e-08
+  }
+}
