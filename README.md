@@ -1536,6 +1536,23 @@ The next useful PR should rerun the source-backed discriminator against the
 all-row provenance/schema/preflight/distance bundle and keep it failing until
 real source-backed replay evidence exists.
 
+`T-B1-004ew` / `T-B7-014f` reruns the source-backed discriminator after R46
+against the full all-row provenance/schema/preflight/distance fixture. The
+important change is narrower failure: materialized rows pass `8`, prerequisite-
+clean rows pass `8`, source-provenance failures are now `0`, witness-schema
+failures are `0`, binding mismatches are `0`, and flags-only rejection rows are
+`8`. Source-backed rows remain `0`; source-backed flag failures remain `8`;
+smoke-only rows remain `8`. Discriminator hash
+`b4db0ab566bad93fa2baba3d700e7a512a19a2d115bc7c8d35e1aa048faf4e98`;
+replacement contract hash
+`906da61aa3c205ebefe1caf001e3e2b86aeb74abcf89d1bbc6441f8c1137186f`.
+This proves the blocker has moved from missing evidence scaffolding to the
+final source-backed replay and same-unitary acceptance flags. C2 remains
+unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving claims
+remain 0/false. The next useful PR must replace smoke-only flags with external
+source-backed replay evidence and verifier-backed same-unitary certificates
+for all 8 rows before C3-C7.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
