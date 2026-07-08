@@ -1804,6 +1804,19 @@ open, `reroute_allowed=false`, and B7/STV/resource/ledger credit remain
 0/false. The next useful PR should produce the C7 machine-check replay bundle
 before any B7 ledger retest.
 
+`T-B1-004fo` / `T-B7-014x` now completes that C7 replay for the current row
+set. R65 reruns the same-access denominator verifier for all 8 accepted
+R63/R64 rows, writes 8 replay transcripts, 8 replay stdout captures, and 8
+machine-check replay verdicts, then compares stable semantic replay digests
+against the original R63 transcripts. All 8 verdicts pass: replay commands exit
+zero, semantic digests match, file hashes bind the R63 rows/R64 traces/original
+transcripts/implementation, denominator distances remain `0.0`, negative
+controls are rejected, and forbidden inputs remain unused. R65 bundle hash
+`76544060858cd8f926c5823f2d2e30132935a1f855595316bafa1e19e29b2a39`.
+This is still not O3 closure and not B7 credit: `reroute_allowed=false`, and
+B7/STV/resource/ledger credit remain 0/false. The next useful PR should run a
+zero-credit B7 ledger retest boundary before any promotion claim.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
