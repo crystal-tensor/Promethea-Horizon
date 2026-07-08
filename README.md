@@ -1790,6 +1790,20 @@ B7/STV/resource/ledger credit remain 0/false. The next useful PR should run C6
 leakage-free optimizer trace over the accepted R63 rows before any C7 or B7
 ledger retest.
 
+`T-B1-004fn` / `T-B7-014w` now completes that C6 leakage trace. R64 emits 8
+hash-bound optimizer-trace audit files, one for each accepted R63 denominator
+row, and checks command arguments, implementation hash, row hash, denominator
+transcript hash, stdout hash, acceptance transcript, allowed-input scope,
+row-specific pressure artifacts, and forbidden-input review. All 8 traces pass:
+used inputs are limited to the template inputs plus row-specific pressure
+artifacts, forbidden inputs used remain `0`, transcript/stdout hashes match,
+and command arguments match the accepted rows. R64 bundle hash
+`3fada7236ff61d0f015437d7b9562e1687c488a08db769369eca417a0fa5d61a`.
+This is still not O3 closure and not B7 credit: C7 machine-check replay remains
+open, `reroute_allowed=false`, and B7/STV/resource/ledger credit remain
+0/false. The next useful PR should produce the C7 machine-check replay bundle
+before any B7 ledger retest.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.

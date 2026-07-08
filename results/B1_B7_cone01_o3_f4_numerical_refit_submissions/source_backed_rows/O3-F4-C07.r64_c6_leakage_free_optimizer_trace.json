@@ -1,0 +1,117 @@
+{
+  "acceptance_transcript_accepted": true,
+  "allowed_core_inputs": [
+    "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C07.candidate.qasm",
+    "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C07.source.qasm",
+    "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r59_c3_same_unitary_replay_certificate.json"
+  ],
+  "artifact": "R64 C6 leakage-free optimizer trace",
+  "challenge_id": "O3-F4-C07",
+  "claim_boundary": "C6 leakage trace only. Passing this trace does not close C7, O3, reroute, B7, STV, or resource-ledger promotion.",
+  "command_arg_mismatches": {},
+  "denominator_command": "python3 tools/b1_b7_o3_f4_same_access_rz_denominator_verifier.py --challenge-id O3-F4-C07 --source results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C07.source.qasm --candidate results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C07.candidate.qasm --r59-certificate results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r59_c3_same_unitary_replay_certificate.json --negative-control results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r59_c3_negative_control.json --access-model-hash 14f7162ddfaaf631e1f38aa0e57aa121a2bd378d37fa9fecceeb0208844fad69 --output results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r63_same_access_denominator_verifier_transcript.json",
+  "denominator_implementation_path": "tools/b1_b7_o3_f4_same_access_rz_denominator_verifier.py",
+  "denominator_implementation_sha256": "6d3249a59c55fe3fb0d7364536de716b5b75bb41c0a2792e474caf71d5fa87d5",
+  "file_bindings": {
+    "candidate": {
+      "exists": true,
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C07.candidate.qasm",
+      "sha256": "7280a8c49ee98b018011f59c18db0e2a06344248c5857f1c2f86c511a460de31"
+    },
+    "denominator_implementation": {
+      "exists": true,
+      "path": "tools/b1_b7_o3_f4_same_access_rz_denominator_verifier.py",
+      "sha256": "6d3249a59c55fe3fb0d7364536de716b5b75bb41c0a2792e474caf71d5fa87d5"
+    },
+    "denominator_stdout": {
+      "exists": true,
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r63_same_access_denominator_verifier.stdout.txt",
+      "sha256": "5f27b318fed16762b0dd519f90f56fae3b962326d6a14f7695ec4e124bf9e9e5"
+    },
+    "denominator_transcript": {
+      "exists": true,
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r63_same_access_denominator_verifier_transcript.json",
+      "sha256": "d2ab07edb7650890699a2bab67144dfcd7776b9b9f0b21bc8258c72aae16f9f3"
+    },
+    "negative_control": {
+      "exists": true,
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r59_c3_negative_control.json",
+      "sha256": "b78b5e7ab49aaf3ddc9ee8e4f347e647b5592af48af3288c9c8fb63887fa6f17"
+    },
+    "r59_certificate": {
+      "exists": true,
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r59_c3_same_unitary_replay_certificate.json",
+      "sha256": "02a65b1ffac909b9d9b532b1c90489f9c6e3f80d19b343d5abf2f11b449a405a"
+    },
+    "r63_acceptance_transcript": {
+      "exists": true,
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r63_r62_acceptance_verifier_transcript.json",
+      "sha256": "94a23189f05e7d0a770269cf3f4c60d2a650d305d428b5ec65ee365cdd192ebf"
+    },
+    "row": {
+      "exists": true,
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r63_source_backed_denominator_row.json",
+      "sha256": "d5c7ce0a6c3c27a2f348189392369b504653b1d7ae5d9400e92d54a2566f7813"
+    },
+    "source": {
+      "exists": true,
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C07.source.qasm",
+      "sha256": "c4db45035fe3c0d7a0128f6de41c57c7938ee474be24e4471743db22b5cba229"
+    }
+  },
+  "forbidden_inputs_reviewed": [
+    "future C6 optimizer traces",
+    "hidden solver traces not listed in this template",
+    "hardware calibration data",
+    "unbound external oracles",
+    "manual post-hoc angle edits"
+  ],
+  "forbidden_inputs_used": [],
+  "hardware_calibration_used": false,
+  "hidden_solver_trace_used": false,
+  "leakage_free_optimizer_trace_passed": true,
+  "method": "b1_b7_cone01_r64_o3_f4_c6_leakage_free_optimizer_trace_gate_v0",
+  "no_forbidden_inputs_used": true,
+  "parsed_command": {
+    "args": {
+      "access_model_hash": "14f7162ddfaaf631e1f38aa0e57aa121a2bd378d37fa9fecceeb0208844fad69",
+      "candidate": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C07.candidate.qasm",
+      "challenge_id": "O3-F4-C07",
+      "negative_control": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r59_c3_negative_control.json",
+      "output": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r63_same_access_denominator_verifier_transcript.json",
+      "r59_certificate": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r59_c3_same_unitary_replay_certificate.json",
+      "source": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C07.source.qasm"
+    },
+    "implementation": "tools/b1_b7_o3_f4_same_access_rz_denominator_verifier.py",
+    "part_count": 16,
+    "python": "python3"
+  },
+  "post_hoc_angle_edit_detected": false,
+  "pressure_inputs": [
+    "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r59_c3_negative_control.json"
+  ],
+  "python_runtime": {
+    "implementation": "CPython",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "version": "3.12.6"
+  },
+  "same_access_hash_matches": true,
+  "source_r63_acceptance_transcript": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r63_r62_acceptance_verifier_transcript.json",
+  "source_r63_acceptance_transcript_sha256": "94a23189f05e7d0a770269cf3f4c60d2a650d305d428b5ec65ee365cdd192ebf",
+  "source_r63_row_actual_sha256": "d5c7ce0a6c3c27a2f348189392369b504653b1d7ae5d9400e92d54a2566f7813",
+  "source_r63_row_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r63_source_backed_denominator_row.json",
+  "source_r63_row_hash": "d854057e2f17b94b361ecb50e7d6ec6f02f4159ac219bce41a5611db801c5e70",
+  "source_target_id": "T-B1-004fn/T-B7-014w",
+  "stdout_hash_matches_transcript": true,
+  "trace_hash": "9b29bb9dcab44686c48f45f01aa29424225265a8e1d2666fa720354f8458197d",
+  "transcript_hash_matches_row": true,
+  "unbound_external_oracle_used": false,
+  "upstream_target_id": "T-B1-004fm/T-B7-014v",
+  "used_inputs": [
+    "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C07.candidate.qasm",
+    "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C07.source.qasm",
+    "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r59_c3_negative_control.json",
+    "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C07.r59_c3_same_unitary_replay_certificate.json"
+  ],
+  "used_inputs_subset_of_allowed_plus_pressure": true
+}
