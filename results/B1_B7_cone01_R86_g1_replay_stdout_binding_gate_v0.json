@@ -1,0 +1,153 @@
+{
+  "artifact": "B1/B7 cone01 R86 G1 replay-stdout binding gate",
+  "blocker_queue_hash": "6a934fc9ec42e86b752426d5a7460c876eb7562224f12385c148c78355cc65a2",
+  "blocker_queue_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R86-G1-replay-aware-blocker-queue.json",
+  "failed_requirement_ids": [],
+  "generated_at_unix": 1783543102,
+  "method": "b1_b7_cone01_r86_g1_replay_stdout_binding_gate_v0",
+  "model_status": "r85_replay_stdout_gate_closed_without_stv_or_b7_credit",
+  "payload_hash": "38bcbc0664810556e3917c9f3bcfd98198ac5debb39aecd4ab1ddc4f8f83e352",
+  "preflight_hash": "71d6cf3d82d7d6dbc70de94a0a7dad9a1477f537254635a53dba6efc6a90f1e5",
+  "preflight_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R86-G1-replay-aware-preflight.verdict.json",
+  "requirement_count": 7,
+  "requirements": [
+    {
+      "evidence": {
+        "candidate_t_mapping_hash": "cddd98736eb312fba1fb063342f9cf38aa21283e0aa5163d7002ef477cc9a47c",
+        "r85_payload_hash": "501112953b3879563d91d802a2eb08c5d71a03f7fe7a363dfc590291a6c4b29c",
+        "source_rows_hash": "0a56014b1b0d8efb3bb866a63c2e0a182255ca306addd2ffd1b75e616fc8d2db"
+      },
+      "label": "R86 consumes the R85 G1 source-row intake without changing its candidate mapping",
+      "passed": true,
+      "requirement_id": "A1"
+    },
+    {
+      "evidence": {
+        "line_hash_verified_count": 30,
+        "source_component_bound_count": 30,
+        "transcript_hash": "cbdee2263c4dac2e649d0677652cfef8b91eb88460ade8211546936869ce034d"
+      },
+      "label": "R86 binds all 30 selected rows back to source QASM line hashes",
+      "passed": true,
+      "requirement_id": "A2"
+    },
+    {
+      "evidence": {
+        "replay_event_count": 30,
+        "stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R86-G1-source-binding-replay.stdout.txt",
+        "stdout_sha256": "4efe9839cafe6502f297afc0ab0a1d06f343e3da26c38eb5223dd0077a5f1004"
+      },
+      "label": "R86 emits replay stdout that covers every selected row",
+      "passed": true,
+      "requirement_id": "A3"
+    },
+    {
+      "evidence": {
+        "accepted_t_ledger_reduction": 0,
+        "replay_scope": "source-binding replay stdout; no rewrite or same-unitary claim"
+      },
+      "label": "R86 keeps replay scope below rewrite or same-unitary evidence",
+      "passed": true,
+      "requirement_id": "A4"
+    },
+    {
+      "evidence": {
+        "closed_r85_failed_gates": [
+          "replay_stdout_present"
+        ],
+        "preflight_hash": "71d6cf3d82d7d6dbc70de94a0a7dad9a1477f537254635a53dba6efc6a90f1e5",
+        "remaining_r85_failed_gates": [
+          "stv_reprice_ledger_present",
+          "filled_r83_submission_present",
+          "downstream_b7_replay_present"
+        ]
+      },
+      "label": "R86 closes exactly the R85 replay-stdout blocker and leaves three credit blockers open",
+      "passed": true,
+      "requirement_id": "A5"
+    },
+    {
+      "evidence": {
+        "accepted_b7_credit_delta": 0,
+        "accepted_b7_space_time_volume_credit": 0
+      },
+      "label": "R86 grants no B7, STV, reroute, O3, or resource-saving credit",
+      "passed": true,
+      "requirement_id": "A6"
+    },
+    {
+      "evidence": {
+        "blocker_ids": [
+          "R86-G1-1",
+          "R86-G1-2",
+          "R86-G1-3"
+        ],
+        "blocker_queue_hash": "6a934fc9ec42e86b752426d5a7460c876eb7562224f12385c148c78355cc65a2"
+      },
+      "label": "R86 emits the next three blockers as PR-sized work",
+      "passed": true,
+      "requirement_id": "A7"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 7,
+  "source_target_id": "T-B1-004gj/T-B7-015s",
+  "status": "cone01_r86_g1_replay_stdout_binding_ready_no_credit",
+  "stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R86-G1-source-binding-replay.stdout.txt",
+  "stdout_sha256": "4efe9839cafe6502f297afc0ab0a1d06f343e3da26c38eb5223dd0077a5f1004",
+  "summary": {
+    "accepted_b7_credit_delta": 0,
+    "accepted_b7_space_time_volume_credit": 0,
+    "accepted_t_ledger_reduction": 0,
+    "all_rows_source_bound": true,
+    "all_selected_rows_covered": true,
+    "blocker_queue_hash": "6a934fc9ec42e86b752426d5a7460c876eb7562224f12385c148c78355cc65a2",
+    "candidate_t_ledger_reduction": 600,
+    "closed_r85_failed_gates": [
+      "replay_stdout_present"
+    ],
+    "failed_gates": [
+      "stv_reprice_ledger_present",
+      "filled_r83_submission_present",
+      "downstream_b7_replay_present"
+    ],
+    "failed_requirement_ids": [],
+    "line_hash_verified_count": 30,
+    "method": "b1_b7_cone01_r86_g1_replay_stdout_binding_gate_v0",
+    "model_status": "r85_replay_stdout_gate_closed_without_stv_or_b7_credit",
+    "o3_closed": false,
+    "payload_hash": "38bcbc0664810556e3917c9f3bcfd98198ac5debb39aecd4ab1ddc4f8f83e352",
+    "preflight_accepted": false,
+    "preflight_failed_gate_count": 3,
+    "preflight_hash": "71d6cf3d82d7d6dbc70de94a0a7dad9a1477f537254635a53dba6efc6a90f1e5",
+    "remaining_r85_failed_gates": [
+      "stv_reprice_ledger_present",
+      "filled_r83_submission_present",
+      "downstream_b7_replay_present"
+    ],
+    "replay_event_count": 30,
+    "replay_stdout_present": true,
+    "requirements_failed": 0,
+    "requirements_passed": 7,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "route_id": "R83-G1-30-arbitrary-rotation-batch",
+    "selected_row_count": 30,
+    "source_component_bound_count": 30,
+    "source_qasm_path": "results/b1_u3_phase_factored_optimizer/qasmbench_medium_exact/gcm_h6.qasm",
+    "source_qasm_sha256": "b0788a68e501faa55d1627a8f98e9c8ce009eaba5bee2a8a921122a1af070e9e",
+    "source_rows_hash": "0a56014b1b0d8efb3bb866a63c2e0a182255ca306addd2ffd1b75e616fc8d2db",
+    "source_target_id": "T-B1-004gj/T-B7-015s",
+    "status": "cone01_r86_g1_replay_stdout_binding_ready_no_credit",
+    "stdout_sha256": "4efe9839cafe6502f297afc0ab0a1d06f343e3da26c38eb5223dd0077a5f1004",
+    "transcript_hash": "cbdee2263c4dac2e649d0677652cfef8b91eb88460ade8211546936869ce034d",
+    "upstream_target_id": "T-B1-004gi/T-B7-015r",
+    "validation_error_count": 0
+  },
+  "transcript_hash": "cbdee2263c4dac2e649d0677652cfef8b91eb88460ade8211546936869ce034d",
+  "transcript_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R86-G1-source-binding-replay-transcript.json",
+  "upstream_target_id": "T-B1-004gi/T-B7-015r",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "version": "0.1"
+}

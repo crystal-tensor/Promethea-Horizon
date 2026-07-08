@@ -2152,3 +2152,19 @@ submission, and downstream B7 replay. Source-rows hash
 candidate-mapping hash `cddd98736eb312fba1fb063342f9cf38aa21283e0aa5163d7002ef477cc9a47c`;
 preflight hash `3f7cf84f8243e83442e06dcaad662b6bdbcda129158e6560b415e953f3dbb846`.
 B7 credit remains `0`.
+
+`T-B1-004gj` / `T-B7-015s` now closes the first R85 blocker without
+promoting the candidate. R86 emits source-binding replay stdout for all `30`
+selected G1 rows and verifies that every row still binds to the original
+`gcm_h6` QASM source line hash and source-component id. Replay events `30/30`
+are covered, line hashes verified `30/30`, and the candidate mapping remains
+`600` T-ledger units with accepted T-ledger reduction `0`. The replay-aware
+preflight now sets `replay_stdout_present=true`, but still rejects credit on the
+three remaining gates: STV reprice ledger, filled R83 submission, and downstream
+B7 replay. Transcript hash
+`cbdee2263c4dac2e649d0677652cfef8b91eb88460ade8211546936869ce034d`;
+stdout hash `4efe9839cafe6502f297afc0ab0a1d06f343e3da26c38eb5223dd0077a5f1004`;
+preflight hash `71d6cf3d82d7d6dbc70de94a0a7dad9a1477f537254635a53dba6efc6a90f1e5`;
+blocker queue hash `6a934fc9ec42e86b752426d5a7460c876eb7562224f12385c148c78355cc65a2`.
+B7 credit remains `0`; this is replay-stdout binding only, not STV repricing,
+same-unitary proof, or O3 closure.

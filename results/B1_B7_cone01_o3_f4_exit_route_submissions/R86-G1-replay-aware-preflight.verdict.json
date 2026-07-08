@@ -1,0 +1,50 @@
+{
+  "accepted": false,
+  "accepted_b7_credit_delta": 0,
+  "accepted_b7_space_time_volume_credit": 0,
+  "artifact": "R86 G1 replay-aware preflight verdict",
+  "claim_boundary": "R86 changes only the replay_stdout_present gate from missing to present. It still rejects credit until STV reprice, filled R83 submission, and downstream B7 replay are present and accepted.",
+  "closed_r85_failed_gates": [
+    "replay_stdout_present"
+  ],
+  "failed_gate_count": 3,
+  "failed_gates": [
+    "stv_reprice_ledger_present",
+    "filled_r83_submission_present",
+    "downstream_b7_replay_present"
+  ],
+  "gates": {
+    "candidate_t_ledger_reduction_reaches_600": true,
+    "component_uniqueness_screen_passed": true,
+    "downstream_b7_replay_present": false,
+    "filled_r83_submission_present": false,
+    "replay_stdout_present": true,
+    "source_rows_match_b7_classifier_count": true,
+    "source_rows_present": true,
+    "stv_reprice_ledger_present": false
+  },
+  "method": "b1_b7_cone01_r86_g1_replay_stdout_binding_gate_v0",
+  "o3_closed": false,
+  "passed_gate_count": 5,
+  "preflight_hash": "71d6cf3d82d7d6dbc70de94a0a7dad9a1477f537254635a53dba6efc6a90f1e5",
+  "remaining_r85_failed_gates": [
+    "stv_reprice_ledger_present",
+    "filled_r83_submission_present",
+    "downstream_b7_replay_present"
+  ],
+  "reroute_allowed": false,
+  "resource_saving_claimed": false,
+  "route_id": "R83-G1-30-arbitrary-rotation-batch",
+  "source_r85_failed_gates": [
+    "replay_stdout_present",
+    "stv_reprice_ledger_present",
+    "filled_r83_submission_present",
+    "downstream_b7_replay_present"
+  ],
+  "source_r85_preflight_hash": "3f7cf84f8243e83442e06dcaad662b6bdbcda129158e6560b415e953f3dbb846",
+  "source_target_id": "T-B1-004gj/T-B7-015s",
+  "stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R86-G1-source-binding-replay.stdout.txt",
+  "stdout_sha256": "4efe9839cafe6502f297afc0ab0a1d06f343e3da26c38eb5223dd0077a5f1004",
+  "transcript_hash": "cbdee2263c4dac2e649d0677652cfef8b91eb88460ade8211546936869ce034d",
+  "upstream_target_id": "T-B1-004gi/T-B7-015r"
+}
