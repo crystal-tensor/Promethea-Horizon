@@ -1378,6 +1378,21 @@ preflight hash `7a5d901ba75e0bc9f1d7d06d8530a4a08ea3a93f70afb8711c8143a925437042
 C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
 claims remain 0/false.
 
+`T-B1-004em` / `T-B7-013v` closes the pure C2 file-existence blocker without
+promoting smoke evidence into proof. It materializes all 8 O3-F4 C2 rows with
+32 hash-matched files across replay stdout, source circuit, candidate circuit,
+and witness slots. Surface rows pass/fail `8/0`; materialized rows pass/fail
+`8/0`; missing materialized files drop to `0`; hash mismatches stay `0`.
+Fixture hash `17b1a4e3e197ac838d636bcb52ca81a9001651758e1c306b97039b578eff32a6`;
+fixture file sha256
+`068391b6c4c0087a877c2a863c8d7f7a3b06291af9b5da53982266a4f18b374a`;
+preflight hash `4a469eadb38d952eb6168c55aee670c4122301478c44490badb831f1c86f5734`.
+The rejection is now sharper: all 8 rows are still smoke-only, 0 rows are
+source-backed, no same-unitary certificate is accepted, and C2/O3/reroute/B7
+credit/STV/resource-saving claims remain 0/false. The next useful PR must
+replace smoke files with source-backed replay outputs and same-unitary witness
+files before C3-C7 can count.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
