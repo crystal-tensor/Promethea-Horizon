@@ -1,0 +1,66 @@
+{
+  "artifact_id": "B1-B7-cone01-O3-F4-numerical-refit-<submitter>-<short-name>",
+  "candidate_id": "NL-C02",
+  "challenge_packet_hash": "020091be6ad6be922f5c60bbda55ff89333f01c804d931546b4b35ff195464a0",
+  "claim_boundary": {
+    "kill_conditions": [
+      "same-unitary replay fails",
+      "lattice relation is numerical-only without replay",
+      "optimizer trace omits challenge seeds",
+      "claim boundary allows downstream credit"
+    ],
+    "not_supported": "No B7 credit, STV credit, R5 reroute, O3 closure, or R1 solution may be claimed unless the O3-F4 harness, O3 closure checks, and downstream B7 ledgers pass.",
+    "supported": "<required>"
+  },
+  "equivalence_certificate": "<required: replayable same-unitary certificate or explicit rejection certificate>",
+  "expected_outputs": {
+    "artifact_hash": "<required after submission>",
+    "challenge_packet_hash": "020091be6ad6be922f5c60bbda55ff89333f01c804d931546b4b35ff195464a0",
+    "checker_stdout_hash": "<required after submission>"
+  },
+  "family_id": "O3-F4",
+  "machine_check_command": "<required>",
+  "optimizer_trace": "<required: ordered trace or proof that no accepted refit exists>",
+  "refit_objective": {
+    "loss_terms": [
+      "unitary_replay_error",
+      "pi_over_four_lattice_distance",
+      "route_a_effect"
+    ],
+    "objective": "same_unitary_refit_with_route_a_clearance_pressure",
+    "status": "required"
+  },
+  "route_a_effect": "not_claimed|clears_route_a|does_not_clear_route_a",
+  "seed_schedule": {
+    "challenge_ids": [
+      "O3-F4-C01",
+      "O3-F4-C02",
+      "O3-F4-C03",
+      "O3-F4-C04",
+      "O3-F4-C05",
+      "O3-F4-C06",
+      "O3-F4-C07",
+      "O3-F4-C08"
+    ],
+    "external_randomness_allowed": false,
+    "status": "required"
+  },
+  "source_domain_hash": "8222f1c0cee51f1ad1a7e8f696938d261c01d7a1841559e451b4fc22a8a676d3",
+  "source_enforced_replay_hash": "0a9c84e725e45b01e1e42d6cf2f00effede669c02740576953f898657c828379",
+  "source_registry_hash": "3a4cd3b08574775d52ee0292e7e5861c968efd0dd281dd04481f6e3da1271eae",
+  "source_target_id": "T-B1-004dz/T-B7-013i",
+  "unitary_replay_protocol": {
+    "required_replay_cases": [
+      "O3-F4-C01",
+      "O3-F4-C02",
+      "O3-F4-C03",
+      "O3-F4-C04",
+      "O3-F4-C05",
+      "O3-F4-C06",
+      "O3-F4-C07",
+      "O3-F4-C08"
+    ],
+    "status": "required",
+    "tolerance": 1e-08
+  }
+}
