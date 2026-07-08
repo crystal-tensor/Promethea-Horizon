@@ -1,0 +1,520 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "next_gate": "Submit 8 source-backed C2 replay rows with numeric max-unitary errors <= 1e-08, same-unitary witness hashes, source/candidate circuit hashes, replay commands, stdout hashes, and verifier versions.",
+    "resource_saving_claimed": false,
+    "what_is_not_supported": "R30 does not accept C2, does not complete the certificate triad, does not close O3, and does not permit reroute, B7 credit, STV credit, or resource-saving claims.",
+    "what_is_supported": "R30 emits a source-bound C2 strict replay row template and proves the placeholder rows are rejected until all 8 challenge rows contain numeric replay evidence under 1e-08."
+  },
+  "last_updated": "2026-07-08",
+  "linked_benchmark_id": "B7",
+  "method": "b1_b7_cone01_r30_o3_f4_c2_strict_replay_row_intake_gate_v0",
+  "model_status": "o3_f4_c2_replay_rows_template_ready_no_c2_acceptance",
+  "o3_f4_c2_strict_replay_row_intake_packet": {
+    "preflight_result": {
+      "accepted": false,
+      "actual_challenge_ids": [
+        "O3-F4-C01",
+        "O3-F4-C02",
+        "O3-F4-C03",
+        "O3-F4-C04",
+        "O3-F4-C05",
+        "O3-F4-C06",
+        "O3-F4-C07",
+        "O3-F4-C08"
+      ],
+      "challenge_packet_hash_matches": true,
+      "claim_boundary_zero_credit": true,
+      "expected_challenge_ids": [
+        "O3-F4-C01",
+        "O3-F4-C02",
+        "O3-F4-C03",
+        "O3-F4-C04",
+        "O3-F4-C05",
+        "O3-F4-C06",
+        "O3-F4-C07",
+        "O3-F4-C08"
+      ],
+      "expected_row_count": 8,
+      "extra_challenge_ids": [],
+      "max_observed_replay_error": null,
+      "missing_challenge_ids": [],
+      "missing_key_rows": {},
+      "numeric_replay_error_count": 0,
+      "placeholder_cell_count": 72,
+      "placeholder_cells": [
+        "O3-F4-C01:submitted_parameter_values",
+        "O3-F4-C01:max_unitary_replay_error",
+        "O3-F4-C01:unitary_distance_metric",
+        "O3-F4-C01:same_unitary_witness_hash",
+        "O3-F4-C01:source_circuit_hash",
+        "O3-F4-C01:candidate_circuit_hash",
+        "O3-F4-C01:replay_command",
+        "O3-F4-C01:replay_stdout_hash",
+        "O3-F4-C01:verifier_version",
+        "O3-F4-C02:submitted_parameter_values",
+        "O3-F4-C02:max_unitary_replay_error",
+        "O3-F4-C02:unitary_distance_metric",
+        "O3-F4-C02:same_unitary_witness_hash",
+        "O3-F4-C02:source_circuit_hash",
+        "O3-F4-C02:candidate_circuit_hash",
+        "O3-F4-C02:replay_command",
+        "O3-F4-C02:replay_stdout_hash",
+        "O3-F4-C02:verifier_version",
+        "O3-F4-C03:submitted_parameter_values",
+        "O3-F4-C03:max_unitary_replay_error",
+        "O3-F4-C03:unitary_distance_metric",
+        "O3-F4-C03:same_unitary_witness_hash",
+        "O3-F4-C03:source_circuit_hash",
+        "O3-F4-C03:candidate_circuit_hash",
+        "O3-F4-C03:replay_command",
+        "O3-F4-C03:replay_stdout_hash",
+        "O3-F4-C03:verifier_version",
+        "O3-F4-C04:submitted_parameter_values",
+        "O3-F4-C04:max_unitary_replay_error",
+        "O3-F4-C04:unitary_distance_metric",
+        "O3-F4-C04:same_unitary_witness_hash",
+        "O3-F4-C04:source_circuit_hash",
+        "O3-F4-C04:candidate_circuit_hash",
+        "O3-F4-C04:replay_command",
+        "O3-F4-C04:replay_stdout_hash",
+        "O3-F4-C04:verifier_version",
+        "O3-F4-C05:submitted_parameter_values",
+        "O3-F4-C05:max_unitary_replay_error",
+        "O3-F4-C05:unitary_distance_metric",
+        "O3-F4-C05:same_unitary_witness_hash",
+        "O3-F4-C05:source_circuit_hash",
+        "O3-F4-C05:candidate_circuit_hash",
+        "O3-F4-C05:replay_command",
+        "O3-F4-C05:replay_stdout_hash",
+        "O3-F4-C05:verifier_version",
+        "O3-F4-C06:submitted_parameter_values",
+        "O3-F4-C06:max_unitary_replay_error",
+        "O3-F4-C06:unitary_distance_metric",
+        "O3-F4-C06:same_unitary_witness_hash",
+        "O3-F4-C06:source_circuit_hash",
+        "O3-F4-C06:candidate_circuit_hash",
+        "O3-F4-C06:replay_command",
+        "O3-F4-C06:replay_stdout_hash",
+        "O3-F4-C06:verifier_version",
+        "O3-F4-C07:submitted_parameter_values",
+        "O3-F4-C07:max_unitary_replay_error",
+        "O3-F4-C07:unitary_distance_metric",
+        "O3-F4-C07:same_unitary_witness_hash",
+        "O3-F4-C07:source_circuit_hash",
+        "O3-F4-C07:candidate_circuit_hash",
+        "O3-F4-C07:replay_command",
+        "O3-F4-C07:replay_stdout_hash",
+        "O3-F4-C07:verifier_version",
+        "O3-F4-C08:submitted_parameter_values",
+        "O3-F4-C08:max_unitary_replay_error",
+        "O3-F4-C08:unitary_distance_metric",
+        "O3-F4-C08:same_unitary_witness_hash",
+        "O3-F4-C08:source_circuit_hash",
+        "O3-F4-C08:candidate_circuit_hash",
+        "O3-F4-C08:replay_command",
+        "O3-F4-C08:replay_stdout_hash",
+        "O3-F4-C08:verifier_version"
+      ],
+      "preflight_hash": "f4b743162793460c4cd93c600cd9a7db07456edede109ec66c99c2138c67dadf",
+      "row_count": 8,
+      "strict_tolerance": 1e-08
+    },
+    "source_r24_harness": "results/B1_B7_cone01_R24_o3_f4_numerical_refit_harness_gate_v0.json",
+    "source_r29_preflight": "results/B1_B7_cone01_R29_o3_f4_certificate_triad_preflight_gate_v0.json",
+    "template": {
+      "artifact_id": "B1-B7-cone01-O3-F4-C2-strict-replay-rows.<submitter-id>",
+      "b7_credit_delta": 0,
+      "candidate_id": "NL-C02",
+      "claim_boundary": {
+        "not_supported": "C2 acceptance, O3 closure, R5 reroute, B7 credit, STV credit, or resource savings before this template is filled and accepted.",
+        "supported": "C2 strict replay row submission only after all row fields are source-backed and replay errors are <= 1e-08."
+      },
+      "family_id": "O3-F4",
+      "o3_closed": false,
+      "required_row_count": 8,
+      "required_row_keys": [
+        "challenge_id",
+        "parameter_indices",
+        "source_initial_values",
+        "submitted_parameter_values",
+        "strict_tolerance",
+        "max_unitary_replay_error",
+        "unitary_distance_metric",
+        "same_unitary_witness_hash",
+        "source_circuit_hash",
+        "candidate_circuit_hash",
+        "replay_command",
+        "replay_stdout_hash",
+        "verifier_version"
+      ],
+      "reroute_allowed": false,
+      "row_table_hash": "fe1c57867f1e2e23a392e8a87045918b349c3df97bf2e5df3eb471459e7351e9",
+      "rows": [
+        {
+          "candidate_circuit_hash": "<sha256>",
+          "challenge_id": "O3-F4-C01",
+          "max_unitary_replay_error": "<must be <= 1e-08>",
+          "parameter_indices": [
+            3,
+            4,
+            9,
+            16,
+            17
+          ],
+          "replay_command": "<command>",
+          "replay_stdout_hash": "<sha256>",
+          "same_unitary_witness_hash": "<sha256>",
+          "source_circuit_hash": "<sha256>",
+          "source_initial_values": [
+            1.533452693380428,
+            -1.033846781618468,
+            -1.034877289679127,
+            0.464345342284864,
+            0.303421832490631
+          ],
+          "strict_tolerance": 1e-08,
+          "submitted_parameter_values": "<five candidate parameters after refit>",
+          "unitary_distance_metric": "<operator_norm|diamond_proxy|statevector_span_bound>",
+          "verifier_version": "<tool-or-agent-version>"
+        },
+        {
+          "candidate_circuit_hash": "<sha256>",
+          "challenge_id": "O3-F4-C02",
+          "max_unitary_replay_error": "<must be <= 1e-08>",
+          "parameter_indices": [
+            3,
+            4,
+            9,
+            16,
+            17
+          ],
+          "replay_command": "<command>",
+          "replay_stdout_hash": "<sha256>",
+          "same_unitary_witness_hash": "<sha256>",
+          "source_circuit_hash": "<sha256>",
+          "source_initial_values": [
+            1.323084947178454,
+            -1.261171138324888,
+            -1.070157291694093,
+            0.653545966111847,
+            0.543152901156416
+          ],
+          "strict_tolerance": 1e-08,
+          "submitted_parameter_values": "<five candidate parameters after refit>",
+          "unitary_distance_metric": "<operator_norm|diamond_proxy|statevector_span_bound>",
+          "verifier_version": "<tool-or-agent-version>"
+        },
+        {
+          "candidate_circuit_hash": "<sha256>",
+          "challenge_id": "O3-F4-C03",
+          "max_unitary_replay_error": "<must be <= 1e-08>",
+          "parameter_indices": [
+            3,
+            4,
+            9,
+            16,
+            17
+          ],
+          "replay_command": "<command>",
+          "replay_stdout_hash": "<sha256>",
+          "same_unitary_witness_hash": "<sha256>",
+          "source_circuit_hash": "<sha256>",
+          "source_initial_values": [
+            1.638636566481415,
+            -0.920184603265257,
+            -1.017237288671643,
+            0.369745030371373,
+            0.183556298157739
+          ],
+          "strict_tolerance": 1e-08,
+          "submitted_parameter_values": "<five candidate parameters after refit>",
+          "unitary_distance_metric": "<operator_norm|diamond_proxy|statevector_span_bound>",
+          "verifier_version": "<tool-or-agent-version>"
+        },
+        {
+          "candidate_circuit_hash": "<sha256>",
+          "challenge_id": "O3-F4-C04",
+          "max_unitary_replay_error": "<must be <= 1e-08>",
+          "parameter_indices": [
+            3,
+            4,
+            9,
+            16,
+            17
+          ],
+          "replay_command": "<command>",
+          "replay_stdout_hash": "<sha256>",
+          "same_unitary_witness_hash": "<sha256>",
+          "source_circuit_hash": "<sha256>",
+          "source_initial_values": [
+            1.217901074077467,
+            -1.374833316678098,
+            -1.087797292701577,
+            0.748146278025338,
+            0.663018435489308
+          ],
+          "strict_tolerance": 1e-08,
+          "submitted_parameter_values": "<five candidate parameters after refit>",
+          "unitary_distance_metric": "<operator_norm|diamond_proxy|statevector_span_bound>",
+          "verifier_version": "<tool-or-agent-version>"
+        },
+        {
+          "candidate_circuit_hash": "<sha256>",
+          "challenge_id": "O3-F4-C05",
+          "max_unitary_replay_error": "<must be <= 1e-08>",
+          "parameter_indices": [
+            3,
+            4,
+            9,
+            16,
+            17
+          ],
+          "replay_command": "<command>",
+          "replay_stdout_hash": "<sha256>",
+          "same_unitary_witness_hash": "<sha256>",
+          "source_circuit_hash": "<sha256>",
+          "source_initial_values": [
+            1.743820439582402,
+            -0.806522424912047,
+            -0.99959728766416,
+            0.275144718457882,
+            0.063690763824846
+          ],
+          "strict_tolerance": 1e-08,
+          "submitted_parameter_values": "<five candidate parameters after refit>",
+          "unitary_distance_metric": "<operator_norm|diamond_proxy|statevector_span_bound>",
+          "verifier_version": "<tool-or-agent-version>"
+        },
+        {
+          "candidate_circuit_hash": "<sha256>",
+          "challenge_id": "O3-F4-C06",
+          "max_unitary_replay_error": "<must be <= 1e-08>",
+          "parameter_indices": [
+            3,
+            4,
+            9,
+            16,
+            17
+          ],
+          "replay_command": "<command>",
+          "replay_stdout_hash": "<sha256>",
+          "same_unitary_witness_hash": "<sha256>",
+          "source_circuit_hash": "<sha256>",
+          "source_initial_values": [
+            1.11271720097648,
+            -1.488495495031308,
+            -1.10543729370906,
+            0.842746589938829,
+            0.7828839698222
+          ],
+          "strict_tolerance": 1e-08,
+          "submitted_parameter_values": "<five candidate parameters after refit>",
+          "unitary_distance_metric": "<operator_norm|diamond_proxy|statevector_span_bound>",
+          "verifier_version": "<tool-or-agent-version>"
+        },
+        {
+          "candidate_circuit_hash": "<sha256>",
+          "challenge_id": "O3-F4-C07",
+          "max_unitary_replay_error": "<must be <= 1e-08>",
+          "parameter_indices": [
+            3,
+            4,
+            9,
+            16,
+            17
+          ],
+          "replay_command": "<command>",
+          "replay_stdout_hash": "<sha256>",
+          "same_unitary_witness_hash": "<sha256>",
+          "source_circuit_hash": "<sha256>",
+          "source_initial_values": [
+            1.849004312683389,
+            -0.692860246558837,
+            -0.981957286656676,
+            0.180544406544391,
+            -0.056174770508046
+          ],
+          "strict_tolerance": 1e-08,
+          "submitted_parameter_values": "<five candidate parameters after refit>",
+          "unitary_distance_metric": "<operator_norm|diamond_proxy|statevector_span_bound>",
+          "verifier_version": "<tool-or-agent-version>"
+        },
+        {
+          "candidate_circuit_hash": "<sha256>",
+          "challenge_id": "O3-F4-C08",
+          "max_unitary_replay_error": "<must be <= 1e-08>",
+          "parameter_indices": [
+            3,
+            4,
+            9,
+            16,
+            17
+          ],
+          "replay_command": "<command>",
+          "replay_stdout_hash": "<sha256>",
+          "same_unitary_witness_hash": "<sha256>",
+          "source_circuit_hash": "<sha256>",
+          "source_initial_values": [
+            1.007533327875493,
+            -1.602157673384518,
+            -1.123077294716543,
+            0.93734690185232,
+            0.902749504155093
+          ],
+          "strict_tolerance": 1e-08,
+          "submitted_parameter_values": "<five candidate parameters after refit>",
+          "unitary_distance_metric": "<operator_norm|diamond_proxy|statevector_span_bound>",
+          "verifier_version": "<tool-or-agent-version>"
+        }
+      ],
+      "source_r24_challenge_packet_hash": "020091be6ad6be922f5c60bbda55ff89333f01c804d931546b4b35ff195464a0",
+      "source_r29_preflight_hash": "6129db1af66089749a8e3317bd0d3376d90a42991c16dac290f875fc81839c80",
+      "source_target_id": "T-B1-004ef/T-B7-013o",
+      "strict_tolerance": 1e-08,
+      "template_hash": "5169bcb486c808157c30d89fd9e02d91bae2918748fa338f44d2b7aab5cd65ab",
+      "upstream_target_id": "T-B1-004ee/T-B7-013n"
+    },
+    "template_output": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/B1-B7-cone01-O3-F4-C2-strict-replay-rows.template.json"
+  },
+  "requirements": [
+    {
+      "evidence": {
+        "r24_validation_error_count": 0,
+        "r29_validation_error_count": 0
+      },
+      "label": "R24 and R29 sources are validation-clean",
+      "passed": true,
+      "requirement_id": "S1"
+    },
+    {
+      "evidence": {
+        "extra_challenge_ids": [],
+        "missing_challenge_ids": [],
+        "row_count": 8
+      },
+      "label": "C2 template covers exactly the 8 O3-F4 challenge rows",
+      "passed": true,
+      "requirement_id": "S2"
+    },
+    {
+      "evidence": {
+        "missing_key_rows": {}
+      },
+      "label": "Every C2 row has the required field surface",
+      "passed": true,
+      "requirement_id": "S3"
+    },
+    {
+      "evidence": {
+        "accepted": false,
+        "numeric_replay_error_count": 0,
+        "placeholder_cell_count": 72
+      },
+      "label": "Placeholder C2 rows are rejected and not accepted as replay evidence",
+      "passed": true,
+      "requirement_id": "S4"
+    },
+    {
+      "evidence": {
+        "source_r24_challenge_packet_hash": "020091be6ad6be922f5c60bbda55ff89333f01c804d931546b4b35ff195464a0",
+        "strict_tolerance": 1e-08
+      },
+      "label": "Strict tolerance and source challenge-packet hash are preserved",
+      "passed": true,
+      "requirement_id": "S5"
+    },
+    {
+      "evidence": {
+        "b7_credit_delta": 0,
+        "c2_accepted": false,
+        "o3_closed": false,
+        "reroute_allowed": false
+      },
+      "label": "R30 keeps C2, O3, reroute, and B7 credit unaccepted",
+      "passed": true,
+      "requirement_id": "S6"
+    },
+    {
+      "evidence": {
+        "preflight_hash": "f4b743162793460c4cd93c600cd9a7db07456edede109ec66c99c2138c67dadf",
+        "row_table_hash": "fe1c57867f1e2e23a392e8a87045918b349c3df97bf2e5df3eb471459e7351e9",
+        "template_hash": "5169bcb486c808157c30d89fd9e02d91bae2918748fa338f44d2b7aab5cd65ab"
+      },
+      "label": "Template and preflight are hash-bound",
+      "passed": true,
+      "requirement_id": "S7"
+    },
+    {
+      "evidence": {
+        "r29_failed_gate_ids": [
+          "C2-strict-replay-under-tolerance",
+          "C3-replay-certificate-complete",
+          "C4-denominator-comparison-complete",
+          "C5-same-access-model",
+          "C6-leakage-free-optimizer-trace",
+          "C7-machine-check-replay"
+        ],
+        "r30_scope": "C2 strict replay rows only"
+      },
+      "label": "R30 narrows the next work to C2 without claiming C3-C7 progress",
+      "passed": true,
+      "requirement_id": "S8"
+    }
+  ],
+  "runtime_seconds": 0.000388,
+  "source_target_id": "T-B1-004ef/T-B7-013o",
+  "status": "cone01_r30_o3_f4_c2_strict_replay_row_template_ready_rejected",
+  "summary": {
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "accepted_route_count": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_space_time_volume_credit": 0,
+    "c2_preflight_accepted": false,
+    "c2_strict_replay_rows_accepted": false,
+    "c2_strict_replay_rows_template_emitted": true,
+    "candidate_id": "NL-C02",
+    "checked_negative_lemma_present": false,
+    "failed_requirement_ids": [],
+    "family_id": "O3-F4",
+    "leakage_free_optimizer_trace_complete": false,
+    "machine_check_replay_complete": false,
+    "nlc02_full_lemma_ready": false,
+    "numeric_replay_error_count": 0,
+    "o3_closed": false,
+    "o3_f4_artifact_accepted": false,
+    "placeholder_cell_count": 72,
+    "preflight_hash": "f4b743162793460c4cd93c600cd9a7db07456edede109ec66c99c2138c67dadf",
+    "remaining_open_obligation_count": 5,
+    "remaining_open_obligations": [
+      "C2_source_backed_strict_replay_rows",
+      "C3_same_unitary_replay_certificate",
+      "C4_C5_same_access_denominator_comparison",
+      "C6_leakage_free_optimizer_trace",
+      "C7_machine_check_replay_bundle"
+    ],
+    "required_row_count": 8,
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "row_table_hash": "fe1c57867f1e2e23a392e8a87045918b349c3df97bf2e5df3eb471459e7351e9",
+    "same_access_denominator_comparison_complete": false,
+    "same_unitary_replay_certificate_complete": false,
+    "source_r24_challenge_packet_hash": "020091be6ad6be922f5c60bbda55ff89333f01c804d931546b4b35ff195464a0",
+    "source_r24_challenge_table_hash": "b941021529f5be974dba1c4a3f08ef2be04a4a8ac41bf0a6536ea550cee77901",
+    "source_r29_preflight_hash": "6129db1af66089749a8e3317bd0d3376d90a42991c16dac290f875fc81839c80",
+    "strict_tolerance": 1e-08,
+    "template_hash": "5169bcb486c808157c30d89fd9e02d91bae2918748fa338f44d2b7aab5cd65ab",
+    "template_row_count": 8,
+    "validation_error_count": 0
+  },
+  "title": "B1/B7 Cone01 R30 O3-F4 C2 Strict Replay Row Intake Gate",
+  "upstream_target_id": "T-B1-004ee/T-B7-013n",
+  "validation_errors": [],
+  "version": "0.1"
+}
