@@ -6182,6 +6182,40 @@ current_results:
     caveat: r73_intake_contract_only_no_source_closure_no_exit_route_or_b7_credit
     report: ../results/B1_B7_cone01_R73_r1_r2_source_closure_intake_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_R73_r1_r2_source_closure_intake_gate.md
+  b1_b7_cone01_r74_r1_occurrence_packet_prefill_gate_v0:
+    circuits: 1
+    status: cone01_r74_r1_occurrence_packet_prefill_partial_zero_credit
+    model_status: r73_d1_occurrence_packet_prefilled_d2_d3_still_block_acceptance
+    method: b1_b7_cone01_r74_r1_occurrence_packet_prefill_gate_v0
+    source_target_id: T-B1-004fx/T-B7-015g
+    upstream_target_id: T-B1-004fw/T-B7-015f
+    source_r73_intake: ../results/B1_B7_cone01_R73_r1_r2_source_closure_intake_gate_v0.json
+    r74_occurrence_artifact: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-line1381-occurrence-replay-artifact.json
+    r74_occurrence_stdout: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-line1381-occurrence-replay.stdout.txt
+    r74_occurrence_verdict: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-line1381-occurrence-replay.verdict.json
+    r74_submission: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-occurrence-source-closure-submission.json
+    r74_intake_verdict: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-occurrence-source-closure-intake.verdict.json
+    r74_blocker_queue: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-source-closure-blocker-queue.json
+    r73_d1_prefilled: true
+    r73_intake_accepted: false
+    r73_intake_failed_gate_count: 4
+    source_line1381: "cx q[3],q[15];"
+    candidate_line1381: "U(0.42054081161117135,pi/4,0) q[14];"
+    source_cnot_count: 795
+    candidate_cnot_count: 789
+    structural_cnot_delta: 6
+    accepted_exit_route_count: 0
+    accepted_occurrence_removal: 0
+    accepted_proxy_t_reduction: 0
+    b7_nonzero_retest_allowed: false
+    b7_credit_delta: 0
+    blocker_queue_hash: 1a0dc6cd363dd0ae3b03c2182c960304d721cfbf55034b2698c0ea3b9bffbc1c
+    requirements_passed: 8
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r74_prefills_r73_d1_only_d2_d3_remain_open_no_exit_route_or_b7_credit
+    report: ../results/B1_B7_cone01_R74_r1_occurrence_packet_prefill_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_R74_r1_occurrence_packet_prefill_gate.md
   b1_b7_cone01_full_statevector_replay_probe_gate_v0:
     circuits: 1
     status: cone01_default_input_statevector_replay_probe_passed_not_symbolic_certificate

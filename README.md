@@ -2007,3 +2007,13 @@ derivation, non-source-backed proxy-T derivation, and non-source-backed
 line1378 no-double-counting. Requirements pass 8/8, accepted exit routes remain
 0, occurrence removal remains 0, proxy-T reduction remains 0, and B7 credit
 remains 0.
+
+`T-B1-004fx` / `T-B7-015g` now fills the first R73 source packet without
+promoting it into credit. R74 turns the R73-D1 line1381 occurrence packet into a
+hash-bound source-backed prefill: source OpenQASM3 line 1381 is
+`cx q[3],q[15];`, the same candidate line is not a CNOT, source/candidate CNOT
+counts remain `795 -> 789`, and the replay artifact, stdout, and verdict are
+all materialized. The R73 intake now recognizes D1 as source-backed, but still
+rejects the submission on 4 gates because D2 proxy-T pricing and D3 line1378
+no-double-counting remain open. Requirements pass 8/8; accepted exit routes,
+occurrence removal, proxy-T reduction, and B7 credit remain 0.

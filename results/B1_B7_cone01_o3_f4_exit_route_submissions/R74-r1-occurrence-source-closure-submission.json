@@ -1,0 +1,59 @@
+{
+  "accepted_exit_route_count": 0,
+  "b7_nonzero_retest_requested": false,
+  "claim_boundary": "R74 fills R73-D1 only. D2 proxy-T and D3 line1378 no-double-counting remain empty, so this is not accepted, not O3 closure, not reroute permission, and not B7 credit.",
+  "occurrence_removal_delta": 0,
+  "packets": {
+    "R73-D1-line1381-source-backed-occurrence": {
+      "r1_claim_boundary": "R74 fills the R73-D1 occurrence packet shape with source-backed line evidence. It does not close R73, does not accept the positive-delta row, does not close O3, does not allow reroute, and does not grant B7 credit.",
+      "r1_occurrence_delta_derivation": "R74 line-scoped source-backed prefill: source OpenQASM3 line 1381 is `cx q[3],q[15];`, the same candidate line is not a CNOT, and the source/candidate OpenQASM3 files plus replay verdict are hash-bound. This fills R73-D1 only; it is not a full accepted occurrence proof until proxy-T and line1378 no-double-counting closure pass.",
+      "r1_occurrence_removed_lines": [
+        1381
+      ],
+      "r1_replay_command": "python3 tools/b1_b7_cone01_r74_r1_occurrence_packet_prefill_gate.py --repo-root . --pretty",
+      "r1_replay_stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-line1381-occurrence-replay.stdout.txt",
+      "r1_replay_stdout_sha256": "447b859f226f12b30a249983433fca5494419abe806898a85d3052bd7e2e1471",
+      "r1_replay_verdict_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-line1381-occurrence-replay.verdict.json",
+      "r1_replay_verdict_sha256": "df15d374e1bba4c68510174946e20f748b2e92b6ed0ff39fe7b86c42315a3a1f",
+      "r1_selected_lines": [
+        268,
+        1381
+      ],
+      "r1_source_artifact_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-line1381-occurrence-replay-artifact.json",
+      "r1_source_artifact_sha256": "4a3eb2ea8c1cd6e31402b73074db4eb4f90230a75ac94f422fbcdb24fd4f1482"
+    },
+    "R73-D2-line1381-source-backed-proxy-t": {
+      "proxy_t_after": null,
+      "proxy_t_before": null,
+      "proxy_t_claim_boundary": null,
+      "proxy_t_delta": null,
+      "proxy_t_derivation_artifact_path": null,
+      "proxy_t_derivation_artifact_sha256": null,
+      "proxy_t_pricing_model_path": null,
+      "proxy_t_pricing_model_sha256": null,
+      "proxy_t_replay_command": null,
+      "proxy_t_replay_stdout_path": null,
+      "proxy_t_replay_stdout_sha256": null
+    },
+    "R73-D3-line1378-source-backed-no-double-counting": {
+      "line1378_overlap_window": null,
+      "line1378_recovery_or_exclusion_decision": null,
+      "line1381_window": null,
+      "no_double_counting_ledger_path": null,
+      "no_double_counting_ledger_sha256": null,
+      "r2_claim_boundary": null,
+      "r2_replay_command": null,
+      "r2_replay_stdout_path": null,
+      "r2_replay_stdout_sha256": null,
+      "r2_source_artifact_path": null,
+      "r2_source_artifact_sha256": null
+    }
+  },
+  "proxy_t_reduction_delta": 0,
+  "source_contract_hash": "80d127c990ad70fa35705d64e84db8777285fd4445cfb1d3b06610d20b664791",
+  "source_target_id": "T-B1-004fw/T-B7-015f",
+  "submission_hash": "b9c858dd35c8526c9a194e003955e2c25e223f95b675a3dda75ce6b8fe30a164",
+  "submission_id": "B1-B7-cone01-R74-r1-occurrence-source-closure-prefill",
+  "template_hash": "1f4a5fde31764f6035652c35377c7e4c3e26f192bb7e54e856eb007884d6cf19",
+  "upstream_target_id": "T-B1-004fv/T-B7-015e"
+}

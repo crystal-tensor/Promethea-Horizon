@@ -1,0 +1,136 @@
+{
+  "artifacts": {
+    "blocker_queue": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-source-closure-blocker-queue.json",
+    "r1_occurrence_artifact": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-line1381-occurrence-replay-artifact.json",
+    "r1_occurrence_stdout": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-line1381-occurrence-replay.stdout.txt",
+    "r1_occurrence_verdict": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-line1381-occurrence-replay.verdict.json",
+    "r73_intake_verdict": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-occurrence-source-closure-intake.verdict.json",
+    "r73_submission": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R74-r1-occurrence-source-closure-submission.json"
+  },
+  "claim_boundary": {
+    "next_gate": "Fill R73-D2 proxy-T pricing replay and R73-D3 line1378 no-double-counting or recovery replay, then rerun R73 and R72.",
+    "what_is_not_supported": "R74 does not close R73, does not accept occurrence/proxy-T deltas, does not solve line1378 no-double-counting, and does not grant B7 credit.",
+    "what_is_supported": "R74 fills the R73-D1 R1 occurrence packet with hash-bound source, candidate, replay stdout, and replay verdict artifacts."
+  },
+  "generated_at": "2026-07-08T18:17:43Z",
+  "requirements": [
+    {
+      "evidence": {
+        "candidate_openqasm3_sha256": "258bda18c5b77aa58dd36463357b3431a406ce33205994dfdc875aa6373d16a3",
+        "source_openqasm3_sha256": "7bef92480635991093b10a23e2aa9b3e1a7f74a1a967c4e1546d70bbdb175312"
+      },
+      "label": "R74 binds source and candidate OpenQASM3 hashes",
+      "passed": true,
+      "requirement_id": "J1"
+    },
+    {
+      "evidence": {
+        "candidate_line1381": "U(0.42054081161117135,pi/4,0) q[14];",
+        "source_line1381": "cx q[3],q[15];"
+      },
+      "label": "source line1381 is a CNOT and candidate same line is not a CNOT",
+      "passed": true,
+      "requirement_id": "J2"
+    },
+    {
+      "evidence": {
+        "structural_cnot_delta": 6
+      },
+      "label": "structural CNOT delta remains positive but not accepted credit",
+      "passed": true,
+      "requirement_id": "J3"
+    },
+    {
+      "evidence": {
+        "r73_d1_missing_fields": []
+      },
+      "label": "R73-D1 packet fields are fully populated and hash-bound",
+      "passed": true,
+      "requirement_id": "J4"
+    },
+    {
+      "evidence": {
+        "failed_gates": [
+          "all_required_fields_complete",
+          "all_hash_bound_artifacts_exist",
+          "proxy_t_delta_source_backed",
+          "r2_no_double_counting_source_backed"
+        ]
+      },
+      "label": "R73 intake still rejects the submission because D2/D3 remain open",
+      "passed": true,
+      "requirement_id": "J5"
+    },
+    {
+      "evidence": {
+        "accepted_exit_route_count": 0,
+        "accepted_occurrence_removal": 0,
+        "accepted_proxy_t_reduction": 0,
+        "b7_credit_delta": 0
+      },
+      "label": "R74 keeps all accepted deltas and B7 credit at zero",
+      "passed": true,
+      "requirement_id": "J6"
+    },
+    {
+      "evidence": {
+        "blocker_queue_hash": "1a0dc6cd363dd0ae3b03c2182c960304d721cfbf55034b2698c0ea3b9bffbc1c"
+      },
+      "label": "R74 emits a remaining C2/C3 blocker queue",
+      "passed": true,
+      "requirement_id": "J7"
+    },
+    {
+      "evidence": {
+        "o3_closed": false,
+        "reroute_allowed": false,
+        "resource_saving_claimed": false
+      },
+      "label": "R74 does not claim O3 closure, reroute, or resource savings",
+      "passed": true,
+      "requirement_id": "J8"
+    }
+  ],
+  "summary": {
+    "accepted_exit_route_count": 0,
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "artifact_hash": "155efc8897e5de44636ef573a025518bf523ea74358f90a8c798afffd676018c",
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_nonzero_retest_allowed": false,
+    "blocker_queue_hash": "1a0dc6cd363dd0ae3b03c2182c960304d721cfbf55034b2698c0ea3b9bffbc1c",
+    "candidate_cnot_count": 789,
+    "candidate_line1381": "U(0.42054081161117135,pi/4,0) q[14];",
+    "failed_requirement_ids": [],
+    "intake_verdict_hash": "c237d9e22286d3892cb00599eef9741da2608a1d43e544c43c221152b7c86710",
+    "method": "b1_b7_cone01_r74_r1_occurrence_packet_prefill_gate_v0",
+    "model_status": "r73_d1_occurrence_packet_prefilled_d2_d3_still_block_acceptance",
+    "o3_closed": false,
+    "payload_hash": "9ae8f90fb9096ce30db24aedae7b3283064dc3901e7d314fc1d893ca73080d7f",
+    "r73_d1_prefilled": true,
+    "r73_intake_accepted": false,
+    "r73_intake_failed_gate_count": 4,
+    "r73_intake_failed_gates": [
+      "all_required_fields_complete",
+      "all_hash_bound_artifacts_exist",
+      "proxy_t_delta_source_backed",
+      "r2_no_double_counting_source_backed"
+    ],
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "source_cnot_count": 795,
+    "source_line1381": "cx q[3],q[15];",
+    "source_target_id": "T-B1-004fx/T-B7-015g",
+    "status": "cone01_r74_r1_occurrence_packet_prefill_partial_zero_credit",
+    "structural_cnot_delta": 6,
+    "submission_hash": "b9c858dd35c8526c9a194e003955e2c25e223f95b675a3dda75ce6b8fe30a164",
+    "upstream_target_id": "T-B1-004fw/T-B7-015f",
+    "validation_error_count": 0
+  },
+  "title": "B1/B7 Cone01 R74 R1 Occurrence Packet Prefill Gate",
+  "version": "0.1"
+}
