@@ -1847,6 +1847,20 @@ This is a contract gate, not an accepted route. The next useful PR must fill the
 R67 template with source-backed replay, no-double-counting, line1381/line1378,
 occurrence-delta, and proxy-T-delta evidence before any nonzero B7 ledger retest.
 
+`T-B1-004fr` / `T-B7-015a` now pre-fills that contract against the evidence
+already in the repository. R68 maps the R67 field set onto R1/R2/R5/R59/R66
+artifacts and emits an R1 line1381 prefill draft, a three-route coverage matrix,
+and a blocker queue. The R1 draft fills 24 of 29 required fields, but 5 fields
+remain placeholders: source OpenQASM 3.0 path/hash, machine-check replay
+command, replay stdout path, and replay stdout hash. Positive deltas also remain
+absent: accepted exit routes `0`, occurrence removal `0`, proxy-T reduction
+`0`, `b7_nonzero_retest_allowed=false`, and B7 credit `0`. R68 blocker queue
+hash `510049cc66fa29b1cbce6610e9f61dcdedf20d020682a0b5a3a8b9d8eff02716`.
+This is a prefill and blocker gate, not an accepted route. The next useful PR
+must fill the missing source OpenQASM 3.0 and machine-check replay fields, then
+submit a positive occurrence/proxy-T delta ledger before any nonzero B7 ledger
+retest.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
