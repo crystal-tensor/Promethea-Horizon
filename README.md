@@ -1341,6 +1341,17 @@ preflight hash `4505af5067f39902a13670f9b0162aaac542b78b7723ebf55e6d61149218c52d
 C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
 claims remain 0/false.
 
+`T-B1-004ej` / `T-B7-013s` now turns that C2 contract into a runnable
+preflight verifier. It consumes the R33 contract/template, recomputes the
+template hash, then rejects the current placeholder template before any row can
+count. The rejection is explicit: 0/8 rows pass, 88 binding fields remain
+placeholders, 72 execution artifact cells remain placeholders, 72 hash cells are
+invalid, 8 provenance binding hashes fail to recompute from row payloads, and 8
+replay errors are nonnumeric. Preflight hash
+`bb3cccb45db7d5de25fb2747529d7860aa8b58a093bdfd7ad8bbd756301b67ac`.
+C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
+claims remain 0/false.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.

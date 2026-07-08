@@ -1,0 +1,584 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "next_gate": "Submit a non-placeholder C2 artifact with source-backed execution files, valid sha256 hashes, numeric replay errors <= 1e-08, and row provenance binding hashes that recompute.",
+    "resource_saving_claimed": false,
+    "what_is_not_supported": "R34 does not accept a C2 submission, does not close O3, and does not permit reroute, B7 credit, STV credit, or resource-saving claims.",
+    "what_is_supported": "R34 implements a runnable C2 provenance-binding preflight verifier and proves that the R33 placeholder template is rejected."
+  },
+  "last_updated": "2026-07-08",
+  "linked_benchmark_id": "B7",
+  "method": "b1_b7_cone01_r34_o3_f4_c2_binding_preflight_verifier_gate_v0",
+  "model_status": "o3_f4_c2_binding_preflight_verifier_ready_no_c2_acceptance",
+  "o3_f4_c2_binding_preflight_verifier_packet": {
+    "evaluation": {
+      "accepted": false,
+      "binding_mismatch_count": 8,
+      "contract_hash": "d4ff1b028d42ca0c995bfee52b0c4fdc5e3dc8cc877b358b1752bef17e4c92aa",
+      "failed_reasons": [
+        "placeholder_binding_fields",
+        "placeholder_execution_artifacts",
+        "invalid_hash_cells",
+        "provenance_binding_hash_mismatch",
+        "nonnumeric_replay_errors"
+      ],
+      "input_artifact": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/B1-B7-cone01-O3-F4-C2-provenance-binding-submission.template.json",
+      "input_artifact_sha256": "a790d13c3100445e66f00f5b7a0a5380818a154480a219cc9b91d1b8409deeef",
+      "invalid_hash_cell_count": 72,
+      "nonnumeric_replay_error_count": 8,
+      "placeholder_binding_field_count": 88,
+      "placeholder_execution_artifact_count": 72,
+      "preflight_hash": "bb3cccb45db7d5de25fb2747529d7860aa8b58a093bdfd7ad8bbd756301b67ac",
+      "required_row_count": 8,
+      "row_count": 8,
+      "row_results": [
+        {
+          "binding_hash_matches": false,
+          "challenge_id": "O3-F4-C01",
+          "declared_provenance_binding_hash": "<sha256 of binding_payload>",
+          "invalid_hash_cells": [
+            "declared_provenance_binding_hash",
+            "binding_payload.source_circuit_hash",
+            "binding_payload.candidate_circuit_hash",
+            "binding_payload.replay_stdout_hash",
+            "execution_artifacts.replay_stdout_hash",
+            "execution_artifacts.source_circuit_hash",
+            "execution_artifacts.candidate_circuit_hash",
+            "execution_artifacts.same_unitary_witness_hash",
+            "execution_artifacts.provenance_binding_hash"
+          ],
+          "max_unitary_replay_error": null,
+          "missing_artifacts": [],
+          "missing_binding_fields": [],
+          "passed": false,
+          "placeholder_artifacts": [
+            "replay_stdout_file",
+            "replay_stdout_hash",
+            "source_circuit_file",
+            "source_circuit_hash",
+            "candidate_circuit_file",
+            "candidate_circuit_hash",
+            "same_unitary_witness_file",
+            "same_unitary_witness_hash",
+            "provenance_binding_hash"
+          ],
+          "placeholder_binding_fields": [
+            "challenge_id",
+            "parameter_indices",
+            "submitted_parameter_values",
+            "strict_tolerance",
+            "max_unitary_replay_error",
+            "unitary_distance_metric",
+            "source_circuit_hash",
+            "candidate_circuit_hash",
+            "replay_command",
+            "replay_stdout_hash",
+            "verifier_version"
+          ],
+          "recomputed_provenance_binding_hash": "b3d320b91b78d02441b3532e82b7ed238dbaa5d604b025b6eea38c827e699897",
+          "replay_error_numeric": false,
+          "replay_error_within_tolerance": false,
+          "zero_credit_boundary_present": true
+        },
+        {
+          "binding_hash_matches": false,
+          "challenge_id": "O3-F4-C02",
+          "declared_provenance_binding_hash": "<sha256 of binding_payload>",
+          "invalid_hash_cells": [
+            "declared_provenance_binding_hash",
+            "binding_payload.source_circuit_hash",
+            "binding_payload.candidate_circuit_hash",
+            "binding_payload.replay_stdout_hash",
+            "execution_artifacts.replay_stdout_hash",
+            "execution_artifacts.source_circuit_hash",
+            "execution_artifacts.candidate_circuit_hash",
+            "execution_artifacts.same_unitary_witness_hash",
+            "execution_artifacts.provenance_binding_hash"
+          ],
+          "max_unitary_replay_error": null,
+          "missing_artifacts": [],
+          "missing_binding_fields": [],
+          "passed": false,
+          "placeholder_artifacts": [
+            "replay_stdout_file",
+            "replay_stdout_hash",
+            "source_circuit_file",
+            "source_circuit_hash",
+            "candidate_circuit_file",
+            "candidate_circuit_hash",
+            "same_unitary_witness_file",
+            "same_unitary_witness_hash",
+            "provenance_binding_hash"
+          ],
+          "placeholder_binding_fields": [
+            "challenge_id",
+            "parameter_indices",
+            "submitted_parameter_values",
+            "strict_tolerance",
+            "max_unitary_replay_error",
+            "unitary_distance_metric",
+            "source_circuit_hash",
+            "candidate_circuit_hash",
+            "replay_command",
+            "replay_stdout_hash",
+            "verifier_version"
+          ],
+          "recomputed_provenance_binding_hash": "b3d320b91b78d02441b3532e82b7ed238dbaa5d604b025b6eea38c827e699897",
+          "replay_error_numeric": false,
+          "replay_error_within_tolerance": false,
+          "zero_credit_boundary_present": true
+        },
+        {
+          "binding_hash_matches": false,
+          "challenge_id": "O3-F4-C03",
+          "declared_provenance_binding_hash": "<sha256 of binding_payload>",
+          "invalid_hash_cells": [
+            "declared_provenance_binding_hash",
+            "binding_payload.source_circuit_hash",
+            "binding_payload.candidate_circuit_hash",
+            "binding_payload.replay_stdout_hash",
+            "execution_artifacts.replay_stdout_hash",
+            "execution_artifacts.source_circuit_hash",
+            "execution_artifacts.candidate_circuit_hash",
+            "execution_artifacts.same_unitary_witness_hash",
+            "execution_artifacts.provenance_binding_hash"
+          ],
+          "max_unitary_replay_error": null,
+          "missing_artifacts": [],
+          "missing_binding_fields": [],
+          "passed": false,
+          "placeholder_artifacts": [
+            "replay_stdout_file",
+            "replay_stdout_hash",
+            "source_circuit_file",
+            "source_circuit_hash",
+            "candidate_circuit_file",
+            "candidate_circuit_hash",
+            "same_unitary_witness_file",
+            "same_unitary_witness_hash",
+            "provenance_binding_hash"
+          ],
+          "placeholder_binding_fields": [
+            "challenge_id",
+            "parameter_indices",
+            "submitted_parameter_values",
+            "strict_tolerance",
+            "max_unitary_replay_error",
+            "unitary_distance_metric",
+            "source_circuit_hash",
+            "candidate_circuit_hash",
+            "replay_command",
+            "replay_stdout_hash",
+            "verifier_version"
+          ],
+          "recomputed_provenance_binding_hash": "b3d320b91b78d02441b3532e82b7ed238dbaa5d604b025b6eea38c827e699897",
+          "replay_error_numeric": false,
+          "replay_error_within_tolerance": false,
+          "zero_credit_boundary_present": true
+        },
+        {
+          "binding_hash_matches": false,
+          "challenge_id": "O3-F4-C04",
+          "declared_provenance_binding_hash": "<sha256 of binding_payload>",
+          "invalid_hash_cells": [
+            "declared_provenance_binding_hash",
+            "binding_payload.source_circuit_hash",
+            "binding_payload.candidate_circuit_hash",
+            "binding_payload.replay_stdout_hash",
+            "execution_artifacts.replay_stdout_hash",
+            "execution_artifacts.source_circuit_hash",
+            "execution_artifacts.candidate_circuit_hash",
+            "execution_artifacts.same_unitary_witness_hash",
+            "execution_artifacts.provenance_binding_hash"
+          ],
+          "max_unitary_replay_error": null,
+          "missing_artifacts": [],
+          "missing_binding_fields": [],
+          "passed": false,
+          "placeholder_artifacts": [
+            "replay_stdout_file",
+            "replay_stdout_hash",
+            "source_circuit_file",
+            "source_circuit_hash",
+            "candidate_circuit_file",
+            "candidate_circuit_hash",
+            "same_unitary_witness_file",
+            "same_unitary_witness_hash",
+            "provenance_binding_hash"
+          ],
+          "placeholder_binding_fields": [
+            "challenge_id",
+            "parameter_indices",
+            "submitted_parameter_values",
+            "strict_tolerance",
+            "max_unitary_replay_error",
+            "unitary_distance_metric",
+            "source_circuit_hash",
+            "candidate_circuit_hash",
+            "replay_command",
+            "replay_stdout_hash",
+            "verifier_version"
+          ],
+          "recomputed_provenance_binding_hash": "b3d320b91b78d02441b3532e82b7ed238dbaa5d604b025b6eea38c827e699897",
+          "replay_error_numeric": false,
+          "replay_error_within_tolerance": false,
+          "zero_credit_boundary_present": true
+        },
+        {
+          "binding_hash_matches": false,
+          "challenge_id": "O3-F4-C05",
+          "declared_provenance_binding_hash": "<sha256 of binding_payload>",
+          "invalid_hash_cells": [
+            "declared_provenance_binding_hash",
+            "binding_payload.source_circuit_hash",
+            "binding_payload.candidate_circuit_hash",
+            "binding_payload.replay_stdout_hash",
+            "execution_artifacts.replay_stdout_hash",
+            "execution_artifacts.source_circuit_hash",
+            "execution_artifacts.candidate_circuit_hash",
+            "execution_artifacts.same_unitary_witness_hash",
+            "execution_artifacts.provenance_binding_hash"
+          ],
+          "max_unitary_replay_error": null,
+          "missing_artifacts": [],
+          "missing_binding_fields": [],
+          "passed": false,
+          "placeholder_artifacts": [
+            "replay_stdout_file",
+            "replay_stdout_hash",
+            "source_circuit_file",
+            "source_circuit_hash",
+            "candidate_circuit_file",
+            "candidate_circuit_hash",
+            "same_unitary_witness_file",
+            "same_unitary_witness_hash",
+            "provenance_binding_hash"
+          ],
+          "placeholder_binding_fields": [
+            "challenge_id",
+            "parameter_indices",
+            "submitted_parameter_values",
+            "strict_tolerance",
+            "max_unitary_replay_error",
+            "unitary_distance_metric",
+            "source_circuit_hash",
+            "candidate_circuit_hash",
+            "replay_command",
+            "replay_stdout_hash",
+            "verifier_version"
+          ],
+          "recomputed_provenance_binding_hash": "b3d320b91b78d02441b3532e82b7ed238dbaa5d604b025b6eea38c827e699897",
+          "replay_error_numeric": false,
+          "replay_error_within_tolerance": false,
+          "zero_credit_boundary_present": true
+        },
+        {
+          "binding_hash_matches": false,
+          "challenge_id": "O3-F4-C06",
+          "declared_provenance_binding_hash": "<sha256 of binding_payload>",
+          "invalid_hash_cells": [
+            "declared_provenance_binding_hash",
+            "binding_payload.source_circuit_hash",
+            "binding_payload.candidate_circuit_hash",
+            "binding_payload.replay_stdout_hash",
+            "execution_artifacts.replay_stdout_hash",
+            "execution_artifacts.source_circuit_hash",
+            "execution_artifacts.candidate_circuit_hash",
+            "execution_artifacts.same_unitary_witness_hash",
+            "execution_artifacts.provenance_binding_hash"
+          ],
+          "max_unitary_replay_error": null,
+          "missing_artifacts": [],
+          "missing_binding_fields": [],
+          "passed": false,
+          "placeholder_artifacts": [
+            "replay_stdout_file",
+            "replay_stdout_hash",
+            "source_circuit_file",
+            "source_circuit_hash",
+            "candidate_circuit_file",
+            "candidate_circuit_hash",
+            "same_unitary_witness_file",
+            "same_unitary_witness_hash",
+            "provenance_binding_hash"
+          ],
+          "placeholder_binding_fields": [
+            "challenge_id",
+            "parameter_indices",
+            "submitted_parameter_values",
+            "strict_tolerance",
+            "max_unitary_replay_error",
+            "unitary_distance_metric",
+            "source_circuit_hash",
+            "candidate_circuit_hash",
+            "replay_command",
+            "replay_stdout_hash",
+            "verifier_version"
+          ],
+          "recomputed_provenance_binding_hash": "b3d320b91b78d02441b3532e82b7ed238dbaa5d604b025b6eea38c827e699897",
+          "replay_error_numeric": false,
+          "replay_error_within_tolerance": false,
+          "zero_credit_boundary_present": true
+        },
+        {
+          "binding_hash_matches": false,
+          "challenge_id": "O3-F4-C07",
+          "declared_provenance_binding_hash": "<sha256 of binding_payload>",
+          "invalid_hash_cells": [
+            "declared_provenance_binding_hash",
+            "binding_payload.source_circuit_hash",
+            "binding_payload.candidate_circuit_hash",
+            "binding_payload.replay_stdout_hash",
+            "execution_artifacts.replay_stdout_hash",
+            "execution_artifacts.source_circuit_hash",
+            "execution_artifacts.candidate_circuit_hash",
+            "execution_artifacts.same_unitary_witness_hash",
+            "execution_artifacts.provenance_binding_hash"
+          ],
+          "max_unitary_replay_error": null,
+          "missing_artifacts": [],
+          "missing_binding_fields": [],
+          "passed": false,
+          "placeholder_artifacts": [
+            "replay_stdout_file",
+            "replay_stdout_hash",
+            "source_circuit_file",
+            "source_circuit_hash",
+            "candidate_circuit_file",
+            "candidate_circuit_hash",
+            "same_unitary_witness_file",
+            "same_unitary_witness_hash",
+            "provenance_binding_hash"
+          ],
+          "placeholder_binding_fields": [
+            "challenge_id",
+            "parameter_indices",
+            "submitted_parameter_values",
+            "strict_tolerance",
+            "max_unitary_replay_error",
+            "unitary_distance_metric",
+            "source_circuit_hash",
+            "candidate_circuit_hash",
+            "replay_command",
+            "replay_stdout_hash",
+            "verifier_version"
+          ],
+          "recomputed_provenance_binding_hash": "b3d320b91b78d02441b3532e82b7ed238dbaa5d604b025b6eea38c827e699897",
+          "replay_error_numeric": false,
+          "replay_error_within_tolerance": false,
+          "zero_credit_boundary_present": true
+        },
+        {
+          "binding_hash_matches": false,
+          "challenge_id": "O3-F4-C08",
+          "declared_provenance_binding_hash": "<sha256 of binding_payload>",
+          "invalid_hash_cells": [
+            "declared_provenance_binding_hash",
+            "binding_payload.source_circuit_hash",
+            "binding_payload.candidate_circuit_hash",
+            "binding_payload.replay_stdout_hash",
+            "execution_artifacts.replay_stdout_hash",
+            "execution_artifacts.source_circuit_hash",
+            "execution_artifacts.candidate_circuit_hash",
+            "execution_artifacts.same_unitary_witness_hash",
+            "execution_artifacts.provenance_binding_hash"
+          ],
+          "max_unitary_replay_error": null,
+          "missing_artifacts": [],
+          "missing_binding_fields": [],
+          "passed": false,
+          "placeholder_artifacts": [
+            "replay_stdout_file",
+            "replay_stdout_hash",
+            "source_circuit_file",
+            "source_circuit_hash",
+            "candidate_circuit_file",
+            "candidate_circuit_hash",
+            "same_unitary_witness_file",
+            "same_unitary_witness_hash",
+            "provenance_binding_hash"
+          ],
+          "placeholder_binding_fields": [
+            "challenge_id",
+            "parameter_indices",
+            "submitted_parameter_values",
+            "strict_tolerance",
+            "max_unitary_replay_error",
+            "unitary_distance_metric",
+            "source_circuit_hash",
+            "candidate_circuit_hash",
+            "replay_command",
+            "replay_stdout_hash",
+            "verifier_version"
+          ],
+          "recomputed_provenance_binding_hash": "b3d320b91b78d02441b3532e82b7ed238dbaa5d604b025b6eea38c827e699897",
+          "replay_error_numeric": false,
+          "replay_error_within_tolerance": false,
+          "zero_credit_boundary_present": true
+        }
+      ],
+      "rows_failed": 8,
+      "rows_passed": 0,
+      "template_declared_hash": "6ed9e03c13ad5287efe6c804a458f0b3f9156c2533b540972cb48eeb85c19330",
+      "template_hash_matches": true,
+      "template_recomputed_hash": "6ed9e03c13ad5287efe6c804a458f0b3f9156c2533b540972cb48eeb85c19330",
+      "zero_credit_boundary_failures": 0
+    },
+    "source_r33_contract": "results/B1_B7_cone01_R33_o3_f4_c2_provenance_binding_contract_gate_v0.json",
+    "template_input": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/B1-B7-cone01-O3-F4-C2-provenance-binding-submission.template.json"
+  },
+  "requirements": [
+    {
+      "evidence": {
+        "c2_provenance_binding_contract_ready": true,
+        "c2_provenance_submission_accepted": false,
+        "r33_validation_error_count": 0
+      },
+      "label": "R33 source contract is validation-clean and still has no accepted C2 submission",
+      "passed": true,
+      "requirement_id": "S1"
+    },
+    {
+      "evidence": {
+        "r33_contract_hash": "d4ff1b028d42ca0c995bfee52b0c4fdc5e3dc8cc877b358b1752bef17e4c92aa",
+        "template_contract_hash": "d4ff1b028d42ca0c995bfee52b0c4fdc5e3dc8cc877b358b1752bef17e4c92aa"
+      },
+      "label": "Template is bound to the R33 contract hash",
+      "passed": true,
+      "requirement_id": "S2"
+    },
+    {
+      "evidence": {
+        "template_declared_hash": "6ed9e03c13ad5287efe6c804a458f0b3f9156c2533b540972cb48eeb85c19330",
+        "template_recomputed_hash": "6ed9e03c13ad5287efe6c804a458f0b3f9156c2533b540972cb48eeb85c19330"
+      },
+      "label": "Template hash recomputes before row-level validation",
+      "passed": true,
+      "requirement_id": "S3"
+    },
+    {
+      "evidence": {
+        "required_row_count": 8,
+        "row_count": 8
+      },
+      "label": "Verifier checks all 8 required C2 rows",
+      "passed": true,
+      "requirement_id": "S4"
+    },
+    {
+      "evidence": {
+        "accepted": false,
+        "failed_reasons": [
+          "placeholder_binding_fields",
+          "placeholder_execution_artifacts",
+          "invalid_hash_cells",
+          "provenance_binding_hash_mismatch",
+          "nonnumeric_replay_errors"
+        ],
+        "placeholder_binding_field_count": 88,
+        "placeholder_execution_artifact_count": 72,
+        "rows_passed": 0
+      },
+      "label": "Verifier rejects the placeholder template rather than treating it as progress",
+      "passed": true,
+      "requirement_id": "S5"
+    },
+    {
+      "evidence": {
+        "binding_mismatch_count": 8,
+        "invalid_hash_cell_count": 72
+      },
+      "label": "Verifier rejects hash-shaped theatre by recomputing row provenance bindings",
+      "passed": true,
+      "requirement_id": "S6"
+    },
+    {
+      "evidence": {
+        "nonnumeric_replay_error_count": 8,
+        "rows_passed": 0,
+        "strict_tolerance": 1e-08
+      },
+      "label": "Verifier enforces numeric replay evidence under strict tolerance",
+      "passed": true,
+      "requirement_id": "S7"
+    },
+    {
+      "evidence": {
+        "b7_credit_delta": 0,
+        "o3_closed": false,
+        "reroute_allowed": false,
+        "zero_credit_boundary_failures": 0
+      },
+      "label": "R34 preserves the zero-credit boundary",
+      "passed": true,
+      "requirement_id": "S8"
+    }
+  ],
+  "runtime_seconds": 0.000467,
+  "source_target_id": "T-B1-004ej/T-B7-013s",
+  "status": "cone01_r34_o3_f4_c2_binding_preflight_verifier_rejects_template",
+  "summary": {
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "accepted_route_count": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_space_time_volume_credit": 0,
+    "binding_field_count": 11,
+    "binding_mismatch_count": 8,
+    "binding_preflight_verifier_ready": true,
+    "c2_provenance_binding_contract_ready": true,
+    "c2_provenance_submission_accepted": false,
+    "c2_strict_replay_rows_accepted": false,
+    "candidate_id": "NL-C02",
+    "checked_negative_lemma_present": false,
+    "failed_requirement_ids": [],
+    "family_id": "O3-F4",
+    "invalid_hash_cell_count": 72,
+    "leakage_free_optimizer_trace_complete": false,
+    "machine_check_replay_complete": false,
+    "nlc02_full_lemma_ready": false,
+    "nonnumeric_replay_error_count": 8,
+    "o3_closed": false,
+    "o3_f4_artifact_accepted": false,
+    "placeholder_binding_field_count": 88,
+    "placeholder_execution_artifact_count": 72,
+    "preflight_hash": "bb3cccb45db7d5de25fb2747529d7860aa8b58a093bdfd7ad8bbd756301b67ac",
+    "remaining_open_obligation_count": 8,
+    "remaining_open_obligations": [
+      "C2_source_backed_execution_artifacts",
+      "C2_valid_sha256_artifact_hashes",
+      "C2_numeric_replay_errors_lte_1e-08",
+      "C2_recomputed_provenance_binding_hashes",
+      "C3_same_unitary_replay_certificate",
+      "C4_C5_same_access_denominator_comparison",
+      "C6_leakage_free_optimizer_trace",
+      "C7_machine_check_replay_bundle"
+    ],
+    "required_execution_artifact_count": 9,
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "rows_failed": 8,
+    "rows_passed": 0,
+    "same_access_denominator_comparison_complete": false,
+    "same_unitary_replay_certificate_complete": false,
+    "source_r33_contract_hash": "d4ff1b028d42ca0c995bfee52b0c4fdc5e3dc8cc877b358b1752bef17e4c92aa",
+    "source_r33_file_sha256": "d9ca2d0ba01074e0369643b4245113802317cdf8c3fdf36d0449110a3de0a169",
+    "source_r33_preflight_hash": "4505af5067f39902a13670f9b0162aaac542b78b7723ebf55e6d61149218c52d",
+    "source_r33_template_hash": "6ed9e03c13ad5287efe6c804a458f0b3f9156c2533b540972cb48eeb85c19330",
+    "strict_tolerance": 1e-08,
+    "template_file_sha256": "a790d13c3100445e66f00f5b7a0a5380818a154480a219cc9b91d1b8409deeef",
+    "template_recomputed_hash": "6ed9e03c13ad5287efe6c804a458f0b3f9156c2533b540972cb48eeb85c19330",
+    "template_row_count": 8,
+    "validation_error_count": 0,
+    "zero_credit_boundary_failures": 0
+  },
+  "title": "B1/B7 Cone01 R34 O3-F4 C2 Binding Preflight Verifier Gate",
+  "upstream_target_id": "T-B1-004ei/T-B7-013r",
+  "validation_errors": [],
+  "version": "0.1"
+}
