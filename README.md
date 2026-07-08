@@ -1986,3 +1986,13 @@ the structural-only fixture because `occurrence_removal_positive` and
 preserved as useful evidence, but it is still not allowed to become accepted
 route credit, proxy-T credit, or B7 credit without a source-backed positive
 delta ledger.
+
+`T-B1-004fv` / `T-B7-015e` now hardens that boundary with a source-backed
+delta preflight. R72 fills a metadata-positive candidate row, then compares the
+base R71 shape verifier against a stricter source-backed verifier. The base R71
+verifier accepts the row, but the hardened verifier rejects it on 8 gates
+because the R1 and R2 packets still fail P6/P7/P8 and the positive occurrence
+and proxy-T fields are metadata-only. Requirements pass 7/7, accepted exit
+routes remain 0, occurrence removal remains 0, proxy-T reduction remains 0, B7
+credit remains 0, and the next work is to replace the metadata-positive row
+with real R1/R2 source-backed artifacts.

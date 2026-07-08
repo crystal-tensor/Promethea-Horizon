@@ -6122,6 +6122,36 @@ current_results:
     caveat: r71_verifier_rejects_structural_only_delta_no_positive_delta_no_exit_route_or_b7_credit
     report: ../results/B1_B7_cone01_R71_positive_delta_ledger_verifier_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_R71_positive_delta_ledger_verifier_gate.md
+  b1_b7_cone01_r72_source_backed_delta_preflight_gate_v0:
+    circuits: 1
+    status: cone01_r72_source_backed_delta_preflight_rejects_metadata_positive_row
+    model_status: positive_numbers_without_r1_r2_source_closure_are_rejected
+    method: b1_b7_cone01_r72_source_backed_delta_preflight_gate_v0
+    source_target_id: T-B1-004fv/T-B7-015e
+    upstream_target_id: T-B1-004fu/T-B7-015d
+    source_r71_positive_delta_verifier: ../results/B1_B7_cone01_R71_positive_delta_ledger_verifier_gate_v0.json
+    r72_source_backed_delta_preflight: ../results/B1_B7_cone01_R72_source_backed_delta_preflight_gate_v0.json
+    r72_candidate: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R72-R1-source-backed-positive-delta-candidate.json
+    r72_base_r71_verdict: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R72-R1-source-backed-positive-delta.base-r71-verdict.json
+    r72_hardened_verdict: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R72-R1-source-backed-positive-delta.hardened-verdict.json
+    r72_blocker_queue: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R72-source-backed-delta-blocker-queue.json
+    base_r71_accepted: true
+    hardened_accepted: false
+    hardened_failed_gate_count: 8
+    r1_failed_requirement_ids: [P6, P7, P8]
+    r2_failed_requirement_ids: [P6, P7, P8]
+    accepted_exit_route_count: 0
+    accepted_occurrence_removal: 0
+    accepted_proxy_t_reduction: 0
+    b7_nonzero_retest_allowed: false
+    b7_credit_delta: 0
+    blocker_queue_hash: 3831fac3389f15a40f3bba857670802c903d808791dec45feffdcf38f2f3b6ac
+    requirements_passed: 7
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r72_rejects_metadata_positive_delta_until_r1_r2_source_backed_closure_exists
+    report: ../results/B1_B7_cone01_R72_source_backed_delta_preflight_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_R72_source_backed_delta_preflight_gate.md
   b1_b7_cone01_full_statevector_replay_probe_gate_v0:
     circuits: 1
     status: cone01_default_input_statevector_replay_probe_passed_not_symbolic_certificate

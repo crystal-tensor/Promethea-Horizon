@@ -1,0 +1,47 @@
+{
+  "artifact": "R72 source-backed positive-delta blocker queue",
+  "blocker_queue_hash": "3831fac3389f15a40f3bba857670802c903d808791dec45feffdcf38f2f3b6ac",
+  "failed_gates": [
+    "r1_packet_requirements_all_pass",
+    "r1_submitted_source_backed_artifact_exists",
+    "r1_accepted_occurrence_positive",
+    "r1_accepted_proxy_t_positive",
+    "r2_packet_requirements_all_pass",
+    "r2_submitted_source_backed_artifact_exists",
+    "r2_no_double_counting_recovery_valid",
+    "ledger_positive_values_not_metadata_only"
+  ],
+  "queue": [
+    {
+      "blocker_id": "R72-D1",
+      "failed_gates": [
+        "r1_packet_requirements_all_pass",
+        "r1_submitted_source_backed_artifact_exists",
+        "r1_accepted_occurrence_positive"
+      ],
+      "needed_artifact": "source-backed R1 line1381 resolution artifact with accepted occurrence delta",
+      "priority": 1
+    },
+    {
+      "blocker_id": "R72-D2",
+      "failed_gates": [
+        "r1_accepted_proxy_t_positive",
+        "ledger_positive_values_not_metadata_only"
+      ],
+      "needed_artifact": "hash-bound proxy-T derivation not based on metadata-only positive integers",
+      "priority": 2
+    },
+    {
+      "blocker_id": "R72-D3",
+      "failed_gates": [
+        "r2_packet_requirements_all_pass",
+        "r2_submitted_source_backed_artifact_exists",
+        "r2_no_double_counting_recovery_valid"
+      ],
+      "needed_artifact": "source-backed line1378 no-double-counting or recovery artifact",
+      "priority": 3
+    }
+  ],
+  "source_target_id": "T-B1-004fv/T-B7-015e",
+  "upstream_target_id": "T-B1-004fu/T-B7-015d"
+}
