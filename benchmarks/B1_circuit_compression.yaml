@@ -7209,6 +7209,39 @@ current_results:
     caveat: r103_rejects_local_artifact_reuse_no_external_counter_move
     report: ../results/B1_B7_cone01_R103_external_counter_transition_audit_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_R103_external_counter_transition_audit_gate.md
+  b1_b7_cone01_r104_external_origin_attestation_contract_gate_v0:
+    circuits: 1
+    status: cone01_r104_external_origin_attestation_contract_ready_no_counter_move
+    model_status: r103_rejected_counter_packet_until_origin_attestation_and_nonlocal_replay_exist
+    method: b1_b7_cone01_r104_external_origin_attestation_contract_gate_v0
+    source_target_id: T-B1-004hb/T-B7-016k
+    upstream_target_id: T-B1-004ha/T-B7-016j
+    source_b1_r103_external_counter_transition_audit: ../results/B1_B7_cone01_R103_external_counter_transition_audit_gate_v0.json
+    r104_origin_contract: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R104-G1-external-origin-attestation-contract.json
+    r104_attestation_template: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R104-G1-external-origin-attestation.template.json
+    r104_local_placeholder: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R104-G1-local-placeholder-origin-attestation.json
+    r104_preflight: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R104-G1-external-origin-attestation-preflight.verdict.json
+    r104_blocker_queue: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R104-G1-post-origin-attestation-contract-blocker-queue.json
+    required_field_count: 20
+    local_placeholder_rejected: true
+    origin_attestation_accepted: false
+    counter_transition_accepted: false
+    passed_gate_count: 5
+    failed_gate_count: 7
+    counter_delta: 0
+    accepted_external_reproduction_count: 0
+    accepted_external_falsification_count: 0
+    new_credit_delta: 0
+    origin_contract_hash: 9150bfda0b040365f0fb3bce12ee91f4e968f01f742a483d6b7ddb6a80b9b485
+    attestation_template_hash: 3159b7162402eb1cfb2b6b482c87d7dfde3e95756fe5312cb002e891abf6d6d0
+    preflight_hash: 76183801f092c26e9c2e9d88ea4821f2429007959d6604ba13e1367e165ddd2c
+    blocker_queue_hash: 53a9922bdb7218bfb52cabb7005b7328cc8cad0a81707835baf299b377c26a25
+    requirements_passed: 5
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r104_contract_ready_but_no_external_origin_attestation_accepted
+    report: ../results/B1_B7_cone01_R104_external_origin_attestation_contract_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_R104_external_origin_attestation_contract_gate.md
   b1_b7_cone01_full_statevector_replay_probe_gate_v0:
     circuits: 1
     status: cone01_default_input_statevector_replay_probe_passed_not_symbolic_certificate

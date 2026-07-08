@@ -1,0 +1,28 @@
+{
+  "artifact": "R104 post external-origin attestation blocker queue",
+  "blocker_queue_hash": "53a9922bdb7218bfb52cabb7005b7328cc8cad0a81707835baf299b377c26a25",
+  "method": "b1_b7_cone01_r104_external_origin_attestation_contract_gate_v0",
+  "preflight_hash": "76183801f092c26e9c2e9d88ea4821f2429007959d6604ba13e1367e165ddd2c",
+  "queue": [
+    {
+      "blocker_id": "R104-G1-1",
+      "needed_artifact": "reviewer identity, independence statement, and signed external-origin attestation",
+      "priority": 1,
+      "target_gate": "signed_external_origin_attestation"
+    },
+    {
+      "blocker_id": "R104-G1-2",
+      "needed_artifact": "network-visible clone transcript, environment manifest, and replay bundle not sourced from R101/R103 local files",
+      "priority": 2,
+      "target_gate": "nonlocal_clean_checkout_bundle"
+    },
+    {
+      "blocker_id": "R104-G1-3",
+      "needed_artifact": "audit accepting exactly one reproduction or falsification counter transition",
+      "priority": 3,
+      "target_gate": "accepted_single_counter_transition_audit"
+    }
+  ],
+  "source_target_id": "T-B1-004hb/T-B7-016k",
+  "upstream_target_id": "T-B1-004ha/T-B7-016j"
+}

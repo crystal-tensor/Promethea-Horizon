@@ -2460,3 +2460,21 @@ blocker queue hash `876d3e77f00c0676c3d57eeeedef6896df05c1ac244b146d3ef5d6ed7bc0
 The next real gate must supply external-origin attestation, nonlocal replay
 artifacts, and an audit that accepts exactly one reproduction or falsification
 counter transition without moving B7/O3/resource/layout claims.
+
+`T-B1-004hb` / `T-B7-016k` now adds the R104 external-origin attestation
+contract gate. R104 turns the R103 origin blocker into a concrete 20-field
+attestation contract and fillable template, then rejects a local placeholder
+attestation that reuses R101/R103 local artifacts. Requirements pass `5/5`;
+preflight gates pass `5` and fail `7`; local placeholder rejected is `true`;
+origin attestation accepted is `false`; counter transition accepted is `false`;
+counter delta remains `0`; accepted external reproductions remain `0`;
+accepted external falsifications remain `0`; and `new_credit_delta` remains
+`0`. Origin-contract hash
+`9150bfda0b040365f0fb3bce12ee91f4e968f01f742a483d6b7ddb6a80b9b485`;
+attestation-template hash
+`3159b7162402eb1cfb2b6b482c87d7dfde3e95756fe5312cb002e891abf6d6d0`;
+preflight hash `76183801f092c26e9c2e9d88ea4821f2429007959d6604ba13e1367e165ddd2c`;
+blocker queue hash `53a9922bdb7218bfb52cabb7005b7328cc8cad0a81707835baf299b377c26a25`.
+The next real gate must fill the R104 template with signed external-origin
+attestation, a nonlocal clean-checkout bundle, and a single-counter transition
+audit.

@@ -1,0 +1,120 @@
+{
+  "artifact": "B1/B7 cone01 R104 external-origin attestation contract gate",
+  "attestation_template_hash": "3159b7162402eb1cfb2b6b482c87d7dfde3e95756fe5312cb002e891abf6d6d0",
+  "attestation_template_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R104-G1-external-origin-attestation.template.json",
+  "blocker_queue_hash": "53a9922bdb7218bfb52cabb7005b7328cc8cad0a81707835baf299b377c26a25",
+  "blocker_queue_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R104-G1-post-origin-attestation-contract-blocker-queue.json",
+  "failed_requirement_ids": [],
+  "generated_at_unix": 1783554370,
+  "local_placeholder_hash": "e94d514aee6bdf4026d436e73c6f48ea8caa66bae6d7611452a5f87ef3201b9f",
+  "local_placeholder_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R104-G1-local-placeholder-origin-attestation.json",
+  "method": "b1_b7_cone01_r104_external_origin_attestation_contract_gate_v0",
+  "model_status": "r103_rejected_counter_packet_until_origin_attestation_and_nonlocal_replay_exist",
+  "origin_contract_hash": "9150bfda0b040365f0fb3bce12ee91f4e968f01f742a483d6b7ddb6a80b9b485",
+  "origin_contract_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R104-G1-external-origin-attestation-contract.json",
+  "payload_hash": "fc0dea674e88047105251c79867ff43a3c97475baf5ccf5ecc904b96dd6eed7d",
+  "preflight_hash": "76183801f092c26e9c2e9d88ea4821f2429007959d6604ba13e1367e165ddd2c",
+  "preflight_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R104-G1-external-origin-attestation-preflight.verdict.json",
+  "requirement_count": 5,
+  "requirements": [
+    {
+      "evidence": {
+        "r103_audit_hash": "2de6e6a2b8234af2e82c3e4af09296c5492054c7e0fbe6703bc1e7697bd2dc51",
+        "r103_blocker_queue_hash": "876d3e77f00c0676c3d57eeeedef6896df05c1ac244b146d3ef5d6ed7bc027ba",
+        "r103_payload_hash": "c9d8a0a188c3ce594bacbcd763791886f5f3fa1b341bee46092656af333d037d"
+      },
+      "label": "R104 binds the R103 audit verdict and blocker queue",
+      "passed": true,
+      "requirement_id": "A1"
+    },
+    {
+      "evidence": {
+        "attestation_template_hash": "3159b7162402eb1cfb2b6b482c87d7dfde3e95756fe5312cb002e891abf6d6d0",
+        "origin_contract_hash": "9150bfda0b040365f0fb3bce12ee91f4e968f01f742a483d6b7ddb6a80b9b485",
+        "required_field_count": 20
+      },
+      "label": "R104 emits the external-origin attestation contract and template",
+      "passed": true,
+      "requirement_id": "A2"
+    },
+    {
+      "evidence": {
+        "failed_gates": [
+          "source_url_nonlocal",
+          "clone_command_nonlocal",
+          "transcript_nonlocal",
+          "environment_manifest_nonlocal",
+          "replay_bundle_nonlocal",
+          "signed_external_origin_statement",
+          "origin_attestation_accepted"
+        ],
+        "preflight_hash": "76183801f092c26e9c2e9d88ea4821f2429007959d6604ba13e1367e165ddd2c"
+      },
+      "label": "R104 rejects the local placeholder origin attestation",
+      "passed": true,
+      "requirement_id": "A3"
+    },
+    {
+      "evidence": {
+        "accepted_external_falsification_count": 0,
+        "accepted_external_reproduction_count": 0,
+        "counter_delta": 0,
+        "new_credit_delta": 0
+      },
+      "label": "R104 keeps counters and new credit at zero",
+      "passed": true,
+      "requirement_id": "A4"
+    },
+    {
+      "evidence": {
+        "blocker_ids": [
+          "R104-G1-1",
+          "R104-G1-2",
+          "R104-G1-3"
+        ],
+        "blocker_queue_hash": "53a9922bdb7218bfb52cabb7005b7328cc8cad0a81707835baf299b377c26a25"
+      },
+      "label": "R104 emits blockers for signed origin, nonlocal bundle, and single-counter audit",
+      "passed": true,
+      "requirement_id": "A5"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 5,
+  "source_target_id": "T-B1-004hb/T-B7-016k",
+  "status": "cone01_r104_external_origin_attestation_contract_ready_no_counter_move",
+  "stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R104-G1-external-origin-attestation-contract.stdout.txt",
+  "stdout_sha256": "0e8d2e32919d29b3edacfa33d719769a54453bfafe78219a9a7f5ed6172e68fe",
+  "summary": {
+    "accepted_external_falsification_count": 0,
+    "accepted_external_reproduction_count": 0,
+    "attestation_template_hash": "3159b7162402eb1cfb2b6b482c87d7dfde3e95756fe5312cb002e891abf6d6d0",
+    "blocker_queue_hash": "53a9922bdb7218bfb52cabb7005b7328cc8cad0a81707835baf299b377c26a25",
+    "counter_delta": 0,
+    "counter_transition_accepted": false,
+    "failed_gate_count": 7,
+    "failed_requirement_ids": [],
+    "local_placeholder_hash": "e94d514aee6bdf4026d436e73c6f48ea8caa66bae6d7611452a5f87ef3201b9f",
+    "local_placeholder_rejected": true,
+    "method": "b1_b7_cone01_r104_external_origin_attestation_contract_gate_v0",
+    "model_status": "r103_rejected_counter_packet_until_origin_attestation_and_nonlocal_replay_exist",
+    "new_credit_delta": 0,
+    "origin_attestation_accepted": false,
+    "origin_contract_hash": "9150bfda0b040365f0fb3bce12ee91f4e968f01f742a483d6b7ddb6a80b9b485",
+    "passed_gate_count": 5,
+    "payload_hash": "fc0dea674e88047105251c79867ff43a3c97475baf5ccf5ecc904b96dd6eed7d",
+    "preflight_hash": "76183801f092c26e9c2e9d88ea4821f2429007959d6604ba13e1367e165ddd2c",
+    "required_field_count": 20,
+    "requirements_failed": 0,
+    "requirements_passed": 5,
+    "source_target_id": "T-B1-004hb/T-B7-016k",
+    "status": "cone01_r104_external_origin_attestation_contract_ready_no_counter_move",
+    "stdout_sha256": "0e8d2e32919d29b3edacfa33d719769a54453bfafe78219a9a7f5ed6172e68fe",
+    "upstream_target_id": "T-B1-004ha/T-B7-016j",
+    "validation_error_count": 0
+  },
+  "upstream_target_id": "T-B1-004ha/T-B7-016j",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "version": "0.1"
+}
