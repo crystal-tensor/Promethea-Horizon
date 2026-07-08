@@ -1321,6 +1321,16 @@ preflight hash `978f9ffe9d72a438c4701c659381eb4e818758448bb13f3b097e7d4b17625256
 C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
 claims remain 0/false.
 
+`T-B1-004eh` / `T-B7-013q` now hardens C2 again against hash-shape theater. It
+constructs a fixture where the numeric surface still passes, every witness,
+circuit, and stdout hash has valid sha256 shape, and the replay command has an
+executable command shape. The fixture is rejected anyway because all 8 declared
+provenance binding hashes fail to recompute from the row payload. Fixture hash
+`7bb2708cedae88328e309bb5a7431f5d916cbbb9f284d532f1a4f532d2e73bc2`;
+preflight hash `933d2689f1fb65a27db900da5b078594d18d438a0441012fbd3a09d8a80ffa0c`.
+C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
+claims remain 0/false.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
