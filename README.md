@@ -1597,6 +1597,23 @@ claims remain 0/false. The next useful PR must replace the smoke witness,
 dry-run verifier, and signature blocker with source-backed replay evidence and
 a real same-unitary verifier, then rerun R49 and R47.
 
+`T-B1-004fa` / `T-B7-014j` fixes a preflight-gate semantics issue before the
+next row can honestly pass. R49/R50 treated any production-required `False`
+value as empty, but the required passing state for `smoke_only_not_c2_acceptance`
+is exactly `false`. R51 emits a boolean-aware verifier: boolean production keys
+are complete when present as booleans, and their accepted values are checked
+only by `required_boolean_state`. Legacy semantics would mark a semantically
+correct `smoke_only_not_c2_acceptance=false` row as having `1` empty key; the
+boolean-aware verifier reduces that simulated empty-key count to `0`. On the
+actual R50 row, empty production keys are now `0` and file-hash failures are
+`0`, while the row is still rejected on the three real semantic flags:
+`source_backed_replay`, `same_unitary_certificate`, and
+`smoke_only_not_c2_acceptance`. Boolean-aware verifier hash
+`0518bf37d62e8dc3a98801dcc7edac71d3ae548b907718a120c1cd55ec5b8f2f`;
+evaluation hash `0e5f9400f588f2fa6b7baaeb7f40ddc31cfeb841c2583e21cc1757084b838bde`.
+C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
+claims remain 0/false.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.

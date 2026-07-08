@@ -1,0 +1,122 @@
+{
+  "boolean_empty_semantics": "Boolean production keys are complete when present as booleans. Their accepted value is checked only by required_boolean_state.",
+  "boolean_production_keys": [
+    "same_unitary_certificate",
+    "smoke_only_not_c2_acceptance",
+    "source_backed_replay"
+  ],
+  "file_hash_pairs": [
+    [
+      "source_dataset_file",
+      "source_dataset_sha256"
+    ],
+    [
+      "source_trace_file",
+      "source_trace_sha256"
+    ],
+    [
+      "replay_environment_file",
+      "replay_environment_sha256"
+    ],
+    [
+      "source_circuit_file",
+      "source_circuit_sha256"
+    ],
+    [
+      "candidate_circuit_file",
+      "candidate_circuit_sha256"
+    ],
+    [
+      "replay_stdout_file",
+      "replay_stdout_sha256"
+    ],
+    [
+      "same_unitary_witness_file",
+      "same_unitary_witness_sha256"
+    ],
+    [
+      "verifier_signature_file",
+      "verifier_signature_sha256"
+    ]
+  ],
+  "hard_reject_if": [
+    "any required key is absent",
+    "any non-boolean production-required key is null or empty string",
+    "any boolean production-required key is absent or non-boolean",
+    "any file path is missing or hash-mismatched",
+    "any sha256 field is malformed",
+    "same_unitary_witness_schema is not source_backed_unitary_equivalence_v1",
+    "source_backed_replay is not true",
+    "same_unitary_certificate is not true",
+    "smoke_only_not_c2_acceptance is not false",
+    "claim boundary omits zero-credit tokens"
+  ],
+  "production_required_keys": [
+    "source_dataset_file",
+    "source_trace_file",
+    "external_lineage_note",
+    "replay_environment_file",
+    "source_circuit_file",
+    "candidate_circuit_file",
+    "replay_stdout_file",
+    "same_unitary_witness_file",
+    "same_unitary_witness_verifier",
+    "verifier_signature_file",
+    "source_backed_replay",
+    "same_unitary_certificate",
+    "smoke_only_not_c2_acceptance",
+    "claim_boundary"
+  ],
+  "required_boolean_state": {
+    "same_unitary_certificate": true,
+    "smoke_only_not_c2_acceptance": false,
+    "source_backed_replay": true
+  },
+  "required_claim_boundary_tokens": [
+    "no C2",
+    "O3",
+    "reroute",
+    "B7",
+    "STV"
+  ],
+  "required_keys": [
+    "artifact_id",
+    "challenge_id",
+    "source_target_id",
+    "upstream_target_id",
+    "source_dataset_id",
+    "source_dataset_file",
+    "source_dataset_sha256",
+    "source_trace_id",
+    "source_trace_file",
+    "source_trace_sha256",
+    "external_lineage_note",
+    "external_lineage_sha256",
+    "replay_environment_file",
+    "replay_environment_sha256",
+    "source_circuit_file",
+    "source_circuit_sha256",
+    "candidate_circuit_file",
+    "candidate_circuit_sha256",
+    "replay_stdout_file",
+    "replay_stdout_sha256",
+    "same_unitary_witness_file",
+    "same_unitary_witness_sha256",
+    "same_unitary_witness_schema",
+    "same_unitary_witness_verifier",
+    "verifier_signature_file",
+    "verifier_signature_sha256",
+    "source_backed_replay",
+    "same_unitary_certificate",
+    "smoke_only_not_c2_acceptance",
+    "claim_boundary"
+  ],
+  "required_schema": "source_backed_unitary_equivalence_v1",
+  "selected_challenge_id": "O3-F4-C01",
+  "source_r49_verifier_hash": "004f8693b7ddd3d2124bb7acdc6f49a9ab0c6e5733287a8a10d076d8b2ce43af",
+  "source_r50_presubmission_row_hash": "3f7be50125146f8d4c68fd83f3d7526a25960e89b9584416e8fa6b5f2068059f",
+  "source_target_id": "T-B1-004fa/T-B7-014j",
+  "upstream_target_id": "T-B1-004ez/T-B7-014i",
+  "verifier_hash": "0518bf37d62e8dc3a98801dcc7edac71d3ae548b907718a120c1cd55ec5b8f2f",
+  "verifier_id": "B1-B7-cone01-O3-F4-C2-C01-boolean-aware-row-preflight-verifier"
+}
