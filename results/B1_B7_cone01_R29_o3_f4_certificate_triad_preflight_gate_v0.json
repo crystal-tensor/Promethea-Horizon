@@ -1,0 +1,326 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "next_gate": "Replace the placeholder fields with a source-backed certificate triad: strict replay rows, replay certificate, same-access denominator table, leakage-free optimizer trace, machine-check output, and hash-bound offline bundle.",
+    "resource_saving_claimed": false,
+    "what_is_not_supported": "R29 does not accept any O3-F4 artifact, does not close O3, does not permit R5 reroute, and does not create B7 credit, STV credit, or resource-saving evidence.",
+    "what_is_supported": "R29 proves the R28 template is only a placeholder: when used as a submission it is rejected on C2-C7 while the source, zero-credit, and hash-surface gates remain visible."
+  },
+  "last_updated": "2026-07-08",
+  "linked_benchmark_id": "B7",
+  "method": "b1_b7_cone01_r29_o3_f4_certificate_triad_preflight_gate_v0",
+  "model_status": "o3_f4_template_placeholder_rejected_no_o3_no_reroute",
+  "o3_f4_certificate_triad_preflight_packet": {
+    "preflight_result": {
+      "accepted": false,
+      "challenge_rows_covered": "<must equal 8>",
+      "failed_gate_ids": [
+        "C2-strict-replay-under-tolerance",
+        "C3-replay-certificate-complete",
+        "C4-denominator-comparison-complete",
+        "C5-same-access-model",
+        "C6-leakage-free-optimizer-trace",
+        "C7-machine-check-replay"
+      ],
+      "gate_results": [
+        {
+          "evidence": {
+            "missing_fields": [],
+            "source_target_id": "T-B1-004ed/T-B7-013m"
+          },
+          "gate_id": "C1-source-lineage",
+          "passed": true,
+          "reason": "source lineage and required field surface are present"
+        },
+        {
+          "evidence": {
+            "replay_row_count": 0,
+            "required_replay_row_count": 8,
+            "strict_tolerance": 1e-08
+          },
+          "gate_id": "C2-strict-replay-under-tolerance",
+          "passed": false,
+          "reason": "template has no measured replay rows under strict tolerance"
+        },
+        {
+          "evidence": {
+            "certificate_hash": "<sha256>",
+            "certificate_type": "<symbolic|interval|verified_numeric_with_bounds>"
+          },
+          "gate_id": "C3-replay-certificate-complete",
+          "passed": false,
+          "reason": "template contains replay-certificate placeholders"
+        },
+        {
+          "evidence": {
+            "comparison_row_count": 0,
+            "r11_r12_rows_covered": "<must equal 31>",
+            "required_r11_r12_rows": 31
+          },
+          "gate_id": "C4-denominator-comparison-complete",
+          "passed": false,
+          "reason": "template has no complete denominator comparison table"
+        },
+        {
+          "evidence": {
+            "denominator_hash": "<sha256>",
+            "same_access_model": true
+          },
+          "gate_id": "C5-same-access-model",
+          "passed": false,
+          "reason": "same-access flag is true but the denominator evidence remains a placeholder"
+        },
+        {
+          "evidence": {
+            "challenge_packet_visible_to_optimizer": false,
+            "hidden_restart_count": 0,
+            "optimizer_trace_hash": "<sha256>",
+            "seed_schedule_hash": "<sha256>"
+          },
+          "gate_id": "C6-leakage-free-optimizer-trace",
+          "passed": false,
+          "reason": "optimizer trace hashes remain placeholders"
+        },
+        {
+          "evidence": {
+            "artifact_hash": "<sha256>",
+            "checker_returncode": 0,
+            "checker_stdout_hash": "<sha256>",
+            "offline_bundle_hash": "<sha256>"
+          },
+          "gate_id": "C7-machine-check-replay",
+          "passed": false,
+          "reason": "machine-check and offline-bundle hashes remain placeholders"
+        },
+        {
+          "evidence": {
+            "b7_credit_delta": 0,
+            "o3_closed": false,
+            "reroute_allowed": false
+          },
+          "gate_id": "C8-claim-boundary-zero-credit-until-accepted",
+          "passed": true,
+          "reason": "claim boundary keeps zero credit before acceptance"
+        },
+        {
+          "evidence": {
+            "missing_fields": [],
+            "template_hash": "2d99a28a1b1523e3958a280474d565d771052935b9826b2b7dc239d55a32d078"
+          },
+          "gate_id": "C9-hash-bound-evidence-bundle",
+          "passed": true,
+          "reason": "template is hash-bound but not evidence-complete"
+        }
+      ],
+      "missing_required_fields": [],
+      "passed_gate_ids": [
+        "C1-source-lineage",
+        "C8-claim-boundary-zero-credit-until-accepted",
+        "C9-hash-bound-evidence-bundle"
+      ],
+      "placeholder_field_count": 12,
+      "placeholder_fields": [
+        "artifact_id",
+        "unitary_replay_protocol",
+        "same_unitary_replay_certificate",
+        "same_access_denominator_comparison",
+        "leakage_free_optimizer_trace",
+        "challenge_rows_covered",
+        "r11_r12_rows_covered",
+        "machine_check_command",
+        "checker_stdout_hash",
+        "offline_bundle_hash",
+        "artifact_hash",
+        "submitted_by"
+      ],
+      "preflight_hash": "6129db1af66089749a8e3317bd0d3376d90a42991c16dac290f875fc81839c80",
+      "r11_r12_rows_covered": "<must equal 31>",
+      "submission_kind": "r28_template_used_as_placeholder_submission"
+    },
+    "source_r28_contract": "results/B1_B7_cone01_R28_o3_f4_certificate_triad_contract_gate_v0.json",
+    "template_file_sha256": "d840eeca3ff5599497c4c3c08fbd39987bac5df5b195b9dc1c34e0f97bd1dcf8",
+    "template_submission": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/B1-B7-cone01-O3-F4-certificate-triad.template.json"
+  },
+  "requirements": [
+    {
+      "evidence": {
+        "r28_template_hash": "2d99a28a1b1523e3958a280474d565d771052935b9826b2b7dc239d55a32d078",
+        "r28_validation_error_count": 0,
+        "template_hash": "2d99a28a1b1523e3958a280474d565d771052935b9826b2b7dc239d55a32d078"
+      },
+      "label": "R28 contract source is validation-clean and binds the O3-F4 template",
+      "passed": true,
+      "requirement_id": "S1"
+    },
+    {
+      "evidence": {
+        "missing_required_fields": [],
+        "placeholder_field_count": 12,
+        "placeholder_fields": [
+          "artifact_id",
+          "unitary_replay_protocol",
+          "same_unitary_replay_certificate",
+          "same_access_denominator_comparison",
+          "leakage_free_optimizer_trace",
+          "challenge_rows_covered",
+          "r11_r12_rows_covered",
+          "machine_check_command",
+          "checker_stdout_hash",
+          "offline_bundle_hash",
+          "artifact_hash",
+          "submitted_by"
+        ]
+      },
+      "label": "Template-as-submission has every required field but still contains placeholders",
+      "passed": true,
+      "requirement_id": "S2"
+    },
+    {
+      "evidence": {
+        "accepted": false,
+        "failed_gate_ids": [
+          "C2-strict-replay-under-tolerance",
+          "C3-replay-certificate-complete",
+          "C4-denominator-comparison-complete",
+          "C5-same-access-model",
+          "C6-leakage-free-optimizer-trace",
+          "C7-machine-check-replay"
+        ]
+      },
+      "label": "Preflight rejects the template and does not accept an O3-F4 artifact",
+      "passed": true,
+      "requirement_id": "S3"
+    },
+    {
+      "evidence": {
+        "actual_failed_gate_ids": [
+          "C2-strict-replay-under-tolerance",
+          "C3-replay-certificate-complete",
+          "C4-denominator-comparison-complete",
+          "C5-same-access-model",
+          "C6-leakage-free-optimizer-trace",
+          "C7-machine-check-replay"
+        ],
+        "expected_failed_gate_ids": [
+          "C2-strict-replay-under-tolerance",
+          "C3-replay-certificate-complete",
+          "C4-denominator-comparison-complete",
+          "C5-same-access-model",
+          "C6-leakage-free-optimizer-trace",
+          "C7-machine-check-replay"
+        ]
+      },
+      "label": "The failed gates are the evidence-heavy gates C2 through C7",
+      "passed": true,
+      "requirement_id": "S4"
+    },
+    {
+      "evidence": {
+        "passed_gate_ids": [
+          "C1-source-lineage",
+          "C8-claim-boundary-zero-credit-until-accepted",
+          "C9-hash-bound-evidence-bundle"
+        ]
+      },
+      "label": "Surface lineage, zero-credit claim boundary, and template hash gates still pass",
+      "passed": true,
+      "requirement_id": "S5"
+    },
+    {
+      "evidence": {
+        "challenge_rows_covered": "<must equal 8>",
+        "r11_r12_rows_covered": "<must equal 31>",
+        "required_challenge_rows": 8,
+        "required_r11_r12_rows": 31
+      },
+      "label": "Strict replay and denominator obligations remain unfilled",
+      "passed": true,
+      "requirement_id": "S6"
+    },
+    {
+      "evidence": {
+        "b7_credit_delta": 0,
+        "o3_closed": false,
+        "reroute_allowed": false
+      },
+      "label": "R29 preserves zero O3, reroute, and B7 credit claims",
+      "passed": true,
+      "requirement_id": "S7"
+    },
+    {
+      "evidence": {
+        "preflight_hash": "6129db1af66089749a8e3317bd0d3376d90a42991c16dac290f875fc81839c80",
+        "template_file_sha256": "d840eeca3ff5599497c4c3c08fbd39987bac5df5b195b9dc1c34e0f97bd1dcf8"
+      },
+      "label": "Preflight result and source template are hash-bound",
+      "passed": true,
+      "requirement_id": "S8"
+    }
+  ],
+  "runtime_seconds": 0.000281,
+  "source_r28_target_id": "T-B1-004ed/T-B7-013m",
+  "source_target_id": "T-B1-004ee/T-B7-013n",
+  "status": "cone01_r29_o3_f4_template_submission_rejected_by_preflight",
+  "summary": {
+    "accepted": false,
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "accepted_route_count": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_space_time_volume_credit": 0,
+    "candidate_id": "NL-C02",
+    "challenge_rows_covered": "<must equal 8>",
+    "checked_negative_lemma_present": false,
+    "failed_gate_count": 6,
+    "failed_gate_ids": [
+      "C2-strict-replay-under-tolerance",
+      "C3-replay-certificate-complete",
+      "C4-denominator-comparison-complete",
+      "C5-same-access-model",
+      "C6-leakage-free-optimizer-trace",
+      "C7-machine-check-replay"
+    ],
+    "failed_requirement_ids": [],
+    "family_id": "O3-F4",
+    "leakage_free_optimizer_trace_complete": false,
+    "nlc02_full_lemma_ready": false,
+    "o3_closed": false,
+    "o3_f4_artifact_accepted": false,
+    "passed_gate_count": 3,
+    "passed_gate_ids": [
+      "C1-source-lineage",
+      "C8-claim-boundary-zero-credit-until-accepted",
+      "C9-hash-bound-evidence-bundle"
+    ],
+    "placeholder_field_count": 12,
+    "preflight_hash": "6129db1af66089749a8e3317bd0d3376d90a42991c16dac290f875fc81839c80",
+    "r11_r12_rows_covered": "<must equal 31>",
+    "remaining_open_obligation_count": 3,
+    "remaining_open_obligations": [
+      "O3-F3_symbolic_lu_artifact",
+      "O3-F4_valid_certificate_triad_artifact",
+      "O3-F5_route_a_artifact"
+    ],
+    "required_challenge_rows": 8,
+    "required_r11_r12_rows": 31,
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "same_access_denominator_comparison_complete": false,
+    "same_unitary_replay_certificate_complete": false,
+    "source_r28_contract_hash": "d3dda6090b1889d917c3fb80216ffaed6e5d114f7c0ab72d7f23049d3f5674df",
+    "source_r28_template_hash": "2d99a28a1b1523e3958a280474d565d771052935b9826b2b7dc239d55a32d078",
+    "source_template_file_sha256": "d840eeca3ff5599497c4c3c08fbd39987bac5df5b195b9dc1c34e0f97bd1dcf8",
+    "strict_tolerance": 1e-08,
+    "submission_kind": "r28_template_used_as_placeholder_submission",
+    "validation_error_count": 0
+  },
+  "title": "B1/B7 Cone01 R29 O3-F4 Certificate-Triad Preflight Gate",
+  "upstream_target_id": "T-B1-004ed/T-B7-013m",
+  "validation_errors": [],
+  "version": "0.1"
+}

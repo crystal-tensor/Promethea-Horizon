@@ -1287,6 +1287,17 @@ useful because it prevents replay evidence from drifting into a resource claim:
 accepted occurrence removal, proxy-T reduction, resource saving, and B7 ledger
 improvement remain 0.
 
+`T-B1-004ee` / `T-B7-013n` is the current B1/B7 O3-F4 gate. It consumes the
+R28 certificate-triad contract and treats the emitted template as a placeholder
+submission. The preflight passes 8/8 requirements by rejecting that placeholder:
+C1 source-lineage, C8 zero-credit claim boundary, and C9 hash surface pass, but
+C2-C7 fail because the strict replay rows, same-unitary replay certificate,
+31-row same-access denominator table, leakage-free optimizer trace, machine
+replay, and offline bundle evidence are still missing. Preflight hash
+`6129db1af66089749a8e3317bd0d3376d90a42991c16dac290f875fc81839c80`; 12
+placeholder fields are rejected; O3 remains open; reroute, B7 credit, STV
+credit, and resource-saving claims remain 0/false.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
