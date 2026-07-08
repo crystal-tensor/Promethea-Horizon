@@ -1,0 +1,149 @@
+{
+  "artifact": "B1/B7 cone01 R85 G1 rotation-row intake gate",
+  "blocker_queue_hash": "8495926acb4d380f130a3f2b033668fc0a69da1636d3e16f7c68083dc24ec79d",
+  "blocker_queue_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R85-G1-row-intake-blocker-queue.json",
+  "candidate_t_mapping_hash": "cddd98736eb312fba1fb063342f9cf38aa21283e0aa5163d7002ef477cc9a47c",
+  "candidate_t_mapping_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R85-G1-candidate-logical-t-mapping.json",
+  "failed_requirement_ids": [],
+  "generated_at_unix": 1783542616,
+  "method": "b1_b7_cone01_r85_g1_rotation_row_intake_gate_v0",
+  "model_status": "r84_selected_g1_materialized_as_source_backed_rotation_row_intake",
+  "no_double_counting_screen_hash": "6c52ae8257287ef39d471712c68d33550a19c9adb6adf5c242420c5f55f664e0",
+  "no_double_counting_screen_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R85-G1-no-double-counting-screen.json",
+  "payload_hash": "501112953b3879563d91d802a2eb08c5d71a03f7fe7a363dfc590291a6c4b29c",
+  "preflight_hash": "3f7cf84f8243e83442e06dcaad662b6bdbcda129158e6560b415e953f3dbb846",
+  "preflight_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R85-G1-row-intake-preflight.verdict.json",
+  "requirement_count": 7,
+  "requirements": [
+    {
+      "evidence": {
+        "r84_payload_hash": "a2a10eb75dae2fed1d6e9331522af1fae8b298e18c8a5dafae086c9a64355383",
+        "route_id": "R83-G1-30-arbitrary-rotation-batch"
+      },
+      "label": "R84 selects G1 as the upstream route",
+      "passed": true,
+      "requirement_id": "A1"
+    },
+    {
+      "evidence": {
+        "b7_reported_count": 270,
+        "classifier_count": 270,
+        "source_qasm": "results/b1_u3_phase_factored_optimizer/qasmbench_medium_exact/gcm_h6.qasm",
+        "source_qasm_sha256": "b0788a68e501faa55d1627a8f98e9c8ce009eaba5bee2a8a921122a1af070e9e"
+      },
+      "label": "R85 source QASM matches B7 numeric-structure classifier count",
+      "passed": true,
+      "requirement_id": "A2"
+    },
+    {
+      "evidence": {
+        "selected_row_count": 30,
+        "source_rows_hash": "0a56014b1b0d8efb3bb866a63c2e0a182255ca306addd2ffd1b75e616fc8d2db"
+      },
+      "label": "R85 materializes exactly 30 source-backed G1 candidate rows",
+      "passed": true,
+      "requirement_id": "A3"
+    },
+    {
+      "evidence": {
+        "accepted_t_ledger_reduction": 0,
+        "candidate_t_ledger_reduction": 600,
+        "mapping_hash": "cddd98736eb312fba1fb063342f9cf38aa21283e0aa5163d7002ef477cc9a47c"
+      },
+      "label": "R85 candidate mapping reaches the 600-unit G1 target without accepted credit",
+      "passed": true,
+      "requirement_id": "A4"
+    },
+    {
+      "evidence": {
+        "screen_hash": "6c52ae8257287ef39d471712c68d33550a19c9adb6adf5c242420c5f55f664e0",
+        "unique_source_component_count": 30
+      },
+      "label": "R85 no-double-counting screen has unique selected source components",
+      "passed": true,
+      "requirement_id": "A5"
+    },
+    {
+      "evidence": {
+        "accepted_b7_credit_delta": 0,
+        "failed_gates": [
+          "replay_stdout_present",
+          "stv_reprice_ledger_present",
+          "filled_r83_submission_present",
+          "downstream_b7_replay_present"
+        ],
+        "preflight_hash": "3f7cf84f8243e83442e06dcaad662b6bdbcda129158e6560b415e953f3dbb846"
+      },
+      "label": "R85 preflight rejects credit until replay, STV, R83 fill, and B7 replay exist",
+      "passed": true,
+      "requirement_id": "A6"
+    },
+    {
+      "evidence": {
+        "blocker_ids": [
+          "R85-G1-1",
+          "R85-G1-2",
+          "R85-G1-3",
+          "R85-G1-4"
+        ],
+        "blocker_queue_hash": "8495926acb4d380f130a3f2b033668fc0a69da1636d3e16f7c68083dc24ec79d"
+      },
+      "label": "R85 preserves claim boundaries and emits next blockers",
+      "passed": true,
+      "requirement_id": "A7"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 7,
+  "source_rows_hash": "0a56014b1b0d8efb3bb866a63c2e0a182255ca306addd2ffd1b75e616fc8d2db",
+  "source_rows_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R85-G1-source-rotation-rows.json",
+  "source_target_id": "T-B1-004gi/T-B7-015r",
+  "status": "cone01_r85_g1_source_rotation_rows_intake_ready_no_credit",
+  "stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R85-G1-row-intake.stdout.txt",
+  "stdout_sha256": "cc7da11aa6152646f40c95cc673ad31775fedbc34caec16d0bae7faf762434b6",
+  "summary": {
+    "accepted_b7_credit_delta": 0,
+    "accepted_b7_space_time_volume_credit": 0,
+    "accepted_t_ledger_reduction": 0,
+    "blocker_queue_hash": "8495926acb4d380f130a3f2b033668fc0a69da1636d3e16f7c68083dc24ec79d",
+    "candidate_after_t_ledger_if_all_rows_accepted": 5624,
+    "candidate_t_ledger_reduction": 600,
+    "candidate_t_mapping_hash": "cddd98736eb312fba1fb063342f9cf38aa21283e0aa5163d7002ef477cc9a47c",
+    "failed_gates": [
+      "replay_stdout_present",
+      "stv_reprice_ledger_present",
+      "filled_r83_submission_present",
+      "downstream_b7_replay_present"
+    ],
+    "failed_requirement_ids": [],
+    "method": "b1_b7_cone01_r85_g1_rotation_row_intake_gate_v0",
+    "minimum_accepted_t_ledger_reduction": 591,
+    "model_status": "r84_selected_g1_materialized_as_source_backed_rotation_row_intake",
+    "no_double_counting_screen_hash": "6c52ae8257287ef39d471712c68d33550a19c9adb6adf5c242420c5f55f664e0",
+    "no_double_counting_screen_passed": true,
+    "o3_closed": false,
+    "payload_hash": "501112953b3879563d91d802a2eb08c5d71a03f7fe7a363dfc590291a6c4b29c",
+    "preflight_accepted": false,
+    "preflight_failed_gate_count": 4,
+    "preflight_hash": "3f7cf84f8243e83442e06dcaad662b6bdbcda129158e6560b415e953f3dbb846",
+    "requirements_failed": 0,
+    "requirements_passed": 7,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "route_id": "R83-G1-30-arbitrary-rotation-batch",
+    "selected_row_count": 30,
+    "source_qasm_path": "results/b1_u3_phase_factored_optimizer/qasmbench_medium_exact/gcm_h6.qasm",
+    "source_qasm_sha256": "b0788a68e501faa55d1627a8f98e9c8ce009eaba5bee2a8a921122a1af070e9e",
+    "source_rows_hash": "0a56014b1b0d8efb3bb866a63c2e0a182255ca306addd2ffd1b75e616fc8d2db",
+    "source_target_id": "T-B1-004gi/T-B7-015r",
+    "status": "cone01_r85_g1_source_rotation_rows_intake_ready_no_credit",
+    "target_1_20_max_after_t_ledger": 5632,
+    "total_arbitrary_numeric_components_by_b7_classifier": 270,
+    "upstream_target_id": "T-B1-004gh/T-B7-015q",
+    "validation_error_count": 0
+  },
+  "upstream_target_id": "T-B1-004gh/T-B7-015q",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "version": "0.1"
+}

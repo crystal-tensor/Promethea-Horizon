@@ -3467,6 +3467,46 @@ current_results:
     caveat: r84_prioritizes_g1_but_no_filled_submission_no_b7_credit
     report: ../results/B1_B7_cone01_R84_work_packet_triage_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_R84_work_packet_triage_gate.md
+  b1_b7_cone01_r85_g1_rotation_row_intake_gate_v0:
+    method: b1_b7_cone01_r85_g1_rotation_row_intake_gate_v0
+    source_b1_r85_g1_rotation_row_intake: ../results/B1_B7_cone01_R85_g1_rotation_row_intake_gate_v0.json
+    source_b1_r84_work_packet_triage: ../results/B1_B7_cone01_R84_work_packet_triage_gate_v0.json
+    r85_source_rows: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R85-G1-source-rotation-rows.json
+    r85_candidate_t_mapping: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R85-G1-candidate-logical-t-mapping.json
+    r85_no_double_counting_screen: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R85-G1-no-double-counting-screen.json
+    r85_preflight: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R85-G1-row-intake-preflight.verdict.json
+    source_target_id: T-B1-004gi/T-B7-015r
+    upstream_target_id: T-B1-004gh/T-B7-015q
+    route_id: R83-G1-30-arbitrary-rotation-batch
+    total_arbitrary_numeric_components_by_b7_classifier: 270
+    selected_row_count: 30
+    candidate_t_ledger_reduction: 600
+    accepted_t_ledger_reduction: 0
+    candidate_after_t_ledger_if_all_rows_accepted: 5624
+    target_1_20_max_after_t_ledger: 5632
+    no_double_counting_screen_passed: true
+    preflight_accepted: false
+    preflight_failed_gate_count: 4
+    failed_gates: [replay_stdout_present, stv_reprice_ledger_present, filled_r83_submission_present, downstream_b7_replay_present]
+    b7_dependency_credit_allowed: false
+    b7_resource_credit_allowed: false
+    b7_ft_ledger_credit_allowed: false
+    b7_credit_delta: 0
+    b7_space_time_volume_credit: 0
+    o3_closed: false
+    reroute_allowed: false
+    resource_saving_claimed: false
+    source_rows_hash: 0a56014b1b0d8efb3bb866a63c2e0a182255ca306addd2ffd1b75e616fc8d2db
+    candidate_t_mapping_hash: cddd98736eb312fba1fb063342f9cf38aa21283e0aa5163d7002ef477cc9a47c
+    no_double_counting_screen_hash: 6c52ae8257287ef39d471712c68d33550a19c9adb6adf5c242420c5f55f664e0
+    preflight_hash: 3f7cf84f8243e83442e06dcaad662b6bdbcda129158e6560b415e953f3dbb846
+    blocker_queue_hash: 8495926acb4d380f130a3f2b033668fc0a69da1636d3e16f7c68083dc24ec79d
+    requirements_passed: 7
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r85_intake_only_selected_rows_are_not_replay_verified_or_b7_credit
+    report: ../results/B1_B7_cone01_R85_g1_rotation_row_intake_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_R85_g1_rotation_row_intake_gate.md
   b2_calibrated_dependency_credit_gate_v0:
     status: b2_calibrated_dependency_credit_rejected_missing_hardware_evidence
     method: b7_b2_calibrated_dependency_credit_gate_v0

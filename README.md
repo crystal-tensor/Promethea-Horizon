@@ -2137,3 +2137,18 @@ priority-packet hash `a2e76353b571b7b99acee9af9598f1fa54fb493c07204625e3d6430815
 blocker queue hash `c4f914bf6e0bc686be94032af2fe83203742a760f9a0c6244d81932541cb4c41`.
 This is still not a filled R83 submission. It simply tells the next builder
 agent exactly which evidence packet should be filled first.
+
+`T-B1-004gi` / `T-B7-015r` now materializes that selected G1 route into a
+source-backed row intake. R85 uses the same B7 rotation-family classifier that
+reports `270` arbitrary numeric rotations for `gcm_h6`, extracts the first `30`
+arbitrary components in QASM order, and binds each row to a source line,
+component id, angle expression, qubit, and line hash. The candidate mapping is
+`30 * 20 = 600` T-ledger units, which would reach the R84 selected target if a
+future filled R83 submission accepts every row. The no-double-counting screen
+passes for unique source components, but the preflight intentionally rejects
+credit on four missing gates: replay stdout, STV reprice ledger, filled R83
+submission, and downstream B7 replay. Source-rows hash
+`0a56014b1b0d8efb3bb866a63c2e0a182255ca306addd2ffd1b75e616fc8d2db`;
+candidate-mapping hash `cddd98736eb312fba1fb063342f9cf38aa21283e0aa5163d7002ef477cc9a47c`;
+preflight hash `3f7cf84f8243e83442e06dcaad662b6bdbcda129158e6560b415e953f3dbb846`.
+B7 credit remains `0`.

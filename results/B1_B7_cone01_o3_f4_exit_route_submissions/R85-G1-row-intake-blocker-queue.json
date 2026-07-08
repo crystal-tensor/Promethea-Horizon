@@ -1,0 +1,35 @@
+{
+  "accepted_b7_credit_delta": 0,
+  "artifact": "R85 G1 row-intake blocker queue",
+  "blocker_queue_hash": "8495926acb4d380f130a3f2b033668fc0a69da1636d3e16f7c68083dc24ec79d",
+  "method": "b1_b7_cone01_r85_g1_rotation_row_intake_gate_v0",
+  "preflight_hash": "3f7cf84f8243e83442e06dcaad662b6bdbcda129158e6560b415e953f3dbb846",
+  "queue": [
+    {
+      "blocker_id": "R85-G1-1",
+      "needed_artifact": "machine-check replay stdout binding all 30 selected source components",
+      "priority": 1,
+      "target_gate": "row_replay_stdout_present"
+    },
+    {
+      "blocker_id": "R85-G1-2",
+      "needed_artifact": "STV reprice ledger showing candidate rows map to the 1.20x target",
+      "priority": 2,
+      "target_gate": "stv_reprice_ledger_present"
+    },
+    {
+      "blocker_id": "R85-G1-3",
+      "needed_artifact": "all 33 R83 production fields filled with matching hashes",
+      "priority": 3,
+      "target_gate": "filled_r83_submission_present"
+    },
+    {
+      "blocker_id": "R85-G1-4",
+      "needed_artifact": "full downstream B7 replay before any nonzero B7 credit",
+      "priority": 4,
+      "target_gate": "downstream_b7_replay_present"
+    }
+  ],
+  "source_target_id": "T-B1-004gi/T-B7-015r",
+  "upstream_target_id": "T-B1-004gh/T-B7-015q"
+}
