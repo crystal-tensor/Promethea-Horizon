@@ -1641,6 +1641,19 @@ E1 replacement row hash
 C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
 claims remain 0/false.
 
+`T-B1-004fd` / `T-B7-014m` satisfies the second R52 evidence slot for
+`O3-F4-C01`: `E2-real-same-unitary-verifier-transcript`. R54 executes a
+single-qubit RZ same-unitary verifier against the R53 E1 witness, records
+command, version, input hashes, stdout hash, and transcript hash, and rejects
+the old R40 dry-run verifier scope. The verifier recomputes unitary distance
+`0.0` under strict tolerance `1e-08`. E1 and E2 are now true, while E3 remains
+false; accepted source-backed rows remain `0`. E2 transcript hash
+`6ff70effc8c22d07360a8dad3e252798ed705d6057b9953d9af1b39e0042da14`;
+E2 replacement row hash
+`f08207287159f6518294ddb8e8ab02a68048cc10a0c6b62849a2bee559106b44`.
+C2 remains unaccepted; O3, reroute, B7 credit, STV credit, and resource-saving
+claims remain 0/false.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.

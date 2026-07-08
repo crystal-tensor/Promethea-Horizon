@@ -1,0 +1,285 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "next_gate": "Submit E3 verifier signature, then rerun R51 on the E1/E2/E3 replacement row and rerun R47 with exactly one row passing.",
+    "resource_saving_claimed": false,
+    "what_is_not_supported": "R54 does not provide the E3 verifier signature, accepted R51 row, accepted R47 row, C2 acceptance, O3 closure, reroute permission, B7/STV credit, or resource saving.",
+    "what_is_supported": "R54 supplies the E2 real same-unitary verifier transcript for C01 by executing a mathematical single-qubit RZ equivalence check against the R53 E1 witness and rejecting the old R40 dry-run verifier."
+  },
+  "e2_same_unitary_transcript_packet": {
+    "dry_run_verifier": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/witness_scaffolds/r40_c01/O3-F4-C01.witness_verifier.json",
+    "e1_row_input": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e1_replacement_presubmission.json",
+    "e1_witness_input": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e1_source_backed_replay_witness.json",
+    "e2_row_output": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e2_replacement_presubmission.json",
+    "route_input": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.evidence_triplet_route.json",
+    "source_r53_result": "results/B1_B7_cone01_R53_o3_f4_c2_e1_source_backed_replay_witness_gate_v0.json",
+    "transcript": {
+      "artifact_id": "B1-B7-cone01-O3-F4-C2-C01-E2-same-unitary-verifier-transcript",
+      "b7_credit_delta": 0,
+      "b7_ledger_improvement_claimed": false,
+      "b7_space_time_volume_credit": 0,
+      "c2_accepted": false,
+      "candidate_theta": 0.125,
+      "challenge_id": "O3-F4-C01",
+      "claim_boundary": "E2 transcript only; no C2; O3 remains open; no reroute; no B7 credit; no STV credit; no resource saving; E3 remains open.",
+      "computed_unitary_distance": 0.0,
+      "dry_run_verifier_file_rejected": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/witness_scaffolds/r40_c01/O3-F4-C01.witness_verifier.json",
+      "dry_run_verifier_rejected": true,
+      "dry_run_verifier_scope": "checks_schema_shape_only_not_unitary_equivalence",
+      "e1_replacement_row_hash": "f78eacf2d988b75147a110c644d65c7e885008bf9c618929ad60c772c30ffdd3",
+      "e1_witness_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e1_source_backed_replay_witness.json",
+      "e1_witness_file_sha256": "9367ab917681a2d79f3c91c84c25c318fa34b9fd81a3f19251a48c505987a347",
+      "e1_witness_hash": "541b1f8aebfd944e1d407f98d4954a98756963680cdcf252ceb992ecb8ccc22d",
+      "executes_math_verifier_not_schema_check": true,
+      "input_hash_checks": {
+        "candidate_circuit_file": {
+          "actual_sha256": "b7896e91e03ae5a50d58c547aaccffee9cedd2c714fa1ae22b0fb0280e3e0f6c",
+          "exists": true,
+          "expected_sha256": "b7896e91e03ae5a50d58c547aaccffee9cedd2c714fa1ae22b0fb0280e3e0f6c",
+          "hash_matches": true,
+          "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.candidate.qasm"
+        },
+        "e1_witness_file": {
+          "actual_sha256": "9367ab917681a2d79f3c91c84c25c318fa34b9fd81a3f19251a48c505987a347",
+          "exists": true,
+          "expected_sha256": "9367ab917681a2d79f3c91c84c25c318fa34b9fd81a3f19251a48c505987a347",
+          "hash_matches": true,
+          "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e1_source_backed_replay_witness.json"
+        },
+        "source_circuit_file": {
+          "actual_sha256": "e0922fdb81e0370a7c231094b448235212e4591202410421736926a0fe1fffe3",
+          "exists": true,
+          "expected_sha256": "e0922fdb81e0370a7c231094b448235212e4591202410421736926a0fe1fffe3",
+          "hash_matches": true,
+          "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.source.qasm"
+        },
+        "source_dataset_file": {
+          "actual_sha256": "27c2e8ce786bb00e387337c6029f2277944393cc70311d39cc1fd34aeb5cadd8",
+          "exists": true,
+          "expected_sha256": "27c2e8ce786bb00e387337c6029f2277944393cc70311d39cc1fd34aeb5cadd8",
+          "hash_matches": true,
+          "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_provenance/r39_c01/O3-F4-C01.source_dataset.json"
+        },
+        "source_trace_file": {
+          "actual_sha256": "ac0ade8a733d7a6aaec3fdd2d21feec6242efe7071c1835d9d32c91ea183e101",
+          "exists": true,
+          "expected_sha256": "ac0ade8a733d7a6aaec3fdd2d21feec6242efe7071c1835d9d32c91ea183e101",
+          "hash_matches": true,
+          "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_provenance/r39_c01/O3-F4-C01.source_trace.json"
+        }
+      },
+      "o3_closed": false,
+      "reroute_allowed": false,
+      "resource_saving_claimed": false,
+      "route_hash": "77f3a833e73eb7556e484001da3e0b7abe63bca1c58455cf4d84424d51d823a7",
+      "route_packet_hash": "f447c154a88e83744de319ce50802c3997efe00dc2931dd5becd395e0deaf8e2",
+      "same_unitary_certificate": true,
+      "same_unitary_verified": true,
+      "satisfies_slot_id": "E2-real-same-unitary-verifier-transcript",
+      "smoke_only_not_c2_acceptance": true,
+      "source_backed_replay": true,
+      "source_target_id": "T-B1-004fd/T-B7-014m",
+      "source_theta": 0.125,
+      "strict_tolerance": 1e-08,
+      "transcript_hash": "6ff70effc8c22d07360a8dad3e252798ed705d6057b9953d9af1b39e0042da14",
+      "unblocks_flag_candidate": "same_unitary_certificate",
+      "unitary_distance_metric": "single_qubit_rz_operator_norm",
+      "upstream_target_id": "T-B1-004fc/T-B7-014l",
+      "verifier_command": "python3 tools/b1_b7_cone01_r54_o3_f4_c2_e2_same_unitary_verifier_transcript_gate.py --pretty",
+      "verifier_id": "B1-B7-cone01-O3-F4-C2-C01-single-qubit-rz-same-unitary-verifier",
+      "verifier_stdout_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e2_same_unitary_verifier.stdout.txt",
+      "verifier_stdout_sha256": "a02a5de7c170a9731099f3aaed56d6afc96bd06b44b645c53f121b1afe41d8b8",
+      "verifier_version": "0.1"
+    },
+    "transcript_output": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e2_same_unitary_verifier_transcript.json",
+    "verifier_stdout_output": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e2_same_unitary_verifier.stdout.txt"
+  },
+  "last_updated": "2026-07-08",
+  "linked_benchmark_id": "B7",
+  "method": "b1_b7_cone01_r54_o3_f4_c2_e2_same_unitary_verifier_transcript_gate_v0",
+  "model_status": "o3_f4_c2_c01_e2_same_unitary_transcript_created_e3_still_open",
+  "requirements": [
+    {
+      "evidence": {
+        "r53_e1_slot_satisfied": true,
+        "r53_requirements_passed": 8,
+        "route_slot_ids": [
+          "E1-source-backed-replay-witness",
+          "E2-real-same-unitary-verifier-transcript",
+          "E3-verifier-signature-artifact"
+        ]
+      },
+      "label": "R53 is the upstream E1 gate and E2 exists as the second required slot",
+      "passed": true,
+      "requirement_id": "S1"
+    },
+    {
+      "evidence": {
+        "hash_failure_count": 0,
+        "input_hash_checks": {
+          "candidate_circuit_file": {
+            "actual_sha256": "b7896e91e03ae5a50d58c547aaccffee9cedd2c714fa1ae22b0fb0280e3e0f6c",
+            "exists": true,
+            "expected_sha256": "b7896e91e03ae5a50d58c547aaccffee9cedd2c714fa1ae22b0fb0280e3e0f6c",
+            "hash_matches": true,
+            "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.candidate.qasm"
+          },
+          "e1_witness_file": {
+            "actual_sha256": "9367ab917681a2d79f3c91c84c25c318fa34b9fd81a3f19251a48c505987a347",
+            "exists": true,
+            "expected_sha256": "9367ab917681a2d79f3c91c84c25c318fa34b9fd81a3f19251a48c505987a347",
+            "hash_matches": true,
+            "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.e1_source_backed_replay_witness.json"
+          },
+          "source_circuit_file": {
+            "actual_sha256": "e0922fdb81e0370a7c231094b448235212e4591202410421736926a0fe1fffe3",
+            "exists": true,
+            "expected_sha256": "e0922fdb81e0370a7c231094b448235212e4591202410421736926a0fe1fffe3",
+            "hash_matches": true,
+            "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.source.qasm"
+          },
+          "source_dataset_file": {
+            "actual_sha256": "27c2e8ce786bb00e387337c6029f2277944393cc70311d39cc1fd34aeb5cadd8",
+            "exists": true,
+            "expected_sha256": "27c2e8ce786bb00e387337c6029f2277944393cc70311d39cc1fd34aeb5cadd8",
+            "hash_matches": true,
+            "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_provenance/r39_c01/O3-F4-C01.source_dataset.json"
+          },
+          "source_trace_file": {
+            "actual_sha256": "ac0ade8a733d7a6aaec3fdd2d21feec6242efe7071c1835d9d32c91ea183e101",
+            "exists": true,
+            "expected_sha256": "ac0ade8a733d7a6aaec3fdd2d21feec6242efe7071c1835d9d32c91ea183e101",
+            "hash_matches": true,
+            "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_provenance/r39_c01/O3-F4-C01.source_trace.json"
+          }
+        }
+      },
+      "label": "R54 verifies all E1 input hashes before judging same-unitary equivalence",
+      "passed": true,
+      "requirement_id": "S2"
+    },
+    {
+      "evidence": {
+        "candidate_theta": 0.125,
+        "computed_unitary_distance": 0.0,
+        "same_unitary_verified": true,
+        "source_theta": 0.125,
+        "strict_tolerance": 1e-08
+      },
+      "label": "R54 executes a mathematical same-unitary check against the E1 witness",
+      "passed": true,
+      "requirement_id": "S3"
+    },
+    {
+      "evidence": {
+        "dry_run_verifier_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/witness_scaffolds/r40_c01/O3-F4-C01.witness_verifier.json",
+        "dry_run_verifier_rejected": true,
+        "dry_run_verifier_scope": "checks_schema_shape_only_not_unitary_equivalence"
+      },
+      "label": "R54 rejects the old R40 dry-run verifier as the E2 artifact",
+      "passed": true,
+      "requirement_id": "S4"
+    },
+    {
+      "evidence": {
+        "transcript_hash": "6ff70effc8c22d07360a8dad3e252798ed705d6057b9953d9af1b39e0042da14",
+        "transcript_properties_passed": {
+          "checks_same_unitary_against_e1": true,
+          "records_command": true,
+          "records_inputs": true,
+          "records_stdout_hash": true,
+          "records_version": true,
+          "rejects_dry_run_scope": true
+        }
+      },
+      "label": "R54 records command, version, inputs, stdout, and transcript hash",
+      "passed": true,
+      "requirement_id": "S5"
+    },
+    {
+      "evidence": {
+        "e2_replacement_row_hash": "f08207287159f6518294ddb8e8ab02a68048cc10a0c6b62849a2bee559106b44",
+        "same_unitary_certificate": true,
+        "smoke_only_not_c2_acceptance": true,
+        "source_backed_replay": true
+      },
+      "label": "R54 emits an E2 replacement row but keeps it blocked by E3",
+      "passed": true,
+      "requirement_id": "S6"
+    },
+    {
+      "evidence": {
+        "b7_credit_delta": 0,
+        "c2_accepted": false,
+        "claim_boundary": "E2 transcript only; no C2; O3 remains open; no reroute; no B7 credit; no STV credit; no resource saving; E3 remains open.",
+        "reroute_allowed": false
+      },
+      "label": "R54 keeps zero-credit and one-row-first boundaries",
+      "passed": true,
+      "requirement_id": "S7"
+    },
+    {
+      "evidence": {
+        "e1_slot_satisfied": true,
+        "e2_slot_satisfied": true,
+        "e3_slot_satisfied": false,
+        "remaining_open_obligations": [
+          "submit_E3_verifier_signature_artifact",
+          "rerun_R51_on_E1_E2_E3_replacement_row",
+          "rerun_R47_and_accept_exactly_one_row"
+        ]
+      },
+      "label": "R54 leaves only E3 before R51/R47 acceptance can be attempted",
+      "passed": true,
+      "requirement_id": "S8"
+    }
+  ],
+  "runtime_seconds": 0.001226,
+  "source_target_id": "T-B1-004fd/T-B7-014m",
+  "status": "cone01_r54_o3_f4_c2_e2_same_unitary_verifier_transcript_passed_zero_c2_credit",
+  "summary": {
+    "accepted_source_backed_row_count": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_space_time_volume_credit": 0,
+    "c2_strict_replay_rows_accepted": false,
+    "computed_unitary_distance": 0.0,
+    "dry_run_verifier_rejected": true,
+    "e1_slot_satisfied": true,
+    "e2_replacement_row_hash": "f08207287159f6518294ddb8e8ab02a68048cc10a0c6b62849a2bee559106b44",
+    "e2_slot_satisfied": true,
+    "e2_transcript_file_sha256": "c2e37b28db12336bc1b89c0a10813fff13ad000f6f527fa3a96c65373ec3786e",
+    "e2_transcript_hash": "6ff70effc8c22d07360a8dad3e252798ed705d6057b9953d9af1b39e0042da14",
+    "e2_verifier_stdout_sha256": "a02a5de7c170a9731099f3aaed56d6afc96bd06b44b645c53f121b1afe41d8b8",
+    "e3_slot_satisfied": false,
+    "evidence_slot_count": 3,
+    "evidence_slots_satisfied": 2,
+    "failed_requirement_ids": [],
+    "hash_failure_count": 0,
+    "o3_closed": false,
+    "remaining_open_obligation_count": 3,
+    "remaining_open_obligations": [
+      "submit_E3_verifier_signature_artifact",
+      "rerun_R51_on_E1_E2_E3_replacement_row",
+      "rerun_R47_and_accept_exactly_one_row"
+    ],
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "same_unitary_certificate": true,
+    "selected_challenge_id": "O3-F4-C01",
+    "smoke_only_not_c2_acceptance": true,
+    "source_backed_replay": true,
+    "source_r53_e1_replacement_row_hash": "f78eacf2d988b75147a110c644d65c7e885008bf9c618929ad60c772c30ffdd3",
+    "source_r53_e1_witness_hash": "541b1f8aebfd944e1d407f98d4954a98756963680cdcf252ceb992ecb8ccc22d",
+    "strict_tolerance": 1e-08,
+    "validation_error_count": 0
+  },
+  "title": "B1/B7 Cone01 R54 O3-F4 C2 E2 Same-Unitary Verifier Transcript Gate",
+  "upstream_target_id": "T-B1-004fc/T-B7-014l",
+  "validation_errors": [],
+  "version": "0.1"
+}
