@@ -2496,3 +2496,23 @@ placeholder-validation hash
 blocker queue hash `9aa6e3af7f3c7ae95ee56c100bb6052cfd98a10218517035e04ab2f34f8cd7d3`.
 The next real gate is a production R104 packet that passes the R105 verifier
 before a separate single-counter audit is allowed to move any counter.
+
+`T-B1-004hd` / `T-B7-016m` now adds the R106 remote-origin materiality gate.
+R106 builds a remote-looking R104 packet that passes the R105 surface verifier
+on all `16/16` gates, then rejects it because reviewer-key registry, detached
+signature verification, third-party CI run, remote artifact-fetch transcript,
+and independent reviewer contact evidence are absent. Requirements pass `5/5`;
+R105 surface origin accepted is `true`; remote-looking spoof rejected is
+`true`; material origin accepted is `false`; materiality gates pass `1` and
+fail `7`; counter transition accepted is `false`; counter delta remains `0`;
+accepted external reproductions remain `0`; accepted external falsifications
+remain `0`; and `new_credit_delta` remains `0`. Remote-looking packet hash
+`76a6aed9a8564b2362bbd8edccc9181def1f59046ce74c432e6300017c6d6532`;
+surface-validation hash
+`8e7f72ea50b23ef6b79b9267f2673795aef2e83d5580c435533295223a653621`;
+materiality-audit hash
+`f9b520d2fbc43860bcc74f6a23a76b85cacdc4fbbc171e17a048af31b41dc20a`;
+blocker queue hash `409e093e4343a901debbc1701065919e6bdeb4971b50419e68316b459dd2e265`.
+The next real gate must attach reviewer-key registration, detached signature
+verification, public third-party CI evidence, and remote artifact-fetch
+transcripts before a counter audit can move.

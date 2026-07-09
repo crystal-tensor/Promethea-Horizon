@@ -1,0 +1,121 @@
+{
+  "artifact": "B1/B7 cone01 R106 remote-origin materiality gate",
+  "blocker_queue_hash": "409e093e4343a901debbc1701065919e6bdeb4971b50419e68316b459dd2e265",
+  "blocker_queue_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R106-G1-post-remote-origin-materiality-blocker-queue.json",
+  "failed_requirement_ids": [],
+  "generated_at_unix": 1783555789,
+  "materiality_audit_hash": "f9b520d2fbc43860bcc74f6a23a76b85cacdc4fbbc171e17a048af31b41dc20a",
+  "materiality_audit_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R106-G1-remote-looking-origin-spoof/remote-origin-materiality-audit.verdict.json",
+  "method": "b1_b7_cone01_r106_remote_origin_materiality_gate_v0",
+  "model_status": "r105_surface_verifier_ready_but_remote_looking_spoof_needs_materiality_gate",
+  "payload_hash": "ce310a60e062ee99edb1cb972de330ee26b08b464a3e51249b54962275b7db12",
+  "remote_looking_packet_hash": "76a6aed9a8564b2362bbd8edccc9181def1f59046ce74c432e6300017c6d6532",
+  "remote_looking_packet_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R106-G1-remote-looking-origin-spoof/remote-looking-origin-packet.json",
+  "requirement_count": 5,
+  "requirements": [
+    {
+      "evidence": {
+        "r105_blocker_queue_hash": "9aa6e3af7f3c7ae95ee56c100bb6052cfd98a10218517035e04ab2f34f8cd7d3",
+        "r105_payload_hash": "6454a6eed74d0044a8c43c53495b1538c4125acb8d3278e4bdf2fff057b24ce1",
+        "verifier_rules_hash": "5a94f79d40e3afcc8d5459843c07cc8dffa7241b3ae34b9ebf687cca41c9e89e"
+      },
+      "label": "R106 binds the R105 verifier result, rules, and blocker queue",
+      "passed": true,
+      "requirement_id": "A1"
+    },
+    {
+      "evidence": {
+        "remote_looking_packet_hash": "76a6aed9a8564b2362bbd8edccc9181def1f59046ce74c432e6300017c6d6532",
+        "surface_passed_gate_count": 16,
+        "surface_validation_hash": "8e7f72ea50b23ef6b79b9267f2673795aef2e83d5580c435533295223a653621"
+      },
+      "label": "R106 emits a remote-looking packet that passes R105 surface verification",
+      "passed": true,
+      "requirement_id": "A2"
+    },
+    {
+      "evidence": {
+        "failed_gates": [
+          "reviewer_key_registry_artifact_present",
+          "detached_signature_verification_artifact_present",
+          "third_party_ci_run_url_present",
+          "remote_artifact_fetch_transcript_present",
+          "independent_reviewer_contact_verifiable",
+          "not_self_attestation_only",
+          "materiality_acceptance"
+        ],
+        "materiality_audit_hash": "f9b520d2fbc43860bcc74f6a23a76b85cacdc4fbbc171e17a048af31b41dc20a"
+      },
+      "label": "R106 rejects the packet on materiality gates",
+      "passed": true,
+      "requirement_id": "A3"
+    },
+    {
+      "evidence": {
+        "accepted_external_falsification_count": 0,
+        "accepted_external_reproduction_count": 0,
+        "counter_delta": 0,
+        "new_credit_delta": 0
+      },
+      "label": "R106 keeps counters and new credit at zero",
+      "passed": true,
+      "requirement_id": "A4"
+    },
+    {
+      "evidence": {
+        "blocker_ids": [
+          "R106-G1-1",
+          "R106-G1-2",
+          "R106-G1-3",
+          "R106-G1-4",
+          "R106-G1-5"
+        ],
+        "blocker_queue_hash": "409e093e4343a901debbc1701065919e6bdeb4971b50419e68316b459dd2e265"
+      },
+      "label": "R106 emits blockers for signature, CI, fetch transcript, and single-counter audit",
+      "passed": true,
+      "requirement_id": "A5"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 5,
+  "source_target_id": "T-B1-004hd/T-B7-016m",
+  "status": "cone01_r106_remote_looking_origin_spoof_rejected_no_signature_materiality",
+  "stdout_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R106-G1-remote-origin-materiality.stdout.txt",
+  "stdout_sha256": "a74545fae465797ea02fb7f41e0c8a2b76a4aff74134b37d97cbb0d07e953f7e",
+  "summary": {
+    "accepted_external_falsification_count": 0,
+    "accepted_external_reproduction_count": 0,
+    "blocker_queue_hash": "409e093e4343a901debbc1701065919e6bdeb4971b50419e68316b459dd2e265",
+    "counter_delta": 0,
+    "counter_transition_accepted": false,
+    "failed_requirement_ids": [],
+    "materiality_audit_hash": "f9b520d2fbc43860bcc74f6a23a76b85cacdc4fbbc171e17a048af31b41dc20a",
+    "materiality_failed_gate_count": 7,
+    "materiality_passed_gate_count": 1,
+    "method": "b1_b7_cone01_r106_remote_origin_materiality_gate_v0",
+    "model_status": "r105_surface_verifier_ready_but_remote_looking_spoof_needs_materiality_gate",
+    "new_credit_delta": 0,
+    "origin_attestation_materially_accepted": false,
+    "payload_hash": "ce310a60e062ee99edb1cb972de330ee26b08b464a3e51249b54962275b7db12",
+    "r105_surface_origin_accepted": true,
+    "remote_looking_packet_hash": "76a6aed9a8564b2362bbd8edccc9181def1f59046ce74c432e6300017c6d6532",
+    "remote_looking_spoof_rejected": true,
+    "requirements_failed": 0,
+    "requirements_passed": 5,
+    "source_target_id": "T-B1-004hd/T-B7-016m",
+    "status": "cone01_r106_remote_looking_origin_spoof_rejected_no_signature_materiality",
+    "stdout_sha256": "a74545fae465797ea02fb7f41e0c8a2b76a4aff74134b37d97cbb0d07e953f7e",
+    "surface_failed_gate_count": 0,
+    "surface_passed_gate_count": 16,
+    "surface_validation_hash": "8e7f72ea50b23ef6b79b9267f2673795aef2e83d5580c435533295223a653621",
+    "upstream_target_id": "T-B1-004hc/T-B7-016l",
+    "validation_error_count": 0
+  },
+  "surface_validation_hash": "8e7f72ea50b23ef6b79b9267f2673795aef2e83d5580c435533295223a653621",
+  "surface_validation_path": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R106-G1-remote-looking-origin-spoof/r105-surface-validation.verdict.json",
+  "upstream_target_id": "T-B1-004hc/T-B7-016l",
+  "validation_error_count": 0,
+  "validation_errors": [],
+  "version": "0.1"
+}

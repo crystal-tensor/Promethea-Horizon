@@ -1,0 +1,40 @@
+{
+  "artifact": "R106 post remote-origin materiality blocker queue",
+  "blocker_queue_hash": "409e093e4343a901debbc1701065919e6bdeb4971b50419e68316b459dd2e265",
+  "materiality_audit_hash": "f9b520d2fbc43860bcc74f6a23a76b85cacdc4fbbc171e17a048af31b41dc20a",
+  "method": "b1_b7_cone01_r106_remote_origin_materiality_gate_v0",
+  "queue": [
+    {
+      "blocker_id": "R106-G1-1",
+      "needed_artifact": "registered reviewer public key or verifiable reviewer identity artifact",
+      "priority": 1,
+      "target_gate": "reviewer_key_registry"
+    },
+    {
+      "blocker_id": "R106-G1-2",
+      "needed_artifact": "detached signature over packet, transcript, environment manifest, and replay bundle",
+      "priority": 2,
+      "target_gate": "detached_signature_verification"
+    },
+    {
+      "blocker_id": "R106-G1-3",
+      "needed_artifact": "public third-party CI run URL or equivalent nonmaintainer execution evidence",
+      "priority": 3,
+      "target_gate": "third_party_ci_run"
+    },
+    {
+      "blocker_id": "R106-G1-4",
+      "needed_artifact": "machine-readable transcript fetching artifacts from the claimed remote source",
+      "priority": 4,
+      "target_gate": "remote_artifact_fetch_transcript"
+    },
+    {
+      "blocker_id": "R106-G1-5",
+      "needed_artifact": "separate audit accepting exactly one reproduction or falsification counter transition",
+      "priority": 5,
+      "target_gate": "single_counter_transition_audit"
+    }
+  ],
+  "source_target_id": "T-B1-004hd/T-B7-016m",
+  "upstream_target_id": "T-B1-004hc/T-B7-016l"
+}

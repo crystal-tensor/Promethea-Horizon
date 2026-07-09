@@ -7275,6 +7275,40 @@ current_results:
     caveat: r105_verifier_ready_but_no_verified_external_origin_packet
     report: ../results/B1_B7_cone01_R105_external_origin_attestation_verifier_gate_v0.json
     markdown_report: ../research/B1_B7_cone01_R105_external_origin_attestation_verifier_gate.md
+  b1_b7_cone01_r106_remote_origin_materiality_gate_v0:
+    circuits: 1
+    status: cone01_r106_remote_looking_origin_spoof_rejected_no_signature_materiality
+    model_status: r105_surface_verifier_ready_but_remote_looking_spoof_needs_materiality_gate
+    method: b1_b7_cone01_r106_remote_origin_materiality_gate_v0
+    source_target_id: T-B1-004hd/T-B7-016m
+    upstream_target_id: T-B1-004hc/T-B7-016l
+    source_b1_r105_external_origin_attestation_verifier: ../results/B1_B7_cone01_R105_external_origin_attestation_verifier_gate_v0.json
+    r106_remote_looking_packet: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R106-G1-remote-looking-origin-spoof/remote-looking-origin-packet.json
+    r106_surface_validation: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R106-G1-remote-looking-origin-spoof/r105-surface-validation.verdict.json
+    r106_materiality_audit: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R106-G1-remote-looking-origin-spoof/remote-origin-materiality-audit.verdict.json
+    r106_blocker_queue: ../results/B1_B7_cone01_o3_f4_exit_route_submissions/R106-G1-post-remote-origin-materiality-blocker-queue.json
+    r105_surface_origin_accepted: true
+    surface_passed_gate_count: 16
+    surface_failed_gate_count: 0
+    remote_looking_spoof_rejected: true
+    origin_attestation_materially_accepted: false
+    materiality_passed_gate_count: 1
+    materiality_failed_gate_count: 7
+    counter_transition_accepted: false
+    counter_delta: 0
+    accepted_external_reproduction_count: 0
+    accepted_external_falsification_count: 0
+    new_credit_delta: 0
+    remote_looking_packet_hash: 76a6aed9a8564b2362bbd8edccc9181def1f59046ce74c432e6300017c6d6532
+    surface_validation_hash: 8e7f72ea50b23ef6b79b9267f2673795aef2e83d5580c435533295223a653621
+    materiality_audit_hash: f9b520d2fbc43860bcc74f6a23a76b85cacdc4fbbc171e17a048af31b41dc20a
+    blocker_queue_hash: 409e093e4343a901debbc1701065919e6bdeb4971b50419e68316b459dd2e265
+    requirements_passed: 5
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r106_surface_remote_packet_rejected_for_missing_signature_ci_fetch_materiality
+    report: ../results/B1_B7_cone01_R106_remote_origin_materiality_gate_v0.json
+    markdown_report: ../research/B1_B7_cone01_R106_remote_origin_materiality_gate.md
   b1_b7_cone01_full_statevector_replay_probe_gate_v0:
     circuits: 1
     status: cone01_default_input_statevector_replay_probe_passed_not_symbolic_certificate
