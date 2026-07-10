@@ -1,0 +1,142 @@
+{
+  "artifacts": {
+    "numpy_cross_check": "results/B1_B7_cone01_R117_independent_numpy_replay_gate/numpy_cross_check.json",
+    "r116_result": "results/B1_B7_cone01_R116_measurement_detached_exact_2q_gate_v0.json"
+  },
+  "candidate_path": "results/B1_B7_cone01_R116_measurement_detached_exact_2q_gate/measurement_detached_candidate.qasm",
+  "claim_boundary": {
+    "next_gate": "Add a symbolic/unitary certificate or an independently generated compiler candidate before any B7 resource credit.",
+    "what_is_not_supported": "Arbitrary-input unitary proof, mid-circuit measurement semantics, hardware layout improvement, T-resource reduction, or B7 credit.",
+    "what_is_supported": "R116 candidate survives an independent NumPy replay over 30 finite input states and preserves the source terminal measurement map with a 762 to 528 CX reduction."
+  },
+  "generated_at_unix": 1783691458,
+  "method": "b1_b7_cone01_r117_independent_numpy_replay_gate_v0",
+  "model_status": "independent_numpy_replay_matches_qiskit_finite_probe",
+  "payload_hash": "f7bda827b70b322d8f3461ab30ae9e06306fe73bb314db4c466e737d4923b646",
+  "requirement_count": 10,
+  "requirements": [
+    {
+      "evidence": {
+        "candidate": "results/B1_B7_cone01_R116_measurement_detached_exact_2q_gate/measurement_detached_candidate.qasm",
+        "r116_status": "cone01_r116_measurement_detached_exact_2q_accepted_finite_probe"
+      },
+      "label": "accepted R116 artifact is the input",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "evidence": {
+        "engine": "numpy_independent_statevector_v0",
+        "qiskit_compiler_called": false
+      },
+      "label": "independent NumPy replay engine is used",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "evidence": {
+        "candidate": 528,
+        "delta": -234,
+        "source": 762
+      },
+      "label": "candidate has a nonzero two-qubit reduction",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "evidence": {
+        "count": 30,
+        "passed": 30
+      },
+      "label": "all independent probes pass",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "evidence": {
+        "max_fidelity_deficit": 1.3322676295501878e-15,
+        "tolerance": 1e-09
+      },
+      "label": "independent replay error stays within tolerance",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "evidence": {
+        "candidate": [
+          "measure q[0] -> c[0];"
+        ],
+        "source": [
+          "measure q[0] -> c[0];"
+        ]
+      },
+      "label": "source measurement map is preserved",
+      "passed": true,
+      "requirement_id": "P6"
+    },
+    {
+      "evidence": {
+        "candidate": 13,
+        "source": 13
+      },
+      "label": "source and candidate have the same qubit count",
+      "passed": true,
+      "requirement_id": "P7"
+    },
+    {
+      "evidence": {
+        "path": "results/B1_B7_cone01_R117_independent_numpy_replay_gate/numpy_cross_check.json",
+        "rows": 30
+      },
+      "label": "independent probe output is materialized",
+      "passed": true,
+      "requirement_id": "P8"
+    },
+    {
+      "evidence": {
+        "b7_credit_delta": 0
+      },
+      "label": "B7 credit remains zero",
+      "passed": true,
+      "requirement_id": "P9"
+    },
+    {
+      "evidence": {
+        "model_status": "independent_numpy_replay_matches_qiskit_finite_probe"
+      },
+      "label": "claim boundary excludes arbitrary proof and hardware claims",
+      "passed": true,
+      "requirement_id": "P10"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 10,
+  "source_path": "benchmarks/qasmbench_medium_exact/gcm_h6.qasm",
+  "source_target_id": "T-B1-004ho/T-B7-016x",
+  "status": "cone01_r117_independent_numpy_replay_30_probe_accepted",
+  "summary": {
+    "b7_credit_delta": 0,
+    "candidate_measurement_count": 1,
+    "candidate_two_qubit_gate_count": 528,
+    "counter_delta": 0,
+    "engine": "numpy_independent_statevector_v0",
+    "max_fidelity_deficit": 1.3322676295501878e-15,
+    "measurement_map_preserved": true,
+    "method": "b1_b7_cone01_r117_independent_numpy_replay_gate_v0",
+    "model_status": "independent_numpy_replay_matches_qiskit_finite_probe",
+    "new_credit_delta": 0,
+    "probe_count": 30,
+    "probe_failed": 0,
+    "probe_passed": 30,
+    "source_measurement_count": 1,
+    "source_target_id": "T-B1-004ho/T-B7-016x",
+    "source_two_qubit_gate_count": 762,
+    "status": "cone01_r117_independent_numpy_replay_30_probe_accepted",
+    "two_qubit_gate_delta": -234,
+    "two_qubit_reduction_pct": 30.708661417322837,
+    "upstream_target_id": "T-B1-004hn/T-B7-016w"
+  },
+  "title": "B1/B7 cone01 R117 independent NumPy replay gate",
+  "upstream_target_id": "T-B1-004hn/T-B7-016w",
+  "version": "0.1"
+}

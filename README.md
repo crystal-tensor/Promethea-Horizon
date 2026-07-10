@@ -2153,6 +2153,17 @@ candidate-mapping hash `cddd98736eb312fba1fb063342f9cf38aa21283e0aa5163d7002ef47
 preflight hash `3f7cf84f8243e83442e06dcaad662b6bdbcda129158e6560b415e953f3dbb846`.
 B7 credit remains `0`.
 
+`T-B1-004ho` / `T-B7-016x` now adds the R117 independent NumPy replay gate.
+R117 re-parses the R116 source and candidate OpenQASM with a separate NumPy
+statevector engine, without calling Qiskit for compilation or simulation. It
+checks 30 finite inputs: zero, 13 computational-basis states, 8 full random
+states, and 8 random product states. All `30/30` pass with maximum fidelity
+deficit `1.33e-15`; the terminal measurement map remains identical; CX remains
+`762 -> 528` (`30.7087%`). This is cross-implementation finite-probe evidence,
+not an arbitrary-input unitary proof; hardware layout, T-resource, and B7
+credit remain outside the claim boundary. Requirements pass `10/10`; B7 credit
+remains `0`.
+
 `T-B1-004gj` / `T-B7-015s` now closes the first R85 blocker without
 promoting the candidate. R86 emits source-binding replay stdout for all `30`
 selected G1 rows and verifies that every row still binds to the original
