@@ -2643,3 +2643,12 @@ with fidelity `0.5`. No nonzero-2Q level is accepted; counter delta and
 `new_credit_delta` remain `0`; no B7 credit is granted. Requirements pass
 `8/8`. The next target remains a composable semantic rewrite that passes exact
 equivalence and retains a real two-qubit or proxy-T delta.
+
+`T-B1-004hm` / `T-B7-016v` now adds the R115 measurement-semantics 2Q gate. The
+same level-2 candidate reduces CX `762 -> 528`; it fails full-state equivalence
+with fidelity `0.5`, but preserves the fixed-initial-state final measurement
+distribution with L1 delta `3.89e-15` and max probability delta `1.94e-15`.
+This is accepted only as a narrow B1 measurement-scope result. It does not
+support arbitrary-input/full-state equivalence, mid-circuit measurement
+semantics, hardware layout, T-resource, or B7 credit; B7 credit remains `0`.
+Requirements pass `8/8`.

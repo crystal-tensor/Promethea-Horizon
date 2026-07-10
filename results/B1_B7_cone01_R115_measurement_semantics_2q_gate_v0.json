@@ -1,0 +1,124 @@
+{
+  "artifacts": {
+    "candidate_qasm": "results/B1_B7_cone01_R115_measurement_semantics_2q_gate/work/level2_measurement_semantics_candidate.qasm",
+    "full_state_equivalence": "results/B1_B7_cone01_R115_measurement_semantics_2q_gate/full_state_equivalence.json",
+    "measurement_distribution_equivalence": "results/B1_B7_cone01_R115_measurement_semantics_2q_gate/measurement_distribution_equivalence.json"
+  },
+  "claim_boundary": {
+    "next_gate": "Lift the scoped measurement result to a composable full-circuit certificate or explicitly model the hardware measurement contract.",
+    "what_is_not_supported": "Arbitrary-input/full-state equivalence, mid-circuit measurement semantics, layout improvement, T-resource reduction, or B7 credit.",
+    "what_is_supported": "Fixed-initial-state final-measurement distribution equivalence with a 30.7087% CX reduction on gcm_h6."
+  },
+  "generated_at_unix": 1783689306,
+  "method": "b1_b7_cone01_r115_measurement_semantics_2q_gate_v0",
+  "model_status": "fixed_initial_state_final_measurement_scope_accepts_2q_reduction",
+  "payload_hash": "aa5352fa8b7a4870f15271ed94d51869f45f23783c6d8168a8c5768dba42e637",
+  "requirement_count": 8,
+  "requirements": [
+    {
+      "evidence": {
+        "candidate": 528,
+        "delta": -234,
+        "source": 762
+      },
+      "label": "candidate has a nonzero two-qubit reduction",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "evidence": {
+        "failed": 1,
+        "fidelity": 0.4999999999999999
+      },
+      "label": "full-state equivalence remains rejected",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "evidence": {
+        "l1_delta": 3.885780586188048e-15,
+        "max_probability_delta": 1.942890293094024e-15
+      },
+      "label": "final measurement distribution passes exact numerical tolerance",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "evidence": {
+        "full_state_scope": false,
+        "measurement_scope": true
+      },
+      "label": "acceptance is explicitly scoped to fixed initial state and final measurement",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "evidence": {
+        "b7_credit_delta": 0
+      },
+      "label": "B7 credit remains zero despite scoped B1 acceptance",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "evidence": {
+        "candidate": "results/B1_B7_cone01_R115_measurement_semantics_2q_gate/work/level2_measurement_semantics_candidate.qasm",
+        "full_state": "results/B1_B7_cone01_R115_measurement_semantics_2q_gate/full_state_equivalence.json",
+        "measurement": "results/B1_B7_cone01_R115_measurement_semantics_2q_gate/measurement_distribution_equivalence.json"
+      },
+      "label": "all checker outputs are materialized",
+      "passed": true,
+      "requirement_id": "P6"
+    },
+    {
+      "evidence": {
+        "l1_delta": 3.885780586188048e-15,
+        "max_probability_delta": 1.942890293094024e-15
+      },
+      "label": "measurement error is within 1e-8 tolerance",
+      "passed": true,
+      "requirement_id": "P7"
+    },
+    {
+      "evidence": {
+        "model_status": "fixed_initial_state_final_measurement_scope_accepts_2q_reduction"
+      },
+      "label": "claim boundary excludes arbitrary-input and hardware claims",
+      "passed": true,
+      "requirement_id": "P8"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 8,
+  "source_path": "benchmarks/qasmbench_medium_exact/gcm_h6.qasm",
+  "source_target_id": "T-B1-004hm/T-B7-016v",
+  "status": "cone01_r115_measurement_semantics_2q_accepted_full_state_rejected",
+  "summary": {
+    "b7_credit_delta": 0,
+    "candidate_accepted_full_state": false,
+    "candidate_accepted_measurement_scope": true,
+    "candidate_two_qubit_gate_count": 528,
+    "counter_delta": 0,
+    "full_checker_returncode": 1,
+    "full_state_failed": 1,
+    "full_state_fidelity": 0.4999999999999999,
+    "full_state_passed": 0,
+    "measurement_checker_returncode": 0,
+    "measurement_failed": 0,
+    "measurement_l1_delta": 3.885780586188048e-15,
+    "measurement_max_probability_delta": 1.942890293094024e-15,
+    "measurement_passed": 1,
+    "method": "b1_b7_cone01_r115_measurement_semantics_2q_gate_v0",
+    "model_status": "fixed_initial_state_final_measurement_scope_accepts_2q_reduction",
+    "new_credit_delta": 0,
+    "source_target_id": "T-B1-004hm/T-B7-016v",
+    "source_two_qubit_gate_count": 762,
+    "status": "cone01_r115_measurement_semantics_2q_accepted_full_state_rejected",
+    "two_qubit_gate_delta": -234,
+    "two_qubit_reduction_pct": 30.708661417322837,
+    "upstream_target_id": "T-B1-004hl/T-B7-016u"
+  },
+  "title": "B1/B7 cone01 R115 measurement semantics 2Q gate",
+  "upstream_target_id": "T-B1-004hl/T-B7-016u",
+  "version": "0.1"
+}
