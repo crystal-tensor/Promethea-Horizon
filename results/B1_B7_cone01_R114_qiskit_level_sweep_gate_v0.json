@@ -1,0 +1,244 @@
+{
+  "artifacts": {
+    "level_summaries": [
+      "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level0.equivalence.json",
+      "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level1.equivalence.json",
+      "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level2.equivalence.json",
+      "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level3.equivalence.json"
+    ],
+    "work_dir": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/work"
+  },
+  "claim_boundary": {
+    "next_gate": "Develop a composable semantic rewrite that preserves exact equivalence and retains a nonzero 2Q or proxy-T delta.",
+    "what_is_not_supported": "No accepted 2Q reduction, arbitrary-input equivalence, T-resource reduction, layout improvement, or B7 credit.",
+    "what_is_supported": "On one 13-qubit workload, levels 0/1 pass exact equivalence without 2Q reduction while levels 2/3 reduce CX but fail exact equivalence."
+  },
+  "generated_at_unix": 1783688674,
+  "method": "b1_b7_cone01_r114_qiskit_level_sweep_gate_v0",
+  "model_status": "first_nonzero_2q_reduction_fails_exact_equivalence",
+  "payload_hash": "2385bfae83ae35f13286745b86afdc79f9b87a7a0b2ff489e395fa6ba354701a",
+  "requirement_count": 8,
+  "requirements": [
+    {
+      "evidence": {
+        "levels": [
+          0,
+          1,
+          2,
+          3
+        ]
+      },
+      "label": "all four optimization levels are materialized",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "evidence": {
+        "levels": [
+          {
+            "candidate_operation_count": 3149,
+            "candidate_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/work/level0.qasm",
+            "checker_returncode": 0,
+            "equivalence_failed": 0,
+            "equivalence_passed": 1,
+            "equivalence_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level0.equivalence.json",
+            "fidelity": 0.9999999999999996,
+            "max_global_phase_adjusted_delta": 3.852936044055938e-15,
+            "optimization_level": 0,
+            "two_qubit_gate_count": 762
+          },
+          {
+            "candidate_operation_count": 1852,
+            "candidate_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/work/level1.qasm",
+            "checker_returncode": 0,
+            "equivalence_failed": 0,
+            "equivalence_passed": 1,
+            "equivalence_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level1.equivalence.json",
+            "fidelity": 1.0,
+            "max_global_phase_adjusted_delta": 2.0206364052201327e-15,
+            "optimization_level": 1,
+            "two_qubit_gate_count": 762
+          }
+        ]
+      },
+      "label": "level 0 and level 1 pass exact equivalence without 2Q reduction",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "evidence": {
+        "levels": [
+          {
+            "candidate_operation_count": 1288,
+            "candidate_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/work/level2.qasm",
+            "checker_returncode": 1,
+            "equivalence_failed": 1,
+            "equivalence_passed": 0,
+            "equivalence_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level2.equivalence.json",
+            "fidelity": 0.4999999999999999,
+            "max_global_phase_adjusted_delta": 0.3826834323651054,
+            "optimization_level": 2,
+            "two_qubit_gate_count": 528
+          },
+          {
+            "candidate_operation_count": 1288,
+            "candidate_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/work/level3.qasm",
+            "checker_returncode": 1,
+            "equivalence_failed": 1,
+            "equivalence_passed": 0,
+            "equivalence_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level3.equivalence.json",
+            "fidelity": 0.4999999999999999,
+            "max_global_phase_adjusted_delta": 0.3826834323651054,
+            "optimization_level": 3,
+            "two_qubit_gate_count": 528
+          }
+        ]
+      },
+      "label": "level 2 and level 3 show the apparent 2Q reduction",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "evidence": {
+        "accepted": [],
+        "reduced_invalid": [
+          {
+            "candidate_operation_count": 1288,
+            "candidate_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/work/level2.qasm",
+            "checker_returncode": 1,
+            "equivalence_failed": 1,
+            "equivalence_passed": 0,
+            "equivalence_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level2.equivalence.json",
+            "fidelity": 0.4999999999999999,
+            "max_global_phase_adjusted_delta": 0.3826834323651054,
+            "optimization_level": 2,
+            "two_qubit_gate_count": 528
+          },
+          {
+            "candidate_operation_count": 1288,
+            "candidate_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/work/level3.qasm",
+            "checker_returncode": 1,
+            "equivalence_failed": 1,
+            "equivalence_passed": 0,
+            "equivalence_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level3.equivalence.json",
+            "fidelity": 0.4999999999999999,
+            "max_global_phase_adjusted_delta": 0.3826834323651054,
+            "optimization_level": 3,
+            "two_qubit_gate_count": 528
+          }
+        ]
+      },
+      "label": "every nonzero 2Q reduction fails exact equivalence",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "evidence": {
+        "counter_delta": 0,
+        "new_credit_delta": 0
+      },
+      "label": "failed candidates keep counters and B7 credit at zero",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "evidence": {
+        "fidelity": [
+          0.4999999999999999,
+          0.4999999999999999
+        ]
+      },
+      "label": "fidelity and phase-adjusted error are recorded",
+      "passed": true,
+      "requirement_id": "P6"
+    },
+    {
+      "evidence": {
+        "qubits": 13,
+        "workload": "benchmarks/qasmbench_medium_exact/gcm_h6.qasm"
+      },
+      "label": "same workload and denominator are retained across the sweep",
+      "passed": true,
+      "requirement_id": "P7"
+    },
+    {
+      "evidence": {
+        "model_status": "first_nonzero_2q_reduction_fails_exact_equivalence"
+      },
+      "label": "claim boundary rejects apparent 2Q progress without semantics",
+      "passed": true,
+      "requirement_id": "P8"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 8,
+  "source_path": "benchmarks/qasmbench_medium_exact/gcm_h6.qasm",
+  "source_target_id": "T-B1-004hl/T-B7-016u",
+  "status": "cone01_r114_level_sweep_proves_2q_reduction_unaccepted",
+  "summary": {
+    "accepted_nonzero_2q_level": null,
+    "counter_delta": 0,
+    "counter_transition_accepted": false,
+    "invalid_reduced_level_count": 2,
+    "levels": [
+      {
+        "candidate_operation_count": 3149,
+        "candidate_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/work/level0.qasm",
+        "checker_returncode": 0,
+        "equivalence_failed": 0,
+        "equivalence_passed": 1,
+        "equivalence_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level0.equivalence.json",
+        "fidelity": 0.9999999999999996,
+        "max_global_phase_adjusted_delta": 3.852936044055938e-15,
+        "optimization_level": 0,
+        "two_qubit_gate_count": 762
+      },
+      {
+        "candidate_operation_count": 1852,
+        "candidate_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/work/level1.qasm",
+        "checker_returncode": 0,
+        "equivalence_failed": 0,
+        "equivalence_passed": 1,
+        "equivalence_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level1.equivalence.json",
+        "fidelity": 1.0,
+        "max_global_phase_adjusted_delta": 2.0206364052201327e-15,
+        "optimization_level": 1,
+        "two_qubit_gate_count": 762
+      },
+      {
+        "candidate_operation_count": 1288,
+        "candidate_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/work/level2.qasm",
+        "checker_returncode": 1,
+        "equivalence_failed": 1,
+        "equivalence_passed": 0,
+        "equivalence_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level2.equivalence.json",
+        "fidelity": 0.4999999999999999,
+        "max_global_phase_adjusted_delta": 0.3826834323651054,
+        "optimization_level": 2,
+        "two_qubit_gate_count": 528
+      },
+      {
+        "candidate_operation_count": 1288,
+        "candidate_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/work/level3.qasm",
+        "checker_returncode": 1,
+        "equivalence_failed": 1,
+        "equivalence_passed": 0,
+        "equivalence_path": "results/B1_B7_cone01_R114_qiskit_level_sweep_gate/level3.equivalence.json",
+        "fidelity": 0.4999999999999999,
+        "max_global_phase_adjusted_delta": 0.3826834323651054,
+        "optimization_level": 3,
+        "two_qubit_gate_count": 528
+      }
+    ],
+    "method": "b1_b7_cone01_r114_qiskit_level_sweep_gate_v0",
+    "model_status": "first_nonzero_2q_reduction_fails_exact_equivalence",
+    "new_credit_delta": 0,
+    "source_target_id": "T-B1-004hl/T-B7-016u",
+    "source_two_qubit_gate_count": 762,
+    "status": "cone01_r114_level_sweep_proves_2q_reduction_unaccepted",
+    "upstream_target_id": "T-B1-004hk/T-B7-016t"
+  },
+  "title": "B1/B7 cone01 R114 Qiskit level sweep gate",
+  "upstream_target_id": "T-B1-004hk/T-B7-016t",
+  "version": "0.1"
+}

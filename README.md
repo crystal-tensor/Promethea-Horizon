@@ -2635,3 +2635,11 @@ Candidate acceptance is `false`; counter delta and `new_credit_delta` remain
 `0`; no B7 credit is granted. Requirements pass `8/8`. The result sharpens the
 next target: find a composable candidate that passes exact equivalence while
 retaining a nonzero two-qubit or proxy-T delta under the same denominator.
+
+`T-B1-004hl` / `T-B7-016u` now adds the R114 optimization-level sweep. On the
+same 13-qubit workload, levels 0 and 1 preserve exact equivalence with CX
+count `762`; levels 2 and 3 reduce CX to `528` but both fail exact equivalence
+with fidelity `0.5`. No nonzero-2Q level is accepted; counter delta and
+`new_credit_delta` remain `0`; no B7 credit is granted. Requirements pass
+`8/8`. The next target remains a composable semantic rewrite that passes exact
+equivalence and retains a real two-qubit or proxy-T delta.
