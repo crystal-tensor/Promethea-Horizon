@@ -932,6 +932,46 @@ current_results:
     caveat: r121_seeded_shot_budget_sensitivity_no_monotonic_noise_or_soundness_claim
     result: ../results/B4_B8_R121_private_bundle_shot_sweep_v0.json
     markdown_report: ../research/B4_B8_R121_private_bundle_shot_sweep.md
+  b4_b8_r122_matched_seed_prefix_replay_v0:
+    status: matched_seed_prefix_shot_budget_confidence_boundary
+    model_status: r121_shot_sweep_replayed_with_paired_prefixes_and_wilson_bounds
+    method: b4_b8_r122_matched_seed_prefix_replay_v0
+    source_target_id: T-B4-002w/T-B8-003aa/T-B10-009o
+    upstream_target_id: T-B4-002v/T-B8-003z/T-B10-009n
+    dependency_benchmark: B8
+    profiles: [ideal, light]
+    shot_budgets: [512, 1024, 2048, 4096, 8192]
+    trials_per_profile_task: 30
+    trial_row_count: 120
+    transition_row_count: 16
+    matched_seed_prefix_replay: true
+    same_hidden_bundle_within_trial: true
+    ideal_minimum_honest_completeness_by_budget: [0.43333333333333335, 0.5333333333333333, 0.6666666666666666, 0.8666666666666667, 0.9666666666666667]
+    light_minimum_honest_completeness_by_budget: [0.43333333333333335, 0.6666666666666666, 0.5666666666666667, 0.8, 0.8666666666666667]
+    ideal_minimum_wilson_lower_by_budget: [0.2737748557646652, 0.36142299619873297, 0.4878005164454384, 0.703186733179637, 0.8332960900859082]
+    light_minimum_wilson_lower_by_budget: [0.2737748557646652, 0.4878005164454384, 0.3919730700081361, 0.6269430358685175, 0.703186733179637]
+    point_first_budget_reaching_honest_floor:
+      ideal: 4096
+      light: 4096
+    confidence_first_budget_reaching_honest_floor:
+      ideal: 8192
+      light: null
+    fail_to_pass_transition_count: 49
+    pass_to_fail_transition_count: 20
+    b4_verifiable_advantage_credit_allowed: false
+    b8_protocol_soundness_credit_allowed: false
+    b10_t2_credit_allowed: false
+    hardware_execution_performed: false
+    calibrated_backend_evidence: false
+    protocol_soundness_claimed: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    requirements_passed: 10
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r122_point_crossing_is_not_confidence_or_soundness_credit
+    result: ../results/B4_B8_R122_matched_seed_prefix_replay_v0.json
+    markdown_report: ../research/B4_B8_R122_matched_seed_prefix_replay.md
   toy_hidden_trap_protocol_sim_v0:
     status: toy_statistical_protocol
     model_status: toy_statistical_protocol_not_quantum_advantage_claim

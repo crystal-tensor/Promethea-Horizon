@@ -2206,6 +2206,21 @@ Matched-seed repeats and calibrated backend evidence remain open. Requirements
 pass `10/10`; hardware, protocol soundness, quantum advantage, BQP, and B10
 credit remain unclaimed.
 
+`T-B4-002w` / `T-B8-003aa` / `T-B10-009o` now adds the R122 matched-seed
+prefix replay. Each of `30` trials per profile/task generates one ordered
+`8192`-shot stream and evaluates `512/1024/2048/4096/8192` prefixes with the
+same measurement schedule and hidden observable bundle. The weakest-task point
+estimates are ideal `0.4333/0.5333/0.6667/0.8667/0.9667` and light
+`0.4333/0.6667/0.5667/0.8000/0.8667`; both first cross `0.80` at `4096` shots.
+The 95% Wilson lower bounds are ideal
+`0.2738/0.3614/0.4878/0.7032/0.8333` and light
+`0.2738/0.4878/0.3920/0.6269/0.7032`, so only ideal at `8192` is
+confidence-qualified and light never qualifies in this run. The paired ledger
+contains `49` fail-to-pass and `20` pass-to-fail adjacent transitions. This is
+stronger shot-budget evidence, not a monotonic law or soundness result.
+Requirements pass `10/10`; hardware, calibrated backend, advantage, BQP, and
+B10 credit remain unclaimed.
+
 `T-B1-004gj` / `T-B7-015s` now closes the first R85 blocker without
 promoting the candidate. R86 emits source-binding replay stdout for all `30`
 selected G1 rows and verifies that every row still binds to the original
