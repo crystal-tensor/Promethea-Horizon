@@ -1556,6 +1556,54 @@ current_results:
     caveat: r133_determinism_generalizes_but_transferred_mapping_and_policy_fail_automatic_no_loss
     result: ../results/B4_B8_R133_unseen_circuit_family_holdout_v0.json
     markdown_report: ../research/B4_B8_R133_unseen_circuit_family_holdout.md
+  b4_b8_r134_family_agnostic_mapping_rule_v0:
+    status: family_agnostic_deterministic_mapping_boundary
+    model_status: generic_mapping_rule_selected_on_design_set_and_tested_on_new_families
+    method: b4_b8_r134_family_agnostic_mapping_rule_v0
+    source_target_id: T-B4-002ai/T-B8-003am/T-B10-009aa
+    upstream_target_id: T-B4-002ah/T-B8-003al/T-B10-009z
+    candidate_rule_count: 4
+    enumerated_mapping_count_per_group: 5040
+    design_task_count: 4
+    design_group_count: 12
+    design_seed_count: 4
+    design_compilation_count: 240
+    selected_rule_id: weighted_distance
+    validation_task_count: 4
+    validation_group_count: 12
+    validation_seed_count: 10
+    validation_compilation_count: 360
+    validation_row_count: 120
+    source_circuit_count: 4
+    source_circuits_unseen_vs_r133_count: 4
+    mapping_rule_uses_compile_outcomes: false
+    validation_read_during_rule_selection: false
+    route_family_invariant_group_count: 12
+    exact_qasm_seed_invariant_group_count: 12
+    frozen_qasm_preexisting_count: 120
+    frozen_qasm_replay_match_count: 120
+    win_tie_loss_counts_vs_automatic: [28, 38, 54]
+    no_loss_group_count_vs_automatic_default: 6
+    deterministic_generalization_gate_passed: true
+    automatic_baseline_no_loss_gate_passed: false
+    exact_qasm_cross_process_replay_claimed: true
+    fresh_design_and_validation_seed_blocks_used: true
+    r133_seeds_reused: false
+    acceptance_holdout_executed: false
+    r125_acceptance_rows_read: false
+    readout_mitigation_tested: false
+    current_backend_calibration_used: false
+    hardware_execution_performed: false
+    protocol_soundness_claimed: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    new_credit_delta: 0
+    requirements_passed: 10
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r134_generic_mapping_reduces_losses_but_qft_and_no_loss_gate_still_fail
+    result: ../results/B4_B8_R134_family_agnostic_mapping_rule_v0.json
+    markdown_report: ../research/B4_B8_R134_family_agnostic_mapping_rule.md
 prototype_artifacts:
   output_invariant_verifier: ../tools/b8_output_invariant_verifier.py
   adaptive_leakage_spoofer: ../tools/b8_adaptive_spoofer_leakage.py

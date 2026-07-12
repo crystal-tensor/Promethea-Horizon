@@ -2383,6 +2383,21 @@ The automatic-baseline no-loss gate fails. No holdout selection, verifier
 acceptance, hardware, soundness, advantage, BQP, or new B10 credit is claimed.
 Requirements pass `10/10`.
 
+`T-B4-002ai` / `T-B8-003am` / `T-B10-009aa` now adds the R134
+family-agnostic deterministic mapping boundary. Four graph-embedding rules each
+enumerate all `5,040` six-to-seven-qubit injections using only circuit
+interaction weights, historical coupling distance, path-error pressure, and
+readout error. R133 circuits plus `240` fresh design compilations select
+`weighted_distance`; validation is then isolated on four new QFT, K3,3-QAOA,
+tree-phase, and RXX-cycle families over `360` compilations. All `12/12` groups
+remain route- and exact-QASM-invariant, and `120/120` frozen circuits replay in
+a fresh process. The generic mapper improves the unseen-family comparison from
+R133's `75` losses and `4/12` no-loss groups to `54` losses and `6/12` no-loss
+groups, with `28` wins and `38` ties. It still fails the automatic-baseline
+no-loss gate: QFT loses `10/10` on every backend, and Jakarta/Lagos RXX or K3,3
+rows retain losses. No verifier acceptance, hardware, soundness, advantage,
+BQP, or new B10 credit is claimed. Requirements pass `10/10`.
+
 `T-B1-004gj` / `T-B7-015s` now closes the first R85 blocker without
 promoting the candidate. R86 emits source-binding replay stdout for all `30`
 selected G1 rows and verifies that every row still binds to the original

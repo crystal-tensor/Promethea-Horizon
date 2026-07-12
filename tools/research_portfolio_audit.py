@@ -34732,6 +34732,210 @@ def audit(root: Path) -> dict:
         ):
             errors.append("R133 claim boundary must exclude verifier acceptance")
 
+    r134_result_path = results / "B4_B8_R134_family_agnostic_mapping_rule_v0.json"
+    r134_report_path = research / "B4_B8_R134_family_agnostic_mapping_rule.md"
+    r134_status = {
+        "path": str(r134_result_path),
+        "report_path": str(r134_report_path),
+        "exists": r134_result_path.exists(),
+        "report_exists": r134_report_path.exists(),
+    }
+    r134_manifest_rows = [
+        (
+            "B4",
+            b4_manifest.get("current_results", {}).get(
+                "b4_b8_r134_family_agnostic_mapping_rule_v0"
+            ),
+        ),
+        (
+            "B8",
+            b8_manifest.get("current_results", {}).get(
+                "b4_b8_r134_family_agnostic_mapping_rule_v0"
+            ),
+        ),
+        (
+            "B10",
+            b10_manifest.get("current_results", {}).get(
+                "b10_t2_b4_b8_r134_family_agnostic_mapping_rule_v0"
+            ),
+        ),
+    ]
+    for label, manifest_row in r134_manifest_rows:
+        if not manifest_row:
+            errors.append(f"{label} manifest missing R134 generic mapping rule")
+            continue
+        for field in ["result", "markdown_report"]:
+            value = manifest_row.get(field)
+            if not value or not path_exists_from(benchmarks, value):
+                errors.append(f"{label} R134 manifest missing existing {field}: {value}")
+    if not r134_result_path.exists():
+        errors.append(f"missing R134 generic mapping result: {r134_result_path}")
+    elif not r134_report_path.exists():
+        errors.append(f"missing R134 generic mapping report: {r134_report_path}")
+    else:
+        r134_payload = json.loads(read(r134_result_path))
+        r134_summary = r134_payload.get("summary", {})
+        r134_claims = r134_payload.get("claim_boundary", {})
+        r134_status.update(
+            {
+                "status": r134_payload.get("status"),
+                "method": r134_payload.get("method"),
+                "requirements_passed": r134_payload.get("requirements_passed"),
+                "requirements_failed": r134_payload.get("requirements_failed"),
+                "selected_rule_id": r134_summary.get("selected_rule_id"),
+                "design_compilation_count": r134_summary.get(
+                    "design_compilation_count"
+                ),
+                "validation_compilation_count": r134_summary.get(
+                    "validation_compilation_count"
+                ),
+                "loss_count_vs_automatic_default": r134_summary.get(
+                    "loss_count_vs_automatic_default"
+                ),
+                "no_loss_group_count_vs_automatic_default": r134_summary.get(
+                    "no_loss_group_count_vs_automatic_default"
+                ),
+                "automatic_baseline_no_loss_gate_passed": r134_summary.get(
+                    "automatic_baseline_no_loss_gate_passed"
+                ),
+                "source_circuit_count": len(
+                    r134_payload.get("artifacts", {}).get("source_circuits", [])
+                ),
+                "constrained_circuit_count": len(
+                    r134_payload.get("artifacts", {}).get("constrained_circuits", [])
+                ),
+            }
+        )
+        expected_r134_summary = {
+            "candidate_rule_count": 4,
+            "enumerated_mapping_count_per_group": 5040,
+            "design_task_count": 4,
+            "design_group_count": 12,
+            "design_seed_count": 4,
+            "design_compilation_count": 240,
+            "selected_rule_id": "weighted_distance",
+            "validation_task_count": 4,
+            "validation_group_count": 12,
+            "validation_seed_count": 10,
+            "validation_compilation_count": 360,
+            "validation_row_count": 120,
+            "source_circuit_count": 4,
+            "source_circuits_unseen_vs_r133_count": 4,
+            "mapping_rule_uses_compile_outcomes": False,
+            "validation_read_during_rule_selection": False,
+            "route_family_invariant_group_count": 12,
+            "exact_qasm_seed_invariant_group_count": 12,
+            "frozen_qasm_preexisting_count": 120,
+            "frozen_qasm_replay_match_count": 120,
+            "win_count_vs_automatic_default": 28,
+            "tie_count_vs_automatic_default": 38,
+            "loss_count_vs_automatic_default": 54,
+            "no_loss_group_count_vs_automatic_default": 6,
+            "deterministic_generalization_gate_passed": True,
+            "automatic_baseline_no_loss_gate_passed": False,
+            "exact_qasm_cross_process_replay_claimed": True,
+            "fresh_design_and_validation_seed_blocks_used": True,
+            "r133_seeds_reused": False,
+            "acceptance_holdout_executed": False,
+            "r125_acceptance_rows_read": False,
+            "readout_mitigation_tested": False,
+            "current_backend_calibration_used": False,
+            "hardware_execution_performed": False,
+            "protocol_soundness_claimed": False,
+            "quantum_advantage_claimed": False,
+            "bqp_separation_claimed": False,
+            "new_credit_delta": 0,
+        }
+        if r134_payload.get("status") != "family_agnostic_deterministic_mapping_boundary":
+            errors.append("R134 generic mapping status mismatch")
+        if r134_payload.get("method") != "b4_b8_r134_family_agnostic_mapping_rule_v0":
+            errors.append("R134 generic mapping method mismatch")
+        if r134_payload.get("source_target_id") != "T-B4-002ai/T-B8-003am/T-B10-009aa":
+            errors.append("R134 generic mapping target mismatch")
+        if r134_payload.get("requirements_passed") != 10 or r134_payload.get(
+            "requirements_failed"
+        ) != 0:
+            errors.append("R134 generic mapping requirements must pass 10/10")
+        if len(r134_payload.get("design_rule_rows", [])) != 4:
+            errors.append("R134 generic mapping result must contain four rule rows")
+        if len(r134_payload.get("design_rows", [])) != 192:
+            errors.append("R134 generic mapping result must contain 192 design rows")
+        if len(r134_payload.get("validation_rows", [])) != 120:
+            errors.append("R134 generic mapping result must contain 120 validation rows")
+        if len(r134_payload.get("validation_group_rows", [])) != 12:
+            errors.append("R134 generic mapping result must contain 12 validation groups")
+        for field, expected in expected_r134_summary.items():
+            if r134_summary.get(field) != expected:
+                errors.append(f"R134 generic mapping {field} mismatch")
+        manifest_fields = [
+            "candidate_rule_count",
+            "enumerated_mapping_count_per_group",
+            "design_task_count",
+            "design_group_count",
+            "design_seed_count",
+            "design_compilation_count",
+            "selected_rule_id",
+            "validation_task_count",
+            "validation_group_count",
+            "validation_seed_count",
+            "validation_compilation_count",
+            "validation_row_count",
+            "source_circuit_count",
+            "source_circuits_unseen_vs_r133_count",
+            "mapping_rule_uses_compile_outcomes",
+            "validation_read_during_rule_selection",
+            "route_family_invariant_group_count",
+            "exact_qasm_seed_invariant_group_count",
+            "frozen_qasm_preexisting_count",
+            "frozen_qasm_replay_match_count",
+            "no_loss_group_count_vs_automatic_default",
+            "deterministic_generalization_gate_passed",
+            "automatic_baseline_no_loss_gate_passed",
+            "exact_qasm_cross_process_replay_claimed",
+            "fresh_design_and_validation_seed_blocks_used",
+            "r133_seeds_reused",
+            "acceptance_holdout_executed",
+            "readout_mitigation_tested",
+            "current_backend_calibration_used",
+            "hardware_execution_performed",
+            "protocol_soundness_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "new_credit_delta",
+        ]
+        for label, manifest_row in r134_manifest_rows:
+            if not manifest_row:
+                continue
+            for field in manifest_fields:
+                if manifest_row.get(field) != r134_summary.get(field):
+                    errors.append(f"{label} R134 manifest {field} mismatch")
+        payload_hash = r134_payload.get("payload_hash")
+        hash_payload = dict(r134_payload)
+        hash_payload.pop("payload_hash", None)
+        expected_payload_hash = hashlib.sha256(
+            json.dumps(hash_payload, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+        if payload_hash != expected_payload_hash:
+            errors.append("R134 generic mapping payload hash mismatch")
+        source_circuits = r134_payload.get("artifacts", {}).get("source_circuits", [])
+        constrained_circuits = r134_payload.get("artifacts", {}).get(
+            "constrained_circuits", []
+        )
+        if len(source_circuits) != 4:
+            errors.append("R134 generic mapping result must emit four source circuits")
+        if len(constrained_circuits) != 120:
+            errors.append("R134 generic mapping result must emit 120 constrained circuits")
+        for relative_path in [*source_circuits, *constrained_circuits]:
+            circuit_path = root / relative_path
+            if not circuit_path.exists():
+                errors.append(f"R134 circuit missing: {relative_path}")
+            elif not read(circuit_path).startswith("OPENQASM 3.0;"):
+                errors.append(f"R134 circuit is not OpenQASM 3: {relative_path}")
+        if "Verifier acceptance" not in r134_claims.get(
+            "what_is_not_supported", ""
+        ):
+            errors.append("R134 claim boundary must exclude verifier acceptance")
+
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
             errors.append(f"missing status artifact: {path}")
@@ -35171,6 +35375,7 @@ def audit(root: Path) -> dict:
             "r131_compiled_route_family_attribution": r131_status,
             "r132_topology_constrained_route_policy": r132_status,
             "r133_unseen_circuit_family_holdout": r133_status,
+            "r134_family_agnostic_mapping_rule": r134_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -36514,6 +36719,9 @@ def audit(root: Path) -> dict:
             ),
             "b4_b8_r133_unseen_circuit_family_holdout": str(
                 research / "B4_B8_R133_unseen_circuit_family_holdout.md"
+            ),
+            "b4_b8_r134_family_agnostic_mapping_rule": str(
+                research / "B4_B8_R134_family_agnostic_mapping_rule.md"
             ),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
