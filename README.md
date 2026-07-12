@@ -2279,6 +2279,20 @@ public preregistration for physical-qubit selection, routing/readout ablation,
 and disjoint readout mitigation; hardware, soundness, advantage, BQP, and B10
 credit remain unclaimed. Requirements pass `10/10`.
 
+`T-B4-002ab` / `T-B8-003af` / `T-B10-009t` now adds the R127
+calibration-aware layout design gate. It enumerates all `30240` injective
+six-logical-to-seven-physical mappings using frozen snapshot measurement/CX
+properties and each task's interaction graph, retains `60` top candidates,
+and transpiles one selected all-Z representative for every snapshot/task pair.
+Only `3/6` graph layouts reduce compiled exposure. All three GHZ candidates
+worsen because compiled CX count rises from `11` to `14`; mean compiled
+exposure delta is `-0.00503`, so the layout design gate fails. The result shows
+that the static calibration objective is not transpiler-invariant and the next
+selector must rank actual compiled candidates. No acceptance holdout or
+readout mitigation is executed, R125 is not reused for acceptance, and current
+calibration, hardware, soundness, advantage, BQP, and B10 credit remain
+unclaimed. Requirements pass `10/10`.
+
 `T-B1-004gj` / `T-B7-015s` now closes the first R85 blocker without
 promoting the candidate. R86 emits source-binding replay stdout for all `30`
 selected G1 rows and verifies that every row still binds to the original

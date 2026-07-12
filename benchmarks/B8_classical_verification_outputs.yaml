@@ -1291,6 +1291,46 @@ current_results:
     caveat: r126_diagnostic_attribution_not_a_mitigation_or_causal_claim
     result: ../results/B4_B8_R126_calibration_attribution_ledger_v0.json
     markdown_report: ../research/B4_B8_R126_calibration_attribution_ledger.md
+  b4_b8_r127_calibration_aware_layout_design_v0:
+    status: calibration_aware_layout_design_boundary
+    model_status: r126_attribution_converted_to_static_layout_candidates_without_holdout_reuse
+    method: b4_b8_r127_calibration_aware_layout_design_v0
+    source_target_id: T-B4-002ab/T-B8-003af/T-B10-009t
+    upstream_target_id: T-B4-002aa/T-B8-003ae/T-B10-009s
+    enumerated_mapping_count: 30240
+    top_mapping_row_count: 60
+    selected_layout_count: 6
+    compiled_exposure_improvement_count: 3
+    layout_design_gate_passed: false
+    mean_compiled_exposure_delta: -0.0050300877098652386
+    selected_static_combined_proxy:
+      FakeOslo: [0.17784919773132202, 0.13208204604671647]
+      FakeJakartaV2: [0.24838795415627302, 0.2116225836858464]
+      FakeLagosV2: [0.7525433849554226, 0.7025809081352685]
+    source_compiled_combined_proxy:
+      FakeOslo: [0.1584572760319789, 0.13602375813165046]
+      FakeJakartaV2: [0.22674446501126988, 0.21536988020153058]
+      FakeLagosV2: [0.7289784353863349, 0.7097061583399051]
+    candidate_compiled_combined_proxy:
+      FakeOslo: [0.17319981705332133, 0.13208204604671647]
+      FakeJakartaV2: [0.24764691212398016, 0.2116225836858464]
+      FakeLagosV2: [0.7383282323167284, 0.7025809081352685]
+    static_objective_transpiler_invariant: false
+    acceptance_holdout_executed: false
+    readout_mitigation_tested: false
+    r125_holdout_reused_for_acceptance: false
+    current_backend_calibration_used: false
+    hardware_execution_performed: false
+    protocol_soundness_claimed: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    new_credit_delta: 0
+    requirements_passed: 10
+    requirements_failed: 0
+    validation_error_count: 0
+    caveat: r127_requires_transpiler_in_the_layout_selection_loop
+    result: ../results/B4_B8_R127_calibration_aware_layout_design_v0.json
+    markdown_report: ../research/B4_B8_R127_calibration_aware_layout_design.md
 prototype_artifacts:
   output_invariant_verifier: ../tools/b8_output_invariant_verifier.py
   adaptive_leakage_spoofer: ../tools/b8_adaptive_spoofer_leakage.py

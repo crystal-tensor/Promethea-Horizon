@@ -35391,6 +35391,9 @@ def audit(root: Path) -> dict:
             "b4_b8_r126_calibration_attribution_ledger": str(
                 research / "B4_B8_R126_calibration_attribution_ledger.md"
             ),
+            "b4_b8_r127_calibration_aware_layout_design": str(
+                research / "B4_B8_R127_calibration_aware_layout_design.md"
+            ),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
             "b8_challenge_refresh_repair": str(research / "B8_challenge_refresh_repair.md"),

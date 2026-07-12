@@ -1,0 +1,6895 @@
+{
+  "artifacts": {
+    "r125_result": "results/B4_B8_R125_historical_snapshot_replay_v0.json",
+    "r126_result": "results/B4_B8_R126_calibration_attribution_ledger_v0.json",
+    "selected_circuits": [
+      "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeJakartaV2_private_bundle_ghz_n6_selected_all_z.qasm",
+      "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeJakartaV2_private_bundle_graph_n6_selected_all_z.qasm",
+      "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeLagosV2_private_bundle_ghz_n6_selected_all_z.qasm",
+      "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeLagosV2_private_bundle_graph_n6_selected_all_z.qasm",
+      "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeOslo_private_bundle_ghz_n6_selected_all_z.qasm",
+      "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeOslo_private_bundle_graph_n6_selected_all_z.qasm"
+    ]
+  },
+  "claim_boundary": {
+    "next_gate": "Publicly preregister a disjoint-seed layout/readout ablation using the selected mappings and calibration rows isolated from evaluation.",
+    "what_is_not_supported": "Improved verifier completeness, readout mitigation, current calibration, provider access, hardware execution, protocol soundness, quantum advantage, BQP separation, or B10 credit.",
+    "what_is_supported": "Deterministic calibration-aware physical-layout candidates and compiled exposure comparisons for the fixed R125 tasks."
+  },
+  "generated_at_unix": 1783855282,
+  "method": "b4_b8_r127_calibration_aware_layout_design_v0",
+  "model_status": "r126_attribution_converted_to_static_layout_candidates_without_holdout_reuse",
+  "payload_hash": "6adcffb29e6b491e84cce3c27da970e08374f7db1868363affbf8b3c3b1547ad",
+  "requirement_count": 10,
+  "requirements": [
+    {
+      "evidence": {
+        "r125_sha256": "65ad3bb4f9f09ce1f9d2069146421d9af4c19044bf603919627e07c139d804e3",
+        "r126_sha256": "3dea3baba63832b638575bd31bed9f7cdfbb7673c1655cfb0cbc80113d6a861f"
+      },
+      "label": "R125 and R126 source artifacts are hash-bound and consumed",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "evidence": {
+        "enumerated_mapping_count": 30240
+      },
+      "label": "all injective six-to-seven physical mappings are enumerated",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "evidence": {
+        "objective_fields": [
+          "measure_error",
+          "cx_error",
+          "logical_two_qubit_edges"
+        ]
+      },
+      "label": "the static objective uses only snapshot and task-graph properties",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "evidence": {
+        "top_mapping_row_count": 60
+      },
+      "label": "ten ranked mappings are retained per snapshot/task",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "evidence": {
+        "selected_layout_count": 6
+      },
+      "label": "one selected mapping is transpiled per snapshot/task",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "evidence": {
+        "circuit_count": 6
+      },
+      "label": "selected compiled circuits preserve logical classical-bit order",
+      "passed": true,
+      "requirement_id": "P6"
+    },
+    {
+      "evidence": {
+        "comparison_count": 6
+      },
+      "label": "compiled exposure is compared against every R125 default layout",
+      "passed": true,
+      "requirement_id": "P7"
+    },
+    {
+      "evidence": {
+        "design_only": true
+      },
+      "label": "no acceptance holdout or readout mitigation is executed",
+      "passed": true,
+      "requirement_id": "P8"
+    },
+    {
+      "evidence": {
+        "evidence_class": "historical_snapshot_layout_design"
+      },
+      "label": "historical snapshots remain separate from current and hardware evidence",
+      "passed": true,
+      "requirement_id": "P9"
+    },
+    {
+      "evidence": {
+        "new_credit_delta": 0
+      },
+      "label": "no soundness, advantage, BQP, or new credit is claimed",
+      "passed": true,
+      "requirement_id": "P10"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 10,
+  "selected_layout_rows": [
+    {
+      "candidate_circuit_path": "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeOslo_private_bundle_ghz_n6_selected_all_z.qasm",
+      "candidate_circuit_sha256": "421b68d9d98c12547a6b99fad47aaf83e6f796f62210b21a4e6764156d17ed86",
+      "candidate_combined_any_error_proxy": 0.17319981705332133,
+      "candidate_cx_any_error_proxy": 0.10305107667752011,
+      "candidate_cx_occurrence_count": 14,
+      "candidate_measurement_map": [
+        {
+          "classical_bit": 0,
+          "physical_qubit": 1,
+          "readout_error": 0.01429999999999998
+        },
+        {
+          "classical_bit": 1,
+          "physical_qubit": 4,
+          "readout_error": 0.023700000000000054
+        },
+        {
+          "classical_bit": 2,
+          "physical_qubit": 5,
+          "readout_error": 0.00990000000000002
+        },
+        {
+          "classical_bit": 3,
+          "physical_qubit": 0,
+          "readout_error": 0.009800000000000031
+        },
+        {
+          "classical_bit": 4,
+          "physical_qubit": 3,
+          "readout_error": 0.01539999999999997
+        },
+        {
+          "classical_bit": 5,
+          "physical_qubit": 2,
+          "readout_error": 0.00770000000000004
+        }
+      ],
+      "candidate_readout_any_error_proxy": 0.0782081772459865,
+      "compiled_exposure_delta": -0.014742541021342426,
+      "compiled_exposure_improved": false,
+      "logical_two_qubit_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "mapping_count": 5040,
+      "measurement_map_preserves_logical_order": true,
+      "selected_mapping": [
+        1,
+        3,
+        5,
+        0,
+        4,
+        2
+      ],
+      "selected_routed_step_count_proxy": 14,
+      "selected_static_combined_proxy": 0.17784919773132202,
+      "selected_static_cx_proxy": 0.10809492775455609,
+      "selected_static_readout_proxy": 0.07820817724598639,
+      "snapshot": "FakeOslo",
+      "snapshot_sha256": "6bed500622325d2389027630158ffeee0688fd6755d08fe9d26d395007a3c1a5",
+      "source_circuit_path": "/private/tmp/prometheus-r121-local/results/B4_B8_R125_historical_snapshot_replay/circuits/FakeOslo_private_bundle_ghz_n6_all_z.qasm",
+      "source_circuit_sha256": "8e73613ae7ac12bf0da73482bf47943cfacbcde3354c739f36d2eb024eee4215",
+      "source_combined_any_error_proxy": 0.1584572760319789,
+      "source_cx_occurrence_count": 11,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "candidate_circuit_path": "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeOslo_private_bundle_graph_n6_selected_all_z.qasm",
+      "candidate_circuit_sha256": "0a5b8d53b30274d827428195a26e5ba27e68bb0993a070b4b55f3dfa7725ce05",
+      "candidate_combined_any_error_proxy": 0.13208204604671647,
+      "candidate_cx_any_error_proxy": 0.05844472414581903,
+      "candidate_cx_occurrence_count": 8,
+      "candidate_measurement_map": [
+        {
+          "classical_bit": 0,
+          "physical_qubit": 4,
+          "readout_error": 0.023700000000000054
+        },
+        {
+          "classical_bit": 1,
+          "physical_qubit": 5,
+          "readout_error": 0.00990000000000002
+        },
+        {
+          "classical_bit": 2,
+          "physical_qubit": 3,
+          "readout_error": 0.01539999999999997
+        },
+        {
+          "classical_bit": 3,
+          "physical_qubit": 2,
+          "readout_error": 0.00770000000000004
+        },
+        {
+          "classical_bit": 4,
+          "physical_qubit": 1,
+          "readout_error": 0.01429999999999998
+        },
+        {
+          "classical_bit": 5,
+          "physical_qubit": 0,
+          "readout_error": 0.009800000000000031
+        }
+      ],
+      "candidate_readout_any_error_proxy": 0.0782081772459865,
+      "compiled_exposure_delta": 0.00394171208493399,
+      "compiled_exposure_improved": true,
+      "logical_two_qubit_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "mapping_count": 5040,
+      "measurement_map_preserves_logical_order": true,
+      "selected_mapping": [
+        4,
+        5,
+        3,
+        1,
+        2,
+        0
+      ],
+      "selected_routed_step_count_proxy": 8,
+      "selected_static_combined_proxy": 0.13208204604671647,
+      "selected_static_cx_proxy": 0.05844472414581903,
+      "selected_static_readout_proxy": 0.0782081772459865,
+      "snapshot": "FakeOslo",
+      "snapshot_sha256": "6bed500622325d2389027630158ffeee0688fd6755d08fe9d26d395007a3c1a5",
+      "source_circuit_path": "/private/tmp/prometheus-r121-local/results/B4_B8_R125_historical_snapshot_replay/circuits/FakeOslo_private_bundle_graph_n6_all_z.qasm",
+      "source_circuit_sha256": "44a2d7bb097b4adec06d6dd46176c2e4bf56ffb8620bb003a6ae0e4afce777d5",
+      "source_combined_any_error_proxy": 0.13602375813165046,
+      "source_cx_occurrence_count": 8,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "candidate_circuit_path": "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeJakartaV2_private_bundle_ghz_n6_selected_all_z.qasm",
+      "candidate_circuit_sha256": "4d006e0a653ea9ef1b4f11cf3d8ee69552ddb38e81f8b5042e7f5927f527f30a",
+      "candidate_combined_any_error_proxy": 0.24764691212398016,
+      "candidate_cx_any_error_proxy": 0.10932020862677017,
+      "candidate_cx_occurrence_count": 14,
+      "candidate_measurement_map": [
+        {
+          "classical_bit": 0,
+          "physical_qubit": 1,
+          "readout_error": 0.020499999999999963
+        },
+        {
+          "classical_bit": 1,
+          "physical_qubit": 2,
+          "readout_error": 0.016000000000000014
+        },
+        {
+          "classical_bit": 2,
+          "physical_qubit": 3,
+          "readout_error": 0.02529999999999999
+        },
+        {
+          "classical_bit": 3,
+          "physical_qubit": 6,
+          "readout_error": 0.02760000000000007
+        },
+        {
+          "classical_bit": 4,
+          "physical_qubit": 5,
+          "readout_error": 0.055499999999999994
+        },
+        {
+          "classical_bit": 5,
+          "physical_qubit": 0,
+          "readout_error": 0.020999999999999908
+        }
+      ],
+      "candidate_readout_any_error_proxy": 0.15530463903749403,
+      "compiled_exposure_delta": -0.020902447112710276,
+      "compiled_exposure_improved": false,
+      "logical_two_qubit_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "mapping_count": 5040,
+      "measurement_map_preserves_logical_order": true,
+      "selected_mapping": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        0
+      ],
+      "selected_routed_step_count_proxy": 14,
+      "selected_static_combined_proxy": 0.24838795415627302,
+      "selected_static_cx_proxy": 0.11019749772594156,
+      "selected_static_readout_proxy": 0.15530463903749392,
+      "snapshot": "FakeJakartaV2",
+      "snapshot_sha256": "419e965e97e15687437fa1603d589beae7f3212cfb115eaa7e053e42dc52fc5d",
+      "source_circuit_path": "/private/tmp/prometheus-r121-local/results/B4_B8_R125_historical_snapshot_replay/circuits/FakeJakartaV2_private_bundle_ghz_n6_all_z.qasm",
+      "source_circuit_sha256": "3be7e09a8ca4c0c8eecadad2f2d991af31dec67c0b06fa4349a14d33f842a764",
+      "source_combined_any_error_proxy": 0.22674446501126988,
+      "source_cx_occurrence_count": 11,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "candidate_circuit_path": "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeJakartaV2_private_bundle_graph_n6_selected_all_z.qasm",
+      "candidate_circuit_sha256": "4fa1c510937a05e7c9c6eaf93f93aaaf7968d355afe88d01f5c293e66d7a780f",
+      "candidate_combined_any_error_proxy": 0.2116225836858464,
+      "candidate_cx_any_error_proxy": 0.06667249194334368,
+      "candidate_cx_occurrence_count": 8,
+      "candidate_measurement_map": [
+        {
+          "classical_bit": 0,
+          "physical_qubit": 6,
+          "readout_error": 0.02760000000000007
+        },
+        {
+          "classical_bit": 1,
+          "physical_qubit": 5,
+          "readout_error": 0.055499999999999994
+        },
+        {
+          "classical_bit": 2,
+          "physical_qubit": 3,
+          "readout_error": 0.02529999999999999
+        },
+        {
+          "classical_bit": 3,
+          "physical_qubit": 0,
+          "readout_error": 0.020999999999999908
+        },
+        {
+          "classical_bit": 4,
+          "physical_qubit": 1,
+          "readout_error": 0.020499999999999963
+        },
+        {
+          "classical_bit": 5,
+          "physical_qubit": 2,
+          "readout_error": 0.016000000000000014
+        }
+      ],
+      "candidate_readout_any_error_proxy": 0.15530463903749392,
+      "compiled_exposure_delta": 0.003747296515684173,
+      "compiled_exposure_improved": true,
+      "logical_two_qubit_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "mapping_count": 5040,
+      "measurement_map_preserves_logical_order": true,
+      "selected_mapping": [
+        6,
+        5,
+        3,
+        1,
+        0,
+        2
+      ],
+      "selected_routed_step_count_proxy": 8,
+      "selected_static_combined_proxy": 0.2116225836858464,
+      "selected_static_cx_proxy": 0.06667249194334368,
+      "selected_static_readout_proxy": 0.15530463903749392,
+      "snapshot": "FakeJakartaV2",
+      "snapshot_sha256": "419e965e97e15687437fa1603d589beae7f3212cfb115eaa7e053e42dc52fc5d",
+      "source_circuit_path": "/private/tmp/prometheus-r121-local/results/B4_B8_R125_historical_snapshot_replay/circuits/FakeJakartaV2_private_bundle_graph_n6_all_z.qasm",
+      "source_circuit_sha256": "d590cec6e668e9349250616f90a33e953acab68b6f8ed642a2d0bef4bc347bcc",
+      "source_combined_any_error_proxy": 0.21536988020153058,
+      "source_cx_occurrence_count": 8,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "candidate_circuit_path": "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeLagosV2_private_bundle_ghz_n6_selected_all_z.qasm",
+      "candidate_circuit_sha256": "5cab255c914ab1596640c7ef03da21a992d11e81ff5f389e406d6f52014d0c2f",
+      "candidate_combined_any_error_proxy": 0.7383282323167284,
+      "candidate_cx_any_error_proxy": 0.20646874543628135,
+      "candidate_cx_occurrence_count": 14,
+      "candidate_measurement_map": [
+        {
+          "classical_bit": 0,
+          "physical_qubit": 5,
+          "readout_error": 0.2619
+        },
+        {
+          "classical_bit": 1,
+          "physical_qubit": 0,
+          "readout_error": 0.16900000000000004
+        },
+        {
+          "classical_bit": 2,
+          "physical_qubit": 1,
+          "readout_error": 0.1362
+        },
+        {
+          "classical_bit": 3,
+          "physical_qubit": 4,
+          "readout_error": 0.029200000000000004
+        },
+        {
+          "classical_bit": 4,
+          "physical_qubit": 3,
+          "readout_error": 0.016699999999999937
+        },
+        {
+          "classical_bit": 5,
+          "physical_qubit": 6,
+          "readout_error": 0.348
+        }
+      ],
+      "candidate_readout_any_error_proxy": 0.6702439051034756,
+      "compiled_exposure_delta": -0.009349796930393506,
+      "compiled_exposure_improved": false,
+      "logical_two_qubit_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          0,
+          4
+        ],
+        [
+          0,
+          5
+        ]
+      ],
+      "mapping_count": 5040,
+      "measurement_map_preserves_logical_order": true,
+      "selected_mapping": [
+        3,
+        0,
+        1,
+        4,
+        5,
+        6
+      ],
+      "selected_routed_step_count_proxy": 14,
+      "selected_static_combined_proxy": 0.7525433849554226,
+      "selected_static_cx_proxy": 0.2495768270114067,
+      "selected_static_readout_proxy": 0.6702439051034759,
+      "snapshot": "FakeLagosV2",
+      "snapshot_sha256": "314813b271352991b0faa742d24777558ffe39d3608a5d8349c2278516227062",
+      "source_circuit_path": "/private/tmp/prometheus-r121-local/results/B4_B8_R125_historical_snapshot_replay/circuits/FakeLagosV2_private_bundle_ghz_n6_all_z.qasm",
+      "source_circuit_sha256": "eb9cd869d4cc4092e12a027a0cb1825bf51d55f001a99d1c151dbbd926d457b9",
+      "source_combined_any_error_proxy": 0.7289784353863349,
+      "source_cx_occurrence_count": 11,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "candidate_circuit_path": "results/B4_B8_R127_calibration_aware_layout_design/circuits/FakeLagosV2_private_bundle_graph_n6_selected_all_z.qasm",
+      "candidate_circuit_sha256": "52173e5eace1525d3785b4421e8d073f07e013b65c3d947e399f5db799571c25",
+      "candidate_combined_any_error_proxy": 0.7025809081352685,
+      "candidate_cx_any_error_proxy": 0.09806339756036953,
+      "candidate_cx_occurrence_count": 8,
+      "candidate_measurement_map": [
+        {
+          "classical_bit": 0,
+          "physical_qubit": 6,
+          "readout_error": 0.348
+        },
+        {
+          "classical_bit": 1,
+          "physical_qubit": 4,
+          "readout_error": 0.029200000000000004
+        },
+        {
+          "classical_bit": 2,
+          "physical_qubit": 5,
+          "readout_error": 0.2619
+        },
+        {
+          "classical_bit": 3,
+          "physical_qubit": 3,
+          "readout_error": 0.016699999999999937
+        },
+        {
+          "classical_bit": 4,
+          "physical_qubit": 1,
+          "readout_error": 0.1362
+        },
+        {
+          "classical_bit": 5,
+          "physical_qubit": 0,
+          "readout_error": 0.16900000000000004
+        }
+      ],
+      "candidate_readout_any_error_proxy": 0.6702439051034758,
+      "compiled_exposure_delta": 0.007125250204636613,
+      "compiled_exposure_improved": true,
+      "logical_two_qubit_edges": [
+        [
+          0,
+          1
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          2,
+          3
+        ],
+        [
+          3,
+          4
+        ],
+        [
+          4,
+          5
+        ]
+      ],
+      "mapping_count": 5040,
+      "measurement_map_preserves_logical_order": true,
+      "selected_mapping": [
+        6,
+        5,
+        4,
+        3,
+        1,
+        0
+      ],
+      "selected_routed_step_count_proxy": 8,
+      "selected_static_combined_proxy": 0.7025809081352685,
+      "selected_static_cx_proxy": 0.09806339756036953,
+      "selected_static_readout_proxy": 0.6702439051034759,
+      "snapshot": "FakeLagosV2",
+      "snapshot_sha256": "314813b271352991b0faa742d24777558ffe39d3608a5d8349c2278516227062",
+      "source_circuit_path": "/private/tmp/prometheus-r121-local/results/B4_B8_R125_historical_snapshot_replay/circuits/FakeLagosV2_private_bundle_graph_n6_all_z.qasm",
+      "source_circuit_sha256": "6fe519f0f15cf79c716055b7c2f652e264a2a77c813a1d5804550be6a7716df5",
+      "source_combined_any_error_proxy": 0.7097061583399051,
+      "source_cx_occurrence_count": 8,
+      "task_id": "private_bundle_graph_n6"
+    }
+  ],
+  "source_target_id": "T-B4-002ab/T-B8-003af/T-B10-009t",
+  "status": "calibration_aware_layout_design_boundary",
+  "summary": {
+    "acceptance_holdout_executed": false,
+    "bqp_separation_claimed": false,
+    "compiled_exposure_improvement_count": 3,
+    "current_backend_calibration_used": false,
+    "enumerated_mapping_count": 30240,
+    "hardware_execution_performed": false,
+    "layout_design_gate_passed": false,
+    "maximum_compiled_exposure_delta": 0.007125250204636613,
+    "mean_compiled_exposure_delta": -0.0050300877098652386,
+    "minimum_compiled_exposure_delta": -0.020902447112710276,
+    "new_credit_delta": 0,
+    "optimization_level": 1,
+    "protocol_soundness_claimed": false,
+    "quantum_advantage_claimed": false,
+    "r125_holdout_reused_for_acceptance": false,
+    "readout_mitigation_tested": false,
+    "selected_layout_count": 6,
+    "snapshot_count": 3,
+    "task_count": 2,
+    "top_mapping_row_count": 60,
+    "transpiler_seed": 127
+  },
+  "title": "B4/B8 R127 calibration-aware layout design",
+  "top_layout_rows": [
+    {
+      "mapping": [
+        1,
+        3,
+        5,
+        0,
+        4,
+        2
+      ],
+      "rank": 1,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.17784919773132202,
+      "static_cx_any_error_proxy": 0.10809492775455609,
+      "static_readout_any_error_proxy": 0.07820817724598639,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        1,
+        5,
+        0,
+        3,
+        4,
+        2
+      ],
+      "rank": 2,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.17784919773132202,
+      "static_cx_any_error_proxy": 0.10809492775455609,
+      "static_readout_any_error_proxy": 0.07820817724598639,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        1,
+        5,
+        3,
+        0,
+        4,
+        2
+      ],
+      "rank": 3,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.17784919773132202,
+      "static_cx_any_error_proxy": 0.10809492775455609,
+      "static_readout_any_error_proxy": 0.07820817724598639,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        5,
+        2,
+        1,
+        4
+      ],
+      "rank": 4,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.17784919773132202,
+      "static_cx_any_error_proxy": 0.10809492775455609,
+      "static_readout_any_error_proxy": 0.07820817724598639,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        5,
+        4,
+        1,
+        2
+      ],
+      "rank": 5,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.17784919773132202,
+      "static_cx_any_error_proxy": 0.10809492775455609,
+      "static_readout_any_error_proxy": 0.07820817724598639,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        5,
+        4,
+        2,
+        1
+      ],
+      "rank": 6,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.17784919773132202,
+      "static_cx_any_error_proxy": 0.10809492775455609,
+      "static_readout_any_error_proxy": 0.07820817724598639,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        5,
+        2,
+        0,
+        1,
+        4
+      ],
+      "rank": 7,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.17784919773132202,
+      "static_cx_any_error_proxy": 0.10809492775455609,
+      "static_readout_any_error_proxy": 0.07820817724598639,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        5,
+        2,
+        1,
+        4,
+        0
+      ],
+      "rank": 8,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.17784919773132202,
+      "static_cx_any_error_proxy": 0.10809492775455598,
+      "static_readout_any_error_proxy": 0.0782081772459865,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        5,
+        4,
+        0,
+        1,
+        2
+      ],
+      "rank": 9,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.17784919773132202,
+      "static_cx_any_error_proxy": 0.10809492775455609,
+      "static_readout_any_error_proxy": 0.07820817724598639,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        5,
+        4,
+        0,
+        2,
+        1
+      ],
+      "rank": 10,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.17784919773132202,
+      "static_cx_any_error_proxy": 0.10809492775455609,
+      "static_readout_any_error_proxy": 0.07820817724598639,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        4,
+        5,
+        3,
+        1,
+        2,
+        0
+      ],
+      "rank": 1,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.13208204604671647,
+      "static_cx_any_error_proxy": 0.05844472414581903,
+      "static_readout_any_error_proxy": 0.0782081772459865,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        4
+      ],
+      "rank": 2,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.13208204604671658,
+      "static_cx_any_error_proxy": 0.05844472414581903,
+      "static_readout_any_error_proxy": 0.07820817724598661,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        2,
+        0,
+        1,
+        3,
+        5,
+        4
+      ],
+      "rank": 3,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.13405514488125447,
+      "static_cx_any_error_proxy": 0.06058522787543874,
+      "static_readout_any_error_proxy": 0.0782081772459865,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        0,
+        2,
+        1,
+        3,
+        5,
+        4
+      ],
+      "rank": 4,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.13602375813165035,
+      "static_cx_any_error_proxy": 0.06272086544761235,
+      "static_readout_any_error_proxy": 0.0782081772459865,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        4,
+        5,
+        3,
+        2,
+        1,
+        0
+      ],
+      "rank": 5,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.1361116739999888,
+      "static_cx_any_error_proxy": 0.06281624041858558,
+      "static_readout_any_error_proxy": 0.0782081772459865,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6
+      ],
+      "rank": 6,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.009496172164203343,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.13796175776623676,
+      "static_cx_any_error_proxy": 0.059331320844907554,
+      "static_readout_any_error_proxy": 0.08358993837442852,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        6,
+        5,
+        3,
+        1,
+        2,
+        0
+      ],
+      "rank": 7,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.009496172164203343,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.13796175776623676,
+      "static_cx_any_error_proxy": 0.059331320844907665,
+      "static_readout_any_error_proxy": 0.08358993837442841,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        4,
+        5,
+        3,
+        1,
+        0,
+        2
+      ],
+      "rank": 8,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.13798789599529748,
+      "static_cx_any_error_proxy": 0.06485164792491727,
+      "static_readout_any_error_proxy": 0.0782081772459865,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        2,
+        1,
+        0,
+        3,
+        5,
+        4
+      ],
+      "rank": 9,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.1379878959952976,
+      "static_cx_any_error_proxy": 0.06485164792491738,
+      "static_readout_any_error_proxy": 0.0782081772459865,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        4,
+        5,
+        3,
+        0,
+        1,
+        2
+      ],
+      "rank": 10,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.008562604964982262,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006658667905034887,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.0090091804177925,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.008958756306646692,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006700619069209907,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        }
+      ],
+      "snapshot": "FakeOslo",
+      "static_combined_any_error_proxy": 0.13807561199831864,
+      "static_cx_any_error_proxy": 0.0649468060732713,
+      "static_readout_any_error_proxy": 0.07820817724598639,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        1,
+        2,
+        3,
+        5,
+        6,
+        0
+      ],
+      "rank": 1,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.24838795415627302,
+      "static_cx_any_error_proxy": 0.11019749772594156,
+      "static_readout_any_error_proxy": 0.15530463903749392,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        1,
+        3,
+        2,
+        5,
+        6,
+        0
+      ],
+      "rank": 2,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.24838795415627302,
+      "static_cx_any_error_proxy": 0.11019749772594156,
+      "static_readout_any_error_proxy": 0.15530463903749392,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        1,
+        5,
+        0,
+        2,
+        3,
+        6
+      ],
+      "rank": 3,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.24838795415627302,
+      "static_cx_any_error_proxy": 0.11019749772594167,
+      "static_readout_any_error_proxy": 0.1553046390374938,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        1,
+        5,
+        0,
+        3,
+        2,
+        6
+      ],
+      "rank": 4,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.24838795415627302,
+      "static_cx_any_error_proxy": 0.11019749772594167,
+      "static_readout_any_error_proxy": 0.1553046390374938,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        1,
+        5,
+        2,
+        0,
+        3,
+        6
+      ],
+      "rank": 5,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.24838795415627302,
+      "static_cx_any_error_proxy": 0.11019749772594167,
+      "static_readout_any_error_proxy": 0.1553046390374938,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        1,
+        5,
+        2,
+        3,
+        0,
+        6
+      ],
+      "rank": 6,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.24838795415627302,
+      "static_cx_any_error_proxy": 0.11019749772594167,
+      "static_readout_any_error_proxy": 0.1553046390374938,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        1,
+        5,
+        2,
+        3,
+        6,
+        0
+      ],
+      "rank": 7,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.24838795415627302,
+      "static_cx_any_error_proxy": 0.11019749772594156,
+      "static_readout_any_error_proxy": 0.1553046390374938,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        1,
+        5,
+        3,
+        2,
+        6,
+        0
+      ],
+      "rank": 8,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.24838795415627302,
+      "static_cx_any_error_proxy": 0.11019749772594156,
+      "static_readout_any_error_proxy": 0.15530463903749392,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        1,
+        5,
+        6,
+        2,
+        3,
+        0
+      ],
+      "rank": 9,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.24838795415627302,
+      "static_cx_any_error_proxy": 0.11019749772594156,
+      "static_readout_any_error_proxy": 0.15530463903749392,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        2,
+        1,
+        5,
+        6
+      ],
+      "rank": 10,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.24838795415627302,
+      "static_cx_any_error_proxy": 0.11019749772594156,
+      "static_readout_any_error_proxy": 0.15530463903749392,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        6,
+        5,
+        3,
+        1,
+        0,
+        2
+      ],
+      "rank": 1,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.2116225836858464,
+      "static_cx_any_error_proxy": 0.06667249194334368,
+      "static_readout_any_error_proxy": 0.15530463903749392,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        2,
+        1,
+        0,
+        3,
+        5,
+        6
+      ],
+      "rank": 2,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.21162258368584652,
+      "static_cx_any_error_proxy": 0.06667249194334368,
+      "static_readout_any_error_proxy": 0.15530463903749403,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        6,
+        5,
+        3,
+        0,
+        1,
+        2
+      ],
+      "rank": 3,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.2119078356778793,
+      "static_cx_any_error_proxy": 0.067010190012039,
+      "static_readout_any_error_proxy": 0.15530463903749392,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        0,
+        2,
+        1,
+        3,
+        5,
+        6
+      ],
+      "rank": 4,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.21349846369572678,
+      "static_cx_any_error_proxy": 0.06889326891996017,
+      "static_readout_any_error_proxy": 0.15530463903749403,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        6,
+        5,
+        3,
+        2,
+        1,
+        0
+      ],
+      "rank": 5,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.21378303695382017,
+      "static_cx_any_error_proxy": 0.06923016346353761,
+      "static_readout_any_error_proxy": 0.15530463903749403,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        2,
+        0,
+        1,
+        3,
+        5,
+        6
+      ],
+      "rank": 6,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.21536988020153058,
+      "static_cx_any_error_proxy": 0.07110876173818925,
+      "static_readout_any_error_proxy": 0.15530463903749403,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        0,
+        1,
+        2,
+        3,
+        5,
+        6
+      ],
+      "rank": 7,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.21723684382380326,
+      "static_cx_any_error_proxy": 0.07331898297125639,
+      "static_readout_any_error_proxy": 0.15530463903749403,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        6,
+        5,
+        3,
+        1,
+        2,
+        0
+      ],
+      "rank": 8,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            2,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.21723684382380326,
+      "static_cx_any_error_proxy": 0.0733189829712565,
+      "static_readout_any_error_proxy": 0.15530463903749392,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        5,
+        6,
+        3,
+        1,
+        0,
+        2
+      ],
+      "rank": 9,
+      "routed_step_count_proxy": 11,
+      "routed_steps": [
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.2259433006818128,
+      "static_cx_any_error_proxy": 0.08362619816430406,
+      "static_readout_any_error_proxy": 0.15530463903749392,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        5,
+        6,
+        3,
+        0,
+        1,
+        2
+      ],
+      "rank": 10,
+      "routed_step_count_proxy": 11,
+      "routed_steps": [
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.006091969601690478,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.006581572882136816,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.00909301425184092,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.00891369980626483,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.011271909136120584,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            2
+          ]
+        }
+      ],
+      "snapshot": "FakeJakartaV2",
+      "static_combined_any_error_proxy": 0.2262233711288575,
+      "static_cx_any_error_proxy": 0.08395776201559069,
+      "static_readout_any_error_proxy": 0.15530463903749392,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        1,
+        4,
+        5,
+        6
+      ],
+      "rank": 1,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7525433849554226,
+      "static_cx_any_error_proxy": 0.2495768270114067,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        1,
+        4,
+        6,
+        5
+      ],
+      "rank": 2,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7525433849554226,
+      "static_cx_any_error_proxy": 0.24957682701140682,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        1,
+        5,
+        4,
+        6
+      ],
+      "rank": 3,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7525433849554226,
+      "static_cx_any_error_proxy": 0.24957682701140682,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        1,
+        6,
+        4,
+        5
+      ],
+      "rank": 4,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7525433849554226,
+      "static_cx_any_error_proxy": 0.24957682701140682,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        1,
+        6,
+        5,
+        4
+      ],
+      "rank": 5,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7525433849554226,
+      "static_cx_any_error_proxy": 0.2495768270114067,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        4,
+        1,
+        5,
+        6
+      ],
+      "rank": 6,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7525433849554226,
+      "static_cx_any_error_proxy": 0.2495768270114067,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        4,
+        1,
+        6,
+        5
+      ],
+      "rank": 7,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7525433849554226,
+      "static_cx_any_error_proxy": 0.24957682701140682,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        4,
+        6,
+        1,
+        5
+      ],
+      "rank": 8,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7525433849554226,
+      "static_cx_any_error_proxy": 0.2495768270114067,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        4,
+        6,
+        5,
+        1
+      ],
+      "rank": 9,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7525433849554226,
+      "static_cx_any_error_proxy": 0.2495768270114066,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        3,
+        0,
+        5,
+        1,
+        4,
+        6
+      ],
+      "rank": 10,
+      "routed_step_count_proxy": 14,
+      "routed_steps": [
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            0,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7525433849554226,
+      "static_cx_any_error_proxy": 0.2495768270114067,
+      "static_readout_any_error_proxy": 0.6702439051034756,
+      "task_id": "private_bundle_ghz_n6"
+    },
+    {
+      "mapping": [
+        6,
+        5,
+        4,
+        3,
+        1,
+        0
+      ],
+      "rank": 1,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7025809081352685,
+      "static_cx_any_error_proxy": 0.09806339756036953,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        0,
+        1,
+        3,
+        5,
+        4,
+        6
+      ],
+      "rank": 2,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7025809081352686,
+      "static_cx_any_error_proxy": 0.09806339756036964,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        4,
+        6,
+        5,
+        3,
+        1,
+        0
+      ],
+      "rank": 3,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7061651301147709,
+      "static_cx_any_error_proxy": 0.10893270986414061,
+      "static_readout_any_error_proxy": 0.6702439051034758,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        6,
+        4,
+        5,
+        3,
+        1,
+        0
+      ],
+      "rank": 4,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7097061583399052,
+      "static_cx_any_error_proxy": 0.11967103518985,
+      "static_readout_any_error_proxy": 0.6702439051034758,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        1,
+        0,
+        3,
+        5,
+        4,
+        6
+      ],
+      "rank": 5,
+      "routed_step_count_proxy": 11,
+      "routed_steps": [
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7108630823887916,
+      "static_cx_any_error_proxy": 0.12317945873922931,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        6,
+        5,
+        4,
+        3,
+        0,
+        1
+      ],
+      "rank": 6,
+      "routed_step_count_proxy": 11,
+      "routed_steps": [
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7116560301461876,
+      "static_cx_any_error_proxy": 0.12558410802295183,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        0,
+        1,
+        3,
+        5,
+        6,
+        4
+      ],
+      "rank": 7,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7132045133421641,
+      "static_cx_any_error_proxy": 0.13027995207236165,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        4,
+        5,
+        6,
+        3,
+        1,
+        0
+      ],
+      "rank": 8,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7132045133421641,
+      "static_cx_any_error_proxy": 0.13027995207236176,
+      "static_readout_any_error_proxy": 0.6702439051034758,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        0,
+        1,
+        3,
+        4,
+        5,
+        6
+      ],
+      "rank": 9,
+      "routed_step_count_proxy": 8,
+      "routed_steps": [
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            4
+          ]
+        },
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7148763325609038,
+      "static_cx_any_error_proxy": 0.13534981808731483,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_graph_n6"
+    },
+    {
+      "mapping": [
+        4,
+        6,
+        5,
+        3,
+        0,
+        1
+      ],
+      "rank": 10,
+      "routed_step_count_proxy": 11,
+      "routed_steps": [
+        {
+          "cx_error": 0.008261701229522717,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            4,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            0,
+            1
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            6
+          ]
+        },
+        {
+          "cx_error": 0.020213221174261303,
+          "logical_edge": [
+            1,
+            2
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            6,
+            5
+          ]
+        },
+        {
+          "cx_error": 0.02897748999596947,
+          "logical_edge": [
+            2,
+            3
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            5,
+            3
+          ]
+        },
+        {
+          "cx_error": 0.010729106982965475,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 3,
+          "physical_edge": [
+            3,
+            1
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            3,
+            4
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            1,
+            0
+          ]
+        },
+        {
+          "cx_error": 0.009369790238974302,
+          "logical_edge": [
+            4,
+            5
+          ],
+          "multiplicity_proxy": 1,
+          "physical_edge": [
+            0,
+            1
+          ]
+        }
+      ],
+      "snapshot": "FakeLagosV2",
+      "static_combined_any_error_proxy": 0.7151308870826651,
+      "static_cx_any_error_proxy": 0.13612176597759207,
+      "static_readout_any_error_proxy": 0.6702439051034759,
+      "task_id": "private_bundle_graph_n6"
+    }
+  ],
+  "upstream_target_id": "T-B4-002aa/T-B8-003ae/T-B10-009s",
+  "version": "0.1"
+}
