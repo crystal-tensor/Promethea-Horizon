@@ -37311,6 +37311,63 @@ def audit(root: Path) -> dict:
         if contract.get("source_bindings", {}).get("protocol_payload_hash") != ph or len(contract.get("acceptance_conditions", [])) != 10:
             errors.append("R145 contract binding or acceptance count mismatch")
 
+    r145_result_path = results / "B4_B8_R145_counterbalanced_runtime_benchmark_v0.json"
+    r145_result_report_path = research / "B4_B8_R145_counterbalanced_runtime_benchmark.md"
+    r145_result_status = {"path": str(r145_result_path), "report_path": str(r145_result_report_path), "exists": r145_result_path.exists(), "report_exists": r145_result_report_path.exists()}
+    r145_result_manifest_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r145_counterbalanced_runtime_benchmark_v0")),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r145_counterbalanced_runtime_benchmark_v0")),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r145_counterbalanced_runtime_benchmark_v0")),
+    ]
+    for label, row in r145_result_manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R145 counterbalanced runtime result")
+            continue
+        for field in ["result", "markdown_report"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R145 counterbalanced runtime result missing {field}")
+    if not r145_result_path.exists() or not r145_result_report_path.exists():
+        errors.append("R145 counterbalanced runtime result or report missing")
+    else:
+        h = json.loads(read(r145_result_path)); s = h.get("summary", {})
+        r145_result_status.update({"status": h.get("status"), "method": h.get("method"), "requirements_passed": h.get("requirements_passed"), "requirements_failed": h.get("requirements_failed"), "global_acceptance": s.get("global_acceptance"), "schedule_code": s.get("schedule_code"), "pooled_runtime_reduction_fraction": s.get("pooled_runtime_reduction_fraction"), "pair_reduction_spread_fraction": s.get("pair_reduction_spread_fraction")})
+        expected = {
+            "schedule_code": "BAAB", "strategy_schedule": ["halving", "full", "full", "halving"],
+            "full_elapsed_ns": [66608632750, 66715555875], "full_elapsed_seconds": [66.60863275, 66.715555875],
+            "halving_elapsed_ns": [32587035541, 32525027459], "halving_elapsed_seconds": [32.587035541, 32.525027459],
+            "pooled_full_elapsed_seconds": 133.324188625, "pooled_halving_elapsed_seconds": 65.112063,
+            "pooled_runtime_reduction_fraction": 0.5116260322188029,
+            "pair_runtime_reduction_fractions": [0.5107685866589118, 0.5124821035750682],
+            "pair_reduction_spread_fraction": 0.001713516916156399,
+            "execution_reduction_fraction": 0.5277777777777778,
+            "pooled_per_execution_runtime_ratio": 1.0342036964778292,
+            "full_execution_counts": [1728, 1728], "halving_execution_counts": [816, 816],
+            "full_execution_count_total": 3456, "halving_execution_count_total": 1632,
+            "full_selection_match_count": 24, "halving_selection_match_count": 24,
+            "shared_setup_seconds": 6.332278834, "warmup_seconds": 0.297164458,
+            "measurement_reused": True, "measurement_sha256": "0a52d7476ab252ee7086295e709904abbfedb1e650513c76b6b6ac3c2333b218",
+            "acceptance_conditions_passed": 10, "acceptance_conditions_failed": 0,
+            "failed_acceptance_condition_ids": [], "global_acceptance": True, "new_credit_delta": 0,
+        }
+        if h.get("status") != "counterbalanced_runtime_preregistered_acceptance" or h.get("method") != "b4_b8_r145_counterbalanced_runtime_benchmark_v0":
+            errors.append("R145 counterbalanced runtime status or method mismatch")
+        if h.get("requirements_passed") != 10 or h.get("requirements_failed") != 0:
+            errors.append("R145 counterbalanced runtime requirements must pass 10/10")
+        for field, value in expected.items():
+            if s.get(field) != value:
+                errors.append(f"R145 counterbalanced runtime {field} mismatch")
+        if len(h.get("acceptance_conditions", [])) != 10 or any(not row.get("passed") for row in h.get("acceptance_conditions", [])):
+            errors.append("R145 counterbalanced runtime must pass A1-A10")
+        if len(h.get("strategy_records", [])) != 4 or len(h.get("pair_records", [])) != 2:
+            errors.append("R145 counterbalanced runtime record counts mismatch")
+        hp = dict(h); ph = hp.pop("payload_hash", None)
+        if ph != hashlib.sha256(json.dumps(hp, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+            errors.append("R145 counterbalanced runtime payload hash mismatch")
+        for phase_key in ["challenge_commitment", "runtime_measurement", "challenge_reveal", "verifier_transcript"]:
+            rel = h.get("artifacts", {}).get(phase_key)
+            if not rel or not (root / rel).exists():
+                errors.append(f"R145 counterbalanced runtime phase missing: {phase_key}")
+
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
             errors.append(f"missing status artifact: {path}")
@@ -37768,6 +37825,7 @@ def audit(root: Path) -> dict:
             "r144_live_runtime_protocol": r144_status,
             "r144_live_runtime_benchmark": r144_result_status,
             "r145_counterbalanced_runtime_protocol": r145_status,
+            "r145_counterbalanced_runtime_benchmark": r145_result_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -39180,6 +39238,9 @@ def audit(root: Path) -> dict:
                 research / "B4_B8_R145_counterbalanced_runtime_protocol.md"
             ),
             "b4_b8_r145_counterbalanced_runtime_contract": str(r145_contract_path),
+            "b4_b8_r145_counterbalanced_runtime_benchmark": str(
+                research / "B4_B8_R145_counterbalanced_runtime_benchmark.md"
+            ),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
             "b8_challenge_refresh_repair": str(research / "B8_challenge_refresh_repair.md"),

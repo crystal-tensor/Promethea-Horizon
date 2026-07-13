@@ -2623,6 +2623,19 @@ per-execution ratio in `[0.5, 2.0]`. Contract hash
 No R145 timing, cross-machine or calibration transfer, hardware or billing
 savings, advantage, BQP, solved-frontier, or new-credit claim has opened.
 
+The R145 counterbalanced benchmark at `T-B4-002az` / `T-B8-003bd` /
+`T-B10-009ar` then passes A1-A10 under the secret-selected `BAAB` schedule.
+The two full repeats take `66.608633` and `66.715556` seconds; the two halving
+repeats take `32.587036` and `32.525027` seconds. Pooled execution-loop savings
+are `51.1626%`, while the two adjacent-pair savings are `51.0769%` and
+`51.2482%`; their spread is only `0.1714` percentage points. The pooled
+halving/full per-execution ratio is `1.034204`, and both strategies replay all
+`24/24` frozen selections. Requirements pass `10/10`, and measurement hash
+`0a52d7476ab252ee7086295e709904abbfedb1e650513c76b6b6ac3c2333b218`
+replays without remeasurement. This accepts one same-machine repeated-order
+runtime result, not cross-machine or cross-calibration transfer, hardware or
+cloud billing savings, advantage, BQP, solved-frontier status, or new credit.
+
 `T-B4-002aj` / `T-B8-003an` / `T-B10-009ab` now adds the R135
 dense-interaction deterministic fallback boundary. For each new inverse-QFT,
 scrambled-QFT, complete-Ising, and dense-XY input, five temporal graph rules

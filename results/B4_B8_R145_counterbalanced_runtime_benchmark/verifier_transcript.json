@@ -1,0 +1,122 @@
+{
+  "acceptance_conditions": [
+    {
+      "condition_id": "A1",
+      "label": "protocol and source bindings remain exact",
+      "passed": true,
+      "threshold": true,
+      "value": true
+    },
+    {
+      "condition_id": "A2",
+      "label": "per-repeat execution counts",
+      "passed": true,
+      "threshold": [
+        [
+          1728,
+          1728
+        ],
+        [
+          816,
+          816
+        ]
+      ],
+      "value": [
+        [
+          1728,
+          1728
+        ],
+        [
+          816,
+          816
+        ]
+      ]
+    },
+    {
+      "condition_id": "A3",
+      "label": "two full repeats reproduce R142 selections",
+      "passed": true,
+      "threshold": 24,
+      "value": 24
+    },
+    {
+      "condition_id": "A4",
+      "label": "two halving repeats reproduce R143 selections",
+      "passed": true,
+      "threshold": 24,
+      "value": 24
+    },
+    {
+      "condition_id": "A5",
+      "label": "pooled execution-loop runtime reduction",
+      "passed": true,
+      "threshold": ">= 0.30",
+      "value": 0.5116260322188029
+    },
+    {
+      "condition_id": "A6",
+      "label": "each adjacent pair runtime reduction",
+      "passed": true,
+      "threshold": "each >= 0.20",
+      "value": [
+        0.5107685866589118,
+        0.5124821035750682
+      ]
+    },
+    {
+      "condition_id": "A7",
+      "label": "pair runtime-reduction spread",
+      "passed": true,
+      "threshold": "<= 0.15",
+      "value": 0.001713516916156399
+    },
+    {
+      "condition_id": "A8",
+      "label": "pooled halving/full per-execution runtime ratio",
+      "passed": true,
+      "threshold": "0.5 to 2.0",
+      "value": 1.0342036964778292
+    },
+    {
+      "condition_id": "A9",
+      "label": "secret schedule and transcript hashes verify",
+      "passed": true,
+      "threshold": "ABBA or BAAB from committed secret",
+      "value": "BAAB"
+    },
+    {
+      "condition_id": "A10",
+      "label": "downstream claims and credit remain false",
+      "passed": true,
+      "threshold": 0,
+      "value": 0
+    }
+  ],
+  "challenge_secret_commitment_sha256": "b4568dda79753c5c391be22458d44d43e7f9e75b8addd25d72778fd6c8c1d574",
+  "contract_sha256": "ab414301268580529042bc3e5e5e5f13a29a58b9cf78d08b191f34a856c48690",
+  "global_acceptance": true,
+  "measurement_sha256": "0a52d7476ab252ee7086295e709904abbfedb1e650513c76b6b6ac3c2333b218",
+  "pair_records": [
+    {
+      "full_elapsed_ns": 66608632750,
+      "halving_elapsed_ns": 32587035541,
+      "pair_index": 0,
+      "run_indices": [
+        0,
+        1
+      ],
+      "runtime_reduction_fraction": 0.5107685866589118
+    },
+    {
+      "full_elapsed_ns": 66715555875,
+      "halving_elapsed_ns": 32525027459,
+      "pair_index": 1,
+      "run_indices": [
+        2,
+        3
+      ],
+      "runtime_reduction_fraction": 0.5124821035750682
+    }
+  ],
+  "schedule_code": "BAAB"
+}
