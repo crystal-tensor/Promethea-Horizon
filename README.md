@@ -2813,6 +2813,26 @@ topology/calibration attribution gate. This is not temporal or real-device
 transfer, hardware performance, general route-generation advantage, quantum
 advantage, BQP separation, solved B4/B8/B10, or new credit.
 
+`T-B4-002bk` / `T-B8-003bo` / `T-B10-009bc` now attributes the R150
+Casablanca failure without selecting a repair. Across 32 fresh attribution
+seeds, two frozen routes, and full/gate-only/readout-only noise on all three
+backends, R151 executes `576` circuits and `4,718,592` shots. Casablanca's
+full-model generated-denominator delta `-0.02653462` reproduces the R150
+holdout sign and magnitude. Gate-only remains `-0.02895127`, while readout-only
+is effectively neutral at `+0.00008194`. The generated route has identical
+readout exposure, but `10` additional CX operations, CX exposure-proxy delta
+`+0.05333778`, combined exposure delta `+0.04757183`, and depth `143` versus
+`125`. Its heaviest edge `(5,3)` occurs 17 times versus 12 in the denominator.
+However, Nairobi also has eight additional CX operations and worse exposure
+while retaining a positive gate-only delta, so raw CX count alone is not a
+causal certificate. Casablanca's candidate pool contains 31 unique edge
+signatures and the selected route ranks fourth of 48 by combined exposure;
+the strong denominator signature is absent from that pool. Requirements pass
+`10/10`. The next gate must freeze an edge-pattern-aware, diversity-expanding
+candidate rule before any new hidden rows. R151 is diagnostic, not causal
+proof, a repair, hardware evidence, general route-generation advantage,
+quantum advantage, BQP separation, solved-frontier status, or new credit.
+
 `T-B4-002aj` / `T-B8-003an` / `T-B10-009ab` now adds the R135
 dense-interaction deterministic fallback boundary. For each new inverse-QFT,
 scrambled-QFT, complete-Ising, and dense-XY input, five temporal graph rules

@@ -38232,6 +38232,76 @@ def audit(root: Path) -> dict:
             if transcript.get("trial_rows_sha256") != hashlib.sha256(trials_path.read_bytes()).hexdigest():
                 errors.append("R150 unseen-backend trial row transcript hash mismatch")
 
+    r151_path = results / "B4_B8_R151_casablanca_failure_attribution_v0.json"
+    r151_report_path = research / "B4_B8_R151_casablanca_failure_attribution.md"
+    r151_status = {"path": str(r151_path), "report_path": str(r151_report_path), "exists": r151_path.exists(), "report_exists": r151_report_path.exists()}
+    r151_manifest_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r151_casablanca_failure_attribution_v0")),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r151_casablanca_failure_attribution_v0")),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r151_casablanca_failure_attribution_v0")),
+    ]
+    for label, row in r151_manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R151 Casablanca attribution")
+            continue
+        for field in ["result", "markdown_report"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R151 Casablanca attribution missing {field}")
+    if not r151_path.exists() or not r151_report_path.exists():
+        errors.append("R151 Casablanca attribution result or report missing")
+    else:
+        r151 = json.loads(read(r151_path)); r151_summary = r151.get("summary", {})
+        r151_status.update({
+            "status": r151.get("status"), "method": r151.get("method"),
+            "requirements_passed": r151.get("requirements_passed"),
+            "requirements_failed": r151.get("requirements_failed"),
+            "casablanca_full_delta": r151_summary.get("casablanca_r151_full_delta"),
+            "dominant_isolated_channel": r151_summary.get("casablanca_dominant_isolated_channel"),
+            "repair_candidate_generated": r151_summary.get("repair_candidate_generated"),
+        })
+        expected = {
+            "target_snapshot_count": 3, "attribution_seed_count_per_model": 32,
+            "noise_model_count": 3, "route_count_per_target": 2,
+            "simulated_circuit_execution_count": 576, "shots_per_execution": 8192,
+            "total_simulated_shots": 4718592,
+            "r150_trial_rows_consumed_for_failure_label_count": 24,
+            "repair_candidate_generated": False,
+            "casablanca_r150_holdout_delta": -0.02570230814978848,
+            "casablanca_r151_full_delta": -0.026534615960772903,
+            "casablanca_gate_only_delta": -0.028951267368705007,
+            "casablanca_readout_only_delta": 0.00008193886686171103,
+            "casablanca_dominant_isolated_channel": "gate_only",
+            "casablanca_combined_exposure_proxy_delta": 0.047571829077922345,
+            "casablanca_cx_exposure_proxy_delta": 0.053337781248045,
+            "casablanca_readout_exposure_proxy_delta": 0.0,
+            "casablanca_cx_count_delta": 10,
+            "casablanca_unique_candidate_edge_signature_count": 31,
+            "casablanca_unique_denominator_edge_signature_count": 17,
+            "casablanca_generated_exposure_rank_among_48": 4,
+            "full_model_failure_sign_reproduced": True,
+            "new_credit_delta": 0,
+        }
+        if r151.get("status") != "casablanca_failure_channel_and_route_attribution" or r151.get("method") != "b4_b8_r151_casablanca_failure_attribution_v0":
+            errors.append("R151 Casablanca attribution status or method mismatch")
+        if r151.get("requirements_passed") != 10 or r151.get("requirements_failed") != 0:
+            errors.append("R151 Casablanca attribution requirements must pass 10/10")
+        for field, value in expected.items():
+            if r151_summary.get(field) != value:
+                errors.append(f"R151 Casablanca attribution {field} mismatch")
+        if len(r151.get("target_rows", [])) != 3 or len(r151.get("exposure_rows", [])) != 6 or len(r151.get("diversity_rows", [])) != 3 or len(r151.get("channel_rows", [])) != 576:
+            errors.append("R151 Casablanca attribution row counts mismatch")
+        casablanca = next((row for row in r151.get("target_rows", []) if row.get("target_snapshot") == "FakeCasablancaV2"), {})
+        if casablanca.get("dominant_isolated_channel") != "gate_only" or casablanca.get("generated_minus_denominator_cx_count") != 10 or casablanca.get("generated_minus_denominator_readout_exposure_proxy") != 0.0:
+            errors.append("R151 Casablanca channel attribution mismatch")
+        bindings = r151.get("source_bindings", {})
+        for path_key, hash_key in [("r150_design_path", "r150_design_sha256"), ("r150_holdout_path", "r150_holdout_sha256"), ("r150_trial_rows_path", "r150_trial_rows_sha256")]:
+            bound_path = root / bindings.get(path_key, "")
+            if not bound_path.is_file() or hashlib.sha256(bound_path.read_bytes()).hexdigest() != bindings.get(hash_key):
+                errors.append(f"R151 Casablanca source binding mismatch: {path_key}")
+        hp = dict(r151); ph = hp.pop("payload_hash", None)
+        if ph != hashlib.sha256(json.dumps(hp, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+            errors.append("R151 Casablanca attribution payload hash mismatch")
+
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
             errors.append(f"missing status artifact: {path}")
@@ -38700,6 +38770,7 @@ def audit(root: Path) -> dict:
             "r149_jakarta_xy_candidate_generation_holdout": r149_result_status,
             "r150_unseen_backend_candidate_generation": r150_status,
             "r150_unseen_backend_candidate_generation_holdout": r150_result_status,
+            "r151_casablanca_failure_attribution": r151_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -40161,6 +40232,9 @@ def audit(root: Path) -> dict:
             "b4_b8_r150_unseen_backend_candidate_generation_contract": str(r150_contract_path),
             "b4_b8_r150_unseen_backend_candidate_generation_holdout": str(
                 research / "B4_B8_R150_unseen_backend_candidate_generation_holdout.md"
+            ),
+            "b4_b8_r151_casablanca_failure_attribution": str(
+                research / "B4_B8_R151_casablanca_failure_attribution.md"
             ),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
