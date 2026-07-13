@@ -3399,3 +3399,15 @@ B1 candidate, but it is still finite-probe evidence rather than an arbitrary-inp
 unitary proof; mid-circuit measurement semantics, hardware layout, T-resource,
 and B7 credit remain outside the claim boundary. Requirements pass `10/10`;
 B7 credit remains `0`.
+
+`T-B4-002bn` / `T-B8-003br` / `T-B10-009bf` now preregisters R153 as an
+independent hidden-seed replication of the accepted R152 routes. No route is
+selected, fitted, or changed: Casablanca replays the R152 novel-signature
+route, while Nairobi and Perth preserve their accepted controls. The unopened
+challenge expands each backend from 8 to 32 hidden trials in four independent
+8-row blocks, for 96 rows, 288 executions, and 589,824 shots. Acceptance keeps
+the R152 group floors, adds a 10/12 block-stability floor at -0.03, and caps
+within-backend block spread at 0.08. Contract `99aae340...`; this is a frozen
+replication test, not a hidden result, causal proof, temporal or real-device
+transfer, hardware performance, general route-generation advantage, quantum
+advantage, BQP separation, solved-frontier status, or new credit.

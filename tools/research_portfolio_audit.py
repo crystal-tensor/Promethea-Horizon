@@ -38489,6 +38489,79 @@ def audit(root: Path) -> dict:
             if transcript.get("trial_rows_sha256") != hashlib.sha256(trials_path.read_bytes()).hexdigest():
                 errors.append("R152 edge-signature trial row transcript hash mismatch")
 
+    r153_protocol_path = results / "B4_B8_R153_independent_seed_replication_protocol_v0.json"
+    r153_protocol_report_path = research / "B4_B8_R153_independent_seed_replication_protocol.md"
+    r153_contract_path = benchmarks / "B4_B8_R153_independent_seed_replication_contract_v0.json"
+    r153_status = {
+        "protocol_path": str(r153_protocol_path),
+        "contract_path": str(r153_contract_path),
+        "protocol_exists": r153_protocol_path.exists(),
+        "contract_exists": r153_contract_path.exists(),
+    }
+    r153_contract_sha256 = hashlib.sha256(r153_contract_path.read_bytes()).hexdigest() if r153_contract_path.exists() else None
+    r153_manifest_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r153_independent_seed_replication_protocol_v0")),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r153_independent_seed_replication_protocol_v0")),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r153_independent_seed_replication_protocol_v0")),
+    ]
+    for label, row in r153_manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R153 independent-seed preregistration")
+            continue
+        for field in ["result", "markdown_report"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R153 protocol missing {field}")
+        if row.get("contract_sha256") != r153_contract_sha256:
+            errors.append(f"{label} R153 contract hash mismatch")
+    if not all(path.exists() for path in [r153_protocol_path, r153_protocol_report_path, r153_contract_path]):
+        errors.append("R153 independent-seed protocol, report, or contract missing")
+    else:
+        r153_protocol_payload = json.loads(read(r153_protocol_path))
+        r153_protocol = r153_protocol_payload.get("protocol", {})
+        r153_contract = json.loads(read(r153_contract_path))
+        r153_status.update({
+            "status": r153_protocol_payload.get("status"),
+            "method": r153_protocol_payload.get("method"),
+            "requirements_passed": r153_protocol_payload.get("requirements_passed"),
+            "requirements_failed": r153_protocol_payload.get("requirements_failed"),
+            "challenge_executed": r153_protocol_payload.get("challenge_executed"),
+            "trial_row_count": r153_protocol.get("trial_row_count"),
+            "independent_block_count_per_group": r153_protocol.get("independent_block_count_per_group"),
+        })
+        if r153_protocol_payload.get("status") != "independent_seed_replication_protocol_frozen_before_challenge" or r153_protocol_payload.get("method") != "b4_b8_r153_independent_seed_replication_protocol_v0":
+            errors.append("R153 independent-seed protocol status or method mismatch")
+        if r153_protocol_payload.get("requirements_passed") != 10 or r153_protocol_payload.get("requirements_failed") != 0 or r153_protocol_payload.get("challenge_executed") is not False:
+            errors.append("R153 independent-seed protocol requirements or unopened boundary mismatch")
+        expected_protocol = {
+            "portfolio_group_count": 3,
+            "hidden_trial_count_per_group": 32,
+            "independent_block_count_per_group": 4,
+            "trial_count_per_block": 8,
+            "trial_row_count": 96,
+            "simulated_circuit_execution_count": 288,
+            "shots_per_execution": 2048,
+            "total_simulated_shots": 589824,
+            "minimum_group_count_above_negative_0_02_vs_denominator": 3,
+            "minimum_block_count_above_negative_0_03_vs_denominator": 10,
+            "maximum_block_mean_spread": 0.08,
+            "maximum_severe_regression_count_below_negative_0_05_vs_denominator": 0,
+        }
+        for field, value in expected_protocol.items():
+            if r153_protocol.get(field) != value:
+                errors.append(f"R153 independent-seed protocol {field} mismatch")
+        hp = dict(r153_protocol_payload)
+        protocol_ph = hp.pop("payload_hash", None)
+        if protocol_ph != hashlib.sha256(json.dumps(hp, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+            errors.append("R153 independent-seed protocol payload hash mismatch")
+        if r153_contract_sha256 != "99aae34034c9193cdc58a4aa62b68208c664098a2b44773ccf86c075850e46f7":
+            errors.append("R153 independent-seed contract file hash mismatch")
+        if r153_contract.get("contract_id") != "B4-B8-R153-independent-seed-replication-contract-v0" or r153_contract.get("contract_status") != "public_preregistration_challenge_unopened":
+            errors.append("R153 independent-seed contract ID or status mismatch")
+        if r153_contract.get("target_id") != "T-B4-002bn/T-B8-003br/T-B10-009bf" or "challenge_secret" in r153_contract or "trial_rows" in r153_contract:
+            errors.append("R153 independent-seed contract target or unopened boundary mismatch")
+        if r153_contract.get("source_bindings", {}).get("protocol_payload_hash") != protocol_ph or len(r153_contract.get("acceptance_conditions", [])) != 10:
+            errors.append("R153 independent-seed contract binding or acceptance count mismatch")
+
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
             errors.append(f"missing status artifact: {path}")
@@ -38960,6 +39033,7 @@ def audit(root: Path) -> dict:
             "r151_casablanca_failure_attribution": r151_status,
             "r152_edge_signature_expansion": r152_status,
             "r152_edge_signature_expansion_holdout": r152_result_status,
+            "r153_independent_seed_replication": r153_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -40435,6 +40509,8 @@ def audit(root: Path) -> dict:
             "b4_b8_r152_edge_signature_expansion_holdout": str(
                 research / "B4_B8_R152_edge_signature_expansion_holdout.md"
             ),
+            "b4_b8_r153_independent_seed_replication_protocol": str(r153_protocol_report_path),
+            "b4_b8_r153_independent_seed_replication_contract": str(r153_contract_path),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
             "b8_challenge_refresh_repair": str(research / "B8_challenge_refresh_repair.md"),
