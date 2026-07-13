@@ -39037,6 +39037,237 @@ def audit(root: Path) -> dict:
         if bindings.get("protocol_payload_hash") != protocol_ph or bindings.get("protocol_sha256") != hashlib.sha256(r155_protocol_path.read_bytes()).hexdigest() or len(r155_contract.get("acceptance_conditions", [])) != 10:
             errors.append("R155 execution-mode protocol binding or acceptance count mismatch")
 
+    r155_result_path = results / "B4_B8_R155_execution_mode_attribution_v0.json"
+    r155_result_report_path = research / "B4_B8_R155_execution_mode_attribution.md"
+    r155_result_status = {
+        "result_path": str(r155_result_path),
+        "report_path": str(r155_result_report_path),
+        "result_exists": r155_result_path.exists(),
+        "report_exists": r155_result_report_path.exists(),
+    }
+    r155_result_manifest_rows = [
+        (
+            "B4",
+            b4_manifest.get("current_results", {}).get("b4_b8_r155_execution_mode_attribution_v0"),
+            "execution_mode_attribution_diagnostic_complete",
+        ),
+        (
+            "B8",
+            b8_manifest.get("current_results", {}).get("b4_b8_r155_execution_mode_attribution_v0"),
+            "execution_mode_attribution_diagnostic_complete",
+        ),
+        (
+            "B10",
+            b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r155_execution_mode_attribution_v0"),
+            "execution_mode_attribution_diagnostic_not_bqp_claim",
+        ),
+    ]
+    for label, row, expected_status in r155_result_manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R155 execution-mode result")
+            continue
+        for field in ["result", "markdown_report"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R155 execution-mode result missing {field}")
+        if row.get("status") != expected_status or row.get("method") != "b4_b8_r155_execution_mode_attribution_v0":
+            errors.append(f"{label} R155 execution-mode result status or method mismatch")
+        if row.get("source_target_id") != "T-B4-002bs/T-B8-003bw/T-B10-009bk" or row.get("upstream_target_id") != "T-B4-002br/T-B8-003bv/T-B10-009bj":
+            errors.append(f"{label} R155 execution-mode result target chain mismatch")
+        if row.get("first_observed_divergence_layer") != "automatic_transpilation" or row.get("aer_sampling_only_effect_excluded_for_observed_mismatches") is not True:
+            errors.append(f"{label} R155 execution-mode divergence classification mismatch")
+        if row.get("causal_attribution_supported") is not False or row.get("new_credit_delta") != 0:
+            errors.append(f"{label} R155 execution-mode causal or credit boundary mismatch")
+        if row.get("requirements_passed") != 10 or row.get("requirements_failed") != 0:
+            errors.append(f"{label} R155 execution-mode requirement mismatch")
+    if not r155_result_path.exists() or not r155_result_report_path.exists():
+        errors.append("R155 execution-mode result or report missing")
+    else:
+        r155_result = json.loads(read(r155_result_path))
+        r155_summary = r155_result.get("summary", {})
+        r155_classification = r155_result.get("classification", {})
+        r155_result_status.update({
+            "status": r155_result.get("status"),
+            "method": r155_result.get("method"),
+            "requirements_passed": r155_result.get("requirements_passed"),
+            "requirements_failed": r155_result.get("requirements_failed"),
+            "process_count": r155_summary.get("process_count"),
+            "row_execution_count": r155_summary.get("row_execution_count"),
+            "circuit_execution_count": r155_summary.get("circuit_execution_count"),
+            "total_simulated_shots": r155_summary.get("total_simulated_shots"),
+            "unstable_cell_count": r155_classification.get("unstable_cell_count"),
+            "within_profile_mismatch_row_count": r155_classification.get("within_profile_mismatch_row_count"),
+            "automatic_qasm_variant_count": r155_classification.get("automatic_qasm_variant_count"),
+            "automatic_fidelity_delta_between_variants": r155_classification.get("automatic_fidelity_delta_between_variants"),
+            "implied_portfolio_mean_delta_from_one_of_96_rows": r155_classification.get("implied_portfolio_mean_delta_from_one_of_96_rows"),
+            "first_observed_divergence_layer": r155_classification.get("first_observed_divergence_layer"),
+            "aer_sampling_only_effect_excluded_for_observed_mismatches": r155_classification.get("aer_sampling_only_effect_excluded_for_observed_mismatches"),
+            "causal_attribution_supported": r155_classification.get("causal_attribution_supported"),
+        })
+        if r155_result.get("status") != "execution_mode_attribution_diagnostic_complete" or r155_result.get("method") != "b4_b8_r155_execution_mode_attribution_v0":
+            errors.append("R155 execution-mode result status or method mismatch")
+        if r155_result.get("source_target_id") != "T-B4-002bs/T-B8-003bw/T-B10-009bk" or r155_result.get("upstream_target_id") != "T-B4-002br/T-B8-003bv/T-B10-009bj":
+            errors.append("R155 execution-mode result target chain mismatch")
+        if r155_result.get("requirements_passed") != 10 or r155_result.get("requirements_failed") != 0:
+            errors.append("R155 execution-mode result requirements must pass 10/10")
+        expected_r155_summary = {
+            "acceptance_conditions_passed": 10,
+            "acceptance_conditions_failed": 0,
+            "process_count": 8,
+            "row_execution_count": 768,
+            "circuit_execution_count": 2304,
+            "total_simulated_shots": 4718592,
+            "within_profile_comparison_count": 4,
+            "serial_reference_comparison_count": 7,
+            "stored_r153_comparison_count": 8,
+            "within_profile_component_mismatch_count": 9,
+            "serial_reference_component_mismatch_count": 15,
+            "stored_r153_core_row_mismatch_count": 3,
+            "process_instance_uuid_count": 8,
+            "process_id_count": 8,
+            "process_started_after_preregistration_count": 8,
+            "immutable_worker_artifact_count": 8,
+            "new_hidden_seed_count": 0,
+            "candidate_selection_performed": False,
+            "route_change_performed": False,
+            "new_credit_delta": 0,
+            "global_acceptance": True,
+        }
+        for field, value in expected_r155_summary.items():
+            if r155_summary.get(field) != value:
+                errors.append(f"R155 execution-mode result {field} mismatch")
+        forbidden_claims = [
+            "causal_attribution_claimed",
+            "hardware_execution_claimed",
+            "temporal_transfer_claimed",
+            "real_device_transfer_claimed",
+            "general_route_generation_advantage_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "solved_frontier_claimed",
+        ]
+        if any(r155_summary.get(field) is not False for field in forbidden_claims):
+            errors.append("R155 execution-mode forbidden claim boundary mismatch")
+        expected_r155_classification = {
+            "unstable_cell_count": 3,
+            "within_profile_mismatch_row_count": 3,
+            "same_single_row_transient_across_unstable_cells": True,
+            "unique_within_profile_mismatch_keys": [["FakeNairobiV2", 21]],
+            "first_observed_divergence_layer": "automatic_transpilation",
+            "aer_sampling_only_effect_excluded_for_observed_mismatches": True,
+            "automatic_qasm_variant_count": 2,
+            "automatic_qasm_variant_hashes": [
+                "56eb5fac162b05c918164e4850b71c0665fa139c5b3c81646d2d8d7f5119d658",
+                "fc4ab12a8f5204895c93d1320899e6b4f64f489b87adccbc7a16d7fa79a8d1f1",
+            ],
+            "automatic_fidelity_variant_count": 2,
+            "automatic_fidelity_variants": [0.5751232845408407, 0.575334060468231],
+            "automatic_fidelity_delta_between_variants": 0.00021077592739027207,
+            "implied_portfolio_mean_delta_from_one_of_96_rows": 2.1955825769820006e-06,
+            "r153_transient_reproduced": True,
+            "r153_transient_not_reproduced": False,
+            "effect_classification_blocked_by_unstable_cells": True,
+            "explicit_aer_serialization_effect_detected": False,
+            "thread_environment_effect_detected": False,
+            "environment_aer_interaction_effect_detected": False,
+            "causal_attribution_supported": False,
+        }
+        for field, value in expected_r155_classification.items():
+            if r155_classification.get(field) != value:
+                errors.append(f"R155 execution-mode classification {field} mismatch")
+        expected_stability = {
+            "clamped_serial": False,
+            "clamped_default_aer": True,
+            "four_thread_serial": False,
+            "four_thread_default_aer": False,
+        }
+        if r155_classification.get("within_profile_stability") != expected_stability:
+            errors.append("R155 execution-mode within-profile stability matrix mismatch")
+        acceptance = r155_result.get("acceptance_conditions", [])
+        requirements = r155_result.get("requirements", [])
+        if [row.get("condition_id") for row in acceptance] != [f"A{i}" for i in range(1, 11)] or any(row.get("passed") is not True for row in acceptance):
+            errors.append("R155 execution-mode result must preserve A1-A10 acceptance")
+        if [row.get("requirement_id") for row in requirements] != [f"P{i}" for i in range(1, 11)] or any(row.get("passed") is not True for row in requirements):
+            errors.append("R155 execution-mode result must preserve P1-P10 requirements")
+        rhp = dict(r155_result)
+        result_ph = rhp.pop("payload_hash", None)
+        if result_ph != hashlib.sha256(json.dumps(rhp, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+            errors.append("R155 execution-mode result payload hash mismatch")
+        if result_ph != "4b4556c8204a2dee34eebc1f5c1fb12c809c5b9ccc6330906367f636eacbe470":
+            errors.append("R155 execution-mode final payload hash mismatch")
+        artifact_paths = {}
+        for artifact_key in ["comparison_matrix", "classification", "verifier_transcript"]:
+            rel = r155_result.get("artifacts", {}).get(artifact_key)
+            artifact_path = root / rel if rel else None
+            if not artifact_path or not artifact_path.exists():
+                errors.append(f"R155 execution-mode result artifact missing: {artifact_key}")
+            else:
+                artifact_paths[artifact_key] = artifact_path
+        process_artifacts = r155_result.get("artifacts", {}).get("process_artifacts", [])
+        if len(process_artifacts) != 8:
+            errors.append("R155 execution-mode process artifact count mismatch")
+        observed_processes = []
+        observed_row_hashes = []
+        for artifact in process_artifacts:
+            observed_processes.append(artifact.get("process"))
+            rows_path = root / artifact.get("rows_path", "")
+            manifest_path = root / artifact.get("manifest_path", "")
+            if not rows_path.exists() or not manifest_path.exists():
+                errors.append(f"R155 execution-mode worker artifact missing: {artifact.get('process')}")
+                continue
+            rows_sha = hashlib.sha256(rows_path.read_bytes()).hexdigest()
+            manifest_sha = hashlib.sha256(manifest_path.read_bytes()).hexdigest()
+            observed_row_hashes.append(rows_sha)
+            if rows_sha != artifact.get("rows_sha256") or manifest_sha != artifact.get("manifest_sha256"):
+                errors.append(f"R155 execution-mode worker hash mismatch: {artifact.get('process')}")
+            worker_rows = json.loads(read(rows_path))
+            worker_manifest = json.loads(read(manifest_path))
+            if not isinstance(worker_rows, list) or len(worker_rows) != 96 or worker_manifest.get("row_count") != 96:
+                errors.append(f"R155 execution-mode worker row count mismatch: {artifact.get('process')}")
+            worker_process = f"{worker_manifest.get('profile_id')}/replicate_{worker_manifest.get('replicate_id')}"
+            if worker_process != artifact.get("process"):
+                errors.append(f"R155 execution-mode worker identity mismatch: {artifact.get('process')}")
+            mhp = dict(worker_manifest)
+            manifest_ph = mhp.pop("manifest_payload_hash", None)
+            if manifest_ph != hashlib.sha256(json.dumps(mhp, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+                errors.append(f"R155 execution-mode worker payload hash mismatch: {artifact.get('process')}")
+        expected_processes = [
+            f"{profile}/replicate_{replicate}"
+            for profile in ["clamped_serial", "clamped_default_aer", "four_thread_serial", "four_thread_default_aer"]
+            for replicate in range(2)
+        ]
+        if observed_processes != expected_processes:
+            errors.append("R155 execution-mode worker process order or coverage mismatch")
+        row_hash_counts = {row_hash: observed_row_hashes.count(row_hash) for row_hash in set(observed_row_hashes)}
+        expected_row_hash_counts = {
+            "1aff25a53e1b93306bde4bf0744bee218852d5172359f5441e669bb839693749": 5,
+            "d7ccc2a1d63cd3637f27c123d60d8442f965dcadca86daeaa6580c54f281b124": 3,
+        }
+        if row_hash_counts != expected_row_hash_counts:
+            errors.append("R155 execution-mode worker row-hash classes mismatch")
+        if len(artifact_paths) == 3:
+            comparison = json.loads(read(artifact_paths["comparison_matrix"]))
+            classification = json.loads(read(artifact_paths["classification"]))
+            transcript = json.loads(read(artifact_paths["verifier_transcript"]))
+            chp = dict(comparison)
+            comparison_ph = chp.pop("comparison_matrix_payload_hash", None)
+            clhp = dict(classification)
+            classification_ph = clhp.pop("classification_payload_hash", None)
+            if comparison_ph != hashlib.sha256(json.dumps(chp, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+                errors.append("R155 execution-mode comparison matrix payload hash mismatch")
+            if classification_ph != hashlib.sha256(json.dumps(clhp, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+                errors.append("R155 execution-mode classification payload hash mismatch")
+            if comparison.get("process_artifacts") != process_artifacts:
+                errors.append("R155 execution-mode comparison process-artifact binding mismatch")
+            if classification != r155_classification:
+                errors.append("R155 execution-mode result classification binding mismatch")
+            if transcript.get("result_payload_hash") != result_ph or transcript.get("comparison_matrix_payload_hash") != comparison_ph or transcript.get("classification_payload_hash") != classification_ph:
+                errors.append("R155 execution-mode transcript payload binding mismatch")
+            if transcript.get("contract_sha256") != r155_contract_sha256 or transcript.get("protocol_payload_hash") != "bcfc9860af9bb6dccf8715a35c98060ffe714a2629f3d8e443c6be8a5c35ad81":
+                errors.append("R155 execution-mode transcript preregistration binding mismatch")
+        report_text = read(r155_result_report_path)
+        if "automatic_transpilation" not in report_text or "Aer-sampling-only" not in report_text or "before causal attribution" not in report_text:
+            errors.append("R155 execution-mode report causal boundary missing")
+
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
             errors.append(f"missing status artifact: {path}")
@@ -39513,6 +39744,7 @@ def audit(root: Path) -> dict:
             "r154_deterministic_automatic_replay": r154_status,
             "r154_deterministic_automatic_replay_result": r154_result_status,
             "r155_execution_mode_attribution": r155_status,
+            "r155_execution_mode_attribution_result": r155_result_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -40996,6 +41228,7 @@ def audit(root: Path) -> dict:
             "b4_b8_r154_deterministic_automatic_replay": str(r154_result_report_path),
             "b4_b8_r155_execution_mode_attribution_protocol": str(r155_protocol_report_path),
             "b4_b8_r155_execution_mode_attribution_contract": str(r155_contract_path),
+            "b4_b8_r155_execution_mode_attribution": str(r155_result_report_path),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
             "b8_challenge_refresh_repair": str(research / "B8_challenge_refresh_repair.md"),
@@ -43282,6 +43515,17 @@ def markdown_report(report: dict) -> str:
             f"- w8_21 claim-boundary markdown exists/has claim: {report['b7']['w8_21_claim_boundary_fragment'].get('markdown_exists')} / {report['b7']['w8_21_claim_boundary_fragment'].get('markdown_has_claim')}",
             "",
             "## B8 Output Invariant Verification Status",
+            "",
+            "### R155 Execution-Mode Attribution",
+            "",
+            f"- Status: {report['b8']['r155_execution_mode_attribution_result'].get('status')}",
+            f"- Processes / rows / circuits / shots: {report['b8']['r155_execution_mode_attribution_result'].get('process_count')} / {report['b8']['r155_execution_mode_attribution_result'].get('row_execution_count')} / {report['b8']['r155_execution_mode_attribution_result'].get('circuit_execution_count')} / {report['b8']['r155_execution_mode_attribution_result'].get('total_simulated_shots')}",
+            f"- Unstable cells / mismatch rows / automatic QASM variants: {report['b8']['r155_execution_mode_attribution_result'].get('unstable_cell_count')} / {report['b8']['r155_execution_mode_attribution_result'].get('within_profile_mismatch_row_count')} / {report['b8']['r155_execution_mode_attribution_result'].get('automatic_qasm_variant_count')}",
+            f"- Automatic fidelity / implied 96-row mean delta: {report['b8']['r155_execution_mode_attribution_result'].get('automatic_fidelity_delta_between_variants')} / {report['b8']['r155_execution_mode_attribution_result'].get('implied_portfolio_mean_delta_from_one_of_96_rows')}",
+            f"- First divergence / Aer-only excluded: {report['b8']['r155_execution_mode_attribution_result'].get('first_observed_divergence_layer')} / {report['b8']['r155_execution_mode_attribution_result'].get('aer_sampling_only_effect_excluded_for_observed_mismatches')}",
+            f"- Causal attribution supported: {report['b8']['r155_execution_mode_attribution_result'].get('causal_attribution_supported')}",
+            f"- Requirements passed/failed: {report['b8']['r155_execution_mode_attribution_result'].get('requirements_passed')} / {report['b8']['r155_execution_mode_attribution_result'].get('requirements_failed')}",
+            f"- Result/report exists: {report['b8']['r155_execution_mode_attribution_result'].get('result_exists')} / {report['b8']['r155_execution_mode_attribution_result'].get('report_exists')}",
             "",
             f"- Status: {report['b8']['output_invariant_verifier'].get('status')}",
             f"- Model status: {report['b8']['output_invariant_verifier'].get('model_status')}",

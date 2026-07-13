@@ -2266,6 +2266,17 @@ Overall audit: PASS
 
 ## B8 Output Invariant Verification Status
 
+### R155 Execution-Mode Attribution
+
+- Status: execution_mode_attribution_diagnostic_complete
+- Processes / rows / circuits / shots: 8 / 768 / 2304 / 4718592
+- Unstable cells / mismatch rows / automatic QASM variants: 3 / 3 / 2
+- Automatic fidelity / implied 96-row mean delta: 0.00021077592739027207 / 2.1955825769820006e-06
+- First divergence / Aer-only excluded: automatic_transpilation / True
+- Causal attribution supported: False
+- Requirements passed/failed: 10 / 0
+- Result/report exists: True / True
+
 - Status: toy_invariant_property_test
 - Model status: toy_invariant_property_test_not_full_distribution_verification
 - Tasks: 3

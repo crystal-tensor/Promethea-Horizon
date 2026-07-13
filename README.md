@@ -3481,3 +3481,23 @@ must be recorded and classified rather than discarded. Requirements pass
 attribution, new hidden evidence, temporal or real-device transfer, hardware
 performance, general route-generation advantage, quantum advantage, BQP
 separation, solved-frontier status, or new credit is claimed.
+
+The R155 matrix at `T-B4-002bs` / `T-B8-003bw` / `T-B10-009bk` is
+diagnostically complete with A1-A10 and P1-P10 passing. All 8 independent
+processes completed 768 rows, 2,304 circuit executions, and 4,718,592 shots.
+Three of four cells were internally unstable: the matrix records 9
+within-cell component mismatches, 15 serial-reference mismatches, and 3 stored-
+R153 core-row mismatches. Every mismatch is the same `FakeNairobiV2` trial 21
+automatic arm. The repaired and denominator routes and counts remain stable,
+while automatic compilation alternates between exactly two OpenQASM 3 hashes.
+Those variants shift automatic fidelity by `0.000210775927`; one affected row
+among 96 implies a portfolio-mean shift of `2.195582577e-6`, reproducing the
+scale of the documented R153 transient. The first observed divergence is thus
+automatic transpilation, which excludes an Aer-sampling-only explanation for
+these mismatches. It does not identify which lower-level compiler mechanism is
+causal: three unstable cells block the preregistered single-factor attribution.
+Payload `4b4556c8...`; next pressure must capture both QASM variants and run an
+expanded repeated-transpile block for the one affected row. No new hidden
+evidence, temporal or real-device transfer, hardware performance, general
+route-generation advantage, quantum advantage, BQP separation, solved-
+frontier status, or new credit is claimed.
