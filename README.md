@@ -2855,6 +2855,23 @@ result, causal proof, temporal or real-device transfer, hardware performance,
 general route-generation advantage, quantum advantage, BQP separation,
 solved-frontier status, or new credit is claimed.
 
+The R152 holdout at `T-B4-002bm` / `T-B8-003bq` / `T-B10-009be` is
+preregistered ACCEPT with A1-A10 and P1-P10 passing. A second full replay
+matches all `4/4` phase artifacts. Portfolio repaired-automatic mean/bootstrap
+lower are `+0.02626896` / `+0.01927970`; repaired-denominator mean/bootstrap
+lower are `+0.00488735` / `+0.00183043`. All `3/3` backend groups clear
+`-0.02`, no row falls below `-0.05`, and all `6/6` route semantic checks pass.
+The novel Casablanca signature moves the group mean from R150's
+`-0.02570231` to `-0.00336195`, with minimum row `-0.00936479` and `2/8`
+strict wins against the strong denominator. Preserved Nairobi and Perth
+controls remain positive at `+0.00927928` and `+0.00874473`. Payload hash
+`8d2c1a56383012a3c4b5dd8ca0c0840b0504aab7879ebea354c3e2e63cf928f1`.
+This accepts one finite simulated-noise edge-signature repair and rejects the
+R150 Casablanca failure under new hidden seeds. It is not causal proof,
+temporal or real-device transfer, hardware performance, general
+route-generation advantage, quantum advantage, BQP separation,
+solved-frontier status, or new credit.
+
 `T-B4-002aj` / `T-B8-003an` / `T-B10-009ab` now adds the R135
 dense-interaction deterministic fallback boundary. For each new inverse-QFT,
 scrambled-QFT, complete-Ising, and dense-XY input, five temporal graph rules

@@ -38400,6 +38400,95 @@ def audit(root: Path) -> dict:
         if r152_contract.get("source_bindings", {}).get("protocol_payload_hash") != protocol_ph or len(r152_contract.get("acceptance_conditions", [])) != 10:
             errors.append("R152 edge-signature contract binding or acceptance count mismatch")
 
+    r152_result_path = results / "B4_B8_R152_edge_signature_expansion_holdout_v0.json"
+    r152_result_report_path = research / "B4_B8_R152_edge_signature_expansion_holdout.md"
+    r152_result_status = {
+        "path": str(r152_result_path), "report_path": str(r152_result_report_path),
+        "exists": r152_result_path.exists(), "report_exists": r152_result_report_path.exists(),
+    }
+    r152_result_manifest_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r152_edge_signature_expansion_holdout_v0")),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r152_edge_signature_expansion_holdout_v0")),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r152_edge_signature_expansion_holdout_v0")),
+    ]
+    for label, row in r152_result_manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R152 edge-signature result")
+            continue
+        for field in ["result", "markdown_report"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R152 edge-signature result missing {field}")
+    if not r152_result_path.exists() or not r152_result_report_path.exists():
+        errors.append("R152 edge-signature result or report missing")
+    else:
+        r152_result = json.loads(read(r152_result_path)); r152_result_summary = r152_result.get("summary", {})
+        r152_result_status.update({
+            "status": r152_result.get("status"), "method": r152_result.get("method"),
+            "requirements_passed": r152_result.get("requirements_passed"),
+            "requirements_failed": r152_result.get("requirements_failed"),
+            "global_acceptance": r152_result_summary.get("global_acceptance"),
+            "portfolio_mean_repaired_minus_denominator": r152_result_summary.get("portfolio_mean_repaired_minus_denominator"),
+            "groups_above_negative_0_02": r152_result_summary.get("groups_with_mean_repaired_minus_denominator_at_least_negative_0_02"),
+            "minimum_target_mean": r152_result_summary.get("minimum_target_mean_repaired_minus_denominator"),
+        })
+        expected = {
+            "portfolio_group_count": 3, "trial_row_count": 24,
+            "simulated_circuit_execution_count": 72, "total_simulated_shots": 147456,
+            "portfolio_mean_repaired_minus_automatic": 0.02626896343338125,
+            "portfolio_repaired_minus_automatic_bootstrap_95_lower": 0.01927970211882911,
+            "portfolio_repaired_minus_automatic_bootstrap_95_upper": 0.03423462272346995,
+            "portfolio_mean_repaired_minus_denominator": 0.004887350805534725,
+            "portfolio_repaired_minus_denominator_bootstrap_95_lower": 0.001830429968175647,
+            "portfolio_repaired_minus_denominator_bootstrap_95_upper": 0.007957589935588654,
+            "groups_with_mean_repaired_minus_denominator_at_least_negative_0_02": 3,
+            "severe_repaired_minus_denominator_regression_count_below_negative_0_05": 0,
+            "minimum_target_mean_repaired_minus_denominator": -0.003361950101780184,
+            "minimum_semantic_fidelity": 0.9999999999999956,
+            "semantic_fidelity_pass_count": 6,
+            "phase_artifact_count": 4, "phase_artifact_preexisting_count": 4,
+            "phase_artifact_replay_match_count": 4,
+            "r150_hidden_trial_values_used_for_candidate_scoring_count": 0,
+            "causal_repair_claimed": False,
+            "acceptance_conditions_passed": 10, "acceptance_conditions_failed": 0,
+            "failed_acceptance_condition_ids": [], "global_acceptance": True,
+            "new_credit_delta": 0,
+        }
+        if r152_result.get("status") != "edge_signature_expansion_preregistered_acceptance" or r152_result.get("method") != "b4_b8_r152_edge_signature_expansion_holdout_v0":
+            errors.append("R152 edge-signature result status or method mismatch")
+        if r152_result.get("requirements_passed") != 10 or r152_result.get("requirements_failed") != 0:
+            errors.append("R152 edge-signature result requirements must pass 10/10")
+        for field, value in expected.items():
+            if r152_result_summary.get(field) != value:
+                errors.append(f"R152 edge-signature result {field} mismatch")
+        conditions = r152_result.get("acceptance_conditions", [])
+        if len(conditions) != 10 or not all(row.get("passed", False) for row in conditions):
+            errors.append("R152 edge-signature result must preserve A1-A10 acceptance")
+        if len(r152_result.get("compiled_route_rows", [])) != 3 or len(r152_result.get("group_rows", [])) != 3:
+            errors.append("R152 edge-signature result row counts mismatch")
+        expected_groups = {
+            "FakeCasablancaV2": (-0.003361950101780184, 2),
+            "FakeNairobiV2": (0.00927927645725285, 7),
+            "FakePerth": (0.00874472606113151, 7),
+        }
+        for row in r152_result.get("group_rows", []):
+            if expected_groups.get(row.get("target_snapshot")) != (row.get("mean_repaired_minus_denominator"), row.get("repaired_win_count_vs_denominator")):
+                errors.append(f"R152 edge-signature group mismatch: {row.get('target_snapshot')}")
+        hp = dict(r152_result); ph = hp.pop("payload_hash", None)
+        if ph != hashlib.sha256(json.dumps(hp, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+            errors.append("R152 edge-signature result payload hash mismatch")
+        if ph != "8d2c1a56383012a3c4b5dd8ca0c0840b0504aab7879ebea354c3e2e63cf928f1":
+            errors.append("R152 edge-signature final payload hash mismatch")
+        for phase_key in ["challenge_commitment", "three_arm_trial_rows", "challenge_reveal", "verifier_transcript"]:
+            rel = r152_result.get("artifacts", {}).get(phase_key)
+            if not rel or not (root / rel).exists():
+                errors.append(f"R152 edge-signature result phase missing: {phase_key}")
+        trials_path = root / r152_result.get("artifacts", {}).get("three_arm_trial_rows", "")
+        transcript_path = root / r152_result.get("artifacts", {}).get("verifier_transcript", "")
+        if trials_path.exists() and transcript_path.exists():
+            transcript = json.loads(read(transcript_path))
+            if transcript.get("trial_rows_sha256") != hashlib.sha256(trials_path.read_bytes()).hexdigest():
+                errors.append("R152 edge-signature trial row transcript hash mismatch")
+
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
             errors.append(f"missing status artifact: {path}")
@@ -38870,6 +38959,7 @@ def audit(root: Path) -> dict:
             "r150_unseen_backend_candidate_generation_holdout": r150_result_status,
             "r151_casablanca_failure_attribution": r151_status,
             "r152_edge_signature_expansion": r152_status,
+            "r152_edge_signature_expansion_holdout": r152_result_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -40342,6 +40432,9 @@ def audit(root: Path) -> dict:
                 research / "B4_B8_R152_edge_signature_expansion_protocol.md"
             ),
             "b4_b8_r152_edge_signature_expansion_contract": str(r152_contract_path),
+            "b4_b8_r152_edge_signature_expansion_holdout": str(
+                research / "B4_B8_R152_edge_signature_expansion_holdout.md"
+            ),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
             "b8_challenge_refresh_repair": str(research / "B8_challenge_refresh_repair.md"),
