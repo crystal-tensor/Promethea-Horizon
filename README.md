@@ -3464,3 +3464,20 @@ the original R153 default-parallel path, whose transient drift remains open,
 and it adds no new hidden statistical evidence. It is not hardware evidence,
 temporal or real-device transfer, general route-generation advantage, quantum
 advantage, BQP separation, solved-frontier status, or new credit.
+
+`T-B4-002br` / `T-B8-003bv` / `T-B10-009bj` now preregisters R155 as a
+`2 x 2` execution-mode attribution matrix for the unresolved R153 transient.
+It crosses one-thread versus four-thread process environments with explicit
+serial Aer options versus the R153 code-equivalent default-Aer path. Each of
+the four cells must run twice in separate operating-system processes, replaying
+the same 96 public R153 rows without new seeds, route changes, or selection.
+The unopened gate fixes 8 processes, 768 row executions, 2,304 circuit
+executions, and 4,718,592 shots. Every process must hash every automatic
+OpenQASM 3 circuit, all three count vectors, and every scientific row, then
+enter four within-cell, seven serial-reference, and eight stored-R153
+comparisons. Diagnostic completion does not require zero mismatches: any drift
+must be recorded and classified rather than discarded. Requirements pass
+`10/10`; contract `76f7939c...`; execution remains unopened. No causal
+attribution, new hidden evidence, temporal or real-device transfer, hardware
+performance, general route-generation advantage, quantum advantage, BQP
+separation, solved-frontier status, or new credit is claimed.

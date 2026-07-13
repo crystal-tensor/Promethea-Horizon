@@ -38901,6 +38901,142 @@ def audit(root: Path) -> dict:
         if "closes only the serial-control replacement replay gate" not in report_text or "does not\nprove that the original R153 default-parallel path is deterministic" not in report_text:
             errors.append("R154 deterministic-replay original default-parallel caveat missing from report")
 
+    r155_protocol_path = results / "B4_B8_R155_execution_mode_attribution_protocol_v0.json"
+    r155_protocol_report_path = research / "B4_B8_R155_execution_mode_attribution_protocol.md"
+    r155_contract_path = benchmarks / "B4_B8_R155_execution_mode_attribution_contract_v0.json"
+    r155_status = {
+        "protocol_path": str(r155_protocol_path),
+        "contract_path": str(r155_contract_path),
+        "protocol_exists": r155_protocol_path.exists(),
+        "contract_exists": r155_contract_path.exists(),
+        "report_exists": r155_protocol_report_path.exists(),
+    }
+    r155_contract_sha256 = hashlib.sha256(r155_contract_path.read_bytes()).hexdigest() if r155_contract_path.exists() else None
+    r155_manifest_rows = [
+        (
+            "B4",
+            b4_manifest.get("current_results", {}).get("b4_b8_r155_execution_mode_attribution_protocol_v0"),
+            "execution_mode_attribution_protocol_frozen_before_execution",
+        ),
+        (
+            "B8",
+            b8_manifest.get("current_results", {}).get("b4_b8_r155_execution_mode_attribution_protocol_v0"),
+            "execution_mode_attribution_protocol_frozen_before_execution",
+        ),
+        (
+            "B10",
+            b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r155_execution_mode_attribution_protocol_v0"),
+            "execution_mode_attribution_protocol_not_bqp_claim",
+        ),
+    ]
+    for label, row, expected_status in r155_manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R155 execution-mode preregistration")
+            continue
+        for field in ["result", "markdown_report", "contract"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R155 execution-mode protocol missing {field}")
+        if row.get("status") != expected_status or row.get("method") != "b4_b8_r155_execution_mode_attribution_protocol_v0":
+            errors.append(f"{label} R155 execution-mode status or method mismatch")
+        if row.get("contract_sha256") != r155_contract_sha256:
+            errors.append(f"{label} R155 execution-mode contract hash mismatch")
+        if row.get("execution_started") is not False or row.get("causal_attribution_claimed") is not False:
+            errors.append(f"{label} R155 execution-mode unopened boundary mismatch")
+        if row.get("new_credit_delta") != 0 or row.get("requirements_passed") != 10 or row.get("requirements_failed") != 0:
+            errors.append(f"{label} R155 execution-mode credit or requirement mismatch")
+    if not all(path.exists() for path in [r155_protocol_path, r155_protocol_report_path, r155_contract_path]):
+        errors.append("R155 execution-mode protocol, report, or contract missing")
+    else:
+        r155_payload = json.loads(read(r155_protocol_path))
+        r155_protocol = r155_payload.get("protocol", {})
+        r155_contract = json.loads(read(r155_contract_path))
+        r155_status.update({
+            "status": r155_payload.get("status"),
+            "method": r155_payload.get("method"),
+            "requirements_passed": r155_payload.get("requirements_passed"),
+            "requirements_failed": r155_payload.get("requirements_failed"),
+            "execution_started": r155_payload.get("execution_started"),
+            "profile_count": r155_protocol.get("profile_count"),
+            "total_process_count": r155_protocol.get("total_process_count"),
+            "total_row_execution_count": r155_protocol.get("total_row_execution_count"),
+            "total_circuit_execution_count": r155_protocol.get("total_circuit_execution_count"),
+        })
+        if r155_payload.get("status") != "execution_mode_attribution_protocol_frozen_before_execution" or r155_payload.get("method") != "b4_b8_r155_execution_mode_attribution_protocol_v0":
+            errors.append("R155 execution-mode protocol status or method mismatch")
+        if r155_payload.get("source_target_id") != "T-B4-002br/T-B8-003bv/T-B10-009bj" or r155_payload.get("upstream_target_id") != "T-B4-002bq/T-B8-003bu/T-B10-009bi":
+            errors.append("R155 execution-mode protocol target chain mismatch")
+        if r155_payload.get("requirements_passed") != 10 or r155_payload.get("requirements_failed") != 0 or r155_payload.get("execution_started") is not False:
+            errors.append("R155 execution-mode requirements or unopened boundary mismatch")
+        expected_r155_protocol = {
+            "source_trial_row_count": 96,
+            "profile_count": 4,
+            "replicate_process_count_per_profile": 2,
+            "total_process_count": 8,
+            "row_count_per_process": 96,
+            "total_row_execution_count": 768,
+            "circuit_execution_count_per_process": 288,
+            "total_circuit_execution_count": 2304,
+            "shots_per_execution": 2048,
+            "total_simulated_shots": 4718592,
+            "within_profile_comparison_count": 4,
+            "serial_reference_comparison_count": 7,
+            "r153_stored_row_comparison_count": 8,
+            "within_profile_qasm_comparison_count": 384,
+            "within_profile_arm_count_comparison_count": 1152,
+            "within_profile_scientific_row_comparison_count": 384,
+            "serial_reference_qasm_comparison_count": 672,
+            "serial_reference_arm_count_comparison_count": 2016,
+            "serial_reference_scientific_row_comparison_count": 672,
+            "r153_stored_scientific_row_comparison_count": 768,
+            "new_hidden_seed_count": 0,
+            "candidate_selection_performed": False,
+            "route_change_performed": False,
+        }
+        for field, value in expected_r155_protocol.items():
+            if r155_protocol.get(field) != value:
+                errors.append(f"R155 execution-mode protocol {field} mismatch")
+        profiles = r155_protocol.get("profiles", [])
+        expected_profile_ids = [
+            "clamped_serial",
+            "clamped_default_aer",
+            "four_thread_serial",
+            "four_thread_default_aer",
+        ]
+        if [row.get("profile_id") for row in profiles] != expected_profile_ids:
+            errors.append("R155 execution-mode profile order or IDs mismatch")
+        for index, profile in enumerate(profiles):
+            expected_threads = "1" if index < 2 else "4"
+            environment = profile.get("thread_environment", {})
+            if environment.get("OMP_NUM_THREADS") != expected_threads or environment.get("OPENBLAS_NUM_THREADS") != expected_threads or environment.get("MKL_NUM_THREADS") != expected_threads or environment.get("RAYON_NUM_THREADS") != expected_threads:
+                errors.append(f"R155 execution-mode profile {profile.get('profile_id')} thread environment mismatch")
+            expected_mode = "explicit_serial" if index % 2 == 0 else "no_explicit_parallel_override"
+            if profile.get("aer_option_mode") != expected_mode:
+                errors.append(f"R155 execution-mode profile {profile.get('profile_id')} Aer mode mismatch")
+            if expected_mode == "explicit_serial" and set(profile.get("aer_simulator_options", {}).values()) != {1}:
+                errors.append(f"R155 execution-mode profile {profile.get('profile_id')} serial options mismatch")
+            if expected_mode == "no_explicit_parallel_override" and profile.get("documented_aer_defaults") != {"max_parallel_threads": 0, "max_parallel_experiments": 1, "max_parallel_shots": 0}:
+                errors.append(f"R155 execution-mode profile {profile.get('profile_id')} documented defaults mismatch")
+        if len(r155_protocol.get("classification_rule", {})) != 4:
+            errors.append("R155 execution-mode classification matrix mismatch")
+        frozen_software = r155_protocol.get("frozen_software", {})
+        if any(not frozen_software.get(field) for field in ["python", "qiskit", "qiskit_aer", "qiskit_ibm_runtime"]):
+            errors.append("R155 execution-mode software binding missing")
+        hp = dict(r155_payload)
+        protocol_ph = hp.pop("payload_hash", None)
+        if protocol_ph != hashlib.sha256(json.dumps(hp, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+            errors.append("R155 execution-mode protocol payload hash mismatch")
+        if protocol_ph != "bcfc9860af9bb6dccf8715a35c98060ffe714a2629f3d8e443c6be8a5c35ad81":
+            errors.append("R155 execution-mode frozen payload hash mismatch")
+        if r155_contract_sha256 != "76f7939cdac7aa3b89cfb5f90a89e8d424a28cef5ec849434b4dc5858a4dfc9a":
+            errors.append("R155 execution-mode contract file hash mismatch")
+        if r155_contract.get("contract_id") != "B4-B8-R155-execution-mode-attribution-contract-v0" or r155_contract.get("contract_status") != "public_preregistration_execution_unopened":
+            errors.append("R155 execution-mode contract ID or status mismatch")
+        if r155_contract.get("target_id") != "T-B4-002br/T-B8-003bv/T-B10-009bj" or "process_outputs" in r155_contract or "comparison_matrix" in r155_contract:
+            errors.append("R155 execution-mode target or unopened boundary mismatch")
+        bindings = r155_contract.get("source_bindings", {})
+        if bindings.get("protocol_payload_hash") != protocol_ph or bindings.get("protocol_sha256") != hashlib.sha256(r155_protocol_path.read_bytes()).hexdigest() or len(r155_contract.get("acceptance_conditions", [])) != 10:
+            errors.append("R155 execution-mode protocol binding or acceptance count mismatch")
+
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
             errors.append(f"missing status artifact: {path}")
@@ -39376,6 +39512,7 @@ def audit(root: Path) -> dict:
             "r153_independent_seed_replication_holdout": r153_result_status,
             "r154_deterministic_automatic_replay": r154_status,
             "r154_deterministic_automatic_replay_result": r154_result_status,
+            "r155_execution_mode_attribution": r155_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -40857,6 +40994,8 @@ def audit(root: Path) -> dict:
             "b4_b8_r154_deterministic_automatic_replay_protocol": str(r154_protocol_report_path),
             "b4_b8_r154_deterministic_automatic_replay_contract": str(r154_contract_path),
             "b4_b8_r154_deterministic_automatic_replay": str(r154_result_report_path),
+            "b4_b8_r155_execution_mode_attribution_protocol": str(r155_protocol_report_path),
+            "b4_b8_r155_execution_mode_attribution_contract": str(r155_contract_path),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
             "b8_challenge_refresh_repair": str(research / "B8_challenge_refresh_repair.md"),
