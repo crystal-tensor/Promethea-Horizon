@@ -1,0 +1,426 @@
+{
+  "acceptance_conditions": [
+    {
+      "condition_id": "A1",
+      "label": "contract, protocol, R157 evidence, source manifest, input, target, and binary hashes remain exact",
+      "passed": true,
+      "threshold": true,
+      "value": true
+    },
+    {
+      "condition_id": "A2",
+      "label": "4 post-registration process artifacts retain 256 rows",
+      "passed": true,
+      "threshold": [
+        4,
+        4,
+        4,
+        256
+      ],
+      "value": [
+        4,
+        4,
+        4,
+        256
+      ]
+    },
+    {
+      "condition_id": "A3",
+      "label": "all rows use the frozen source and environment",
+      "passed": true,
+      "threshold": [
+        true,
+        true
+      ],
+      "value": [
+        true,
+        true
+      ]
+    },
+    {
+      "condition_id": "A4",
+      "label": "all four profiles complete without replacement",
+      "passed": true,
+      "threshold": 4,
+      "value": 4
+    },
+    {
+      "condition_id": "A5",
+      "label": "entry point, object identities, mapping, stop reason, elapsed time, and row hashes are retained",
+      "passed": true,
+      "threshold": [
+        true,
+        true
+      ],
+      "value": [
+        true,
+        true
+      ]
+    },
+    {
+      "condition_id": "A6",
+      "label": "external ErrorMap is constructed once and reused",
+      "passed": true,
+      "threshold": [
+        true,
+        true
+      ],
+      "value": [
+        true,
+        true
+      ]
+    },
+    {
+      "condition_id": "A7",
+      "label": "new mappings and no-solution rows remain classified",
+      "passed": true,
+      "threshold": 256,
+      "value": 256
+    },
+    {
+      "condition_id": "A8",
+      "label": "three staged contrasts and fully shared verdict are emitted",
+      "passed": true,
+      "threshold": 3,
+      "value": 3
+    },
+    {
+      "condition_id": "A9",
+      "label": "two R157 mappings and tied score remain bound",
+      "passed": true,
+      "threshold": 0.45894321220828727,
+      "value": 0.45894321220828727
+    },
+    {
+      "condition_id": "A10",
+      "label": "forbidden claims remain false",
+      "passed": true,
+      "threshold": 0,
+      "value": 0
+    }
+  ],
+  "artifacts": {
+    "contract": "benchmarks/B4_B8_R158_vf2_accelerator_boundary_contract_v0.json",
+    "contrast_matrix": "results/B4_B8_R158_vf2_accelerator_boundary/contrast_matrix.json",
+    "markdown_report": "research/B4_B8_R158_vf2_accelerator_boundary.md",
+    "process_artifacts": [
+      {
+        "manifest_payload_hash": "a1ab3620dc099b9585d1060067e624a373c7c4f9a37298cde40f62b7180d9f33",
+        "path": "results/B4_B8_R158_vf2_accelerator_boundary/python_pass_fresh_dag_fresh_config_internal_error_map.json",
+        "profile_id": "python_pass_fresh_dag_fresh_config_internal_error_map",
+        "sha256": "e7a00570db6a6855553ce9ef9828d2dd3b00f0441d056249fc6e5b92e8af83b5"
+      },
+      {
+        "manifest_payload_hash": "598d8f21b4952f7194876503fc1ec1e9375f25f6a3cd94e840311ba1b793ca9f",
+        "path": "results/B4_B8_R158_vf2_accelerator_boundary/accelerator_fresh_dag_fresh_config_internal_error_map.json",
+        "profile_id": "accelerator_fresh_dag_fresh_config_internal_error_map",
+        "sha256": "2a2b8ed778eecfd9cbd2a06acec058489a755f2754c44d4aa4a9e35d6164d3a7"
+      },
+      {
+        "manifest_payload_hash": "50ae700cdd19b8860570cb40e6c4a3fa9f6d7123827c4ffee05b95c3be21e5ef",
+        "path": "results/B4_B8_R158_vf2_accelerator_boundary/accelerator_shared_dag_shared_config_internal_error_map.json",
+        "profile_id": "accelerator_shared_dag_shared_config_internal_error_map",
+        "sha256": "e8bea88be78e0ab8e074ffc312c7dfc6f2ad5a484cade42b48d8e6575a9bfb19"
+      },
+      {
+        "manifest_payload_hash": "b4c58cab88e64d2c726393985ed04fc82104da7b99ec7fe8397c2792b1146ea6",
+        "path": "results/B4_B8_R158_vf2_accelerator_boundary/accelerator_shared_dag_shared_config_shared_error_map.json",
+        "profile_id": "accelerator_shared_dag_shared_config_shared_error_map",
+        "sha256": "51f2d3ca73b376cad603bf6eb930b3e943106a3feec0965cda08747ff100a068"
+      }
+    ],
+    "profile_distributions": "results/B4_B8_R158_vf2_accelerator_boundary/profile_distributions.json",
+    "protocol": "results/B4_B8_R158_vf2_accelerator_boundary_protocol_v0.json",
+    "result": "results/B4_B8_R158_vf2_accelerator_boundary_v0.json",
+    "verifier_transcript": "results/B4_B8_R158_vf2_accelerator_boundary/verifier_transcript.json"
+  },
+  "claim_boundary": {
+    "what_is_not_supported": "candidate-order instrumentation, a lower-level hash, iterator, floating-point, or retention mechanism, a confirmed Qiskit bug, hardware performance, advantage, BQP separation, solved B4/B8/B10, or new credit",
+    "what_is_supported": "one source-bound staged call-boundary diagnostic over the two exactly tied R157 mappings"
+  },
+  "contrast_matrix": {
+    "classification": "internal_error_map_boundary",
+    "contrast_count": 3,
+    "contrast_rows": [
+      {
+        "boundary": "Python wrapper removal",
+        "causal_mechanism_claimed": false,
+        "contrast_id": "C1",
+        "left_mapping_class_counts": {
+          "endpoint_4_to_0": 46,
+          "endpoint_4_to_2": 18,
+          "no_solution": 0,
+          "other_mapping": 0
+        },
+        "left_outcome": "variation",
+        "left_profile_id": "python_pass_fresh_dag_fresh_config_internal_error_map",
+        "right_mapping_class_counts": {
+          "endpoint_4_to_0": 36,
+          "endpoint_4_to_2": 28,
+          "no_solution": 0,
+          "other_mapping": 0
+        },
+        "right_outcome": "variation",
+        "right_profile_id": "accelerator_fresh_dag_fresh_config_internal_error_map"
+      },
+      {
+        "boundary": "DAG and config reconstruction removal",
+        "causal_mechanism_claimed": false,
+        "contrast_id": "C2",
+        "left_mapping_class_counts": {
+          "endpoint_4_to_0": 36,
+          "endpoint_4_to_2": 28,
+          "no_solution": 0,
+          "other_mapping": 0
+        },
+        "left_outcome": "variation",
+        "left_profile_id": "accelerator_fresh_dag_fresh_config_internal_error_map",
+        "right_mapping_class_counts": {
+          "endpoint_4_to_0": 34,
+          "endpoint_4_to_2": 30,
+          "no_solution": 0,
+          "other_mapping": 0
+        },
+        "right_outcome": "variation",
+        "right_profile_id": "accelerator_shared_dag_shared_config_internal_error_map"
+      },
+      {
+        "boundary": "internal ErrorMap reconstruction removal",
+        "causal_mechanism_claimed": false,
+        "contrast_id": "C3",
+        "left_mapping_class_counts": {
+          "endpoint_4_to_0": 34,
+          "endpoint_4_to_2": 30,
+          "no_solution": 0,
+          "other_mapping": 0
+        },
+        "left_outcome": "variation",
+        "left_profile_id": "accelerator_shared_dag_shared_config_internal_error_map",
+        "right_mapping_class_counts": {
+          "endpoint_4_to_0": 64,
+          "endpoint_4_to_2": 0,
+          "no_solution": 0,
+          "other_mapping": 0
+        },
+        "right_outcome": "collapse",
+        "right_profile_id": "accelerator_shared_dag_shared_config_shared_error_map"
+      }
+    ],
+    "fully_shared_profile_id": "accelerator_shared_dag_shared_config_shared_error_map",
+    "fully_shared_profile_outcome": "collapse",
+    "lower_level_mechanism_claimed": false
+  },
+  "failed_requirement_ids": [],
+  "generated_at_unix": 1784014085,
+  "method": "b4_b8_r158_vf2_accelerator_boundary_v0",
+  "model_status": "source_bound_call_localization_without_lower_level_mechanism_overclaim",
+  "payload_hash": "14a466522b472fca39922b3553e2d34dd39d7dd0df8532dc6b5ddc33de2db95a",
+  "profile_distributions": {
+    "profile_count": 4,
+    "profile_rows": [
+      {
+        "error_map_descriptor_payload_hash": null,
+        "expected_reuse": {
+          "config": false,
+          "dag": false,
+          "error_map": false,
+          "target": true
+        },
+        "mapping_class_counts": {
+          "endpoint_4_to_0": 46,
+          "endpoint_4_to_2": 18,
+          "no_solution": 0,
+          "other_mapping": 0
+        },
+        "observed_object_identity_counts": {
+          "config": 0,
+          "dag": 64,
+          "error_map": 0,
+          "pass": 64
+        },
+        "process_count": 1,
+        "profile_id": "python_pass_fresh_dag_fresh_config_internal_error_map",
+        "profile_outcome": "variation",
+        "replay_count": 64,
+        "unique_mapping_class_count": 2
+      },
+      {
+        "error_map_descriptor_payload_hash": null,
+        "expected_reuse": {
+          "config": false,
+          "dag": false,
+          "error_map": false,
+          "target": true
+        },
+        "mapping_class_counts": {
+          "endpoint_4_to_0": 36,
+          "endpoint_4_to_2": 28,
+          "no_solution": 0,
+          "other_mapping": 0
+        },
+        "observed_object_identity_counts": {
+          "config": 64,
+          "dag": 64,
+          "error_map": 0,
+          "pass": 0
+        },
+        "process_count": 1,
+        "profile_id": "accelerator_fresh_dag_fresh_config_internal_error_map",
+        "profile_outcome": "variation",
+        "replay_count": 64,
+        "unique_mapping_class_count": 2
+      },
+      {
+        "error_map_descriptor_payload_hash": null,
+        "expected_reuse": {
+          "config": true,
+          "dag": true,
+          "error_map": false,
+          "target": true
+        },
+        "mapping_class_counts": {
+          "endpoint_4_to_0": 34,
+          "endpoint_4_to_2": 30,
+          "no_solution": 0,
+          "other_mapping": 0
+        },
+        "observed_object_identity_counts": {
+          "config": 1,
+          "dag": 1,
+          "error_map": 0,
+          "pass": 0
+        },
+        "process_count": 1,
+        "profile_id": "accelerator_shared_dag_shared_config_internal_error_map",
+        "profile_outcome": "variation",
+        "replay_count": 64,
+        "unique_mapping_class_count": 2
+      },
+      {
+        "error_map_descriptor_payload_hash": "3f261b250b2d83b36c9cbb0e1e1f7f105d9d874bcb9f13b2d9714d83a18308d4",
+        "expected_reuse": {
+          "config": true,
+          "dag": true,
+          "error_map": true,
+          "target": true
+        },
+        "mapping_class_counts": {
+          "endpoint_4_to_0": 64,
+          "endpoint_4_to_2": 0,
+          "no_solution": 0,
+          "other_mapping": 0
+        },
+        "observed_object_identity_counts": {
+          "config": 1,
+          "dag": 1,
+          "error_map": 1,
+          "pass": 0
+        },
+        "process_count": 1,
+        "profile_id": "accelerator_shared_dag_shared_config_shared_error_map",
+        "profile_outcome": "collapse",
+        "replay_count": 64,
+        "unique_mapping_class_count": 1
+      }
+    ],
+    "total_direct_replay_count": 256,
+    "total_process_count": 4
+  },
+  "requirement_count": 10,
+  "requirements": [
+    {
+      "label": "public preregistration precedes all four processes",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "label": "protocol, contract, source lineage, binary, and R157 inputs are bound",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "label": "four unique process identities are retained",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "label": "all 256 replay rows retain required fields",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "label": "all four staged profiles complete",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "label": "the final profile reuses DAG, config, and ErrorMap",
+      "passed": true,
+      "requirement_id": "P6"
+    },
+    {
+      "label": "all outcomes remain classified",
+      "passed": true,
+      "requirement_id": "P7"
+    },
+    {
+      "label": "three contrasts and the final verdict are complete",
+      "passed": true,
+      "requirement_id": "P8"
+    },
+    {
+      "label": "no simulation, shots, or sampling occur",
+      "passed": true,
+      "requirement_id": "P9"
+    },
+    {
+      "label": "no candidate-order, mechanism, bug, hardware, advantage, BQP, solved-frontier, or credit claim",
+      "passed": true,
+      "requirement_id": "P10"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 10,
+  "source_target_id": "T-B4-002by/T-B8-003cc/T-B10-009bq",
+  "status": "vf2_accelerator_boundary_diagnostic_complete",
+  "summary": {
+    "acceptance_conditions_failed": 0,
+    "acceptance_conditions_passed": 10,
+    "bqp_separation_claimed": false,
+    "candidate_order_instrumented": false,
+    "candidate_selection_performed": false,
+    "classification": "internal_error_map_boundary",
+    "diagnostic_interpretation": "The staged boundary classification is internal_error_map_boundary; this localizes a reconstruction layer but does not identify a lower-level mechanism.",
+    "direct_replay_count": 256,
+    "external_error_map_descriptor_bound": true,
+    "fully_shared_object_identity_verified": true,
+    "fully_shared_profile_outcome": "collapse",
+    "global_acceptance": true,
+    "hardware_execution_claimed": false,
+    "lower_level_mechanism_claimed": false,
+    "mapping_class_counts": {
+      "endpoint_4_to_0": 180,
+      "endpoint_4_to_2": 76,
+      "no_solution": 0,
+      "other_mapping": 0
+    },
+    "new_credit_delta": 0,
+    "new_hidden_seed_count": 0,
+    "process_count": 4,
+    "process_instance_uuid_count": 4,
+    "process_started_after_preregistration_count": 4,
+    "profile_collapse_count": 1,
+    "profile_count": 4,
+    "profile_variation_count": 3,
+    "qiskit_bug_claimed": false,
+    "quantum_advantage_claimed": false,
+    "route_change_performed": false,
+    "sampling_performed": false,
+    "simulation_execution_count": 0,
+    "solved_frontier_claimed": false,
+    "total_simulated_shots": 0
+  },
+  "title": "B4/B8 R158 VF2 accelerator boundary",
+  "upstream_target_id": "T-B4-002bx/T-B8-003cb/T-B10-009bp",
+  "version": 0
+}

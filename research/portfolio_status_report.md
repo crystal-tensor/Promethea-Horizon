@@ -2331,6 +2331,17 @@ Overall audit: PASS
 - Requirements passed/failed: 10 / 0
 - Protocol/contract/source/report exists: True / True / True / True
 
+### R158 VF2 Accelerator Boundary
+
+- Status: vf2_accelerator_boundary_diagnostic_complete
+- Profiles / processes / direct replays: 4 / 4 / 256
+- Mapping-class counts: {'endpoint_4_to_0': 180, 'endpoint_4_to_2': 76, 'no_solution': 0, 'other_mapping': 0}
+- Profile collapse / variation: 1 / 3
+- Classification / fully shared outcome: internal_error_map_boundary / collapse
+- Simulation executions / shots: 0 / 0
+- Requirements passed/failed: 10 / 0
+- Result/report exists: True / True
+
 - Status: toy_invariant_property_test
 - Model status: toy_invariant_property_test_not_full_distribution_verification
 - Tasks: 3

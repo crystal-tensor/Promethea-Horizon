@@ -40245,6 +40245,209 @@ def audit(root: Path) -> dict:
         if "`4` / `4` / `256`" not in report_text or "one shared DAG, Target, configuration object" not in report_text or "no particular hash" not in report_text:
             errors.append("R158 accelerator-boundary report boundary missing")
 
+    r158_result_path = results / "B4_B8_R158_vf2_accelerator_boundary_v0.json"
+    r158_result_report_path = research / "B4_B8_R158_vf2_accelerator_boundary.md"
+    r158_result_status = {
+        "result_path": str(r158_result_path),
+        "report_path": str(r158_result_report_path),
+        "result_exists": r158_result_path.exists(),
+        "report_exists": r158_result_report_path.exists(),
+    }
+    r158_result_manifest_rows = [
+        (
+            "B4",
+            b4_manifest.get("current_results", {}).get("b4_b8_r158_vf2_accelerator_boundary_v0"),
+            "vf2_accelerator_boundary_diagnostic_complete",
+        ),
+        (
+            "B8",
+            b8_manifest.get("current_results", {}).get("b4_b8_r158_vf2_accelerator_boundary_v0"),
+            "vf2_accelerator_boundary_diagnostic_complete",
+        ),
+        (
+            "B10",
+            b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r158_vf2_accelerator_boundary_v0"),
+            "vf2_accelerator_boundary_diagnostic_not_bqp_claim",
+        ),
+    ]
+    expected_r158_manifest_values = {
+        "profile_count": 4,
+        "process_count": 4,
+        "direct_replay_count": 256,
+        "mapping_class_counts": {
+            "endpoint_4_to_0": 180,
+            "endpoint_4_to_2": 76,
+            "other_mapping": 0,
+            "no_solution": 0,
+        },
+        "profile_collapse_count": 1,
+        "profile_variation_count": 3,
+        "classification": "internal_error_map_boundary",
+        "fully_shared_profile_outcome": "collapse",
+        "fully_shared_object_identity_verified": True,
+        "external_error_map_descriptor_bound": True,
+        "simulation_execution_count": 0,
+        "total_simulated_shots": 0,
+        "lower_level_mechanism_claimed": False,
+        "qiskit_bug_claimed": False,
+        "new_credit_delta": 0,
+        "requirements_passed": 10,
+        "requirements_failed": 0,
+    }
+    for label, row, expected_status in r158_result_manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R158 accelerator-boundary result")
+            continue
+        for field in ["result", "markdown_report"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R158 accelerator-boundary result missing {field}")
+        if row.get("status") != expected_status or row.get("method") != "b4_b8_r158_vf2_accelerator_boundary_v0":
+            errors.append(f"{label} R158 accelerator-boundary result status or method mismatch")
+        if row.get("source_target_id") != "T-B4-002by/T-B8-003cc/T-B10-009bq" or row.get("upstream_target_id") != "T-B4-002bx/T-B8-003cb/T-B10-009bp":
+            errors.append(f"{label} R158 accelerator-boundary result target chain mismatch")
+        for field, value in expected_r158_manifest_values.items():
+            if row.get(field) != value:
+                errors.append(f"{label} R158 accelerator-boundary result manifest {field} mismatch")
+    if not r158_result_path.exists() or not r158_result_report_path.exists():
+        errors.append("R158 accelerator-boundary result or report missing")
+    else:
+        r158_result = json.loads(read(r158_result_path))
+        r158_summary = r158_result.get("summary", {})
+        r158_distributions = r158_result.get("profile_distributions", {})
+        r158_contrasts = r158_result.get("contrast_matrix", {})
+        r158_result_status.update({
+            "status": r158_result.get("status"),
+            "method": r158_result.get("method"),
+            "profile_count": r158_summary.get("profile_count"),
+            "process_count": r158_summary.get("process_count"),
+            "direct_replay_count": r158_summary.get("direct_replay_count"),
+            "mapping_class_counts": r158_summary.get("mapping_class_counts"),
+            "profile_collapse_count": r158_summary.get("profile_collapse_count"),
+            "profile_variation_count": r158_summary.get("profile_variation_count"),
+            "classification": r158_summary.get("classification"),
+            "fully_shared_profile_outcome": r158_summary.get("fully_shared_profile_outcome"),
+            "simulation_execution_count": r158_summary.get("simulation_execution_count"),
+            "total_simulated_shots": r158_summary.get("total_simulated_shots"),
+            "requirements_passed": r158_result.get("requirements_passed"),
+            "requirements_failed": r158_result.get("requirements_failed"),
+        })
+        if r158_result.get("status") != "vf2_accelerator_boundary_diagnostic_complete" or r158_result.get("method") != "b4_b8_r158_vf2_accelerator_boundary_v0":
+            errors.append("R158 accelerator-boundary result status or method mismatch")
+        if r158_result.get("source_target_id") != "T-B4-002by/T-B8-003cc/T-B10-009bq" or r158_result.get("upstream_target_id") != "T-B4-002bx/T-B8-003cb/T-B10-009bp":
+            errors.append("R158 accelerator-boundary result target chain mismatch")
+        if r158_result.get("requirements_passed") != 10 or r158_result.get("requirements_failed") != 0:
+            errors.append("R158 accelerator-boundary result requirements must pass 10/10")
+        expected_r158_summary = {
+            **expected_r158_manifest_values,
+            "process_instance_uuid_count": 4,
+            "process_started_after_preregistration_count": 4,
+            "global_acceptance": True,
+            "new_hidden_seed_count": 0,
+            "candidate_selection_performed": False,
+            "route_change_performed": False,
+            "sampling_performed": False,
+            "candidate_order_instrumented": False,
+            "hardware_execution_claimed": False,
+            "quantum_advantage_claimed": False,
+            "bqp_separation_claimed": False,
+            "solved_frontier_claimed": False,
+        }
+        expected_r158_summary.pop("requirements_passed")
+        expected_r158_summary.pop("requirements_failed")
+        for field, value in expected_r158_summary.items():
+            if r158_summary.get(field) != value:
+                errors.append(f"R158 accelerator-boundary result {field} mismatch")
+        expected_profile_rows = [
+            ("python_pass_fresh_dag_fresh_config_internal_error_map", 46, 18, "variation", 64, 0, 0),
+            ("accelerator_fresh_dag_fresh_config_internal_error_map", 36, 28, "variation", 64, 64, 0),
+            ("accelerator_shared_dag_shared_config_internal_error_map", 34, 30, "variation", 1, 1, 0),
+            ("accelerator_shared_dag_shared_config_shared_error_map", 64, 0, "collapse", 1, 1, 1),
+        ]
+        observed_profile_rows = []
+        for row in r158_distributions.get("profile_rows", []):
+            counts = row.get("mapping_class_counts", {})
+            identities = row.get("observed_object_identity_counts", {})
+            observed_profile_rows.append((
+                row.get("profile_id"), counts.get("endpoint_4_to_0"),
+                counts.get("endpoint_4_to_2"), row.get("profile_outcome"),
+                identities.get("dag"), identities.get("config"), identities.get("error_map"),
+            ))
+        if observed_profile_rows != expected_profile_rows:
+            errors.append("R158 accelerator-boundary profile distributions mismatch")
+        if r158_contrasts.get("classification") != "internal_error_map_boundary" or r158_contrasts.get("contrast_count") != 3 or r158_contrasts.get("fully_shared_profile_outcome") != "collapse":
+            errors.append("R158 accelerator-boundary contrast classification mismatch")
+        if any(row.get("causal_mechanism_claimed") is not False for row in r158_contrasts.get("contrast_rows", [])):
+            errors.append("R158 accelerator-boundary contrast mechanism boundary mismatch")
+        acceptance = r158_result.get("acceptance_conditions", [])
+        requirements = r158_result.get("requirements", [])
+        if [row.get("condition_id") for row in acceptance] != [f"A{i}" for i in range(1, 11)] or any(row.get("passed") is not True for row in acceptance):
+            errors.append("R158 accelerator-boundary result must preserve A1-A10 acceptance")
+        if [row.get("requirement_id") for row in requirements] != [f"P{i}" for i in range(1, 11)] or any(row.get("passed") is not True for row in requirements):
+            errors.append("R158 accelerator-boundary result must preserve P1-P10 requirements")
+        rhp = dict(r158_result)
+        result_ph = rhp.pop("payload_hash", None)
+        if result_ph != hashlib.sha256(json.dumps(rhp, sort_keys=True, separators=(",", ":")).encode()).hexdigest() or result_ph != "14a466522b472fca39922b3553e2d34dd39d7dd0df8532dc6b5ddc33de2db95a":
+            errors.append("R158 accelerator-boundary result payload mismatch")
+        artifact_paths = {}
+        for artifact_key in ["profile_distributions", "contrast_matrix", "verifier_transcript"]:
+            rel = r158_result.get("artifacts", {}).get(artifact_key)
+            path = root / rel if rel else None
+            if path is None or not path.exists():
+                errors.append(f"R158 accelerator-boundary {artifact_key} artifact missing")
+            else:
+                artifact_paths[artifact_key] = path
+        process_artifacts = r158_result.get("artifacts", {}).get("process_artifacts", [])
+        if len(process_artifacts) != 4:
+            errors.append("R158 accelerator-boundary process artifact count mismatch")
+        observed_uuids = set()
+        observed_replay_count = 0
+        required_replay_fields = {
+            "entry_point", "object_ids", "mapping_vector", "mapping_class",
+            "has_solution", "stop_reason", "elapsed_seconds", "replay_payload_hash",
+        }
+        for artifact in process_artifacts:
+            path = root / artifact.get("path", "")
+            if not path.exists():
+                errors.append(f"R158 accelerator-boundary worker artifact missing: {artifact.get('profile_id')}")
+                continue
+            if hashlib.sha256(path.read_bytes()).hexdigest() != artifact.get("sha256"):
+                errors.append(f"R158 accelerator-boundary worker hash mismatch: {artifact.get('profile_id')}")
+            manifest = json.loads(read(path))
+            hp = dict(manifest)
+            manifest_ph = hp.pop("manifest_payload_hash", None)
+            if manifest_ph != hashlib.sha256(json.dumps(hp, sort_keys=True, separators=(",", ":")).encode()).hexdigest() or manifest_ph != artifact.get("manifest_payload_hash"):
+                errors.append(f"R158 accelerator-boundary worker payload mismatch: {artifact.get('profile_id')}")
+            observed_uuids.add(manifest.get("process_instance_uuid"))
+            if manifest.get("started_at_unix", 0) < 1784013600 or manifest.get("preregistration_commit") != "1c996a0d27f8fa95581258988f620827f95deccc":
+                errors.append(f"R158 accelerator-boundary worker preregistration boundary mismatch: {artifact.get('profile_id')}")
+            replay_rows = manifest.get("replay_rows", [])
+            observed_replay_count += len(replay_rows)
+            if len(replay_rows) != 64 or any(not required_replay_fields.issubset(row) for row in replay_rows):
+                errors.append(f"R158 accelerator-boundary worker replay coverage mismatch: {artifact.get('profile_id')}")
+            for replay in replay_rows:
+                replay_copy = dict(replay)
+                replay_ph = replay_copy.pop("replay_payload_hash", None)
+                if replay_ph != hashlib.sha256(json.dumps(replay_copy, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+                    errors.append(f"R158 accelerator-boundary replay payload mismatch: {artifact.get('profile_id')}")
+                    break
+            if manifest.get("simulation_execution_count") != 0 or manifest.get("total_simulated_shots") != 0:
+                errors.append(f"R158 accelerator-boundary worker simulation boundary mismatch: {artifact.get('profile_id')}")
+        if len(observed_uuids) != 4 or observed_replay_count != 256:
+            errors.append("R158 accelerator-boundary worker identity or replay totals mismatch")
+        if len(artifact_paths) == 3:
+            distribution_artifact = json.loads(read(artifact_paths["profile_distributions"]))
+            contrast_artifact = json.loads(read(artifact_paths["contrast_matrix"]))
+            transcript = json.loads(read(artifact_paths["verifier_transcript"]))
+            if distribution_artifact.get("profile_distributions_payload_hash") != "c5edc3a4d0d691c377f2c9a083283456964c07d671586ec9a876ed472baee6c4":
+                errors.append("R158 accelerator-boundary distribution payload mismatch")
+            if contrast_artifact.get("contrast_matrix_payload_hash") != "1c1458c1e027c1c9f835bf70ffe2ff88f81bd1db8f08c3b0dfa7e6b035af06b7":
+                errors.append("R158 accelerator-boundary contrast payload mismatch")
+            if transcript.get("result_payload_hash") != result_ph or transcript.get("process_artifact_count") != 4 or transcript.get("direct_replay_count") != 256 or transcript.get("global_acceptance") is not True:
+                errors.append("R158 accelerator-boundary transcript binding mismatch")
+        report_text = read(r158_result_report_path)
+        if "`internal_error_map_boundary`" not in report_text or "| `accelerator_shared_dag_shared_config_shared_error_map` | 64 | 0" not in report_text or "does not identify" not in report_text:
+            errors.append("R158 accelerator-boundary result report boundary missing")
+
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
             errors.append(f"missing status artifact: {path}")
@@ -40727,6 +40930,7 @@ def audit(root: Path) -> dict:
             "r157_vf2_tie_isolation": r157_status,
             "r157_vf2_tie_isolation_result": r157_result_status,
             "r158_vf2_accelerator_boundary": r158_status,
+            "r158_vf2_accelerator_boundary_result": r158_result_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -42220,6 +42424,7 @@ def audit(root: Path) -> dict:
             "b4_b8_r157_vf2_tie_isolation": str(r157_result_report_path),
             "b4_b8_r158_vf2_accelerator_boundary_protocol": str(r158_protocol_report_path),
             "b4_b8_r158_vf2_accelerator_boundary_contract": str(r158_contract_path),
+            "b4_b8_r158_vf2_accelerator_boundary": str(r158_result_report_path),
             "qiskit_2_4_1_vf2_source_manifest": str(r158_source_manifest_path),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
@@ -44572,6 +44777,17 @@ def markdown_report(report: dict) -> str:
             f"- Execution started: {report['b8']['r158_vf2_accelerator_boundary'].get('execution_started')}",
             f"- Requirements passed/failed: {report['b8']['r158_vf2_accelerator_boundary'].get('requirements_passed')} / {report['b8']['r158_vf2_accelerator_boundary'].get('requirements_failed')}",
             f"- Protocol/contract/source/report exists: {report['b8']['r158_vf2_accelerator_boundary'].get('protocol_exists')} / {report['b8']['r158_vf2_accelerator_boundary'].get('contract_exists')} / {report['b8']['r158_vf2_accelerator_boundary'].get('source_manifest_exists')} / {report['b8']['r158_vf2_accelerator_boundary'].get('report_exists')}",
+            "",
+            "### R158 VF2 Accelerator Boundary",
+            "",
+            f"- Status: {report['b8']['r158_vf2_accelerator_boundary_result'].get('status')}",
+            f"- Profiles / processes / direct replays: {report['b8']['r158_vf2_accelerator_boundary_result'].get('profile_count')} / {report['b8']['r158_vf2_accelerator_boundary_result'].get('process_count')} / {report['b8']['r158_vf2_accelerator_boundary_result'].get('direct_replay_count')}",
+            f"- Mapping-class counts: {report['b8']['r158_vf2_accelerator_boundary_result'].get('mapping_class_counts')}",
+            f"- Profile collapse / variation: {report['b8']['r158_vf2_accelerator_boundary_result'].get('profile_collapse_count')} / {report['b8']['r158_vf2_accelerator_boundary_result'].get('profile_variation_count')}",
+            f"- Classification / fully shared outcome: {report['b8']['r158_vf2_accelerator_boundary_result'].get('classification')} / {report['b8']['r158_vf2_accelerator_boundary_result'].get('fully_shared_profile_outcome')}",
+            f"- Simulation executions / shots: {report['b8']['r158_vf2_accelerator_boundary_result'].get('simulation_execution_count')} / {report['b8']['r158_vf2_accelerator_boundary_result'].get('total_simulated_shots')}",
+            f"- Requirements passed/failed: {report['b8']['r158_vf2_accelerator_boundary_result'].get('requirements_passed')} / {report['b8']['r158_vf2_accelerator_boundary_result'].get('requirements_failed')}",
+            f"- Result/report exists: {report['b8']['r158_vf2_accelerator_boundary_result'].get('result_exists')} / {report['b8']['r158_vf2_accelerator_boundary_result'].get('report_exists')}",
             "",
             f"- Status: {report['b8']['output_invariant_verifier'].get('status')}",
             f"- Model status: {report['b8']['output_invariant_verifier'].get('model_status')}",

@@ -2815,6 +2815,22 @@ retention mechanism is proved. Requirements pass `10/10`; contract
 confirmed Qiskit bug, hardware, transfer, route-advantage, quantum-advantage,
 BQP, solved-frontier, or new-credit claim is made.
 
+`T-B4-002by` / `T-B8-003cc` / `T-B10-009bq` completes R158 with four
+post-registration operating-system processes and 256 retained calls. The
+Python-pass fresh-object profile produces the two tied mappings at `46/18`;
+the direct accelerator with fresh DAG/config and internal ErrorMap produces
+`36/28`; and sharing the DAG/config while retaining internal ErrorMap
+construction produces `34/30`. The final profile reuses one DAG, Target,
+configuration, and externally constructed deterministic ErrorMap and collapses
+to mapping A at `64/0`. Aggregate mapping counts are `180/76`, with no new
+mapping and no no-solution row. This localizes the observed variation boundary
+to internal ErrorMap construction under the frozen source and binary, while
+not identifying a hash, iterator, floating-point accumulation, or retention
+mechanism. Conditions and requirements pass `10/10`; zero simulations and zero
+shots were used. No confirmed Qiskit-bug, general compiler-determinism,
+hardware, transfer, route-advantage, quantum-advantage, BQP, solved-frontier,
+or new-credit claim is made.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific
