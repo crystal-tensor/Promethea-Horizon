@@ -2308,6 +2308,18 @@ Overall audit: PASS
 - Requirements passed/failed: 10 / 0
 - Protocol/contract/input/report exists: True / True / True / True
 
+### R157 VF2 Tie Isolation
+
+- Status: vf2_tie_isolation_diagnostic_complete
+- Profiles / processes / direct replays: 5 / 98 / 160
+- Mapping-class counts: {'endpoint_4_to_0': 103, 'endpoint_4_to_2': 57, 'no_solution': 0, 'other_mapping': 0}
+- Profile collapse / variation: 0 / 5
+- Target-order hashes / implementation-smoke replays: 3 / 5
+- Blinded confirmation claimed: False
+- Simulation executions / shots: 0 / 0
+- Requirements passed/failed: 10 / 0
+- Result/report exists: True / True
+
 - Status: toy_invariant_property_test
 - Model status: toy_invariant_property_test_not_full_distribution_verification
 - Tasks: 3

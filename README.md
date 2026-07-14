@@ -2782,6 +2782,23 @@ mechanism, confirmed Qiskit bug, general compiler determinism theorem,
 hardware or simulation performance, transfer, route advantage, quantum
 advantage, BQP separation, solved-frontier status, or new credit.
 
+`T-B4-002bw` / `T-B8-003ca` / `T-B10-009bo` completes the retained R157
+matrix with 98 post-registration operating-system processes and 160 direct
+`VF2PostLayout` replays. Both known exactly tied mappings remain present in
+every one of the five profiles. Their aggregate counts are `103/57`; native
+independent-process counts are `24/8`, ascending `20/12`, descending `19/13`,
+fresh-target same-process `19/13`, and shared-target same-process `21/11`.
+All five profiles vary internally; there are no new mappings and no no-solution
+rows. This rejects the simple explanations that process startup, canonical
+Target insertion order, fresh Target construction, or reuse of one shared
+Target is sufficient by itself to select one mapping deterministically. It
+does not identify the lower-level source. Five post-registration implementation
+smoke calls are disclosed outside the matrix, so R157 is not described as a
+blinded confirmation. Conditions and requirements pass `10/10`; zero
+simulations and zero shots were used. No compiler-mechanism, confirmed-bug,
+hardware, transfer, route-advantage, quantum-advantage, BQP, solved-frontier,
+or new-credit claim is made.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

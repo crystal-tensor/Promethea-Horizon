@@ -39838,6 +39838,241 @@ def audit(root: Path) -> dict:
         if "Scores exactly equal" not in report_text or "`5` / `98` / `160`" not in report_text or "does not establish the lower-level mechanism" not in report_text:
             errors.append("R157 VF2 tie-isolation report boundary missing")
 
+    r157_result_path = results / "B4_B8_R157_vf2_tie_isolation_v0.json"
+    r157_result_report_path = research / "B4_B8_R157_vf2_tie_isolation.md"
+    r157_result_status = {
+        "result_path": str(r157_result_path),
+        "report_path": str(r157_result_report_path),
+        "result_exists": r157_result_path.exists(),
+        "report_exists": r157_result_report_path.exists(),
+    }
+    r157_result_manifest_rows = [
+        (
+            "B4",
+            b4_manifest.get("current_results", {}).get("b4_b8_r157_vf2_tie_isolation_v0"),
+            "vf2_tie_isolation_diagnostic_complete",
+        ),
+        (
+            "B8",
+            b8_manifest.get("current_results", {}).get("b4_b8_r157_vf2_tie_isolation_v0"),
+            "vf2_tie_isolation_diagnostic_complete",
+        ),
+        (
+            "B10",
+            b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r157_vf2_tie_isolation_v0"),
+            "vf2_tie_isolation_diagnostic_not_bqp_claim",
+        ),
+    ]
+    for label, row, expected_status in r157_result_manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R157 VF2 tie-isolation result")
+            continue
+        for field in ["result", "markdown_report"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R157 VF2 tie-isolation result missing {field}")
+        if row.get("status") != expected_status or row.get("method") != "b4_b8_r157_vf2_tie_isolation_v0":
+            errors.append(f"{label} R157 VF2 tie-isolation result status or method mismatch")
+        if row.get("source_target_id") != "T-B4-002bw/T-B8-003ca/T-B10-009bo" or row.get("upstream_target_id") != "T-B4-002bv/T-B8-003bz/T-B10-009bn":
+            errors.append(f"{label} R157 VF2 tie-isolation result target chain mismatch")
+        expected_manifest_values = {
+            "profile_count": 5,
+            "process_count": 98,
+            "direct_replay_count": 160,
+            "mapping_class_counts": {
+                "endpoint_4_to_0": 103,
+                "endpoint_4_to_2": 57,
+                "other_mapping": 0,
+                "no_solution": 0,
+            },
+            "profile_collapse_count": 0,
+            "profile_variation_count": 5,
+            "target_order_hash_count": 3,
+            "implementation_smoke_replay_count": 5,
+            "blinded_confirmation_claimed": False,
+            "simulation_execution_count": 0,
+            "total_simulated_shots": 0,
+            "compiler_mechanism_claimed": False,
+            "qiskit_bug_claimed": False,
+            "new_credit_delta": 0,
+            "requirements_passed": 10,
+            "requirements_failed": 0,
+        }
+        for field, value in expected_manifest_values.items():
+            if row.get(field) != value:
+                errors.append(f"{label} R157 VF2 tie-isolation result manifest {field} mismatch")
+    if not r157_result_path.exists() or not r157_result_report_path.exists():
+        errors.append("R157 VF2 tie-isolation result or report missing")
+    else:
+        r157_result = json.loads(read(r157_result_path))
+        r157_summary = r157_result.get("summary", {})
+        r157_distributions = r157_result.get("profile_distributions", {})
+        r157_contrasts = r157_result.get("contrast_matrix", {})
+        r157_result_status.update({
+            "status": r157_result.get("status"),
+            "method": r157_result.get("method"),
+            "requirements_passed": r157_result.get("requirements_passed"),
+            "requirements_failed": r157_result.get("requirements_failed"),
+            "profile_count": r157_summary.get("profile_count"),
+            "process_count": r157_summary.get("process_count"),
+            "direct_replay_count": r157_summary.get("direct_replay_count"),
+            "mapping_class_counts": r157_summary.get("mapping_class_counts"),
+            "profile_collapse_count": r157_summary.get("profile_collapse_count"),
+            "profile_variation_count": r157_summary.get("profile_variation_count"),
+            "target_order_hash_count": r157_summary.get("target_order_hash_count"),
+            "implementation_smoke_replay_count": r157_summary.get("implementation_smoke_replay_count"),
+            "blinded_confirmation_claimed": r157_summary.get("blinded_confirmation_claimed"),
+            "simulation_execution_count": r157_summary.get("simulation_execution_count"),
+            "total_simulated_shots": r157_summary.get("total_simulated_shots"),
+        })
+        if r157_result.get("status") != "vf2_tie_isolation_diagnostic_complete" or r157_result.get("method") != "b4_b8_r157_vf2_tie_isolation_v0":
+            errors.append("R157 VF2 tie-isolation result status or method mismatch")
+        if r157_result.get("source_target_id") != "T-B4-002bw/T-B8-003ca/T-B10-009bo" or r157_result.get("upstream_target_id") != "T-B4-002bv/T-B8-003bz/T-B10-009bn":
+            errors.append("R157 VF2 tie-isolation result target chain mismatch")
+        if r157_result.get("requirements_passed") != 10 or r157_result.get("requirements_failed") != 0:
+            errors.append("R157 VF2 tie-isolation result requirements must pass 10/10")
+        expected_r157_summary = {
+            "profile_count": 5,
+            "process_count": 98,
+            "process_instance_uuid_count": 98,
+            "process_started_after_preregistration_count": 98,
+            "direct_replay_count": 160,
+            "observed_mapping_class_count": 2,
+            "mapping_class_counts": {
+                "endpoint_4_to_0": 103,
+                "endpoint_4_to_2": 57,
+                "other_mapping": 0,
+                "no_solution": 0,
+            },
+            "profile_collapse_count": 0,
+            "profile_variation_count": 5,
+            "other_mapping_count": 0,
+            "no_solution_count": 0,
+            "target_order_hash_count": 3,
+            "contrast_count": 4,
+            "simulation_execution_count": 0,
+            "total_simulated_shots": 0,
+            "new_hidden_seed_count": 0,
+            "implementation_smoke_replay_count": 5,
+            "implementation_smoke_rows_retained": False,
+            "blinded_confirmation_claimed": False,
+            "acceptance_conditions_passed": 10,
+            "acceptance_conditions_failed": 0,
+            "global_acceptance": True,
+            "new_credit_delta": 0,
+        }
+        for field, value in expected_r157_summary.items():
+            if r157_summary.get(field) != value:
+                errors.append(f"R157 VF2 tie-isolation result {field} mismatch")
+        forbidden_claims = [
+            "candidate_selection_performed",
+            "route_change_performed",
+            "sampling_performed",
+            "blinded_confirmation_claimed",
+            "compiler_mechanism_claimed",
+            "qiskit_bug_claimed",
+            "hardware_execution_claimed",
+            "temporal_transfer_claimed",
+            "real_device_transfer_claimed",
+            "general_route_generation_advantage_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "solved_frontier_claimed",
+        ]
+        if any(r157_summary.get(field) is not False for field in forbidden_claims):
+            errors.append("R157 VF2 tie-isolation forbidden claim boundary mismatch")
+        expected_profile_rows = [
+            ("native_target_independent_process", 32, 32, 24, 8, "variation"),
+            ("canonical_ascending_independent_process", 32, 32, 20, 12, "variation"),
+            ("canonical_descending_independent_process", 32, 32, 19, 13, "variation"),
+            ("fresh_target_same_process", 1, 32, 19, 13, "variation"),
+            ("shared_target_same_process", 1, 32, 21, 11, "variation"),
+        ]
+        observed_profile_rows = [
+            (
+                row.get("profile_id"),
+                row.get("process_count"),
+                row.get("replay_count"),
+                row.get("mapping_class_counts", {}).get("endpoint_4_to_0"),
+                row.get("mapping_class_counts", {}).get("endpoint_4_to_2"),
+                row.get("profile_outcome"),
+            )
+            for row in r157_distributions.get("profile_rows", [])
+        ]
+        if observed_profile_rows != expected_profile_rows:
+            errors.append("R157 VF2 tie-isolation profile distributions mismatch")
+        if r157_distributions.get("profile_count") != 5 or r157_distributions.get("total_process_count") != 98 or r157_distributions.get("total_direct_replay_count") != 160:
+            errors.append("R157 VF2 tie-isolation distribution totals mismatch")
+        contrast_rows = r157_contrasts.get("contrast_rows", [])
+        if r157_contrasts.get("contrast_count") != 4 or len(contrast_rows) != 4 or any(row.get("causal_mechanism_claimed") is not False for row in contrast_rows):
+            errors.append("R157 VF2 tie-isolation contrast matrix mismatch")
+        tie_evidence = r157_result.get("tie_score_evidence", {})
+        if tie_evidence.get("scores_exactly_equal_in_python_recalculation") is not True or tie_evidence.get("shared_total_score") != 0.45894321220828727:
+            errors.append("R157 VF2 tie-isolation result tie evidence mismatch")
+        acceptance = r157_result.get("acceptance_conditions", [])
+        requirements = r157_result.get("requirements", [])
+        if [row.get("condition_id") for row in acceptance] != [f"A{i}" for i in range(1, 11)] or any(row.get("passed") is not True for row in acceptance):
+            errors.append("R157 VF2 tie-isolation result must preserve A1-A10 acceptance")
+        if [row.get("requirement_id") for row in requirements] != [f"P{i}" for i in range(1, 11)] or any(row.get("passed") is not True for row in requirements):
+            errors.append("R157 VF2 tie-isolation result must preserve P1-P10 requirements")
+        rhp = dict(r157_result)
+        result_ph = rhp.pop("payload_hash", None)
+        if result_ph != hashlib.sha256(json.dumps(rhp, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+            errors.append("R157 VF2 tie-isolation result payload hash mismatch")
+        if result_ph != "1800fe86ce7a085e4ca73da37c6c77c94865979d77b59deb73cee50c83279688":
+            errors.append("R157 VF2 tie-isolation frozen result payload hash mismatch")
+        artifact_paths = {}
+        for artifact_key in ["profile_distributions", "contrast_matrix", "verifier_transcript"]:
+            rel = r157_result.get("artifacts", {}).get(artifact_key)
+            path = root / rel if rel else None
+            if path is None or not path.exists():
+                errors.append(f"R157 VF2 tie-isolation {artifact_key} artifact missing")
+            else:
+                artifact_paths[artifact_key] = path
+        process_artifacts = r157_result.get("artifacts", {}).get("process_artifacts", [])
+        if len(process_artifacts) != 98:
+            errors.append("R157 VF2 tie-isolation process artifact count mismatch")
+        observed_uuids = set()
+        observed_replay_count = 0
+        required_replay_fields = {
+            "replay_index", "profile_id", "target_order", "shared_target_within_process",
+            "target_descriptor_sha256", "target_order_sha256", "mapping_vector",
+            "mapping_class", "post_layout_present", "stop_reason", "elapsed_seconds",
+        }
+        for artifact in process_artifacts:
+            path = root / artifact.get("path", "")
+            if not path.exists():
+                errors.append(f"R157 VF2 tie-isolation worker artifact missing: {artifact.get('profile_id')}/{artifact.get('process_index')}")
+                continue
+            if hashlib.sha256(path.read_bytes()).hexdigest() != artifact.get("sha256"):
+                errors.append(f"R157 VF2 tie-isolation worker hash mismatch: {artifact.get('profile_id')}/{artifact.get('process_index')}")
+            manifest = json.loads(read(path))
+            hp = dict(manifest)
+            manifest_ph = hp.pop("manifest_payload_hash", None)
+            if manifest_ph != hashlib.sha256(json.dumps(hp, sort_keys=True, separators=(",", ":")).encode()).hexdigest() or manifest_ph != artifact.get("manifest_payload_hash"):
+                errors.append(f"R157 VF2 tie-isolation worker payload mismatch: {artifact.get('profile_id')}/{artifact.get('process_index')}")
+            observed_uuids.add(manifest.get("process_instance_uuid"))
+            replay_rows = manifest.get("replay_rows", [])
+            observed_replay_count += len(replay_rows)
+            if any(not required_replay_fields.issubset(row) for row in replay_rows):
+                errors.append(f"R157 VF2 tie-isolation worker replay fields missing: {artifact.get('profile_id')}/{artifact.get('process_index')}")
+            if manifest.get("simulation_execution_count") != 0 or manifest.get("total_simulated_shots") != 0:
+                errors.append(f"R157 VF2 tie-isolation worker simulation boundary mismatch: {artifact.get('profile_id')}/{artifact.get('process_index')}")
+        if len(observed_uuids) != 98 or observed_replay_count != 160:
+            errors.append("R157 VF2 tie-isolation worker identity or replay coverage mismatch")
+        if len(artifact_paths) == 3:
+            distribution_artifact = json.loads(read(artifact_paths["profile_distributions"]))
+            contrast_artifact = json.loads(read(artifact_paths["contrast_matrix"]))
+            transcript = json.loads(read(artifact_paths["verifier_transcript"]))
+            if distribution_artifact.get("profile_distributions_payload_hash") != "df430fdf7416023b84e8bef18373c83a066016a3fd977854590e1ace19c84529":
+                errors.append("R157 VF2 tie-isolation distribution payload mismatch")
+            if contrast_artifact.get("contrast_matrix_payload_hash") != "2f628022dd286062b33c82c1968eab2efb60674a8d799c49770eab3249a70f81":
+                errors.append("R157 VF2 tie-isolation contrast payload mismatch")
+            if transcript.get("result_payload_hash") != result_ph or transcript.get("process_artifact_count") != 98 or transcript.get("direct_replay_count") != 160 or transcript.get("global_acceptance") is not True:
+                errors.append("R157 VF2 tie-isolation transcript binding mismatch")
+        report_text = read(r157_result_report_path)
+        if "Five unretained implementation-smoke" not in report_text or "Profile collapse / variation: `0` / `5`" not in report_text or "does not prove" not in report_text:
+            errors.append("R157 VF2 tie-isolation result report boundary missing")
+
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
             errors.append(f"missing status artifact: {path}")
@@ -40318,6 +40553,7 @@ def audit(root: Path) -> dict:
             "r156_transpiler_variant_capture": r156_status,
             "r156_transpiler_variant_capture_result": r156_result_status,
             "r157_vf2_tie_isolation": r157_status,
+            "r157_vf2_tie_isolation_result": r157_result_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -41808,6 +42044,7 @@ def audit(root: Path) -> dict:
             "b4_b8_r157_vf2_tie_isolation_protocol": str(r157_protocol_report_path),
             "b4_b8_r157_vf2_tie_isolation_contract": str(r157_contract_path),
             "b4_b8_r157_vf2_tie_isolation_input": str(r157_input_path),
+            "b4_b8_r157_vf2_tie_isolation": str(r157_result_report_path),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
             "b8_challenge_refresh_repair": str(research / "B8_challenge_refresh_repair.md"),
@@ -44136,6 +44373,18 @@ def markdown_report(report: dict) -> str:
             f"- Execution started: {report['b8']['r157_vf2_tie_isolation'].get('execution_started')}",
             f"- Requirements passed/failed: {report['b8']['r157_vf2_tie_isolation'].get('requirements_passed')} / {report['b8']['r157_vf2_tie_isolation'].get('requirements_failed')}",
             f"- Protocol/contract/input/report exists: {report['b8']['r157_vf2_tie_isolation'].get('protocol_exists')} / {report['b8']['r157_vf2_tie_isolation'].get('contract_exists')} / {report['b8']['r157_vf2_tie_isolation'].get('input_exists')} / {report['b8']['r157_vf2_tie_isolation'].get('report_exists')}",
+            "",
+            "### R157 VF2 Tie Isolation",
+            "",
+            f"- Status: {report['b8']['r157_vf2_tie_isolation_result'].get('status')}",
+            f"- Profiles / processes / direct replays: {report['b8']['r157_vf2_tie_isolation_result'].get('profile_count')} / {report['b8']['r157_vf2_tie_isolation_result'].get('process_count')} / {report['b8']['r157_vf2_tie_isolation_result'].get('direct_replay_count')}",
+            f"- Mapping-class counts: {report['b8']['r157_vf2_tie_isolation_result'].get('mapping_class_counts')}",
+            f"- Profile collapse / variation: {report['b8']['r157_vf2_tie_isolation_result'].get('profile_collapse_count')} / {report['b8']['r157_vf2_tie_isolation_result'].get('profile_variation_count')}",
+            f"- Target-order hashes / implementation-smoke replays: {report['b8']['r157_vf2_tie_isolation_result'].get('target_order_hash_count')} / {report['b8']['r157_vf2_tie_isolation_result'].get('implementation_smoke_replay_count')}",
+            f"- Blinded confirmation claimed: {report['b8']['r157_vf2_tie_isolation_result'].get('blinded_confirmation_claimed')}",
+            f"- Simulation executions / shots: {report['b8']['r157_vf2_tie_isolation_result'].get('simulation_execution_count')} / {report['b8']['r157_vf2_tie_isolation_result'].get('total_simulated_shots')}",
+            f"- Requirements passed/failed: {report['b8']['r157_vf2_tie_isolation_result'].get('requirements_passed')} / {report['b8']['r157_vf2_tie_isolation_result'].get('requirements_failed')}",
+            f"- Result/report exists: {report['b8']['r157_vf2_tie_isolation_result'].get('result_exists')} / {report['b8']['r157_vf2_tie_isolation_result'].get('report_exists')}",
             "",
             f"- Status: {report['b8']['output_invariant_verifier'].get('status')}",
             f"- Model status: {report['b8']['output_invariant_verifier'].get('model_status')}",
