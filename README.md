@@ -2957,6 +2957,16 @@ a confirmed Qiskit bug, numerical remedy, hardware result, quantum advantage,
 BQP separation, solved B4/B8/B10, or new credit. Requirements pass `10/10`; the
 next gate is an independent reproduction and adversarial baseline.
 
+`T-B4-002cj` / `T-B8-003cn` / `T-B10-009ca-r166` preregisters R166 before
+execution. An independent standard-library verifier will read only the
+committed R165 profile manifests and replay rows; it will not import the R165
+executor or call Qiskit. It will recompute all four selection policies, verify
+the 3-profile/256-replay and 298-candidate aggregates, and run tamper,
+rehashed-false-selection, candidate-removal, and candidate-order baselines.
+This is an evidence-integrity gate for the candidate-level result, not a
+production mapping, alternate search path, confirmed bug, hardware, quantum
+advantage, BQP, solved-frontier, or new-credit claim.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

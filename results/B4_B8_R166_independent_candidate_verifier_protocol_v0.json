@@ -1,0 +1,41 @@
+{
+  "method": "b4_b8_r166_independent_candidate_verifier_protocol_v0",
+  "status": "independent_verifier_protocol_frozen_before_execution",
+  "title": "B4/B8 R166 independent candidate verifier and adversarial baseline protocol",
+  "version": 0,
+  "source_artifacts": {
+    "profiles": [
+      {"profile_id": "native_hashset_order", "path": "results/B4_B8_R165_candidate_selection_replay/native_hashset_order.json", "replay_count": 128},
+      {"profile_id": "ascending_sorted_order", "path": "results/B4_B8_R165_candidate_selection_replay/ascending_sorted_order.json", "replay_count": 64},
+      {"profile_id": "descending_sorted_order", "path": "results/B4_B8_R165_candidate_selection_replay/descending_sorted_order.json", "replay_count": 64}
+    ],
+    "profile_count": 3,
+    "total_replay_count": 256,
+    "r165_result_path": "results/B4_B8_R165_candidate_selection_replay_v0.json",
+    "r165_result_payload_hash": "93b0ed46f52a0267d4977d3aa3ced7380cd1654167ce7420ba570eff264e6e16",
+    "selection_policies": ["source_f64", "compensated_fsum", "exact_binary64_leaf", "tie_aware_1ulp"],
+    "selection_rule": "first candidate is incumbent; replace only on Less; retain first-seen ties",
+    "independence_boundary": "standard-library-only verifier; no import of the R165 executor and no Qiskit call",
+    "adversarial_baselines": [
+      "alter a candidate field without changing the row hash; hash must reject",
+      "alter a stored selection and recompute the row hash; independent selection must reject",
+      "drop the source-selected candidate; source-return mismatch must be detected",
+      "reverse a multi-candidate stream and record whether source selection changes"
+    ],
+    "claim_boundary": "reproduce committed candidate-level evidence and verifier rejection behavior only; do not claim production mapping change, alternate search path, bug, advantage, BQP, solved frontier, or credit"
+  },
+  "requirements": [
+    {"requirement_id": "P1", "label": "the R166 protocol, contract, executor, and every R165 source artifact are hash-bound"},
+    {"requirement_id": "P2", "label": "three committed R165 profile manifests and 256 replay rows are independently loaded"},
+    {"requirement_id": "P3", "label": "row and manifest payload hashes are independently recomputed"},
+    {"requirement_id": "P4", "label": "all four policy selections are recomputed from retained binary64 leaves"},
+    {"requirement_id": "P5", "label": "source-return and policy-change aggregates match R165"},
+    {"requirement_id": "P6", "label": "the verifier does not import the R165 executor or call Qiskit"},
+    {"requirement_id": "P7", "label": "unhashed candidate tampering is rejected"},
+    {"requirement_id": "P8", "label": "rehashed false stored selections are rejected by recomputation"},
+    {"requirement_id": "P9", "label": "removing the source-selected candidate is detected as a source-return mismatch"},
+    {"requirement_id": "P10", "label": "no production mapping, bug, advantage, BQP, solved-frontier, or credit claim is emitted"}
+  ],
+  "execution_started": false,
+  "payload_hash": "025d040537d4f4d453fb3585b7fb24d740752b877fb82d9eb4c6f0d665a99581"
+}
