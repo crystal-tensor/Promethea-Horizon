@@ -2352,6 +2352,18 @@ Overall audit: PASS
 - Requirements passed/failed: 10 / 0
 - Protocol/contract/build/patch/report exists: True / True / True / True / True
 
+### R159 ErrorMap Accumulation Trace
+
+- Status / classification: error_map_accumulation_trace_complete / operation_order_f64_path_supported
+- Profiles / processes / traced calls: 3 / 3 / 256
+- Mapping-class counts: {'endpoint_4_to_0': 199, 'endpoint_4_to_2': 57, 'no_solution': 0, 'other_mapping': 0}
+- Native order/error-bit hashes: 128 / 16
+- Native order-to-bits / bits-to-mapping functional: True / True
+- Sorted profiles collapse: True
+- Simulation executions / shots: 0 / 0
+- Requirements passed/failed: 10 / 0
+- Result/report/trace directory exists: True / True / True
+
 - Status: toy_invariant_property_test
 - Model status: toy_invariant_property_test_not_full_distribution_verification
 - Tasks: 3

@@ -2847,6 +2847,22 @@ GenericBackendV2 toy; the frozen R157 input was not loaded. Requirements pass
 bug, general compiler theorem, hardware relevance, route advantage, quantum
 advantage, BQP separation, solved-frontier status, or new credit is claimed.
 
+`T-B4-002ca` / `T-B8-003ce` / `T-B10-009bs` executes the frozen R159
+source trace after commit `b33e8843...` and Discussion #180. The native
+HashSet-order profile produces the two exactly tied mappings at `71/57`, with
+`128` operation-order hashes and `16` average-error-bit hashes. Every native
+order hash maps to one error-bit map, and every error-bit map maps to one
+layout class. Ascending and descending accumulation each collapse to mapping A
+at `64/0`; their fixed error-bit maps differ from each other. Aggregate counts
+are `199/57`, all A1-A10 and P1-P10 pass, and no simulation or shots occur. A
+preflight import first rejected the globally installed accelerator hash
+`a299d48f...` before the frozen input was loaded; the accepted run imported the
+preregistered instrumented binary `b24cf719...` through its source path. The
+classification is `operation_order_f64_path_supported` for this instrumented
+build and tied input. It is not elevated to a confirmed Qiskit bug,
+cross-platform theorem, hardware, route-advantage, quantum-advantage, BQP,
+solved-frontier, or new-credit claim.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

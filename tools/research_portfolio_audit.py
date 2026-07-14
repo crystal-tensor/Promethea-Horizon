@@ -40451,6 +40451,9 @@ def audit(root: Path) -> dict:
     r159_protocol_path = results / "B4_B8_R159_error_map_accumulation_trace_protocol_v0.json"
     r159_contract_path = benchmarks / "B4_B8_R159_error_map_accumulation_trace_contract_v0.json"
     r159_protocol_report_path = research / "B4_B8_R159_error_map_accumulation_trace_protocol.md"
+    r159_result_path = results / "B4_B8_R159_error_map_accumulation_trace_v0.json"
+    r159_result_report_path = research / "B4_B8_R159_error_map_accumulation_trace.md"
+    r159_trace_dir = results / "B4_B8_R159_error_map_accumulation_trace"
     r159_build_manifest_path = research / "source_lineage/Qiskit_2_4_1_R159_instrumented_build_manifest.json"
     r159_patch_path = research / "source_lineage/Qiskit_2_4_1_R159_error_map_trace.patch"
     r159_executor_path = root / "tools/b4_b8_r159_error_map_accumulation_trace.py"
@@ -40465,6 +40468,14 @@ def audit(root: Path) -> dict:
         "report_exists": r159_protocol_report_path.exists(),
         "build_manifest_exists": r159_build_manifest_path.exists(),
         "patch_exists": r159_patch_path.exists(),
+    }
+    r159_result_status = {
+        "result_path": str(r159_result_path),
+        "report_path": str(r159_result_report_path),
+        "trace_directory": str(r159_trace_dir),
+        "result_exists": r159_result_path.exists(),
+        "report_exists": r159_result_report_path.exists(),
+        "trace_directory_exists": r159_trace_dir.exists(),
     }
     r159_manifest_rows = [
         ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r159_error_map_accumulation_trace_protocol_v0"), "error_map_accumulation_trace_protocol_frozen_before_execution"),
@@ -40594,6 +40605,203 @@ def audit(root: Path) -> dict:
         report_text = read(r159_protocol_report_path)
         if "`3` / `3` / `256`" not in report_text or "`native_hashset_order` | `native` | 1 | 128" not in report_text or "frozen R157 input was not loaded" not in report_text or "contains no frozen-input outcome" not in report_text:
             errors.append("R159 ErrorMap trace protocol report boundary missing")
+
+    r159_result_manifest_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r159_error_map_accumulation_trace_v0"), "error_map_accumulation_trace_diagnostic_complete"),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r159_error_map_accumulation_trace_v0"), "error_map_accumulation_trace_diagnostic_complete"),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r159_error_map_accumulation_trace_v0"), "error_map_accumulation_trace_diagnostic_not_bqp_claim"),
+    ]
+    expected_r159_result_manifest_values = {
+        "classification": "operation_order_f64_path_supported",
+        "profile_count": 3,
+        "process_count": 3,
+        "trace_replay_count": 256,
+        "native_endpoint_4_to_0_count": 71,
+        "native_endpoint_4_to_2_count": 57,
+        "ascending_endpoint_4_to_0_count": 64,
+        "descending_endpoint_4_to_0_count": 64,
+        "aggregate_endpoint_4_to_0_count": 199,
+        "aggregate_endpoint_4_to_2_count": 57,
+        "native_operation_order_hash_count": 128,
+        "native_average_error_bits_hash_count": 16,
+        "native_order_to_error_functional": True,
+        "native_error_bits_to_mapping_functional": True,
+        "sorted_profiles_collapse": True,
+        "simulation_execution_count": 0,
+        "total_simulated_shots": 0,
+        "causal_mechanism_claimed": False,
+        "qiskit_bug_claimed": False,
+        "new_credit_delta": 0,
+        "requirements_passed": 10,
+        "requirements_failed": 0,
+    }
+    for label, row, expected_status in r159_result_manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R159 ErrorMap trace result")
+            continue
+        for field in ["result", "markdown_report", "trace_directory"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R159 ErrorMap trace result missing {field}")
+        if row.get("status") != expected_status or row.get("method") != "b4_b8_r159_error_map_accumulation_trace_v0":
+            errors.append(f"{label} R159 ErrorMap trace result status or method mismatch")
+        if row.get("source_target_id") != "T-B4-002ca/T-B8-003ce/T-B10-009bs" or row.get("upstream_target_id") != "T-B4-002bz/T-B8-003cd/T-B10-009br":
+            errors.append(f"{label} R159 ErrorMap trace result target chain mismatch")
+        for field, value in expected_r159_result_manifest_values.items():
+            if row.get(field) != value:
+                errors.append(f"{label} R159 ErrorMap trace result manifest {field} mismatch")
+    r159_result_required_paths = [
+        r159_result_path,
+        r159_result_report_path,
+        r159_trace_dir / "native_hashset_order.json",
+        r159_trace_dir / "ascending_sorted_order.json",
+        r159_trace_dir / "descending_sorted_order.json",
+        r159_trace_dir / "profile_summary.json",
+        r159_trace_dir / "trace_mapping_associations.json",
+        r159_trace_dir / "verifier_transcript.json",
+    ]
+    if not all(path.exists() for path in r159_result_required_paths):
+        errors.append("R159 ErrorMap trace result, report, or retained artifacts missing")
+    else:
+        r159_result = json.loads(read(r159_result_path))
+        r159_summary = r159_result.get("summary", {})
+        r159_associations = json.loads(read(r159_trace_dir / "trace_mapping_associations.json"))
+        r159_profile_summary = json.loads(read(r159_trace_dir / "profile_summary.json"))
+        r159_transcript = json.loads(read(r159_trace_dir / "verifier_transcript.json"))
+
+        def r159_payload_hash(payload, key):
+            body = dict(payload)
+            payload_hash = body.pop(key, None)
+            computed = hashlib.sha256(
+                json.dumps(body, sort_keys=True, separators=(",", ":")).encode()
+            ).hexdigest()
+            return payload_hash, computed
+
+        result_ph, result_computed = r159_payload_hash(r159_result, "payload_hash")
+        r159_result_status.update({
+            "status": r159_result.get("status"),
+            "method": r159_result.get("method"),
+            "classification": r159_summary.get("classification"),
+            "profile_count": r159_summary.get("profile_count"),
+            "process_count": r159_summary.get("process_count"),
+            "trace_replay_count": r159_summary.get("trace_replay_count"),
+            "mapping_class_counts": r159_summary.get("mapping_class_counts"),
+            "native_operation_order_hash_count": r159_summary.get("native_operation_order_hash_count"),
+            "native_average_error_bits_hash_count": r159_summary.get("native_average_error_bits_hash_count"),
+            "native_order_to_error_functional": r159_summary.get("native_order_to_error_functional"),
+            "native_error_bits_to_mapping_functional": r159_summary.get("native_error_bits_to_mapping_functional"),
+            "sorted_profiles_collapse": r159_summary.get("sorted_profiles_collapse"),
+            "simulation_execution_count": r159_summary.get("simulation_execution_count"),
+            "total_simulated_shots": r159_summary.get("total_simulated_shots"),
+            "requirements_passed": r159_result.get("requirements_passed"),
+            "requirements_failed": r159_result.get("requirements_failed"),
+        })
+        if result_ph != result_computed or result_ph != "cfa18bc9da13260862de6228aa9ff0ff11635004685c6bb6bfb8151e82f46d18":
+            errors.append("R159 ErrorMap trace result payload mismatch")
+        if r159_result.get("status") != "error_map_accumulation_trace_complete" or r159_result.get("method") != "b4_b8_r159_error_map_accumulation_trace_v0":
+            errors.append("R159 ErrorMap trace result status or method mismatch")
+        if r159_result.get("source_target_id") != "T-B4-002ca/T-B8-003ce/T-B10-009bs" or r159_result.get("upstream_target_id") != "T-B4-002bz/T-B8-003cd/T-B10-009br":
+            errors.append("R159 ErrorMap trace result target chain mismatch")
+        if r159_result.get("preregistration") != {
+            "commit": "b33e8843e472f62efbb9613a0a43b5d5291590b1",
+            "discussion": "https://github.com/crystal-tensor/Prometheus-plan/discussions/180",
+            "created_at": "2026-07-14T07:53:43Z",
+        }:
+            errors.append("R159 ErrorMap trace public preregistration binding mismatch")
+        expected_r159_summary = {
+            "classification": "operation_order_f64_path_supported",
+            "profile_count": 3,
+            "process_count": 3,
+            "process_instance_uuid_count": 3,
+            "process_started_after_preregistration_count": 3,
+            "trace_replay_count": 256,
+            "profile_collapse_count": 2,
+            "profile_variation_count": 1,
+            "mapping_class_counts": {"endpoint_4_to_0": 199, "endpoint_4_to_2": 57, "other_mapping": 0, "no_solution": 0},
+            "native_operation_order_hash_count": 128,
+            "native_average_error_bits_hash_count": 16,
+            "native_order_to_error_functional": True,
+            "native_error_bits_to_mapping_functional": True,
+            "sorted_profiles_collapse": True,
+            "simulation_execution_count": 0,
+            "total_simulated_shots": 0,
+            "new_credit_delta": 0,
+            "global_acceptance": True,
+        }
+        for field, value in expected_r159_summary.items():
+            if r159_summary.get(field) != value:
+                errors.append(f"R159 ErrorMap trace result summary {field} mismatch")
+        expected_r159_profile_rows = [
+            ("native_hashset_order", "native", 128, 71, 57, 128, 16, 128, "variation"),
+            ("ascending_sorted_order", "ascending", 64, 64, 0, 1, 1, 1, "collapse"),
+            ("descending_sorted_order", "descending", 64, 64, 0, 1, 1, 1, "collapse"),
+        ]
+        observed_r159_profile_rows = []
+        for row in r159_profile_summary.get("profile_rows", []):
+            counts = row.get("mapping_class_counts", {})
+            observed_r159_profile_rows.append((
+                row.get("profile_id"), row.get("operation_order"), row.get("replay_count"),
+                counts.get("endpoint_4_to_0"), counts.get("endpoint_4_to_2"),
+                row.get("unique_operation_order_hash_count"),
+                row.get("unique_average_error_bits_hash_count"),
+                row.get("unique_full_trace_hash_count"), row.get("profile_outcome"),
+            ))
+        if observed_r159_profile_rows != expected_r159_profile_rows:
+            errors.append("R159 ErrorMap trace profile result mismatch")
+        expected_r159_associations = {
+            "classification": "operation_order_f64_path_supported",
+            "native_operation_order_hash_count": 128,
+            "native_average_error_bits_hash_count": 16,
+            "native_order_to_error_functional": True,
+            "native_error_bits_to_mapping_functional": True,
+            "native_order_hashes_with_multiple_error_maps": 0,
+            "native_error_maps_with_multiple_mappings": 0,
+            "sorted_profiles_collapse": True,
+            "causal_mechanism_claimed": False,
+            "confirmed_qiskit_bug_claimed": False,
+        }
+        for field, value in expected_r159_associations.items():
+            if r159_associations.get(field) != value:
+                errors.append(f"R159 ErrorMap trace association {field} mismatch")
+        for payload, key, expected_hash, label in [
+            (r159_profile_summary, "profile_summary_payload_hash", "f6e25a76e01aee00cbc4ae045638321af2686cf99fa4c536c1cc6784992299bf", "profile summary"),
+            (r159_associations, "association_payload_hash", "5a5348897f452d892c444ef32667ec9977e961033816c9a7a93fe18174a51dff", "associations"),
+            (r159_transcript, "verifier_transcript_payload_hash", "3990c3850c58da4bb424c4c97b39f4870257161b98864d3a27719b277705827b", "transcript"),
+        ]:
+            payload_hash, computed_hash = r159_payload_hash(payload, key)
+            if payload_hash != computed_hash or payload_hash != expected_hash:
+                errors.append(f"R159 ErrorMap trace {label} payload mismatch")
+        if r159_transcript.get("result_payload_hash") != result_ph or r159_transcript.get("trace_replay_count") != 256 or r159_transcript.get("global_acceptance") is not True:
+            errors.append("R159 ErrorMap trace transcript binding mismatch")
+        process_artifacts = r159_result.get("artifacts", {}).get("process_artifacts", [])
+        if len(process_artifacts) != 3:
+            errors.append("R159 ErrorMap trace process artifact count mismatch")
+        for artifact in process_artifacts:
+            path = root / artifact.get("path", "")
+            if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest() != artifact.get("sha256"):
+                errors.append(f"R159 ErrorMap trace process file mismatch: {artifact.get('profile_id')}")
+                continue
+            worker = json.loads(read(path))
+            worker_ph, worker_computed = r159_payload_hash(worker, "manifest_payload_hash")
+            if worker_ph != worker_computed or worker_ph != artifact.get("manifest_payload_hash"):
+                errors.append(f"R159 ErrorMap trace worker payload mismatch: {artifact.get('profile_id')}")
+            replay_rows = worker.get("replay_rows", [])
+            if len(replay_rows) != worker.get("replay_count"):
+                errors.append(f"R159 ErrorMap trace worker replay count mismatch: {artifact.get('profile_id')}")
+            for replay in replay_rows:
+                replay_ph, replay_computed = r159_payload_hash(replay, "replay_payload_hash")
+                if replay_ph != replay_computed:
+                    errors.append(f"R159 ErrorMap trace replay payload mismatch: {artifact.get('profile_id')}")
+                    break
+                if replay.get("trace_row_count", 0) <= 0 or not replay.get("operation_order_hash") or not replay.get("average_error_bits_hash") or not replay.get("full_trace_hash"):
+                    errors.append(f"R159 ErrorMap trace replay retention mismatch: {artifact.get('profile_id')}")
+                    break
+        if len(r159_result.get("acceptance_conditions", [])) != 10 or not all(row.get("passed") is True for row in r159_result.get("acceptance_conditions", [])):
+            errors.append("R159 ErrorMap trace acceptance condition mismatch")
+        if r159_result.get("requirements_passed") != 10 or r159_result.get("requirements_failed") != 0:
+            errors.append("R159 ErrorMap trace result requirement mismatch")
+        result_report_text = read(r159_result_report_path)
+        if "`operation_order_f64_path_supported`" not in result_report_text or "| `native_hashset_order` | 71 | 57" not in result_report_text or "Preflight Binding Guard" not in result_report_text or "does not by itself establish" not in result_report_text:
+            errors.append("R159 ErrorMap trace result report boundary missing")
 
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
@@ -41079,6 +41287,7 @@ def audit(root: Path) -> dict:
             "r158_vf2_accelerator_boundary": r158_status,
             "r158_vf2_accelerator_boundary_result": r158_result_status,
             "r159_error_map_accumulation_trace": r159_status,
+            "r159_error_map_accumulation_trace_result": r159_result_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -42575,6 +42784,7 @@ def audit(root: Path) -> dict:
             "b4_b8_r158_vf2_accelerator_boundary": str(r158_result_report_path),
             "b4_b8_r159_error_map_accumulation_trace_protocol": str(r159_protocol_report_path),
             "b4_b8_r159_error_map_accumulation_trace_contract": str(r159_contract_path),
+            "b4_b8_r159_error_map_accumulation_trace": str(r159_result_report_path),
             "qiskit_2_4_1_r159_instrumented_build_manifest": str(r159_build_manifest_path),
             "qiskit_2_4_1_r159_error_map_trace_patch": str(r159_patch_path),
             "qiskit_2_4_1_vf2_source_manifest": str(r158_source_manifest_path),
@@ -44950,6 +45160,18 @@ def markdown_report(report: dict) -> str:
             f"- Execution started: {report['b8']['r159_error_map_accumulation_trace'].get('execution_started')}",
             f"- Requirements passed/failed: {report['b8']['r159_error_map_accumulation_trace'].get('requirements_passed')} / {report['b8']['r159_error_map_accumulation_trace'].get('requirements_failed')}",
             f"- Protocol/contract/build/patch/report exists: {report['b8']['r159_error_map_accumulation_trace'].get('protocol_exists')} / {report['b8']['r159_error_map_accumulation_trace'].get('contract_exists')} / {report['b8']['r159_error_map_accumulation_trace'].get('build_manifest_exists')} / {report['b8']['r159_error_map_accumulation_trace'].get('patch_exists')} / {report['b8']['r159_error_map_accumulation_trace'].get('report_exists')}",
+            "",
+            "### R159 ErrorMap Accumulation Trace",
+            "",
+            f"- Status / classification: {report['b8']['r159_error_map_accumulation_trace_result'].get('status')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('classification')}",
+            f"- Profiles / processes / traced calls: {report['b8']['r159_error_map_accumulation_trace_result'].get('profile_count')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('process_count')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('trace_replay_count')}",
+            f"- Mapping-class counts: {report['b8']['r159_error_map_accumulation_trace_result'].get('mapping_class_counts')}",
+            f"- Native order/error-bit hashes: {report['b8']['r159_error_map_accumulation_trace_result'].get('native_operation_order_hash_count')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('native_average_error_bits_hash_count')}",
+            f"- Native order-to-bits / bits-to-mapping functional: {report['b8']['r159_error_map_accumulation_trace_result'].get('native_order_to_error_functional')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('native_error_bits_to_mapping_functional')}",
+            f"- Sorted profiles collapse: {report['b8']['r159_error_map_accumulation_trace_result'].get('sorted_profiles_collapse')}",
+            f"- Simulation executions / shots: {report['b8']['r159_error_map_accumulation_trace_result'].get('simulation_execution_count')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('total_simulated_shots')}",
+            f"- Requirements passed/failed: {report['b8']['r159_error_map_accumulation_trace_result'].get('requirements_passed')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('requirements_failed')}",
+            f"- Result/report/trace directory exists: {report['b8']['r159_error_map_accumulation_trace_result'].get('result_exists')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('report_exists')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('trace_directory_exists')}",
             "",
             f"- Status: {report['b8']['output_invariant_verifier'].get('status')}",
             f"- Model status: {report['b8']['output_invariant_verifier'].get('model_status')}",
