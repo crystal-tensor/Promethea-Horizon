@@ -1,0 +1,88 @@
+{
+  "acceptance_conditions": [
+    {
+      "condition_id": "A1",
+      "label": "all source, patch, build, binary, input, target, and R158 bindings remain exact"
+    },
+    {
+      "condition_id": "A2",
+      "label": "three post-registration process artifacts retain 256 traced calls"
+    },
+    {
+      "condition_id": "A3",
+      "label": "all calls use the frozen instrumented source, binary, and environment"
+    },
+    {
+      "condition_id": "A4",
+      "label": "native 128, ascending 64, and descending 64 calls complete without replacement"
+    },
+    {
+      "condition_id": "A5",
+      "label": "every call retains operation order, f64 accumulation, average bits, mapping, and row hash"
+    },
+    {
+      "condition_id": "A6",
+      "label": "profile summary and trace-to-mapping associations are emitted"
+    },
+    {
+      "condition_id": "A7",
+      "label": "all mapping and no-solution outcomes remain classified"
+    },
+    {
+      "condition_id": "A8",
+      "label": "native order-to-bits and bits-to-mapping tests are retained regardless of verdict"
+    },
+    {
+      "condition_id": "A9",
+      "label": "the two R157 mappings and exact tied score remain bound"
+    },
+    {
+      "condition_id": "A10",
+      "label": "forbidden bug, hardware, advantage, BQP, solved-frontier, and credit claims remain false"
+    }
+  ],
+  "claim_boundary": {
+    "what_is_not_supported": "any frozen-input result, causal mechanism, confirmed Qiskit bug, hardware relevance, advantage, BQP separation, solved frontier, or new credit",
+    "what_is_supported": "a source- and binary-bound native-versus-sorted ErrorMap accumulation experiment is ready for public preregistration"
+  },
+  "contract_id": "B4-B8-R159-error-map-accumulation-trace-contract-v0",
+  "contract_status": "public_preregistration_execution_unopened",
+  "execution_started": false,
+  "payload_hash": "3a395f09a9894b0820af788e9c7f52d26ebbdb9f5bf708257e5d50aec27e3547",
+  "source_bindings": {
+    "executor": {
+      "path": "tools/b4_b8_r159_error_map_accumulation_trace.py",
+      "sha256": "a0da5f1a23f02fbfcbf658780ef44448b107987d25aa00cf5a19ba0abdfdfac6"
+    },
+    "instrumentation_patch": {
+      "path": "research/source_lineage/Qiskit_2_4_1_R159_error_map_trace.patch",
+      "sha256": "184a11339ebc369fb1500e76ad178672cbc620e9fc58a8eeccac292efa2f5674"
+    },
+    "instrumented_build_manifest": {
+      "path": "research/source_lineage/Qiskit_2_4_1_R159_instrumented_build_manifest.json",
+      "payload_hash": "13ce8844a70a4e3d06d5cff95a5dd3048bae3167e66614d08f08f9454d0e5dbc",
+      "sha256": "7084348e979282664c330a7ceadad683ac3fb2dac4067b1f132456f648e4f505"
+    },
+    "protocol": {
+      "path": "results/B4_B8_R159_error_map_accumulation_trace_protocol_v0.json",
+      "payload_hash": "351fbd48a6a6746387786c53ebc0ce356d265910bcce8ea1bb6b43ef1d05c0bf",
+      "sha256": "a0fbd692e530213ba3fd461d9a5fedabbb500e00eba3c2c4ad815c420f0e48a4"
+    },
+    "qiskit_source_manifest": {
+      "path": "research/source_lineage/Qiskit_2_4_1_vf2_source_manifest.json",
+      "payload_hash": "aa50b224ae244f25fbf0fcfa61ee844d7fca298efd7420bc6b70a838f08e2ed2",
+      "sha256": "d57f7b039a232047aa1189a1594f8da4eff14c7688e55d77d27b81d625efd276"
+    },
+    "r157_input": {
+      "path": "benchmarks/B4_B8_R157_vf2_post_layout_input_v0.qasm",
+      "sha256": "ce216610e995b4c8b4bd9de6547ac6069961e1eb8881997aa05e0068ea16ab98"
+    },
+    "r158_result": {
+      "path": "results/B4_B8_R158_vf2_accelerator_boundary_v0.json",
+      "payload_hash": "14a466522b472fca39922b3553e2d34dd39d7dd0df8532dc6b5ddc33de2db95a",
+      "sha256": "22684e62c38d06ae59aa574b72b93c7305cb2ab952540edfe579ed9602f6d034"
+    }
+  },
+  "target_id": "T-B4-002bz/T-B8-003cd/T-B10-009br",
+  "upstream_target_id": "T-B4-002by/T-B8-003cc/T-B10-009bq"
+}

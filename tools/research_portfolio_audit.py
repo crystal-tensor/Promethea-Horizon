@@ -40448,6 +40448,153 @@ def audit(root: Path) -> dict:
         if "`internal_error_map_boundary`" not in report_text or "| `accelerator_shared_dag_shared_config_shared_error_map` | 64 | 0" not in report_text or "does not identify" not in report_text:
             errors.append("R158 accelerator-boundary result report boundary missing")
 
+    r159_protocol_path = results / "B4_B8_R159_error_map_accumulation_trace_protocol_v0.json"
+    r159_contract_path = benchmarks / "B4_B8_R159_error_map_accumulation_trace_contract_v0.json"
+    r159_protocol_report_path = research / "B4_B8_R159_error_map_accumulation_trace_protocol.md"
+    r159_build_manifest_path = research / "source_lineage/Qiskit_2_4_1_R159_instrumented_build_manifest.json"
+    r159_patch_path = research / "source_lineage/Qiskit_2_4_1_R159_error_map_trace.patch"
+    r159_executor_path = root / "tools/b4_b8_r159_error_map_accumulation_trace.py"
+    r159_status = {
+        "protocol_path": str(r159_protocol_path),
+        "contract_path": str(r159_contract_path),
+        "report_path": str(r159_protocol_report_path),
+        "build_manifest_path": str(r159_build_manifest_path),
+        "patch_path": str(r159_patch_path),
+        "protocol_exists": r159_protocol_path.exists(),
+        "contract_exists": r159_contract_path.exists(),
+        "report_exists": r159_protocol_report_path.exists(),
+        "build_manifest_exists": r159_build_manifest_path.exists(),
+        "patch_exists": r159_patch_path.exists(),
+    }
+    r159_manifest_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r159_error_map_accumulation_trace_protocol_v0"), "error_map_accumulation_trace_protocol_frozen_before_execution"),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r159_error_map_accumulation_trace_protocol_v0"), "error_map_accumulation_trace_protocol_frozen_before_execution"),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r159_error_map_accumulation_trace_protocol_v0"), "error_map_accumulation_trace_protocol_not_bqp_claim"),
+    ]
+    expected_r159_manifest_values = {
+        "qiskit_source_commit": "0fd015a22b84c9082173597a5d2304dc0aaec08c",
+        "instrumentation_patch_sha256": "184a11339ebc369fb1500e76ad178672cbc620e9fc58a8eeccac292efa2f5674",
+        "patched_source_sha256": "ab0f531947caee2667d2be3f3cc63701dc925c1cc60b16d32e9c1b1f97dc526f",
+        "instrumented_binary_sha256": "b24cf71992cdedc71dd648f6ef758862f253cea8d51274d92d9082b3ed3ec903",
+        "build_manifest_payload_hash": "13ce8844a70a4e3d06d5cff95a5dd3048bae3167e66614d08f08f9454d0e5dbc",
+        "profile_count": 3,
+        "total_process_count": 3,
+        "total_trace_replay_count": 256,
+        "pre_registration_smoke_call_count": 3,
+        "frozen_input_smoke_call_count": 0,
+        "simulation_execution_count": 0,
+        "total_simulated_shots": 0,
+        "execution_started": False,
+        "causal_mechanism_claimed": False,
+        "qiskit_bug_claimed": False,
+        "new_credit_delta": 0,
+        "requirements_passed": 10,
+        "requirements_failed": 0,
+    }
+    for label, row, expected_status in r159_manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R159 ErrorMap trace preregistration")
+            continue
+        for field in ["result", "markdown_report", "contract", "build_manifest", "instrumentation_patch"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R159 ErrorMap trace protocol missing {field}")
+        if row.get("status") != expected_status or row.get("method") != "b4_b8_r159_error_map_accumulation_trace_protocol_v0":
+            errors.append(f"{label} R159 ErrorMap trace status or method mismatch")
+        if row.get("source_target_id") != "T-B4-002bz/T-B8-003cd/T-B10-009br" or row.get("upstream_target_id") != "T-B4-002by/T-B8-003cc/T-B10-009bq":
+            errors.append(f"{label} R159 ErrorMap trace target chain mismatch")
+        for field, value in expected_r159_manifest_values.items():
+            if row.get(field) != value:
+                errors.append(f"{label} R159 ErrorMap trace manifest {field} mismatch")
+    r159_required_paths = [r159_protocol_path, r159_contract_path, r159_protocol_report_path, r159_build_manifest_path, r159_patch_path, r159_executor_path]
+    if not all(path.exists() for path in r159_required_paths):
+        errors.append("R159 ErrorMap trace protocol, contract, report, build manifest, patch, or executor missing")
+    else:
+        r159_payload = json.loads(read(r159_protocol_path))
+        r159_protocol = r159_payload.get("protocol", {})
+        r159_contract = json.loads(read(r159_contract_path))
+        r159_build = json.loads(read(r159_build_manifest_path))
+        r159_status.update({
+            "status": r159_payload.get("status"),
+            "method": r159_payload.get("method"),
+            "profile_count": r159_protocol.get("profile_count"),
+            "total_process_count": r159_protocol.get("total_process_count"),
+            "total_trace_replay_count": r159_protocol.get("total_trace_replay_count"),
+            "patched_source_sha256": r159_protocol.get("patched_source_sha256"),
+            "instrumented_binary_sha256": r159_protocol.get("instrumented_binary_sha256"),
+            "execution_started": r159_payload.get("execution_started"),
+            "requirements_passed": r159_payload.get("requirements_passed"),
+            "requirements_failed": r159_payload.get("requirements_failed"),
+        })
+        if r159_payload.get("status") != "error_map_accumulation_trace_protocol_frozen_before_execution" or r159_payload.get("method") != "b4_b8_r159_error_map_accumulation_trace_protocol_v0":
+            errors.append("R159 ErrorMap trace protocol status or method mismatch")
+        if r159_payload.get("source_target_id") != "T-B4-002bz/T-B8-003cd/T-B10-009br" or r159_payload.get("upstream_target_id") != "T-B4-002by/T-B8-003cc/T-B10-009bq":
+            errors.append("R159 ErrorMap trace protocol target chain mismatch")
+        if r159_payload.get("requirements_passed") != 10 or r159_payload.get("requirements_failed") != 0 or r159_payload.get("execution_started") is not False:
+            errors.append("R159 ErrorMap trace requirements or unopened boundary mismatch")
+        expected_r159_protocol = {
+            "snapshot_name": "FakeNairobiV2",
+            "input_path": "benchmarks/B4_B8_R157_vf2_post_layout_input_v0.qasm",
+            "input_qasm_sha256": "ce216610e995b4c8b4bd9de6547ac6069961e1eb8881997aa05e0068ea16ab98",
+            "target_descriptor_sha256": "702c8fd9dcf67a069e7af63e31a57c74c17aaa5e3c5b6d8c2e28ec0c049c0de7",
+            "qiskit_source_commit": "0fd015a22b84c9082173597a5d2304dc0aaec08c",
+            "base_source_sha256": "267810aaddb8ac9336f4404e7da34c31e07eec725eb1baa4ed6bf32ff7448ca4",
+            "instrumentation_patch_sha256": "184a11339ebc369fb1500e76ad178672cbc620e9fc58a8eeccac292efa2f5674",
+            "patched_source_sha256": "ab0f531947caee2667d2be3f3cc63701dc925c1cc60b16d32e9c1b1f97dc526f",
+            "instrumented_binary_sha256": "b24cf71992cdedc71dd648f6ef758862f253cea8d51274d92d9082b3ed3ec903",
+            "instrumented_binary_size_bytes": 15497264,
+            "build_manifest_payload_hash": "13ce8844a70a4e3d06d5cff95a5dd3048bae3167e66614d08f08f9454d0e5dbc",
+            "shared_tied_score": 0.45894321220828727,
+            "profile_count": 3,
+            "total_process_count": 3,
+            "total_trace_replay_count": 256,
+            "simulation_execution_count": 0,
+            "total_simulated_shots": 0,
+            "new_hidden_seed_count": 0,
+            "candidate_selection_performed": False,
+            "route_change_performed": False,
+            "sampling_performed": False,
+            "execution_started": False,
+        }
+        for field, value in expected_r159_protocol.items():
+            if r159_protocol.get(field) != value:
+                errors.append(f"R159 ErrorMap trace protocol {field} mismatch")
+        expected_profiles = [
+            ("native_hashset_order", "native", 1, 128, True, True, True),
+            ("ascending_sorted_order", "ascending", 1, 64, True, True, True),
+            ("descending_sorted_order", "descending", 1, 64, True, True, True),
+        ]
+        observed_profiles = [(row.get("profile_id"), row.get("operation_order"), row.get("process_count"), row.get("replay_count"), row.get("dag_reused"), row.get("target_reused"), row.get("config_reused")) for row in r159_protocol.get("profiles", [])]
+        if observed_profiles != expected_profiles:
+            errors.append("R159 ErrorMap trace profile matrix mismatch")
+        if r159_protocol.get("pre_registration_build_smoke", {}).get("frozen_r157_input_used_during_smoke") is not False or r159_protocol.get("pre_registration_build_smoke", {}).get("native_ascending_descending_smoke_calls") != 3:
+            errors.append("R159 ErrorMap trace build-smoke boundary mismatch")
+        if r159_build.get("base_qiskit_commit") != "0fd015a22b84c9082173597a5d2304dc0aaec08c" or r159_build.get("patched_source", {}).get("sha256") != "ab0f531947caee2667d2be3f3cc63701dc925c1cc60b16d32e9c1b1f97dc526f":
+            errors.append("R159 ErrorMap trace build source mismatch")
+        if r159_build.get("instrumented_binary", {}).get("sha256") != "b24cf71992cdedc71dd648f6ef758862f253cea8d51274d92d9082b3ed3ec903" or r159_build.get("instrumented_binary", {}).get("size_bytes") != 15497264:
+            errors.append("R159 ErrorMap trace binary binding mismatch")
+        if hashlib.sha256(r159_patch_path.read_bytes()).hexdigest() != "184a11339ebc369fb1500e76ad178672cbc620e9fc58a8eeccac292efa2f5674":
+            errors.append("R159 ErrorMap trace patch hash mismatch")
+        for payload, expected_hash, label in [
+            (r159_payload, "351fbd48a6a6746387786c53ebc0ce356d265910bcce8ea1bb6b43ef1d05c0bf", "protocol"),
+            (r159_contract, "3a395f09a9894b0820af788e9c7f52d26ebbdb9f5bf708257e5d50aec27e3547", "contract"),
+            (r159_build, "13ce8844a70a4e3d06d5cff95a5dd3048bae3167e66614d08f08f9454d0e5dbc", "build manifest"),
+        ]:
+            body = dict(payload)
+            payload_hash = body.pop("payload_hash", None)
+            if payload_hash != hashlib.sha256(json.dumps(body, sort_keys=True, separators=(",", ":")).encode()).hexdigest() or payload_hash != expected_hash:
+                errors.append(f"R159 ErrorMap trace {label} payload mismatch")
+        if r159_contract.get("contract_id") != "B4-B8-R159-error-map-accumulation-trace-contract-v0" or r159_contract.get("contract_status") != "public_preregistration_execution_unopened" or len(r159_contract.get("acceptance_conditions", [])) != 10:
+            errors.append("R159 ErrorMap trace contract identity or acceptance mismatch")
+        for binding_id, binding in r159_contract.get("source_bindings", {}).items():
+            path = root / binding.get("path", "")
+            if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest() != binding.get("sha256"):
+                errors.append(f"R159 ErrorMap trace source binding mismatch: {binding_id}")
+            if "payload_hash" in binding and path.exists() and json.loads(read(path)).get("payload_hash") != binding.get("payload_hash"):
+                errors.append(f"R159 ErrorMap trace source payload mismatch: {binding_id}")
+        report_text = read(r159_protocol_report_path)
+        if "`3` / `3` / `256`" not in report_text or "`native_hashset_order` | `native` | 1 | 128" not in report_text or "frozen R157 input was not loaded" not in report_text or "contains no frozen-input outcome" not in report_text:
+            errors.append("R159 ErrorMap trace protocol report boundary missing")
+
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
             errors.append(f"missing status artifact: {path}")
@@ -40931,6 +41078,7 @@ def audit(root: Path) -> dict:
             "r157_vf2_tie_isolation_result": r157_result_status,
             "r158_vf2_accelerator_boundary": r158_status,
             "r158_vf2_accelerator_boundary_result": r158_result_status,
+            "r159_error_map_accumulation_trace": r159_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -42425,6 +42573,10 @@ def audit(root: Path) -> dict:
             "b4_b8_r158_vf2_accelerator_boundary_protocol": str(r158_protocol_report_path),
             "b4_b8_r158_vf2_accelerator_boundary_contract": str(r158_contract_path),
             "b4_b8_r158_vf2_accelerator_boundary": str(r158_result_report_path),
+            "b4_b8_r159_error_map_accumulation_trace_protocol": str(r159_protocol_report_path),
+            "b4_b8_r159_error_map_accumulation_trace_contract": str(r159_contract_path),
+            "qiskit_2_4_1_r159_instrumented_build_manifest": str(r159_build_manifest_path),
+            "qiskit_2_4_1_r159_error_map_trace_patch": str(r159_patch_path),
             "qiskit_2_4_1_vf2_source_manifest": str(r158_source_manifest_path),
             "b8_generative_spoofer_refresh": str(research / "B8_generative_spoofer_refresh.md"),
             "b8_adaptive_leakage_spoofer": str(research / "B8_adaptive_leakage_spoofer.md"),
@@ -44788,6 +44940,16 @@ def markdown_report(report: dict) -> str:
             f"- Simulation executions / shots: {report['b8']['r158_vf2_accelerator_boundary_result'].get('simulation_execution_count')} / {report['b8']['r158_vf2_accelerator_boundary_result'].get('total_simulated_shots')}",
             f"- Requirements passed/failed: {report['b8']['r158_vf2_accelerator_boundary_result'].get('requirements_passed')} / {report['b8']['r158_vf2_accelerator_boundary_result'].get('requirements_failed')}",
             f"- Result/report exists: {report['b8']['r158_vf2_accelerator_boundary_result'].get('result_exists')} / {report['b8']['r158_vf2_accelerator_boundary_result'].get('report_exists')}",
+            "",
+            "### R159 ErrorMap Accumulation Trace Protocol",
+            "",
+            f"- Status: {report['b8']['r159_error_map_accumulation_trace'].get('status')}",
+            f"- Profiles / processes / traced calls: {report['b8']['r159_error_map_accumulation_trace'].get('profile_count')} / {report['b8']['r159_error_map_accumulation_trace'].get('total_process_count')} / {report['b8']['r159_error_map_accumulation_trace'].get('total_trace_replay_count')}",
+            f"- Patched source SHA-256: {report['b8']['r159_error_map_accumulation_trace'].get('patched_source_sha256')}",
+            f"- Instrumented binary SHA-256: {report['b8']['r159_error_map_accumulation_trace'].get('instrumented_binary_sha256')}",
+            f"- Execution started: {report['b8']['r159_error_map_accumulation_trace'].get('execution_started')}",
+            f"- Requirements passed/failed: {report['b8']['r159_error_map_accumulation_trace'].get('requirements_passed')} / {report['b8']['r159_error_map_accumulation_trace'].get('requirements_failed')}",
+            f"- Protocol/contract/build/patch/report exists: {report['b8']['r159_error_map_accumulation_trace'].get('protocol_exists')} / {report['b8']['r159_error_map_accumulation_trace'].get('contract_exists')} / {report['b8']['r159_error_map_accumulation_trace'].get('build_manifest_exists')} / {report['b8']['r159_error_map_accumulation_trace'].get('patch_exists')} / {report['b8']['r159_error_map_accumulation_trace'].get('report_exists')}",
             "",
             f"- Status: {report['b8']['output_invariant_verifier'].get('status')}",
             f"- Model status: {report['b8']['output_invariant_verifier'].get('model_status')}",

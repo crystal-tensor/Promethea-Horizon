@@ -2342,6 +2342,16 @@ Overall audit: PASS
 - Requirements passed/failed: 10 / 0
 - Result/report exists: True / True
 
+### R159 ErrorMap Accumulation Trace Protocol
+
+- Status: error_map_accumulation_trace_protocol_frozen_before_execution
+- Profiles / processes / traced calls: 3 / 3 / 256
+- Patched source SHA-256: ab0f531947caee2667d2be3f3cc63701dc925c1cc60b16d32e9c1b1f97dc526f
+- Instrumented binary SHA-256: b24cf71992cdedc71dd648f6ef758862f253cea8d51274d92d9082b3ed3ec903
+- Execution started: False
+- Requirements passed/failed: 10 / 0
+- Protocol/contract/build/patch/report exists: True / True / True / True / True
+
 - Status: toy_invariant_property_test
 - Model status: toy_invariant_property_test_not_full_distribution_verification
 - Tasks: 3

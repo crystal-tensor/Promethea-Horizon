@@ -1,0 +1,225 @@
+{
+  "claim_boundary": {
+    "what_is_not_supported": "any frozen-input result, causal mechanism, confirmed Qiskit bug, hardware relevance, advantage, BQP separation, solved frontier, or new credit",
+    "what_is_supported": "a source- and binary-bound native-versus-sorted ErrorMap accumulation experiment is ready for public preregistration"
+  },
+  "execution_started": false,
+  "method": "b4_b8_r159_error_map_accumulation_trace_protocol_v0",
+  "model_status": "source_instrumentation_frozen_without_frozen_input_execution",
+  "payload_hash": "351fbd48a6a6746387786c53ebc0ce356d265910bcce8ea1bb6b43ef1d05c0bf",
+  "protocol": {
+    "base_source_sha256": "267810aaddb8ac9336f4404e7da34c31e07eec725eb1baa4ed6bf32ff7448ca4",
+    "build_manifest_path": "research/source_lineage/Qiskit_2_4_1_R159_instrumented_build_manifest.json",
+    "build_manifest_payload_hash": "13ce8844a70a4e3d06d5cff95a5dd3048bae3167e66614d08f08f9454d0e5dbc",
+    "candidate_selection_performed": false,
+    "classification_order": [
+      "native_nonreproduction",
+      "variation_survives_sorted_accumulation",
+      "operation_order_f64_path_supported",
+      "average_error_bits_insufficient_for_mapping",
+      "operation_order_changes_without_average_bit_change",
+      "trace_inconclusive"
+    ],
+    "execution_started": false,
+    "expected_mapping_classes": {
+      "endpoint_4_to_0": [
+        6,
+        5,
+        4,
+        3,
+        0,
+        1,
+        2
+      ],
+      "endpoint_4_to_2": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ]
+    },
+    "frozen_software": {
+      "python": "3.12.6",
+      "qiskit": "2.4.1"
+    },
+    "input_path": "benchmarks/B4_B8_R157_vf2_post_layout_input_v0.qasm",
+    "input_qasm_sha256": "ce216610e995b4c8b4bd9de6547ac6069961e1eb8881997aa05e0068ea16ab98",
+    "instrumentation_patch_sha256": "184a11339ebc369fb1500e76ad178672cbc620e9fc58a8eeccac292efa2f5674",
+    "instrumented_binary_sha256": "b24cf71992cdedc71dd648f6ef758862f253cea8d51274d92d9082b3ed3ec903",
+    "instrumented_binary_size_bytes": 15497264,
+    "new_hidden_seed_count": 0,
+    "patched_source_sha256": "ab0f531947caee2667d2be3f3cc63701dc925c1cc60b16d32e9c1b1f97dc526f",
+    "pre_registration_build_smoke": {
+      "cargo_fmt_check_passed": true,
+      "editable_release_build_passed": true,
+      "frozen_r157_input_used_during_smoke": false,
+      "invalid_mode_rejected": true,
+      "native_ascending_descending_smoke_calls": 3,
+      "patch_applies_to_base_commit": true,
+      "smoke_backend": "GenericBackendV2(num_qubits=3, seed=159)",
+      "smoke_circuit_operation_count": 3,
+      "traced_entry_point_imported": true
+    },
+    "process_environment": {
+      "MKL_NUM_THREADS": "1",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "PYTHONHASHSEED": "0",
+      "QISKIT_PARALLEL": "FALSE",
+      "RAYON_NUM_THREADS": "1"
+    },
+    "profile_count": 3,
+    "profiles": [
+      {
+        "config_reused": true,
+        "dag_reused": true,
+        "operation_order": "native",
+        "process_count": 1,
+        "profile_id": "native_hashset_order",
+        "replay_count": 128,
+        "target_reused": true
+      },
+      {
+        "config_reused": true,
+        "dag_reused": true,
+        "operation_order": "ascending",
+        "process_count": 1,
+        "profile_id": "ascending_sorted_order",
+        "replay_count": 64,
+        "target_reused": true
+      },
+      {
+        "config_reused": true,
+        "dag_reused": true,
+        "operation_order": "descending",
+        "process_count": 1,
+        "profile_id": "descending_sorted_order",
+        "replay_count": 64,
+        "target_reused": true
+      }
+    ],
+    "qiskit_source_commit": "0fd015a22b84c9082173597a5d2304dc0aaec08c",
+    "retained_per_call_fields": [
+      "operation order by qargs",
+      "operation error f64 bits",
+      "accumulated error f64 bits",
+      "average error f64 bits",
+      "operation-order hash",
+      "average-error-bits hash",
+      "full trace hash",
+      "mapping vector and class",
+      "stop reason",
+      "elapsed time"
+    ],
+    "route_change_performed": false,
+    "sampling_performed": false,
+    "shared_tied_score": 0.45894321220828727,
+    "simulation_execution_count": 0,
+    "snapshot_name": "FakeNairobiV2",
+    "support_rule": "operation_order_f64_path_supported requires native mapping variation, both sorted profiles to collapse, multiple native average-error bit maps, a functional native order-hash to error-bits relation, and a functional error-bits to mapping-class relation",
+    "target_descriptor_sha256": "702c8fd9dcf67a069e7af63e31a57c74c17aaa5e3c5b6d8c2e28ec0c049c0de7",
+    "total_process_count": 3,
+    "total_simulated_shots": 0,
+    "total_trace_replay_count": 256,
+    "vf2_configuration": {
+      "call_limit": 30000000,
+      "max_trials": 250000,
+      "score_initial_layout": true,
+      "shuffle_seed": -1,
+      "strict_direction": false,
+      "time_limit": null
+    }
+  },
+  "requirement_count": 10,
+  "requirements": [
+    {
+      "label": "source patch applies to the exact Qiskit release commit",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "label": "patched source and instrumented release binary are hash-bound before frozen-input execution",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "label": "the only pre-registration runtime smoke uses an unrelated three-qubit toy",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "label": "native, ascending, and descending accumulation profiles are frozen",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "label": "three OS processes and 256 traced calls are fixed",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "label": "operation order and every f64 accumulation bit pattern are retained",
+      "passed": true,
+      "requirement_id": "P6"
+    },
+    {
+      "label": "trace-to-error and error-to-mapping association tests are frozen",
+      "passed": true,
+      "requirement_id": "P7"
+    },
+    {
+      "label": "all classifications remain admissible before execution",
+      "passed": true,
+      "requirement_id": "P8"
+    },
+    {
+      "label": "zero simulations, shots, sampling, candidate selection, and route changes are fixed",
+      "passed": true,
+      "requirement_id": "P9"
+    },
+    {
+      "label": "no confirmed bug, hardware, advantage, BQP, solved-frontier, or credit claim is allowed",
+      "passed": true,
+      "requirement_id": "P10"
+    }
+  ],
+  "requirements_failed": 0,
+  "requirements_passed": 10,
+  "source_bindings": {
+    "executor": {
+      "path": "tools/b4_b8_r159_error_map_accumulation_trace.py",
+      "sha256": "a0da5f1a23f02fbfcbf658780ef44448b107987d25aa00cf5a19ba0abdfdfac6"
+    },
+    "instrumentation_patch": {
+      "path": "research/source_lineage/Qiskit_2_4_1_R159_error_map_trace.patch",
+      "sha256": "184a11339ebc369fb1500e76ad178672cbc620e9fc58a8eeccac292efa2f5674"
+    },
+    "instrumented_build_manifest": {
+      "path": "research/source_lineage/Qiskit_2_4_1_R159_instrumented_build_manifest.json",
+      "payload_hash": "13ce8844a70a4e3d06d5cff95a5dd3048bae3167e66614d08f08f9454d0e5dbc",
+      "sha256": "7084348e979282664c330a7ceadad683ac3fb2dac4067b1f132456f648e4f505"
+    },
+    "qiskit_source_manifest": {
+      "path": "research/source_lineage/Qiskit_2_4_1_vf2_source_manifest.json",
+      "payload_hash": "aa50b224ae244f25fbf0fcfa61ee844d7fca298efd7420bc6b70a838f08e2ed2",
+      "sha256": "d57f7b039a232047aa1189a1594f8da4eff14c7688e55d77d27b81d625efd276"
+    },
+    "r157_input": {
+      "path": "benchmarks/B4_B8_R157_vf2_post_layout_input_v0.qasm",
+      "sha256": "ce216610e995b4c8b4bd9de6547ac6069961e1eb8881997aa05e0068ea16ab98"
+    },
+    "r158_result": {
+      "path": "results/B4_B8_R158_vf2_accelerator_boundary_v0.json",
+      "payload_hash": "14a466522b472fca39922b3553e2d34dd39d7dd0df8532dc6b5ddc33de2db95a",
+      "sha256": "22684e62c38d06ae59aa574b72b93c7305cb2ab952540edfe579ed9602f6d034"
+    }
+  },
+  "source_target_id": "T-B4-002bz/T-B8-003cd/T-B10-009br",
+  "status": "error_map_accumulation_trace_protocol_frozen_before_execution",
+  "title": "B4/B8 R159 ErrorMap accumulation trace protocol",
+  "upstream_target_id": "T-B4-002by/T-B8-003cc/T-B10-009bq",
+  "version": 0
+}

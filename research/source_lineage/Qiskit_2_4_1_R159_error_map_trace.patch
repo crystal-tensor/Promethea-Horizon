@@ -1,0 +1,154 @@
+diff --git a/crates/transpiler/src/passes/vf2/vf2_layout.rs b/crates/transpiler/src/passes/vf2/vf2_layout.rs
+index 52acd9161..430195b26 100644
+--- a/crates/transpiler/src/passes/vf2/vf2_layout.rs
++++ b/crates/transpiler/src/passes/vf2/vf2_layout.rs
+@@ -21,6 +21,7 @@ use rayon::prelude::*;
+ use rustworkx_core::petgraph::data::Create;
+ use rustworkx_core::petgraph::prelude::*;
+ 
++use pyo3::exceptions::PyValueError;
+ use pyo3::prelude::*;
+ use pyo3::{IntoPyObjectExt, create_exception, wrap_pyfunction};
+ 
+@@ -208,17 +209,32 @@ impl VF2PassReturn {
+     }
+ }
+ 
+-/// Build an average error map for a given target.
++#[derive(Clone, Copy)]
++enum ErrorMapOperationOrder {
++    Native,
++    Ascending,
++    Descending,
++}
++
++type ErrorMapTraceStep = (String, u64, u64);
++type ErrorMapTraceRow = (Vec<u32>, Vec<ErrorMapTraceStep>, u64);
++
++/// Build an average error map for a given target and optionally retain the
++/// exact operation order and floating-point accumulation bits.
+ ///
+ /// Returns `None` if there is a global 2q operation to avoid attempting to construct a meaningless
+ /// all-to-all connectivity graph.
+-fn build_average_error_map(target: &Target) -> Option<ErrorMap> {
++fn build_average_error_map_traced(
++    target: &Target,
++    operation_order: ErrorMapOperationOrder,
++) -> Option<(ErrorMap, Vec<ErrorMapTraceRow>)> {
+     if let Ok(mut globals) = target.operations_for_qargs(QargsRef::Global) {
+         if globals.any(|op| op.operation.num_qubits() == 2) {
+             return None;
+         }
+     }
+     let mut error_map = ErrorMap::new(Some(target.num_qargs()));
++    let mut trace_rows = Vec::with_capacity(target.num_qargs());
+     let mut target_without_errors = true;
+     for qargs in target.qargs()? {
+         let Qargs::Concrete(qargs) = qargs else {
+@@ -228,17 +244,28 @@ fn build_average_error_map(target: &Target) -> Option<ErrorMap> {
+             continue;
+         };
+         let mut qarg_error: f64 = 0.;
+-        let mut count: usize = 0;
+-        for op in target
++        let mut operation_names = target
+             .operation_names_for_qargs(QargsRef::Concrete(qargs))
+             .expect("these qargs came from `target.qargs()`")
+-        {
+-            count += 1;
++            .into_iter()
++            .collect::<Vec<_>>();
++        match operation_order {
++            ErrorMapOperationOrder::Native => (),
++            ErrorMapOperationOrder::Ascending => operation_names.sort_unstable(),
++            ErrorMapOperationOrder::Descending => {
++                operation_names.sort_unstable_by(|left, right| right.cmp(left))
++            }
++        }
++        let count = operation_names.len();
++        let mut trace_steps = Vec::with_capacity(count);
++        for op in operation_names {
+             // If the `target` has no error recorded for an operation, we treat it as errorless.
+-            qarg_error += target
++            let error = target
+                 .get_error(op, qargs)
+                 .inspect(|_| target_without_errors = false)
+                 .unwrap_or(0.);
++            qarg_error += error;
++            trace_steps.push((op.to_owned(), error.to_bits(), qarg_error.to_bits()));
+         }
+         if count > 0 {
+             let out_qargs = if qargs.len() == 1 {
+@@ -246,9 +273,13 @@ fn build_average_error_map(target: &Target) -> Option<ErrorMap> {
+             } else {
+                 [qargs[0], qargs[1]]
+             };
+-            error_map
+-                .error_map
+-                .insert(out_qargs, qarg_error / count as f64);
++            let average_error = qarg_error / count as f64;
++            error_map.error_map.insert(out_qargs, average_error);
++            trace_rows.push((
++                qargs.iter().map(|qubit| qubit.index() as u32).collect(),
++                trace_steps,
++                average_error.to_bits(),
++            ));
+         }
+     }
+     if target_without_errors {
+@@ -293,7 +324,12 @@ fn build_average_error_map(target: &Target) -> Option<ErrorMap> {
+             error_map.error_map.entry([left, right]).insert(avg);
+         }
+     }
+-    Some(error_map)
++    Some((error_map, trace_rows))
++}
++
++fn build_average_error_map(target: &Target) -> Option<ErrorMap> {
++    build_average_error_map_traced(target, ErrorMapOperationOrder::Native)
++        .map(|(error_map, _)| error_map)
+ }
+ 
+ /// A full set of a virtual interaction graph, and any loose 1q qubits.
+@@ -797,6 +833,33 @@ pub fn vf2_layout_pass_average(
+     }
+ }
+ 
++#[pyfunction]
++#[pyo3(signature = (dag, target, config, *, strict_direction=false, operation_order="native"))]
++pub fn vf2_layout_pass_average_traced(
++    dag: &DAGCircuit,
++    target: &Target,
++    config: &Vf2PassConfiguration,
++    strict_direction: bool,
++    operation_order: &str,
++) -> PyResult<(Vf2PassReturn, Vec<ErrorMapTraceRow>)> {
++    let operation_order = match operation_order {
++        "native" => ErrorMapOperationOrder::Native,
++        "ascending" => ErrorMapOperationOrder::Ascending,
++        "descending" => ErrorMapOperationOrder::Descending,
++        value => {
++            return Err(PyValueError::new_err(format!(
++                "invalid ErrorMap operation order: {value}"
++            )));
++        }
++    };
++    let Some((error_map, trace_rows)) = build_average_error_map_traced(target, operation_order)
++    else {
++        return Ok((Vf2PassReturn::NoSolution, Vec::new()));
++    };
++    let result = vf2_layout_pass_average(dag, target, config, strict_direction, Some(&error_map))?;
++    Ok((result, trace_rows))
++}
++
+ #[pyfunction]
+ #[pyo3(signature = (dag, target, config))]
+ pub fn vf2_layout_pass_exact(
+@@ -893,6 +956,7 @@ pub fn vf2_layout_pass_exact(
+ 
+ pub fn vf2_layout_mod(m: &Bound<PyModule>) -> PyResult<()> {
+     m.add_wrapped(wrap_pyfunction!(vf2_layout_pass_average))?;
++    m.add_wrapped(wrap_pyfunction!(vf2_layout_pass_average_traced))?;
+     m.add_wrapped(wrap_pyfunction!(vf2_layout_pass_exact))?;
+     m.add("MultiQEncountered", m.py().get_type::<MultiQEncountered>())?;
+     m.add(

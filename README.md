@@ -2831,6 +2831,22 @@ shots were used. No confirmed Qiskit-bug, general compiler-determinism,
 hardware, transfer, route-advantage, quantum-advantage, BQP, solved-frontier,
 or new-credit claim is made.
 
+`T-B4-002bz` / `T-B8-003cd` / `T-B10-009br` preregisters R159 as a
+source-instrumented ErrorMap accumulation trace. An exact patch against Qiskit
+release commit `0fd015a2...` retains each qargs operation order, operation-error
+bits, every accumulated `f64` bit pattern, average-error bits, and the returned
+tied mapping. The patched source hash is `ab0f5319...`; the release accelerator
+hash is `b24cf719...`. Three operating-system processes freeze 128 native
+HashSet-order calls, 64 ascending-order calls, and 64 descending-order calls.
+The support rule requires native mapping variation, both sorted profiles to
+collapse, multiple native average-error bit maps, a functional operation-order
+to error-bits relation, and a functional error-bits to mapping relation. Three
+pre-registration API-smoke calls used only an unrelated three-qubit
+GenericBackendV2 toy; the frozen R157 input was not loaded. Requirements pass
+`10/10`; execution remains unopened. No causal mechanism, confirmed Qiskit
+bug, general compiler theorem, hardware relevance, route advantage, quantum
+advantage, BQP separation, solved-frontier status, or new credit is claimed.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific
