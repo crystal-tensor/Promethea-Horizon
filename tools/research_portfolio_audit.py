@@ -574,6 +574,154 @@ def audit_r163(
     return status
 
 
+def audit_r164(
+    root: Path,
+    b4_manifest: dict,
+    b8_manifest: dict,
+    b10_manifest: dict,
+    errors: list[str],
+) -> dict:
+    """Validate the preregistered R164 combine-bound comparison shadow."""
+    benchmarks = root / "benchmarks"
+    results = root / "results"
+    research = root / "research"
+    protocol_path = results / "B4_B8_R164_combine_bound_protocol_v0.json"
+    contract_path = benchmarks / "B4_B8_R164_combine_bound_contract_v0.json"
+    executor_path = root / "tools/b4_b8_r164_combine_bound_comparison.py"
+    result_path = results / "B4_B8_R164_combine_bound_comparison_v0.json"
+    profile_path = results / "B4_B8_R164_combine_bound_comparison/profile_summary.json"
+    transcript_path = results / "B4_B8_R164_combine_bound_comparison/verifier_transcript.json"
+    report_path = research / "B4_B8_R164_combine_bound_comparison.md"
+    status = {
+        "protocol_path": str(protocol_path),
+        "contract_path": str(contract_path),
+        "executor_path": str(executor_path),
+        "result_path": str(result_path),
+        "profile_summary_path": str(profile_path),
+        "transcript_path": str(transcript_path),
+        "report_path": str(report_path),
+        "protocol_exists": protocol_path.exists(),
+        "contract_exists": contract_path.exists(),
+        "executor_exists": executor_path.exists(),
+        "result_exists": result_path.exists(),
+        "profile_summary_exists": profile_path.exists(),
+        "transcript_exists": transcript_path.exists(),
+        "report_exists": report_path.exists(),
+    }
+    required = [protocol_path, contract_path, executor_path, result_path, profile_path, transcript_path, report_path]
+    if not all(path.exists() for path in required):
+        errors.append("R164 combine-bound comparison artifact missing")
+        return status
+
+    def payload_ok(payload: dict, key: str) -> bool:
+        body = dict(payload)
+        observed = body.pop(key, None)
+        expected = hashlib.sha256(json.dumps(body, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        return observed == expected
+
+    protocol = json.loads(read(protocol_path))
+    contract = json.loads(read(contract_path))
+    result = json.loads(read(result_path))
+    profile_summary = json.loads(read(profile_path))
+    transcript = json.loads(read(transcript_path))
+    for payload, key, label in [
+        (protocol, "payload_hash", "protocol"),
+        (contract, "payload_hash", "contract"),
+        (result, "payload_hash", "result"),
+        (profile_summary, "payload_hash", "profile summary"),
+        (transcript, "verifier_transcript_payload_hash", "transcript"),
+    ]:
+        if not payload_ok(payload, key):
+            errors.append(f"R164 {label} payload mismatch")
+    if protocol.get("status") != "comparison_policy_protocol_frozen_before_execution" or protocol.get("method") != "b4_b8_r164_combine_bound_protocol_v0":
+        errors.append("R164 protocol identity or status mismatch")
+    if contract.get("contract_id") != "B4-B8-R164-combine-bound-contract-v0" or contract.get("execution_started") is not False:
+        errors.append("R164 contract identity or unopened-boundary mismatch")
+    if result.get("method") != "b4_b8_r164_combine_bound_comparison_v0" or result.get("status") != "comparison_policy_shadow_complete":
+        errors.append("R164 result method or status mismatch")
+    expected_summary = {
+        "profile_count": 3,
+        "replay_count": 256,
+        "source_compare_event_count": 6912,
+        "reconstructable_compare_event_count": 6912,
+        "skipped_compare_event_count": 0,
+        "tie_aware_tie_count": 256,
+        "qiskit_calls_performed": 0,
+        "candidate_selection_performed": False,
+        "route_change_performed": False,
+        "simulation_execution_count": 0,
+        "total_simulated_shots": 0,
+        "new_credit_delta": 0,
+    }
+    summary = result.get("summary", {})
+    for field, value in expected_summary.items():
+        if summary.get(field) != value:
+            errors.append(f"R164 summary {field} mismatch")
+    if result.get("classification") != "source_combine_bound_policy_differences_observed":
+        errors.append("R164 classification mismatch")
+    if summary.get("source_vs_policy_disagreement_count") != {
+        "compensated_fsum": 49,
+        "exact_binary64_leaf": 49,
+        "source_f64": 0,
+        "tie_aware_1ulp": 49,
+    }:
+        errors.append("R164 policy disagreement counts mismatch")
+    if result.get("requirements_passed") != 10 or result.get("requirements_failed") != 0 or len(result.get("requirements", [])) != 10:
+        errors.append("R164 requirement ledger mismatch")
+    if profile_summary.get("method") != result.get("method") or len(profile_summary.get("profile_summary", [])) != 3:
+        errors.append("R164 profile summary mismatch")
+    if transcript.get("result_payload_hash") != result.get("payload_hash") or transcript.get("replay_count") != 256 or transcript.get("global_acceptance") is not True:
+        errors.append("R164 verifier transcript binding mismatch")
+    for binding_id, binding in contract.get("source_bindings", {}).items():
+        path = root / binding.get("path", "")
+        if not path.exists():
+            errors.append(f"R164 source binding missing: {binding_id}")
+        elif binding.get("sha256") and hashlib.sha256(path.read_bytes()).hexdigest() != binding.get("sha256"):
+            errors.append(f"R164 source binding mismatch: {binding_id}")
+    manifest_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r164_combine_bound_comparison_v0")),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r164_combine_bound_comparison_v0")),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r164_combine_bound_comparison_v0")),
+    ]
+    for label, row in manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R164 combine-bound comparison")
+            continue
+        for field in ["result", "markdown_report", "protocol", "contract", "executor"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R164 manifest missing {field}")
+        if row.get("method") != "b4_b8_r164_combine_bound_comparison_v0" or row.get("status") != "comparison_policy_shadow_complete":
+            errors.append(f"{label} R164 manifest status or method mismatch")
+        for field, value in expected_summary.items():
+            if field in row and row.get(field) != value:
+                errors.append(f"{label} R164 manifest {field} mismatch")
+    report_text = read(report_path)
+    for marker in [
+        "source_combine_bound_policy_differences_observed",
+        "`6912` of `6912`",
+        "49",
+        "256",
+        "does not establish a confirmed Qiskit bug",
+    ]:
+        if marker not in report_text:
+            errors.append(f"R164 report boundary missing: {marker}")
+    status.update(
+        {
+            "status": result.get("status"),
+            "classification": result.get("classification"),
+            "profile_count": summary.get("profile_count"),
+            "replay_count": summary.get("replay_count"),
+            "source_compare_event_count": summary.get("source_compare_event_count"),
+            "reconstructable_compare_event_count": summary.get("reconstructable_compare_event_count"),
+            "skipped_compare_event_count": summary.get("skipped_compare_event_count"),
+            "tie_aware_tie_count": summary.get("tie_aware_tie_count"),
+            "requirements_passed": result.get("requirements_passed"),
+            "requirements_failed": result.get("requirements_failed"),
+        }
+    )
+    return status
+
+
 def audit(root: Path) -> dict:
     research = root / "research"
     benchmarks = root / "benchmarks"
@@ -41666,6 +41814,7 @@ def audit(root: Path) -> dict:
     r161_status = audit_r161(root, b4_manifest, b8_manifest, b10_manifest, errors)
     r162_status = audit_r162(root, b4_manifest, b8_manifest, b10_manifest, errors)
     r163_status = audit_r163(root, b4_manifest, b8_manifest, b10_manifest, errors)
+    r164_status = audit_r164(root, b4_manifest, b8_manifest, b10_manifest, errors)
 
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
@@ -42020,6 +42169,7 @@ def audit(root: Path) -> dict:
             "r161_source_faithful_score_audit": r161_status,
             "r162_score_trace": r162_status,
             "r163_comparison_policy": r163_status,
+            "r164_combine_bound_comparison": r164_status,
         },
         "b5": {
             "manifest": str(b5_manifest_path),
@@ -42160,6 +42310,7 @@ def audit(root: Path) -> dict:
             "r161_source_faithful_score_audit": r161_status,
             "r162_score_trace": r162_status,
             "r163_comparison_policy": r163_status,
+            "r164_combine_bound_comparison": r164_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -42191,6 +42342,7 @@ def audit(root: Path) -> dict:
             "r161_source_faithful_score_audit": r161_status,
             "r162_score_trace": r162_status,
             "r163_comparison_policy": r163_status,
+            "r164_combine_bound_comparison": r164_status,
             "t1_d5_observable_denominator_table": b10_t1_d5_table_status,
             "t1_d5_b3_molecular_observable_table": b10_t1_d5_b3_table_status,
             "t1_d5_b3_reaction_observable_table": b10_t1_d5_b3_reaction_table_status,
@@ -46100,6 +46252,15 @@ def markdown_report(report: dict) -> str:
             f"- Tie-aware ties: {report['b8']['r163_comparison_policy'].get('tie_aware_tie_count')}",
             f"- Requirements passed/failed: {report['b8']['r163_comparison_policy'].get('requirements_passed')} / {report['b8']['r163_comparison_policy'].get('requirements_failed')}",
             f"- Protocol/contract/executor/result/profile/transcript/report exists: {report['b8']['r163_comparison_policy'].get('protocol_exists')} / {report['b8']['r163_comparison_policy'].get('contract_exists')} / {report['b8']['r163_comparison_policy'].get('executor_exists')} / {report['b8']['r163_comparison_policy'].get('result_exists')} / {report['b8']['r163_comparison_policy'].get('profile_summary_exists')} / {report['b8']['r163_comparison_policy'].get('transcript_exists')} / {report['b8']['r163_comparison_policy'].get('report_exists')}",
+            "",
+            "### R164 Combine-Bound Comparison Shadow",
+            "",
+            f"- Status / classification: {report['b8']['r164_combine_bound_comparison'].get('status')} / {report['b8']['r164_combine_bound_comparison'].get('classification')}",
+            f"- Profiles / replays: {report['b8']['r164_combine_bound_comparison'].get('profile_count')} / {report['b8']['r164_combine_bound_comparison'].get('replay_count')}",
+            f"- Source comparisons / reconstructable / skipped: {report['b8']['r164_combine_bound_comparison'].get('source_compare_event_count')} / {report['b8']['r164_combine_bound_comparison'].get('reconstructable_compare_event_count')} / {report['b8']['r164_combine_bound_comparison'].get('skipped_compare_event_count')}",
+            f"- Tie-aware ties / policy disagreements: {report['b8']['r164_combine_bound_comparison'].get('tie_aware_tie_count')} / 49 per alternate policy",
+            f"- Requirements passed/failed: {report['b8']['r164_combine_bound_comparison'].get('requirements_passed')} / {report['b8']['r164_combine_bound_comparison'].get('requirements_failed')}",
+            f"- Protocol/contract/executor/result/profile/transcript/report exists: {report['b8']['r164_combine_bound_comparison'].get('protocol_exists')} / {report['b8']['r164_combine_bound_comparison'].get('contract_exists')} / {report['b8']['r164_combine_bound_comparison'].get('executor_exists')} / {report['b8']['r164_combine_bound_comparison'].get('result_exists')} / {report['b8']['r164_combine_bound_comparison'].get('profile_summary_exists')} / {report['b8']['r164_combine_bound_comparison'].get('transcript_exists')} / {report['b8']['r164_combine_bound_comparison'].get('report_exists')}",
             "",
             f"- Status: {report['b8']['output_invariant_verifier'].get('status')}",
             f"- Model status: {report['b8']['output_invariant_verifier'].get('model_status')}",

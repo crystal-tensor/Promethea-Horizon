@@ -2932,6 +2932,19 @@ bug, hardware result, quantum advantage, BQP separation, solved B4/B8/B10, or
 new credit. Requirements pass `10/10`; complete operand provenance is the next
 gate.
 
+`T-B4-002ch` / `T-B8-003cl` / `T-B10-009bz` executes R164 with a source-combine
+binding. Each comparison operand is bound by its source expression and the
+hash-bound `combine.result_bits`, then checked against a unique retained
+binary64 leaf vector. All `6,912/6,912` source comparisons are reconstructable
+across 3 profiles and 256 replays. Compensated `math.fsum`, exact retained-leaf,
+and 1-ULP tie-aware policies each disagree with the source on `49` comparison
+events; the tie-aware policy records `256` ties. This exposes a policy-sensitive
+comparison boundary, but remains a shadow-only diagnostic: it does not establish
+a source patch, production remedy, changed mapping, confirmed Qiskit bug,
+hardware result, quantum advantage, BQP separation, solved B4/B8/B10, or new
+credit. Requirements pass `10/10`; the next gate is a full candidate-selection
+replay under a predeclared acceptance rule.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

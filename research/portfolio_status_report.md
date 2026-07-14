@@ -2413,6 +2413,15 @@ Overall audit: PASS
 - Requirements passed/failed: 10 / 0
 - Protocol/contract/executor/result/profile/transcript/report exists: True / True / True / True / True / True / True
 
+### R164 Combine-Bound Comparison Shadow
+
+- Status / classification: comparison_policy_shadow_complete / source_combine_bound_policy_differences_observed
+- Profiles / replays: 3 / 256
+- Source comparisons / reconstructable / skipped: 6912 / 6912 / 0
+- Tie-aware ties / policy disagreements: 256 / 49 per alternate policy
+- Requirements passed/failed: 10 / 0
+- Protocol/contract/executor/result/profile/transcript/report exists: True / True / True / True / True / True / True
+
 - Status: toy_invariant_property_test
 - Model status: toy_invariant_property_test_not_full_distribution_verification
 - Tasks: 3
