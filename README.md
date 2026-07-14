@@ -2945,6 +2945,18 @@ hardware result, quantum advantage, BQP separation, solved B4/B8/B10, or new
 credit. Requirements pass `10/10`; the next gate is a full candidate-selection
 replay under a predeclared acceptance rule.
 
+`T-B4-002ci` / `T-B8-003cm` / `T-B10-009ca` executes R165 as a complete-candidate
+selection replay. The hash-bound Qiskit 2.4.1 accelerator records every complete
+VF2 candidate yielded by the frozen iterator, including its mapping, score,
+retained leaves, and enumeration index. Across 3 profiles and 256 calls, `298`
+yielded candidates are observed and source-return validation matches `256/256`.
+Compensated, exact-leaf, and 1-ULP policies each select a different observed
+candidate mapping in `42` replays. This is a candidate-level replay boundary,
+not an alternate search-path or production-compiler claim: it does not establish
+a confirmed Qiskit bug, numerical remedy, hardware result, quantum advantage,
+BQP separation, solved B4/B8/B10, or new credit. Requirements pass `10/10`; the
+next gate is an independent reproduction and adversarial baseline.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific
