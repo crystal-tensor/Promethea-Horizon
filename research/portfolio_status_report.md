@@ -2395,6 +2395,15 @@ Overall audit: PASS
 - Requirements passed/failed: 10 / 0
 - Protocol/contract/executor/result/report exists: True / True / True / True / True
 
+### R162 Source Score-Combination Trace
+
+- Status / classification: score_trace_diagnostic_complete / source_score_shadow_divergence_localized
+- Profiles / processes / replays: 3 / 3 / 256
+- Score events / strict Decreasing comparisons / returned candidates: 44800 / 6912 / 256
+- Shadow class counts: {'no_candidate': 0, 'source_differs_from_fsum': 141, 'source_equals_fsum_but_exact_binary64_differs': 115, 'source_equals_fsum_equals_exact_binary64': 0}
+- Requirements passed/failed: 10 / 0
+- Protocol/contract/build/patch/executor/result/report exists: True / True / True / True / True / True / True
+
 - Status: toy_invariant_property_test
 - Model status: toy_invariant_property_test_not_full_distribution_verification
 - Tasks: 3

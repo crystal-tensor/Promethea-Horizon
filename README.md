@@ -2907,6 +2907,18 @@ this is a numerical diagnostic boundary, not a compiler-bug claim or a fix.
 Requirements pass `10/10`; no source patch, hardware, quantum advantage, BQP,
 solved-frontier, or new-credit claim is made.
 
+`T-B4-002cf` / `T-B8-003cj` / `T-B10-009bx` then executes R162 as a
+source-instrumented score-combination trace over the frozen R157 input. Three
+processes retain 256 calls, `44,800` combine/compare/candidate events, and
+`6,912` strict `Decreasing` comparisons. The returned source binary64 total
+differs from `math.fsum` on `141/256` calls; the remaining `115/256` agree with
+`math.fsum` but differ from the exact rational sum of retained binary64 leaves.
+Mapping classes are A/B `207/49`, with no-solution and other mappings at zero.
+This localizes a candidate-total arithmetic boundary and does not establish a
+confirmed Qiskit bug, numerical remedy, cross-platform theorem, hardware
+result, route advantage, quantum advantage, BQP separation, solved B4/B8/B10,
+or new credit. Requirements pass `10/10`.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

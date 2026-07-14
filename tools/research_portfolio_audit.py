@@ -242,6 +242,190 @@ def audit_r161(
     return status
 
 
+def audit_r162(
+    root: Path,
+    b4_manifest: dict,
+    b8_manifest: dict,
+    b10_manifest: dict,
+    errors: list[str],
+) -> dict:
+    """Validate the source-instrumented R162 score trace and its B-track bindings."""
+    research = root / "research"
+    benchmarks = root / "benchmarks"
+    results = root / "results"
+    protocol_path = results / "B4_B8_R162_score_trace_protocol_v0.json"
+    contract_path = benchmarks / "B4_B8_R162_score_trace_contract_v0.json"
+    build_manifest_path = research / "source_lineage/Qiskit_2_4_1_R162_score_trace_build_manifest.json"
+    patch_path = research / "source_lineage/Qiskit_2_4_1_R162_score_trace.patch"
+    executor_path = root / "tools/b4_b8_r162_score_trace.py"
+    result_path = results / "B4_B8_R162_score_trace_v0.json"
+    report_path = research / "B4_B8_R162_score_trace.md"
+    trace_dir = results / "B4_B8_R162_score_trace"
+    status = {
+        "protocol_path": str(protocol_path),
+        "contract_path": str(contract_path),
+        "build_manifest_path": str(build_manifest_path),
+        "patch_path": str(patch_path),
+        "executor_path": str(executor_path),
+        "result_path": str(result_path),
+        "report_path": str(report_path),
+        "trace_directory": str(trace_dir),
+        "protocol_exists": protocol_path.exists(),
+        "contract_exists": contract_path.exists(),
+        "build_manifest_exists": build_manifest_path.exists(),
+        "patch_exists": patch_path.exists(),
+        "executor_exists": executor_path.exists(),
+        "result_exists": result_path.exists(),
+        "report_exists": report_path.exists(),
+        "trace_directory_exists": trace_dir.exists(),
+    }
+    required = [protocol_path, contract_path, build_manifest_path, patch_path, executor_path, result_path, report_path]
+    if not all(path.exists() for path in required):
+        errors.append("R162 score trace artifact missing")
+        return status
+
+    def payload_ok(payload: dict, key: str) -> bool:
+        body = dict(payload)
+        observed = body.pop(key, None)
+        expected = hashlib.sha256(json.dumps(body, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        return observed == expected
+
+    protocol = json.loads(read(protocol_path))
+    contract = json.loads(read(contract_path))
+    build_manifest = json.loads(read(build_manifest_path))
+    result = json.loads(read(result_path))
+    if not payload_ok(protocol, "payload_hash"):
+        errors.append("R162 protocol payload mismatch")
+    if not payload_ok(contract, "payload_hash"):
+        errors.append("R162 contract payload mismatch")
+    if not payload_ok(build_manifest, "payload_hash"):
+        errors.append("R162 build manifest payload mismatch")
+    if not payload_ok(result, "payload_hash"):
+        errors.append("R162 result payload mismatch")
+    if protocol.get("status") != "score_trace_protocol_frozen_before_execution":
+        errors.append("R162 protocol status mismatch")
+    if contract.get("contract_id") != "B4-B8-R162-score-trace-contract-v0":
+        errors.append("R162 contract identity mismatch")
+    if result.get("method") != "b4_b8_r162_score_trace_v0" or result.get("status") != "score_trace_diagnostic_complete":
+        errors.append("R162 result method or status mismatch")
+    summary = result.get("summary", {})
+    expected_summary = {
+        "profile_count": 3,
+        "process_count": 3,
+        "replay_count": 256,
+        "score_event_count": 44800,
+        "strict_compare_event_count": 6912,
+        "candidate_event_count": 256,
+        "new_credit_delta": 0,
+        "simulation_execution_count": 0,
+        "total_simulated_shots": 0,
+    }
+    for field, value in expected_summary.items():
+        if summary.get(field) != value:
+            errors.append(f"R162 summary {field} mismatch")
+    if result.get("classification") != "source_score_shadow_divergence_localized":
+        errors.append("R162 classification mismatch")
+    if result.get("requirements_passed") != 10 or result.get("requirements_failed") != 0 or len(result.get("requirements", [])) != 10:
+        errors.append("R162 requirement ledger mismatch")
+    if summary.get("mapping_class_counts") != {"endpoint_4_to_0": 207, "endpoint_4_to_2": 49, "no_solution": 0, "other_mapping": 0}:
+        errors.append("R162 mapping class counts mismatch")
+    if summary.get("shadow_class_counts") != {"no_candidate": 0, "source_differs_from_fsum": 141, "source_equals_fsum_but_exact_binary64_differs": 115, "source_equals_fsum_equals_exact_binary64": 0}:
+        errors.append("R162 shadow class counts mismatch")
+    if not trace_dir.exists():
+        errors.append("R162 trace directory missing")
+    else:
+        worker_counts = {"native_hashset_order": 128, "ascending_sorted_order": 64, "descending_sorted_order": 64}
+        replay_count = 0
+        process_uuids = set()
+        for profile_id, expected_count in worker_counts.items():
+            worker_path = trace_dir / f"{profile_id}.json"
+            if not worker_path.exists():
+                errors.append(f"R162 worker missing: {profile_id}")
+                continue
+            worker = json.loads(read(worker_path))
+            worker_body = dict(worker)
+            worker_hash = worker_body.pop("manifest_payload_hash", None)
+            if worker_hash != hashlib.sha256(json.dumps(worker_body, sort_keys=True, separators=(",", ":")).encode()).hexdigest():
+                errors.append(f"R162 worker payload mismatch: {profile_id}")
+            process_uuids.add(worker.get("process_instance_uuid"))
+            rows = worker.get("replay_rows", [])
+            replay_count += len(rows)
+            if len(rows) != expected_count:
+                errors.append(f"R162 worker replay count mismatch: {profile_id}")
+            for row in rows:
+                row_body = dict(row)
+                observed = row_body.pop("replay_payload_hash", None)
+                expected = hashlib.sha256(json.dumps(row_body, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+                if observed != expected:
+                    errors.append(f"R162 replay payload mismatch: {profile_id}/{row.get('replay_index')}")
+                    break
+                if row.get("score_event_kind_counts", {}).get("compare", 0) <= 0 or row.get("candidate_event_count") != 1:
+                    errors.append(f"R162 incomplete score event trace: {profile_id}/{row.get('replay_index')}")
+                    break
+                if row.get("shadow", {}).get("shadow_class") not in {
+                    "source_differs_from_fsum",
+                    "source_equals_fsum_but_exact_binary64_differs",
+                    "source_equals_fsum_equals_exact_binary64",
+                }:
+                    errors.append(f"R162 shadow classification missing: {profile_id}/{row.get('replay_index')}")
+                    break
+        if replay_count != 256 or len(process_uuids) != 3:
+            errors.append("R162 retained worker or process count mismatch")
+    transcript_path = trace_dir / "verifier_transcript.json"
+    transcript = json.loads(read(transcript_path)) if transcript_path.exists() else {}
+    if transcript.get("result_payload_hash") != result.get("payload_hash") or transcript.get("replay_count") != 256 or transcript.get("global_acceptance") is not True:
+        errors.append("R162 verifier transcript binding mismatch")
+    bindings = contract.get("source_bindings", {})
+    for binding_id, binding in bindings.items():
+        binding_path = root / binding.get("path", "")
+        if not binding_path.exists() or hashlib.sha256(binding_path.read_bytes()).hexdigest() != binding.get("sha256"):
+            errors.append(f"R162 source binding mismatch: {binding_id}")
+    manifest_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r162_score_trace_v0")),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r162_score_trace_v0")),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r162_score_trace_v0")),
+    ]
+    for label, row in manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R162 score trace")
+            continue
+        for field in ["result", "markdown_report", "protocol", "contract", "build_manifest", "instrumentation_patch"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R162 manifest missing {field}")
+        for field, value in expected_summary.items():
+            if field in row and row.get(field) != value:
+                errors.append(f"{label} R162 manifest {field} mismatch")
+        if row.get("method") != "b4_b8_r162_score_trace_v0" or row.get("status") != "score_trace_diagnostic_complete":
+            errors.append(f"{label} R162 manifest status or method mismatch")
+    report_text = read(report_path)
+    for marker in [
+        "source_score_shadow_divergence_localized",
+        "`44800` / `6912` / `256`",
+        "141/256",
+        "115/256",
+        "strict `Decreasing`",
+        "does not establish a confirmed Qiskit bug",
+    ]:
+        if marker not in report_text:
+            errors.append(f"R162 report boundary missing: {marker}")
+    status.update(
+        {
+            "status": result.get("status"),
+            "classification": result.get("classification"),
+            "profile_count": summary.get("profile_count"),
+            "process_count": summary.get("process_count"),
+            "replay_count": summary.get("replay_count"),
+            "score_event_count": summary.get("score_event_count"),
+            "strict_compare_event_count": summary.get("strict_compare_event_count"),
+            "candidate_event_count": summary.get("candidate_event_count"),
+            "shadow_class_counts": summary.get("shadow_class_counts"),
+            "requirements_passed": result.get("requirements_passed"),
+            "requirements_failed": result.get("requirements_failed"),
+        }
+    )
+    return status
+
+
 def audit(root: Path) -> dict:
     research = root / "research"
     benchmarks = root / "benchmarks"
@@ -41332,6 +41516,7 @@ def audit(root: Path) -> dict:
             errors.append("R160 remediation adjudication report boundary missing")
 
     r161_status = audit_r161(root, b4_manifest, b8_manifest, b10_manifest, errors)
+    r162_status = audit_r162(root, b4_manifest, b8_manifest, b10_manifest, errors)
 
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
@@ -41684,6 +41869,7 @@ def audit(root: Path) -> dict:
             "real_backend_transcript_contract_gate": b4_real_backend_transcript_contract_status,
             "real_backend_packet_scout": b4_real_backend_packet_scout_status,
             "r161_source_faithful_score_audit": r161_status,
+            "r162_score_trace": r162_status,
         },
         "b5": {
             "manifest": str(b5_manifest_path),
@@ -41822,6 +42008,7 @@ def audit(root: Path) -> dict:
             "r160_deterministic_error_map_remediation": r160_status,
             "r160_deterministic_error_map_remediation_result": r160_result_status,
             "r161_source_faithful_score_audit": r161_status,
+            "r162_score_trace": r162_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -41851,6 +42038,7 @@ def audit(root: Path) -> dict:
             "t1_source_backed_boundaries": b10_t1_source_backed_status,
             "t1_numerical_denominator_table": b10_t1_numerical_table_status,
             "r161_source_faithful_score_audit": r161_status,
+            "r162_score_trace": r162_status,
             "t1_d5_observable_denominator_table": b10_t1_d5_table_status,
             "t1_d5_b3_molecular_observable_table": b10_t1_d5_b3_table_status,
             "t1_d5_b3_reaction_observable_table": b10_t1_d5_b3_reaction_table_status,
@@ -45742,6 +45930,15 @@ def markdown_report(report: dict) -> str:
             f"- Source-f64 nonminimum rows: {report['b8']['r161_source_faithful_score_audit'].get('source_f64_nonminimum_count')}",
             f"- Requirements passed/failed: {report['b8']['r161_source_faithful_score_audit'].get('requirements_passed')} / {report['b8']['r161_source_faithful_score_audit'].get('requirements_failed')}",
             f"- Protocol/contract/executor/result/report exists: {report['b8']['r161_source_faithful_score_audit'].get('protocol_exists')} / {report['b8']['r161_source_faithful_score_audit'].get('contract_exists')} / {report['b8']['r161_source_faithful_score_audit'].get('executor_exists')} / {report['b8']['r161_source_faithful_score_audit'].get('result_exists')} / {report['b8']['r161_source_faithful_score_audit'].get('report_exists')}",
+            "",
+            "### R162 Source Score-Combination Trace",
+            "",
+            f"- Status / classification: {report['b8']['r162_score_trace'].get('status')} / {report['b8']['r162_score_trace'].get('classification')}",
+            f"- Profiles / processes / replays: {report['b8']['r162_score_trace'].get('profile_count')} / {report['b8']['r162_score_trace'].get('process_count')} / {report['b8']['r162_score_trace'].get('replay_count')}",
+            f"- Score events / strict Decreasing comparisons / returned candidates: {report['b8']['r162_score_trace'].get('score_event_count')} / {report['b8']['r162_score_trace'].get('strict_compare_event_count')} / {report['b8']['r162_score_trace'].get('candidate_event_count')}",
+            f"- Shadow class counts: {report['b8']['r162_score_trace'].get('shadow_class_counts')}",
+            f"- Requirements passed/failed: {report['b8']['r162_score_trace'].get('requirements_passed')} / {report['b8']['r162_score_trace'].get('requirements_failed')}",
+            f"- Protocol/contract/build/patch/executor/result/report exists: {report['b8']['r162_score_trace'].get('protocol_exists')} / {report['b8']['r162_score_trace'].get('contract_exists')} / {report['b8']['r162_score_trace'].get('build_manifest_exists')} / {report['b8']['r162_score_trace'].get('patch_exists')} / {report['b8']['r162_score_trace'].get('executor_exists')} / {report['b8']['r162_score_trace'].get('result_exists')} / {report['b8']['r162_score_trace'].get('report_exists')}",
             "",
             f"- Status: {report['b8']['output_invariant_verifier'].get('status')}",
             f"- Model status: {report['b8']['output_invariant_verifier'].get('model_status')}",
