@@ -1,0 +1,52 @@
+{
+  "method": "b4_b8_r163_comparison_policy_protocol_v0",
+  "status": "comparison_policy_protocol_frozen_before_execution",
+  "title": "B4/B8 R163 VF2 comparison-policy shadow protocol",
+  "version": 0,
+  "protocol": {
+    "upstream_method": "b4_b8_r162_score_trace_v0",
+    "upstream_result_path": "results/B4_B8_R162_score_trace_v0.json",
+    "r162_result_payload_hash": "6d4d8a89101a63226bc669e9b24c65d8db3e9c58d61ed4c8ae74fea3ad5141ed",
+    "r162_worker_directory": "results/B4_B8_R162_score_trace",
+    "r162_worker_sha256": {
+      "ascending_sorted_order.json": "a185574530e3663e11773c8628b643a31fe3156fa7ebcbf10ca5f4b40111d03f",
+      "descending_sorted_order.json": "38c61f6ed6f4aab993eff2bafe6adfaf082f2980b914cc3f07e2d1ba1000d4a2",
+      "native_hashset_order.json": "e471060e4261de17327d399907f1eca1837d1c0688cf50e9ceae788a585bed84"
+    },
+    "expected_profile_count": 3,
+    "expected_replay_count": 256,
+    "policies": {
+      "source_f64": "Use the source compare operands and source partial binary64 values recorded by R162.",
+      "compensated_fsum": "Reconstruct each operand's retained source leaf order and compare math.fsum values.",
+      "exact_binary64_leaf": "Compare exact rational sums of the retained binary64 leaf values; this is not an exact real-valued score oracle.",
+      "tie_aware_1ulp": "Compare exact retained-leaf sums, but return equality when the exact gap is at most one math.ulp of the larger source operand magnitude."
+    },
+    "scope": {
+      "reconstructable_compare_events_only": true,
+      "source_expression_must_be_unique": true,
+      "reconstructable_operand_must_match_source_fold": true,
+      "qiskit_calls": 0,
+      "candidate_selection": false,
+      "route_changes": false,
+      "simulation_execution_count": 0,
+      "total_simulated_shots": 0
+    },
+    "claim_boundary": {
+      "what_is_supported": "comparison-level arithmetic and tie-policy shadows over hash-bound R162 events",
+      "what_is_not_supported": "a changed mapping, production remedy, confirmed Qiskit bug, cross-platform theorem, hardware performance, route advantage, quantum advantage, BQP separation, solved B4/B8/B10, or new credit"
+    }
+  },
+  "requirements": [
+    {"requirement_id": "P1", "label": "the R162 result and all three worker files are hash-bound", "passed": true},
+    {"requirement_id": "P2", "label": "the four comparison policies are fixed before execution", "passed": true},
+    {"requirement_id": "P3", "label": "only uniquely reconstructable compare operands are retained", "passed": true},
+    {"requirement_id": "P4", "label": "source-order leaf folding must reproduce each source operand bit pattern", "passed": true},
+    {"requirement_id": "P5", "label": "all 256 R162 replays are read without replacement", "passed": true},
+    {"requirement_id": "P6", "label": "source, compensated, exact, and tie-aware codes are retained per event", "passed": true},
+    {"requirement_id": "P7", "label": "one-ULP tie behavior is explicit and deterministic", "passed": true},
+    {"requirement_id": "P8", "label": "no Qiskit call, candidate selection, route change, simulation, or shot is performed", "passed": true},
+    {"requirement_id": "P9", "label": "the upstream R162 claim boundary remains binding", "passed": true},
+    {"requirement_id": "P10", "label": "bug, remedy, changed mapping, advantage, BQP, solved-frontier, and credit claims remain false", "passed": true}
+  ],
+  "payload_hash": "26ced41f9b9e709f659d3dee062ab33ea9201365541a1f67f2703bc212b62db7"
+}

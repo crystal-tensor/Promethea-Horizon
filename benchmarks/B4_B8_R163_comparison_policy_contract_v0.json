@@ -1,0 +1,33 @@
+{
+  "contract_id": "B4-B8-R163-comparison-policy-contract-v0",
+  "contract_status": "public_preregistration_execution_unopened",
+  "execution_started": false,
+  "target_id": "T-B4-002cg/T-B8-003ck/T-B10-009by",
+  "upstream_target_id": "T-B4-002cf/T-B8-003cj/T-B10-009bx",
+  "protocol_path": "results/B4_B8_R163_comparison_policy_protocol_v0.json",
+  "acceptance_conditions": [
+    {"condition_id": "A1", "label": "all R162 source artifacts and hashes remain exact"},
+    {"condition_id": "A2", "label": "three profiles and 256 replays are audited"},
+    {"condition_id": "A3", "label": "at least one source compare event and one reconstructable event are retained"},
+    {"condition_id": "A4", "label": "every source compare event is either reconstructed or explicitly skipped"},
+    {"condition_id": "A5", "label": "all four policies emit a code for every reconstructed event"},
+    {"condition_id": "A6", "label": "source codes remain valid ordering codes"},
+    {"condition_id": "A7", "label": "the declared tie-aware rule is deterministic"},
+    {"condition_id": "A8", "label": "the R162 result payload remains bound"},
+    {"condition_id": "A9", "label": "the execution is linked to a public preregistration Discussion"},
+    {"condition_id": "A10", "label": "forbidden bug, remedy, changed mapping, advantage, BQP, solved-frontier, and credit claims remain false"}
+  ],
+  "source_bindings": {
+    "executor": {"path": "tools/b4_b8_r163_comparison_policy.py", "sha256": "3368b9d3eac1dbc55703290fd56a117782397f208984df8797c52e8b2ec31dee"},
+    "protocol": {"path": "results/B4_B8_R163_comparison_policy_protocol_v0.json", "payload_hash": "26ced41f9b9e709f659d3dee062ab33ea9201365541a1f67f2703bc212b62db7", "sha256": "c8f397858aaf3b465e1a27922071ff084211973e764d984127b70e832a5aa045"},
+    "r162_result": {"path": "results/B4_B8_R162_score_trace_v0.json", "payload_hash": "6d4d8a89101a63226bc669e9b24c65d8db3e9c58d61ed4c8ae74fea3ad5141ed", "sha256": "948cf5e43f610ba2e170343bc1b845eeab1d9ada29e4f06057057091c9e34be3"},
+    "r162_ascending_worker": {"path": "results/B4_B8_R162_score_trace/ascending_sorted_order.json", "sha256": "a185574530e3663e11773c8628b643a31fe3156fa7ebcbf10ca5f4b40111d03f"},
+    "r162_descending_worker": {"path": "results/B4_B8_R162_score_trace/descending_sorted_order.json", "sha256": "38c61f6ed6f4aab993eff2bafe6adfaf082f2980b914cc3f07e2d1ba1000d4a2"},
+    "r162_native_worker": {"path": "results/B4_B8_R162_score_trace/native_hashset_order.json", "sha256": "e471060e4261de17327d399907f1eca1837d1c0688cf50e9ceae788a585bed84"}
+  },
+  "claim_boundary": {
+    "what_is_supported": "comparison-level arithmetic and tie-policy shadows over hash-bound R162 events",
+    "what_is_not_supported": "a changed mapping, production remedy, confirmed Qiskit bug, cross-platform theorem, hardware performance, route advantage, quantum advantage, BQP separation, solved B4/B8/B10, or new credit"
+  },
+  "payload_hash": "b604e3f5c1835c5e378125b3ed105609eee4f947651f9c164b4a73323dc19afd"
+}
