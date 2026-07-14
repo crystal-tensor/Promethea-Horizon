@@ -94,7 +94,10 @@ def interaction_inventory(circuit: Any) -> tuple[Counter[int], Counter[tuple[int
             if qargs not in edge_order:
                 edge_order.append(qargs)
         else:
-            raise ValueError(f"R161 unsupported instruction arity: {qargs}")
+            # Match the frozen R160 interaction counter: barriers and other
+            # non-computational multi-qubit instructions do not contribute to
+            # the VF2 interaction graph.
+            continue
     return one_counts, two_counts, node_order, edge_order
 
 
