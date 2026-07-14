@@ -1,0 +1,50 @@
+{
+  "title": "B4/B8 R161 source-faithful VF2 score audit",
+  "status": "source_faithful_score_audit_protocol_frozen_before_execution",
+  "target_id": "T-B4-002ce/T-B8-003ci/T-B10-009bw",
+  "upstream_target_id": "T-B4-002cd/T-B8-003ch/T-B10-009bv",
+  "input_qasm": "benchmarks/B4_B8_R157_vf2_post_layout_input_v0.qasm",
+  "source_manifest": "research/source_lineage/Qiskit_2_4_1_vf2_source_manifest.json",
+  "r160_result": "results/B4_B8_R160_deterministic_error_map_remediation_v0.json",
+  "r160_worker_directory": "results/B4_B8_R160_deterministic_error_map_remediation",
+  "mapping_count": 5040,
+  "expected_profiles": 4,
+  "expected_processes": 16,
+  "expected_cases": 33,
+  "expected_replays": 1056,
+  "source_score_transform": {
+    "name": "neg_log_fidelity",
+    "formula": "0 when error <= 0; +inf when error >= 1; otherwise -log1p(-error)",
+    "source_file": "crates/transpiler/src/passes/vf2/vf2_layout.rs",
+    "source_lineage_commit": "0fd015a22b84c9082173597a5d2304dc0aaec08c"
+  },
+  "source_fold": {
+    "node_order": "first-seen virtual qubits from two-qubit input operations",
+    "edge_order": "first-seen unique directed virtual interaction edges",
+    "term_order": "all interaction nodes, then all interaction edges",
+    "combination": "binary64 multiply by interaction count, then left-to-right binary64 addition",
+    "restriction": "strictly less than the current Decreasing upper bound"
+  },
+  "oracle": {
+    "score_domain": "Fraction.from_float of each source-transformed binary64 term",
+    "feasibility": "a mapping is feasible only when every required node and directed edge has an ErrorMap value or reversed directed fallback",
+    "tie_rule": "all mappings with exactly equal minimum rational score are minimizers"
+  },
+  "acceptance_conditions": [
+    {"condition_id": "A1", "label": "R160 result and all sixteen worker payloads validate"},
+    {"condition_id": "A2", "label": "the frozen 4-profile, 16-process, 33-case, 1056-replay inventory is complete"},
+    {"condition_id": "A3", "label": "the source transform and source-lineage binding are explicit"},
+    {"condition_id": "A4", "label": "all 5040 mappings are scored for every profile/case"},
+    {"condition_id": "A5", "label": "the source-faithful rational oracle and source-order binary64 fold are both retained"},
+    {"condition_id": "A6", "label": "every R160 selected vector is classified against both score models"},
+    {"condition_id": "A7", "label": "all R160 exact-oracle failures are retained without relabeling"},
+    {"condition_id": "A8", "label": "the result distinguishes source-f64 consistency from exact-rational correctness"},
+    {"condition_id": "A9", "label": "no source patch, hardware execution, simulation, shots, hidden selection, or new route is used"},
+    {"condition_id": "A10", "label": "no compiler-bug, quantum-advantage, BQP, solved-frontier, or new-credit claim is made"}
+  ],
+  "claim_boundary": {
+    "what_is_supported": "a reproducible diagnostic of whether R160's rejected rows remain rejected under the source-faithful neg-log-fidelity score and whether the observed mapping is consistent with the source-order binary64 fold",
+    "what_is_not_supported": "a source fix, a causal compiler explanation, a general numerical theorem, cross-platform determinism, hardware relevance, route advantage, quantum advantage, BQP separation, solved B4/B8/B10, or new credit"
+  },
+  "payload_hash": "de64877a13779d4b39496b144f05df81ff74e310c1fe2b4abbc9561cbf3c1fa3"
+}
