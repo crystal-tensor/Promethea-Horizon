@@ -2863,6 +2863,22 @@ build and tied input. It is not elevated to a confirmed Qiskit bug,
 cross-platform theorem, hardware, route-advantage, quantum-advantage, BQP,
 solved-frontier, or new-credit claim.
 
+`T-B4-002cb` / `T-B8-003cf` / `T-B10-009bt` preregisters R160 as a
+deterministic external ErrorMap remediation and exact-oracle guardrail. Four
+construction modes--ascending `f64`, descending `f64`, `math.fsum`, and exact
+binary-fraction accumulation--cover one tied baseline plus 32 declared ULP
+perturbations. Four processes per mode and two replays per case freeze 16
+processes and 1,056 direct VF2 calls. Every mode/case is independently scored
+over all `7! = 5,040` mappings with exact rational arithmetic; a non-tied case
+counts only when all four modes share one unique optimum with a gap of at least
+`1e-16`. The protocol also separates R157's concrete-operation-only Python
+score from the Rust ErrorMap denominator retained by R159. A four-call
+pre-registration smoke used only an unrelated three-qubit toy. Requirements
+pass `10/10`; frozen-input execution remains unopened. No source patch,
+accepted upstream fix, confirmed Qiskit bug, cross-platform theorem, hardware,
+route-advantage, quantum-advantage, BQP, solved-frontier, or new-credit claim is
+made.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

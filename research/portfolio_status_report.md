@@ -2364,6 +2364,16 @@ Overall audit: PASS
 - Requirements passed/failed: 10 / 0
 - Result/report/trace directory exists: True / True / True
 
+### R160 Deterministic ErrorMap Remediation Protocol
+
+- Status: deterministic_error_map_remediation_protocol_frozen_before_execution
+- Profiles / processes / cases / direct calls: 4 / 16 / 33 / 1056
+- Operation inventory hash: 716c841307327f62da7679c77c76bc60cfec5231c26736e328d4594aca67b086
+- Margin protection threshold: 1e-16
+- Execution started: False
+- Requirements passed/failed: 10 / 0
+- Protocol/contract/report/executor/generator exists: True / True / True / True / True
+
 - Status: toy_invariant_property_test
 - Model status: toy_invariant_property_test_not_full_distribution_verification
 - Tasks: 3

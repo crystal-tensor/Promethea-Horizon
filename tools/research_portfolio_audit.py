@@ -40803,6 +40803,164 @@ def audit(root: Path) -> dict:
         if "`operation_order_f64_path_supported`" not in result_report_text or "| `native_hashset_order` | 71 | 57" not in result_report_text or "Preflight Binding Guard" not in result_report_text or "does not by itself establish" not in result_report_text:
             errors.append("R159 ErrorMap trace result report boundary missing")
 
+    r160_protocol_path = results / "B4_B8_R160_deterministic_error_map_remediation_protocol_v0.json"
+    r160_contract_path = benchmarks / "B4_B8_R160_deterministic_error_map_remediation_contract_v0.json"
+    r160_report_path = research / "B4_B8_R160_deterministic_error_map_remediation_protocol.md"
+    r160_executor_path = root / "tools/b4_b8_r160_deterministic_error_map_remediation.py"
+    r160_protocol_generator_path = root / "tools/b4_b8_r160_deterministic_error_map_remediation_protocol.py"
+    r160_status = {
+        "protocol_path": str(r160_protocol_path),
+        "contract_path": str(r160_contract_path),
+        "report_path": str(r160_report_path),
+        "executor_path": str(r160_executor_path),
+        "protocol_exists": r160_protocol_path.exists(),
+        "contract_exists": r160_contract_path.exists(),
+        "report_exists": r160_report_path.exists(),
+        "executor_exists": r160_executor_path.exists(),
+        "protocol_generator_exists": r160_protocol_generator_path.exists(),
+    }
+    r160_manifest_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r160_deterministic_error_map_remediation_protocol_v0"), "deterministic_error_map_remediation_protocol_frozen_before_execution"),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r160_deterministic_error_map_remediation_protocol_v0"), "deterministic_error_map_remediation_protocol_frozen_before_execution"),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r160_deterministic_error_map_remediation_protocol_v0"), "deterministic_error_map_remediation_protocol_not_bqp_claim"),
+    ]
+    expected_r160_manifest_values = {
+        "official_accelerator_sha256": "a299d48f8d174481d389b30f1fd240a845144922f32ef918925b17243fc5f007",
+        "executor_sha256": "3a8341514bcb3141629f4f7d6eda8650172816fa1b3ac38789d57de55aca7cdb",
+        "operation_inventory_hash": "716c841307327f62da7679c77c76bc60cfec5231c26736e328d4594aca67b086",
+        "profile_count": 4,
+        "total_process_count": 16,
+        "case_count": 33,
+        "total_direct_replay_count": 1056,
+        "exact_oracle_mapping_count": 5040,
+        "margin_protection_threshold": 1e-16,
+        "pre_registration_smoke_call_count": 4,
+        "frozen_input_smoke_call_count": 0,
+        "execution_started": False,
+        "source_patch_performed": False,
+        "qiskit_bug_claimed": False,
+        "new_credit_delta": 0,
+        "requirements_passed": 10,
+        "requirements_failed": 0,
+    }
+    for label, row, expected_status in r160_manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R160 deterministic remediation protocol")
+            continue
+        for field in ["result", "markdown_report", "contract"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R160 deterministic remediation missing {field}")
+        if row.get("status") != expected_status or row.get("method") != "b4_b8_r160_deterministic_error_map_remediation_protocol_v0":
+            errors.append(f"{label} R160 deterministic remediation status or method mismatch")
+        if row.get("source_target_id") != "T-B4-002cb/T-B8-003cf/T-B10-009bt" or row.get("upstream_target_id") != "T-B4-002ca/T-B8-003ce/T-B10-009bs":
+            errors.append(f"{label} R160 deterministic remediation target chain mismatch")
+        for field, value in expected_r160_manifest_values.items():
+            if row.get(field) != value:
+                errors.append(f"{label} R160 deterministic remediation manifest {field} mismatch")
+    r160_required_paths = [
+        r160_protocol_path,
+        r160_contract_path,
+        r160_report_path,
+        r160_executor_path,
+        r160_protocol_generator_path,
+    ]
+    if not all(path.exists() for path in r160_required_paths):
+        errors.append("R160 deterministic remediation protocol, contract, report, executor, or generator missing")
+    else:
+        r160_payload = json.loads(read(r160_protocol_path))
+        r160_contract = json.loads(read(r160_contract_path))
+        r160_protocol = r160_payload.get("protocol", {})
+        r160_status.update({
+            "status": r160_payload.get("status"),
+            "method": r160_payload.get("method"),
+            "profile_count": r160_protocol.get("profile_count"),
+            "total_process_count": r160_protocol.get("total_process_count"),
+            "case_count": r160_protocol.get("case_count"),
+            "total_direct_replay_count": r160_protocol.get("total_direct_replay_count"),
+            "operation_inventory_hash": r160_protocol.get("operation_inventory_hash"),
+            "margin_protection_threshold": r160_protocol.get("margin_protection_threshold"),
+            "execution_started": r160_payload.get("execution_started"),
+            "requirements_passed": r160_payload.get("requirements_passed"),
+            "requirements_failed": r160_payload.get("requirements_failed"),
+        })
+        if r160_payload.get("status") != "deterministic_error_map_remediation_protocol_frozen_before_execution" or r160_payload.get("method") != "b4_b8_r160_deterministic_error_map_remediation_protocol_v0":
+            errors.append("R160 deterministic remediation protocol status or method mismatch")
+        if r160_payload.get("source_target_id") != "T-B4-002cb/T-B8-003cf/T-B10-009bt" or r160_payload.get("upstream_target_id") != "T-B4-002ca/T-B8-003ce/T-B10-009bs":
+            errors.append("R160 deterministic remediation protocol target chain mismatch")
+        if r160_payload.get("requirements_passed") != 10 or r160_payload.get("requirements_failed") != 0 or r160_payload.get("execution_started") is not False:
+            errors.append("R160 deterministic remediation requirements or unopened boundary mismatch")
+        expected_r160_protocol = {
+            "snapshot_name": "FakeNairobiV2",
+            "target_descriptor_sha256": "702c8fd9dcf67a069e7af63e31a57c74c17aaa5e3c5b6d8c2e28ec0c049c0de7",
+            "input_path": "benchmarks/B4_B8_R157_vf2_post_layout_input_v0.qasm",
+            "input_qasm_sha256": "ce216610e995b4c8b4bd9de6547ac6069961e1eb8881997aa05e0068ea16ab98",
+            "input_operation_count": 77,
+            "input_depth": 39,
+            "operation_inventory_hash": "716c841307327f62da7679c77c76bc60cfec5231c26736e328d4594aca67b086",
+            "operation_inventory_row_count": 19,
+            "profile_count": 4,
+            "processes_per_mode": 4,
+            "total_process_count": 16,
+            "case_count": 33,
+            "replays_per_case_per_process": 2,
+            "total_direct_replay_count": 1056,
+            "margin_protection_threshold": 1e-16,
+            "source_patch_performed": False,
+            "new_hidden_seed_count": 0,
+            "candidate_selection_performed": False,
+            "route_change_performed": False,
+            "sampling_performed": False,
+            "simulation_execution_count": 0,
+            "total_simulated_shots": 0,
+            "execution_started": False,
+        }
+        for field, value in expected_r160_protocol.items():
+            if r160_protocol.get(field) != value:
+                errors.append(f"R160 deterministic remediation protocol {field} mismatch")
+        if r160_protocol.get("accumulation_modes") != ["ascending_f64", "descending_f64", "math_fsum", "exact_binary_fraction"]:
+            errors.append("R160 deterministic remediation accumulation modes mismatch")
+        cases = r160_protocol.get("perturbation_cases", [])
+        if len(cases) != 33 or len({row.get("case_id") for row in cases}) != 33 or cases[0] != {"case_id": "tie_baseline", "key": None, "ulp_shift": 0}:
+            errors.append("R160 deterministic remediation perturbation matrix mismatch")
+        if r160_protocol.get("exact_oracle", {}).get("mapping_space") != "all 7! virtual-to-physical permutations" or "Fraction.from_float" not in r160_protocol.get("exact_oracle", {}).get("score_arithmetic", ""):
+            errors.append("R160 deterministic remediation exact oracle mismatch")
+        expected_deltas = [
+            {"key": [0, 1], "endpoint_4_to_0_minus_endpoint_4_to_2_coefficient": -4},
+            {"key": [1, 0], "endpoint_4_to_0_minus_endpoint_4_to_2_coefficient": 4},
+            {"key": [1, 2], "endpoint_4_to_0_minus_endpoint_4_to_2_coefficient": -4},
+            {"key": [2, 1], "endpoint_4_to_0_minus_endpoint_4_to_2_coefficient": 4},
+        ]
+        if r160_protocol.get("interaction_ledger", {}).get("endpoint_coefficient_deltas") != expected_deltas:
+            errors.append("R160 deterministic remediation endpoint coefficient ledger mismatch")
+        score_boundary = r160_protocol.get("score_denominator_boundary", {})
+        if score_boundary.get("r157_documented_concrete_only_python_score") != 0.45894321220828727 or score_boundary.get("r160_oracle_reuses_r157_score") is not False or "zero-error global operations" not in score_boundary.get("r160_semantics", ""):
+            errors.append("R160 deterministic remediation score denominator boundary mismatch")
+        smoke = r160_protocol.get("pre_registration_smoke", {})
+        if smoke.get("direct_vf2_call_count") != 4 or smoke.get("all_outputs_in_exact_oracle") is not True or smoke.get("invalid_mode_rejected") is not True or smoke.get("frozen_r157_input_loaded") is not False:
+            errors.append("R160 deterministic remediation smoke boundary mismatch")
+        official = r160_protocol.get("official_source", {})
+        if official.get("commit") != "0fd015a22b84c9082173597a5d2304dc0aaec08c" or official.get("accelerator_sha256") != "a299d48f8d174481d389b30f1fd240a845144922f32ef918925b17243fc5f007" or official.get("accelerator_size_bytes") != 14677376:
+            errors.append("R160 deterministic remediation official source binding mismatch")
+        for payload, expected_hash, label in [
+            (r160_payload, "ac6831519b4e977c67bb8ed0b7be9a1557d97db46454b9422f5cfa0e820e47b5", "protocol"),
+            (r160_contract, "8f164e093ae6ee4d9be76884c9e7f1b9c3509822365412b086765962aa5438c3", "contract"),
+        ]:
+            body = dict(payload)
+            payload_hash = body.pop("payload_hash", None)
+            if payload_hash != hashlib.sha256(json.dumps(body, sort_keys=True, separators=(",", ":")).encode()).hexdigest() or payload_hash != expected_hash:
+                errors.append(f"R160 deterministic remediation {label} payload mismatch")
+        if r160_contract.get("contract_id") != "B4-B8-R160-deterministic-error-map-remediation-contract-v0" or r160_contract.get("contract_status") != "public_preregistration_execution_unopened" or len(r160_contract.get("acceptance_conditions", [])) != 10:
+            errors.append("R160 deterministic remediation contract identity mismatch")
+        for binding_id, binding in r160_contract.get("source_bindings", {}).items():
+            path = root / binding.get("path", "")
+            if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest() != binding.get("sha256"):
+                errors.append(f"R160 deterministic remediation source binding mismatch: {binding_id}")
+        if hashlib.sha256(r160_executor_path.read_bytes()).hexdigest() != "3a8341514bcb3141629f4f7d6eda8650172816fa1b3ac38789d57de55aca7cdb":
+            errors.append("R160 deterministic remediation executor hash mismatch")
+        report_text = read(r160_report_path)
+        if "`4` / `16` / `33` / `1056`" not in report_text or "all `7! = 5040` mappings" not in report_text or "R160 does not reuse that numeric score" not in report_text or "frozen R157 input was not loaded" not in report_text:
+            errors.append("R160 deterministic remediation protocol report boundary missing")
+
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
             errors.append(f"missing status artifact: {path}")
@@ -41288,6 +41446,7 @@ def audit(root: Path) -> dict:
             "r158_vf2_accelerator_boundary_result": r158_result_status,
             "r159_error_map_accumulation_trace": r159_status,
             "r159_error_map_accumulation_trace_result": r159_result_status,
+            "r160_deterministic_error_map_remediation": r160_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -42785,6 +42944,8 @@ def audit(root: Path) -> dict:
             "b4_b8_r159_error_map_accumulation_trace_protocol": str(r159_protocol_report_path),
             "b4_b8_r159_error_map_accumulation_trace_contract": str(r159_contract_path),
             "b4_b8_r159_error_map_accumulation_trace": str(r159_result_report_path),
+            "b4_b8_r160_deterministic_error_map_remediation_protocol": str(r160_report_path),
+            "b4_b8_r160_deterministic_error_map_remediation_contract": str(r160_contract_path),
             "qiskit_2_4_1_r159_instrumented_build_manifest": str(r159_build_manifest_path),
             "qiskit_2_4_1_r159_error_map_trace_patch": str(r159_patch_path),
             "qiskit_2_4_1_vf2_source_manifest": str(r158_source_manifest_path),
@@ -45172,6 +45333,16 @@ def markdown_report(report: dict) -> str:
             f"- Simulation executions / shots: {report['b8']['r159_error_map_accumulation_trace_result'].get('simulation_execution_count')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('total_simulated_shots')}",
             f"- Requirements passed/failed: {report['b8']['r159_error_map_accumulation_trace_result'].get('requirements_passed')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('requirements_failed')}",
             f"- Result/report/trace directory exists: {report['b8']['r159_error_map_accumulation_trace_result'].get('result_exists')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('report_exists')} / {report['b8']['r159_error_map_accumulation_trace_result'].get('trace_directory_exists')}",
+            "",
+            "### R160 Deterministic ErrorMap Remediation Protocol",
+            "",
+            f"- Status: {report['b8']['r160_deterministic_error_map_remediation'].get('status')}",
+            f"- Profiles / processes / cases / direct calls: {report['b8']['r160_deterministic_error_map_remediation'].get('profile_count')} / {report['b8']['r160_deterministic_error_map_remediation'].get('total_process_count')} / {report['b8']['r160_deterministic_error_map_remediation'].get('case_count')} / {report['b8']['r160_deterministic_error_map_remediation'].get('total_direct_replay_count')}",
+            f"- Operation inventory hash: {report['b8']['r160_deterministic_error_map_remediation'].get('operation_inventory_hash')}",
+            f"- Margin protection threshold: {report['b8']['r160_deterministic_error_map_remediation'].get('margin_protection_threshold')}",
+            f"- Execution started: {report['b8']['r160_deterministic_error_map_remediation'].get('execution_started')}",
+            f"- Requirements passed/failed: {report['b8']['r160_deterministic_error_map_remediation'].get('requirements_passed')} / {report['b8']['r160_deterministic_error_map_remediation'].get('requirements_failed')}",
+            f"- Protocol/contract/report/executor/generator exists: {report['b8']['r160_deterministic_error_map_remediation'].get('protocol_exists')} / {report['b8']['r160_deterministic_error_map_remediation'].get('contract_exists')} / {report['b8']['r160_deterministic_error_map_remediation'].get('report_exists')} / {report['b8']['r160_deterministic_error_map_remediation'].get('executor_exists')} / {report['b8']['r160_deterministic_error_map_remediation'].get('protocol_generator_exists')}",
             "",
             f"- Status: {report['b8']['output_invariant_verifier'].get('status')}",
             f"- Model status: {report['b8']['output_invariant_verifier'].get('model_status')}",
