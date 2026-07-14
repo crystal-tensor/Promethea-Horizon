@@ -1,0 +1,97 @@
+{
+  "acceptance_conditions": [
+    {
+      "condition_id": "A1",
+      "passed": true
+    },
+    {
+      "condition_id": "A2",
+      "passed": true
+    },
+    {
+      "condition_id": "A3",
+      "passed": true
+    },
+    {
+      "condition_id": "A4",
+      "passed": true
+    },
+    {
+      "condition_id": "A5",
+      "passed": true
+    },
+    {
+      "condition_id": "A6",
+      "passed": true
+    },
+    {
+      "condition_id": "A7",
+      "passed": true
+    },
+    {
+      "condition_id": "A8",
+      "passed": true
+    },
+    {
+      "condition_id": "A9",
+      "passed": true
+    },
+    {
+      "condition_id": "A10",
+      "passed": true
+    }
+  ],
+  "adversarial_baselines": {
+    "adversarial_fixture_profile_id": "native_hashset_order",
+    "adversarial_fixture_replay_index": 3,
+    "candidate_order_reversal_changed_source_selection": false,
+    "dropped_source_selected_candidate_detected": true,
+    "rehashed_stored_selection_rejected": true,
+    "rehashed_stored_selection_rejection_reason": "R166 stored selection index differs from independent selection",
+    "tampered_row_hash_rejected": true,
+    "tampered_row_hash_rejection_reason": "R166 replay row payload hash mismatch"
+  },
+  "artifacts": {
+    "contract": "benchmarks/B4_B8_R166_independent_candidate_verifier_contract_v0.json",
+    "markdown_report": "research/B4_B8_R166_independent_candidate_verifier.md",
+    "protocol": "results/B4_B8_R166_independent_candidate_verifier_protocol_v0.json",
+    "result": "results/B4_B8_R166_independent_candidate_verifier_v0.json",
+    "source_result": "results/B4_B8_R165_candidate_selection_replay_v0.json"
+  },
+  "claim_boundary": {
+    "what_is_not_supported": "a production mapping change, alternate search path, confirmed Qiskit bug, cross-platform determinism, hardware relevance, route advantage, quantum advantage, BQP separation, solved B4/B8/B10, or new credit",
+    "what_is_supported": "independent recomputation of the committed R165 candidate-level selections and rejection of altered evidence"
+  },
+  "classification": "independent_reproduction_confirmed_adversarial_tamper_rejected",
+  "method": "b4_b8_r166_independent_candidate_verifier_v0",
+  "payload_hash": "2a8160008b14dc6738c179d9921b5a69746c041b97e2ff92ab6bc59b01f4e7c5",
+  "preregistration": {
+    "commit": "9f8d6e9",
+    "created_at": "2026-07-14T02:15:00Z",
+    "discussion": "https://github.com/crystal-tensor/Prometheus-plan/discussions/195"
+  },
+  "requirements_failed": 0,
+  "requirements_passed": 10,
+  "status": "independent_reproduction_complete",
+  "summary": {
+    "candidate_count": 298,
+    "new_credit_delta": 0,
+    "policy_changed_mapping_count": {
+      "compensated_fsum": 42,
+      "exact_binary64_leaf": 42,
+      "source_f64": 0,
+      "tie_aware_1ulp": 42
+    },
+    "profile_count": 3,
+    "qiskit_calls_performed": 0,
+    "r165_result_aggregate_match": true,
+    "replay_count": 256,
+    "row_payload_hash_match_count": 256,
+    "simulation_execution_count": 0,
+    "source_return_match_count": 256,
+    "source_return_mismatch_count": 0,
+    "total_simulated_shots": 0
+  },
+  "title": "B4/B8 R166 independent candidate verifier",
+  "version": 0
+}

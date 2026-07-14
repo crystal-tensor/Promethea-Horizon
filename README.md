@@ -2973,6 +2973,17 @@ corrected, its executor and contract hashes were rebound, and the correction
 was recorded before the R166 rerun; no scientific result was inferred from the
 failed dry execution.
 
+R166 then completed with an independent standard-library verifier. It checked
+`256/256` row payload hashes, recomputed `298` complete candidates and
+`256/256` source-return matches, and reproduced the R165 policy-change counts
+exactly: `source_f64=0`, `compensated_fsum=42`, `exact_binary64_leaf=42`, and
+`tie_aware_1ulp=42`. Unhashed row tampering was rejected, a rehashed false
+selection was rejected by recomputation, and removing the source-selected
+candidate was detected. This strengthens evidence integrity only; it does not
+establish a production mapping change, alternate search path, confirmed bug,
+hardware relevance, quantum advantage, BQP separation, solved B4/B8/B10, or
+new credit. Requirements pass `10/10`.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

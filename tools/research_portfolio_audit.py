@@ -808,6 +808,130 @@ def audit_r165(
     return status
 
 
+def audit_r166(
+    root: Path,
+    b4_manifest: dict,
+    b8_manifest: dict,
+    b10_manifest: dict,
+    errors: list[str],
+) -> dict:
+    """Validate the independent R166 candidate verifier and adversarial baselines."""
+    benchmarks = root / "benchmarks"
+    results = root / "results"
+    research = root / "research"
+    protocol_path = results / "B4_B8_R166_independent_candidate_verifier_protocol_v0.json"
+    contract_path = benchmarks / "B4_B8_R166_independent_candidate_verifier_contract_v0.json"
+    executor_path = root / "tools/b4_b8_r166_independent_candidate_verifier.py"
+    result_path = results / "B4_B8_R166_independent_candidate_verifier_v0.json"
+    report_path = research / "B4_B8_R166_independent_candidate_verifier.md"
+    status = {
+        "protocol_path": str(protocol_path),
+        "contract_path": str(contract_path),
+        "executor_path": str(executor_path),
+        "result_path": str(result_path),
+        "report_path": str(report_path),
+        "protocol_exists": protocol_path.exists(),
+        "contract_exists": contract_path.exists(),
+        "executor_exists": executor_path.exists(),
+        "result_exists": result_path.exists(),
+        "report_exists": report_path.exists(),
+    }
+    required = [protocol_path, contract_path, executor_path, result_path, report_path]
+    if not all(path.exists() for path in required):
+        errors.append("R166 independent candidate verifier artifact missing")
+        return status
+
+    def payload_ok(payload: dict, key: str) -> bool:
+        body = dict(payload)
+        observed = body.pop(key, None)
+        expected = hashlib.sha256(json.dumps(body, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        return observed == expected
+
+    protocol = json.loads(read(protocol_path))
+    contract = json.loads(read(contract_path))
+    result = json.loads(read(result_path))
+    for payload, key, label in [(protocol, "payload_hash", "protocol"), (contract, "payload_hash", "contract"), (result, "payload_hash", "result")]:
+        if not payload_ok(payload, key):
+            errors.append(f"R166 {label} payload mismatch")
+    if protocol.get("status") != "independent_verifier_protocol_frozen_before_execution" or protocol.get("method") != "b4_b8_r166_independent_candidate_verifier_protocol_v0":
+        errors.append("R166 protocol identity or status mismatch")
+    if contract.get("contract_id") != "B4-B8-R166-independent-candidate-verifier-contract-v0" or contract.get("execution_started") is not False:
+        errors.append("R166 contract identity or unopened-boundary mismatch")
+    if result.get("method") != "b4_b8_r166_independent_candidate_verifier_v0" or result.get("status") != "independent_reproduction_complete":
+        errors.append("R166 result method or status mismatch")
+    if result.get("classification") != "independent_reproduction_confirmed_adversarial_tamper_rejected":
+        errors.append("R166 classification mismatch")
+    summary = result.get("summary", {})
+    expected_summary = {
+        "profile_count": 3,
+        "replay_count": 256,
+        "row_payload_hash_match_count": 256,
+        "candidate_count": 298,
+        "source_return_match_count": 256,
+        "source_return_mismatch_count": 0,
+        "r165_result_aggregate_match": True,
+        "qiskit_calls_performed": 0,
+        "simulation_execution_count": 0,
+        "total_simulated_shots": 0,
+        "new_credit_delta": 0,
+    }
+    for field, value in expected_summary.items():
+        if summary.get(field) != value:
+            errors.append(f"R166 summary {field} mismatch")
+    if summary.get("policy_changed_mapping_count") != {"compensated_fsum": 42, "exact_binary64_leaf": 42, "source_f64": 0, "tie_aware_1ulp": 42}:
+        errors.append("R166 policy mapping-difference counts mismatch")
+    adversarial = result.get("adversarial_baselines", {})
+    for field in ["tampered_row_hash_rejected", "rehashed_stored_selection_rejected", "dropped_source_selected_candidate_detected"]:
+        if adversarial.get(field) is not True:
+            errors.append(f"R166 adversarial baseline failed: {field}")
+    if result.get("requirements_passed") != 10 or result.get("requirements_failed") != 0 or len(result.get("acceptance_conditions", [])) != 10:
+        errors.append("R166 requirement ledger mismatch")
+    if contract.get("protocol_payload_hash") != protocol.get("payload_hash"):
+        errors.append("R166 contract protocol binding mismatch")
+    for binding_id, binding in contract.get("source_bindings", {}).items():
+        path = root / binding.get("path", "")
+        if not path.exists():
+            errors.append(f"R166 source binding missing: {binding_id}")
+        elif binding.get("sha256") and hashlib.sha256(path.read_bytes()).hexdigest() != binding.get("sha256"):
+            errors.append(f"R166 source binding mismatch: {binding_id}")
+    manifest_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r166_independent_candidate_verifier_v0")),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r166_independent_candidate_verifier_v0")),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r166_independent_candidate_verifier_v0")),
+    ]
+    manifest_fields = ["result", "markdown_report", "protocol", "contract", "executor"]
+    for label, row in manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R166 independent verifier")
+            continue
+        for field in manifest_fields:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R166 manifest missing {field}")
+        if row.get("method") != "b4_b8_r166_independent_candidate_verifier_v0" or row.get("status") != "independent_reproduction_complete":
+            errors.append(f"{label} R166 manifest status or method mismatch")
+        for field, value in expected_summary.items():
+            if field in row and row.get(field) != value:
+                errors.append(f"{label} R166 manifest {field} mismatch")
+    report_text = read(report_path)
+    for marker in ["independent_reproduction_confirmed_adversarial_tamper_rejected", "`256` / `256`", "298", "Hash tampering was rejected: `True`", "does not establish a production mapping change"]:
+        if marker not in report_text:
+            errors.append(f"R166 report boundary missing: {marker}")
+    status.update({
+        "status": result.get("status"),
+        "classification": result.get("classification"),
+        "profile_count": summary.get("profile_count"),
+        "replay_count": summary.get("replay_count"),
+        "candidate_count": summary.get("candidate_count"),
+        "source_return_match_count": summary.get("source_return_match_count"),
+        "row_payload_hash_match_count": summary.get("row_payload_hash_match_count"),
+        "requirements_passed": result.get("requirements_passed"),
+        "requirements_failed": result.get("requirements_failed"),
+        "tampered_row_hash_rejected": adversarial.get("tampered_row_hash_rejected"),
+        "rehashed_stored_selection_rejected": adversarial.get("rehashed_stored_selection_rejected"),
+    })
+    return status
+
+
 def audit(root: Path) -> dict:
     research = root / "research"
     benchmarks = root / "benchmarks"
@@ -41902,6 +42026,7 @@ def audit(root: Path) -> dict:
     r163_status = audit_r163(root, b4_manifest, b8_manifest, b10_manifest, errors)
     r164_status = audit_r164(root, b4_manifest, b8_manifest, b10_manifest, errors)
     r165_status = audit_r165(root, b4_manifest, b8_manifest, b10_manifest, errors)
+    r166_status = audit_r166(root, b4_manifest, b8_manifest, b10_manifest, errors)
 
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
@@ -42258,6 +42383,7 @@ def audit(root: Path) -> dict:
             "r163_comparison_policy": r163_status,
             "r164_combine_bound_comparison": r164_status,
             "r165_candidate_selection_replay": r165_status,
+            "r166_independent_candidate_verifier": r166_status,
         },
         "b5": {
             "manifest": str(b5_manifest_path),
@@ -42400,6 +42526,7 @@ def audit(root: Path) -> dict:
             "r163_comparison_policy": r163_status,
             "r164_combine_bound_comparison": r164_status,
             "r165_candidate_selection_replay": r165_status,
+            "r166_independent_candidate_verifier": r166_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -42433,6 +42560,7 @@ def audit(root: Path) -> dict:
             "r163_comparison_policy": r163_status,
             "r164_combine_bound_comparison": r164_status,
             "r165_candidate_selection_replay": r165_status,
+            "r166_independent_candidate_verifier": r166_status,
             "t1_d5_observable_denominator_table": b10_t1_d5_table_status,
             "t1_d5_b3_molecular_observable_table": b10_t1_d5_b3_table_status,
             "t1_d5_b3_reaction_observable_table": b10_t1_d5_b3_reaction_table_status,
