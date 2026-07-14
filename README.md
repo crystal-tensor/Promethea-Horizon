@@ -2967,6 +2967,12 @@ This is an evidence-integrity gate for the candidate-level result, not a
 production mapping, alternate search path, confirmed bug, hardware, quantum
 advantage, BQP, solved-frontier, or new-credit claim.
 
+The first dry execution stopped before producing a result because the verifier
+read `profile_count` from the wrong protocol level. The implementation was
+corrected, its executor and contract hashes were rebound, and the correction
+was recorded before the R166 rerun; no scientific result was inferred from the
+failed dry execution.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

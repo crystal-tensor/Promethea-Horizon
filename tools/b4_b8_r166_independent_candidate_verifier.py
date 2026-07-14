@@ -293,7 +293,8 @@ def main() -> int:
     verify_payload(r165_result, "payload_hash", "R165 result")
     r165_contract = read_json(root, R165_CONTRACT_PATH)
     verify_payload(r165_contract, "payload_hash", "R165 contract")
-    manifests, rows = verify_manifests(root, protocol["source_artifacts"], contract)
+    source_spec = protocol["source_artifacts"]
+    manifests, rows = verify_manifests(root, source_spec, contract)
     checks = [verify_row(row) for row in rows]
     candidate_count = sum(check["candidate_count"] for check in checks)
     source_matches = sum(check["source_return_match"] for check in checks)
@@ -306,8 +307,8 @@ def main() -> int:
     )
     adversarial = adversarial_baselines(rows)
     acceptance = {
-        "A1": len(manifests) == protocol["profile_count"],
-        "A2": len(rows) == protocol["total_replay_count"],
+        "A1": len(manifests) == source_spec["profile_count"],
+        "A2": len(rows) == source_spec["total_replay_count"],
         "A3": len(checks) == len(rows),
         "A4": candidate_count == expected["yielded_candidate_count"],
         "A5": source_matches == expected["source_return_match_count"],
