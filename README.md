@@ -140,6 +140,14 @@ removal, proxy-T reduction, and B7 credit remain 0; the next route is a
 commutation-aware scaffold that explicitly carries and prices the external
 rotation.
 
+The carrier-pricing control keeps that external `Rz` explicit. All 7 real
+contexts replay exactly with a sixth local parameter, and the identity
+`Rz_target(theta) CX = CX (CX Rz_target(theta) CX)` passes for all 7 rows. The
+explicit carrier preserves 2 CNOTs and 6 arbitrary parameters, so it produces
+zero savings; commuting the carrier through a CX boundary in the declared
+construction costs 4 CNOTs and still 6 arbitrary parameters. This is a
+carrier-aware semantic control, not a global necessity theorem or B7 credit.
+
 The current B5/B10 line has recently moved from small-cluster denominators to
 seeded MPS pressure, non-seeded one-site MPS/ALS pressure, and a two-site
 finite-DMRG-style pressure prototype. B5 now has a canonical-DMRG readiness

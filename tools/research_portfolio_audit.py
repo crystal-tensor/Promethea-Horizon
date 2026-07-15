@@ -31251,6 +31251,7 @@ def audit(root: Path) -> dict:
         "w8_21_symbolic_certificate_ledger_retest_v0"
     )
     b7_w8_21_neighborhood_transfer = b7_results.get("w8_21_neighborhood_transfer_v0")
+    b7_w8_21_carrier_pricing = b7_results.get("w8_21_carrier_pricing_v0")
     b7_status = {}
     if not b7_codesign:
         warnings.append("B7 manifest has no fault-tolerance co-design resource result")
@@ -32861,6 +32862,78 @@ def audit(root: Path) -> dict:
             errors.append("B7 w8_21 neighborhood transfer fit configuration mismatch")
         if payload.get("claim_boundary", {}).get("rewrite_claimed") is not False or payload.get("claim_boundary", {}).get("resource_saving_claimed") is not False:
             errors.append("B7 w8_21 neighborhood transfer must keep rewrite/resource claims false")
+
+    b7_w8_21_carrier_pricing_status = {}
+    if not b7_w8_21_carrier_pricing:
+        warnings.append("B7 manifest missing w8_21 carrier pricing")
+    else:
+        result_path = b7_w8_21_carrier_pricing.get("result")
+        markdown_path = b7_w8_21_carrier_pricing.get("markdown_report")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"B7 w8_21 carrier pricing result missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"B7 w8_21 carrier pricing markdown missing: {markdown_path}")
+        payload = json.loads(read((benchmarks / result_path).resolve())) if result_exists else {}
+        summary = payload.get("summary", {})
+        b7_w8_21_carrier_pricing_status = {
+            "status": payload.get("status"),
+            "method": payload.get("method"),
+            "template_id": payload.get("template_id"),
+            "classification": payload.get("classification"),
+            "tested_context_count": summary.get("tested_context_count"),
+            "exact_local_carrier_replay_count": summary.get("exact_local_carrier_replay_count"),
+            "exact_commutation_identity_count": summary.get("exact_commutation_identity_count"),
+            "max_local_carrier_residual": summary.get("max_local_carrier_residual"),
+            "max_commutation_residual": summary.get("max_commutation_residual"),
+            "baseline_cnot_count": summary.get("baseline_cnot_count"),
+            "explicit_local_carrier_cnot_count": summary.get("explicit_local_carrier_cnot_count"),
+            "commuted_carrier_cnot_count": summary.get("commuted_carrier_cnot_count"),
+            "baseline_arbitrary_parameter_count": summary.get("baseline_arbitrary_parameter_count"),
+            "explicit_local_carrier_arbitrary_parameter_count": summary.get("explicit_local_carrier_arbitrary_parameter_count"),
+            "commuted_carrier_arbitrary_parameter_count": summary.get("commuted_carrier_arbitrary_parameter_count"),
+            "accepted_occurrence_removal": summary.get("accepted_occurrence_removal"),
+            "accepted_proxy_t_reduction": summary.get("accepted_proxy_t_reduction"),
+            "b7_credit": summary.get("b7_credit"),
+            "validation_error_count": summary.get("validation_error_count"),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown_report": markdown_path,
+        }
+        if payload.get("status") != "explicit_carrier_exact_replay_zero_resource_gain":
+            errors.append("B7 w8_21 carrier pricing status mismatch")
+        if payload.get("method") != "b7_w8_21_carrier_pricing_v0" or payload.get("template_id") != "w8_21":
+            errors.append("B7 w8_21 carrier pricing identity mismatch")
+        if payload.get("classification") != "carrier_aware_semantic_control_and_commutation_price":
+            errors.append("B7 w8_21 carrier pricing classification mismatch")
+        expected_summary = {
+            "tested_context_count": 7,
+            "exact_local_carrier_replay_count": 7,
+            "exact_commutation_identity_count": 7,
+            "baseline_cnot_count": 2,
+            "explicit_local_carrier_cnot_count": 2,
+            "commuted_carrier_cnot_count": 4,
+            "baseline_arbitrary_parameter_count": 6,
+            "explicit_local_carrier_arbitrary_parameter_count": 6,
+            "commuted_carrier_arbitrary_parameter_count": 6,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "b7_credit": 0,
+            "rewrite_claimed": False,
+            "resource_saving_claimed": False,
+            "b7_ledger_improvement_claimed": False,
+            "validation_error_count": 0,
+        }
+        for field, expected in expected_summary.items():
+            if summary.get(field) != expected:
+                errors.append(f"B7 w8_21 carrier pricing {field} mismatch")
+        if summary.get("max_local_carrier_residual", 1.0) >= 1e-12 or summary.get("max_commutation_residual", 1.0) >= 1e-12:
+            errors.append("B7 w8_21 carrier pricing exact residual exceeds tolerance")
+        claims = payload.get("claim_boundary", {})
+        if claims.get("rewrite_claimed") is not False or claims.get("resource_saving_claimed") is not False or claims.get("b7_ledger_improvement_claimed") is not False:
+            errors.append("B7 w8_21 carrier pricing must keep claim boundary false")
 
     b8_manifest = yaml.safe_load(read(b8_manifest_path))
     b8_results = b8_manifest.get("current_results", {})
@@ -43513,6 +43586,7 @@ def audit(root: Path) -> dict:
             "w8_21_symbolic_certificate": b7_w8_21_symbolic_certificate_status,
             "w8_21_symbolic_certificate_ledger_retest": b7_w8_21_symbolic_certificate_ledger_retest_status,
             "w8_21_neighborhood_transfer": b7_w8_21_neighborhood_transfer_status,
+            "w8_21_carrier_pricing": b7_w8_21_carrier_pricing_status,
         },
         "b8": {
             "manifest": str(b8_manifest_path),
@@ -44856,6 +44930,9 @@ def audit(root: Path) -> dict:
             ),
             "b7_w8_21_neighborhood_transfer": str(
                 research / "B7_w8_21_neighborhood_transfer.md"
+            ),
+            "b7_w8_21_carrier_pricing": str(
+                research / "B7_w8_21_carrier_pricing.md"
             ),
             "b4_b8_circuit_refresh_task": str(research / "B4_B8_circuit_refresh_task.md"),
             "b4_b8_openqasm3_randomized_measurement_packet": str(
