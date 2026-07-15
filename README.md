@@ -1994,3 +1994,13 @@ source-minus-best-exact cost deltas are `-195`, `-255`, and `-273`. This is a
 scoped negative boundary, not a global synthesis theorem. The next positive PR
 must change the scaffold or remove the rotation burden rather than optimize
 residual alone.
+
+`T-B1-004fw` / `T-B7-015f` broadens that search to mixed CNOT directions. It
+enumerates all 15 binary direction sequences through 3 reduced CNOTs for each
+of 3 semantic packets: 45 sequences, 720 optimizer attempts, and 608
+strict-residual exact solutions. All 3 packets still have reduced-CNOT exact
+candidates, but none improves the pinned FT rotation cost; source-minus-best-
+exact deltas are `-78`, `-215`, and `-233`. Reversing CNOT direction does not
+yet produce an accepted resource route. This is a finite negative boundary, not
+a global synthesis theorem; accepted occurrence removal, proxy-T reduction,
+exit routes, and B7 credit remain `0`.
