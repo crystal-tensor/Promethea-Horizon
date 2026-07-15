@@ -1,0 +1,327 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "arbitrary_input_equivalence_claimed": false,
+    "b7_ledger_improvement_claimed": false,
+    "local_u3_pricing_accepted": false,
+    "resource_saving_claimed": false,
+    "supported_claim": "The fixed R75 line-1378 pi/4-grid witness can be emitted into the complete gcm_h6 source circuit, parsed as OpenQASM 2 and 3, and matches the source on the declared full-circuit replay suite to numerical tolerance. The conservative proxy FT ledger delta is reported but not promoted to B7 credit.",
+    "symbolic_unitary_equivalence_claimed": false,
+    "unsupported_claims": [
+      "This is not a symbolic full-Hilbert-space unitary proof.",
+      "This is not an accepted B7 occurrence-removal certificate.",
+      "The proxy FT ledger is not a physical fault-tolerant layout result.",
+      "No patent, publication, funding, or product claim follows from this gate."
+    ]
+  },
+  "linked_b7_problem_id": 21,
+  "method": "b1_b7_cone01_r76_line1378_full_circuit_replay_gate_v0",
+  "model_status": "r75_exact_grid_candidate_survives_full_circuit_replay_with_proxy_ft_delta_without_b7_credit",
+  "source_r75_result": "results/B1_B7_cone01_R75_exact_one_cnot_grid_enumeration_gate_v0.json",
+  "status": "cone01_r76_line1378_full_circuit_replay_and_ft_ledger_passed_pending_b7_acceptance",
+  "summary": {
+    "accepted_full_circuit_qasm_patch_count": 1,
+    "accepted_full_circuit_replay_certificate_count": 0,
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "arbitrary_input_equivalence_claimed": false,
+    "b7_ledger_improvement_claimed": false,
+    "candidate_cnot_count": 792,
+    "candidate_cnot_delta": 3,
+    "candidate_qasm2": "results/B1_B7_cone01_R76_line1378_grid_candidate/gcm_h6_line1378_grid_candidate.qasm",
+    "candidate_qasm2_counts_without_measurements": {
+      "cx": 792,
+      "rz": 606,
+      "u3": 482
+    },
+    "candidate_qasm2_line_count": 1885,
+    "candidate_qasm2_sha256": "97ef51bc53a8a0fa980e5f408bc97f3065cf293e5672a011550d5c96a8a780a7",
+    "candidate_qasm3": "results/B1_B7_cone01_R76_line1378_grid_candidate/gcm_h6_line1378_grid_candidate_openqasm3.qasm",
+    "candidate_qasm3_counts_without_measurements": {
+      "cx": 792,
+      "rz": 606,
+      "u3": 482
+    },
+    "candidate_qasm3_full_counts": {
+      "cx": 792,
+      "measure": 1,
+      "rz": 606,
+      "u": 482
+    },
+    "candidate_qasm3_line_count": 1885,
+    "candidate_qasm3_sha256": "d8a43c7b4d2361a3d78877c617dc5097efca46103e37a809dc9d567afb9a330d",
+    "failed_replay_cases": [],
+    "ft_ledger": {
+      "candidate": {
+        "ccx_count": 0,
+        "direct_t_count": 0,
+        "gate_counts": {
+          "cx": 792,
+          "rz": 606,
+          "u3": 482
+        },
+        "logical_t_count_ledger": 6756,
+        "logical_t_depth_ledger": 1018,
+        "operation_count_scanned": 1880,
+        "path": "/private/tmp/prometheus-b1b7-r71/results/B1_B7_cone01_R76_line1378_grid_candidate/gcm_h6_line1378_grid_candidate.qasm",
+        "rotation_component_count": 2052,
+        "rotation_family_counts": {
+          "arbitrary_numeric_rotation": 289,
+          "clifford_rotation": 811,
+          "exact_pi_over_4_rotation": 944,
+          "exact_pi_over_8_rotation": 8
+        },
+        "t_cost_by_family": {
+          "arbitrary_numeric_rotation": 5780,
+          "clifford_rotation": 0,
+          "exact_pi_over_4_rotation": 944,
+          "exact_pi_over_8_rotation": 32
+        }
+      },
+      "cost_model": {
+        "arbitrary_rotation_t_cost": 20,
+        "pi_over_4_t_cost": 1,
+        "pi_over_8_t_cost": 4,
+        "unknown_rotation_t_cost": 20
+      },
+      "logical_t_count_reduced": true,
+      "logical_t_depth_reduced": false,
+      "source": {
+        "ccx_count": 0,
+        "direct_t_count": 0,
+        "gate_counts": {
+          "cx": 795,
+          "rz": 609,
+          "u3": 480
+        },
+        "logical_t_count_ledger": 6760,
+        "logical_t_depth_ledger": 1018,
+        "operation_count_scanned": 1884,
+        "path": "/private/tmp/prometheus-b1b7-r71/results/b1_native_t_resource_optimizer/qasmbench_medium_exact/gcm_h6.qasm",
+        "rotation_component_count": 2049,
+        "rotation_family_counts": {
+          "arbitrary_numeric_rotation": 289,
+          "clifford_rotation": 804,
+          "exact_pi_over_4_rotation": 948,
+          "exact_pi_over_8_rotation": 8
+        },
+        "t_cost_by_family": {
+          "arbitrary_numeric_rotation": 5780,
+          "clifford_rotation": 0,
+          "exact_pi_over_4_rotation": 948,
+          "exact_pi_over_8_rotation": 32
+        }
+      },
+      "source_minus_candidate": {
+        "logical_t_count_ledger": 4,
+        "logical_t_depth_ledger": 0,
+        "operation_count_scanned": 4,
+        "rotation_component_count": -3
+      }
+    },
+    "local_u3_pricing_accepted": false,
+    "max_amplitude_delta": 4.973249812319541e-16,
+    "max_infidelity": 6.017408793468348e-14,
+    "max_probability_delta": 6.245004513516506e-17,
+    "min_state_fidelity": 0.9999999999999398,
+    "missing_occurrences_after_gate": 30,
+    "missing_proxy_t_after_gate": 600,
+    "qasm3_clbit_count": 1,
+    "qasm3_conversion_count": 487,
+    "qasm3_counts_match_qasm2": true,
+    "qasm3_default_replay_cases": [
+      {
+        "infidelity": 4.3520742565306136e-14,
+        "l2_global_phase_aligned_amplitude_delta": 1.786615530005036e-15,
+        "label": "benchmark_default_zero_input",
+        "max_global_phase_aligned_amplitude_delta": 4.973249812319541e-16,
+        "max_probability_delta": 6.245004513516506e-17,
+        "passed": true,
+        "state_fidelity": 0.9999999999999565
+      }
+    ],
+    "qasm3_depth_without_measurements": 1486,
+    "qasm3_qubit_count": 19,
+    "qiskit_qasm3_import_version": "0.6.0",
+    "qiskit_version": "2.4.1",
+    "r75_best_witness": {
+      "all_grid_values": [
+        4,
+        0,
+        4,
+        2,
+        1,
+        5,
+        4,
+        0,
+        6,
+        2,
+        1,
+        6
+      ],
+      "candidate_rotation_cost": {
+        "arbitrary_parameter_count": 0,
+        "parameter_count": 12,
+        "rotation_cost": 3,
+        "rotation_family_counts": {
+          "clifford_rotation": 9,
+          "exact_pi_over_4_rotation": 3
+        }
+      },
+      "cnot_count": 1,
+      "cnot_sequence": [
+        [
+          0,
+          1
+        ]
+      ],
+      "left_pair_values": [
+        4,
+        0,
+        4,
+        2,
+        1,
+        5
+      ],
+      "max_abs_entry_error": 6.398911863522162e-13,
+      "residual_norm": 9.048319093514786e-13,
+      "right_pair_values": [
+        4,
+        0,
+        6,
+        2,
+        1,
+        6
+      ],
+      "sequence_id": "01"
+    },
+    "replay_case_count": 9,
+    "replay_cases": [
+      {
+        "infidelity": 4.3520742565306136e-14,
+        "l2_global_phase_aligned_amplitude_delta": 1.786615530005036e-15,
+        "label": "benchmark_default_zero_input",
+        "max_global_phase_aligned_amplitude_delta": 4.973249812319541e-16,
+        "max_probability_delta": 6.245004513516506e-17,
+        "passed": true,
+        "state_fidelity": 0.9999999999999565
+      },
+      {
+        "infidelity": 4.551914400963142e-14,
+        "l2_global_phase_aligned_amplitude_delta": 1.794529903606093e-15,
+        "label": "seeded_product_state_17",
+        "max_global_phase_aligned_amplitude_delta": 8.329002140614283e-17,
+        "max_probability_delta": 2.7647155398380363e-18,
+        "passed": true,
+        "state_fidelity": 0.9999999999999545
+      },
+      {
+        "infidelity": 6.017408793468348e-14,
+        "l2_global_phase_aligned_amplitude_delta": 2.210433025867219e-15,
+        "label": "seeded_product_state_29",
+        "max_global_phase_aligned_amplitude_delta": 7.574531554818041e-17,
+        "max_probability_delta": 2.0599841277224584e-18,
+        "passed": true,
+        "state_fidelity": 0.9999999999999398
+      },
+      {
+        "infidelity": 5.5067062021407764e-14,
+        "l2_global_phase_aligned_amplitude_delta": 1.7448832274072182e-15,
+        "label": "seeded_product_state_41",
+        "max_global_phase_aligned_amplitude_delta": 4.732489700712182e-17,
+        "max_probability_delta": 7.860465750519907e-19,
+        "passed": true,
+        "state_fidelity": 0.9999999999999449
+      },
+      {
+        "infidelity": 3.9968028886505635e-14,
+        "l2_global_phase_aligned_amplitude_delta": 2.19757762341346e-15,
+        "label": "seeded_product_state_53",
+        "max_global_phase_aligned_amplitude_delta": 4.9126682786040566e-17,
+        "max_probability_delta": 1.1655173354219173e-18,
+        "passed": true,
+        "state_fidelity": 0.99999999999996
+      },
+      {
+        "infidelity": 3.1530333899354446e-14,
+        "l2_global_phase_aligned_amplitude_delta": 1.9607641493982084e-15,
+        "label": "seeded_product_state_67",
+        "max_global_phase_aligned_amplitude_delta": 3.725619048495104e-17,
+        "max_probability_delta": 6.505213034913027e-19,
+        "passed": true,
+        "state_fidelity": 0.9999999999999685
+      },
+      {
+        "infidelity": 4.241051954068098e-14,
+        "l2_global_phase_aligned_amplitude_delta": 1.916607825930886e-15,
+        "label": "seeded_product_state_79",
+        "max_global_phase_aligned_amplitude_delta": 8.359613576977407e-17,
+        "max_probability_delta": 6.5052130349130266e-18,
+        "passed": true,
+        "state_fidelity": 0.9999999999999576
+      },
+      {
+        "infidelity": 1.176836406102666e-14,
+        "l2_global_phase_aligned_amplitude_delta": 5.3088142733961665e-15,
+        "label": "seeded_product_state_83",
+        "max_global_phase_aligned_amplitude_delta": 1.7127264949619976e-16,
+        "max_probability_delta": 2.8189256484623115e-18,
+        "passed": true,
+        "state_fidelity": 0.9999999999999882
+      },
+      {
+        "infidelity": 3.9745984281580604e-14,
+        "l2_global_phase_aligned_amplitude_delta": 1.7564084553814225e-15,
+        "label": "seeded_product_state_97",
+        "max_global_phase_aligned_amplitude_delta": 7.619095288878322e-17,
+        "max_probability_delta": 2.927345865710862e-18,
+        "passed": true,
+        "state_fidelity": 0.9999999999999603
+      }
+    ],
+    "replay_passed": true,
+    "resource_saving_claimed": false,
+    "seeded_product_state_case_count": 8,
+    "source_cnot_count": 795,
+    "source_counts_without_measurements": {
+      "cx": 795,
+      "rz": 609,
+      "u3": 480
+    },
+    "source_line_count": 1889,
+    "source_qasm": "results/b1_native_t_resource_optimizer/qasmbench_medium_exact/gcm_h6.qasm",
+    "source_sha256": "150077af51e56d9263f35995726b6c8adfcc6b1cc4ec220ef9d05f4940cfded0",
+    "source_window_end_line": 1377,
+    "source_window_start_line": 1369,
+    "symbolic_unitary_equivalence_claimed": false,
+    "target_line_number": 1378,
+    "window": {
+      "replacement_line_count": 5,
+      "replacement_window": [
+        "u3(pi,0,3*pi/2) q[4];",
+        "u3(pi/2,1*pi/4,3*pi/2) q[8];",
+        "cx q[4],q[8];",
+        "u3(pi,0,pi) q[4];",
+        "u3(pi/2,1*pi/4,5*pi/4) q[8];"
+      ],
+      "replacement_window_sha256": "0472b8521a3a161414881f8c45e6e81b61adf9a0a42f334ca18e7dcf76d628fa",
+      "source_window": [
+        "cx q[4],q[8];",
+        "rz(-pi/4) q[4];",
+        "rz(pi/4) q[8];",
+        "cx q[4],q[8];",
+        "u3(pi/4,pi,-3*pi/4) q[8];",
+        "cx q[4],q[8];",
+        "rz(-3*pi/4) q[4];",
+        "u3(pi/4,-3*pi/4,0) q[8];",
+        "cx q[4],q[8];"
+      ],
+      "source_window_end_line": 1377,
+      "source_window_line_count": 9,
+      "source_window_sha256": "0398c9e09472da562e91e6dbb6432de0c46fbb88a71b12484508005b71b44cbe",
+      "source_window_start_line": 1369
+    }
+  },
+  "validation_errors": [],
+  "workload": "qasmbench_medium_exact/gcm_h6.qasm"
+}

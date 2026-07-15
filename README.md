@@ -2023,3 +2023,15 @@ one-CNOT pair-class enumeration. It covers 512 single-qubit grid parameterizatio
 improvement `2`, and CNOT reduction `3`. Lines 1381 and 268 yield no exact
 one-CNOT grid match. This is a concrete source-aligned replay candidate, not yet
 a full-circuit rewrite, B7 ledger acceptance, or solved B1/B7 result.
+
+`T-B1-004fz` / `T-B7-015i` lifts that fixed line-1378 witness into the complete
+`gcm_h6` source window at lines 1369-1377. It emits OpenQASM 2.0 and OpenQASM 3.0
+candidate artifacts and passes 9 full-circuit replay cases: the benchmark default
+input, 8 deterministic seeded product states, and one OpenQASM 3 default-input
+replay. Minimum fidelity is `0.9999999999999398`, maximum phase-aligned amplitude
+delta is `4.973249812319541e-16`, and maximum probability delta is
+`6.245004513516506e-17`. CNOT count drops `795 -> 792`; the pinned proxy FT T
+ledger drops `6760 -> 6756` while logical T depth stays `1018 -> 1018`. This is
+a replayable source-circuit patch artifact, not a symbolic arbitrary-input proof:
+accepted full-circuit replay certificate, local-U3 pricing acceptance, occurrence
+removal, proxy-T credit, exit route, and B7 credit remain `0`.

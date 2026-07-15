@@ -34650,6 +34650,9 @@ def audit(root: Path) -> dict:
             "b1_b7_cone01_r75_exact_one_cnot_grid_enumeration_gate": str(
                 research / "B1_B7_cone01_R75_exact_one_cnot_grid_enumeration_gate.md"
             ),
+            "b1_b7_cone01_r76_line1378_full_circuit_replay_gate": str(
+                research / "B1_B7_cone01_R76_line1378_full_circuit_replay_gate.md"
+            ),
             "b7_w8_21_symbolic_certificate_replay_validation_manifest_gate": str(
                 research / "B7_w8_21_symbolic_certificate_replay_validation_manifest_gate.md"
             ),
