@@ -184,7 +184,7 @@ def aggregate(root: Path, protocol_payload: dict[str, Any], contract: dict[str, 
     protocol = protocol_payload
     manifests = [json.loads((root / f"{OUT_DIR}/{profile['profile_id']}.json").read_text()) for profile in protocol["profiles"]]
     rows = [row for manifest in manifests for row in manifest["replay_rows"]]
-    source_return_matches = sum(row["source_return_match"] for row in rows)
+    source_return_matches = sum(row["replay"]["source_return_match"] for row in rows)
     policy_changes = {policy: sum(row["replay"]["policy_changed_mapping"][policy] for row in rows) for policy in POLICIES}
     candidate_counts = Counter(row["replay"]["yielded_candidate_count"] for row in rows)
     acceptance = [
@@ -206,7 +206,7 @@ def aggregate(root: Path, protocol_payload: dict[str, Any], contract: dict[str, 
             "profile_id": manifest["profile_id"],
             "replay_count": len(profile_rows),
             "yielded_candidate_count": sum(row["replay"]["yielded_candidate_count"] for row in profile_rows),
-            "source_return_match_count": sum(row["source_return_match"] for row in profile_rows),
+            "source_return_match_count": sum(row["replay"]["source_return_match"] for row in profile_rows),
             "policy_changed_mapping": {policy: sum(row["replay"]["policy_changed_mapping"][policy] for row in profile_rows) for policy in POLICIES},
         })
     summary = {
@@ -289,6 +289,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--worker-profile")
+    parser.add_argument("--aggregate-existing", action="store_true")
     parser.add_argument("--preregistration-commit", required=True)
     parser.add_argument("--preregistration-discussion", required=True)
     parser.add_argument("--preregistration-created-at", required=True)
@@ -302,7 +303,11 @@ def main() -> int:
         execute_worker(root, protocol_payload, args.worker_profile, preregistration)
         return 0
     if (root / OUT_DIR).exists() or (root / RESULT_PATH).exists():
-        raise ValueError("R167 execution evidence already exists; refusing to overwrite")
+        if not args.aggregate_existing:
+            raise ValueError("R167 execution evidence already exists; refusing to overwrite")
+        result = aggregate(root, protocol_payload, contract, preregistration)
+        print(json.dumps({"status": result["status"], "classification": result["classification"], "summary": result["summary"], "requirements_passed": result["requirements_passed"], "requirements_failed": result["requirements_failed"], "payload_hash": result["payload_hash"]}, indent=2, sort_keys=True))
+        return 0
     script = Path(__file__).resolve()
     with ThreadPoolExecutor(max_workers=3) as executor:
         futures = [executor.submit(launch_worker, root, script, profile["profile_id"], preregistration) for profile in protocol_payload["profiles"]]
