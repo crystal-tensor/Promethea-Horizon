@@ -1,0 +1,86 @@
+{
+  "contract_id": "B4-B8-R169-target-compatible-candidate-contract-v0",
+  "contract_status": "public_preregistration_execution_unopened",
+  "execution_started": false,
+  "protocol_path": "results/B4_B8_R169_target_compatible_candidate_protocol_v0.json",
+  "protocol_payload_hash": "857b8ef38f788415764bd6e8321899c2593deece2fae1c293e40ce6dd73c94da",
+  "acceptance_conditions": [
+    {
+      "condition_id": "A1",
+      "label": "the target-compatible input, protocol, contract, executor, R165 helper, R168 diagnostic, source manifest, and instrumented binary are hash-bound"
+    },
+    {
+      "condition_id": "A2",
+      "label": "three profiles and 192 post-registration candidate-traced calls are present"
+    },
+    {
+      "condition_id": "A3",
+      "label": "every complete candidate retains mapping, source score, leaves, and enumeration index"
+    },
+    {
+      "condition_id": "A4",
+      "label": "source selection reproduces the returned mapping and score on every call"
+    },
+    {
+      "condition_id": "A5",
+      "label": "all four declared arithmetic policies are replayed with first-seen tie handling"
+    },
+    {
+      "condition_id": "A6",
+      "label": "the input graph is the R168 target-compatible tree control and the imported accelerator binary remains exact"
+    },
+    {
+      "condition_id": "A7",
+      "label": "zero simulation, shots, sampling, route changes, and hidden seeds are recorded"
+    },
+    {
+      "condition_id": "A8",
+      "label": "candidate-level replay does not claim an alternate search traversal"
+    },
+    {
+      "condition_id": "A9",
+      "label": "R168 and R167 evidence are upstream context only and no cross-input generality is claimed"
+    },
+    {
+      "condition_id": "A10",
+      "label": "forbidden bug, advantage, BQP, solved-frontier, and credit claims remain false"
+    }
+  ],
+  "source_bindings": {
+    "executor": {
+      "path": "tools/b4_b8_r169_target_compatible_candidate_replay.py",
+      "sha256": "8ad8d9bbef600c99e957b34c02b2ee824a69e17426063ca57ba8da7ec28d637a"
+    },
+    "protocol": {
+      "path": "results/B4_B8_R169_target_compatible_candidate_protocol_v0.json",
+      "sha256": "c484e61355017027bea60f3e668e50d536960e3da98a150be0c23a6600356049",
+      "payload_hash": "857b8ef38f788415764bd6e8321899c2593deece2fae1c293e40ce6dd73c94da"
+    },
+    "input": {
+      "path": "benchmarks/B4_B8_R169_target_compatible_candidate_v0.qasm",
+      "sha256": "d6895b30e27cc9f75e93edffef348d1701526c077ba1121094c394b38fb68fb7"
+    },
+    "r165_executor": {
+      "path": "tools/b4_b8_r165_candidate_selection_replay.py",
+      "sha256": "13b0be69f0491245a8a569c293eb13c1aeb58cf209b88814d6712b581acf3718"
+    },
+    "r168_result": {
+      "path": "results/B4_B8_R168_input_target_candidate_feasibility_v0.json",
+      "sha256": "d7fa92c4cfa1d231195e6b06ff612623b078f48845496e7d86ba0b12f6080a90",
+      "payload_hash": "1ac6f4a5f1265ba5718b35bd0f91714c7dafda6dc736cb2bc7dc5f13eecf8693"
+    },
+    "source_manifest": {
+      "path": "research/source_lineage/Qiskit_2_4_1_vf2_source_manifest.json",
+      "sha256": "d57f7b039a232047aa1189a1594f8da4eff14c7688e55d77d27b81d625efd276"
+    },
+    "instrumented_binary": {
+      "path": "research/source_lineage/Qiskit_2_4_1_R165_candidate_selection_accelerate.cpython-312-darwin.so",
+      "sha256": "56101c7bedbaa157c341542d18b95e60b9d37acb9f29d6305fa2f7337cb8fd69"
+    }
+  },
+  "claim_boundary": {
+    "what_is_supported": "a preregistered target-compatible input candidate-level replay under declared profiles and policies",
+    "what_is_not_supported": "cross-input generality, a production mapping change, an alternate search path, a confirmed Qiskit bug, hardware relevance, route advantage, quantum advantage, BQP separation, solved B4/B8/B10, or new credit"
+  },
+  "payload_hash": "25a34b4af749dc993746fbc5689f158ebe295aa81c883d9188ab315236a9409a"
+}

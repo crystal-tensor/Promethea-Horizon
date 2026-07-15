@@ -3028,6 +3028,17 @@ solved B4/B8/B10, or new credit. The next experiment must freeze a new
 target-compatible OpenQASM 3 input with a nonzero embedding count, then rerun
 the candidate-level arithmetic-policy replay.
 
+`T-B4-002cm` / `T-B8-003cq` / `T-B10-009cc-r169` now freezes that follow-up
+experiment before execution. R169 uses a six-active-qubit target-compatible
+tree with interaction edges `(1,2),(2,3),(2,4),(4,5),(5,6)`, the graph family
+for which R168 found `8` injective embeddings in the `FakeNairobiV2` target.
+The protocol keeps the same three operation-order profiles, `192` total calls,
+source-instrumented Qiskit path, and four arithmetic policies. Candidate
+counts, source-return matches, policy changes, and simulation counts remain
+open until the preregistered replay runs. R169 is a candidate-feasibility
+control, not a production mapping change, confirmed bug, hardware result,
+quantum advantage, BQP separation, solved B4/B8/B10, or new credit.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific
