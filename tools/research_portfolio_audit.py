@@ -31250,6 +31250,7 @@ def audit(root: Path) -> dict:
     b7_w8_21_symbolic_certificate_ledger_retest = b7_results.get(
         "w8_21_symbolic_certificate_ledger_retest_v0"
     )
+    b7_w8_21_neighborhood_transfer = b7_results.get("w8_21_neighborhood_transfer_v0")
     b7_status = {}
     if not b7_codesign:
         warnings.append("B7 manifest has no fault-tolerance co-design resource result")
@@ -32799,6 +32800,67 @@ def audit(root: Path) -> dict:
             errors.append("B7 w8_21 symbolic certificate ledger retest parameter delta mismatch")
         if resources.get("accepted_occurrence_removal") != 0 or resources.get("accepted_proxy_t_reduction") != 0 or resources.get("b7_credit") != 0:
             errors.append("B7 w8_21 symbolic certificate ledger retest must keep resource delta at zero")
+
+    b7_w8_21_neighborhood_transfer_status = {}
+    if not b7_w8_21_neighborhood_transfer:
+        warnings.append("B7 manifest missing w8_21 neighborhood transfer")
+    else:
+        result_path = b7_w8_21_neighborhood_transfer.get("result")
+        markdown_path = b7_w8_21_neighborhood_transfer.get("markdown_report")
+        result_exists = bool(result_path and path_exists_from(benchmarks, result_path))
+        markdown_exists = bool(markdown_path and path_exists_from(benchmarks, markdown_path))
+        if not result_exists:
+            errors.append(f"B7 w8_21 neighborhood transfer result missing: {result_path}")
+        if not markdown_exists:
+            errors.append(f"B7 w8_21 neighborhood transfer markdown missing: {markdown_path}")
+        payload = json.loads(read((benchmarks / result_path).resolve())) if result_exists else {}
+        summary = payload.get("summary", {})
+        b7_w8_21_neighborhood_transfer_status = {
+            "status": payload.get("status"),
+            "method": payload.get("method"),
+            "template_id": payload.get("template_id"),
+            "classification": payload.get("classification"),
+            "selected_occurrence_count": summary.get("selected_occurrence_count"),
+            "tested_context_count": summary.get("tested_context_count"),
+            "exact_fit_count": summary.get("exact_fit_count"),
+            "best_objective_residual": summary.get("best_objective_residual"),
+            "accepted_occurrence_removal": summary.get("accepted_occurrence_removal"),
+            "accepted_proxy_t_reduction": summary.get("accepted_proxy_t_reduction"),
+            "b7_credit": summary.get("b7_credit"),
+            "validation_error_count": summary.get("validation_error_count"),
+            "result_exists": result_exists,
+            "markdown_exists": markdown_exists,
+            "result": result_path,
+            "markdown_report": markdown_path,
+        }
+        if payload.get("status") != "larger_neighborhood_refit_complete_no_resource_reduction":
+            errors.append("B7 w8_21 neighborhood transfer status mismatch")
+        if payload.get("method") != "b7_w8_21_neighborhood_transfer_v0" or payload.get("template_id") != "w8_21":
+            errors.append("B7 w8_21 neighborhood transfer identity mismatch")
+        if payload.get("classification") != "bounded_same_skeleton_context_refit_boundary":
+            errors.append("B7 w8_21 neighborhood transfer classification mismatch")
+        expected_summary = {
+            "selected_occurrence_count": 16,
+            "tested_context_count": 7,
+            "after_context_count": 7,
+            "before_context_count": 0,
+            "exact_fit_count": 0,
+            "accepted_occurrence_removal": 0,
+            "accepted_proxy_t_reduction": 0,
+            "b7_credit": 0,
+            "rewrite_claimed": False,
+            "resource_saving_claimed": False,
+            "b7_ledger_improvement_claimed": False,
+            "validation_error_count": 0,
+        }
+        for field, expected in expected_summary.items():
+            if summary.get(field) != expected:
+                errors.append(f"B7 w8_21 neighborhood transfer {field} mismatch")
+        fit_configuration = payload.get("fit_configuration", {})
+        if fit_configuration.get("seed_count") != 12 or fit_configuration.get("exact_tolerance") != 1e-10:
+            errors.append("B7 w8_21 neighborhood transfer fit configuration mismatch")
+        if payload.get("claim_boundary", {}).get("rewrite_claimed") is not False or payload.get("claim_boundary", {}).get("resource_saving_claimed") is not False:
+            errors.append("B7 w8_21 neighborhood transfer must keep rewrite/resource claims false")
 
     b8_manifest = yaml.safe_load(read(b8_manifest_path))
     b8_results = b8_manifest.get("current_results", {})
@@ -43450,6 +43512,7 @@ def audit(root: Path) -> dict:
             "w8_21_context_absorption": b7_w8_21_context_absorption_status,
             "w8_21_symbolic_certificate": b7_w8_21_symbolic_certificate_status,
             "w8_21_symbolic_certificate_ledger_retest": b7_w8_21_symbolic_certificate_ledger_retest_status,
+            "w8_21_neighborhood_transfer": b7_w8_21_neighborhood_transfer_status,
         },
         "b8": {
             "manifest": str(b8_manifest_path),
@@ -44790,6 +44853,9 @@ def audit(root: Path) -> dict:
             ),
             "b7_w8_21_symbolic_certificate_ledger_retest": str(
                 research / "B7_w8_21_symbolic_certificate_ledger_retest.md"
+            ),
+            "b7_w8_21_neighborhood_transfer": str(
+                research / "B7_w8_21_neighborhood_transfer.md"
             ),
             "b4_b8_circuit_refresh_task": str(research / "B4_B8_circuit_refresh_task.md"),
             "b4_b8_openqasm3_randomized_measurement_packet": str(

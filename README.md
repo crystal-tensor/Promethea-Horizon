@@ -129,6 +129,17 @@ result is precise but not a compression win: CNOTs remain `2 -> 2`, arbitrary
 parameters remain `5 -> 5`, occurrence removal is 0, proxy-T reduction is 0,
 and B7 credit remains 0.
 
+The next B1/B7 experiment tests the larger-neighborhood transfer route rather
+than only observing the boundary. Seven selected `w8_21` occurrences are
+immediately followed by the same-target arbitrary `Rz(0.28861107553559073)`.
+Refitting each complete context into the same two-CNOT, five-parameter normal
+form with 12 deterministic seeds finds 0/7 exact fits; the best residual is
+`0.2301426459717444` at a `1e-10` acceptance threshold. The external rotation
+therefore cannot be removed by this bounded same-skeleton route. Occurrence
+removal, proxy-T reduction, and B7 credit remain 0; the next route is a
+commutation-aware scaffold that explicitly carries and prices the external
+rotation.
+
 The current B5/B10 line has recently moved from small-cluster denominators to
 seeded MPS pressure, non-seeded one-site MPS/ALS pressure, and a two-site
 finite-DMRG-style pressure prototype. B5 now has a canonical-DMRG readiness
