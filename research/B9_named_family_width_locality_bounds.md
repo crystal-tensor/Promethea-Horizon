@@ -1,8 +1,8 @@
 # B9 Named-Family Width/Locality Bound Skeleton v0.1
 
-Last updated: 2026-06-17
+Last updated: 2026-07-15
 
-Status: **named_family_width_locality_bound_skeleton_not_checked_theorem**
+Status: **named_family_width_locality_bound_skeleton_checked_interface_not_theorem**
 
 ## Summary
 
@@ -28,6 +28,7 @@ Status: **named_family_width_locality_bound_skeleton_not_checked_theorem**
 - The B9 local_interaction_reweight_v0 transformation multiplies every support>=2 term by 1.35.
 - Therefore H'_n = 1.35 * H_n for the generated family rows.
 - Positive uniform scaling preserves eigenvectors and scales both spectral gap and spectral width by 1.35.
+- The normalized-gap identity is now derived in Lean from the nonzero-scale hypothesis via mul_div_mul_left; the ratio equality is no longer assumed.
 - The normalized gap gap(H)/width(H) is invariant, while max locality remains 3.
 
 ## Finite Row Checks
@@ -44,21 +45,13 @@ Raw spectral gap growth is exactly global positive energy rescaling; spectral wi
 
 - Supported: a named-family analytic skeleton explaining why the B9 v0 cluster-stabilizer local reweight rows are only uniform energy rescaling.
 - Supported: finite rows n=4,5,6 match the symbolic locality/width story.
-- Not supported: proof-assistant checked theorem, Quantum PCP proof, NLTS theorem, or global gap-amplification no-go theorem.
+- Supported: the indexed nonzero-scale cancellation and concrete 27/20 nonzero lemmas check in Lean 4.12.0/Lake.
+- Not supported: the parameterized all-n family theorem, Quantum PCP proof, NLTS theorem, or global gap-amplification no-go theorem.
 
 ## Remaining Steps
 
 - Formalize the parameterized open-boundary cluster stabilizer Hamiltonian in an actual Lean/mathlib project.
 - Prove the support-size and uniform-scaling lemmas over all n >= 4.
-- Prove spectral gap, spectral width, and normalized-gap scaling for positive scalar multiplication of self-adjoint matrices.
+- Formalize spectral gap and spectral-width scaling for positive scalar multiplication of self-adjoint matrices and connect it to the checked cancellation lemma.
 - Connect the finite JSON rows to generated certificates rather than manual inspection.
 - Generalize from this rejected uniform-scaling family to nontrivial locality-preserving transformations or prove a narrower no-go theorem.
-
-## Proof-Check Environment Note
-
-```text
-research/proof_skeletons/B9_cluster_stabilizer_width_locality_bound.lean:35:5: warning: unused variable `hRaw`
-note: this linter can be disabled with `set_option linter.unusedVariables false`
-research/proof_skeletons/B9_cluster_stabilizer_width_locality_bound.lean:48:5: warning: unused variable `hN`
-note: this linter can be disabled with `set_option linter.unusedVariables false`
-```

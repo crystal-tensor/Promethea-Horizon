@@ -2555,7 +2555,7 @@ Overall audit: PASS
 - Symbolic gap skeleton explicitly not Quantum PCP proof: True
 - Symbolic gap skeleton validation errors: 0
 - Symbolic gap skeleton result/markdown/lean exists: True / True / True
-- Named-family bound status: named_family_width_locality_bound_skeleton_not_checked_theorem
+- Named-family bound status: named_family_width_locality_bound_skeleton_checked_interface_not_theorem
 - Named-family bound family: cluster_stabilizer_open_uniform_reweight
 - Named-family bound rows/scaling/locality: 3 / 1.35 / 3
 - Named-family bound uniform/locality/raw/norm-invariant/rejected: True / True / True / True / True

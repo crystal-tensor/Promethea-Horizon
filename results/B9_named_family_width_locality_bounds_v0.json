@@ -5,6 +5,7 @@
     "The B9 local_interaction_reweight_v0 transformation multiplies every support>=2 term by 1.35.",
     "Therefore H'_n = 1.35 * H_n for the generated family rows.",
     "Positive uniform scaling preserves eigenvectors and scales both spectral gap and spectral width by 1.35.",
+    "The normalized-gap identity is now derived in Lean from the nonzero-scale hypothesis via mul_div_mul_left; the ratio equality is no longer assumed.",
     "The normalized gap gap(H)/width(H) is invariant, while max locality remains 3."
   ],
   "benchmark_id": "B9",
@@ -12,7 +13,8 @@
   "claim_boundary": [
     "Supported: a named-family analytic skeleton explaining why the B9 v0 cluster-stabilizer local reweight rows are only uniform energy rescaling.",
     "Supported: finite rows n=4,5,6 match the symbolic locality/width story.",
-    "Not supported: proof-assistant checked theorem, Quantum PCP proof, NLTS theorem, or global gap-amplification no-go theorem."
+    "Supported: the indexed nonzero-scale cancellation and concrete 27/20 nonzero lemmas check in Lean 4.12.0/Lake.",
+    "Not supported: the parameterized all-n family theorem, Quantum PCP proof, NLTS theorem, or global gap-amplification no-go theorem."
   ],
   "explicit_not_quantum_pcp_proof": true,
   "formal_theorem_proved": false,
@@ -42,7 +44,7 @@
   ],
   "problem_id": 17,
   "proof_assistant_available": true,
-  "proof_assistant_check_detail": "research/proof_skeletons/B9_cluster_stabilizer_width_locality_bound.lean:35:5: warning: unused variable `hRaw`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`\nresearch/proof_skeletons/B9_cluster_stabilizer_width_locality_bound.lean:48:5: warning: unused variable `hN`\nnote: this linter can be disabled with `set_option linter.unusedVariables false`",
+  "proof_assistant_check_detail": "",
   "proof_assistant_check_status": "passed",
   "proof_assistant_checked": true,
   "proof_assistant_executable": "/Users/avalok/.elan/bin/lake",
@@ -57,7 +59,7 @@
   "remaining_steps_to_full_resolution": [
     "Formalize the parameterized open-boundary cluster stabilizer Hamiltonian in an actual Lean/mathlib project.",
     "Prove the support-size and uniform-scaling lemmas over all n >= 4.",
-    "Prove spectral gap, spectral width, and normalized-gap scaling for positive scalar multiplication of self-adjoint matrices.",
+    "Formalize spectral gap and spectral-width scaling for positive scalar multiplication of self-adjoint matrices and connect it to the checked cancellation lemma.",
     "Connect the finite JSON rows to generated certificates rather than manual inspection.",
     "Generalize from this rejected uniform-scaling family to nontrivial locality-preserving transformations or prove a narrower no-go theorem."
   ],
@@ -65,7 +67,7 @@
   "scaling_factor": 1.35,
   "source_method": "small_local_hamiltonian_gap_lab_v0",
   "source_result": "results/B9_local_hamiltonian_gap_lab_v0.json",
-  "status": "named_family_width_locality_bound_skeleton_not_checked_theorem",
+  "status": "named_family_width_locality_bound_skeleton_checked_interface_not_theorem",
   "support_profiles": [
     {
       "all_terms_scaled_uniformly": true,

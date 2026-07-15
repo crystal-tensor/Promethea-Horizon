@@ -22,7 +22,7 @@ def LocalityPreserved (before after : SpectralSummary) : Prop :=
 
 theorem uniform_scale_raw_gap_is_not_certificate
     (before after : SpectralSummary)
-    (hRaw : RawGapAmplifies before after)
+    (_hRaw : RawGapAmplifies before after)
     (hInvariant : NormalizedGapInvariant before after) :
     ¬ (after.normalizedGap > before.normalizedGap) := by
   intro hImp
@@ -31,7 +31,7 @@ theorem uniform_scale_raw_gap_is_not_certificate
 
 theorem cluster_stabilizer_open_uniform_reweight_obligation
     (n : Nat)
-    (hN : 4 <= n)
+    (_hN : 4 <= n)
     (before after : SpectralSummary)
     (hLocality : LocalityPreserved before after)
     (hRaw : RawGapAmplifies before after)
@@ -72,19 +72,23 @@ section UniformScaling
 
 noncomputable def UniformScaleFactor : Real := 27/20
 
+theorem uniform_scale_factor_nonzero : UniformScaleFactor ≠ 0 := by
+  norm_num [UniformScaleFactor]
+
 def IsUniformlyScaled (before after : SpectralSummary) : Prop :=
   after.gap = UniformScaleFactor * before.gap ∧
   after.width = UniformScaleFactor * before.width
 
-theorem uniform_scale_preserves_normalized_gap
+theorem uniform_nonzero_scale_preserves_normalized_gap
     (gap width scale : Real)
     (before after : SpectralSummary)
     (hBefore : before.normalizedGap = gap / width)
     (hAfter : after.normalizedGap = (scale * gap) / (scale * width))
-    (hRatio : (scale * gap) / (scale * width) = gap / width) :
+    (hScaleNonzero : scale ≠ 0) :
     ClusterStabilizer.NormalizedGapInvariant before after := by
   unfold ClusterStabilizer.NormalizedGapInvariant
-  rw [hAfter, hBefore, hRatio]
+  rw [hAfter, hBefore]
+  exact mul_div_mul_left gap width hScaleNonzero
 
 end UniformScaling
 
@@ -93,15 +97,15 @@ section SpectralWidth
 def SpectralWidthPreserved (before after : SpectralSummary) : Prop :=
   after.width / after.gap = before.width / before.gap
 
-theorem uniform_scale_preserves_spectral_width_ratio
+theorem uniform_nonzero_scale_preserves_spectral_width_ratio
     (before after : SpectralSummary)
     (hScale : IsUniformlyScaled before after)
-    (hRatio : (UniformScaleFactor * before.width) / (UniformScaleFactor * before.gap) = before.width / before.gap) :
+    (hScaleNonzero : UniformScaleFactor ≠ 0) :
     SpectralWidthPreserved before after := by
   rcases hScale with ⟨hGap, hWidth⟩
   unfold SpectralWidthPreserved
   rw [hGap, hWidth]
-  exact hRatio
+  exact mul_div_mul_left before.width before.gap hScaleNonzero
 
 end SpectralWidth
 

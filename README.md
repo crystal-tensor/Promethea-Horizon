@@ -4014,3 +4014,5 @@ a confirmed bug. Payload `3cf4927f...`; no hidden evidence, simulation or
 hardware performance, temporal or real-device transfer, general route-
 generation advantage, quantum advantage, BQP separation, solved-frontier
 status, or new credit is claimed.
+
+B9 update: T-B9-004n removes one hidden assumption from the checked interface. The normalized-gap cancellation is now derived from `scale != 0` with Lean's `mul_div_mul_left`, and the concrete `UniformScaleFactor = 27/20` nonzero lemma is checked under Lean 4.12.0/Lake. The refreshed transcript and priority packet bind the current module and toolchain hashes. This is stronger evidence for a narrow indexed interface, not an all-n theorem or a Quantum PCP/NLTS/global no-go result.

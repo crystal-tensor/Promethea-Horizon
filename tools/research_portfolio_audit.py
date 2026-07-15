@@ -34051,7 +34051,10 @@ def audit(root: Path) -> dict:
             "markdown_report": markdown_path,
             "lean_skeleton": lean_path,
         }
-        if payload.get("status") != "named_family_width_locality_bound_skeleton_not_checked_theorem":
+        if payload.get("status") not in {
+            "named_family_width_locality_bound_skeleton_not_checked_theorem",
+            "named_family_width_locality_bound_skeleton_checked_interface_not_theorem",
+        }:
             errors.append("B9 named-family bound status mismatch")
         if payload.get("method") != b9_named_family_bound.get("method"):
             errors.append("B9 named-family bound method mismatch")
@@ -34073,8 +34076,8 @@ def audit(root: Path) -> dict:
             errors.append("B9 named-family bound should record normalized-gap invariance")
         if payload.get("certificate_rejected") is not True:
             errors.append("B9 named-family bound should reject uniform scaling as a certificate")
-        if payload.get("proof_assistant_checked") not in (True, False):
-            errors.append("B9 named-family bound proof-assistant check status must be explicit")
+        if payload.get("proof_assistant_checked") is not True:
+            errors.append("B9 named-family bound must record the checked interface")
         if payload.get("formal_theorem_proved") is not False:
             errors.append("B9 named-family bound must not claim a formal theorem")
         if payload.get("explicit_not_quantum_pcp_proof") is not True:
