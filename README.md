@@ -2004,3 +2004,12 @@ exact deltas are `-78`, `-215`, and `-233`. Reversing CNOT direction does not
 yet produce an accepted resource route. This is a finite negative boundary, not
 a global synthesis theorem; accepted occurrence removal, proxy-T reduction,
 exit routes, and B7 credit remain `0`.
+
+`T-B1-004fx` / `T-B7-015g` then restricts every local-U3 Euler angle to the
+directly countable `k*pi/4` grid, while retaining all 45 mixed CNOT-direction
+sequences through 3 reduced CNOTs. With 2 deterministic differential-evolution
+seeds per sequence, the gate records 90 attempts and 0 strict exact reduced-CNOT
+candidates. Best residuals by packet are `0.7803612880646379`,
+`0.6724979699119589`, and `0.7653668647301796`. This is a seeded finite
+Clifford+T grid pressure boundary, not an exhaustive Clifford+T search; accepted
+occurrence removal, proxy-T reduction, exit routes, and B7 credit remain `0`.

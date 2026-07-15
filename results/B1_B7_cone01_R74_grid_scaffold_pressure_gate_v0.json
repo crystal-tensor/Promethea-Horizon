@@ -1,0 +1,5411 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "global_exhaustive_claimed": false,
+    "resource_saving_claimed": false,
+    "supported_claim": "In the seeded finite differential-evolution pressure test over mixed CNOT directions and pi/4-grid local-U3 angles, no strict exact reduced-CNOT candidate was found for the three semantic packets.",
+    "unsupported_claims": [
+      "This is not exhaustive over all Clifford+T circuits or all T-depth schedules.",
+      "This is not a global synthesis lower bound.",
+      "This does not produce a full-circuit rewrite, occurrence removal, proxy-T reduction, reroute, or B7 credit."
+    ]
+  },
+  "cost_model": {
+    "arbitrary_rotation_t_cost": 20,
+    "clifford_rotation_t_cost": 0,
+    "pi_over_4_rotation_t_cost": 1,
+    "pi_over_8_rotation_t_cost": 4,
+    "unknown_rotation_t_cost": 20
+  },
+  "grid_model": {
+    "angle_expression": "k*pi/4",
+    "k_values": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "local_u3_parameter_count_per_layer": 6,
+    "optimizer": "scipy_differential_evolution_integer_domain"
+  },
+  "linked_b7_problem_id": 21,
+  "method": "b1_b7_cone01_r74_grid_scaffold_pressure_gate_v0",
+  "model_status": "mixed_orientation_pi_over_four_grid_search_finds_no_exact_reduced_scaffold",
+  "packet_rows": [
+    {
+      "accepted_occurrence_removal": 0,
+      "accepted_proxy_t_reduction": 0,
+      "attempt_count": 30,
+      "best_exact_by_cost": null,
+      "best_exact_rotation_cost": null,
+      "best_overall_by_residual": {
+        "candidate_rotation_cost": {
+          "arbitrary_parameter_count": 0,
+          "grid_parameter_count": 18,
+          "parameter_count": 18,
+          "rotation_cost": 4,
+          "rotation_family_counts": {
+            "clifford_rotation": 14,
+            "exact_pi_over_4_rotation": 4
+          }
+        },
+        "cnot_count": 2,
+        "cnot_sequence": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ]
+        ],
+        "exact_pass": false,
+        "grid_denominator": 4,
+        "grid_point_count_per_parameter": 8,
+        "grid_values": [
+          0,
+          4,
+          4,
+          1,
+          5,
+          1,
+          4,
+          6,
+          4,
+          2,
+          4,
+          6,
+          4,
+          2,
+          0,
+          3,
+          4,
+          2
+        ],
+        "local_u3_layer_count": 3,
+        "optimizer_nfev": 3690,
+        "optimizer_success": false,
+        "parameter_count": 18,
+        "residual_norm": 0.7803612880646379,
+        "seed": 116913,
+        "sequence_id": "01-01"
+      },
+      "candidate_line_number": 1378,
+      "exact_solution_count": 0,
+      "maxiter": 40,
+      "orientation_sequence_count": 15,
+      "pattern_id": "flat_pattern_01",
+      "popsize": 5,
+      "search_cnot_counts": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "seed_count_per_sequence": 2,
+      "sequence_rows": [
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 6,
+            "parameter_count": 6,
+            "rotation_cost": 4,
+            "rotation_family_counts": {
+              "clifford_rotation": 2,
+              "exact_pi_over_4_rotation": 4
+            }
+          },
+          "cnot_count": 0,
+          "cnot_sequence": [],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            0,
+            1,
+            3,
+            1,
+            6,
+            3
+          ],
+          "local_u3_layer_count": 1,
+          "optimizer_nfev": 1230,
+          "optimizer_success": false,
+          "parameter_count": 6,
+          "residual_norm": 1.56739363432836,
+          "seed": 116718,
+          "sequence_id": "empty"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 6,
+            "parameter_count": 6,
+            "rotation_cost": 2,
+            "rotation_family_counts": {
+              "clifford_rotation": 4,
+              "exact_pi_over_4_rotation": 2
+            }
+          },
+          "cnot_count": 0,
+          "cnot_sequence": [],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            0,
+            4,
+            0,
+            1,
+            6,
+            3
+          ],
+          "local_u3_layer_count": 1,
+          "optimizer_nfev": 1230,
+          "optimizer_success": false,
+          "parameter_count": 6,
+          "residual_norm": 1.56739363432836,
+          "seed": 116719,
+          "sequence_id": "empty"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 6,
+            "rotation_family_counts": {
+              "clifford_rotation": 6,
+              "exact_pi_over_4_rotation": 6
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            5,
+            3,
+            2,
+            6,
+            1,
+            3,
+            4,
+            1,
+            2,
+            6,
+            4,
+            5
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 1.072455052697441,
+          "seed": 116815,
+          "sequence_id": "01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 7,
+            "rotation_family_counts": {
+              "clifford_rotation": 5,
+              "exact_pi_over_4_rotation": 7
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            2,
+            4,
+            2,
+            3,
+            3,
+            3,
+            1,
+            5,
+            1,
+            4,
+            7
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 1.0823922002925677,
+          "seed": 116816,
+          "sequence_id": "01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 7,
+            "rotation_family_counts": {
+              "clifford_rotation": 5,
+              "exact_pi_over_4_rotation": 7
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            4,
+            5,
+            1,
+            3,
+            5,
+            7,
+            1,
+            0,
+            6,
+            2,
+            5
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 1.3706493557584152,
+          "seed": 116826,
+          "sequence_id": "10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 5,
+            "rotation_family_counts": {
+              "clifford_rotation": 7,
+              "exact_pi_over_4_rotation": 5
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            7,
+            2,
+            5,
+            6,
+            4,
+            6,
+            7,
+            4,
+            6,
+            7,
+            3
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 1.4736257582080914,
+          "seed": 116827,
+          "sequence_id": "10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 5,
+            "rotation_family_counts": {
+              "clifford_rotation": 13,
+              "exact_pi_over_4_rotation": 5
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            2,
+            5,
+            3,
+            4,
+            6,
+            2,
+            2,
+            6,
+            5,
+            2,
+            2,
+            6,
+            1,
+            0,
+            4,
+            4,
+            5,
+            2
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.4686295609534061,
+          "seed": 116912,
+          "sequence_id": "01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 4,
+            "rotation_family_counts": {
+              "clifford_rotation": 14,
+              "exact_pi_over_4_rotation": 4
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            0,
+            4,
+            4,
+            1,
+            5,
+            1,
+            4,
+            6,
+            4,
+            2,
+            4,
+            6,
+            4,
+            2,
+            0,
+            3,
+            4,
+            2
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 0.7803612880646379,
+          "seed": 116913,
+          "sequence_id": "01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 7,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 7
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            7,
+            1,
+            4,
+            2,
+            0,
+            6,
+            2,
+            4,
+            7,
+            0,
+            7,
+            2,
+            3,
+            4,
+            0,
+            3,
+            5,
+            0
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.4318702915050734,
+          "seed": 116923,
+          "sequence_id": "01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            3,
+            5,
+            2,
+            5,
+            3,
+            3,
+            1,
+            6,
+            3,
+            6,
+            5,
+            6,
+            3,
+            4,
+            6,
+            5,
+            2
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.3178695747709317,
+          "seed": 116924,
+          "sequence_id": "01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            3,
+            7,
+            7,
+            0,
+            3,
+            5,
+            6,
+            6,
+            6,
+            2,
+            0,
+            1,
+            6,
+            0,
+            1,
+            5,
+            5,
+            1
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.4285248557117711,
+          "seed": 116934,
+          "sequence_id": "10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 9,
+            "rotation_family_counts": {
+              "clifford_rotation": 9,
+              "exact_pi_over_4_rotation": 9
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            5,
+            7,
+            4,
+            2,
+            7,
+            5,
+            4,
+            3,
+            5,
+            2,
+            1,
+            4,
+            5,
+            4,
+            4,
+            1,
+            4
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.4736257582080594,
+          "seed": 116935,
+          "sequence_id": "10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 9,
+            "rotation_family_counts": {
+              "clifford_rotation": 9,
+              "exact_pi_over_4_rotation": 9
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            7,
+            6,
+            5,
+            6,
+            5,
+            5,
+            1,
+            2,
+            5,
+            4,
+            0,
+            5,
+            3,
+            7,
+            6,
+            0,
+            6,
+            4
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.4736257582081362,
+          "seed": 116945,
+          "sequence_id": "10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 9,
+            "rotation_family_counts": {
+              "clifford_rotation": 9,
+              "exact_pi_over_4_rotation": 9
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            5,
+            0,
+            4,
+            4,
+            0,
+            0,
+            5,
+            1,
+            1,
+            1,
+            1,
+            4,
+            3,
+            2,
+            3,
+            5,
+            6
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.473625758208136,
+          "seed": 116946,
+          "sequence_id": "10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 5,
+            "rotation_family_counts": {
+              "clifford_rotation": 19,
+              "exact_pi_over_4_rotation": 5
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            3,
+            6,
+            7,
+            3,
+            0,
+            4,
+            3,
+            2,
+            2,
+            0,
+            0,
+            4,
+            4,
+            5,
+            6,
+            4,
+            6,
+            4,
+            4,
+            4,
+            2,
+            6,
+            2
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.0823922002925674,
+          "seed": 117009,
+          "sequence_id": "01-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 16,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 16
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            4,
+            1,
+            4,
+            6,
+            5,
+            5,
+            3,
+            5,
+            4,
+            3,
+            4,
+            1,
+            3,
+            6,
+            3,
+            1,
+            0,
+            4,
+            5,
+            1,
+            3,
+            1,
+            1
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.1435618965798295,
+          "seed": 117010,
+          "sequence_id": "01-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 9,
+            "rotation_family_counts": {
+              "clifford_rotation": 15,
+              "exact_pi_over_4_rotation": 9
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            3,
+            1,
+            1,
+            3,
+            0,
+            5,
+            0,
+            4,
+            4,
+            0,
+            4,
+            5,
+            0,
+            0,
+            0,
+            6,
+            4,
+            0,
+            2,
+            6,
+            4,
+            1,
+            5,
+            1
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.4561822200731585,
+          "seed": 117020,
+          "sequence_id": "01-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 14,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 14
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            5,
+            4,
+            2,
+            3,
+            1,
+            1,
+            3,
+            3,
+            3,
+            1,
+            6,
+            2,
+            5,
+            5,
+            5,
+            4,
+            2,
+            7,
+            2,
+            4,
+            4,
+            3,
+            4,
+            5
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.4803723566017133,
+          "seed": 117021,
+          "sequence_id": "01-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 14,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 14
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            2,
+            4,
+            3,
+            2,
+            5,
+            3,
+            3,
+            4,
+            2,
+            5,
+            5,
+            3,
+            2,
+            2,
+            3,
+            0,
+            5,
+            6,
+            3,
+            4,
+            5,
+            3,
+            7,
+            5
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.2692975727293867,
+          "seed": 117031,
+          "sequence_id": "01-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 13,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 13
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            0,
+            7,
+            5,
+            3,
+            1,
+            1,
+            5,
+            1,
+            1,
+            1,
+            1,
+            2,
+            0,
+            6,
+            4,
+            4,
+            1,
+            0,
+            4,
+            1,
+            2,
+            4,
+            5
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.4265585673662045,
+          "seed": 117032,
+          "sequence_id": "01-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 14,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 14
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            6,
+            4,
+            1,
+            3,
+            0,
+            3,
+            1,
+            3,
+            3,
+            4,
+            5,
+            4,
+            2,
+            2,
+            1,
+            7,
+            1,
+            5,
+            3,
+            1,
+            2,
+            4,
+            1
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.26968484527148,
+          "seed": 117042,
+          "sequence_id": "01-10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 16,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 16
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            1,
+            2,
+            1,
+            3,
+            1,
+            3,
+            6,
+            3,
+            7,
+            3,
+            5,
+            4,
+            6,
+            6,
+            4,
+            3,
+            7,
+            5,
+            7,
+            5,
+            3,
+            0,
+            4
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.3468919224823888,
+          "seed": 117043,
+          "sequence_id": "01-10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 13,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 13
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            5,
+            6,
+            6,
+            5,
+            3,
+            4,
+            4,
+            4,
+            2,
+            5,
+            5,
+            0,
+            1,
+            7,
+            4,
+            1,
+            0,
+            5,
+            3,
+            4,
+            3,
+            6,
+            3,
+            5
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.5398228390281017,
+          "seed": 117053,
+          "sequence_id": "10-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 14,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            5,
+            2,
+            2,
+            6,
+            4,
+            6,
+            7,
+            2,
+            3,
+            5,
+            3,
+            4,
+            3,
+            4,
+            6,
+            2,
+            6,
+            4,
+            3,
+            3,
+            2,
+            2,
+            5,
+            5
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.3304540978117616,
+          "seed": 117054,
+          "sequence_id": "10-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 11,
+            "rotation_family_counts": {
+              "clifford_rotation": 13,
+              "exact_pi_over_4_rotation": 11
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            3,
+            1,
+            2,
+            7,
+            3,
+            6,
+            2,
+            5,
+            3,
+            3,
+            6,
+            4,
+            6,
+            2,
+            6,
+            5,
+            4,
+            5,
+            0,
+            3,
+            0,
+            4,
+            1,
+            0
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.5410599352193641,
+          "seed": 117064,
+          "sequence_id": "10-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 14,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            3,
+            2,
+            2,
+            2,
+            1,
+            2,
+            0,
+            4,
+            5,
+            5,
+            0,
+            1,
+            2,
+            2,
+            1,
+            1,
+            1,
+            2,
+            3,
+            2,
+            4,
+            2,
+            1
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.616447614151296,
+          "seed": 117065,
+          "sequence_id": "10-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 15,
+            "rotation_family_counts": {
+              "clifford_rotation": 9,
+              "exact_pi_over_4_rotation": 15
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            3,
+            5,
+            7,
+            2,
+            3,
+            4,
+            3,
+            2,
+            1,
+            1,
+            6,
+            4,
+            1,
+            7,
+            1,
+            6,
+            7,
+            3,
+            2,
+            3,
+            3,
+            1,
+            2
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.5686277749996982,
+          "seed": 117075,
+          "sequence_id": "10-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 16,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 16
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            1,
+            2,
+            5,
+            3,
+            1,
+            0,
+            3,
+            5,
+            5,
+            1,
+            5,
+            3,
+            1,
+            5,
+            4,
+            2,
+            4,
+            4,
+            1,
+            0,
+            1,
+            3,
+            3
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.371927203513414,
+          "seed": 117076,
+          "sequence_id": "10-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 14,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            2,
+            3,
+            3,
+            2,
+            2,
+            5,
+            6,
+            5,
+            5,
+            6,
+            4,
+            4,
+            6,
+            1,
+            6,
+            2,
+            3,
+            2,
+            3,
+            4,
+            6,
+            5,
+            5,
+            4
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.371023676246333,
+          "seed": 117086,
+          "sequence_id": "10-10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 14,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            2,
+            5,
+            6,
+            4,
+            5,
+            5,
+            3,
+            4,
+            5,
+            4,
+            2,
+            4,
+            4,
+            0,
+            3,
+            4,
+            6,
+            4,
+            5,
+            4,
+            1,
+            5,
+            5,
+            6
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.4003263008598064,
+          "seed": 117087,
+          "sequence_id": "10-10-10"
+        }
+      ],
+      "source_cnot_count": 4,
+      "source_minus_best_exact_rotation_cost": null,
+      "source_rotation_cost": {
+        "rotation_cost": 5,
+        "rotation_family_counts": {
+          "exact_pi_over_4_rotation": 5
+        }
+      }
+    },
+    {
+      "accepted_occurrence_removal": 0,
+      "accepted_proxy_t_reduction": 0,
+      "attempt_count": 30,
+      "best_exact_by_cost": null,
+      "best_exact_rotation_cost": null,
+      "best_overall_by_residual": {
+        "candidate_rotation_cost": {
+          "arbitrary_parameter_count": 0,
+          "grid_parameter_count": 12,
+          "parameter_count": 12,
+          "rotation_cost": 4,
+          "rotation_family_counts": {
+            "clifford_rotation": 8,
+            "exact_pi_over_4_rotation": 4
+          }
+        },
+        "cnot_count": 1,
+        "cnot_sequence": [
+          [
+            0,
+            1
+          ]
+        ],
+        "exact_pass": false,
+        "grid_denominator": 4,
+        "grid_point_count_per_parameter": 8,
+        "grid_values": [
+          4,
+          2,
+          2,
+          6,
+          5,
+          5,
+          4,
+          6,
+          2,
+          2,
+          1,
+          5
+        ],
+        "local_u3_layer_count": 2,
+        "optimizer_nfev": 2460,
+        "optimizer_success": false,
+        "parameter_count": 12,
+        "residual_norm": 0.6724979699119589,
+        "seed": 116908,
+        "sequence_id": "01"
+      },
+      "candidate_line_number": 1381,
+      "exact_solution_count": 0,
+      "maxiter": 40,
+      "orientation_sequence_count": 15,
+      "pattern_id": "flat_pattern_01",
+      "popsize": 5,
+      "search_cnot_counts": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "seed_count_per_sequence": 2,
+      "sequence_rows": [
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 6,
+            "parameter_count": 6,
+            "rotation_cost": 2,
+            "rotation_family_counts": {
+              "clifford_rotation": 4,
+              "exact_pi_over_4_rotation": 2
+            }
+          },
+          "cnot_count": 0,
+          "cnot_sequence": [],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            0,
+            4,
+            2,
+            7,
+            1,
+            2
+          ],
+          "local_u3_layer_count": 1,
+          "optimizer_nfev": 1230,
+          "optimizer_success": false,
+          "parameter_count": 6,
+          "residual_norm": 1.3805566058306307,
+          "seed": 116811,
+          "sequence_id": "empty"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 6,
+            "parameter_count": 6,
+            "rotation_cost": 2,
+            "rotation_family_counts": {
+              "clifford_rotation": 4,
+              "exact_pi_over_4_rotation": 2
+            }
+          },
+          "cnot_count": 0,
+          "cnot_sequence": [],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            0,
+            0,
+            6,
+            1,
+            5,
+            6
+          ],
+          "local_u3_layer_count": 1,
+          "optimizer_nfev": 1230,
+          "optimizer_success": false,
+          "parameter_count": 6,
+          "residual_norm": 1.380556605830631,
+          "seed": 116812,
+          "sequence_id": "empty"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 4,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 4
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            2,
+            2,
+            6,
+            5,
+            5,
+            4,
+            6,
+            2,
+            2,
+            1,
+            5
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 0.6724979699119589,
+          "seed": 116908,
+          "sequence_id": "01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 4,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 4
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            6,
+            3,
+            4,
+            4,
+            3,
+            4,
+            4,
+            5,
+            2,
+            3,
+            4
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 1.1142478799565823,
+          "seed": 116909,
+          "sequence_id": "01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 3,
+            "rotation_family_counts": {
+              "clifford_rotation": 9,
+              "exact_pi_over_4_rotation": 3
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            4,
+            7,
+            2,
+            4,
+            6,
+            2,
+            4,
+            4,
+            1,
+            5,
+            2
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 1.5339864495781739,
+          "seed": 116919,
+          "sequence_id": "10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 4,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 4
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            2,
+            4,
+            3,
+            2,
+            4,
+            3,
+            6,
+            4,
+            4,
+            4,
+            7,
+            1
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 1.3471251272070204,
+          "seed": 116920,
+          "sequence_id": "10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 9,
+            "rotation_family_counts": {
+              "clifford_rotation": 9,
+              "exact_pi_over_4_rotation": 9
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            0,
+            1,
+            2,
+            5,
+            0,
+            7,
+            3,
+            1,
+            1,
+            4,
+            6,
+            7,
+            4,
+            5,
+            6,
+            3,
+            2,
+            2
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.1062501313311635,
+          "seed": 117005,
+          "sequence_id": "01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            6,
+            4,
+            7,
+            1,
+            1,
+            4,
+            5,
+            5,
+            7,
+            3,
+            4,
+            4,
+            5,
+            0,
+            5,
+            4,
+            0
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.4150721777408686,
+          "seed": 117006,
+          "sequence_id": "01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 8,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 8
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            2,
+            3,
+            0,
+            2,
+            1,
+            2,
+            3,
+            6,
+            5,
+            6,
+            2,
+            4,
+            6,
+            3,
+            3,
+            3,
+            0,
+            5
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.5451037156186382,
+          "seed": 117016,
+          "sequence_id": "01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            3,
+            3,
+            5,
+            4,
+            4,
+            7,
+            3,
+            0,
+            6,
+            4,
+            5,
+            2,
+            6,
+            7,
+            5,
+            7,
+            3
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.448881007095817,
+          "seed": 117017,
+          "sequence_id": "01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 9,
+            "rotation_family_counts": {
+              "clifford_rotation": 9,
+              "exact_pi_over_4_rotation": 9
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            0,
+            5,
+            0,
+            4,
+            1,
+            7,
+            5,
+            2,
+            3,
+            4,
+            4,
+            2,
+            5,
+            3,
+            3,
+            0,
+            1
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.474400924175731,
+          "seed": 117027,
+          "sequence_id": "10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 7,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 7
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            7,
+            3,
+            2,
+            3,
+            4,
+            4,
+            5,
+            2,
+            1,
+            2,
+            4,
+            3,
+            2,
+            2,
+            2,
+            3,
+            0,
+            4
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.4674664334753125,
+          "seed": 117028,
+          "sequence_id": "10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 7,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 7
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            5,
+            6,
+            6,
+            2,
+            5,
+            3,
+            4,
+            4,
+            3,
+            3,
+            4,
+            2,
+            5,
+            5,
+            2,
+            0,
+            2,
+            6
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.5423944403583936,
+          "seed": 117038,
+          "sequence_id": "10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 7,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 7
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            1,
+            2,
+            3,
+            0,
+            5,
+            4,
+            0,
+            3,
+            4,
+            6,
+            6,
+            3,
+            3,
+            6,
+            1,
+            6,
+            2
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.3030190668968664,
+          "seed": 117039,
+          "sequence_id": "10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 11,
+            "rotation_family_counts": {
+              "clifford_rotation": 13,
+              "exact_pi_over_4_rotation": 11
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            6,
+            1,
+            5,
+            1,
+            1,
+            1,
+            4,
+            1,
+            0,
+            4,
+            5,
+            2,
+            3,
+            1,
+            2,
+            3,
+            6,
+            4,
+            4,
+            2,
+            2,
+            5,
+            4
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.418302831231621,
+          "seed": 117102,
+          "sequence_id": "01-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 11,
+            "rotation_family_counts": {
+              "clifford_rotation": 13,
+              "exact_pi_over_4_rotation": 11
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            5,
+            3,
+            6,
+            2,
+            7,
+            4,
+            0,
+            2,
+            0,
+            7,
+            6,
+            2,
+            2,
+            3,
+            3,
+            2,
+            5,
+            3,
+            0,
+            4,
+            6,
+            1,
+            1,
+            5
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.349666160497802,
+          "seed": 117103,
+          "sequence_id": "01-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 14,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            7,
+            4,
+            4,
+            5,
+            6,
+            4,
+            2,
+            4,
+            2,
+            5,
+            5,
+            6,
+            4,
+            4,
+            6,
+            1,
+            3,
+            1,
+            2,
+            4,
+            3,
+            6,
+            5,
+            3
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.2959673198666666,
+          "seed": 117113,
+          "sequence_id": "01-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 9,
+            "rotation_family_counts": {
+              "clifford_rotation": 15,
+              "exact_pi_over_4_rotation": 9
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            1,
+            2,
+            0,
+            2,
+            1,
+            4,
+            4,
+            3,
+            6,
+            3,
+            1,
+            2,
+            4,
+            5,
+            0,
+            2,
+            0,
+            3,
+            1,
+            0,
+            2,
+            0,
+            3
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.506688753022223,
+          "seed": 117114,
+          "sequence_id": "01-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 14,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 14
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            4,
+            1,
+            7,
+            4,
+            1,
+            2,
+            4,
+            6,
+            1,
+            5,
+            5,
+            6,
+            7,
+            7,
+            6,
+            3,
+            7,
+            4,
+            5,
+            2,
+            1,
+            5,
+            4
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.474305831313092,
+          "seed": 117124,
+          "sequence_id": "01-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 14,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 14
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            3,
+            7,
+            5,
+            5,
+            5,
+            0,
+            3,
+            6,
+            5,
+            3,
+            1,
+            2,
+            6,
+            4,
+            6,
+            4,
+            5,
+            7,
+            1,
+            6,
+            4,
+            1,
+            1
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.133527187560017,
+          "seed": 117125,
+          "sequence_id": "01-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 14,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 14
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            4,
+            4,
+            5,
+            5,
+            2,
+            1,
+            0,
+            1,
+            1,
+            4,
+            1,
+            2,
+            5,
+            2,
+            6,
+            1,
+            5,
+            1,
+            6,
+            3,
+            3,
+            2,
+            3
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.5346683867100939,
+          "seed": 117135,
+          "sequence_id": "01-10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 14,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            3,
+            0,
+            6,
+            1,
+            6,
+            3,
+            2,
+            1,
+            2,
+            5,
+            3,
+            5,
+            4,
+            5,
+            4,
+            3,
+            4,
+            4,
+            1,
+            4,
+            4,
+            4,
+            0,
+            4
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.2251827974728995,
+          "seed": 117136,
+          "sequence_id": "01-10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 6,
+            "rotation_family_counts": {
+              "clifford_rotation": 18,
+              "exact_pi_over_4_rotation": 6
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            2,
+            1,
+            2,
+            6,
+            6,
+            0,
+            2,
+            3,
+            4,
+            1,
+            4,
+            4,
+            4,
+            0,
+            2,
+            4,
+            2,
+            4,
+            4,
+            2,
+            5,
+            3,
+            5,
+            4
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.5582171154311595,
+          "seed": 117146,
+          "sequence_id": "10-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 9,
+            "rotation_family_counts": {
+              "clifford_rotation": 15,
+              "exact_pi_over_4_rotation": 9
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            2,
+            5,
+            2,
+            3,
+            5,
+            3,
+            2,
+            2,
+            4,
+            6,
+            4,
+            6,
+            1,
+            2,
+            6,
+            2,
+            5,
+            2,
+            3,
+            5,
+            6,
+            4,
+            2
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.2086455315282738,
+          "seed": 117147,
+          "sequence_id": "10-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 12,
+            "rotation_family_counts": {
+              "clifford_rotation": 12,
+              "exact_pi_over_4_rotation": 12
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            4,
+            6,
+            3,
+            3,
+            1,
+            5,
+            3,
+            6,
+            3,
+            4,
+            4,
+            4,
+            1,
+            2,
+            5,
+            4,
+            7,
+            2,
+            5,
+            2,
+            7,
+            1,
+            6
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.4309721898702499,
+          "seed": 117157,
+          "sequence_id": "10-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 11,
+            "rotation_family_counts": {
+              "clifford_rotation": 13,
+              "exact_pi_over_4_rotation": 11
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            3,
+            4,
+            2,
+            0,
+            6,
+            3,
+            3,
+            6,
+            5,
+            1,
+            2,
+            1,
+            3,
+            6,
+            6,
+            3,
+            1,
+            3,
+            2,
+            2,
+            4,
+            1,
+            4
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.4028480559975605,
+          "seed": 117158,
+          "sequence_id": "10-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 13,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 13
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            4,
+            5,
+            1,
+            5,
+            3,
+            3,
+            3,
+            3,
+            0,
+            4,
+            4,
+            5,
+            4,
+            7,
+            4,
+            2,
+            6,
+            4,
+            3,
+            3,
+            2,
+            3,
+            3
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.1893827450359808,
+          "seed": 117168,
+          "sequence_id": "10-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 14,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            2,
+            2,
+            1,
+            5,
+            3,
+            4,
+            2,
+            5,
+            2,
+            4,
+            4,
+            6,
+            5,
+            4,
+            2,
+            4,
+            7,
+            0,
+            1,
+            7,
+            4,
+            4,
+            3,
+            3
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.5012773618708353,
+          "seed": 117169,
+          "sequence_id": "10-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 8,
+            "rotation_family_counts": {
+              "clifford_rotation": 16,
+              "exact_pi_over_4_rotation": 8
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            2,
+            4,
+            1,
+            6,
+            2,
+            4,
+            4,
+            5,
+            2,
+            0,
+            4,
+            2,
+            5,
+            2,
+            6,
+            4,
+            5,
+            4,
+            3,
+            4,
+            5,
+            5,
+            1
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.521921098415643,
+          "seed": 117179,
+          "sequence_id": "10-10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 14,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            7,
+            3,
+            3,
+            6,
+            5,
+            6,
+            3,
+            6,
+            5,
+            6,
+            4,
+            6,
+            6,
+            2,
+            3,
+            2,
+            4,
+            5,
+            6,
+            2,
+            2,
+            0,
+            1,
+            3
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.3443062141419564,
+          "seed": 117180,
+          "sequence_id": "10-10-10"
+        }
+      ],
+      "source_cnot_count": 5,
+      "source_minus_best_exact_rotation_cost": null,
+      "source_rotation_cost": {
+        "rotation_cost": 25,
+        "rotation_family_counts": {
+          "arbitrary_numeric_rotation": 1,
+          "exact_pi_over_4_rotation": 5
+        }
+      }
+    },
+    {
+      "accepted_occurrence_removal": 0,
+      "accepted_proxy_t_reduction": 0,
+      "attempt_count": 30,
+      "best_exact_by_cost": null,
+      "best_exact_rotation_cost": null,
+      "best_overall_by_residual": {
+        "candidate_rotation_cost": {
+          "arbitrary_parameter_count": 0,
+          "grid_parameter_count": 12,
+          "parameter_count": 12,
+          "rotation_cost": 5,
+          "rotation_family_counts": {
+            "clifford_rotation": 7,
+            "exact_pi_over_4_rotation": 5
+          }
+        },
+        "cnot_count": 1,
+        "cnot_sequence": [
+          [
+            1,
+            0
+          ]
+        ],
+        "exact_pass": false,
+        "grid_denominator": 4,
+        "grid_point_count_per_parameter": 8,
+        "grid_values": [
+          5,
+          1,
+          3,
+          4,
+          6,
+          6,
+          2,
+          6,
+          1,
+          4,
+          6,
+          1
+        ],
+        "local_u3_layer_count": 2,
+        "optimizer_nfev": 2460,
+        "optimizer_success": false,
+        "parameter_count": 12,
+        "residual_norm": 0.7653668647301796,
+        "seed": 82416,
+        "sequence_id": "10"
+      },
+      "candidate_line_number": 268,
+      "exact_solution_count": 0,
+      "maxiter": 40,
+      "orientation_sequence_count": 15,
+      "pattern_id": "flat_pattern_01",
+      "popsize": 5,
+      "search_cnot_counts": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "seed_count_per_sequence": 2,
+      "sequence_rows": [
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 6,
+            "parameter_count": 6,
+            "rotation_cost": 2,
+            "rotation_family_counts": {
+              "clifford_rotation": 4,
+              "exact_pi_over_4_rotation": 2
+            }
+          },
+          "cnot_count": 0,
+          "cnot_sequence": [],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            0,
+            6,
+            1,
+            0,
+            5,
+            6
+          ],
+          "local_u3_layer_count": 1,
+          "optimizer_nfev": 1230,
+          "optimizer_success": false,
+          "parameter_count": 6,
+          "residual_norm": 1.3005214108970709,
+          "seed": 82308,
+          "sequence_id": "empty"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 6,
+            "parameter_count": 6,
+            "rotation_cost": 3,
+            "rotation_family_counts": {
+              "clifford_rotation": 3,
+              "exact_pi_over_4_rotation": 3
+            }
+          },
+          "cnot_count": 0,
+          "cnot_sequence": [],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            3,
+            4,
+            0,
+            1,
+            2
+          ],
+          "local_u3_layer_count": 1,
+          "optimizer_nfev": 1230,
+          "optimizer_success": false,
+          "parameter_count": 6,
+          "residual_norm": 1.0823922002922715,
+          "seed": 82309,
+          "sequence_id": "empty"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 7,
+            "rotation_family_counts": {
+              "clifford_rotation": 5,
+              "exact_pi_over_4_rotation": 7
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            2,
+            5,
+            2,
+            4,
+            5,
+            1,
+            5,
+            5,
+            6,
+            4,
+            5
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 1.210151269084703,
+          "seed": 82405,
+          "sequence_id": "01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 9,
+            "rotation_family_counts": {
+              "clifford_rotation": 3,
+              "exact_pi_over_4_rotation": 9
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            3,
+            5,
+            2,
+            5,
+            4,
+            3,
+            5,
+            3,
+            3,
+            6,
+            7,
+            1
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 1.3706493557582884,
+          "seed": 82406,
+          "sequence_id": "01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 5,
+            "rotation_family_counts": {
+              "clifford_rotation": 7,
+              "exact_pi_over_4_rotation": 5
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            5,
+            1,
+            3,
+            4,
+            6,
+            6,
+            2,
+            6,
+            1,
+            4,
+            6,
+            1
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 0.7653668647301796,
+          "seed": 82416,
+          "sequence_id": "10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 12,
+            "parameter_count": 12,
+            "rotation_cost": 6,
+            "rotation_family_counts": {
+              "clifford_rotation": 6,
+              "exact_pi_over_4_rotation": 6
+            }
+          },
+          "cnot_count": 1,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            7,
+            5,
+            5,
+            4,
+            6,
+            4,
+            3,
+            4,
+            4,
+            4,
+            1,
+            5
+          ],
+          "local_u3_layer_count": 2,
+          "optimizer_nfev": 2460,
+          "optimizer_success": false,
+          "parameter_count": 12,
+          "residual_norm": 0.9622832615566953,
+          "seed": 82417,
+          "sequence_id": "10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 12,
+            "rotation_family_counts": {
+              "clifford_rotation": 6,
+              "exact_pi_over_4_rotation": 12
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            4,
+            5,
+            3,
+            4,
+            5,
+            1,
+            2,
+            5,
+            4,
+            7,
+            7,
+            1,
+            6,
+            5,
+            1,
+            5,
+            4
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.3985326375557439,
+          "seed": 82502,
+          "sequence_id": "01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 11,
+            "rotation_family_counts": {
+              "clifford_rotation": 7,
+              "exact_pi_over_4_rotation": 11
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            5,
+            2,
+            3,
+            1,
+            4,
+            3,
+            3,
+            4,
+            1,
+            5,
+            2,
+            5,
+            7,
+            6,
+            4,
+            2,
+            3,
+            1
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.407601556748699,
+          "seed": 82503,
+          "sequence_id": "01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 8,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 8
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            6,
+            6,
+            5,
+            0,
+            3,
+            4,
+            1,
+            1,
+            2,
+            2,
+            5,
+            3,
+            3,
+            5,
+            4,
+            4,
+            2
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.3005214108974863,
+          "seed": 82513,
+          "sequence_id": "01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 9,
+            "rotation_family_counts": {
+              "clifford_rotation": 9,
+              "exact_pi_over_4_rotation": 9
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            2,
+            5,
+            7,
+            1,
+            3,
+            4,
+            6,
+            5,
+            4,
+            3,
+            0,
+            3,
+            1,
+            0,
+            4,
+            2,
+            5,
+            4
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.5698618073153898,
+          "seed": 82514,
+          "sequence_id": "01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 5,
+            "rotation_family_counts": {
+              "clifford_rotation": 13,
+              "exact_pi_over_4_rotation": 5
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            0,
+            5,
+            1,
+            4,
+            7,
+            2,
+            2,
+            2,
+            4,
+            2,
+            0,
+            2,
+            6,
+            4,
+            5,
+            6,
+            7,
+            4
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.3680922769836938,
+          "seed": 82524,
+          "sequence_id": "10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 8,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 8
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            3,
+            3,
+            3,
+            5,
+            4,
+            5,
+            2,
+            4,
+            7,
+            6,
+            5,
+            0,
+            0,
+            4,
+            0,
+            4,
+            6,
+            3
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.4941726942855185,
+          "seed": 82525,
+          "sequence_id": "10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            5,
+            3,
+            3,
+            0,
+            6,
+            1,
+            5,
+            1,
+            1,
+            4,
+            1,
+            4,
+            3,
+            4,
+            3,
+            4,
+            0,
+            2
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 1.4927146809886034,
+          "seed": 82535,
+          "sequence_id": "10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 18,
+            "parameter_count": 18,
+            "rotation_cost": 6,
+            "rotation_family_counts": {
+              "clifford_rotation": 12,
+              "exact_pi_over_4_rotation": 6
+            }
+          },
+          "cnot_count": 2,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            0,
+            2,
+            2,
+            0,
+            4,
+            3,
+            4,
+            3,
+            2,
+            4,
+            5,
+            5,
+            1,
+            3,
+            4,
+            4,
+            4,
+            4
+          ],
+          "local_u3_layer_count": 3,
+          "optimizer_nfev": 3690,
+          "optimizer_success": false,
+          "parameter_count": 18,
+          "residual_norm": 0.7803612880642619,
+          "seed": 82536,
+          "sequence_id": "10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 14,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 14
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            5,
+            7,
+            3,
+            3,
+            1,
+            3,
+            5,
+            0,
+            1,
+            0,
+            6,
+            7,
+            5,
+            1,
+            6,
+            2,
+            6,
+            3,
+            4,
+            2,
+            6,
+            5,
+            1,
+            4
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.5992219265627838,
+          "seed": 82599,
+          "sequence_id": "01-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 14,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 14
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            1,
+            3,
+            3,
+            6,
+            2,
+            4,
+            0,
+            6,
+            3,
+            3,
+            2,
+            1,
+            2,
+            1,
+            0,
+            5,
+            2,
+            3,
+            1,
+            5,
+            5,
+            3,
+            7
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.41128859253962,
+          "seed": 82600,
+          "sequence_id": "01-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 13,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 13
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            1,
+            1,
+            3,
+            5,
+            5,
+            6,
+            0,
+            2,
+            3,
+            5,
+            6,
+            2,
+            6,
+            1,
+            5,
+            0,
+            5,
+            2,
+            7,
+            2,
+            6,
+            4,
+            3
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.4380070965144776,
+          "seed": 82610,
+          "sequence_id": "01-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 13,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 13
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            6,
+            4,
+            0,
+            1,
+            3,
+            3,
+            4,
+            4,
+            3,
+            2,
+            5,
+            5,
+            7,
+            3,
+            1,
+            6,
+            5,
+            4,
+            1,
+            6,
+            0,
+            5,
+            1
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.210151269084964,
+          "seed": 82611,
+          "sequence_id": "01-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 7,
+            "rotation_family_counts": {
+              "clifford_rotation": 17,
+              "exact_pi_over_4_rotation": 7
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            0,
+            2,
+            4,
+            4,
+            2,
+            2,
+            5,
+            3,
+            2,
+            7,
+            7,
+            5,
+            2,
+            6,
+            0,
+            3,
+            2,
+            6,
+            6,
+            6,
+            6,
+            3,
+            4
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.473625758207964,
+          "seed": 82621,
+          "sequence_id": "01-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 14,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 14
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            0,
+            4,
+            5,
+            1,
+            6,
+            1,
+            6,
+            0,
+            3,
+            3,
+            2,
+            3,
+            2,
+            4,
+            1,
+            3,
+            4,
+            3,
+            1,
+            2,
+            7,
+            1,
+            5,
+            1
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.4768929770807526,
+          "seed": 82622,
+          "sequence_id": "01-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 13,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 13
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            5,
+            1,
+            3,
+            5,
+            6,
+            6,
+            3,
+            4,
+            2,
+            1,
+            0,
+            6,
+            4,
+            1,
+            4,
+            2,
+            3,
+            5,
+            2,
+            5,
+            6,
+            3,
+            1
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.3858899163858125,
+          "seed": 82632,
+          "sequence_id": "01-10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 13,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 13
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            4,
+            6,
+            6,
+            3,
+            7,
+            1,
+            7,
+            4,
+            3,
+            1,
+            0,
+            4,
+            5,
+            6,
+            5,
+            6,
+            3,
+            1,
+            4,
+            1,
+            2,
+            3,
+            3,
+            6
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.437746743399534,
+          "seed": 82633,
+          "sequence_id": "01-10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 13,
+            "rotation_family_counts": {
+              "clifford_rotation": 11,
+              "exact_pi_over_4_rotation": 13
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            0,
+            7,
+            6,
+            3,
+            1,
+            6,
+            1,
+            6,
+            4,
+            1,
+            3,
+            4,
+            1,
+            1,
+            6,
+            2,
+            1,
+            7,
+            5,
+            6,
+            1,
+            6,
+            1,
+            2
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.1473512400277688,
+          "seed": 82643,
+          "sequence_id": "10-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 10,
+            "rotation_family_counts": {
+              "clifford_rotation": 14,
+              "exact_pi_over_4_rotation": 10
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            5,
+            0,
+            0,
+            0,
+            5,
+            3,
+            2,
+            6,
+            4,
+            4,
+            4,
+            5,
+            4,
+            6,
+            1,
+            4,
+            3,
+            1,
+            0,
+            7,
+            3,
+            4,
+            4,
+            7
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.3005214108971648,
+          "seed": 82644,
+          "sequence_id": "10-01-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 11,
+            "rotation_family_counts": {
+              "clifford_rotation": 13,
+              "exact_pi_over_4_rotation": 11
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            6,
+            2,
+            2,
+            3,
+            2,
+            7,
+            7,
+            3,
+            2,
+            0,
+            5,
+            5,
+            2,
+            6,
+            5,
+            6,
+            5,
+            5,
+            6,
+            6,
+            2,
+            0,
+            5
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.3074770840072836,
+          "seed": 82654,
+          "sequence_id": "10-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 14,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 14
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            1,
+            1,
+            1,
+            5,
+            1,
+            4,
+            3,
+            0,
+            4,
+            6,
+            3,
+            5,
+            5,
+            3,
+            0,
+            2,
+            4,
+            3,
+            2,
+            3,
+            4,
+            6,
+            5,
+            5
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.4939904602591783,
+          "seed": 82655,
+          "sequence_id": "10-01-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 16,
+            "rotation_family_counts": {
+              "clifford_rotation": 8,
+              "exact_pi_over_4_rotation": 16
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            3,
+            3,
+            3,
+            2,
+            6,
+            4,
+            1,
+            3,
+            1,
+            3,
+            3,
+            5,
+            6,
+            3,
+            5,
+            4,
+            3,
+            3,
+            4,
+            7,
+            6,
+            5,
+            2,
+            5
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.5739684398251617,
+          "seed": 82665,
+          "sequence_id": "10-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 9,
+            "rotation_family_counts": {
+              "clifford_rotation": 15,
+              "exact_pi_over_4_rotation": 9
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              0,
+              1
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            4,
+            2,
+            5,
+            5,
+            6,
+            2,
+            3,
+            4,
+            0,
+            1,
+            5,
+            2,
+            3,
+            3,
+            2,
+            0,
+            2,
+            3,
+            4,
+            2,
+            6,
+            5,
+            4
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.3476962273704691,
+          "seed": 82666,
+          "sequence_id": "10-10-01"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 14,
+            "rotation_family_counts": {
+              "clifford_rotation": 10,
+              "exact_pi_over_4_rotation": 14
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            3,
+            1,
+            4,
+            4,
+            7,
+            6,
+            4,
+            4,
+            5,
+            5,
+            3,
+            1,
+            6,
+            7,
+            2,
+            0,
+            5,
+            5,
+            3,
+            5,
+            6,
+            7,
+            7,
+            2
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.4673798213762146,
+          "seed": 82676,
+          "sequence_id": "10-10-10"
+        },
+        {
+          "candidate_rotation_cost": {
+            "arbitrary_parameter_count": 0,
+            "grid_parameter_count": 24,
+            "parameter_count": 24,
+            "rotation_cost": 7,
+            "rotation_family_counts": {
+              "clifford_rotation": 17,
+              "exact_pi_over_4_rotation": 7
+            }
+          },
+          "cnot_count": 3,
+          "cnot_sequence": [
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ],
+            [
+              1,
+              0
+            ]
+          ],
+          "exact_pass": false,
+          "grid_denominator": 4,
+          "grid_point_count_per_parameter": 8,
+          "grid_values": [
+            6,
+            6,
+            0,
+            3,
+            5,
+            4,
+            4,
+            2,
+            7,
+            4,
+            0,
+            4,
+            5,
+            2,
+            7,
+            4,
+            5,
+            4,
+            4,
+            6,
+            3,
+            4,
+            0,
+            4
+          ],
+          "local_u3_layer_count": 4,
+          "optimizer_nfev": 4920,
+          "optimizer_success": false,
+          "parameter_count": 24,
+          "residual_norm": 1.2915823048249777,
+          "seed": 82677,
+          "sequence_id": "10-10-10"
+        }
+      ],
+      "source_cnot_count": 5,
+      "source_minus_best_exact_rotation_cost": null,
+      "source_rotation_cost": {
+        "rotation_cost": 7,
+        "rotation_family_counts": {
+          "exact_pi_over_4_rotation": 7
+        }
+      }
+    }
+  ],
+  "payload_hash": "fccf7aea5cff3543bc8277d2117ef80b108fe814812482097d20dd508ea4888d",
+  "requirements": [
+    {
+      "evidence": {
+        "packet_count": 3,
+        "source_method": "b1_b7_cone01_semantic_replay_packet_gate_v0"
+      },
+      "label": "Three source semantic replay packets are available",
+      "passed": true,
+      "requirement_id": "R1"
+    },
+    {
+      "evidence": {
+        "r73_cost_improving_packet_count": 0,
+        "r73_requirements_failed": 0
+      },
+      "label": "R73 upstream remains a verified mixed-orientation cost boundary",
+      "passed": true,
+      "requirement_id": "R2"
+    },
+    {
+      "evidence": {
+        "arbitrary_rotation_t_cost": 20,
+        "grid_denominator": 4,
+        "grid_point_count": 8,
+        "pi_over_4_t_cost": 1,
+        "pi_over_8_t_cost": 4,
+        "unknown_rotation_t_cost": 20
+      },
+      "label": "The pi/4 grid and FT cost model are pinned",
+      "passed": true,
+      "requirement_id": "R3"
+    },
+    {
+      "evidence": {
+        "orientation_sequences_per_packet": [
+          15,
+          15,
+          15
+        ],
+        "total_orientation_sequence_count": 45
+      },
+      "label": "All mixed direction sequences through three reduced CNOTs are enumerated",
+      "passed": true,
+      "requirement_id": "R4"
+    },
+    {
+      "evidence": {
+        "best_residual_by_packet": [
+          0.7803612880646379,
+          0.6724979699119589,
+          0.7653668647301796
+        ],
+        "exact_solution_count": 0
+      },
+      "label": "The discrete search emits no strict exact reduced-CNOT candidate",
+      "passed": true,
+      "requirement_id": "R5"
+    },
+    {
+      "evidence": {
+        "best_residual_by_packet": [
+          0.7803612880646379,
+          0.6724979699119589,
+          0.7653668647301796
+        ],
+        "exact_tolerance": 1e-08
+      },
+      "label": "The finite search records a nonzero residual pressure boundary",
+      "passed": true,
+      "requirement_id": "R6"
+    },
+    {
+      "evidence": {
+        "accepted_occurrence_removal": 0,
+        "accepted_proxy_t_reduction": 0
+      },
+      "label": "The grid search emits no accepted B7 delta",
+      "passed": true,
+      "requirement_id": "R7"
+    },
+    {
+      "evidence": {
+        "attempt_count_by_packet": [
+          30,
+          30,
+          30
+        ],
+        "seed_count_per_sequence": 2
+      },
+      "label": "The finite search is reproducibly serialized",
+      "passed": true,
+      "requirement_id": "R8"
+    }
+  ],
+  "source_r73_result": "results/B1_B7_cone01_R73_mixed_orientation_cost_aware_synthesis_gate_v0.json",
+  "source_r73_result_sha256": "c4ef2f713427d70f12092de90ff52c95173759a6f04fdf99458380f81535c4cd",
+  "source_semantic_packet": "results/B1_B7_cone01_semantic_replay_packet_gate_v0.json",
+  "source_semantic_packet_sha256": "18d3dce57752500fa45272789d67ff757143ffa7bbaacc957a9794041c03b543",
+  "status": "cone01_r74_grid_scaffold_no_exact_candidate_pressure_boundary",
+  "summary": {
+    "accepted_exit_route_count": 0,
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "best_residual_by_packet": [
+      0.7803612880646379,
+      0.6724979699119589,
+      0.7653668647301796
+    ],
+    "best_sequence_by_packet": [
+      "01-01",
+      "01",
+      "10"
+    ],
+    "cost_improving_packet_count": 0,
+    "exact_solution_count": 0,
+    "global_exhaustive_claimed": false,
+    "grid_denominator": 4,
+    "grid_point_count_per_parameter": 8,
+    "maxiter": 40,
+    "orientation_sequences_per_packet": 15,
+    "packet_count": 3,
+    "popsize": 5,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "resource_saving_claimed": false,
+    "runtime_seconds": 25.646667,
+    "seed_count_per_sequence": 2,
+    "total_attempt_count": 90,
+    "total_orientation_sequence_count": 45
+  },
+  "target_id": "T-B1-004fx/T-B7-015g",
+  "upstream_target_id": "T-B1-004fw/T-B7-015f",
+  "version": "0.1"
+}
