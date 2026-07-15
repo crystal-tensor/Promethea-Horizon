@@ -3075,6 +3075,16 @@ a confirmed Qiskit bug, a hardware result, quantum advantage, BQP separation,
 solved B4/B8/B10, or new credit. The next gate is a second near-tie graph and
 an independent score oracle.
 
+`T-B4-002co` / `T-B8-003cs` / `T-B10-009ce-r171` now freezes an independent
+standard-library oracle for the R170 result. R171 reads only the committed
+worker manifests, verifies row payload hashes, reconstructs binary64 source
+scores, compensated sums, exact rational leaf sums, and the 1-ULP tie rule, then
+checks the `192/192` source-return matches and exact policy split. It performs
+no Qiskit import, new circuit call, simulation, route change, or hidden seed.
+This is an evidence-integrity and arithmetic-recomputation gate, not a new
+numerical remedy, production mapping change, confirmed bug, hardware result,
+quantum advantage, BQP separation, solved B4/B8/B10, or new credit.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

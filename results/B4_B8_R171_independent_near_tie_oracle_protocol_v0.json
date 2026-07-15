@@ -1,0 +1,44 @@
+{
+  "method": "b4_b8_r171_independent_near_tie_oracle_protocol_v0",
+  "status": "independent_near_tie_oracle_protocol_frozen_before_execution",
+  "title": "B4/B8 R171 independent standard-library oracle protocol",
+  "version": 0,
+  "upstream_result_path": "results/B4_B8_R170_near_tie_candidate_replay_v0.json",
+  "upstream_result_payload_hash": "1af733839bbd9e0617256f11781c4721582531ddd92a96535a7a5dc46c2fff51",
+  "upstream_worker_directory": "results/B4_B8_R170_near_tie_candidate_replay",
+  "profiles": [
+    {
+      "profile_id": "native_hashset_order",
+      "replay_count": 64
+    },
+    {
+      "profile_id": "ascending_sorted_order",
+      "replay_count": 64
+    },
+    {
+      "profile_id": "descending_sorted_order",
+      "replay_count": 64
+    }
+  ],
+  "profile_count": 3,
+  "total_replay_count": 192,
+  "recompute_rules": {
+    "source_f64": "decode source_score_bits as IEEE-754 binary64",
+    "compensated_fsum": "decode source_leaf_bits and recompute math.fsum with Python standard library",
+    "exact_binary64_leaf": "sum Fraction.from_float over decoded source_leaf_bits",
+    "tie_aware_1ulp": "treat exact gap <= max source-score ULP as a tie and retain first-seen candidate",
+    "selection_order": "preserve committed candidate_index order"
+  },
+  "execution_boundary": {
+    "qiskit_calls_performed": 0,
+    "simulation_execution_count": 0,
+    "total_simulated_shots": 0,
+    "source_executor_imported": false,
+    "new_hidden_seed_count": 0
+  },
+  "claim_boundary": {
+    "what_is_supported": "independent standard-library recomputation of committed R170 candidate records, source-return matches, and policy-change counts",
+    "what_is_not_supported": "a new Qiskit execution, a production remedy, alternate search path, confirmed Qiskit bug, cross-input generality, hardware relevance, quantum advantage, BQP separation, solved B4/B8/B10, or new credit"
+  },
+  "payload_hash": "dd2f031a8ee9b0562ebb880ae7a435115b25ccfae16f26513b1d3ab35305167f"
+}
