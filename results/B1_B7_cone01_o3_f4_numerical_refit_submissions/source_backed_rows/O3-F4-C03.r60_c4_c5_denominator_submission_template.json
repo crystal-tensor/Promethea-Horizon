@@ -1,0 +1,83 @@
+{
+  "acceptance_conditions": {
+    "denominator_distance_must_be_finite": true,
+    "denominator_must_not_use_forbidden_inputs": true,
+    "hash_echo_required": true,
+    "leakage_audit_required": true,
+    "no_b7_credit_from_template": true,
+    "same_access_statement_required": true,
+    "verifier_transcript_required": true
+  },
+  "acceptance_schema_version": "r60_c4_c5_same_access_denominator_row_v0",
+  "access_model": {
+    "allowed_inputs": [
+      "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C03.source.qasm",
+      "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C03.candidate.qasm",
+      "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C03.r59_c3_same_unitary_replay_certificate.json"
+    ],
+    "challenge_id": "O3-F4-C03",
+    "forbidden_inputs": [
+      "future C6 optimizer traces",
+      "hidden solver traces not listed in this template",
+      "hardware calibration data",
+      "unbound external oracles",
+      "manual post-hoc angle edits"
+    ],
+    "same_access_rules": [
+      "use the same source and candidate OpenQASM 3.0 files that R59 hash-bound",
+      "use the same single_qubit_rz_operator_norm metric and strict tolerance",
+      "echo all R59 source/candidate/certificate hashes exactly",
+      "submit a verifier transcript and implementation path before acceptance",
+      "state whether the denominator beats the R59 positive distance and negative-control pressure"
+    ]
+  },
+  "access_model_hash": "9f462fc38d2c3440f749fe70c1bc60f8f3476140d835fbe1bad251df69dd3874",
+  "artifact": "R60 C4/C5 same-access denominator submission template",
+  "blocking_reason": "No source-backed same-access denominator row has been submitted for this challenge. This template is a contract, not a denominator win.",
+  "candidate_circuit_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C03.candidate.qasm",
+  "candidate_circuit_sha256": "ed432f15fcd1c0895589fd55af4295caf053fb8ab875160e374b1df7e71bea5c",
+  "challenge_id": "O3-F4-C03",
+  "claim_boundary": "Template only; no C4/C5 denominator comparison completion, no O3 closure, no reroute, no B7 credit, and no STV credit.",
+  "denominator_row_accepted": false,
+  "denominator_row_submitted": false,
+  "method": "b1_b7_cone01_r60_o3_f4_c4_c5_same_access_denominator_contract_gate_v0",
+  "r59_certificate_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C03.r59_c3_same_unitary_replay_certificate.json",
+  "r59_certificate_file_sha256": "0eb92d4730450b9a6a0c286c21a0e7e8897e0afbed42057d6876dc492a7c509f",
+  "r59_certificate_hash": "0c57294d8baa24b7291a368aee269af1810b491e054db7f4c83de41f3f9dc5c8",
+  "r59_positive_replay_distance": 0.0,
+  "required_field_count": 24,
+  "required_fields": [
+    "challenge_id",
+    "acceptance_schema_version",
+    "denominator_method_id",
+    "denominator_implementation_path",
+    "reproducible_command",
+    "access_model_hash",
+    "same_access_statement",
+    "source_circuit_file",
+    "source_circuit_sha256",
+    "candidate_circuit_file",
+    "candidate_circuit_sha256",
+    "r59_certificate_file",
+    "r59_certificate_hash",
+    "unitary_distance_metric",
+    "strict_tolerance",
+    "denominator_distance",
+    "denominator_cost_units",
+    "denominator_cost_value",
+    "denominator_beats_r59_positive_distance",
+    "denominator_rejects_r59_negative_control_pressure",
+    "leakage_audit_statement",
+    "verifier_transcript_path",
+    "verifier_transcript_sha256",
+    "claim_boundary"
+  ],
+  "source_circuit_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C03.source.qasm",
+  "source_circuit_sha256": "a42c394ae32ea1febff6e44c6b5196c089add5dc09d3b9555ba381318ed10c9b",
+  "source_target_id": "T-B1-004fj/T-B7-014s",
+  "strict_tolerance": 1e-08,
+  "submitted_denominator_row": null,
+  "template_hash": "8b14dcbc4cf2513c36b305a7f0b1b914f1b87794137c627bc3d66e9b475deea0",
+  "unitary_distance_metric": "single_qubit_rz_operator_norm",
+  "upstream_target_id": "T-B1-004fi/T-B7-014r"
+}

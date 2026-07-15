@@ -1,0 +1,45 @@
+{
+  "artifact": "R68 accepted-exit-route blocker queue",
+  "blocker_queue_hash": "510049cc66fa29b1cbce6610e9f61dcdedf20d020682a0b5a3a8b9d8eff02716",
+  "queue": [
+    {
+      "blocker_id": "R68-B1",
+      "missing_fields": [
+        "source_openqasm3_path",
+        "source_openqasm3_sha256"
+      ],
+      "needed_artifact": "full source OpenQASM3 export for gcm_h6 under the same parser assumptions as the candidate export",
+      "priority": 1
+    },
+    {
+      "blocker_id": "R68-B2",
+      "missing_fields": [
+        "machine_check_replay_command",
+        "machine_check_replay_stdout_path",
+        "machine_check_replay_stdout_sha256"
+      ],
+      "needed_artifact": "machine-check replay command and stdout that reproduce the submitted route-bounded or full-circuit artifact",
+      "priority": 2
+    },
+    {
+      "blocker_id": "R68-B3",
+      "missing_fields": [
+        "occurrence_removal_delta",
+        "proxy_t_reduction_delta"
+      ],
+      "needed_artifact": "positive occurrence and proxy-T delta ledger accepted by the R67 contract",
+      "priority": 3
+    },
+    {
+      "blocker_id": "R68-B4",
+      "missing_fields": [
+        "b7_nonzero_retest_requested"
+      ],
+      "needed_artifact": "only request a nonzero B7 retest after B1-B3 are accepted and hash-bound",
+      "priority": 4
+    }
+  ],
+  "selected_next_route": "R1-line1381-resolution",
+  "source_target_id": "T-B1-004fr/T-B7-015a",
+  "upstream_target_id": "T-B1-004fq/T-B7-014z"
+}

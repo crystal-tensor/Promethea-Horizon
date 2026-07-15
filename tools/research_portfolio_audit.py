@@ -34594,6 +34594,47 @@ def audit(root: Path) -> dict:
                 research
                 / "B1_B7_cone01_R58_o3_f4_c2_all8_source_backed_expansion_gate.md"
             ),
+            "b1_b7_cone01_r59_o3_f4_c3_same_unitary_replay_certificate_gate": str(
+                research
+                / "B1_B7_cone01_R59_o3_f4_c3_same_unitary_replay_certificate_gate.md"
+            ),
+            "b1_b7_cone01_r60_o3_f4_c4_c5_same_access_denominator_contract_gate": str(
+                research
+                / "B1_B7_cone01_R60_o3_f4_c4_c5_same_access_denominator_contract_gate.md"
+            ),
+            "b1_b7_cone01_r61_o3_f4_c4_c5_denominator_theater_schema_review_gate": str(
+                research
+                / "B1_B7_cone01_R61_o3_f4_c4_c5_denominator_theater_schema_review_gate.md"
+            ),
+            "b1_b7_cone01_r62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate": str(
+                research
+                / "B1_B7_cone01_R62_o3_f4_c4_c5_hardened_denominator_acceptance_verifier_gate.md"
+            ),
+            "b1_b7_cone01_r63_o3_f4_c4_c5_source_backed_denominator_row_acceptance_gate": str(
+                research
+                / "B1_B7_cone01_R63_o3_f4_c4_c5_source_backed_denominator_row_acceptance_gate.md"
+            ),
+            "b1_b7_cone01_r64_o3_f4_c6_leakage_free_optimizer_trace_gate": str(
+                research / "B1_B7_cone01_R64_o3_f4_c6_leakage_free_optimizer_trace_gate.md"
+            ),
+            "b1_b7_cone01_r65_o3_f4_c7_machine_check_replay_gate": str(
+                research / "B1_B7_cone01_R65_o3_f4_c7_machine_check_replay_gate.md"
+            ),
+            "b1_b7_cone01_r66_o3_f4_b7_zero_credit_ledger_retest_gate": str(
+                research / "B1_B7_cone01_R66_o3_f4_b7_zero_credit_ledger_retest_gate.md"
+            ),
+            "b1_b7_cone01_r67_exit_route_submission_contract_gate": str(
+                research / "B1_B7_cone01_R67_exit_route_submission_contract_gate.md"
+            ),
+            "b1_b7_cone01_r68_exit_route_evidence_prefill_gate": str(
+                research / "B1_B7_cone01_R68_exit_route_evidence_prefill_gate.md"
+            ),
+            "b1_b7_cone01_r69_source_openqasm3_prefill_gate": str(
+                research / "B1_B7_cone01_R69_source_openqasm3_prefill_gate.md"
+            ),
+            "b1_b7_cone01_r70_machine_check_replay_prefill_gate": str(
+                research / "B1_B7_cone01_R70_machine_check_replay_prefill_gate.md"
+            ),
             "b7_w8_21_symbolic_certificate_replay_validation_manifest_gate": str(
                 research / "B7_w8_21_symbolic_certificate_replay_validation_manifest_gate.md"
             ),

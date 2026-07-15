@@ -1,0 +1,286 @@
+{
+  "artifacts": {
+    "blocker_queue": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R69-remaining-exit-route-blocker-queue.json",
+    "refreshed_prefill": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R69-R1-line1381-prefill-source-openqasm3.json",
+    "source_openqasm3": "results/B1_B7_cone01_openqasm3_source_export_gate/gcm_h6_source_openqasm3.qasm"
+  },
+  "claim_boundary": {
+    "next_gate": "Add machine-check replay command/stdout/hash, then submit positive occurrence/proxy-T delta evidence.",
+    "what_is_not_supported": "R69 does not provide machine-check replay stdout, positive occurrence/proxy-T deltas, an accepted exit route, O3 closure, reroute permission, or B7 credit.",
+    "what_is_supported": "R69 exports the original gcm_h6 source to OpenQASM3, verifies a matching normalized instruction stream, and fills the source OpenQASM3 fields in the R1 prefill."
+  },
+  "conversion_rows_preview": [
+    {
+      "from": "OPENQASM 2.0;",
+      "line": 1,
+      "to": "OPENQASM 3.0;"
+    },
+    {
+      "from": "include \"qelib1.inc\";",
+      "line": 2,
+      "to": "include \"stdgates.inc\";"
+    },
+    {
+      "from": "qreg q[19];",
+      "line": 3,
+      "to": "qubit[19] q;"
+    },
+    {
+      "from": "creg c[1];",
+      "line": 4,
+      "to": "bit[1] c;"
+    },
+    {
+      "from": "u3",
+      "line": 5,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 6,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 7,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 8,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 9,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 10,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 11,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 13,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 15,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 17,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 19,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 27,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 34,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 36,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 38,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 40,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 48,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 55,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 57,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 59,
+      "to": "U"
+    },
+    {
+      "from": "u3",
+      "line": 61,
+      "to": "U"
+    }
+  ],
+  "generated_at": "2026-07-15T12:07:11Z",
+  "requirements": [
+    {
+      "evidence": {
+        "source_qasm2": "results/b1_control_rz_commute_optimizer/qasmbench_medium_exact/gcm_h6.qasm",
+        "source_sha256": "f34bcd0e604f49b3bdc237e528f4cd41ad88c6a1f1e667843c12a01cf36eb448"
+      },
+      "label": "source QASM2 exists and is the original gcm_h6 source",
+      "passed": true,
+      "requirement_id": "S1"
+    },
+    {
+      "evidence": {
+        "source_openqasm3": "results/B1_B7_cone01_openqasm3_source_export_gate/gcm_h6_source_openqasm3.qasm",
+        "validation_errors": []
+      },
+      "label": "source OpenQASM3 export has modern header and declarations",
+      "passed": true,
+      "requirement_id": "S2"
+    },
+    {
+      "evidence": {
+        "normalized_instruction_count": 1638,
+        "normalized_stream_sha256": "75ad2565015b8abf1cc2024749a07f7bd15ddbeba568a08a445659d01c454b5a"
+      },
+      "label": "normalized source streams match across QASM2 and QASM3",
+      "passed": true,
+      "requirement_id": "S3"
+    },
+    {
+      "evidence": {
+        "openqasm3_operation_counts": {
+          "U": 480,
+          "cx": 795,
+          "measure": 1,
+          "rz": 362
+        },
+        "source_operation_counts": {
+          "U": 480,
+          "cx": 795,
+          "measure": 1,
+          "rz": 362
+        }
+      },
+      "label": "operation counts are preserved by dialect export",
+      "passed": true,
+      "requirement_id": "S4"
+    },
+    {
+      "evidence": {
+        "r68_placeholder_count": 5,
+        "r69_prefilled_field_count": 26,
+        "remaining_placeholder_fields": [
+          "machine_check_replay_command",
+          "machine_check_replay_stdout_path",
+          "machine_check_replay_stdout_sha256"
+        ]
+      },
+      "label": "R69 refresh fills exactly the source OpenQASM3 fields from R68",
+      "passed": true,
+      "requirement_id": "S5"
+    },
+    {
+      "evidence": {
+        "accepted_exit_route_count": 0,
+        "b7_nonzero_retest_requested": false,
+        "occurrence_removal_delta": 0,
+        "proxy_t_reduction_delta": 0
+      },
+      "label": "R69 preserves zero-credit claim boundary",
+      "passed": true,
+      "requirement_id": "S6"
+    },
+    {
+      "evidence": {
+        "blocker_queue_hash": "28b3f8e5d43a20e9315db4d576f6043547980e05421c14b5112e16f9f9d77292",
+        "remaining_placeholder_fields": [
+          "machine_check_replay_command",
+          "machine_check_replay_stdout_path",
+          "machine_check_replay_stdout_sha256"
+        ]
+      },
+      "label": "remaining blocker queue names replay and positive-delta blockers",
+      "passed": true,
+      "requirement_id": "S7"
+    },
+    {
+      "evidence": {},
+      "label": "R69 artifacts are hash-bound and written",
+      "passed": true,
+      "requirement_id": "S8"
+    }
+  ],
+  "summary": {
+    "accepted_exit_route_count": 0,
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_nonzero_retest_allowed": false,
+    "blocker_queue_file_sha256": "83b82cd8672be8e0f05ef088853f942fa3702f075a35d950b92f2642ab6be3a6",
+    "blocker_queue_hash": "28b3f8e5d43a20e9315db4d576f6043547980e05421c14b5112e16f9f9d77292",
+    "conversion_row_count": 485,
+    "failed_requirement_ids": [],
+    "measurement_conversion_count": 1,
+    "method": "b1_b7_cone01_r69_source_openqasm3_prefill_gate_v0",
+    "model_status": "r68_prefill_source_openqasm3_fields_filled_machine_replay_and_delta_still_blocked",
+    "normalized_instruction_count": 1638,
+    "normalized_stream_sha256": "75ad2565015b8abf1cc2024749a07f7bd15ddbeba568a08a445659d01c454b5a",
+    "o3_closed": false,
+    "operation_counts": {
+      "U": 480,
+      "cx": 795,
+      "measure": 1,
+      "rz": 362
+    },
+    "payload_hash": "cac7c2cead256fbc8d48a264b0afb4095a219f339675ccd6f1339058e98acc6b",
+    "r68_placeholder_field_count": 5,
+    "r68_prefilled_field_count": 24,
+    "r69_placeholder_field_count": 3,
+    "r69_prefilled_field_count": 26,
+    "refreshed_prefill_file_sha256": "9f5697e0bc840462db6287918a7d8e731bad239429a8a07cbdd619afd0bcc16e",
+    "refreshed_prefill_hash": "d3d996ff294462ec0d41997737eb38184b46ba43c36b71f2e6d893659ff64291",
+    "remaining_placeholder_fields": [
+      "machine_check_replay_command",
+      "machine_check_replay_stdout_path",
+      "machine_check_replay_stdout_sha256"
+    ],
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "reroute_allowed": false,
+    "resolved_placeholder_field_count": 2,
+    "resource_saving_claimed": false,
+    "source_line_count": 1642,
+    "source_openqasm3_line_count": 1642,
+    "source_openqasm3_path": "results/B1_B7_cone01_openqasm3_source_export_gate/gcm_h6_source_openqasm3.qasm",
+    "source_openqasm3_sha256": "7bef92480635991093b10a23e2aa9b3e1a7f74a1a967c4e1546d70bbdb175312",
+    "source_qasm2_sha256": "f34bcd0e604f49b3bdc237e528f4cd41ad88c6a1f1e667843c12a01cf36eb448",
+    "source_target_id": "T-B1-004fs/T-B7-015b",
+    "status": "cone01_r69_source_openqasm3_export_prefill_refresh_zero_credit",
+    "u3_to_U_conversion_count": 480,
+    "upstream_target_id": "T-B1-004fr/T-B7-015a",
+    "validation_error_count": 0
+  },
+  "title": "B1/B7 Cone01 R69 Source OpenQASM3 Prefill Gate",
+  "version": "0.1"
+}

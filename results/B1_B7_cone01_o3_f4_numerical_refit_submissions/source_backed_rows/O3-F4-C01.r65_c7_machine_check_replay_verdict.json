@@ -1,0 +1,121 @@
+{
+  "artifact": "R65 C7 machine-check replay verdict",
+  "challenge_id": "O3-F4-C01",
+  "claim_boundary": "C7 machine-check replay only. Passing this gate replays the accepted R63/R64 denominator evidence under a stable semantic digest; it does not close O3, allow reroute, or grant B7/STV/resource credit.",
+  "file_checks": {
+    "implementation": {
+      "expected_sha256": "6d3249a59c55fe3fb0d7364536de716b5b75bb41c0a2792e474caf71d5fa87d5",
+      "path": "tools/b1_b7_o3_f4_same_access_rz_denominator_verifier.py",
+      "sha256": "6d3249a59c55fe3fb0d7364536de716b5b75bb41c0a2792e474caf71d5fa87d5"
+    },
+    "original_transcript": {
+      "expected_sha256": "e01fd7b0e95c412465bd6ecb6e138811b35749774732a224aa8ad68c8c9bea95",
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r63_same_access_denominator_verifier_transcript.json",
+      "sha256": "e01fd7b0e95c412465bd6ecb6e138811b35749774732a224aa8ad68c8c9bea95"
+    },
+    "r63_row": {
+      "expected_sha256": "74e75a9a720be0e11777ac8723f641daf06b394f3c2d603c43b72cec982ce953",
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r63_source_backed_denominator_row.json",
+      "sha256": "74e75a9a720be0e11777ac8723f641daf06b394f3c2d603c43b72cec982ce953"
+    },
+    "r64_trace": {
+      "expected_sha256": "b4f18a7526f99fadce30c9d79a94c858c4249100507856c7921e0aa2307945c1",
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r64_c6_leakage_free_optimizer_trace.json",
+      "sha256": "b4f18a7526f99fadce30c9d79a94c858c4249100507856c7921e0aa2307945c1"
+    },
+    "replay_stdout": {
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r65_c7_machine_check_replay.stdout.txt",
+      "sha256": "bb126bed8efd0771e5e6f6d0219ded22e5d445ffac4862fecaae7ca3e387d30b"
+    },
+    "replay_transcript": {
+      "path": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r65_c7_machine_check_replay_transcript.json",
+      "sha256": "06549bbc6968d2ee10738f5a6ff499d131dee3b8243bdbb5fe01a9cbdd3bfb96"
+    }
+  },
+  "file_hashes_match": true,
+  "machine_check_replay_passed": true,
+  "method": "b1_b7_cone01_r65_o3_f4_c7_machine_check_replay_gate_v0",
+  "original_semantic_digest": {
+    "access_model_hash": "aed63fbc196f1ce1fc33d265c15b307fa67ce053687c4695231d44b21cf0d20d",
+    "candidate_circuit_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.candidate.qasm",
+    "candidate_circuit_sha256": "b7896e91e03ae5a50d58c547aaccffee9cedd2c714fa1ae22b0fb0280e3e0f6c",
+    "candidate_theta": 0.125,
+    "challenge_id": "O3-F4-C01",
+    "claim_boundary": "Transcript-bound row evidence only. This verifier checks the RZ distance for one C4/C5 row and grants no architecture or resource promotion.",
+    "denominator_distance": 0.0,
+    "forbidden_inputs_used": [],
+    "method": "b1_b7_o3_f4_same_access_rz_denominator_verifier_v0",
+    "negative_control_distance": 0.015624841054765663,
+    "negative_control_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r59_c3_negative_control.json",
+    "negative_control_rejected": true,
+    "negative_control_sha256": "bf083d1dbdd0ee499528989e2887a59572962ba3f63c42c7ae05cead31f2a7e8",
+    "positive_distance_met_or_equal": true,
+    "pressure_flags_transcript_bound": true,
+    "r59_certificate_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r59_c3_same_unitary_replay_certificate.json",
+    "r59_certificate_hash": "964331600a97b513b50eebcc16539615a2a75705c4d001ecf966920397885811",
+    "r59_certificate_sha256": "1150ea8a0ec80e0ea5ae72999da0436a622af063af1ad164a3b38b7a871ecb85",
+    "r59_positive_replay_distance": 0.0,
+    "same_access_inputs_used": [
+      "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.source.qasm",
+      "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.candidate.qasm",
+      "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r59_c3_same_unitary_replay_certificate.json",
+      "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r59_c3_negative_control.json"
+    ],
+    "source_circuit_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.source.qasm",
+    "source_circuit_sha256": "e0922fdb81e0370a7c231094b448235212e4591202410421736926a0fe1fffe3",
+    "source_theta": 0.125,
+    "strict_tolerance": 1e-08,
+    "unitary_distance_metric": "single_qubit_rz_operator_norm"
+  },
+  "replay_command": "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3 tools/b1_b7_o3_f4_same_access_rz_denominator_verifier.py --challenge-id O3-F4-C01 --source results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.source.qasm --candidate results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.candidate.qasm --r59-certificate results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r59_c3_same_unitary_replay_certificate.json --negative-control results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r59_c3_negative_control.json --access-model-hash aed63fbc196f1ce1fc33d265c15b307fa67ce053687c4695231d44b21cf0d20d --output results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r65_c7_machine_check_replay_transcript.json",
+  "replay_denominator_distance_zero": true,
+  "replay_forbidden_inputs_unused": true,
+  "replay_negative_control_rejected": true,
+  "replay_positive_distance_met_or_equal": true,
+  "replay_returncode": 0,
+  "replay_runtime_seconds": 0.037029,
+  "replay_semantic_digest": {
+    "access_model_hash": "aed63fbc196f1ce1fc33d265c15b307fa67ce053687c4695231d44b21cf0d20d",
+    "candidate_circuit_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.candidate.qasm",
+    "candidate_circuit_sha256": "b7896e91e03ae5a50d58c547aaccffee9cedd2c714fa1ae22b0fb0280e3e0f6c",
+    "candidate_theta": 0.125,
+    "challenge_id": "O3-F4-C01",
+    "claim_boundary": "Transcript-bound row evidence only. This verifier checks the RZ distance for one C4/C5 row and grants no architecture or resource promotion.",
+    "denominator_distance": 0.0,
+    "forbidden_inputs_used": [],
+    "method": "b1_b7_o3_f4_same_access_rz_denominator_verifier_v0",
+    "negative_control_distance": 0.015624841054765663,
+    "negative_control_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r59_c3_negative_control.json",
+    "negative_control_rejected": true,
+    "negative_control_sha256": "bf083d1dbdd0ee499528989e2887a59572962ba3f63c42c7ae05cead31f2a7e8",
+    "positive_distance_met_or_equal": true,
+    "pressure_flags_transcript_bound": true,
+    "r59_certificate_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r59_c3_same_unitary_replay_certificate.json",
+    "r59_certificate_hash": "964331600a97b513b50eebcc16539615a2a75705c4d001ecf966920397885811",
+    "r59_certificate_sha256": "1150ea8a0ec80e0ea5ae72999da0436a622af063af1ad164a3b38b7a871ecb85",
+    "r59_positive_replay_distance": 0.0,
+    "same_access_inputs_used": [
+      "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.source.qasm",
+      "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.candidate.qasm",
+      "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r59_c3_same_unitary_replay_certificate.json",
+      "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r59_c3_negative_control.json"
+    ],
+    "source_circuit_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/materialized_artifacts/r37_smoke/O3-F4-C01.source.qasm",
+    "source_circuit_sha256": "e0922fdb81e0370a7c231094b448235212e4591202410421736926a0fe1fffe3",
+    "source_theta": 0.125,
+    "strict_tolerance": 1e-08,
+    "unitary_distance_metric": "single_qubit_rz_operator_norm"
+  },
+  "replay_stderr": "",
+  "semantic_digest_hash": "36b5b4add0cd0e90d66b15358d8b60eced0d766b8c4f1921a1779cd73cf6eba4",
+  "semantic_digest_mismatches": {},
+  "source_r63_row_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r63_source_backed_denominator_row.json",
+  "source_r63_row_hash": "c106d002da21e1e15ee9042cfb578ab6292d802cd51525934ce358ac77a94fc9",
+  "source_r63_transcript": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r63_same_access_denominator_verifier_transcript.json",
+  "source_r64_trace_file": "results/B1_B7_cone01_o3_f4_numerical_refit_submissions/source_backed_rows/O3-F4-C01.r64_c6_leakage_free_optimizer_trace.json",
+  "source_r64_trace_file_sha256": "b4f18a7526f99fadce30c9d79a94c858c4249100507856c7921e0aa2307945c1",
+  "source_r64_trace_hash": "5f6258d54ad12fa101918efaa1194682c36844c57d88c234efe6aed23759b9e1",
+  "source_target_id": "T-B1-004fo/T-B7-014x",
+  "upstream_target_id": "T-B1-004fn/T-B7-014w",
+  "verdict_hash": "b4b64ceaaeb558538972ffee32206dbd3cd7a97ef860ce89026cf392b2fcbfb4"
+}

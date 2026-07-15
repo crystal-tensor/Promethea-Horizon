@@ -1715,6 +1715,168 @@ certificate, C4/C5 denominator comparison, C6 leakage-free trace, C7
 machine-check replay, and B7 ledger retest remain open; reroute remains false
 and B7/STV/resource/ledger credit remain 0/false.
 
+`T-B1-004fi` / `T-B7-014r` now attacks the next C3 gate directly. R59
+replays the all-8 R58 rows as single-qubit OpenQASM 3.0 `rz(theta)`
+certificates and adds one perturbed negative control per row. It passes 8/8
+requirements: row count `8`, positive replay certificates passed `8`,
+negative controls rejected `8`, max positive replay distance `0.0`, minimum
+negative-control distance `0.015624841054765663`, and restricted C3
+same-unitary replay certificate complete true. R59 also records an important
+audit observation: all 8 R58 evidence-packet semantic hashes still match, but
+the R58 evidence-packet file SHA fields are stale after final row binding, so
+R59 rebinds the actual file hashes instead of hiding the mismatch. R59 bundle
+hash `fa7ab308e09644f3d58228a92ea580fb40f6ea88b8408cc75ddc21df79b84cbb`.
+This is still not O3 closure and not B7 credit: C4/C5 denominator comparison,
+C6 leakage-free trace, C7 machine-check replay, and B7 ledger retest remain
+open; reroute remains false and B7/STV/resource/ledger credit remain 0/false.
+
+`T-B1-004fj` / `T-B7-014s` now turns the next C4/C5 same-access denominator
+step into a concrete submission contract instead of leaving it as a prose
+blocker. R60 emits 8 row-level denominator templates, one per R59 certificate,
+with 24 required acceptance fields per row. Each template is hash-bound to the
+R59 source circuit, candidate circuit, and replay certificate, pins a
+same-access model hash, forbids hidden optimizer traces, hardware calibration
+data, unbound external oracles, and post-hoc angle edits, and requires a
+verifier transcript plus leakage audit statement before any row can count.
+R60 passes 8/8 contract requirements and contract hash
+`2f1eea9d7fcc32e8cfeff6069d5fd351013b428586abff90c115c20b40812c2b`.
+This is deliberately still not a denominator win: submitted denominator rows
+`0`, accepted denominator rows `0`, C4/C5 comparison complete false, O3 open,
+`reroute_allowed=false`, and B7/STV/resource/ledger credit remain 0/false.
+The next useful PR must fill the R60 row templates with source-backed
+same-access denominator evidence before C6, C7, or any B7 ledger retest.
+
+`T-B1-004fk` / `T-B7-014t` now adversarially reviews that R60 contract. R61
+constructs 8 metadata-only denominator-theater rows that satisfy every R60
+required field, so a naive field-presence checker would accept `8/8`. The
+hardened R61 checker rejects `8/8` because the rows have no existing
+implementation path, no existing verifier transcript, unbound transcript SHA,
+no replayed command, no structured leakage audit, self-asserted denominator
+distance, and an overclaiming boundary. R61 emits 10 hardening rules under
+schema `r61_c4_c5_same_access_denominator_row_hardened_v1`; bundle hash
+`c86e614516aa87397edbc783a5db6895fd7574e1fc980a327941e954ecd50165`.
+This is still not a denominator win: accepted denominator rows `0`, C4/C5
+comparison complete false, O3 open, `reroute_allowed=false`, and
+B7/STV/resource/ledger credit remain 0/false. The next useful PR should
+implement the R61 hardened acceptance verifier, then submit real denominator
+rows with existing implementation and transcript artifacts.
+
+`T-B1-004fl` / `T-B7-014u` now turns the R61 hardening rules into an
+executable acceptance verifier. R62 replays all 8 R61 metadata-only
+denominator-theater rows against 10 hardened checks per row: required fields,
+schema match, source/candidate/certificate hash binding, implementation path,
+replayed command, transcript hash, transcript-bound distance, structured
+same-access/leakage audit, transcript-derived pressure flags, and claim
+boundary. The verifier emits 8 per-row transcripts, rejects `8/8` theater
+rows, accepts `0/8`, has minimum failed checks per rejected row `7`, and
+maximum passed checks per rejected row `3`. R62 bundle hash
+`0900006a8639e0aa00e1d80c5cf3c5901520be262c0c930af2a4d5820245b6fd`.
+This is still not a denominator win: accepted denominator rows `0`, C4/C5
+comparison complete false, O3 open, `reroute_allowed=false`, and
+B7/STV/resource/ledger credit remain 0/false. The next useful PR must submit
+real source-backed C4/C5 denominator rows with existing implementation and
+verifier transcript artifacts under the R62 verifier.
+
+`T-B1-004fm` / `T-B7-014v` now submits those source-backed C4/C5 rows. R63
+uses a reviewed same-access OpenQASM 3.0 single-`rz(theta)` denominator
+verifier, replays 8 row commands, writes 8 denominator transcripts, writes 8
+R62-compatible acceptance transcripts, and accepts `8/8` submitted denominator
+rows. The max denominator distance is `0.0`; C4/C5 same-access denominator
+comparison complete is true. R63 bundle hash
+`7089f6070e7d5a75c57a765e3406f8199b1539b92ff23777159a8344e99c356f`.
+This is still not O3 closure and not B7 credit: C6 leakage-free optimizer
+trace and C7 machine-check replay remain open, `reroute_allowed=false`, and
+B7/STV/resource/ledger credit remain 0/false. The next useful PR should run C6
+leakage-free optimizer trace over the accepted R63 rows before any C7 or B7
+ledger retest.
+
+`T-B1-004fn` / `T-B7-014w` now completes that C6 leakage trace. R64 emits 8
+hash-bound optimizer-trace audit files, one for each accepted R63 denominator
+row, and checks command arguments, implementation hash, row hash, denominator
+transcript hash, stdout hash, acceptance transcript, allowed-input scope,
+row-specific pressure artifacts, and forbidden-input review. All 8 traces pass:
+used inputs are limited to the template inputs plus row-specific pressure
+artifacts, forbidden inputs used remain `0`, transcript/stdout hashes match,
+and command arguments match the accepted rows. R64 bundle hash
+`3fada7236ff61d0f015437d7b9562e1687c488a08db769369eca417a0fa5d61a`.
+This is still not O3 closure and not B7 credit: C7 machine-check replay remains
+open, `reroute_allowed=false`, and B7/STV/resource/ledger credit remain
+0/false. The next useful PR should produce the C7 machine-check replay bundle
+before any B7 ledger retest.
+
+`T-B1-004fo` / `T-B7-014x` now completes that C7 replay for the current row
+set. R65 reruns the same-access denominator verifier for all 8 accepted
+R63/R64 rows, writes 8 replay transcripts, 8 replay stdout captures, and 8
+machine-check replay verdicts, then compares stable semantic replay digests
+against the original R63 transcripts. All 8 verdicts pass: replay commands exit
+zero, semantic digests match, file hashes bind the R63 rows/R64 traces/original
+transcripts/implementation, denominator distances remain `0.0`, negative
+controls are rejected, and forbidden inputs remain unused. R65 bundle hash
+`76544060858cd8f926c5823f2d2e30132935a1f855595316bafa1e19e29b2a39`.
+This is still not O3 closure and not B7 credit: `reroute_allowed=false`, and
+B7/STV/resource/ledger credit remain 0/false. The next useful PR should run a
+zero-credit B7 ledger retest boundary before any promotion claim.
+
+`T-B1-004fp` / `T-B7-014y` now runs that B7 zero-credit retest boundary. R66
+binds the R65 machine-checked row set against the B7 resource boundary, the R4
+ledger-replay block gate, and the current B7 FT synthesis ledger. The retest
+packet covers 8 rows: all 8 are machine checked, 0 rows are ledger-credit
+admissible, accepted exit routes remain `0`, occurrence removal remains `0`,
+proxy-T reduction remains `0`, logical-T count/depth deltas remain `0`, and STV
+delta remains `0`. R66 retest packet hash
+`29d1cb2e95aafd29418e8082e0d8ab92edb1fe4ffa3a61af749204ad3294de59`.
+This is a completed boundary, not a promotion: O3 closure, reroute permission,
+B7 dependency/resource/FT/STV credit, resource saving, and ledger improvement
+remain 0/false. The next useful PR must supply an accepted exit route or
+full-circuit rewrite artifact with a nonzero occurrence/proxy-T delta before any
+nonzero B7 ledger retest.
+
+`T-B1-004fq` / `T-B7-014z` now turns that next step into a hash-bound accepted
+exit-route submission contract. R67 emits three admissible route classes:
+`R1-line1381-resolution`, `R2-line1378-overlap-recovery`, and
+`R3-thirty-certificate-batch`. The contract requires 29 submission fields,
+including source and candidate OpenQASM 3.0 paths and hashes, machine-check
+replay command and stdout, semantic or symbolic equivalence evidence,
+no-double-counting ledger evidence, line1381/line1378 evidence, occurrence and
+proxy-T ledgers, nonzero deltas, and an explicit claim boundary. The placeholder
+template is rejected with 23 placeholder fields, so accepted exit routes remain
+`0`, accepted occurrence removal remains `0`, accepted proxy-T reduction remains
+`0`, `b7_nonzero_retest_allowed=false`, and B7 credit remains `0`. R67 contract
+hash `99e50d8c04bbb0b7435f4867d965b20376fd5c0685319a0b87a0ba9dad61f0a0`.
+This is a contract gate, not an accepted route. The next useful PR must fill the
+R67 template with source-backed replay, no-double-counting, line1381/line1378,
+occurrence-delta, and proxy-T-delta evidence before any nonzero B7 ledger retest.
+
+`T-B1-004fr` / `T-B7-015a` now pre-fills that contract against the evidence
+already in the repository. R68 maps the R67 field set onto R1/R2/R5/R59/R66
+artifacts and emits an R1 line1381 prefill draft, a three-route coverage matrix,
+and a blocker queue. The R1 draft fills 24 of 29 required fields, but 5 fields
+remain placeholders: source OpenQASM 3.0 path/hash, machine-check replay
+command, replay stdout path, and replay stdout hash. Positive deltas also remain
+absent: accepted exit routes `0`, occurrence removal `0`, proxy-T reduction
+`0`, `b7_nonzero_retest_allowed=false`, and B7 credit `0`. R68 blocker queue
+hash `510049cc66fa29b1cbce6610e9f61dcdedf20d020682a0b5a3a8b9d8eff02716`.
+This is a prefill and blocker gate, not an accepted route. The next useful PR
+must fill the missing source OpenQASM 3.0 and machine-check replay fields, then
+submit a positive occurrence/proxy-T delta ledger before any nonzero B7 ledger
+retest.
+
+`T-B1-004fs` / `T-B7-015b` now resolves the source OpenQASM 3.0 part of that
+prefill. R69 exports the original `gcm_h6` source circuit from OpenQASM 2.0 to
+OpenQASM 3.0, verifies that the normalized instruction stream is preserved
+(`1638` normalized instructions, stream hash
+`75ad2565015b8abf1cc2024749a07f7bd15ddbeba568a08a445659d01c454b5a`), and
+refreshes the R1 line1381 prefill. The draft moves from 24/29 fields to 26/29
+fields. The remaining placeholder fields are now only the machine-check replay
+triple: `machine_check_replay_command`, `machine_check_replay_stdout_path`, and
+`machine_check_replay_stdout_sha256`. Positive deltas still remain absent:
+accepted exit routes `0`, occurrence removal `0`, proxy-T reduction `0`,
+`b7_nonzero_retest_allowed=false`, and B7 credit `0`. R69 blocker queue hash
+`28b3f8e5d43a20e9315db4d576f6043547980e05421c14b5112e16f9f9d77292`.
+This is still not an accepted route. The next useful PR must add a
+machine-check replay command/stdout/hash, then submit positive occurrence and
+proxy-T delta evidence before any nonzero B7 ledger retest.
+
 B4/B8 now has a formal verifier-private challenge protocol model:
 `T-B4-002b` / `T-B8-003f` turns the previous private-predicate pressure gate
 into a commit-challenge-response-verify protocol over 36 shared challenge rows.
@@ -1801,3 +1963,15 @@ split. Full private-material leakage is 160/160, so it must be explicitly
 excluded or reduced to <=40/160. Real backend transcript rows remain 0, so this
 is a margin ledger for the next PR, not protocol soundness, hardware evidence,
 quantum advantage, or BQP separation.
+
+`T-B1-004ft` / `T-B7-015c` now closes the R69 machine-check replay placeholder
+gap for the R1 line1381 route prefill. It runs a deterministic replay command
+that binds the source OpenQASM 3 artifact, candidate OpenQASM 3 artifact, R59
+same-unitary certificate chain, R65 machine-check replay bundle, and R66
+zero-credit ledger boundary. The R1 prefill moves from 26/29 fields to 29/29
+fields, with replay stdout hash
+`10de947944fa9e737a1d072bde67669df766159fd0444a8c723f7b2a9905fdd1`.
+The structural CNOT delta remains 795 -> 789, but this is still not an accepted
+exit route: accepted route count, occurrence removal, proxy-T reduction, and B7
+credit all remain 0. The next required PR is a positive occurrence/proxy-T
+delta ledger that can survive the R67 accepted-exit-route contract.

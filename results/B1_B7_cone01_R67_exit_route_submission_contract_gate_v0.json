@@ -1,0 +1,396 @@
+{
+  "benchmark_id": "B1",
+  "claim_boundary": {
+    "b7_ledger_improvement_claimed": false,
+    "next_gate": "Fill the R67 template with source-backed replay, no-double-counting, line1381/line1378, occurrence-delta, and proxy-T-delta evidence.",
+    "resource_saving_claimed": false,
+    "what_is_not_supported": "R67 does not accept an exit route, prove a full-circuit rewrite, allow reroute, or grant any B7 ledger credit.",
+    "what_is_supported": "R67 emits a hash-bound accepted-exit-route submission contract, template, and placeholder preflight rejection for the post-R66 path."
+  },
+  "last_updated": "2026-07-09",
+  "linked_benchmark_id": "B7",
+  "method": "b1_b7_cone01_r67_exit_route_submission_contract_gate_v0",
+  "model_status": "accepted_exit_route_contract_exists_but_placeholder_submission_rejected",
+  "r67_exit_route_submission_contract_packet": {
+    "contract": {
+      "acceptance_rules": [
+        "all required_submission_fields are non-placeholder and hash-bound",
+        "source_r66_retest_packet_hash equals the current R66 packet hash",
+        "machine_check_replay_command can reproduce the submitted full-circuit rewrite artifact",
+        "semantic_or_symbolic_equivalence_certificate covers the full circuit or explicitly bounded route class",
+        "no_double_counting_ledger accounts for selected lines [268, 1381] and dropped overlap line [1378]",
+        "occurrence_removal_delta and proxy_t_reduction_delta are positive",
+        "claim_boundary forbids O3 closure, reroute, and B7 credit until a downstream nonzero ledger retest accepts the submitted deltas"
+      ],
+      "accepted_route_classes": [
+        {
+          "minimum_required_delta": {
+            "accepted_exit_route_count": 1,
+            "occurrence_removal_delta_min": 1,
+            "proxy_t_reduction_delta_min": 1
+          },
+          "route_id": "R1-line1381-resolution",
+          "route_target": "eliminate_absorb_or_honestly_price_line1381_off_grid_local_u3"
+        },
+        {
+          "minimum_required_delta": {
+            "accepted_exit_route_count": 1,
+            "occurrence_removal_delta_min": 1,
+            "proxy_t_reduction_delta_min": 1
+          },
+          "route_id": "R2-line1378-overlap-recovery",
+          "route_target": "recover_or_account_for_line1378_without_double_counting"
+        },
+        {
+          "minimum_required_delta": {
+            "accepted_exit_route_count": 1,
+            "occurrence_removal_delta_min": 30,
+            "proxy_t_reduction_delta_min": 600
+          },
+          "route_id": "R3-thirty-certificate-batch",
+          "route_target": "submit_30_occurrence_removing_certificates_and_600_proxy_t_delta"
+        }
+      ],
+      "contract_hash": "ff3c255132d45ca668330dd34e3c99ae36193605057f56627c9f6f0b33182add",
+      "contract_id": "B1-B7-cone01-R67-accepted-exit-route-submission-contract",
+      "forbidden_shortcuts": [
+        "row-level R63/R64/R65/R66 denominator evidence alone",
+        "unhashed markdown-only claims",
+        "single-row local rewrite without full-circuit or route-bounded replay",
+        "nonzero B7 credit without accepted occurrence/proxy-T delta",
+        "double-counting line1378 and line1381 deltas"
+      ],
+      "required_submission_fields": [
+        "route_id",
+        "route_class",
+        "source_r66_retest_packet_hash",
+        "full_circuit_rewrite_artifact_path",
+        "full_circuit_rewrite_artifact_sha256",
+        "source_openqasm3_path",
+        "candidate_openqasm3_path",
+        "source_openqasm3_sha256",
+        "candidate_openqasm3_sha256",
+        "machine_check_replay_command",
+        "machine_check_replay_stdout_path",
+        "machine_check_replay_stdout_sha256",
+        "semantic_or_symbolic_equivalence_certificate_path",
+        "semantic_or_symbolic_equivalence_certificate_sha256",
+        "no_double_counting_ledger_path",
+        "no_double_counting_ledger_sha256",
+        "line1381_pricing_or_elimination_evidence_path",
+        "line1381_pricing_or_elimination_evidence_sha256",
+        "line1378_recovery_or_exclusion_evidence_path",
+        "line1378_recovery_or_exclusion_evidence_sha256",
+        "occurrence_delta_ledger_path",
+        "occurrence_delta_ledger_sha256",
+        "proxy_t_delta_ledger_path",
+        "proxy_t_delta_ledger_sha256",
+        "accepted_exit_route_count",
+        "occurrence_removal_delta",
+        "proxy_t_reduction_delta",
+        "b7_nonzero_retest_requested",
+        "claim_boundary"
+      ],
+      "source_r5_exit_route_selector_hash": "82cfd3a6e39a56452d7155198f76c16ecf14327464c8cf65452c5a35637d94fb",
+      "source_r66_retest_packet_hash": "a896579334098a59b4e9ee78245c09edd0fc5f653cbedeeba8128b9358b7d634",
+      "source_target_id": "T-B1-004fq/T-B7-014z",
+      "upstream_target_id": "T-B1-004fp/T-B7-014y"
+    },
+    "contract_output": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R67-accepted-exit-route.contract.json",
+    "preflight": {
+      "accepted_exit_route_count": 0,
+      "accepted_occurrence_removal": 0,
+      "accepted_proxy_t_reduction": 0,
+      "artifact": "R67 accepted-exit-route template preflight",
+      "b7_credit_delta": 0,
+      "b7_nonzero_retest_allowed": false,
+      "contract_hash": "ff3c255132d45ca668330dd34e3c99ae36193605057f56627c9f6f0b33182add",
+      "contract_id": "B1-B7-cone01-R67-accepted-exit-route-submission-contract",
+      "placeholder_field_count": 23,
+      "placeholder_fields": [
+        "route_id",
+        "route_class",
+        "full_circuit_rewrite_artifact_path",
+        "full_circuit_rewrite_artifact_sha256",
+        "source_openqasm3_path",
+        "candidate_openqasm3_path",
+        "source_openqasm3_sha256",
+        "candidate_openqasm3_sha256",
+        "machine_check_replay_command",
+        "machine_check_replay_stdout_path",
+        "machine_check_replay_stdout_sha256",
+        "semantic_or_symbolic_equivalence_certificate_path",
+        "semantic_or_symbolic_equivalence_certificate_sha256",
+        "no_double_counting_ledger_path",
+        "no_double_counting_ledger_sha256",
+        "line1381_pricing_or_elimination_evidence_path",
+        "line1381_pricing_or_elimination_evidence_sha256",
+        "line1378_recovery_or_exclusion_evidence_path",
+        "line1378_recovery_or_exclusion_evidence_sha256",
+        "occurrence_delta_ledger_path",
+        "occurrence_delta_ledger_sha256",
+        "proxy_t_delta_ledger_path",
+        "proxy_t_delta_ledger_sha256"
+      ],
+      "preflight_hash": "71f0b67bf1af1ef5b822a07d57b671f01f6369bb5d4fa3e0dc031a3f25630627",
+      "preflight_passed": false,
+      "rejection_reason": "template_has_placeholders_and_zero_deltas",
+      "template_hash": "8b7c1bde355a16a32376351d4c398081fe961ee7177edc1e9a2638ee1c2b242d",
+      "template_id": "B1-B7-cone01-R67-accepted-exit-route-submission-template",
+      "zero_delta_fields": [
+        "accepted_exit_route_count",
+        "occurrence_removal_delta",
+        "proxy_t_reduction_delta"
+      ]
+    },
+    "preflight_output": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R67-accepted-exit-route.template_preflight.json",
+    "source_r5_selector": "results/B1_B7_cone01_R5_exit_route_priority_selector_v0.json",
+    "source_r66_result": "results/B1_B7_cone01_R66_o3_f4_b7_zero_credit_ledger_retest_gate_v0.json",
+    "template": {
+      "accepted_exit_route_count": 0,
+      "b7_nonzero_retest_requested": false,
+      "candidate_openqasm3_path": null,
+      "candidate_openqasm3_sha256": null,
+      "claim_boundary": "Template only. No O3 closure, reroute permission, resource saving, or B7 ledger credit is claimed until a nonzero ledger retest accepts a complete exit-route submission.",
+      "contract_hash": "ff3c255132d45ca668330dd34e3c99ae36193605057f56627c9f6f0b33182add",
+      "contract_id": "B1-B7-cone01-R67-accepted-exit-route-submission-contract",
+      "full_circuit_rewrite_artifact_path": null,
+      "full_circuit_rewrite_artifact_sha256": null,
+      "line1378_recovery_or_exclusion_evidence_path": null,
+      "line1378_recovery_or_exclusion_evidence_sha256": null,
+      "line1381_pricing_or_elimination_evidence_path": null,
+      "line1381_pricing_or_elimination_evidence_sha256": null,
+      "machine_check_replay_command": null,
+      "machine_check_replay_stdout_path": null,
+      "machine_check_replay_stdout_sha256": null,
+      "no_double_counting_ledger_path": null,
+      "no_double_counting_ledger_sha256": null,
+      "occurrence_delta_ledger_path": null,
+      "occurrence_delta_ledger_sha256": null,
+      "occurrence_removal_delta": 0,
+      "proxy_t_delta_ledger_path": null,
+      "proxy_t_delta_ledger_sha256": null,
+      "proxy_t_reduction_delta": 0,
+      "route_class": null,
+      "route_id": null,
+      "semantic_or_symbolic_equivalence_certificate_path": null,
+      "semantic_or_symbolic_equivalence_certificate_sha256": null,
+      "source_openqasm3_path": null,
+      "source_openqasm3_sha256": null,
+      "source_r66_retest_packet_hash": "a896579334098a59b4e9ee78245c09edd0fc5f653cbedeeba8128b9358b7d634",
+      "template_hash": "8b7c1bde355a16a32376351d4c398081fe961ee7177edc1e9a2638ee1c2b242d",
+      "template_id": "B1-B7-cone01-R67-accepted-exit-route-submission-template"
+    },
+    "template_output": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R67-accepted-exit-route.template.json"
+  },
+  "requirements": [
+    {
+      "evidence": {
+        "b7_credit_delta": 0,
+        "ledger_credit_admissible_row_count": 0,
+        "source_r66_retest_packet_hash": "a896579334098a59b4e9ee78245c09edd0fc5f653cbedeeba8128b9358b7d634"
+      },
+      "label": "R66 upstream completed the zero-credit B7 retest boundary",
+      "passed": true,
+      "requirement_id": "E1"
+    },
+    {
+      "evidence": {
+        "accepted_route_classes": [
+          {
+            "minimum_required_delta": {
+              "accepted_exit_route_count": 1,
+              "occurrence_removal_delta_min": 1,
+              "proxy_t_reduction_delta_min": 1
+            },
+            "route_id": "R1-line1381-resolution",
+            "route_target": "eliminate_absorb_or_honestly_price_line1381_off_grid_local_u3"
+          },
+          {
+            "minimum_required_delta": {
+              "accepted_exit_route_count": 1,
+              "occurrence_removal_delta_min": 1,
+              "proxy_t_reduction_delta_min": 1
+            },
+            "route_id": "R2-line1378-overlap-recovery",
+            "route_target": "recover_or_account_for_line1378_without_double_counting"
+          },
+          {
+            "minimum_required_delta": {
+              "accepted_exit_route_count": 1,
+              "occurrence_removal_delta_min": 30,
+              "proxy_t_reduction_delta_min": 600
+            },
+            "route_id": "R3-thirty-certificate-batch",
+            "route_target": "submit_30_occurrence_removing_certificates_and_600_proxy_t_delta"
+          }
+        ]
+      },
+      "label": "R67 contract defines R1/R2/R3 exit-route classes",
+      "passed": true,
+      "requirement_id": "E2"
+    },
+    {
+      "evidence": {
+        "required_submission_fields": [
+          "route_id",
+          "route_class",
+          "source_r66_retest_packet_hash",
+          "full_circuit_rewrite_artifact_path",
+          "full_circuit_rewrite_artifact_sha256",
+          "source_openqasm3_path",
+          "candidate_openqasm3_path",
+          "source_openqasm3_sha256",
+          "candidate_openqasm3_sha256",
+          "machine_check_replay_command",
+          "machine_check_replay_stdout_path",
+          "machine_check_replay_stdout_sha256",
+          "semantic_or_symbolic_equivalence_certificate_path",
+          "semantic_or_symbolic_equivalence_certificate_sha256",
+          "no_double_counting_ledger_path",
+          "no_double_counting_ledger_sha256",
+          "line1381_pricing_or_elimination_evidence_path",
+          "line1381_pricing_or_elimination_evidence_sha256",
+          "line1378_recovery_or_exclusion_evidence_path",
+          "line1378_recovery_or_exclusion_evidence_sha256",
+          "occurrence_delta_ledger_path",
+          "occurrence_delta_ledger_sha256",
+          "proxy_t_delta_ledger_path",
+          "proxy_t_delta_ledger_sha256",
+          "accepted_exit_route_count",
+          "occurrence_removal_delta",
+          "proxy_t_reduction_delta",
+          "b7_nonzero_retest_requested",
+          "claim_boundary"
+        ]
+      },
+      "label": "R67 contract requires full-circuit or route-bounded replay evidence",
+      "passed": true,
+      "requirement_id": "E3"
+    },
+    {
+      "evidence": {
+        "required_submission_fields": [
+          "route_id",
+          "route_class",
+          "source_r66_retest_packet_hash",
+          "full_circuit_rewrite_artifact_path",
+          "full_circuit_rewrite_artifact_sha256",
+          "source_openqasm3_path",
+          "candidate_openqasm3_path",
+          "source_openqasm3_sha256",
+          "candidate_openqasm3_sha256",
+          "machine_check_replay_command",
+          "machine_check_replay_stdout_path",
+          "machine_check_replay_stdout_sha256",
+          "semantic_or_symbolic_equivalence_certificate_path",
+          "semantic_or_symbolic_equivalence_certificate_sha256",
+          "no_double_counting_ledger_path",
+          "no_double_counting_ledger_sha256",
+          "line1381_pricing_or_elimination_evidence_path",
+          "line1381_pricing_or_elimination_evidence_sha256",
+          "line1378_recovery_or_exclusion_evidence_path",
+          "line1378_recovery_or_exclusion_evidence_sha256",
+          "occurrence_delta_ledger_path",
+          "occurrence_delta_ledger_sha256",
+          "proxy_t_delta_ledger_path",
+          "proxy_t_delta_ledger_sha256",
+          "accepted_exit_route_count",
+          "occurrence_removal_delta",
+          "proxy_t_reduction_delta",
+          "b7_nonzero_retest_requested",
+          "claim_boundary"
+        ]
+      },
+      "label": "R67 contract requires no-double-counting, line1381, line1378, and delta ledgers",
+      "passed": true,
+      "requirement_id": "E4"
+    },
+    {
+      "evidence": {
+        "accepted_exit_route_count": 0,
+        "placeholder_field_count": 23
+      },
+      "label": "R67 template is emitted but rejected as a placeholder",
+      "passed": true,
+      "requirement_id": "E5"
+    },
+    {
+      "evidence": {
+        "b7_credit_delta": 0,
+        "b7_nonzero_retest_allowed": false,
+        "b7_nonzero_retest_requested": false
+      },
+      "label": "R67 preserves zero B7 credit and blocks nonzero retest",
+      "passed": true,
+      "requirement_id": "E6"
+    },
+    {
+      "evidence": {
+        "forbidden_shortcuts": [
+          "row-level R63/R64/R65/R66 denominator evidence alone",
+          "unhashed markdown-only claims",
+          "single-row local rewrite without full-circuit or route-bounded replay",
+          "nonzero B7 credit without accepted occurrence/proxy-T delta",
+          "double-counting line1378 and line1381 deltas"
+        ]
+      },
+      "label": "R67 forbids row-level denominator evidence from counting alone",
+      "passed": true,
+      "requirement_id": "E7"
+    },
+    {
+      "evidence": {
+        "contract_hash": "ff3c255132d45ca668330dd34e3c99ae36193605057f56627c9f6f0b33182add",
+        "preflight_hash": "71f0b67bf1af1ef5b822a07d57b671f01f6369bb5d4fa3e0dc031a3f25630627",
+        "template_hash": "8b7c1bde355a16a32376351d4c398081fe961ee7177edc1e9a2638ee1c2b242d"
+      },
+      "label": "R67 artifacts are hash-bound and written",
+      "passed": true,
+      "requirement_id": "E8"
+    }
+  ],
+  "runtime_seconds": 0.00094,
+  "source_target_id": "T-B1-004fq/T-B7-014z",
+  "status": "cone01_r67_exit_route_submission_contract_emitted_zero_credit",
+  "summary": {
+    "accepted_exit_route_count": 0,
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_nonzero_retest_allowed": false,
+    "contract_file_sha256": "3dbb586ac3c01d8e094137dd684278eeac950cb0dfcbdd21f7bfb2555452b9fe",
+    "contract_hash": "ff3c255132d45ca668330dd34e3c99ae36193605057f56627c9f6f0b33182add",
+    "contract_id": "B1-B7-cone01-R67-accepted-exit-route-submission-contract",
+    "failed_requirement_ids": [],
+    "o3_closed": false,
+    "placeholder_field_count": 23,
+    "preflight_file_sha256": "b8883111f0615da13da84937832d78e3d6a96f887c4680bd86bb8fe09a138f69",
+    "preflight_hash": "71f0b67bf1af1ef5b822a07d57b671f01f6369bb5d4fa3e0dc031a3f25630627",
+    "preflight_passed": false,
+    "remaining_open_obligation_count": 4,
+    "remaining_open_obligations": [
+      "filled_exit_route_submission",
+      "machine_checked_full_circuit_or_route_bounded_replay",
+      "nonzero_occurrence_and_proxy_t_delta",
+      "downstream_nonzero_b7_ledger_retest"
+    ],
+    "required_submission_field_count": 29,
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "route_class_count": 3,
+    "source_r66_retest_packet_hash": "a896579334098a59b4e9ee78245c09edd0fc5f653cbedeeba8128b9358b7d634",
+    "template_file_sha256": "9d96ded529ca815a9fba7eab7b33378cf243bbb32c29e82159fa67ec9d8e2c24",
+    "template_hash": "8b7c1bde355a16a32376351d4c398081fe961ee7177edc1e9a2638ee1c2b242d",
+    "template_id": "B1-B7-cone01-R67-accepted-exit-route-submission-template",
+    "validation_error_count": 0
+  },
+  "title": "B1/B7 Cone01 R67 Accepted-Exit-Route Submission Contract Gate",
+  "upstream_target_id": "T-B1-004fp/T-B7-014y",
+  "validation_errors": [],
+  "version": "0.1"
+}

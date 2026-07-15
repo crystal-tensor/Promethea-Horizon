@@ -1,0 +1,84 @@
+{
+  "acceptance_rules": [
+    "all required_submission_fields are non-placeholder and hash-bound",
+    "source_r66_retest_packet_hash equals the current R66 packet hash",
+    "machine_check_replay_command can reproduce the submitted full-circuit rewrite artifact",
+    "semantic_or_symbolic_equivalence_certificate covers the full circuit or explicitly bounded route class",
+    "no_double_counting_ledger accounts for selected lines [268, 1381] and dropped overlap line [1378]",
+    "occurrence_removal_delta and proxy_t_reduction_delta are positive",
+    "claim_boundary forbids O3 closure, reroute, and B7 credit until a downstream nonzero ledger retest accepts the submitted deltas"
+  ],
+  "accepted_route_classes": [
+    {
+      "minimum_required_delta": {
+        "accepted_exit_route_count": 1,
+        "occurrence_removal_delta_min": 1,
+        "proxy_t_reduction_delta_min": 1
+      },
+      "route_id": "R1-line1381-resolution",
+      "route_target": "eliminate_absorb_or_honestly_price_line1381_off_grid_local_u3"
+    },
+    {
+      "minimum_required_delta": {
+        "accepted_exit_route_count": 1,
+        "occurrence_removal_delta_min": 1,
+        "proxy_t_reduction_delta_min": 1
+      },
+      "route_id": "R2-line1378-overlap-recovery",
+      "route_target": "recover_or_account_for_line1378_without_double_counting"
+    },
+    {
+      "minimum_required_delta": {
+        "accepted_exit_route_count": 1,
+        "occurrence_removal_delta_min": 30,
+        "proxy_t_reduction_delta_min": 600
+      },
+      "route_id": "R3-thirty-certificate-batch",
+      "route_target": "submit_30_occurrence_removing_certificates_and_600_proxy_t_delta"
+    }
+  ],
+  "contract_hash": "ff3c255132d45ca668330dd34e3c99ae36193605057f56627c9f6f0b33182add",
+  "contract_id": "B1-B7-cone01-R67-accepted-exit-route-submission-contract",
+  "forbidden_shortcuts": [
+    "row-level R63/R64/R65/R66 denominator evidence alone",
+    "unhashed markdown-only claims",
+    "single-row local rewrite without full-circuit or route-bounded replay",
+    "nonzero B7 credit without accepted occurrence/proxy-T delta",
+    "double-counting line1378 and line1381 deltas"
+  ],
+  "required_submission_fields": [
+    "route_id",
+    "route_class",
+    "source_r66_retest_packet_hash",
+    "full_circuit_rewrite_artifact_path",
+    "full_circuit_rewrite_artifact_sha256",
+    "source_openqasm3_path",
+    "candidate_openqasm3_path",
+    "source_openqasm3_sha256",
+    "candidate_openqasm3_sha256",
+    "machine_check_replay_command",
+    "machine_check_replay_stdout_path",
+    "machine_check_replay_stdout_sha256",
+    "semantic_or_symbolic_equivalence_certificate_path",
+    "semantic_or_symbolic_equivalence_certificate_sha256",
+    "no_double_counting_ledger_path",
+    "no_double_counting_ledger_sha256",
+    "line1381_pricing_or_elimination_evidence_path",
+    "line1381_pricing_or_elimination_evidence_sha256",
+    "line1378_recovery_or_exclusion_evidence_path",
+    "line1378_recovery_or_exclusion_evidence_sha256",
+    "occurrence_delta_ledger_path",
+    "occurrence_delta_ledger_sha256",
+    "proxy_t_delta_ledger_path",
+    "proxy_t_delta_ledger_sha256",
+    "accepted_exit_route_count",
+    "occurrence_removal_delta",
+    "proxy_t_reduction_delta",
+    "b7_nonzero_retest_requested",
+    "claim_boundary"
+  ],
+  "source_r5_exit_route_selector_hash": "82cfd3a6e39a56452d7155198f76c16ecf14327464c8cf65452c5a35637d94fb",
+  "source_r66_retest_packet_hash": "a896579334098a59b4e9ee78245c09edd0fc5f653cbedeeba8128b9358b7d634",
+  "source_target_id": "T-B1-004fq/T-B7-014z",
+  "upstream_target_id": "T-B1-004fp/T-B7-014y"
+}

@@ -1,0 +1,276 @@
+{
+  "artifacts": {
+    "blocker_queue": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R68-exit-route-blocker-queue.json",
+    "prefill_draft": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R68-R1-line1381-prefill-draft.json",
+    "prefill_matrix": "results/B1_B7_cone01_o3_f4_exit_route_submissions/R68-exit-route-evidence-prefill-matrix.json"
+  },
+  "blocker_queue": {
+    "artifact": "R68 accepted-exit-route blocker queue",
+    "blocker_queue_hash": "510049cc66fa29b1cbce6610e9f61dcdedf20d020682a0b5a3a8b9d8eff02716",
+    "queue": [
+      {
+        "blocker_id": "R68-B1",
+        "missing_fields": [
+          "source_openqasm3_path",
+          "source_openqasm3_sha256"
+        ],
+        "needed_artifact": "full source OpenQASM3 export for gcm_h6 under the same parser assumptions as the candidate export",
+        "priority": 1
+      },
+      {
+        "blocker_id": "R68-B2",
+        "missing_fields": [
+          "machine_check_replay_command",
+          "machine_check_replay_stdout_path",
+          "machine_check_replay_stdout_sha256"
+        ],
+        "needed_artifact": "machine-check replay command and stdout that reproduce the submitted route-bounded or full-circuit artifact",
+        "priority": 2
+      },
+      {
+        "blocker_id": "R68-B3",
+        "missing_fields": [
+          "occurrence_removal_delta",
+          "proxy_t_reduction_delta"
+        ],
+        "needed_artifact": "positive occurrence and proxy-T delta ledger accepted by the R67 contract",
+        "priority": 3
+      },
+      {
+        "blocker_id": "R68-B4",
+        "missing_fields": [
+          "b7_nonzero_retest_requested"
+        ],
+        "needed_artifact": "only request a nonzero B7 retest after B1-B3 are accepted and hash-bound",
+        "priority": 4
+      }
+    ],
+    "selected_next_route": "R1-line1381-resolution",
+    "source_target_id": "T-B1-004fr/T-B7-015a",
+    "upstream_target_id": "T-B1-004fq/T-B7-014z"
+  },
+  "claim_boundary": {
+    "next_gate": "Fill the missing source OpenQASM3 and machine-check replay fields, then submit a positive occurrence/proxy-T delta ledger.",
+    "what_is_not_supported": "R68 does not accept an exit route, prove full-circuit equivalence, request a nonzero B7 retest, or grant B7 credit.",
+    "what_is_supported": "R68 maps available artifacts into the R67 accepted-exit-route contract fields and emits a blocker queue for the R1 route."
+  },
+  "generated_at": "2026-07-15T12:07:11Z",
+  "requirements": [
+    {
+      "evidence": {
+        "contract_hash": "ff3c255132d45ca668330dd34e3c99ae36193605057f56627c9f6f0b33182add",
+        "r67_summary_contract_hash": "ff3c255132d45ca668330dd34e3c99ae36193605057f56627c9f6f0b33182add"
+      },
+      "label": "R67 contract is loaded and hash-bound",
+      "passed": true,
+      "requirement_id": "P1"
+    },
+    {
+      "evidence": {
+        "contract_source_r66_hash": "a896579334098a59b4e9ee78245c09edd0fc5f653cbedeeba8128b9358b7d634",
+        "r66_summary_hash": "a896579334098a59b4e9ee78245c09edd0fc5f653cbedeeba8128b9358b7d634"
+      },
+      "label": "R66 packet hash matches the contract source hash",
+      "passed": true,
+      "requirement_id": "P2"
+    },
+    {
+      "evidence": {
+        "route_class_count": 3
+      },
+      "label": "All R67 route classes receive blocker rows",
+      "passed": true,
+      "requirement_id": "P3"
+    },
+    {
+      "evidence": {
+        "r1_placeholder_field_count": 5,
+        "r1_placeholder_fields": [
+          "source_openqasm3_path",
+          "source_openqasm3_sha256",
+          "machine_check_replay_command",
+          "machine_check_replay_stdout_path",
+          "machine_check_replay_stdout_sha256"
+        ],
+        "r1_prefilled_field_count": 24
+      },
+      "label": "R1 prefill draft maps available artifacts into the R67 field set",
+      "passed": true,
+      "requirement_id": "P4"
+    },
+    {
+      "evidence": {
+        "accepted_exit_route_count": 0,
+        "b7_nonzero_retest_requested": false,
+        "occurrence_removal_delta": 0,
+        "proxy_t_reduction_delta": 0
+      },
+      "label": "Prefill preserves zero-credit claim boundary",
+      "passed": true,
+      "requirement_id": "P5"
+    },
+    {
+      "evidence": {
+        "r1_failed_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ],
+        "r2_failed_requirement_ids": [
+          "P6",
+          "P7",
+          "P8"
+        ]
+      },
+      "label": "R1/R2 source gates still reject production acceptance",
+      "passed": true,
+      "requirement_id": "P6"
+    },
+    {
+      "evidence": {
+        "selected_packet_id": "B1-B7-cone01-R1-line1381-resolution",
+        "selected_route_id": "R1"
+      },
+      "label": "R5 priority still selects R1 as the next route",
+      "passed": true,
+      "requirement_id": "P7"
+    },
+    {
+      "evidence": {},
+      "label": "R68 emits hash-bound prefill, matrix, and blocker queue artifacts",
+      "passed": true,
+      "requirement_id": "P8"
+    }
+  ],
+  "route_matrix": [
+    {
+      "accepted": false,
+      "accepted_exit_route_count": 0,
+      "available_evidence_field_count": 24,
+      "available_evidence_fields": [
+        "route_id",
+        "route_class",
+        "source_r66_retest_packet_hash",
+        "full_circuit_rewrite_artifact_path",
+        "full_circuit_rewrite_artifact_sha256",
+        "candidate_openqasm3_path",
+        "candidate_openqasm3_sha256",
+        "semantic_or_symbolic_equivalence_certificate_path",
+        "semantic_or_symbolic_equivalence_certificate_sha256",
+        "no_double_counting_ledger_path",
+        "no_double_counting_ledger_sha256",
+        "line1381_pricing_or_elimination_evidence_path",
+        "line1381_pricing_or_elimination_evidence_sha256",
+        "line1378_recovery_or_exclusion_evidence_path",
+        "line1378_recovery_or_exclusion_evidence_sha256",
+        "occurrence_delta_ledger_path",
+        "occurrence_delta_ledger_sha256",
+        "proxy_t_delta_ledger_path",
+        "proxy_t_delta_ledger_sha256",
+        "accepted_exit_route_count",
+        "occurrence_removal_delta",
+        "proxy_t_reduction_delta",
+        "b7_nonzero_retest_requested",
+        "claim_boundary"
+      ],
+      "line1381_off_grid_parameter_count_before": 5,
+      "line1381_unpriced_proxy_t_pressure_before": 100,
+      "occurrence_removal_delta": 0,
+      "placeholder_field_count": 5,
+      "placeholder_fields": [
+        "source_openqasm3_path",
+        "source_openqasm3_sha256",
+        "machine_check_replay_command",
+        "machine_check_replay_stdout_path",
+        "machine_check_replay_stdout_sha256"
+      ],
+      "primary_blocker": "source OpenQASM3, machine-check replay stdout, and positive occurrence/proxy-T delta remain missing",
+      "proxy_t_reduction_delta": 0,
+      "route_id": "R1-line1381-resolution",
+      "route_rank": 1,
+      "row_hash": "c80dc9e4e27ec8df71aacbf93d18805f1b82cb889e77d1451ae75ddf495275dc",
+      "source_gate": "results/B1_B7_cone01_R1_line1381_resolution_packet_gate_v0.json",
+      "source_gate_failed_requirement_ids": [
+        "P6",
+        "P7",
+        "P8"
+      ],
+      "source_gate_requirements_failed": 3,
+      "source_gate_requirements_passed": 6
+    },
+    {
+      "accepted": false,
+      "accepted_exit_route_count": 0,
+      "available_evidence_field_count": 7,
+      "line1378_delta_recovered_after": false,
+      "merged_region_replay_certificate_count": 0,
+      "occurrence_removal_delta": 0,
+      "primary_blocker": "merged line1378/line1381 replay certificate is absent and line1378 delta is unrecovered",
+      "proxy_t_reduction_delta": 0,
+      "route_id": "R2-line1378-overlap-recovery",
+      "route_rank": 2,
+      "row_hash": "b3ceb968c5d806a2e349bad365a421c27d9d465523987fc26b21dde456f42da7",
+      "source_gate": "results/B1_B7_cone01_R2_line1378_overlap_recovery_packet_gate_v0.json",
+      "source_gate_failed_requirement_ids": [
+        "P6",
+        "P7",
+        "P8"
+      ],
+      "source_gate_requirements_failed": 3,
+      "source_gate_requirements_passed": 6
+    },
+    {
+      "accepted": false,
+      "accepted_exit_route_count": 0,
+      "available_evidence_field_count": 4,
+      "current_accepted_occurrence_removal": 0,
+      "current_accepted_proxy_t_reduction": 0,
+      "occurrence_removal_delta": 0,
+      "primary_blocker": "30 occurrence-removing certificates and 600 proxy-T delta are not present",
+      "proxy_t_reduction_delta": 0,
+      "required_occurrence_removal_delta": 30,
+      "required_proxy_t_reduction_delta": 600,
+      "route_id": "R3-thirty-certificate-batch",
+      "route_rank": 3,
+      "row_hash": "6d6a0a4509842e888d0a2994b59f42621eef7af280019f1332a014a0fd98baa0"
+    }
+  ],
+  "summary": {
+    "accepted_exit_route_count": 0,
+    "accepted_occurrence_removal": 0,
+    "accepted_proxy_t_reduction": 0,
+    "b7_credit_delta": 0,
+    "b7_ledger_improvement_claimed": false,
+    "b7_nonzero_retest_allowed": false,
+    "blocker_queue_file_sha256": "5cd94035de1ba1e3decaa3ed363d750e939085bd95fd665cee1202e86222823b",
+    "blocker_queue_hash": "510049cc66fa29b1cbce6610e9f61dcdedf20d020682a0b5a3a8b9d8eff02716",
+    "contract_hash": "ff3c255132d45ca668330dd34e3c99ae36193605057f56627c9f6f0b33182add",
+    "failed_requirement_ids": [],
+    "matrix_file_sha256": "ee0858c8a13212432cfa866fcb2ea72007edb26bc866d25b73a56afe88aeb08a",
+    "matrix_hash": "3788553d08ea789fc21db8bf1e282ac5ecc4d44e2416b7ac6f89521ff6ddf08d",
+    "method": "b1_b7_cone01_r68_exit_route_evidence_prefill_gate_v0",
+    "model_status": "r67_contract_prefilled_with_available_evidence_but_zero_delta_blockers_remain",
+    "o3_closed": false,
+    "payload_hash": "cf379540b9b3409acfc78dea2f830852af64f00804128692a4a8ae24f7783c2a",
+    "prefill_file_sha256": "6145e28ee805ab2860447cf5d85acdfab00e57a8e682ff073c5d321b09cd18b3",
+    "prefill_hash": "dfb48a5a895a1c85d2b4691277bbac36e3049603ed8f6053a7946aff0623a447",
+    "r1_blocker_count": 4,
+    "r1_placeholder_field_count": 5,
+    "r1_prefilled_field_count": 24,
+    "required_submission_field_count": 29,
+    "requirement_count": 8,
+    "requirements_failed": 0,
+    "requirements_passed": 8,
+    "reroute_allowed": false,
+    "resource_saving_claimed": false,
+    "route_class_count": 3,
+    "selected_next_route": "R1-line1381-resolution",
+    "source_r66_retest_packet_hash": "a896579334098a59b4e9ee78245c09edd0fc5f653cbedeeba8128b9358b7d634",
+    "source_target_id": "T-B1-004fr/T-B7-015a",
+    "status": "cone01_r68_exit_route_evidence_prefill_blocker_matrix_emitted_zero_credit",
+    "upstream_target_id": "T-B1-004fq/T-B7-014z",
+    "validation_error_count": 0
+  },
+  "title": "B1/B7 Cone01 R68 Exit-Route Evidence Prefill Gate",
+  "version": "0.1"
+}
