@@ -22,7 +22,7 @@ def LocalityPreserved (before after : SpectralSummary) : Prop :=
 
 theorem uniform_scale_raw_gap_is_not_certificate
     (before after : SpectralSummary)
-    (hRaw : RawGapAmplifies before after)
+    (_hRaw : RawGapAmplifies before after)
     (hInvariant : NormalizedGapInvariant before after) :
     ¬ (after.normalizedGap > before.normalizedGap) := by
   intro hImp
@@ -31,7 +31,7 @@ theorem uniform_scale_raw_gap_is_not_certificate
 
 theorem cluster_stabilizer_open_uniform_reweight_obligation
     (n : Nat)
-    (hN : 4 <= n)
+    (_hN : 4 <= n)
     (before after : SpectralSummary)
     (hLocality : LocalityPreserved before after)
     (hRaw : RawGapAmplifies before after)
@@ -75,6 +75,31 @@ noncomputable def UniformScaleFactor : Real := 27/20
 def IsUniformlyScaled (before after : SpectralSummary) : Prop :=
   after.gap = UniformScaleFactor * before.gap ∧
   after.width = UniformScaleFactor * before.width
+
+theorem normalized_gap_scale_cancel
+    (gap width scale : Real)
+    (hScale : scale ≠ 0) :
+    (scale * gap) / (scale * width) = gap / width := by
+  by_cases hWidth : width = 0
+  · simp [hWidth]
+  · rw [div_eq_mul_inv, div_eq_mul_inv, mul_inv_rev]
+    calc
+      scale * gap * (width⁻¹ * scale⁻¹) =
+          (scale * scale⁻¹) * (gap * width⁻¹) := by ac_rfl
+      _ = gap * width⁻¹ := by rw [mul_inv_cancel₀ hScale, one_mul]
+
+theorem uniform_scale_preserves_normalized_gap_from_nonzero_scale
+    (gap width scale : Real)
+    (before after : SpectralSummary)
+    (hScale : scale ≠ 0)
+    (hBefore : before.normalizedGap = gap / width)
+    (hAfter : after.normalizedGap = (scale * gap) / (scale * width)) :
+    ClusterStabilizer.NormalizedGapInvariant before after := by
+  unfold ClusterStabilizer.NormalizedGapInvariant
+  rw [hAfter, hBefore, normalized_gap_scale_cancel gap width scale hScale]
+
+theorem uniform_scale_factor_ne_zero : UniformScaleFactor ≠ 0 := by
+  norm_num [UniformScaleFactor]
 
 theorem uniform_scale_preserves_normalized_gap
     (gap width scale : Real)

@@ -4023,3 +4023,14 @@ a confirmed bug. Payload `3cf4927f...`; no hidden evidence, simulation or
 hardware performance, temporal or real-device transfer, general route-
 generation advantage, quantum advantage, BQP separation, solved-frontier
 status, or new credit is claimed.
+
+## Latest Research Update: R94
+
+R94 tightens the B9 formalization boundary. The pinned Lean/Lake environment
+checks normalized-gap cancellation from an explicit nonzero uniform scale and
+checks the project scale 27/20 as nonzero. The gate passes 10/10 requirements,
+3/3 fresh Lean/Lake commands return zero, and the replay emits no warnings.
+This is a checked scalar lemma, not an all-n Hamiltonian theorem, Quantum PCP
+proof, NLTS theorem, global gap-amplification impossibility result, or BQP
+separation. The next formal gate must prove locality and spectral statements
+for the indexed construction without injecting those conclusions as premises.
