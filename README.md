@@ -3039,6 +3039,17 @@ open until the preregistered replay runs. R169 is a candidate-feasibility
 control, not a production mapping change, confirmed bug, hardware result,
 quantum advantage, BQP separation, solved B4/B8/B10, or new credit.
 
+R169 then completes with requirements `10/10`. All `192/192` candidate-traced
+calls produce candidates, yielding `576` complete candidates (`3` per call),
+and source-return validation matches `192/192`. The four arithmetic policies
+change `0` mappings on this input, while simulation and shots remain `0/0`.
+This clears candidate observability for one target-compatible input and leaves
+the policy-stability question open: a second compatible graph with closer
+candidate scores is required before treating the zero-difference result as a
+general property. No numerical remedy, production mapping change, confirmed
+Qiskit bug, hardware result, quantum advantage, BQP separation, solved B4/B8/B10,
+or new credit is claimed.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

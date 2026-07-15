@@ -1170,6 +1170,162 @@ def audit_r168_candidate_feasibility(
     return status
 
 
+def audit_r169_target_compatible_candidate_replay(
+    root: Path,
+    b4_manifest: dict,
+    b8_manifest: dict,
+    b10_manifest: dict,
+    errors: list[str],
+) -> dict:
+    """Validate R169 candidate replay independently of its generated summary."""
+    benchmarks = root / "benchmarks"
+    results = root / "results"
+    research = root / "research"
+    result_path = results / "B4_B8_R169_target_compatible_candidate_replay_v0.json"
+    report_path = research / "B4_B8_R169_target_compatible_candidate_replay.md"
+    protocol_path = results / "B4_B8_R169_target_compatible_candidate_protocol_v0.json"
+    contract_path = benchmarks / "B4_B8_R169_target_compatible_candidate_contract_v0.json"
+    input_path = benchmarks / "B4_B8_R169_target_compatible_candidate_v0.qasm"
+    executor_path = root / "tools/b4_b8_r169_target_compatible_candidate_replay.py"
+    worker_dir = results / "B4_B8_R169_target_compatible_candidate_replay"
+    status = {
+        "result_path": str(result_path),
+        "report_path": str(report_path),
+        "protocol_path": str(protocol_path),
+        "contract_path": str(contract_path),
+        "executor_path": str(executor_path),
+        "worker_directory": str(worker_dir),
+        "result_exists": result_path.exists(),
+        "report_exists": report_path.exists(),
+        "protocol_exists": protocol_path.exists(),
+        "contract_exists": contract_path.exists(),
+        "executor_exists": executor_path.exists(),
+        "worker_directory_exists": worker_dir.exists(),
+    }
+    required = [result_path, report_path, protocol_path, contract_path, input_path, executor_path]
+    if not all(path.exists() for path in required) or not worker_dir.exists():
+        errors.append("R169 target-compatible candidate replay artifact missing")
+        return status
+
+    def payload_ok(payload: dict, hash_field: str = "payload_hash") -> bool:
+        body = dict(payload)
+        observed = body.pop(hash_field, None)
+        expected = hashlib.sha256(json.dumps(body, sort_keys=True, separators=(",", ":")).encode()).hexdigest()
+        return observed == expected
+
+    protocol = json.loads(read(protocol_path))
+    contract = json.loads(read(contract_path))
+    result = json.loads(read(result_path))
+    if not payload_ok(protocol) or protocol.get("method") != "b4_b8_r169_target_compatible_candidate_protocol_v0":
+        errors.append("R169 protocol identity or payload mismatch")
+    if not payload_ok(contract) or contract.get("contract_id") != "B4-B8-R169-target-compatible-candidate-contract-v0" or contract.get("execution_started") is not False:
+        errors.append("R169 contract identity, payload, or unopened-boundary mismatch")
+    if contract.get("protocol_payload_hash") != protocol.get("payload_hash"):
+        errors.append("R169 contract protocol binding mismatch")
+    if not payload_ok(result) or result.get("method") != "b4_b8_r169_target_compatible_candidate_replay_v0":
+        errors.append("R169 result identity or payload mismatch")
+    if result.get("status") != "new_input_candidate_replay_complete" or result.get("classification") != "new_input_candidate_replay_complete":
+        errors.append("R169 result status or classification mismatch")
+    if not result.get("preregistration", {}).get("discussion", "").startswith("https://github.com/crystal-tensor/Prometheus-plan/discussions/"):
+        errors.append("R169 preregistration discussion binding missing")
+    if result.get("preregistration", {}).get("commit") != "c4cd657":
+        errors.append("R169 preregistration commit binding mismatch")
+
+    for binding_id, binding in contract.get("source_bindings", {}).items():
+        path = root / binding.get("path", "")
+        if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest() != binding.get("sha256"):
+            errors.append(f"R169 source binding mismatch: {binding_id}")
+        if binding.get("payload_hash") and path.exists():
+            payload = json.loads(read(path))
+            if payload.get("payload_hash") != binding.get("payload_hash"):
+                errors.append(f"R169 source payload binding mismatch: {binding_id}")
+    if protocol.get("input_sha256") != hashlib.sha256(input_path.read_bytes()).hexdigest():
+        errors.append("R169 input hash mismatch")
+
+    summary = result.get("summary", {})
+    expected_summary = {
+        "profile_count": 3,
+        "replay_count": 192,
+        "yielded_candidate_count": 576,
+        "candidate_count_distribution": {"3": 192},
+        "source_return_match_count": 192,
+        "source_return_mismatch_count": 0,
+        "qiskit_calls_performed": 192,
+        "candidate_selection_performed": True,
+        "route_change_performed": False,
+        "simulation_execution_count": 0,
+        "total_simulated_shots": 0,
+        "new_credit_delta": 0,
+        "policy_changed_mapping_count": {"source_f64": 0, "compensated_fsum": 0, "exact_binary64_leaf": 0, "tie_aware_1ulp": 0},
+        "confirmed_qiskit_bug_claimed": False,
+        "numerical_remedy_claimed": False,
+        "mapping_changed_claimed": False,
+        "quantum_advantage_claimed": False,
+        "bqp_separation_claimed": False,
+        "solved_frontier_claimed": False,
+    }
+    for field, value in expected_summary.items():
+        if summary.get(field) != value:
+            errors.append(f"R169 summary {field} mismatch")
+    if result.get("requirements_passed") != 10 or result.get("requirements_failed") != 0 or len(result.get("requirements", [])) != 10:
+        errors.append("R169 requirement ledger mismatch")
+
+    protocol_profiles = {profile["profile_id"]: profile["replay_count"] for profile in protocol.get("profiles", [])}
+    manifests = []
+    for profile_id, expected_count in protocol_profiles.items():
+        path = worker_dir / f"{profile_id}.json"
+        if not path.exists():
+            errors.append(f"R169 worker manifest missing: {profile_id}")
+            continue
+        manifest = json.loads(read(path))
+        manifests.append(manifest)
+        if not payload_ok(manifest, "manifest_payload_hash"):
+            errors.append(f"R169 worker manifest payload mismatch: {profile_id}")
+        if manifest.get("profile_id") != profile_id or manifest.get("replay_count") != expected_count or len(manifest.get("replay_rows", [])) != expected_count:
+            errors.append(f"R169 worker count/profile mismatch: {profile_id}")
+        if manifest.get("input_qasm_sha256") != protocol.get("input_sha256") or manifest.get("protocol_payload_hash") != protocol.get("payload_hash"):
+            errors.append(f"R169 worker binding mismatch: {profile_id}")
+        for row in manifest.get("replay_rows", []):
+            if not payload_ok(row, "replay_payload_hash"):
+                errors.append(f"R169 replay row payload mismatch: {profile_id}")
+                break
+            replay = row.get("replay", {})
+            if row.get("candidate_event_count") != 4 or replay.get("yielded_candidate_count") != 3 or not replay.get("returned_candidate_present") or not replay.get("source_return_match"):
+                errors.append(f"R169 candidate/source invariant failed: {profile_id}")
+                break
+            if row.get("simulation_execution_count") != 0 or row.get("total_simulated_shots") != 0:
+                errors.append(f"R169 simulation invariant failed: {profile_id}")
+                break
+    if len(manifests) == len(protocol_profiles):
+        if sum(len(manifest.get("replay_rows", [])) for manifest in manifests) != 192:
+            errors.append("R169 worker aggregate replay count mismatch")
+
+    report_text = read(report_path)
+    for marker in ["target-compatible", "576", "192` / `192", "policy-change counts", "does not establish cross-input generality"]:
+        if marker not in report_text:
+            errors.append(f"R169 report boundary missing: {marker}")
+
+    manifest_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r169_target_compatible_candidate_replay_v0")),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r169_target_compatible_candidate_replay_v0")),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r169_target_compatible_candidate_replay_v0")),
+    ]
+    for label, row in manifest_rows:
+        if not row:
+            errors.append(f"{label} manifest missing R169 target-compatible replay")
+            continue
+        for field in ["result", "markdown_report", "protocol", "contract", "input", "executor", "worker_directory"]:
+            if not row.get(field) or not path_exists_from(benchmarks, row[field]):
+                errors.append(f"{label} R169 manifest missing {field}")
+        if row.get("status") != "new_input_candidate_replay_complete" or row.get("method") not in {"b4_b8_r169_target_compatible_candidate_replay_v0", "b10_t2_b4_b8_r169_target_compatible_candidate_replay_v0"}:
+            errors.append(f"{label} R169 manifest status or method mismatch")
+        for field, value in {"profile_count": 3, "replay_count": 192, "yielded_candidate_count": 576, "source_return_match_count": 192, "source_return_mismatch_count": 0, "simulation_execution_count": 0, "total_simulated_shots": 0, "new_credit_delta": 0, "requirements_passed": 10, "requirements_failed": 0}.items():
+            if row.get(field) != value:
+                errors.append(f"{label} R169 manifest {field} mismatch")
+    status.update({"status": result.get("status"), "classification": result.get("classification"), "profile_count": summary.get("profile_count"), "replay_count": summary.get("replay_count"), "yielded_candidate_count": summary.get("yielded_candidate_count"), "source_return_match_count": summary.get("source_return_match_count"), "policy_changed_mapping_count": summary.get("policy_changed_mapping_count"), "requirements_passed": result.get("requirements_passed"), "requirements_failed": result.get("requirements_failed")})
+    return status
+
+
 def audit(root: Path) -> dict:
     research = root / "research"
     benchmarks = root / "benchmarks"
@@ -42267,6 +42423,7 @@ def audit(root: Path) -> dict:
     r166_status = audit_r166(root, b4_manifest, b8_manifest, b10_manifest, errors)
     r167_candidate_free_status = audit_r167_candidate_free(root, b4_manifest, b8_manifest, b10_manifest, errors)
     r168_candidate_feasibility_status = audit_r168_candidate_feasibility(root, b4_manifest, b8_manifest, b10_manifest, errors)
+    r169_target_compatible_candidate_status = audit_r169_target_compatible_candidate_replay(root, b4_manifest, b8_manifest, b10_manifest, errors)
 
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
@@ -42626,6 +42783,7 @@ def audit(root: Path) -> dict:
             "r166_independent_candidate_verifier": r166_status,
             "r167_candidate_free_boundary": r167_candidate_free_status,
             "r168_input_target_candidate_feasibility": r168_candidate_feasibility_status,
+            "r169_target_compatible_candidate_replay": r169_target_compatible_candidate_status,
         },
         "b5": {
             "manifest": str(b5_manifest_path),
@@ -42771,6 +42929,7 @@ def audit(root: Path) -> dict:
             "r166_independent_candidate_verifier": r166_status,
             "r167_candidate_free_boundary": r167_candidate_free_status,
             "r168_input_target_candidate_feasibility": r168_candidate_feasibility_status,
+            "r169_target_compatible_candidate_replay": r169_target_compatible_candidate_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -42807,6 +42966,7 @@ def audit(root: Path) -> dict:
             "r166_independent_candidate_verifier": r166_status,
             "r167_candidate_free_boundary": r167_candidate_free_status,
             "r168_input_target_candidate_feasibility": r168_candidate_feasibility_status,
+            "r169_target_compatible_candidate_replay": r169_target_compatible_candidate_status,
             "t1_d5_observable_denominator_table": b10_t1_d5_table_status,
             "t1_d5_b3_molecular_observable_table": b10_t1_d5_b3_table_status,
             "t1_d5_b3_reaction_observable_table": b10_t1_d5_b3_reaction_table_status,
