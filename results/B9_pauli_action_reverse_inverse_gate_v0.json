@@ -1,0 +1,138 @@
+{
+  "benchmark_id": "B9",
+  "claim_boundary": {
+    "what_is_not_supported": "This is a finite computational-basis replay inverse certificate, not a complex linear operator, Hermiticity proof, Hamiltonian sum, spectral theorem, Quantum PCP/NLTS theorem, global impossibility result, BQP separation, or quantum-advantage claim.",
+    "what_is_supported": "Lean checks that each Pauli factor replay is self-inverse and that any finite Pauli term followed by its reversed factor list restores the computational-basis state and accumulated plus/minus phase."
+  },
+  "fresh_command_records": [
+    {
+      "command": [
+        "~/.elan/bin/lean",
+        "--version"
+      ],
+      "elapsed_seconds": 0.025563,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Lean (version 4.12.0, arm64-apple-darwin23.6.0, commit dc2533473114, Release)"
+    },
+    {
+      "command": [
+        "~/.elan/bin/lake",
+        "--version"
+      ],
+      "elapsed_seconds": 0.027696,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": "Lake version 5.0.0-dc25334 (Lean version 4.12.0)"
+    },
+    {
+      "command": [
+        "sh",
+        "-c",
+        "mkdir -p .lake/build/lib/B9/ClusterStabilizer && lake env lean -o .lake/build/lib/B9/ClusterStabilizer/WidthLocality.olean B9/ClusterStabilizer/WidthLocality.lean && lake env lean -o .lake/build/lib/B9/ClusterStabilizer/PauliBasisAction.olean B9/ClusterStabilizer/PauliBasisAction.lean && lake env lean -o .lake/build/lib/B9/ClusterStabilizer/PauliActionComposition.olean B9/ClusterStabilizer/PauliActionComposition.lean && lake env lean -o .lake/build/lib/B9/ClusterStabilizer/PauliActionCommutation.olean B9/ClusterStabilizer/PauliActionCommutation.lean && lake env lean -o .lake/build/lib/B9/ClusterStabilizer/PauliActionTermCommutation.olean B9/ClusterStabilizer/PauliActionTermCommutation.lean && lake env lean B9/ClusterStabilizer/PauliActionReverse.lean"
+      ],
+      "elapsed_seconds": 11.808353,
+      "returncode": 0,
+      "stderr": "",
+      "stdout": ""
+    }
+  ],
+  "linked_benchmark_id": "B10",
+  "method": "b9_pauli_action_reverse_inverse_gate_v0",
+  "model_status": "computational_basis_pauli_reverse_inverse_checked_under_pinned_lean_lake",
+  "requirements": [
+    {
+      "label": "Lean and Lake version probes return zero",
+      "passed": true,
+      "requirement_id": "R1"
+    },
+    {
+      "label": "All six B9 modules compile together",
+      "passed": true,
+      "requirement_id": "R2"
+    },
+    {
+      "label": "The source defines reverse factor-list order",
+      "passed": true,
+      "requirement_id": "R3"
+    },
+    {
+      "label": "The source checks the identity action composition boundary",
+      "passed": true,
+      "requirement_id": "R4"
+    },
+    {
+      "label": "The source checks phase-plus multiplication",
+      "passed": true,
+      "requirement_id": "R5"
+    },
+    {
+      "label": "Each Pauli factor action is self-inverse",
+      "passed": true,
+      "requirement_id": "R6"
+    },
+    {
+      "label": "The term theorem uses reverse factor order",
+      "passed": true,
+      "requirement_id": "R7"
+    },
+    {
+      "label": "The term proof is lifted inductively over the factor list",
+      "passed": true,
+      "requirement_id": "R8"
+    },
+    {
+      "label": "The checked theorem recovers the identity action and input state",
+      "passed": true,
+      "requirement_id": "R9"
+    },
+    {
+      "label": "Fresh transcript binds every source and project hash",
+      "passed": true,
+      "requirement_id": "R10"
+    },
+    {
+      "label": "The proof is finite replay semantics rather than a spectral theorem",
+      "passed": true,
+      "requirement_id": "R11"
+    },
+    {
+      "label": "The source contains no matrix or complex-amplitude machinery",
+      "passed": true,
+      "requirement_id": "R12"
+    },
+    {
+      "label": "The source does not claim Quantum PCP, NLTS, BQP, or advantage resolution",
+      "passed": true,
+      "requirement_id": "R13"
+    }
+  ],
+  "status": "pauli_action_reverse_inverse_checked_not_linear_or_spectral_proof",
+  "summary": {
+    "basis_source_sha256": "2109f0e916408e00c9d3d7916d8f2638cebaef4a31ae77b8d36b5afa4c23c1c0",
+    "bqp_separation_claimed": false,
+    "checked_reverse_inverse": true,
+    "commutation_source_sha256": "2d669fd4689944ef7c8cf4f88887c946d0f326c8b026883c956816ffc7ea8469",
+    "composition_source_sha256": "28776e0088a0461045d953c1f66012029dd550bfbad147fb10916deb7b919418",
+    "explicit_not_linear_or_spectral_proof": true,
+    "failed_requirement_ids": [],
+    "formal_theorem_proved": false,
+    "fresh_command_count": 3,
+    "fresh_no_warning": true,
+    "fresh_zero_returncode_count": 3,
+    "lakefile_sha256": "1574f1d356feccf9050b456b5568e9186e6f57d791c20386059d1b43428f4e4a",
+    "nlts_theorem_claimed": false,
+    "proof_assistant_checked": true,
+    "quantum_advantage_claimed": false,
+    "quantum_pcp_theorem_claimed": false,
+    "requirement_count": 13,
+    "requirements_failed": 0,
+    "requirements_passed": 13,
+    "source_sha256": "ba8f328ab30a8f4ae7dff0b230daeafd279fec68b0fb31a4e6e07c622777cddf",
+    "term_source_sha256": "131c96bf6f204bd861f52cacd1574cab8a6f0c0920e06905e0592aaee00bf1f6",
+    "transcript_sha256": "87b0eb779a5e127fea04d1a3c71af9480fcf6014bf8f05a07c658ceead5e95f4",
+    "validation_error_count": 0,
+    "width_source_sha256": "0b93b31c11fd62dd44f30fe5de3aa9a27b40ee16befb0c6c1617d62e8ce26e9c"
+  },
+  "workload": "B9/ClusterStabilizer/PauliActionReverse.lean"
+}

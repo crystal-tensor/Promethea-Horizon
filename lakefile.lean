@@ -15,5 +15,6 @@ lean_lib B9 where
     `B9.ClusterStabilizer.PauliBasisAction,
     `B9.ClusterStabilizer.PauliActionComposition,
     `B9.ClusterStabilizer.PauliActionCommutation,
-    `B9.ClusterStabilizer.PauliActionTermCommutation
+    `B9.ClusterStabilizer.PauliActionTermCommutation,
+    `B9.ClusterStabilizer.PauliActionReverse
   ]

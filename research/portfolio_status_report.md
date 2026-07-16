@@ -2608,6 +2608,11 @@ Overall audit: PASS
 - Term-level disjoint Pauli action-commutation checked/proof-assistant/fresh zero commands: True / True / 3
 - Term-level disjoint Pauli action-commutation validation errors: 0
 - Term-level disjoint Pauli action-commutation result/markdown exists: True / True
+- Reverse Pauli replay inverse status: pauli_action_reverse_inverse_checked_not_linear_or_spectral_proof
+- Reverse Pauli replay inverse requirements passed/failed: 13 / 0
+- Reverse Pauli replay inverse checked/proof-assistant/fresh zero commands: True / True / 3
+- Reverse Pauli replay inverse validation errors: 0
+- Reverse Pauli replay inverse result/markdown exists: True / True
 
 ## B10 BQP Boundary Graph Status
 

@@ -677,6 +677,35 @@ current_results:
     result: ../results/B9_pauli_action_term_disjoint_commutation_gate_v0.json
     transcript: ../results/B9_R102_term_disjoint_commutation_transcript.txt
     markdown_report: ../research/B9_pauli_action_term_disjoint_commutation_gate.md
+  pauli_action_reverse_inverse_gate_v0:
+    status: pauli_action_reverse_inverse_checked_not_linear_or_spectral_proof
+    method: b9_pauli_action_reverse_inverse_gate_v0
+    model_status: computational_basis_pauli_reverse_inverse_checked_under_pinned_lean_lake
+    source: B9/ClusterStabilizer/PauliActionReverse.lean
+    term_source: B9/ClusterStabilizer/PauliActionTermCommutation.lean
+    commutation_source: B9/ClusterStabilizer/PauliActionCommutation.lean
+    composition_source: B9/ClusterStabilizer/PauliActionComposition.lean
+    basis_source: B9/ClusterStabilizer/PauliBasisAction.lean
+    width_source: B9/ClusterStabilizer/WidthLocality.lean
+    fresh_command_count: 3
+    fresh_zero_returncode_count: 3
+    fresh_no_warning: true
+    requirement_count: 13
+    requirements_passed: 13
+    requirements_failed: 0
+    checked_reverse_inverse: true
+    proof_assistant_checked: true
+    formal_theorem_proved: false
+    explicit_not_linear_or_spectral_proof: true
+    quantum_pcp_theorem_claimed: false
+    nlts_theorem_claimed: false
+    bqp_separation_claimed: false
+    quantum_advantage_claimed: false
+    validation_error_count: 0
+    caveat: term_level_basis_action_reverse_inverse_only_no_linear_operator_or_hamiltonian_spectral_proof
+    result: ../results/B9_pauli_action_reverse_inverse_gate_v0.json
+    transcript: ../results/B9_R103_reverse_inverse_transcript.txt
+    markdown_report: ../research/B9_pauli_action_reverse_inverse_gate.md
 prototype_artifacts:
   local_hamiltonian_gap_lab: ../tools/b9_local_hamiltonian_gap_lab.py
   failed_gap_amplification_lemma_builder: ../tools/b9_failed_gap_amplification_lemma.py
@@ -703,4 +732,5 @@ prototype_artifacts:
   pauli_action_composition_gate: ../tools/b9_pauli_action_composition_gate.py
   pauli_action_disjoint_commutation_gate: ../tools/b9_pauli_action_disjoint_commutation_gate.py
   pauli_action_term_disjoint_commutation_gate: ../tools/b9_pauli_action_term_disjoint_commutation_gate.py
+  pauli_action_reverse_inverse_gate: ../tools/b9_pauli_action_reverse_inverse_gate.py
   prototype_notes: ../research/B9_prototype_notes.md

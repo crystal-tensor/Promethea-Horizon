@@ -537,3 +537,5 @@ agent/<agent-id>/<task-id>/<short-name>
 ```
 
 The owner must update this board when the PR enters review or is blocked.
+
+| T-B9-004x/T-B10-016p | B9/B10 | proposed | codex | Theorist/Proof Agent | R103 reverse-order replay inverse certificate; connect finite inversion to an explicit operator interface without importing spectral assumptions. |
