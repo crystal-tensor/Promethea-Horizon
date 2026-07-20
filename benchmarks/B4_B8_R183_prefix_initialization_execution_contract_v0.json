@@ -1,0 +1,280 @@
+{
+  "aggregation_rules": {
+    "H1_initialized_limb_write_reduction": "1_minus_candidate_total_over_baseline_total",
+    "H1_non_initialization_equality": "pairwise_exact_equality_for_five_declared_counters",
+    "H2_speed_success": "paired_median_ratio_at_most_0.90_after_H1_passes",
+    "H2_timing_ratio": "median_of_candidate_elapsed_over_baseline_elapsed_across_all_pairs",
+    "H3_coverage": "all_13_cells_with_16_AB_and_16_BA_pairs_each"
+  },
+  "arms": {
+    "baseline": "rust_active_limb_exact_full_width_initialized",
+    "candidate": "rust_active_limb_exact_prefix_initialized"
+  },
+  "build_output_paths_created_before_replay": [
+    "research/source_lineage/Qiskit_2_4_1_R183_prefix_init_pyext.x86_64-linux-gnu.so",
+    "research/source_lineage/Qiskit_2_4_1_R183_prefix_init_linux_x86_64_build_manifest.json",
+    "research/source_lineage/R183_prefix_init_linux_x86_64_build_logs"
+  ],
+  "claim_boundary": {
+    "bqp_separation_claimed": false,
+    "causal_bottleneck_claimed": false,
+    "hardware_result_claimed": false,
+    "initialization_dominance_claimed_before_execution": false,
+    "new_credit_delta": 0,
+    "production_qiskit_remedy_claimed": false,
+    "quantum_advantage_claimed": false,
+    "solved_frontier_claimed": false,
+    "upstream_patch_accepted": false
+  },
+  "contract_generator_binding": {
+    "path": "tools/b4_b8_r183_execution_preregister.py",
+    "sha256": "5dc6ec2a142cff002b7ee7b50feac2a6f959b78939cee72ee77fefa52b3259ab"
+  },
+  "contract_id": "B4-B8-R183-prefix-initialization-execution-contract-v0",
+  "counter_definitions": {
+    "arithmetic_limb_visit_count": "Active numerical limbs visited by score addition.",
+    "carry_extension_count": "Number of additions whose result uses more limbs than both operands.",
+    "comparison_limb_visit_count": "Active numerical limbs inspected before score comparison resolves.",
+    "destination_initialized_limb_count": "Number of destination u64 limbs explicitly initialized by leaf construction, identity, and combine.",
+    "elapsed_nanoseconds": "Wall-clock nanoseconds for the uninstrumented arm call; counter-probe time is excluded.",
+    "full_width_destination_count": "Number of score destinations whose constructor or combine initializes all 34 limbs.",
+    "leaf_construction_count": "Number of retained-binary64 score leaves constructed by the instrumented score type.",
+    "maximum_used_limb_count": "Maximum numerical limb length observed during the probe."
+  },
+  "design_contract_path": "benchmarks/B4_B8_R183_prefix_initialization_ablation_contract_v0.json",
+  "design_contract_payload_hash": "09cc7e5084b163cc2660c8b77e085bb41cd3d146be9aac147657df7429ce26b3",
+  "execution_started": false,
+  "execution_tooling_bound": true,
+  "measurement_pair_contract": {
+    "ab_pairs_per_cell": 16,
+    "arm_order_rule": "AB_on_even_pair_BA_on_odd_pair",
+    "ba_pairs_per_cell": 16,
+    "counter_determinism_group": "cell_id_arm_subcell_id",
+    "counter_probe_call_count": 832,
+    "expected_worker_count": 13,
+    "mapping_equality_required_within_and_across_arms": true,
+    "measured_pair_count": 416,
+    "measured_pairs_per_cell": 32,
+    "non_initialization_counter_equality_required": true,
+    "probe_elapsed_excluded_from_timing": true,
+    "probe_order_matches_timing_order": true,
+    "small_gap_case_schedule": "pair_index_modulo_seven_in_frozen_R181_case_order",
+    "timing_call_count": 832,
+    "total_qiskit_function_call_count": 1872,
+    "warmup_call_count": 208,
+    "warmups_per_arm_per_cell": 8,
+    "workload_cell_count": 13
+  },
+  "payload_hash": "85e246e691fe4877bd0ed105cb5cbbe700e9b5eab0015e678a1b101008988576",
+  "platform_contract": {
+    "machine": "x86_64",
+    "python": "3.12",
+    "qiskit": "2.4.1",
+    "requires_public_discussion_before_execution": true,
+    "runner": "github_hosted_ubuntu_24_04",
+    "source_commit": "0fd015a22b84c9082173597a5d2304dc0aaec08c",
+    "system": "Linux",
+    "workflow_dispatch_only": true
+  },
+  "process_environment": {
+    "MKL_NUM_THREADS": "1",
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "PYTHONHASHSEED": "0",
+    "QISKIT_PARALLEL": "FALSE",
+    "RAYON_NUM_THREADS": "1"
+  },
+  "protocol_path": "results/B4_B8_R183_prefix_initialization_ablation_protocol_v0.json",
+  "protocol_payload_hash": "9057160630b687f79a25f3c02ff45e1974d187393d06d0321297726db7255d67",
+  "public_preregistration": {
+    "created_at": "2026-07-20T20:04:15Z",
+    "discussion": "https://github.com/crystal-tensor/Prometheus-plan/discussions/276",
+    "public_design_commit": "7b98e61d5281a90ecc6721fb86d6a144e0b5207b"
+  },
+  "result_paths_must_be_absent": [
+    "research/B4_B8_R183_prefix_initialization_ablation.md",
+    "research/B4_B8_R183_independent_oracle.md",
+    "results/B4_B8_R183_prefix_initialization_replay",
+    "results/B4_B8_R183_prefix_initialization_ablation_v0.json",
+    "results/B4_B8_R183_independent_oracle_v0.json",
+    "results/B4_B8_R183_prefix_initialization_bundle_v0.json"
+  ],
+  "scientific_measurement_started": false,
+  "source_bindings": {
+    "source_001": {
+      "path": "results/B4_B8_R183_prefix_initialization_ablation_protocol_v0.json",
+      "payload_hash": "9057160630b687f79a25f3c02ff45e1974d187393d06d0321297726db7255d67",
+      "sha256": "189dcc012801e7a1d5619f7ea22990a09b6a8ed265d6d977c8eea5d42eec4952"
+    },
+    "source_002": {
+      "path": "benchmarks/B4_B8_R183_prefix_initialization_ablation_contract_v0.json",
+      "payload_hash": "09cc7e5084b163cc2660c8b77e085bb41cd3d146be9aac147657df7429ce26b3",
+      "sha256": "39dc00ac7a9e885373fa5e8d1eaf2705d18d9afe21df603fb39f43fd8a50cf2c"
+    },
+    "source_003": {
+      "path": "results/B4_B8_R181_active_limb_protocol_v0.json",
+      "payload_hash": "8393f0403e9644b06daa08935ede3c1b57c9c25dc36026a1509c4fb280c4bf5c",
+      "sha256": "18219f960cf4b74b186a01b9012ba4f81bcd7ac2b90ed336d4998c9a746de777"
+    },
+    "source_004": {
+      "path": "results/B4_B8_R182_score_cost_attribution_v0.json",
+      "payload_hash": "de7cbb2dacf90e2134764f63ae44355f87ecfe9b4416b8d0af7d2ca662a5e10b",
+      "sha256": "3f2aae5fa63c810dcb5e1aaf46988d20f888d16f54754fe981ca7bc0a4ba220f"
+    },
+    "source_005": {
+      "path": "results/B4_B8_R182_independent_cost_oracle_v0.json",
+      "payload_hash": "ab88bd4f3dbb372ab7ff752a7ca86d4f33f5b3409d09407e1523f032c579188f",
+      "sha256": "effe9f897a376151d2818745b3353ea6919a349783dc383b634a5029e25121c0"
+    },
+    "source_006": {
+      "path": "results/B4_B8_R182_score_cost_attribution_bundle_v0.json",
+      "payload_hash": "11cfa8d82b291f313d33d84bc35d30bdbd66fb34332cc71297db8d8f7d2e7faf",
+      "sha256": "34eb924cb6ca5e52412787d59666c05c7fbcf79c1c48fb8880b8c076cdda4043"
+    },
+    "source_007": {
+      "path": "tools/b4_b8_r182_score_cost_attribution_replay.py",
+      "sha256": "ee1691913324185a61bbc1db6e9462fee04a9b69455dd946b2ec25cec211e024"
+    },
+    "source_008": {
+      "path": "tools/b4_b8_r181_active_limb_replay.py",
+      "sha256": "44dc60cff08df3ac2fe9154d957fc4d6657731a67d83a85ef25c899f0f190263"
+    },
+    "source_009": {
+      "path": "tools/b4_b8_r119_private_observable_bundle_gate.py",
+      "sha256": "e68ac0edb939c95184cec421f0db079e5f885582aa332f784b29f2166476dc9c"
+    },
+    "source_010": {
+      "path": "tools/b4_b8_r126_calibration_attribution_ledger.py",
+      "sha256": "b67df474ca1724c3165b7e879d3b7cc06cf25ddd862acc3e7d34220d4103c062"
+    },
+    "source_011": {
+      "path": "tools/b4_b8_r153_independent_seed_replication_holdout.py",
+      "sha256": "6bae24c7b0e99af9dacb7cb15b6d082e197c655eb031ea044c5abb36878bb837"
+    },
+    "source_012": {
+      "path": "tools/b4_b8_r154_deterministic_automatic_replay.py",
+      "sha256": "907a66c61b21cb81b1471ee8192e2ee6794cb3cc5b12955c0123e053d18dbe3f"
+    },
+    "source_013": {
+      "path": "tools/b4_b8_r160_deterministic_error_map_remediation.py",
+      "sha256": "3a8341514bcb3141629f4f7d6eda8650172816fa1b3ac38789d57de55aca7cdb"
+    }
+  },
+  "status": "execution_tooling_bound_unopened",
+  "title": "B4/B8/B10 R183 prefix-initialization execution contract",
+  "tool_bindings": {
+    "tool_01": {
+      "path": "research/source_lineage/Qiskit_2_4_1_R183_prefix_initialization_ablation.patch",
+      "sha256": "105e7e9f197714a536f5bbd3f62f54abfafce9be62ec72df4c735db7fad9fff8"
+    },
+    "tool_02": {
+      "path": "tools/b4_b8_r183_prefix_init_replay.py",
+      "sha256": "f825f33d47ce489c9bf1bb08eb6191133f42afd2ed1ef87b59b21b99f1676d73"
+    },
+    "tool_03": {
+      "path": "tools/b4_b8_r183_independent_oracle.py",
+      "sha256": "6fe68fe2ac999bb4a67fc36c9522aee602ddfae6170a517fdd853a02ada377a8"
+    },
+    "tool_04": {
+      "path": "tools/b4_b8_r183_linux_x86_64_build.py",
+      "sha256": "e1d4c7a1e2a6195dc95590a57110f458f061988878e0e5f04b806078b01dbb17"
+    },
+    "tool_05": {
+      "path": "tools/b4_b8_r183_linux_x86_64_bundle.py",
+      "sha256": "d62b5107506586cebce52006ed1418f54769f79ae361dc8bcf64edec0c3608ae"
+    },
+    "tool_06": {
+      "path": ".github/workflows/r183-prefix-initialization-ablation-linux-x86-64.yml",
+      "sha256": "b29f364775720bc568698194ee96908075addb3874766b3510240586c509c6d0"
+    }
+  },
+  "version": 0,
+  "workload_matrix": {
+    "cell_count": 13,
+    "cells": [
+      {
+        "cell_id": "standard__r169_non_tie__native_hashset_order",
+        "dataset_id": "r169_non_tie",
+        "kind": "standard",
+        "profile_id": "native_hashset_order"
+      },
+      {
+        "cell_id": "standard__r169_non_tie__ascending_sorted_order",
+        "dataset_id": "r169_non_tie",
+        "kind": "standard",
+        "profile_id": "ascending_sorted_order"
+      },
+      {
+        "cell_id": "standard__r169_non_tie__descending_sorted_order",
+        "dataset_id": "r169_non_tie",
+        "kind": "standard",
+        "profile_id": "descending_sorted_order"
+      },
+      {
+        "cell_id": "standard__r170_path_true_tie__native_hashset_order",
+        "dataset_id": "r170_path_true_tie",
+        "kind": "standard",
+        "profile_id": "native_hashset_order"
+      },
+      {
+        "cell_id": "standard__r170_path_true_tie__ascending_sorted_order",
+        "dataset_id": "r170_path_true_tie",
+        "kind": "standard",
+        "profile_id": "ascending_sorted_order"
+      },
+      {
+        "cell_id": "standard__r170_path_true_tie__descending_sorted_order",
+        "dataset_id": "r170_path_true_tie",
+        "kind": "standard",
+        "profile_id": "descending_sorted_order"
+      },
+      {
+        "cell_id": "standard__r172_t_tree_true_tie__native_hashset_order",
+        "dataset_id": "r172_t_tree_true_tie",
+        "kind": "standard",
+        "profile_id": "native_hashset_order"
+      },
+      {
+        "cell_id": "standard__r172_t_tree_true_tie__ascending_sorted_order",
+        "dataset_id": "r172_t_tree_true_tie",
+        "kind": "standard",
+        "profile_id": "ascending_sorted_order"
+      },
+      {
+        "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+        "dataset_id": "r172_t_tree_true_tie",
+        "kind": "standard",
+        "profile_id": "descending_sorted_order"
+      },
+      {
+        "cell_id": "small-gap__ascending_f64",
+        "kind": "small-gap",
+        "mode": "ascending_f64"
+      },
+      {
+        "cell_id": "small-gap__descending_f64",
+        "kind": "small-gap",
+        "mode": "descending_f64"
+      },
+      {
+        "cell_id": "small-gap__math_fsum",
+        "kind": "small-gap",
+        "mode": "math_fsum"
+      },
+      {
+        "cell_id": "small-gap__exact_binary_fraction",
+        "kind": "small-gap",
+        "mode": "exact_binary_fraction"
+      }
+    ],
+    "small_gap_cases": [
+      "edge_0_1_m008ulp",
+      "edge_0_1_m001ulp",
+      "edge_1_0_p001ulp",
+      "edge_1_0_p008ulp",
+      "edge_1_2_m001ulp",
+      "edge_2_1_p001ulp",
+      "edge_2_1_p008ulp"
+    ]
+  }
+}

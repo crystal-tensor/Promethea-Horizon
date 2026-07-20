@@ -79,7 +79,8 @@ Current evidence includes:
 - an audit report in `research/portfolio_status_report.md`;
 - a current status page in `research/current_stage_brief.html`.
 
-The latest B4/B8/B10 step is the unopened R183 prefix-initialization
+The latest B4/B8/B10 step is the execution-bound, unopened R183
+prefix-initialization
 micro-ablation. R182 reduced exact-score arithmetic-limb visits by 52.1362%
 but produced only a `0.987547x` active/fixed median timing ratio. R183 keeps the
 same 34-limb object width, active-prefix arithmetic, mappings, and five
@@ -88,8 +89,10 @@ suffix is initialized. The frozen Linux matrix contains 13 isolated workers,
 416 same-process AB/BA pairs, 832 timing calls, 832 separate probes, and 208
 warmups. Initialized writes must fall by at least 40%; a paired median ratio
 above `0.90` rejects unused-tail initialization as the dominant source-bound
-cost. Execution remains unopened, and no production, hardware, advantage,
-BQP, solved-frontier, or new-credit claim is made.
+cost. Public Discussion #276 and design commit `7b98e61d...` now predate the
+hash-bound execution contract `85e246e6...`. Scientific execution remains
+unopened, and no production, hardware, advantage, BQP, solved-frontier, or
+new-credit claim is made.
 
 The latest B1/B7 evidence adds a source-bound local KAK invariant packet for
 the repeated `w8_21` block. An analytic, global-phase-projected derivative
