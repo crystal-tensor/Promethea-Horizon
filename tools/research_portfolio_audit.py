@@ -3817,7 +3817,7 @@ def audit_r180_r181_active_limb_transition(root: Path, errors: list[str]) -> dic
 def audit_r182_score_cost_attribution_preregistration(
     root: Path, errors: list[str]
 ) -> dict:
-    """Validate the unopened R182 cost-attribution design and source bindings."""
+    """Validate the R182 design, Linux execution, and independent oracle."""
     paths = {
         "protocol": root
         / "results/B4_B8_R182_score_cost_attribution_protocol_v0.json",
@@ -3836,6 +3836,18 @@ def audit_r182_score_cost_attribution_preregistration(
         / "research/B4_B8_R182_score_cost_attribution_execution_contract.md",
         "execution_tool": root
         / "tools/b4_b8_r182_execution_preregister.py",
+        "result": root / "results/B4_B8_R182_score_cost_attribution_v0.json",
+        "result_report": root / "research/B4_B8_R182_score_cost_attribution.md",
+        "oracle": root / "results/B4_B8_R182_independent_cost_oracle_v0.json",
+        "oracle_report": root / "research/B4_B8_R182_independent_cost_oracle.md",
+        "bundle": root
+        / "results/B4_B8_R182_score_cost_attribution_bundle_v0.json",
+        "build": root
+        / "research/source_lineage/Qiskit_2_4_1_R182_score_cost_linux_x86_64_build_manifest.json",
+        "binary": root
+        / "research/source_lineage/Qiskit_2_4_1_R182_score_cost_pyext.x86_64-linux-gnu.so",
+        "worker_dir": root
+        / "results/B4_B8_R182_score_cost_attribution_replay",
     }
     status = {f"{key}_exists": path.exists() for key, path in paths.items()}
     if not all(status.values()):
@@ -4109,12 +4121,202 @@ def audit_r182_score_cost_attribution_preregistration(
         != generator_binding.get("sha256")
     ):
         errors.append("R182 execution-contract generator binding mismatch")
-    for relative in execution.get("result_paths_must_be_absent", []):
-        if (root / relative).exists():
-            errors.append(f"R182 result exists before execution: {relative}")
-    for relative in execution.get("build_output_paths_created_before_replay", []):
-        if (root / relative).exists():
-            errors.append(f"R182 build output exists before execution: {relative}")
+    result = json.loads(read(paths["result"]))
+    oracle = json.loads(read(paths["oracle"]))
+    bundle = json.loads(read(paths["bundle"]))
+    build = json.loads(read(paths["build"]))
+    summary = result.get("summary", {})
+    classifications = result.get("hypothesis_classifications", {})
+    h1 = classifications.get("H1-full-destination-initialization", {})
+    h2 = classifications.get("H2-biguint-heap-cost", {})
+    h3 = classifications.get("H3-candidate-shape", {})
+    result_false_claims = (
+        "causal_bottleneck_claimed",
+        "production_qiskit_remedy_claimed",
+        "hardware_result_claimed",
+        "quantum_advantage_claimed",
+        "bqp_separation_claimed",
+        "solved_frontier_claimed",
+    )
+    if (
+        not payload_ok(result)
+        or result.get("payload_hash")
+        != "de7cbb2dacf90e2134764f63ae44355f87ecfe9b4416b8d0af7d2ca662a5e10b"
+        or result.get("method")
+        != "b4_b8_r182_score_cost_attribution_replay_v0"
+        or result.get("status")
+        != "cost_attribution_complete_independent_oracle_pending"
+        or result.get("protocol_payload_hash") != protocol.get("payload_hash")
+        or result.get("amendment_payload_hash") != amendment.get("payload_hash")
+        or result.get("contract_payload_hash") != execution.get("payload_hash")
+        or result.get("build_manifest_payload_hash")
+        != "5aaf1cb1127ec8cbcee351dd7f6ba20b1a841a14033bda5cd5b480cb66dd6433"
+        or result.get("preregistration", {}).get("discussion")
+        != "https://github.com/crystal-tensor/Prometheus-plan/discussions/272"
+        or result.get("preregistration", {}).get("created_at")
+        != "2026-07-20T18:00:03Z"
+        or result.get("preregistration", {}).get("commit")
+        != "44665b8dbd32df69b7066726a9b342e9c7212141"
+        or summary.get("worker_count") != 39
+        or summary.get("recorded_measurement_count") != 1248
+        or summary.get("timing_call_count") != 1248
+        or summary.get("counter_probe_call_count") != 1248
+        or summary.get("warmup_call_count") != 312
+        or summary.get("total_qiskit_function_call_count") != 2808
+        or summary.get("timing_probe_mapping_match_count") != 1248
+        or summary.get("timing_expected_match_count") != 1248
+        or summary.get("probe_expected_match_count") != 1248
+        or summary.get("counter_determinism_group_count") != 111
+        or summary.get("counter_determinism_pass_count") != 111
+        or summary.get("simulation_execution_count") != 0
+        or summary.get("total_simulated_shots") != 0
+        or result.get("requirements_passed") != 11
+        or result.get("requirements_failed") != 1
+        or result.get("requirements", {}).get("P10") is not False
+        or any(result.get(field) is not False for field in result_false_claims)
+        or result.get("new_credit_delta") != 0
+        or len(result.get("worker_artifacts", [])) != 39
+    ):
+        errors.append("R182 Linux result identity, count, or claim boundary mismatch")
+    if (
+        h1.get("classification")
+        != "full_width_initialization_or_common_cost_pressure_consistent_not_causal"
+        or h1.get("supported_under_frozen_rule") is not True
+        or not math.isclose(
+            h1.get("arithmetic_visit_reduction_fraction", math.nan),
+            0.5213615023474178,
+            rel_tol=0,
+            abs_tol=1e-15,
+        )
+        or not math.isclose(
+            h1.get("aggregate_active_to_fixed_median_time_ratio", math.nan),
+            0.9875468952826555,
+            rel_tol=0,
+            abs_tol=1e-15,
+        )
+        or h2.get("classification") != "biguint_heap_pressure_rejected"
+        or h2.get("supported_under_frozen_rule") is not False
+        or not math.isclose(
+            h2.get("spearman_rank_correlation", math.nan),
+            -0.7964207654260561,
+            rel_tol=0,
+            abs_tol=1e-15,
+        )
+        or h3.get("classification") != "cell_heterogeneity_reported"
+        or h3.get("reported_cell_count") != 13
+    ):
+        errors.append("R182 frozen hypothesis classification mismatch")
+
+    worker_row_count = 0
+    worker_manifest_pass_count = 0
+    for artifact in result.get("worker_artifacts", []):
+        path = root / artifact.get("path", "")
+        if (
+            not path.is_file()
+            or hashlib.sha256(path.read_bytes()).hexdigest()
+            != artifact.get("sha256")
+        ):
+            errors.append(f"R182 worker file mismatch: {artifact.get('path')}")
+            continue
+        worker = json.loads(read(path))
+        manifest_hash = worker.pop("manifest_hash", None)
+        if manifest_hash != canonical(worker) or manifest_hash != artifact.get(
+            "manifest_hash"
+        ):
+            errors.append(f"R182 worker manifest mismatch: {artifact.get('path')}")
+            continue
+        worker_manifest_pass_count += 1
+        for row in worker.get("replay_rows", []):
+            row_body = dict(row)
+            row_hash = row_body.pop("row_hash", None)
+            if row_hash != canonical(row_body):
+                errors.append(f"R182 worker row hash mismatch: {artifact.get('path')}")
+                break
+            worker_row_count += 1
+    if worker_manifest_pass_count != 39 or worker_row_count != 1248:
+        errors.append("R182 worker or row hash coverage mismatch")
+
+    build_accelerator = build.get("accelerator", {})
+    build_actions = build.get("github_actions", {})
+    if (
+        not payload_ok(build)
+        or build.get("payload_hash")
+        != "5aaf1cb1127ec8cbcee351dd7f6ba20b1a841a14033bda5cd5b480cb66dd6433"
+        or build.get("status")
+        != "linux_x86_64_pyext_built_and_imported_after_preregistration"
+        or build_actions.get("run_id") != "29769993097"
+        or build_actions.get("sha")
+        != "44665b8dbd32df69b7066726a9b342e9c7212141"
+        or build.get("platform", {}).get("machine") != "x86_64"
+        or build_accelerator.get("path")
+        != "research/source_lineage/Qiskit_2_4_1_R182_score_cost_pyext.x86_64-linux-gnu.so"
+        or build_accelerator.get("sha256")
+        != hashlib.sha256(paths["binary"].read_bytes()).hexdigest()
+        or build_accelerator.get("size_bytes") != paths["binary"].stat().st_size
+    ):
+        errors.append("R182 Linux build provenance mismatch")
+
+    oracle_classifications = oracle.get("recomputed_hypothesis_classifications", {})
+    if (
+        not payload_ok(oracle)
+        or oracle.get("payload_hash")
+        != "ab88bd4f3dbb372ab7ff752a7ca86d4f33f5b3409d09407e1523f032c579188f"
+        or oracle.get("status") != "independent_oracle_complete"
+        or oracle.get("source_result_payload_hash") != result.get("payload_hash")
+        or oracle.get("worker_manifest_hash_pass_count") != 39
+        or oracle.get("row_hash_pass_count") != 1248
+        or oracle.get("mapping_integrity_passed") is not True
+        or oracle.get("counter_integrity_passed") is not True
+        or not all(oracle.get("count_checks", {}).values())
+        or not all(oracle.get("result_matches", {}).values())
+        or oracle.get("recomputed_summary") != summary
+        or oracle_classifications != classifications
+        or oracle.get("requirements_passed") != 12
+        or oracle.get("requirements_failed") != 0
+        or not all(oracle.get("requirements", {}).values())
+        or any(oracle.get(field) is not False for field in result_false_claims)
+        or oracle.get("new_credit_delta") != 0
+    ):
+        errors.append("R182 independent oracle mismatch")
+
+    bundle_artifact_pass_count = 0
+    for artifact in bundle.get("artifacts", []):
+        path = root / artifact.get("path", "")
+        if (
+            path.is_file()
+            and path.stat().st_size == artifact.get("size_bytes")
+            and hashlib.sha256(path.read_bytes()).hexdigest()
+            == artifact.get("sha256")
+        ):
+            bundle_artifact_pass_count += 1
+        else:
+            errors.append(f"R182 bundle artifact mismatch: {artifact.get('path')}")
+    if (
+        not payload_ok(bundle)
+        or bundle.get("payload_hash")
+        != "11cfa8d82b291f313d33d84bc35d30bdbd66fb34332cc71297db8d8f7d2e7faf"
+        or bundle.get("status") != "linux_x86_64_bundle_complete"
+        or bundle.get("artifact_count") != 69
+        or len(bundle.get("artifacts", [])) != 69
+        or bundle_artifact_pass_count != 69
+        or bundle.get("worker_artifact_count") != 39
+        or bundle.get("source_build_payload_hash") != build.get("payload_hash")
+        or bundle.get("source_result_payload_hash") != result.get("payload_hash")
+        or bundle.get("source_oracle_payload_hash") != oracle.get("payload_hash")
+        or bundle.get("github_actions_run_url")
+        != "https://github.com/crystal-tensor/Prometheus-plan/actions/runs/29769993097"
+        or any(
+            bundle.get(field) is not False
+            for field in (
+                "hardware_result_claimed",
+                "quantum_advantage_claimed",
+                "bqp_separation_claimed",
+                "solved_frontier_claimed",
+            )
+        )
+        or bundle.get("new_credit_delta") != 0
+    ):
+        errors.append("R182 Linux bundle mismatch")
     execution_report = read(paths["execution_report"])
     if not all(
         marker in execution_report
@@ -4157,6 +4359,34 @@ def audit_r182_score_cost_attribution_preregistration(
             "total_qiskit_function_calls": measurement.get(
                 "total_qiskit_function_calls"
             ),
+            "result_status": result.get("status"),
+            "result_payload_hash": result.get("payload_hash"),
+            "measured_worker_count": summary.get("worker_count"),
+            "measured_pair_count": summary.get("recorded_measurement_count"),
+            "counter_determinism_pass_count": summary.get(
+                "counter_determinism_pass_count"
+            ),
+            "arithmetic_visit_reduction_fraction": h1.get(
+                "arithmetic_visit_reduction_fraction"
+            ),
+            "active_to_fixed_median_time_ratio": h1.get(
+                "aggregate_active_to_fixed_median_time_ratio"
+            ),
+            "biguint_allocation_timing_spearman": h2.get(
+                "spearman_rank_correlation"
+            ),
+            "h1_classification": h1.get("classification"),
+            "h2_classification": h2.get("classification"),
+            "h3_classification": h3.get("classification"),
+            "oracle_status": oracle.get("status"),
+            "oracle_payload_hash": oracle.get("payload_hash"),
+            "oracle_requirements_passed": oracle.get("requirements_passed"),
+            "worker_manifest_hash_pass_count": worker_manifest_pass_count,
+            "worker_row_hash_pass_count": worker_row_count,
+            "build_payload_hash": build.get("payload_hash"),
+            "bundle_payload_hash": bundle.get("payload_hash"),
+            "bundle_artifact_pass_count": bundle_artifact_pass_count,
+            "github_actions_run_url": bundle.get("github_actions_run_url"),
             "new_credit_delta": 0,
         }
     )

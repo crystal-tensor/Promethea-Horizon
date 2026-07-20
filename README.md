@@ -3563,6 +3563,36 @@ claim boundary. The failed run contributes zero scientific evidence and zero
 credit. Next: publish the rebound workflow, rerun the unchanged matrix, and
 retain its outcome without threshold changes.
 
+`T-B4-002dt` / `T-B8-003dx` / `T-B10-009dj-r182-result` executes that
+unchanged matrix in public Actions run `29769993097` after the full-history
+repair. The source-bound Linux build imports successfully, and 39 isolated
+workers complete 312 warmups, 1,248 uninstrumented-timing/counter-probe pairs,
+and 2,808 total Qiskit calls. Timing, probe, and expected mappings agree
+`1,248/1,248`; all `111/111` counter-determinism groups pass. Active-limb
+arithmetic visits fall by `52.1362%` relative to fixed-34, but aggregate
+active/fixed median time is `0.987547x`, only about `1.25%` faster and outside
+the frozen speed-success gate. R182 therefore supports only the narrower H1
+classification that full-width initialization or another common cost is
+consistent with masking the arithmetic reduction; it does not establish
+causality. H2 is rejected because the average-rank correlation between
+BigUint allocation pressure and the timing gap is `-0.796421`, opposite the
+preregistered positive-correlation rule. H3 reports workload heterogeneity
+across all 13 cells. Result hash `de7cbb2d...`; build hash `5aaf1cb1...`.
+
+`T-B4-002du` / `T-B8-003dy` / `T-B10-009dk-r182-oracle` independently
+recomputes the R182 evidence without importing Qiskit or the executor. The
+standard-library oracle validates `39/39` worker manifests, `1,248/1,248` row
+hashes, all eight counters, medians, timing ratios, average-rank Spearman
+correlation, corrected workload counts, and every frozen classification. It
+passes `12/12`; oracle hash `ab88bd4f...`; 69-artifact bundle hash
+`11cfa8d8...`; accelerator hash `3489d17a...`. This is a source-bound
+diagnostic that rejects one plausible bottleneck and narrows another. It is
+not a causal bottleneck proof, upstream Qiskit remedy, hardware result,
+quantum advantage, BQP separation, solved B4/B8/B10 frontier, or new credit.
+Next: isolate destination initialization from the remaining common wrapper
+and conversion costs with a preregistered micro-ablation that preserves the
+same mapping and counter-integrity checks.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific
