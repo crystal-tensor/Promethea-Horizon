@@ -1,0 +1,93 @@
+{
+  "accepted_outcomes": [
+    "localization_complete_policy_guardrail_pass",
+    "localization_complete_policy_guardrail_fail",
+    "localization_incomplete",
+    "source_trace_binding_failure"
+  ],
+  "claim_boundary": {
+    "what_is_not_supported": "undefined arithmetic, a confirmed Qiskit bug, source patch, production remedy, route improvement, hardware relevance, quantum advantage, BQP separation, solved B4/B8/B10, or new credit",
+    "what_is_supported_if_passed": "source-level combine localization on two nonisomorphic exact-tie inputs plus an exact score-level tie/non-tie guardrail"
+  },
+  "execution_started": false,
+  "first_divergence_rule": {
+    "candidate_pair": "source_f64 winner and exact_binary64_leaf first-seen winner",
+    "chain_binding": "unique final combine whose retained leaf-bit vector and result bits match the candidate",
+    "first_divergence": "first chain event whose result bits differ from the reference bits",
+    "native_addition_check": "every combine result bits must equal binary64(left + right)",
+    "prefix_order": "source event order restricted to exact labeled prefixes of the final candidate leaf vector",
+    "reference": "correctly rounded exact Fraction sum of retained binary64 leaves"
+  },
+  "formal_qiskit_call_count": 6,
+  "inputs": [
+    {
+      "degree_sequence": [
+        2,
+        2,
+        2,
+        1,
+        1
+      ],
+      "input_id": "r170_path",
+      "path": "benchmarks/B4_B8_R170_near_tie_candidate_v0.qasm",
+      "sha256": "95a926719ef49ac7e49c727b8ca1f947f66dc61f01eee9374aff50848ce28ce1",
+      "upstream_result": "results/B4_B8_R170_near_tie_candidate_replay_v0.json",
+      "upstream_result_payload_hash": "1af733839bbd9e0617256f11781c4721582531ddd92a96535a7a5dc46c2fff51",
+      "upstream_result_sha256": "86508141e8ac38371275b18597e55960b6c08dcb1e781a4148ec0ab9f9fc50c6"
+    },
+    {
+      "degree_sequence": [
+        3,
+        2,
+        1,
+        1,
+        1
+      ],
+      "input_id": "r172_t_tree",
+      "path": "benchmarks/B4_B8_R172_second_near_tie_candidate_v0.qasm",
+      "sha256": "f2dd4684d3de77fd3904d9a3c8ce29c16f5315e78ce2eb6ac632a90f4018acc9",
+      "upstream_result": "results/B4_B8_R172_second_near_tie_candidate_replay_v0.json",
+      "upstream_result_payload_hash": "4c3fa5782a467b3e4eea94c2897a6a52a7257e512704fdc4876cfb18578bd99e",
+      "upstream_result_sha256": "08f7decf871a04608805b5a56a0fc97e572272f834fe2940086c2473dd2c6410"
+    }
+  ],
+  "instrumented_binary_path": "research/source_lineage/Qiskit_2_4_1_R165_candidate_selection_accelerate.cpython-312-darwin.so",
+  "instrumented_binary_sha256": "56101c7bedbaa157c341542d18b95e60b9d37acb9f29d6305fa2f7337cb8fd69",
+  "method": "b4_b8_r173_first_divergent_combine_protocol_v0",
+  "payload_hash": "aa3e885127b34497624d2dca99b75792226f7f2031b50a41d96e02d31c8ae63d",
+  "policy_under_test": {
+    "policy_id": "exact_retained_leaf_first_seen_v0",
+    "r160_non_tie_requirement": "28/28 unique-minimum mode rows remain strict non-ties",
+    "r160_tie_requirement": "4/4 tie-baseline mode rows remain ties and stable",
+    "r170_r172_requirement": "6/6 exact-tie traces retain the first-seen exact winner",
+    "strict_order": "candidate exact Fraction total is lower than incumbent exact Fraction total",
+    "tie_rule": "retain first-seen incumbent only when exact Fraction totals are equal"
+  },
+  "profiles": [
+    {
+      "operation_order": "native",
+      "profile_id": "native_hashset_order",
+      "replay_count": 1
+    },
+    {
+      "operation_order": "ascending",
+      "profile_id": "ascending_sorted_order",
+      "replay_count": 1
+    },
+    {
+      "operation_order": "descending",
+      "profile_id": "descending_sorted_order",
+      "replay_count": 1
+    }
+  ],
+  "qiskit_version": "2.4.1",
+  "research_question": "At which source-level binary64 combine does each R170/R172 exact-tie candidate branch first diverge from the correctly rounded exact prefix, and can an exact-total policy preserve both true ties and declared non-ties?",
+  "simulation_execution_count": 0,
+  "snapshot_name": "FakeNairobiV2",
+  "source_target_id": "T-B4-002cq/T-B8-003cu/T-B10-009cg-r173",
+  "status": "preregistered_execution_unopened",
+  "title": "B4/B8/B10 R173 first divergent combine protocol",
+  "total_simulated_shots": 0,
+  "upstream_target_id": "T-B4-002cp/T-B8-003ct/T-B10-009cf-r172",
+  "version": 0
+}

@@ -3255,6 +3255,20 @@ evidence, not a production remedy, confirmed Qiskit bug, hardware result,
 quantum advantage, BQP separation, solved B4/B8/B10, or new credit. The next
 gate is source-level localization of the first divergent arithmetic operation.
 
+`T-B4-002cq` / `T-B8-003cu` / `T-B10-009cg-r173` now preregisters that
+source-level localization before formal execution. R173 crosses the R170 path
+and R172 T-tree with native, ascending, and descending operation order for six
+complete source traces. For the source-selected and exact-retained-leaf-
+selected candidate, the frozen rule identifies the first combine whose
+binary64 result differs from the correctly rounded exact sum of the retained
+binary64 prefix. Every combine must also reproduce native `left + right`.
+The exact-total, first-seen policy must preserve all six R170/R172 exact ties,
+all four R160 tie-baseline mode rows, and all 28 R160 unique-minimum non-tie
+mode rows. Protocol hash `aa3e8851...`; contract hash `a8e0eb5b...`;
+execution is unopened. This does not claim a Qiskit bug, source patch,
+production remedy, route improvement, hardware result, quantum advantage,
+BQP separation, solved B4/B8/B10, or new credit.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific
