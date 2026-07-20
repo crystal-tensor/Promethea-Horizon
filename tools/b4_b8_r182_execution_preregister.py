@@ -119,7 +119,7 @@ def report(contract: dict[str, Any]) -> str:
         [
             "# B4/B8/B10 R182 Execution Contract",
             "",
-            "- Status: `execution_tooling_bound_measurement_unopened`",
+            "- Status: `execution_tooling_rebound_after_zero_measurement_failure`",
             f"- Contract payload hash: `{contract['payload_hash']}`",
             f"- Tool bindings: `{len(contract['tool_bindings'])}`",
             f"- Source bindings: `{len(contract['source_bindings'])}`",
@@ -135,7 +135,7 @@ def report(contract: dict[str, Any]) -> str:
             "",
             "## Claim Boundary",
             "",
-            "The instrumentation patch, runner, independent oracle, Linux build, bundle tool, and public workflow are hash-bound. No build or measurement has started. This contract is not a cost result, Qiskit remedy, hardware result, quantum advantage, BQP separation, solved frontier, or new credit.",
+            "The instrumentation patch, runner, independent oracle, Linux build, bundle tool, and public workflow are hash-bound. Public run 29769244206 stopped at the ancestry guard because its depth-1 checkout omitted the public amendment commit; no source build or measured worker started. The workflow now fetches complete history so the same guard can evaluate the frozen ancestry condition. This contract is not a cost result, Qiskit remedy, hardware result, quantum advantage, BQP separation, solved frontier, or new credit.",
             "",
         ]
     )
@@ -200,9 +200,27 @@ def main() -> int:
         "title": "B4/B8/B10 R182 score-cost attribution execution contract",
         "version": 0,
         "contract_id": "B4-B8-R182-score-cost-attribution-execution-contract-v0",
-        "status": "execution_tooling_bound_measurement_unopened",
+        "status": "execution_tooling_rebound_after_zero_measurement_failure",
         "execution_tooling_bound": True,
         "execution_started": False,
+        "scientific_measurement_started": False,
+        "infrastructure_attempt_count": 1,
+        "pre_measurement_infrastructure_failures": [
+            {
+                "run_id": 29769244206,
+                "run_url": "https://github.com/crystal-tensor/Prometheus-plan/actions/runs/29769244206",
+                "runner_commit": "a58cf8f7d7e6537512068c122ad97462ffa2c92e",
+                "failed_step": "Build source-bound score-cost accelerator",
+                "failure_class": "shallow_checkout_ancestry_guard",
+                "observed_error": "fatal: Not a valid commit name 8ec24b221e2e2690ffb8c80fe73ce0e31a019a7a",
+                "source_build_started": False,
+                "measured_worker_count": 0,
+                "warmup_call_count": 0,
+                "measured_pair_count": 0,
+                "scientific_result_inferred": False,
+                "new_credit_delta": 0,
+            }
+        ],
         "protocol_path": PROTOCOL_PATH,
         "protocol_payload_hash": protocol["payload_hash"],
         "amendment_path": AMENDMENT_PATH,

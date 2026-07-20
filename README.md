@@ -3531,7 +3531,7 @@ advantage, BQP separation, solved frontier, or new credit is claimed.
 
 `T-B4-002dr` / `T-B8-003dv` / `T-B10-009dh-r182-execution-contract`
 now binds the complete R182 instrument chain while keeping measurement
-unopened. Contract `67cdd1e1...` seals 52 source artifacts and six execution
+unopened. The original contract `67cdd1e1...` sealed 52 source artifacts and six execution
 artifacts: the cumulative Qiskit 2.4.1 Rust patch, replay runner, independent
 standard-library oracle, Linux x86-64 builder, evidence bundler, and public
 Actions workflow. The matrix contains 13 cells for each of three exact
@@ -3548,6 +3548,20 @@ artifacts remain absent. Next: run the exact public Linux workflow and retain
 the frozen outcome whether it supports or rejects H1/H2/H3. No production
 remedy, hardware result, quantum advantage, BQP separation, solved frontier,
 or new credit is claimed.
+
+`T-B4-002ds` / `T-B8-003dw` / `T-B10-009di-r182-premeasurement-rebind`
+records the first public execution attempt without mistaking an infrastructure
+failure for a scientific result. Actions run `29769244206` installed every
+pinned dependency, then the source builder's ancestry guard rejected the
+depth-1 checkout because commit `8ec24b22...` was absent from local history.
+No source build, measured worker, warmup, timing/probe pair, oracle, or cost
+classification started. The rebound contract `0d8bc8e7...` changes only the
+workflow checkout to `fetch-depth: 0`, binds workflow hash `a4e3f2bb...`, and
+retains the same 13 cells, three policies, 39 workers, 1,248 paired
+measurements, 312 warmups, 2,808 Qiskit calls, hypotheses, thresholds, and
+claim boundary. The failed run contributes zero scientific evidence and zero
+credit. Next: publish the rebound workflow, rerun the unchanged matrix, and
+retain its outcome without threshold changes.
 
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all

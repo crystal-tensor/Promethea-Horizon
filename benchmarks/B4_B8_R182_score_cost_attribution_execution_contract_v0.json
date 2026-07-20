@@ -43,7 +43,7 @@
   },
   "contract_generator_binding": {
     "path": "tools/b4_b8_r182_execution_preregister.py",
-    "sha256": "29512753fefbb1a64435bcfb23f1b54f6c16a23c57d0f8ae99ef8f266c417fdb"
+    "sha256": "0203057176edda3e44bc25512f7c3f7dbd44efcfc5d17e825be51d231ba5c8af"
   },
   "contract_id": "B4-B8-R182-score-cost-attribution-execution-contract-v0",
   "counter_definitions": {
@@ -61,6 +61,7 @@
   "design_contract_payload_hash": "065799ba197dc8cd81a7138b1e821848540fe7f1d559da3f26fa1f1e604b700a",
   "execution_started": false,
   "execution_tooling_bound": true,
+  "infrastructure_attempt_count": 1,
   "measurement_pair_contract": {
     "cells_per_policy": 13,
     "counter_determinism_group": "cell_id_policy_subcell_id",
@@ -83,7 +84,7 @@
     "warmups_per_cell_policy": 8,
     "warmups_per_policy": 104
   },
-  "payload_hash": "67cdd1e157f5d5d1b0f2cd612ecef7711a0bed659b7bb9b6f3ae98410ab52eeb",
+  "payload_hash": "0d8bc8e7168ac2057dd42cd332e1678191785d09cb2b6e8fbf7e4031b9a56ba9",
   "platform_contract": {
     "machine": "x86_64",
     "python": "3.12",
@@ -98,6 +99,22 @@
     "rust_biguint_exact_retained_binary64",
     "rust_fixed_exact_retained_binary64",
     "rust_active_limb_exact_retained_binary64"
+  ],
+  "pre_measurement_infrastructure_failures": [
+    {
+      "failed_step": "Build source-bound score-cost accelerator",
+      "failure_class": "shallow_checkout_ancestry_guard",
+      "measured_pair_count": 0,
+      "measured_worker_count": 0,
+      "new_credit_delta": 0,
+      "observed_error": "fatal: Not a valid commit name 8ec24b221e2e2690ffb8c80fe73ce0e31a019a7a",
+      "run_id": 29769244206,
+      "run_url": "https://github.com/crystal-tensor/Prometheus-plan/actions/runs/29769244206",
+      "runner_commit": "a58cf8f7d7e6537512068c122ad97462ffa2c92e",
+      "scientific_result_inferred": false,
+      "source_build_started": false,
+      "warmup_call_count": 0
+    }
   ],
   "process_environment": {
     "MKL_NUM_THREADS": "1",
@@ -123,6 +140,7 @@
     "results/B4_B8_R182_independent_cost_oracle_v0.json",
     "results/B4_B8_R182_score_cost_attribution_bundle_v0.json"
   ],
+  "scientific_measurement_started": false,
   "source_bindings": {
     "source_001": {
       "path": "results/B4_B8_R182_score_cost_attribution_protocol_v0.json",
@@ -361,7 +379,7 @@
       "sha256": "8e6bf20248a11dea551d1d344a34da00780c1c3649c2ec77e3113c6e35de12ff"
     }
   },
-  "status": "execution_tooling_bound_measurement_unopened",
+  "status": "execution_tooling_rebound_after_zero_measurement_failure",
   "title": "B4/B8/B10 R182 score-cost attribution execution contract",
   "tool_bindings": {
     "tool_01": {
@@ -386,7 +404,7 @@
     },
     "tool_06": {
       "path": ".github/workflows/r182-score-cost-attribution-linux-x86-64.yml",
-      "sha256": "c7d53fe9f34b3454ebed9b14d84d3e970c4dfb9f5157b25d33316f77878f62ca"
+      "sha256": "a4e3f2bb9ac6c19e459f0551ea09d0327f9fb5695ec1d7033d6143abd358881b"
     }
   },
   "version": 0,

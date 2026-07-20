@@ -4003,6 +4003,9 @@ def audit_r182_score_cost_attribution_preregistration(
     public = execution.get("public_preregistration", {})
     allocation = execution.get("allocator_instrumentation_boundary", {})
     execution_claims = execution.get("claim_boundary", {})
+    infrastructure_failures = execution.get(
+        "pre_measurement_infrastructure_failures", []
+    )
     expected_tool_paths = {
         "research/source_lineage/Qiskit_2_4_1_R182_score_cost_attribution.patch",
         "tools/b4_b8_r182_score_cost_attribution_replay.py",
@@ -4017,13 +4020,27 @@ def audit_r182_score_cost_attribution_preregistration(
     if (
         not payload_ok(execution)
         or execution.get("payload_hash")
-        != "67cdd1e157f5d5d1b0f2cd612ecef7711a0bed659b7bb9b6f3ae98410ab52eeb"
+        != "0d8bc8e7168ac2057dd42cd332e1678191785d09cb2b6e8fbf7e4031b9a56ba9"
         or execution.get("contract_id")
         != "B4-B8-R182-score-cost-attribution-execution-contract-v0"
         or execution.get("status")
-        != "execution_tooling_bound_measurement_unopened"
+        != "execution_tooling_rebound_after_zero_measurement_failure"
         or execution.get("execution_tooling_bound") is not True
         or execution.get("execution_started") is not False
+        or execution.get("scientific_measurement_started") is not False
+        or execution.get("infrastructure_attempt_count") != 1
+        or len(infrastructure_failures) != 1
+        or infrastructure_failures[0].get("run_id") != 29769244206
+        or infrastructure_failures[0].get("runner_commit")
+        != "a58cf8f7d7e6537512068c122ad97462ffa2c92e"
+        or infrastructure_failures[0].get("failure_class")
+        != "shallow_checkout_ancestry_guard"
+        or infrastructure_failures[0].get("source_build_started") is not False
+        or infrastructure_failures[0].get("measured_worker_count") != 0
+        or infrastructure_failures[0].get("warmup_call_count") != 0
+        or infrastructure_failures[0].get("measured_pair_count") != 0
+        or infrastructure_failures[0].get("scientific_result_inferred") is not False
+        or infrastructure_failures[0].get("new_credit_delta") != 0
         or execution.get("protocol_payload_hash") != protocol.get("payload_hash")
         or execution.get("amendment_payload_hash") != amendment.get("payload_hash")
         or execution.get("design_contract_payload_hash")
@@ -4102,11 +4119,11 @@ def audit_r182_score_cost_attribution_preregistration(
     if not all(
         marker in execution_report
         for marker in (
-            "execution_tooling_bound_measurement_unopened",
+            "execution_tooling_rebound_after_zero_measurement_failure",
             "`1248` frozen measurements",
             "`39` isolated workers",
             "`2808` total Qiskit function calls",
-            "No build or measurement has started",
+            "no source build or measured worker started",
         )
     ):
         errors.append("R182 execution-contract report boundary missing")
