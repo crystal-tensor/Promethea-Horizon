@@ -3581,6 +3581,32 @@ current_results:
     executor: ../tools/b4_b8_r175_independent_rust_exact_oracle.py
     source_result: ../results/B4_B8_R175_rust_exact_score_v0.json
     source_adjudication: ../research/B4_B8_R175_result_adjudication.md
+  b4_b8_r176_fixed_superaccumulator_protocol_v0:
+    status: preregistered_unopened
+    method: b4_b8_r176_fixed_superaccumulator_protocol_v0
+    source_target_id: T-B4-002cz/T-B8-003dd/T-B10-009cp-r176-protocol
+    upstream_target_id: T-B4-002cx/T-B8-003db/T-B10-009cn-r175-result
+    policies: [source_f64, rust_biguint_exact_retained_binary64,
+      rust_fixed_exact_retained_binary64]
+    fixed_limb_count: 34
+    fixed_available_bits: 2176
+    fixed_required_bits: 2162
+    worker_count: 39
+    recorded_call_count: 2400
+    warmup_call_count: 624
+    maximum_cell_fixed_to_source_ratio: 3.0
+    maximum_aggregate_fixed_to_source_ratio: 2.5
+    maximum_aggregate_fixed_to_biguint_ratio: 0.9
+    maximum_worker_fixed_to_source_peak_rss_ratio: 1.25
+    formal_execution_started: false
+    simulation_execution_count: 0
+    total_simulated_shots: 0
+    new_credit_delta: 0
+    protocol: ../results/B4_B8_R176_fixed_superaccumulator_protocol_v0.json
+    contract: B4_B8_R176_fixed_superaccumulator_contract_v0.json
+    build_manifest: ../research/source_lineage/Qiskit_2_4_1_R176_fixed_superaccumulator_build_manifest.json
+    executor: ../tools/b4_b8_r176_fixed_superaccumulator_replay.py
+    independent_oracle: ../tools/b4_b8_r176_independent_fixed_accumulator_oracle.py
   prototype_artifacts:
   output_invariant_verifier: ../tools/b8_output_invariant_verifier.py
   adaptive_leakage_spoofer: ../tools/b8_adaptive_spoofer_leakage.py

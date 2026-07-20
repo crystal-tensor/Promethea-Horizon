@@ -3351,6 +3351,23 @@ rerun was selected, and credit remains `0`. R176 must preregister a more
 efficient fixed-width or exponent-normalized exact accumulator and preserve
 the entire correctness matrix before a production proposal can reopen.
 
+`T-B4-002cz` / `T-B8-003dd` / `T-B10-009cp-r176-protocol` now freezes the
+fixed-width route before formal execution. R176 keeps the source f64 and R175
+`BigUint` entries unchanged, then adds a 34-limb stack-resident exact binary64
+superaccumulator. The bound is explicit: one finite leaf reaches bit 2097 on
+the `2^-1074` grid; at most `2^64-1` addressable leaves require 2162 bits; 34
+limbs provide 2176 bits. Three Rust unit tests match decoding, addition,
+ordering, and infinity behavior against `BigUint`. Four pre-registration smoke
+cases preserve R169 and reproduce the R170/R172/R160 exact repairs. The frozen
+matrix contains 39 isolated workers, 624 warmups, and 2,400 recorded calls
+across source, BigUint, and fixed policies. Fixed/source limits remain 3.0 per
+cell, 2.5 aggregate, and 1.25 process RSS; R176 additionally requires an
+aggregate fixed/BigUint median-time ratio at most 0.90. Protocol hash
+`cc7563fe...`; contract hash `152699e5...`; execution is unopened. This is an
+experimental source-bound optimization, not an upstream patch, production
+remedy, confirmed bug, hardware result, quantum advantage, BQP separation,
+solved frontier, or new credit.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

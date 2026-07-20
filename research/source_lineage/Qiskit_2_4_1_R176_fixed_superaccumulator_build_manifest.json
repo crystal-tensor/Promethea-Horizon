@@ -1,0 +1,59 @@
+{
+  "accelerator": {
+    "path": "research/source_lineage/Qiskit_2_4_1_R176_fixed_superaccumulator_accelerate.cpython-312-darwin.so",
+    "platform": "macOS arm64 / CPython 3.12 extension-module build",
+    "sha256": "0c9614cd034d8621047f3bc78702695eea2f448d8a84fabce4729fadfbcdf5ea",
+    "size_bytes": 16013680
+  },
+  "build_checks": [
+    {
+      "command": "cargo fmt --all -- --check",
+      "returncode": 0
+    },
+    {
+      "command": "cargo check -p qiskit-transpiler --lib",
+      "returncode": 0
+    },
+    {
+      "command": "cargo test -p qiskit-transpiler --lib r176_fixed_exact_score_tests",
+      "returncode": 0,
+      "tests_failed": 0,
+      "tests_passed": 3
+    },
+    {
+      "command": "git diff --check",
+      "returncode": 0
+    },
+    {
+      "command": "cargo rustc --lib --manifest-path crates/pyext/Cargo.toml --release --features cache_pygates,pyo3/extension-module --crate-type cdylib",
+      "returncode": 0
+    }
+  ],
+  "official_source": {
+    "commit": "0fd015a22b84c9082173597a5d2304dc0aaec08c",
+    "release": "2.4.1",
+    "repository": "https://github.com/Qiskit/qiskit"
+  },
+  "packaging_note": "The recorded CPython extension comes from the successful direct cargo rustc release link and is loaded through an isolated Qiskit package overlay.",
+  "patch": {
+    "path": "research/source_lineage/Qiskit_2_4_1_R176_fixed_superaccumulator.patch",
+    "sha256": "822b44665b46a31c1fc1972ff616fbcbc0933140c563a1023a2fc0487e26be25"
+  },
+  "patched_source_hashes": {
+    "crates/transpiler/Cargo.toml": "0e04369fa263fc8f12495bb091c16858c077b216bf3dad7324a59a95b7a7fa26",
+    "crates/transpiler/src/passes/vf2/vf2_layout.rs": "ed3918f3203615943092422a96dd65d828791971187bb732b2dce962b6eade3b"
+  },
+  "payload_hash": "5e227aaa471d25aa8bcaa5c9d302d65cc14d3ca1fca05184c45be65b9fe215e6",
+  "pre_registration_smoke": {
+    "formal_matrix_executed": false,
+    "formal_performance_evidence_collected": false,
+    "new_entry_point_imported": true,
+    "r160_single_small_gap_biguint_fixed_agree_and_repair_source": true,
+    "r169_source_biguint_fixed_agree": true,
+    "r170_biguint_fixed_agree_and_repair_source": true,
+    "r172_biguint_fixed_agree_and_repair_source": true
+  },
+  "status": "compiled_pre_registration_build",
+  "title": "Qiskit 2.4.1 R176 fixed-superaccumulator build manifest",
+  "version": 0
+}
