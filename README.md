@@ -3333,6 +3333,24 @@ entry point, not an upstream-accepted or production Qiskit patch, confirmed
 bug, broad route-quality result, hardware evidence, quantum advantage, BQP
 separation, solved B4/B8/B10, or new credit.
 
+`T-B4-002cx` / `T-B8-003db` / `T-B10-009cn-r175-result` now records the
+unchanged frozen matrix as a rejection at requirements `13/14`. Correctness
+passes: source f64 reproduces `800/800` expected outcomes, the compiled exact
+entry preserves R169 on `192/192`, repairs R170 and R172 on `192/192` each,
+and repairs all `224/224` R160 sub-ULP wrong winners spanning `0.03125` to
+`0.5 ULP`. The process-RSS ratio passes at `1.018053`, but P10 fails because
+the aggregate exact/source median-time ratio is `2.543563` against `2.5` and
+the worst frozen cell is `3.734856` against `3.0`. A Qiskit-free independent
+oracle validates `26/26` worker hashes, `1,600/1,600` row hashes, all 56 case
+hashes, and every standard and small-gap outcome; it remains `11/12` because
+it inherits the source result's P10 rejection. A post-run adjudication retains
+the raw result unchanged, identifies one unconditional generated sentence
+that incorrectly says the timing gate passed, and gives precedence to the
+structured status and requirement ledger. No threshold was changed, no R175
+rerun was selected, and credit remains `0`. R176 must preregister a more
+efficient fixed-width or exponent-normalized exact accumulator and preserve
+the entire correctness matrix before a production proposal can reopen.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific

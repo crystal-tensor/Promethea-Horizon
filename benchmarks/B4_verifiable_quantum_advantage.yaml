@@ -3411,6 +3411,83 @@ current_results:
     markdown_report: ../research/B4_B8_R174_independent_exact_score_oracle.md
     executor: ../tools/b4_b8_r174_independent_exact_score_oracle.py
     source_result: ../results/B4_B8_R174_exact_score_comparator_v0.json
+  b4_b8_r175_rust_exact_score_v0:
+    status: integrated_rust_exact_score_rejected_on_frozen_matrix
+    method: b4_b8_r175_rust_exact_score_v0
+    source_target_id: T-B4-002cx/T-B8-003db/T-B10-009cn-r175-result
+    upstream_target_id: T-B4-002cw/T-B8-003da/T-B10-009cm-r175-protocol
+    worker_count: 26
+    recorded_call_count: 1600
+    warmup_call_count: 416
+    qiskit_calls_performed: 2016
+    source_expected_match_count: 800
+    exact_expected_match_count: 800
+    r169_exact_preservation_count: 192
+    r170_exact_repair_count: 192
+    r172_exact_repair_count: 192
+    small_gap_source_prior_wrong_winner_reproduction_count: 224
+    small_gap_exact_repair_count: 224
+    small_gap_minimum_ulp_ratio: 0.03125
+    small_gap_maximum_ulp_ratio: 0.5
+    aggregate_exact_to_source_median_time_ratio: 2.5435627081021086
+    maximum_cell_exact_to_source_median_time_ratio: 3.7348561515107708
+    maximum_worker_exact_to_source_peak_rss_ratio: 1.0180527696343158
+    performance_gate_passed: false
+    memory_gate_passed: true
+    upstream_patch_accepted: false
+    production_qiskit_remedy_claimed: false
+    qiskit_bug_claimed: false
+    hardware_result_claimed: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    solved_frontier_claimed: false
+    new_credit_delta: 0
+    requirements_passed: 13
+    requirements_failed: 1
+    failed_requirement_ids: [P10]
+    result: ../results/B4_B8_R175_rust_exact_score_v0.json
+    markdown_report: ../research/B4_B8_R175_rust_exact_score.md
+    adjudication: ../research/B4_B8_R175_result_adjudication.md
+    protocol: ../results/B4_B8_R175_rust_exact_score_protocol_v0.json
+    contract: B4_B8_R175_rust_exact_score_contract_v0.json
+    executor: ../tools/b4_b8_r175_rust_exact_score_replay.py
+  b4_b8_r175_independent_rust_exact_oracle_v0:
+    status: independent_rust_exact_score_oracle_failed
+    method: b4_b8_r175_independent_rust_exact_oracle_v0
+    source_target_id: T-B4-002cy/T-B8-003dc/T-B10-009co-r175-oracle
+    upstream_target_id: T-B4-002cx/T-B8-003db/T-B10-009cn-r175-result
+    worker_hashes_valid: 26
+    worker_artifacts_match: 26
+    row_hashes_valid: 1600
+    case_hashes_valid: 56
+    standard_outcomes_reproduced: 1152
+    small_gap_oracle_count: 28
+    small_gap_oracle_payload_matches: 56
+    small_gap_outcomes_reproduced: 448
+    performance_cell_count: 37
+    memory_pair_count: 13
+    summary_matches: true
+    qiskit_imported: false
+    r175_executor_imported: false
+    qiskit_calls_performed: 0
+    simulation_execution_count: 0
+    total_simulated_shots: 0
+    upstream_patch_accepted: false
+    production_qiskit_remedy_claimed: false
+    qiskit_bug_claimed: false
+    hardware_result_claimed: false
+    quantum_advantage_claimed: false
+    bqp_separation_claimed: false
+    solved_frontier_claimed: false
+    new_credit_delta: 0
+    requirements_passed: 11
+    requirements_failed: 1
+    failed_requirement_ids: [P10]
+    result: ../results/B4_B8_R175_independent_rust_exact_oracle_v0.json
+    markdown_report: ../research/B4_B8_R175_independent_rust_exact_oracle.md
+    executor: ../tools/b4_b8_r175_independent_rust_exact_oracle.py
+    source_result: ../results/B4_B8_R175_rust_exact_score_v0.json
+    source_adjudication: ../research/B4_B8_R175_result_adjudication.md
   toy_hidden_trap_protocol_sim_v0:
     status: toy_statistical_protocol
     model_status: toy_statistical_protocol_not_quantum_advantage_claim

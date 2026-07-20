@@ -2318,6 +2318,275 @@ def audit_r174_exact_score_comparator(
     return status
 
 
+def audit_r175_rust_exact_score(
+    root: Path,
+    b4_manifest: dict,
+    b8_manifest: dict,
+    b10_manifest: dict,
+    errors: list[str],
+) -> dict:
+    """Validate R175's compiled exact-score rejection and independent audit."""
+    from datetime import datetime
+    from statistics import median
+
+    paths = {
+        "protocol": root / "results/B4_B8_R175_rust_exact_score_protocol_v0.json",
+        "contract": root / "benchmarks/B4_B8_R175_rust_exact_score_contract_v0.json",
+        "result": root / "results/B4_B8_R175_rust_exact_score_v0.json",
+        "report": root / "research/B4_B8_R175_rust_exact_score.md",
+        "adjudication": root / "research/B4_B8_R175_result_adjudication.md",
+        "oracle_result": root / "results/B4_B8_R175_independent_rust_exact_oracle_v0.json",
+        "oracle_report": root / "research/B4_B8_R175_independent_rust_exact_oracle.md",
+        "preregister": root / "tools/b4_b8_r175_rust_exact_score_preregister.py",
+        "executor": root / "tools/b4_b8_r175_rust_exact_score_replay.py",
+        "oracle_executor": root / "tools/b4_b8_r175_independent_rust_exact_oracle.py",
+        "build_manifest": root / "research/source_lineage/Qiskit_2_4_1_R175_rust_exact_score_build_manifest.json",
+        "patch": root / "research/source_lineage/Qiskit_2_4_1_R175_rust_exact_score.patch",
+        "accelerator": root / "research/source_lineage/Qiskit_2_4_1_R175_rust_exact_score_accelerate.cpython-312-darwin.so",
+    }
+    status = {f"{key}_path": str(path) for key, path in paths.items()}
+    status.update({f"{key}_exists": path.exists() for key, path in paths.items()})
+    if not all(path.exists() for path in paths.values()):
+        errors.append("R175 Rust exact-score artifact missing")
+        return status
+
+    def canonical(value: object) -> str:
+        return hashlib.sha256(
+            json.dumps(value, sort_keys=True, separators=(",", ":"), ensure_ascii=True).encode()
+        ).hexdigest()
+
+    def payload_ok(payload: dict, field: str = "payload_hash") -> bool:
+        body = dict(payload)
+        observed = body.pop(field, None)
+        return observed == canonical(body)
+
+    protocol = json.loads(read(paths["protocol"]))
+    contract = json.loads(read(paths["contract"]))
+    result = json.loads(read(paths["result"]))
+    oracle = json.loads(read(paths["oracle_result"]))
+    build = json.loads(read(paths["build_manifest"]))
+    identities = [
+        (protocol, "b4_b8_r175_rust_exact_score_protocol_v0", "protocol"),
+        (result, "b4_b8_r175_rust_exact_score_v0", "result"),
+        (oracle, "b4_b8_r175_independent_rust_exact_oracle_v0", "oracle"),
+    ]
+    for payload, expected_method, label in identities:
+        if not payload_ok(payload) or payload.get("method") != expected_method:
+            errors.append(f"R175 {label} identity or payload mismatch")
+    if not payload_ok(build) or build.get("payload_hash") != "fbac9d2aafc2f45a931ac3218dcf044c0d1051a9620cca0887d63d045535b430":
+        errors.append("R175 build manifest payload mismatch")
+    if (
+        build.get("official_source", {}).get("commit") != "0fd015a22b84c9082173597a5d2304dc0aaec08c"
+        or build.get("patch", {}).get("sha256") != hashlib.sha256(paths["patch"].read_bytes()).hexdigest()
+        or build.get("accelerator", {}).get("sha256") != hashlib.sha256(paths["accelerator"].read_bytes()).hexdigest()
+        or build.get("accelerator", {}).get("size_bytes") != paths["accelerator"].stat().st_size
+        or any(row.get("returncode") != 0 for row in build.get("build_checks", []))
+    ):
+        errors.append("R175 compiled source lineage or build check mismatch")
+
+    if (
+        not payload_ok(contract)
+        or contract.get("contract_id") != "B4-B8-R175-rust-exact-score-contract-v0"
+        or contract.get("execution_started") is not False
+        or contract.get("protocol_payload_hash") != protocol.get("payload_hash")
+    ):
+        errors.append("R175 contract identity, payload, or unopened boundary mismatch")
+    for section in ("source_bindings", "tool_bindings"):
+        for binding_id, binding in contract.get(section, {}).items():
+            path = root / binding.get("path", "")
+            if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest() != binding.get("sha256"):
+                errors.append(f"R175 {section} mismatch: {binding_id}")
+
+    expected_preregistration = {
+        "commit": "340a80b4",
+        "discussion": "https://github.com/crystal-tensor/Prometheus-plan/discussions/262",
+        "created_at": "2026-07-20T13:47:44Z",
+    }
+    if result.get("preregistration") != expected_preregistration or oracle.get("preregistration") != expected_preregistration:
+        errors.append("R175 public preregistration binding mismatch")
+
+    summary = result.get("summary", {})
+    expected_summary = {
+        "worker_count": 26,
+        "process_instance_uuid_count": 26,
+        "workers_started_after_preregistration": 26,
+        "recorded_call_count": 1600,
+        "warmup_call_count": 416,
+        "qiskit_calls_performed": 2016,
+        "source_expected_match_count": 800,
+        "exact_expected_match_count": 800,
+        "r169_exact_preservation_count": 192,
+        "r170_exact_repair_count": 192,
+        "r172_exact_repair_count": 192,
+        "small_gap_source_prior_wrong_winner_reproduction_count": 224,
+        "small_gap_exact_repair_count": 224,
+        "small_gap_minimum_ulp_ratio": 0.03125,
+        "small_gap_maximum_ulp_ratio": 0.5,
+        "performance_cell_count": 37,
+        "memory_pair_count": 13,
+        "simulation_execution_count": 0,
+        "total_simulated_shots": 0,
+        "upstream_patch_accepted": False,
+        "production_qiskit_remedy_claimed": False,
+        "confirmed_qiskit_bug_claimed": False,
+        "route_quality_improvement_claimed": False,
+        "hardware_result_claimed": False,
+        "quantum_advantage_claimed": False,
+        "bqp_separation_claimed": False,
+        "solved_frontier_claimed": False,
+        "new_credit_delta": 0,
+    }
+    failed_requirements = [row.get("requirement_id") for row in result.get("requirements", []) if not row.get("passed")]
+    if (
+        result.get("status") != "integrated_rust_exact_score_rejected_on_frozen_matrix"
+        or result.get("classification") != "bounded_compiled_comparator_integration_failed"
+        or result.get("requirements_passed") != 13
+        or result.get("requirements_failed") != 1
+        or failed_requirements != ["P10"]
+    ):
+        errors.append("R175 result status or requirement ledger mismatch")
+    for field, value in expected_summary.items():
+        if summary.get(field) != value:
+            errors.append(f"R175 result summary {field} mismatch")
+
+    artifacts = result.get("worker_artifacts", [])
+    manifests = []
+    rows = []
+    case_summaries = []
+    created_unix = int(datetime.fromisoformat(expected_preregistration["created_at"].replace("Z", "+00:00")).timestamp())
+    for artifact in artifacts:
+        path = root / artifact.get("path", "")
+        if not path.exists() or hashlib.sha256(path.read_bytes()).hexdigest() != artifact.get("sha256"):
+            errors.append(f"R175 worker artifact hash mismatch: {artifact.get('path')}")
+            continue
+        manifest = json.loads(read(path))
+        if not payload_ok(manifest, "manifest_hash") or manifest.get("manifest_hash") != artifact.get("manifest_hash"):
+            errors.append(f"R175 worker manifest hash mismatch: {artifact.get('path')}")
+        if manifest.get("accelerator_sha256") != result.get("accelerator_sha256") or manifest.get("started_at_unix", 0) < created_unix:
+            errors.append(f"R175 worker lineage or start boundary mismatch: {artifact.get('path')}")
+        for row in manifest.get("replay_rows", []):
+            if not payload_ok(row, "row_hash"):
+                errors.append(f"R175 worker row hash mismatch: {artifact.get('path')}")
+        for row in manifest.get("case_summaries", []):
+            if not payload_ok(row, "case_summary_hash"):
+                errors.append(f"R175 case summary hash mismatch: {artifact.get('path')}")
+        manifests.append(manifest)
+        rows.extend(manifest.get("replay_rows", []))
+        case_summaries.extend(manifest.get("case_summaries", []))
+    if (
+        len(artifacts) != 26
+        or len(manifests) != 26
+        or len(rows) != 1600
+        or len(case_summaries) != 56
+        or canonical(rows) != result.get("row_set_hash")
+        or len({row.get("process_instance_uuid") for row in manifests}) != 26
+    ):
+        errors.append("R175 worker, row, case, or process set mismatch")
+
+    source_times = [row["elapsed_ns"] for row in rows if row.get("policy") == "source_f64"]
+    exact_times = [row["elapsed_ns"] for row in rows if row.get("policy") == "rust_exact_retained_binary64"]
+    aggregate_ratio = median(exact_times) / median(source_times)
+    cell_ratios = [row.get("exact_to_source_median_ratio") for row in result.get("performance_cells", [])]
+    rss_ratios = [row.get("exact_to_source_peak_rss_ratio") for row in result.get("memory_pairs", [])]
+    thresholds = protocol.get("performance_thresholds", {})
+    if (
+        len(source_times) != 800
+        or len(exact_times) != 800
+        or len(cell_ratios) != 37
+        or len(rss_ratios) != 13
+        or not math.isclose(aggregate_ratio, summary.get("aggregate_exact_to_source_median_time_ratio", -1), rel_tol=0, abs_tol=1e-15)
+        or not math.isclose(max(cell_ratios), summary.get("maximum_cell_exact_to_source_median_time_ratio", -1), rel_tol=0, abs_tol=1e-15)
+        or not math.isclose(max(rss_ratios), summary.get("maximum_worker_exact_to_source_peak_rss_ratio", -1), rel_tol=0, abs_tol=1e-15)
+        or aggregate_ratio <= thresholds.get("maximum_aggregate_median_time_ratio", 0)
+        or max(cell_ratios) <= thresholds.get("maximum_cell_median_time_ratio", 0)
+        or max(rss_ratios) > thresholds.get("maximum_worker_peak_rss_ratio", 0)
+    ):
+        errors.append("R175 recomputed timing or memory rejection boundary mismatch")
+
+    oracle_summary = oracle.get("summary", {})
+    oracle_expected = {
+        "worker_hashes_valid": 26,
+        "worker_artifacts_match": 26,
+        "row_hashes_valid": 1600,
+        "case_hashes_valid": 56,
+        "standard_outcomes_reproduced": 1152,
+        "small_gap_oracle_count": 28,
+        "small_gap_oracle_payload_matches": 56,
+        "small_gap_outcomes_reproduced": 448,
+        "performance_cell_count": 37,
+        "memory_pair_count": 13,
+        "summary_matches": True,
+        "qiskit_imported": False,
+        "r175_executor_imported": False,
+        "qiskit_calls_performed": 0,
+        "simulation_execution_count": 0,
+        "total_simulated_shots": 0,
+        "new_credit_delta": 0,
+    }
+    oracle_failed = [row.get("requirement_id") for row in oracle.get("requirements", []) if not row.get("passed")]
+    if (
+        oracle.get("status") != "independent_rust_exact_score_oracle_failed"
+        or oracle.get("classification") != "incomplete"
+        or oracle.get("source_result_payload_hash") != result.get("payload_hash")
+        or oracle.get("requirements_passed") != 11
+        or oracle.get("requirements_failed") != 1
+        or oracle_failed != ["P10"]
+    ):
+        errors.append("R175 independent oracle status, binding, or requirement ledger mismatch")
+    for field, value in oracle_expected.items():
+        if oracle_summary.get(field) != value:
+            errors.append(f"R175 oracle summary {field} mismatch")
+
+    for path, markers, label in [
+        (paths["report"], ["13/14", "2.543563", "3.734856", "Claim Boundary"], "result"),
+        (paths["oracle_report"], ["11/12", "1600/1600", "28/28", "Claim Boundary"], "oracle"),
+        (paths["adjudication"], ["unconditional generator-text defect", "P10 fails", "No threshold was changed", "R176"], "adjudication"),
+    ]:
+        report_text = read(path)
+        for marker in markers:
+            if marker not in report_text:
+                errors.append(f"R175 {label} report boundary missing: {marker}")
+
+    result_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r175_rust_exact_score_v0")),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r175_rust_exact_score_v0")),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r175_rust_exact_score_v0")),
+    ]
+    oracle_rows = [
+        ("B4", b4_manifest.get("current_results", {}).get("b4_b8_r175_independent_rust_exact_oracle_v0")),
+        ("B8", b8_manifest.get("current_results", {}).get("b4_b8_r175_independent_rust_exact_oracle_v0")),
+        ("B10", b10_manifest.get("current_results", {}).get("b10_t2_b4_b8_r175_independent_rust_exact_oracle_v0")),
+    ]
+    for label, row in result_rows:
+        if not row or row.get("status") != result.get("status") or row.get("recorded_call_count") != 1600 or row.get("failed_requirement_ids") != ["P10"]:
+            errors.append(f"{label} manifest missing or invalid R175 result")
+    for label, row in oracle_rows:
+        if not row or row.get("status") != oracle.get("status") or row.get("row_hashes_valid") != 1600 or row.get("failed_requirement_ids") != ["P10"]:
+            errors.append(f"{label} manifest missing or invalid R175 oracle")
+
+    raw_claim = result.get("claim_boundary", {}).get("what_is_supported", "")
+    status.update(
+        {
+            "status": result.get("status"),
+            "classification": result.get("classification"),
+            "requirements_passed": result.get("requirements_passed"),
+            "requirements_failed": result.get("requirements_failed"),
+            "failed_requirement_ids": failed_requirements,
+            "source_expected_match_count": summary.get("source_expected_match_count"),
+            "exact_expected_match_count": summary.get("exact_expected_match_count"),
+            "aggregate_exact_to_source_median_time_ratio": summary.get("aggregate_exact_to_source_median_time_ratio"),
+            "maximum_cell_exact_to_source_median_time_ratio": summary.get("maximum_cell_exact_to_source_median_time_ratio"),
+            "maximum_worker_exact_to_source_peak_rss_ratio": summary.get("maximum_worker_exact_to_source_peak_rss_ratio"),
+            "oracle_status": oracle.get("status"),
+            "oracle_requirements_passed": oracle.get("requirements_passed"),
+            "raw_claim_boundary_overstatement_detected": "passes the frozen local timing" in raw_claim,
+            "adjudicated_status": "rejected_on_p10_performance",
+            "new_credit_delta": summary.get("new_credit_delta"),
+        }
+    )
+    return status
+
+
 def audit(root: Path) -> dict:
     research = root / "research"
     benchmarks = root / "benchmarks"
@@ -44348,6 +44617,7 @@ def audit(root: Path) -> dict:
     r172_second_near_tie_status = audit_r172_second_near_tie_replay(root, b4_manifest, b8_manifest, b10_manifest, errors)
     r173_first_divergent_combine_status = audit_r173_first_divergent_combine(root, b4_manifest, b8_manifest, b10_manifest, errors)
     r174_exact_score_comparator_status = audit_r174_exact_score_comparator(root, b4_manifest, b8_manifest, b10_manifest, errors)
+    r175_rust_exact_score_status = audit_r175_rust_exact_score(root, b4_manifest, b8_manifest, b10_manifest, errors)
 
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
@@ -44713,6 +44983,7 @@ def audit(root: Path) -> dict:
             "r172_second_near_tie_replay": r172_second_near_tie_status,
             "r173_first_divergent_combine": r173_first_divergent_combine_status,
             "r174_exact_score_comparator": r174_exact_score_comparator_status,
+            "r175_rust_exact_score": r175_rust_exact_score_status,
         },
         "b5": {
             "manifest": str(b5_manifest_path),
@@ -44878,6 +45149,7 @@ def audit(root: Path) -> dict:
             "r172_second_near_tie_replay": r172_second_near_tie_status,
             "r173_first_divergent_combine": r173_first_divergent_combine_status,
             "r174_exact_score_comparator": r174_exact_score_comparator_status,
+            "r175_rust_exact_score": r175_rust_exact_score_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -44920,6 +45192,7 @@ def audit(root: Path) -> dict:
             "r172_second_near_tie_replay": r172_second_near_tie_status,
             "r173_first_divergent_combine": r173_first_divergent_combine_status,
             "r174_exact_score_comparator": r174_exact_score_comparator_status,
+            "r175_rust_exact_score": r175_rust_exact_score_status,
             "t1_d5_observable_denominator_table": b10_t1_d5_table_status,
             "t1_d5_b3_molecular_observable_table": b10_t1_d5_b3_table_status,
             "t1_d5_b3_reaction_observable_table": b10_t1_d5_b3_reaction_table_status,
