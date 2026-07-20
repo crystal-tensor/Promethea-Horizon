@@ -3389,6 +3389,22 @@ separation, solved B4/B8/B10, or new credit. The next gate is an independently
 built cross-platform replay followed by broader graph-size and candidate-count
 pressure before any production proposal.
 
+`T-B4-002dc` / `T-B8-003dg` / `T-B10-009cs-r177-protocol` now freezes that
+cross-platform gate before execution. R177 checks out the same official Qiskit
+2.4.1 source commit on a GitHub-hosted Ubuntu 24.04 x86-64 runner, reapplies the
+hash-bound R176 patch, reruns the Rust formatter, compiler, three exact-
+accumulator tests, and release build, then executes the unchanged 39-worker
+matrix with 624 warmups and 2,400 recorded calls. The runner commit, public
+preregistration Discussion, source files, patch, workflow, tools, compiled
+accelerator, build logs, worker rows, result, and independent oracle are all
+hash-bound. The same correctness, timing, and peak-RSS thresholds remain fixed,
+and a standard-library oracle must reproduce every outcome without importing
+Qiskit or the R177 executor. Protocol hash `7ebca6d9...`; contract hash
+`306921ba...`; execution is unopened. This is a reproducibility test of one
+classical implementation used to analyze quantum-compilation behavior. It is
+not quantum-hardware evidence, an upstream patch, production remedy, confirmed
+bug, quantum advantage, BQP separation, solved B4/B8/B10, or new credit.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific
