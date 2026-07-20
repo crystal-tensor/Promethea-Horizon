@@ -92,7 +92,12 @@ workflow boundary. Protocol `7e462929...`; design contract `3e4c2425...`.
 Execution remains unopened. The harness is an external source-faithful
 monkeypatch around Qiskit 2.4.1, not an upstream integration, full transpilation
 benchmark, hardware result, quantum advantage, BQP separation, solved frontier,
-or new credit.
+or new credit. Public Discussion
+[#282](https://github.com/crystal-tensor/Prometheus-plan/discussions/282) and
+execution contract `bb932759...` now bind the replay, standard-library oracle,
+evidence bundler, Linux workflow, both native extension binaries, and the
+content-only landing-page update. Platform result files and worker evidence
+remain absent until execution begins from the same clean public commit.
 
 The latest completed B4/B8/B10 step is the independently audited R185 macOS
 arm64 replication. A clean public-main Apple Silicon runner rebuilt the same
