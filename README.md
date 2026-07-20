@@ -3650,8 +3650,11 @@ calls, 468 candidate probes, 351 warmups, and 2,223 total Qiskit calls. H1-H4
 separately test exact mapping integrity, compact/fallback invariants,
 window-versus-prefix performance, and window-versus-BigUint performance with
 complete order coverage. Protocol `6282eebd...`; design contract `e0c226bf...`;
-Qiskit patch `a3a3f02b...`. The protocol is preregistered and unopened: result,
-oracle, accelerator, performance classifications, and new credit remain absent.
+Qiskit patch `a3a3f02b...`. Public Discussion #278 and design commit
+`84e3d910...` predate execution contract `afd21939...`, which binds 13 source
+artifacts and six execution tools. Scientific measurement remains unopened:
+result, oracle, accelerator, performance classifications, and new credit remain
+absent.
 
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
