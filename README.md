@@ -79,20 +79,19 @@ Current evidence includes:
 - an audit report in `research/portfolio_status_report.md`;
 - a current status page in `research/current_stage_brief.html`.
 
-The latest B4/B8/B10 step is the execution-bound, unopened R183
-prefix-initialization
-micro-ablation. R182 reduced exact-score arithmetic-limb visits by 52.1362%
-but produced only a `0.987547x` active/fixed median timing ratio. R183 keeps the
-same 34-limb object width, active-prefix arithmetic, mappings, and five
-non-initialization counters while changing only whether the unused destination
-suffix is initialized. The frozen Linux matrix contains 13 isolated workers,
-416 same-process AB/BA pairs, 832 timing calls, 832 separate probes, and 208
-warmups. Initialized writes must fall by at least 40%; a paired median ratio
-above `0.90` rejects unused-tail initialization as the dominant source-bound
-cost. Public Discussion #276 and design commit `7b98e61d...` now predate the
-hash-bound execution contract `85e246e6...`. Scientific execution remains
-unopened, and no production, hardware, advantage, BQP, solved-frontier, or
-new-credit claim is made.
+The latest B4/B8/B10 step is the completed, independently audited R183
+prefix-initialization micro-ablation. Public Actions run `29774774401`
+executed 13 isolated Linux x86-64 workers, 416 same-process AB/BA pairs, 832
+timing calls, 832 separate probes, 208 warmups, and 1,872 total Qiskit calls.
+The candidate preserves every mapping and all five non-initialization counters
+while reducing initialized-limb writes by `62.6724%`. Its paired median timing
+ratio is nevertheless `0.984288x`, above the frozen `0.90x` success ceiling;
+unused-tail initialization is therefore rejected as the dominant source-bound
+cost. The standard-library oracle validates `13/13` worker manifests and
+`416/416` paired-row hashes and passes `12/12`. This narrows the next search to
+object copying, stack traffic, wrapper overhead, and VF2 control flow. It is
+not a production remedy, hardware result, quantum advantage, BQP separation,
+solved frontier, or new credit.
 
 The latest B1/B7 evidence adds a source-bound local KAK invariant packet for
 the repeated `w8_21` block. An analytic, global-phase-projected derivative
@@ -3607,6 +3606,24 @@ quantum advantage, BQP separation, solved B4/B8/B10 frontier, or new credit.
 Next: isolate destination initialization from the remaining common wrapper
 and conversion costs with a preregistered micro-ablation that preserves the
 same mapping and counter-integrity checks.
+
+R183 executes that micro-ablation after public Discussion #276, design commit
+`7b98e61d...`, and execution contract `85e246e6...`. The candidate changes
+only destination initialization behind a checked `MaybeUninit` prefix
+invariant while retaining the same 34-limb object width, active-prefix
+arithmetic, comparison path, retained-binary64 semantics, and workload. All
+`416/416` paired mappings and non-initialization counters agree; initialized
+writes fall from `5,048,320` to `1,884,416`, a `62.6724%` reduction. The
+aggregate paired candidate/baseline median is only `0.984288x`; the candidate
+is faster in `8/13` cell medians, but no cell clears the frozen `0.90x` speed
+threshold. H1 passes the isolated write-reduction rule, while H2 rejects
+unused-tail initialization as the dominant source-bound cost. The independent
+oracle passes `12/12`, validates all 13 manifests and 416 row hashes, and
+recomputes every count and classification without importing Qiskit or the
+executor. Result `ecb901a7...`; oracle `4b1a6d2a...`; 47-artifact bundle
+`8a4b2372...`; accelerator `b62ca5ce...`. Next: isolate object-copy, stack,
+wrapper, and VF2 control-flow costs under the same paired and zero-credit
+discipline.
 
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all

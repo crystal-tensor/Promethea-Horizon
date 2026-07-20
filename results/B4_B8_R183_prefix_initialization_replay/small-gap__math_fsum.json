@@ -1,0 +1,3286 @@
+{
+  "ab_pair_count": 16,
+  "accelerator_path": "/tmp/prometheus-r183-overlay-b62ca5cecd74b38a/qiskit/_accelerate.abi3.so",
+  "accelerator_sha256": "b62ca5cecd74b38a06494940638ef5d7821734bb2ff18f196e89e9872a763445",
+  "ba_pair_count": 16,
+  "cell": {
+    "cell_id": "small-gap__math_fsum",
+    "kind": "small-gap",
+    "mode": "math_fsum"
+  },
+  "contract_payload_hash": "85e246e691fe4877bd0ed105cb5cbbe700e9b5eab0015e678a1b101008988576",
+  "counter_probe_call_count": 64,
+  "design_contract_payload_hash": "09cc7e5084b163cc2660c8b77e085bb41cd3d146be9aac147657df7429ce26b3",
+  "environment": {
+    "machine": "x86_64",
+    "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+    "python": "3.12.13",
+    "pythonpath_head": "/home/runner/work/Prometheus-plan/Prometheus-plan/tools",
+    "qiskit": "2.4.1",
+    "qiskit_aer": "0.17.2",
+    "qiskit_ibm_runtime": "0.46.1",
+    "system": "Linux"
+  },
+  "input_path": "benchmarks/B4_B8_R157_vf2_post_layout_input_v0.qasm",
+  "input_sha256": "ce216610e995b4c8b4bd9de6547ac6069961e1eb8881997aa05e0068ea16ab98",
+  "manifest_hash": "d8d9d6573b4b2bee3b7f38908937966f4dfa5f0ad59322bfe6d18ef758bd9fcc",
+  "measurement_pair_order_rule": "AB_on_even_pair_BA_on_odd_pair_then_same_order_probes",
+  "method": "b4_b8_r183_prefix_initialization_ablation_replay_v0",
+  "preregistration": {
+    "commit": "5b9b3b6bbae26ab352a1becad086a7bd660a3fba",
+    "created_at": "2026-07-20T20:04:15Z",
+    "discussion": "https://github.com/crystal-tensor/Prometheus-plan/discussions/276"
+  },
+  "process_id": 10267,
+  "process_instance_uuid": "2a92244e-f95a-4996-93f1-576891e5463e",
+  "protocol_payload_hash": "9057160630b687f79a25f3c02ff45e1974d187393d06d0321297726db7255d67",
+  "recorded_pair_count": 32,
+  "replay_rows": [
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 55273,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35316,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.6389376368208709,
+      "case_id": "edge_0_1_m008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "fa3b2f7392a17dd9d9052a46201adb8a73609318683ba4caa30fe03b088114bc",
+      "exact_minimum_gap_ulp_ratio": 0.5,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 0,
+      "row_hash": "cccefe5b5e0dda2db3439d5e07b50da0018276356f8add15bf5d025e441857e8",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_0_1_m008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 36158,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 41608,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.1507273632391173,
+      "case_id": "edge_0_1_m001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "72cfb5d4c6bfdeeb858e983931013da4a6de718c11549e38c5e802ac887f893b",
+      "exact_minimum_gap_ulp_ratio": 0.03125,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 1,
+      "row_hash": "f412ea525642db3f6be2f04d4b0a28616149ea480bb8f0f0e11753917337ef6f",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_0_1_m001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 39123,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 37039,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.9467321013214733,
+      "case_id": "edge_1_0_p001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "7d84705c6b12aa705af1461416f42e51c2dbe39e8f1c27aae9d88861a96462bb",
+      "exact_minimum_gap_ulp_ratio": 0.09375,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 2,
+      "row_hash": "50702f4a54350e1afd52e639f2a9bf0c4be13b9fab8ee8e413c9e9c29877731a",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_0_p001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 33904,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 37640,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.110193487494101,
+      "case_id": "edge_1_0_p008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "30269374171954c2fac8bb54654b254a35310082bf3940132884a819a0fff3ea",
+      "exact_minimum_gap_ulp_ratio": 0.5,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 3,
+      "row_hash": "e9f51b2e65d9c1e819c343422939ff5b9865eb82921866fce64b6ec167ed863c",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_0_p008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 37200,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 34093,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.9164784946236559,
+      "case_id": "edge_1_2_m001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "36336c96b12c4a2ad7ae954bf9865894b0d565b2a914480a80ad6f3c6777553b",
+      "exact_minimum_gap_ulp_ratio": 0.046875,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 4,
+      "row_hash": "19e4aa25d981a44465b61743a488d0442e457ca4d2083b135f04faf03aadf33d",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_2_m001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 34554,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 42430,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.2279330902355734,
+      "case_id": "edge_2_1_p001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "a97f3fce68846db8feb40ddc0a407988df57fae9fcc216cc8aecd5a961a9613e",
+      "exact_minimum_gap_ulp_ratio": 0.046875,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 5,
+      "row_hash": "220459d4d87671672a182ede13c17190032396798dbe882b1167a35316d33574",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_2_1_p001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 37009,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 33473,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.904455672944419,
+      "case_id": "edge_2_1_p008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "e72358d66c46b67d97f30b91349690fa4d35342aacbc8e813f39a4adf8b90eff",
+      "exact_minimum_gap_ulp_ratio": 0.25,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 6,
+      "row_hash": "2056954c432abf1bb6364130e5e0d1cfd71aab30252c509d1be029df844f74f7",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_2_1_p008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 33392,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 36608,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.0963104935313848,
+      "case_id": "edge_0_1_m008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "fa3b2f7392a17dd9d9052a46201adb8a73609318683ba4caa30fe03b088114bc",
+      "exact_minimum_gap_ulp_ratio": 0.5,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 7,
+      "row_hash": "fd035c53289a8b39ea2136b2099011be92cb8fc78057b9fb2fadd43e943f3ae9",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_0_1_m008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 36549,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32762,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.8963856740266491,
+      "case_id": "edge_0_1_m001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "72cfb5d4c6bfdeeb858e983931013da4a6de718c11549e38c5e802ac887f893b",
+      "exact_minimum_gap_ulp_ratio": 0.03125,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 8,
+      "row_hash": "b60969e9a77b1d464e31c6c42474157cf7eebc2b7c61b382c995b82b77183d86",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_0_1_m001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 33552,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35887,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.0695934668574154,
+      "case_id": "edge_1_0_p001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "7d84705c6b12aa705af1461416f42e51c2dbe39e8f1c27aae9d88861a96462bb",
+      "exact_minimum_gap_ulp_ratio": 0.09375,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 9,
+      "row_hash": "5db11eba352c4c117694926ea31f446a913c5fddb89b4536d31bf08d5ff85093",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_0_p001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 55864,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35957,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.6436524416439926,
+      "case_id": "edge_1_0_p008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "30269374171954c2fac8bb54654b254a35310082bf3940132884a819a0fff3ea",
+      "exact_minimum_gap_ulp_ratio": 0.5,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 10,
+      "row_hash": "c8ef550afd0f9cd0dea56b780847966745f71bb80da5ebff22f3bb3e3d4a7a9a",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_0_p008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 33552,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35797,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.066911063423939,
+      "case_id": "edge_1_2_m001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "36336c96b12c4a2ad7ae954bf9865894b0d565b2a914480a80ad6f3c6777553b",
+      "exact_minimum_gap_ulp_ratio": 0.046875,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 11,
+      "row_hash": "e533e7ab69511842dc3757d17b313feb5455406e782c44646991b9e599c46c4e",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_2_m001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 36148,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32872,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.9093725793958172,
+      "case_id": "edge_2_1_p001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "a97f3fce68846db8feb40ddc0a407988df57fae9fcc216cc8aecd5a961a9613e",
+      "exact_minimum_gap_ulp_ratio": 0.046875,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 12,
+      "row_hash": "b365e2086eb4327d1ea241cb5e97563ffde90f6aece8d122f3e4e045b13d4d3b",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_2_1_p001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32822,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35818,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.0912802388641765,
+      "case_id": "edge_2_1_p008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "e72358d66c46b67d97f30b91349690fa4d35342aacbc8e813f39a4adf8b90eff",
+      "exact_minimum_gap_ulp_ratio": 0.25,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 13,
+      "row_hash": "ab5b8cc82ac6da4bc312cdf8910316a5675c93b460042b4bee280c1378cd8445",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_2_1_p008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 36157,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32080,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.8872417512514865,
+      "case_id": "edge_0_1_m008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "fa3b2f7392a17dd9d9052a46201adb8a73609318683ba4caa30fe03b088114bc",
+      "exact_minimum_gap_ulp_ratio": 0.5,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 14,
+      "row_hash": "3ac21fb38d9ec55550f05eb6f2acc9c5b77c96e705bac50e6544d39d13193c4d",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_0_1_m008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32742,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35095,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.071864883024861,
+      "case_id": "edge_0_1_m001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "72cfb5d4c6bfdeeb858e983931013da4a6de718c11549e38c5e802ac887f893b",
+      "exact_minimum_gap_ulp_ratio": 0.03125,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 15,
+      "row_hash": "1f24fd25c5b7be71508b4384c2cbd6f797a5918b4d338a2d48ef1a473a221d2e",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_0_1_m001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 38753,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 34514,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.8906149201352154,
+      "case_id": "edge_1_0_p001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "7d84705c6b12aa705af1461416f42e51c2dbe39e8f1c27aae9d88861a96462bb",
+      "exact_minimum_gap_ulp_ratio": 0.09375,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 16,
+      "row_hash": "8c4b34efe5f70d16b43ee523f9cf5110e873efe74f000fbd666d3f6fedab1f31",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_0_p001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 33152,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35727,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.0776725386100385,
+      "case_id": "edge_1_0_p008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "30269374171954c2fac8bb54654b254a35310082bf3940132884a819a0fff3ea",
+      "exact_minimum_gap_ulp_ratio": 0.5,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 17,
+      "row_hash": "8a6b27e28f8d3d547d016f4fb134ea4ffc2c84079934545912d3ad72d325bc3f",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_0_p008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 37079,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 33112,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.8930122171579601,
+      "case_id": "edge_1_2_m001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "36336c96b12c4a2ad7ae954bf9865894b0d565b2a914480a80ad6f3c6777553b",
+      "exact_minimum_gap_ulp_ratio": 0.046875,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 18,
+      "row_hash": "4ad5ce36aa3ddb071718e60686e85624ef8b6182943ffb8a29586b7c8411b5db",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_2_m001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32781,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 36038,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.0993563344620358,
+      "case_id": "edge_2_1_p001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "a97f3fce68846db8feb40ddc0a407988df57fae9fcc216cc8aecd5a961a9613e",
+      "exact_minimum_gap_ulp_ratio": 0.046875,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 19,
+      "row_hash": "d5eab8fdaa49c83c2222527128f317e7cc1701ee2004f4d5024e2a47402ce5a5",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_2_1_p001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35487,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32560,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.9175190914982951,
+      "case_id": "edge_2_1_p008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "e72358d66c46b67d97f30b91349690fa4d35342aacbc8e813f39a4adf8b90eff",
+      "exact_minimum_gap_ulp_ratio": 0.25,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 20,
+      "row_hash": "cb57582e21edfb7dc9dbd96ac90fadd21ec3f37f2a13603a54bd538399af49c2",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_2_1_p008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 33663,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 38412,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.1410747705195616,
+      "case_id": "edge_0_1_m008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "fa3b2f7392a17dd9d9052a46201adb8a73609318683ba4caa30fe03b088114bc",
+      "exact_minimum_gap_ulp_ratio": 0.5,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 21,
+      "row_hash": "d50ef351df323aec6197d3e2759914f33c0ce68e02f9ed0c774978a7085904fc",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_0_1_m008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 36067,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 33563,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.9305736545872959,
+      "case_id": "edge_0_1_m001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "72cfb5d4c6bfdeeb858e983931013da4a6de718c11549e38c5e802ac887f893b",
+      "exact_minimum_gap_ulp_ratio": 0.03125,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 22,
+      "row_hash": "18efc3d85216e42b236584a506889bb117c8bf3237e8ce17ab23eb99b2966162",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_0_1_m001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32681,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35516,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.0867476515406505,
+      "case_id": "edge_1_0_p001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "7d84705c6b12aa705af1461416f42e51c2dbe39e8f1c27aae9d88861a96462bb",
+      "exact_minimum_gap_ulp_ratio": 0.09375,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 23,
+      "row_hash": "ca8e3ea04e1d40b6f52395f2718b864e127506cb0983bbca9ed35f022bd1f91a",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_0_p001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35637,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32460,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.9108510817408872,
+      "case_id": "edge_1_0_p008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "30269374171954c2fac8bb54654b254a35310082bf3940132884a819a0fff3ea",
+      "exact_minimum_gap_ulp_ratio": 0.5,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 24,
+      "row_hash": "f7b74c0c6e176e514cf59c415452af561a40502462fa7c12764e3b834c8ee098",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_0_p008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32992,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 34955,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.0594992725509214,
+      "case_id": "edge_1_2_m001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "36336c96b12c4a2ad7ae954bf9865894b0d565b2a914480a80ad6f3c6777553b",
+      "exact_minimum_gap_ulp_ratio": 0.046875,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 25,
+      "row_hash": "8b23237dccf431eb015faf74b7fa09fc2f9522f19b0b47129cf62b0d946587fd",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_2_m001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 36098,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 53309,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.4767854174746524,
+      "case_id": "edge_2_1_p001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "a97f3fce68846db8feb40ddc0a407988df57fae9fcc216cc8aecd5a961a9613e",
+      "exact_minimum_gap_ulp_ratio": 0.046875,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 26,
+      "row_hash": "ad6debe847e37882d15792d0b74352f579a27be3453e6708f6ff1145fe94e4bf",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_2_1_p001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 33422,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35467,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.061187241936449,
+      "case_id": "edge_2_1_p008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "e72358d66c46b67d97f30b91349690fa4d35342aacbc8e813f39a4adf8b90eff",
+      "exact_minimum_gap_ulp_ratio": 0.25,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 27,
+      "row_hash": "e2c1eb1e891f542d24db54a1b30cbf904ebe8ba75d3451144b5b1eba3cd984bc",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_2_1_p008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35796,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32491,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.9076712481841547,
+      "case_id": "edge_0_1_m008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "fa3b2f7392a17dd9d9052a46201adb8a73609318683ba4caa30fe03b088114bc",
+      "exact_minimum_gap_ulp_ratio": 0.5,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 28,
+      "row_hash": "b18d4ea0e201d037c204064edfdcbd594eff04d0b2521c3a911bd20645d6a371",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_0_1_m008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32801,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35957,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.0962165787628426,
+      "case_id": "edge_0_1_m001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "72cfb5d4c6bfdeeb858e983931013da4a6de718c11549e38c5e802ac887f893b",
+      "exact_minimum_gap_ulp_ratio": 0.03125,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 29,
+      "row_hash": "a10dc9557c0f41912c1f39f26c72ccd00ddd5dc96cc784dae582969587dc01ff",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_0_1_m001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 35516,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 34054,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 0.958835454443068,
+      "case_id": "edge_1_0_p001ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "7d84705c6b12aa705af1461416f42e51c2dbe39e8f1c27aae9d88861a96462bb",
+      "exact_minimum_gap_ulp_ratio": 0.09375,
+      "execution_order": [
+        "baseline",
+        "candidate"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 30,
+      "row_hash": "4744b277002dbbe88004574ded7d7b78a66e9d5aeedd5965def1fcc28320f9fd",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_0_p001ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    },
+    {
+      "arms": {
+        "baseline": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 11492,
+            "full_width_destination_count": 338,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 32531,
+          "policy": "rust_active_limb_exact_full_width_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        },
+        "candidate": {
+          "cost_counters": {
+            "arithmetic_limb_visit_count": 2635,
+            "carry_extension_count": 0,
+            "comparison_limb_visit_count": 34,
+            "destination_initialized_limb_count": 4369,
+            "full_width_destination_count": 0,
+            "leaf_construction_count": 102,
+            "maximum_used_limb_count": 17
+          },
+          "elapsed_nanoseconds": 34855,
+          "policy": "rust_active_limb_exact_prefix_initialized",
+          "probe_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "probe_matches_expected": true,
+          "timing_mapping_vector": [
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ],
+          "timing_matches_expected": true,
+          "timing_probe_mapping_match": true
+        }
+      },
+      "candidate_to_baseline_elapsed_ratio": 1.0714395499677232,
+      "case_id": "edge_1_0_p008ulp",
+      "cell_id": "small-gap__math_fsum",
+      "counter_probe_call_count": 2,
+      "cross_arm_probe_mapping_match": true,
+      "cross_arm_timing_mapping_match": true,
+      "error_map_descriptor_hash": "30269374171954c2fac8bb54654b254a35310082bf3940132884a819a0fff3ea",
+      "exact_minimum_gap_ulp_ratio": 0.5,
+      "execution_order": [
+        "candidate",
+        "baseline"
+      ],
+      "expected_mapping_vector": [
+        6,
+        5,
+        4,
+        3,
+        2,
+        1,
+        0
+      ],
+      "kind": "small-gap",
+      "non_initialization_counters_equal": true,
+      "pair_index": 31,
+      "row_hash": "8b74eff7c541b21066ab030ba476ac47b95076279c4093a36bc10ce51a85e58a",
+      "simulation_execution_count": 0,
+      "subcell_id": "small-gap__math_fsum__edge_1_0_p008ulp",
+      "timing_call_count": 2,
+      "total_simulated_shots": 0
+    }
+  ],
+  "simulation_execution_count": 0,
+  "source_worker_path": null,
+  "started_at_unix": 1784578668,
+  "status": "isolated_paired_worker_complete",
+  "target_descriptor_sha256": "702c8fd9dcf67a069e7af63e31a57c74c17aaa5e3c5b6d8c2e28ec0c049c0de7",
+  "timing_call_count": 64,
+  "title": "R183 prefix-initialization isolated paired worker",
+  "total_simulated_shots": 0,
+  "version": 0,
+  "warmup_call_count": 16,
+  "warmup_matches_expected": {
+    "baseline": 8,
+    "candidate": 8
+  }
+}

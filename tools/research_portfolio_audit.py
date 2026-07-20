@@ -4402,6 +4402,14 @@ def audit_r183_prefix_initialization_ablation(root: Path, errors: list[str]) -> 
         "design_tool": root / "tools/b4_b8_r183_prefix_init_preregister.py",
         "execution_contract": root / "benchmarks/B4_B8_R183_prefix_initialization_execution_contract_v0.json",
         "execution_report": root / "research/B4_B8_R183_prefix_initialization_execution_contract.md",
+        "result": root / "results/B4_B8_R183_prefix_initialization_ablation_v0.json",
+        "result_report": root / "research/B4_B8_R183_prefix_initialization_ablation.md",
+        "oracle": root / "results/B4_B8_R183_independent_oracle_v0.json",
+        "oracle_report": root / "research/B4_B8_R183_independent_oracle.md",
+        "bundle": root / "results/B4_B8_R183_prefix_initialization_bundle_v0.json",
+        "build": root / "research/source_lineage/Qiskit_2_4_1_R183_prefix_init_linux_x86_64_build_manifest.json",
+        "binary": root / "research/source_lineage/Qiskit_2_4_1_R183_prefix_init_pyext.x86_64-linux-gnu.so",
+        "worker_dir": root / "results/B4_B8_R183_prefix_initialization_replay",
     }
     required_design = ("protocol", "design_contract", "report", "design_tool")
     status = {f"{key}_exists": path.exists() for key, path in paths.items()}
@@ -4504,6 +4512,7 @@ def audit_r183_prefix_initialization_ablation(root: Path, errors: list[str]) -> 
         public = execution.get("public_preregistration", {})
         if (
             not payload_ok(execution)
+            or execution.get("payload_hash") != "85e246e691fe4877bd0ed105cb5cbbe700e9b5eab0015e678a1b101008988576"
             or execution.get("contract_id") != "B4-B8-R183-prefix-initialization-execution-contract-v0"
             or execution.get("status") != "execution_tooling_bound_unopened"
             or execution.get("execution_tooling_bound") is not True
@@ -4512,6 +4521,9 @@ def audit_r183_prefix_initialization_ablation(root: Path, errors: list[str]) -> 
             or execution.get("protocol_payload_hash") != protocol.get("payload_hash")
             or execution.get("design_contract_payload_hash") != design.get("payload_hash")
             or not str(public.get("discussion", "")).startswith("https://github.com/crystal-tensor/Prometheus-plan/discussions/")
+            or public.get("discussion") != "https://github.com/crystal-tensor/Prometheus-plan/discussions/276"
+            or public.get("created_at") != "2026-07-20T20:04:15Z"
+            or public.get("public_design_commit") != "7b98e61d5281a90ecc6721fb86d6a144e0b5207b"
             or len(str(public.get("public_design_commit", ""))) != 40
             or measurement.get("workload_cell_count") != 13
             or measurement.get("expected_worker_count") != 13
@@ -4529,6 +4541,270 @@ def audit_r183_prefix_initialization_ablation(root: Path, errors: list[str]) -> 
                 if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != binding.get("sha256"):
                     errors.append(f"R183 execution {section} mismatch: {binding_id}")
 
+    final_keys = (
+        "result",
+        "result_report",
+        "oracle",
+        "oracle_report",
+        "bundle",
+        "build",
+        "binary",
+        "worker_dir",
+    )
+    final_any = any(status[f"{key}_exists"] for key in final_keys)
+    final_complete = all(status[f"{key}_exists"] for key in final_keys)
+    result = oracle = bundle = build = None
+    summary: dict = {}
+    classifications: dict = {}
+    worker_manifest_pass_count = 0
+    worker_row_hash_pass_count = 0
+    bundle_artifact_pass_count = 0
+    if final_any and not final_complete:
+        errors.append("R183 final evidence chain is incomplete")
+    elif final_complete:
+        result = json.loads(read(paths["result"]))
+        oracle = json.loads(read(paths["oracle"]))
+        bundle = json.loads(read(paths["bundle"]))
+        build = json.loads(read(paths["build"]))
+        summary = result.get("summary", {})
+        classifications = result.get("hypothesis_classifications", {})
+        h1 = classifications.get("H1-isolated-initialization-write", {})
+        h2 = classifications.get("H2-unused-tail-dominance", {})
+        h3 = classifications.get("H3-workload-heterogeneity", {})
+        false_claims = (
+            "causal_bottleneck_claimed",
+            "production_qiskit_remedy_claimed",
+            "hardware_result_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "solved_frontier_claimed",
+        )
+        if (
+            not payload_ok(result)
+            or result.get("payload_hash") != "ecb901a7375013fdd8f58727227fe7e80d38c89570d646011790ddfa29bd0c84"
+            or result.get("method") != "b4_b8_r183_prefix_initialization_ablation_replay_v0"
+            or result.get("status") != "prefix_initialization_ablation_complete_independent_oracle_pending"
+            or result.get("protocol_payload_hash") != protocol.get("payload_hash")
+            or result.get("design_contract_payload_hash") != design.get("payload_hash")
+            or execution is None
+            or result.get("contract_payload_hash") != execution.get("payload_hash")
+            or result.get("build_manifest_payload_hash") != "a357f42fec36a42f402331307db58267ed0d76e2da5257896698c82b0343d52a"
+            or result.get("preregistration", {}).get("discussion") != "https://github.com/crystal-tensor/Prometheus-plan/discussions/276"
+            or result.get("preregistration", {}).get("created_at") != "2026-07-20T20:04:15Z"
+            or result.get("preregistration", {}).get("commit") != "5b9b3b6bbae26ab352a1becad086a7bd660a3fba"
+            or summary.get("worker_count") != 13
+            or summary.get("expected_worker_count") != 13
+            or summary.get("workload_cell_count") != 13
+            or summary.get("recorded_pair_count") != 416
+            or summary.get("timing_call_count") != 832
+            or summary.get("counter_probe_call_count") != 832
+            or summary.get("warmup_call_count") != 208
+            or summary.get("total_qiskit_function_call_count") != 1872
+            or summary.get("mapping_integrity_pair_count") != 416
+            or summary.get("non_initialization_counter_equal_pair_count") != 416
+            or summary.get("counter_determinism_group_count") != 74
+            or summary.get("counter_determinism_pass_count") != 74
+            or summary.get("simulation_execution_count") != 0
+            or summary.get("total_simulated_shots") != 0
+            or result.get("requirements_passed") != 11
+            or result.get("requirements_failed") != 1
+            or result.get("requirements", {}).get("P10") is not False
+            or len(result.get("worker_artifacts", [])) != 13
+            or any(result.get(field) is not False for field in false_claims)
+            or result.get("new_credit_delta") != 0
+        ):
+            errors.append("R183 result identity, workload count, or claim boundary mismatch")
+        if (
+            h1.get("classification") != "isolated_initialization_write_reduction_passed"
+            or h1.get("supported_under_frozen_rule") is not True
+            or h1.get("baseline_initialized_limb_count") != 5048320
+            or h1.get("candidate_initialized_limb_count") != 1884416
+            or not math.isclose(
+                h1.get("initialized_limb_write_reduction_fraction", math.nan),
+                0.6267241379310344,
+                rel_tol=0,
+                abs_tol=1e-15,
+            )
+            or h1.get("mapping_integrity_passed") is not True
+            or h1.get("non_initialization_counters_equal") is not True
+            or h1.get("baseline_full_width_destination_positive_all_pairs") is not True
+            or h1.get("candidate_full_width_destination_zero_all_pairs") is not True
+            or h2.get("classification") != "unused_tail_initialization_rejected_as_dominant_source_bound_cost"
+            or h2.get("supported_under_frozen_rule") is not False
+            or h2.get("speed_threshold") != 0.9
+            or not math.isclose(
+                h2.get("median_paired_candidate_to_baseline_ratio", math.nan),
+                0.9842883271558719,
+                rel_tol=0,
+                abs_tol=1e-15,
+            )
+            or h3.get("classification") != "all_cells_and_orders_reported"
+            or h3.get("supported_under_frozen_rule") is not True
+            or h3.get("reported_cell_count") != 13
+            or h3.get("candidate_faster_cell_count") != 8
+            or h3.get("candidate_speed_success_cell_count") != 0
+        ):
+            errors.append("R183 frozen hypothesis classification mismatch")
+
+        for artifact in result.get("worker_artifacts", []):
+            path = root / artifact.get("path", "")
+            if (
+                not path.is_file()
+                or path.parent != paths["worker_dir"]
+                or hashlib.sha256(path.read_bytes()).hexdigest() != artifact.get("sha256")
+            ):
+                errors.append(f"R183 worker file mismatch: {artifact.get('path')}")
+                continue
+            worker = json.loads(read(path))
+            manifest_hash = worker.pop("manifest_hash", None)
+            if manifest_hash != canonical(worker) or manifest_hash != artifact.get("manifest_hash"):
+                errors.append(f"R183 worker manifest mismatch: {artifact.get('path')}")
+                continue
+            if (
+                worker.get("status") != "isolated_paired_worker_complete"
+                or worker.get("recorded_pair_count") != 32
+                or worker.get("timing_call_count") != 64
+                or worker.get("counter_probe_call_count") != 64
+                or worker.get("warmup_call_count") != 16
+                or worker.get("ab_pair_count") != 16
+                or worker.get("ba_pair_count") != 16
+                or worker.get("simulation_execution_count") != 0
+                or worker.get("total_simulated_shots") != 0
+                or len(worker.get("replay_rows", [])) != 32
+            ):
+                errors.append(f"R183 worker count mismatch: {artifact.get('path')}")
+                continue
+            worker_manifest_pass_count += 1
+            for row in worker.get("replay_rows", []):
+                row_body = dict(row)
+                row_hash = row_body.pop("row_hash", None)
+                if row_hash != canonical(row_body):
+                    errors.append(f"R183 worker row hash mismatch: {artifact.get('path')}")
+                    break
+                worker_row_hash_pass_count += 1
+        if worker_manifest_pass_count != 13 or worker_row_hash_pass_count != 416:
+            errors.append("R183 worker or paired-row hash coverage mismatch")
+
+        accelerator = build.get("accelerator", {})
+        actions = build.get("github_actions", {})
+        smoke = build.get("python_import_smoke", {})
+        build_false_claims = (
+            "hardware_result_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "solved_frontier_claimed",
+        )
+        if (
+            not payload_ok(build)
+            or build.get("payload_hash") != "a357f42fec36a42f402331307db58267ed0d76e2da5257896698c82b0343d52a"
+            or build.get("method") != "b4_b8_r183_prefix_initialization_linux_x86_64_build_v0"
+            or build.get("status") != "linux_x86_64_pyext_built_and_imported_after_preregistration"
+            or build.get("official_source", {}).get("repository") != "https://github.com/Qiskit/qiskit.git"
+            or build.get("official_source", {}).get("release") != "2.4.1"
+            or build.get("official_source", {}).get("commit") != "0fd015a22b84c9082173597a5d2304dc0aaec08c"
+            or build.get("patch", {}).get("sha256") != "105e7e9f197714a536f5bbd3f62f54abfafce9be62ec72df4c735db7fad9fff8"
+            or build.get("patched_source_hashes", {}).get("crates/transpiler/src/passes/vf2/vf2_layout.rs") != "8a7fec0aef21e2bcb7e113d65b4a699cb43a7906fc1708393366ce91d900e8d7"
+            or actions.get("run_id") != "29774774401"
+            or actions.get("sha") != "5b9b3b6bbae26ab352a1becad086a7bd660a3fba"
+            or actions.get("run_url") != "https://github.com/crystal-tensor/Prometheus-plan/actions/runs/29774774401"
+            or build.get("platform", {}).get("system") != "Linux"
+            or build.get("platform", {}).get("machine") != "x86_64"
+            or accelerator.get("path") != "research/source_lineage/Qiskit_2_4_1_R183_prefix_init_pyext.x86_64-linux-gnu.so"
+            or accelerator.get("sha256") != hashlib.sha256(paths["binary"].read_bytes()).hexdigest()
+            or accelerator.get("size_bytes") != paths["binary"].stat().st_size
+            or len(build.get("build_steps", [])) != 14
+            or any(step.get("returncode") != 0 for step in build.get("build_steps", []))
+            or len(smoke.get("r183_entry_points", {})) != 4
+            or not all(smoke.get("r183_entry_points", {}).values())
+            or smoke.get("accelerator_sha256") != accelerator.get("sha256")
+            or any(build.get(field) is not False for field in build_false_claims)
+            or build.get("new_credit_delta") != 0
+        ):
+            errors.append("R183 Linux build provenance mismatch")
+        for step in build.get("build_steps", []):
+            for stream in ("stdout", "stderr"):
+                path = root / step.get(f"{stream}_path", "")
+                if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != step.get(f"{stream}_sha256"):
+                    errors.append(f"R183 build {stream} mismatch: {step.get('step_id')}")
+
+        if (
+            not payload_ok(oracle)
+            or oracle.get("payload_hash") != "4b1a6d2a43e7011a96567ffe2839dadca04e02a84e29ff090ecc37f24c598360"
+            or oracle.get("method") != "b4_b8_r183_independent_prefix_initialization_oracle_v0"
+            or oracle.get("status") != "independent_oracle_complete"
+            or oracle.get("source_result_payload_hash") != result.get("payload_hash")
+            or oracle.get("worker_manifest_hash_pass_count") != 13
+            or oracle.get("row_hash_pass_count") != 416
+            or oracle.get("mapping_integrity_passed") is not True
+            or oracle.get("counter_integrity_passed") is not True
+            or oracle.get("non_initialization_counter_equality_passed") is not True
+            or not all(oracle.get("count_checks", {}).values())
+            or not all(oracle.get("result_matches", {}).values())
+            or oracle.get("recomputed_summary") != summary
+            or oracle.get("recomputed_hypothesis_classifications") != classifications
+            or oracle.get("requirements_passed") != 12
+            or oracle.get("requirements_failed") != 0
+            or not all(oracle.get("requirements", {}).values())
+            or oracle.get("simulation_execution_count") != 0
+            or oracle.get("total_simulated_shots") != 0
+            or any(oracle.get(field) is not False for field in false_claims)
+            or oracle.get("new_credit_delta") != 0
+        ):
+            errors.append("R183 independent oracle mismatch")
+
+        for artifact in bundle.get("artifacts", []):
+            path = root / artifact.get("path", "")
+            if (
+                path.is_file()
+                and path.stat().st_size == artifact.get("size_bytes")
+                and hashlib.sha256(path.read_bytes()).hexdigest() == artifact.get("sha256")
+            ):
+                bundle_artifact_pass_count += 1
+            else:
+                errors.append(f"R183 bundle artifact mismatch: {artifact.get('path')}")
+        if (
+            not payload_ok(bundle)
+            or bundle.get("payload_hash") != "8a4b23726c8733248e039b90a776b040aab14976f229ddec145a0ddd4bb91f4d"
+            or bundle.get("method") != "b4_b8_r183_prefix_initialization_bundle_v0"
+            or bundle.get("status") != "linux_x86_64_bundle_complete"
+            or bundle.get("artifact_count") != 47
+            or len(bundle.get("artifacts", [])) != 47
+            or bundle_artifact_pass_count != 47
+            or bundle.get("worker_artifact_count") != 13
+            or bundle.get("source_build_payload_hash") != build.get("payload_hash")
+            or bundle.get("source_result_payload_hash") != result.get("payload_hash")
+            or bundle.get("source_oracle_payload_hash") != oracle.get("payload_hash")
+            or bundle.get("github_actions_run_url") != "https://github.com/crystal-tensor/Prometheus-plan/actions/runs/29774774401"
+            or bundle.get("simulation_execution_count") != 0
+            or bundle.get("total_simulated_shots") != 0
+            or any(bundle.get(field) is not False for field in build_false_claims)
+            or bundle.get("new_credit_delta") != 0
+        ):
+            errors.append("R183 Linux bundle mismatch")
+
+        result_report = read(paths["result_report"])
+        oracle_report = read(paths["oracle_report"])
+        if not all(
+            marker in result_report
+            for marker in (
+                "`416` same-process AB/BA pairs",
+                "initialized-limb write reduction `0.626724`",
+                "paired candidate/baseline median ratio `0.984288`",
+                "clears the speed threshold in `0` cells",
+            )
+        ):
+            errors.append("R183 result report evidence boundary missing")
+        if not all(
+            marker in oracle_report
+            for marker in (
+                "`13` worker manifests",
+                "`416` paired-row hashes",
+                "without importing Qiskit or the R183 executor",
+                "does not establish complete causality",
+            )
+        ):
+            errors.append("R183 oracle report evidence boundary missing")
+
     status.update({
         "protocol_status": protocol.get("status"),
         "protocol_payload_hash": protocol.get("payload_hash"),
@@ -4539,7 +4815,23 @@ def audit_r183_prefix_initialization_ablation(root: Path, errors: list[str]) -> 
         "total_qiskit_function_calls": workload.get("total_qiskit_function_call_count"),
         "execution_contract_status": execution.get("status") if execution is not None else "not_submitted",
         "execution_contract_payload_hash": execution.get("payload_hash") if execution is not None else None,
-        "scientific_execution_started": False,
+        "scientific_execution_started": final_complete,
+        "result_status": result.get("status") if result is not None else "not_submitted",
+        "result_payload_hash": result.get("payload_hash") if result is not None else None,
+        "measured_worker_count": summary.get("worker_count") if result is not None else 0,
+        "measured_pair_count": summary.get("recorded_pair_count") if result is not None else 0,
+        "initialized_limb_write_reduction_fraction": classifications.get("H1-isolated-initialization-write", {}).get("initialized_limb_write_reduction_fraction") if result is not None else None,
+        "candidate_to_baseline_median_time_ratio": classifications.get("H2-unused-tail-dominance", {}).get("median_paired_candidate_to_baseline_ratio") if result is not None else None,
+        "h2_classification": classifications.get("H2-unused-tail-dominance", {}).get("classification") if result is not None else None,
+        "oracle_status": oracle.get("status") if oracle is not None else "not_submitted",
+        "oracle_payload_hash": oracle.get("payload_hash") if oracle is not None else None,
+        "oracle_requirements_passed": oracle.get("requirements_passed") if oracle is not None else 0,
+        "worker_manifest_hash_pass_count": worker_manifest_pass_count,
+        "worker_row_hash_pass_count": worker_row_hash_pass_count,
+        "build_payload_hash": build.get("payload_hash") if build is not None else None,
+        "bundle_payload_hash": bundle.get("payload_hash") if bundle is not None else None,
+        "bundle_artifact_pass_count": bundle_artifact_pass_count,
+        "github_actions_run_url": bundle.get("github_actions_run_url") if bundle is not None else None,
         "new_credit_delta": 0,
     })
     return status
