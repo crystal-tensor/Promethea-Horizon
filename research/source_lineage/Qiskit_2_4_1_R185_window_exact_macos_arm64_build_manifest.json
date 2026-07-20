@@ -1,0 +1,319 @@
+{
+  "accelerator": {
+    "file_description": "/private/tmp/prometheus-r184-20260721/research/source_lineage/Qiskit_2_4_1_R185_window_exact_pyext.arm64-darwin.so: Mach-O 64-bit dynamically linked shared library arm64",
+    "path": "research/source_lineage/Qiskit_2_4_1_R185_window_exact_pyext.arm64-darwin.so",
+    "sha256": "d0fdc1cec9ed20e2fe8662e063ee633708a1682f2137fbd66da945eb4c7876e2",
+    "size_bytes": 17336688
+  },
+  "bqp_separation_claimed": false,
+  "build_steps": [
+    {
+      "command": [
+        "git",
+        "init",
+        "--quiet"
+      ],
+      "elapsed_seconds": 0.021620988845825195,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/01_git_init.stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/01_git_init.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "step_id": "01_git_init"
+    },
+    {
+      "command": [
+        "git",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/Qiskit/qiskit.git"
+      ],
+      "elapsed_seconds": 0.010612010955810547,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/02_git_remote.stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/02_git_remote.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "step_id": "02_git_remote"
+    },
+    {
+      "command": [
+        "git",
+        "fetch",
+        "--depth",
+        "1",
+        "origin",
+        "0fd015a22b84c9082173597a5d2304dc0aaec08c"
+      ],
+      "elapsed_seconds": 3.0222699642181396,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/03_git_fetch.stderr.txt",
+      "stderr_sha256": "5acf1fcab256f9405291fc2d411862735ab33a9f3cfba68c7498052a0901d049",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/03_git_fetch.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "step_id": "03_git_fetch"
+    },
+    {
+      "command": [
+        "git",
+        "checkout",
+        "--detach",
+        "FETCH_HEAD"
+      ],
+      "elapsed_seconds": 0.3114311695098877,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/04_git_checkout.stderr.txt",
+      "stderr_sha256": "085c143830a014b460856eec73837e5c0df6e0e60ba5eef1457c8711c876a446",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/04_git_checkout.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "step_id": "04_git_checkout"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "--check",
+        "/private/tmp/prometheus-r184-20260721/research/source_lineage/Qiskit_2_4_1_R184_window_exact_score.patch"
+      ],
+      "elapsed_seconds": 0.011469841003417969,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/05_patch_check.stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/05_patch_check.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "step_id": "05_patch_check"
+    },
+    {
+      "command": [
+        "git",
+        "apply",
+        "/private/tmp/prometheus-r184-20260721/research/source_lineage/Qiskit_2_4_1_R184_window_exact_score.patch"
+      ],
+      "elapsed_seconds": 0.011802911758422852,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/06_patch_apply.stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/06_patch_apply.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "step_id": "06_patch_apply"
+    },
+    {
+      "command": [
+        "cargo",
+        "fmt",
+        "--all",
+        "--",
+        "--check"
+      ],
+      "elapsed_seconds": 0.8355748653411865,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/07_cargo_fmt.stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/07_cargo_fmt.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "step_id": "07_cargo_fmt"
+    },
+    {
+      "command": [
+        "cargo",
+        "check",
+        "-p",
+        "qiskit-transpiler",
+        "--lib"
+      ],
+      "elapsed_seconds": 41.70526123046875,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/08_cargo_check.stderr.txt",
+      "stderr_sha256": "94c4071927a1b5934e969e1b47fc2a086631be88283e4b43f52370994a05f461",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/08_cargo_check.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "step_id": "08_cargo_check"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "qiskit-transpiler",
+        "--lib",
+        "r180_active_fixed_exact_score_tests"
+      ],
+      "elapsed_seconds": 36.3599328994751,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/09a_cargo_test_r180.stderr.txt",
+      "stderr_sha256": "0e4c5af36ec5dba0642341cb116110ed718a28095d4b1bb5d5520cf7a07c62aa",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/09a_cargo_test_r180.stdout.txt",
+      "stdout_sha256": "1da59bbabb1ccc61a4d978aad3a916795014d59132dd6230636c67acc1aaff20",
+      "step_id": "09a_cargo_test_r180"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "qiskit-transpiler",
+        "--lib",
+        "r182_score_cost_counter_tests"
+      ],
+      "elapsed_seconds": 0.1540060043334961,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/09b_cargo_test_r182.stderr.txt",
+      "stderr_sha256": "3b95aefca906a4ae71a73e3493f46a6d4d576c9680dad25cfc0f0471f6e93a12",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/09b_cargo_test_r182.stdout.txt",
+      "stdout_sha256": "d546f55b5fc3e6d03fb6fe627f92bc7461dcec5e0371408d07b0e7ad2847b7be",
+      "step_id": "09b_cargo_test_r182"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "qiskit-transpiler",
+        "--lib",
+        "r183_prefix_initialized_exact_score_tests"
+      ],
+      "elapsed_seconds": 0.13975286483764648,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/09c_cargo_test_r183.stderr.txt",
+      "stderr_sha256": "311ae92944e48e6dbf6b4f26b3dcce8db2932f7c8534eee7295784ee7024cea3",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/09c_cargo_test_r183.stdout.txt",
+      "stdout_sha256": "3f2984f7f75414fc2e3bd6f06b77d36336acc85bdbe1c19a50776db15ff382e5",
+      "step_id": "09c_cargo_test_r183"
+    },
+    {
+      "command": [
+        "cargo",
+        "test",
+        "-p",
+        "qiskit-transpiler",
+        "--lib",
+        "r184_window_exact_score_tests"
+      ],
+      "elapsed_seconds": 0.14960289001464844,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/09d_cargo_test_r184.stderr.txt",
+      "stderr_sha256": "311ae92944e48e6dbf6b4f26b3dcce8db2932f7c8534eee7295784ee7024cea3",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/09d_cargo_test_r184.stdout.txt",
+      "stdout_sha256": "cc11d641809031d0ca7d7c897fcece4bcb24838f9aef439755a6e450f179744a",
+      "step_id": "09d_cargo_test_r184"
+    },
+    {
+      "command": [
+        "git",
+        "diff",
+        "--check"
+      ],
+      "elapsed_seconds": 0.14597511291503906,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/10_git_diff_check.stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/10_git_diff_check.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "step_id": "10_git_diff_check"
+    },
+    {
+      "command": [
+        "cargo",
+        "rustc",
+        "--lib",
+        "--manifest-path",
+        "crates/pyext/Cargo.toml",
+        "--release",
+        "--features",
+        "cache_pygates,pyo3/extension-module",
+        "--crate-type",
+        "cdylib"
+      ],
+      "elapsed_seconds": 215.4680438041687,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/11_cargo_release.stderr.txt",
+      "stderr_sha256": "c951a0412f5c131fc406c0f9fe9ce0eb400b9c7cac82ccb4e00d938730ca06a5",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/11_cargo_release.stdout.txt",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "step_id": "11_cargo_release"
+    },
+    {
+      "command": [
+        "/Library/Frameworks/Python.framework/Versions/3.12/bin/python3",
+        "-c",
+        "import hashlib, json\nfrom pathlib import Path\nimport qiskit._accelerate as accelerator\nfrom qiskit._accelerate.vf2_layout import VF2PassConfiguration\npath = Path(accelerator.__file__).resolve()\nnames = ['vf2_layout_pass_average_exact_score', 'vf2_layout_pass_average_prefix_initialized_exact_score', 'vf2_layout_pass_average_window_exact_score', 'vf2_layout_pass_average_window_exact_score_r184_cost_traced']\nentries = {name: callable(getattr(accelerator.vf2_layout, name, None)) for name in names}\nprint(json.dumps({'accelerator_path': str(path), 'accelerator_sha256': hashlib.sha256(path.read_bytes()).hexdigest(), 'configuration_type': VF2PassConfiguration.__name__, 'r184_entry_points': entries}, sort_keys=True))"
+      ],
+      "elapsed_seconds": 0.8499717712402344,
+      "returncode": 0,
+      "stderr_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/12_python_import_smoke.stderr.txt",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_path": "research/source_lineage/R185_window_exact_macos_arm64_build_logs/12_python_import_smoke.stdout.txt",
+      "stdout_sha256": "6e0d5ad2b1e7f254913c2e11bcb0482c9bc73f962fbd348e51dcb4b604989b06",
+      "step_id": "12_python_import_smoke"
+    }
+  ],
+  "hardware_result_claimed": false,
+  "method": "b4_b8_r185_macos_arm64_replication_build_v0",
+  "new_credit_delta": 0,
+  "official_source": {
+    "commit": "0fd015a22b84c9082173597a5d2304dc0aaec08c",
+    "release": "2.4.1",
+    "repository": "https://github.com/Qiskit/qiskit.git"
+  },
+  "patch": {
+    "path": "research/source_lineage/Qiskit_2_4_1_R184_window_exact_score.patch",
+    "sha256": "a3a3f02bd52948f7f38ca8932e3484cf535bc045407522a4b3a9ab675e4b2fa6"
+  },
+  "patched_source_hashes": {
+    "crates/pyext/Cargo.toml": "996c72ed40ce2a1cd379df98b3e7f99c4eb5c937bb743a29383141bc0c8a5db5",
+    "crates/transpiler/Cargo.toml": "0e04369fa263fc8f12495bb091c16858c077b216bf3dad7324a59a95b7a7fa26",
+    "crates/transpiler/src/passes/vf2/vf2_layout.rs": "372c8084c29d31946f83138e68861de437d74d19fb992d23fa74213ea044096b"
+  },
+  "payload_hash": "15caf51890479c157d75e2c179de02dccd8f2a53d7890782663c0ed04bc7fa4a",
+  "platform": {
+    "cargo": "cargo 1.93.1 (083ac5135 2025-12-15)",
+    "machine": "arm64",
+    "platform": "macOS-26.5.2-arm64-arm-64bit",
+    "python": "3.12.6",
+    "python_extension_suffix": ".cpython-312-darwin.so",
+    "rustc": "rustc 1.93.1 (01f6ddf75 2026-02-11)",
+    "system": "Darwin",
+    "uname": "Darwin AvalokdeMac-mini.local 25.5.0 Darwin Kernel Version 25.5.0: Tue Jun  9 22:28:34 PDT 2026; root:xnu-12377.121.10~1/RELEASE_ARM64_T6041 arm64"
+  },
+  "preregistration": {
+    "commit": "66cfde7e044318e48d940bc153192553332400b7",
+    "created_at": "2026-07-20T21:38:51Z",
+    "discussion": "https://github.com/crystal-tensor/Prometheus-plan/discussions/280"
+  },
+  "public_runner_attestation": {
+    "build_completed_at": "2026-07-21T05:50:51.973566+08:00",
+    "build_started_at": "2026-07-21T05:45:52.366008+08:00",
+    "clean_worktree_before_build": true,
+    "mode": "clean_public_main_local_runner",
+    "platform_contract_passed": true,
+    "remote_main_at_build_start": "66cfde7e044318e48d940bc153192553332400b7",
+    "runner_commit": "66cfde7e044318e48d940bc153192553332400b7"
+  },
+  "python_import_smoke": {
+    "accelerator_path": "/private/tmp/prometheus-r185-window-exact-import-smoke/qiskit/_accelerate.abi3.so",
+    "accelerator_sha256": "d0fdc1cec9ed20e2fe8662e063ee633708a1682f2137fbd66da945eb4c7876e2",
+    "configuration_type": "VF2PassConfiguration",
+    "r184_entry_points": {
+      "vf2_layout_pass_average_exact_score": true,
+      "vf2_layout_pass_average_prefix_initialized_exact_score": true,
+      "vf2_layout_pass_average_window_exact_score": true,
+      "vf2_layout_pass_average_window_exact_score_r184_cost_traced": true
+    }
+  },
+  "quantum_advantage_claimed": false,
+  "simulation_execution_count": 0,
+  "solved_frontier_claimed": false,
+  "source_declared_library": {
+    "crate_types": [
+      "cdylib"
+    ],
+    "metadata_path": "crates/pyext/Cargo.toml",
+    "name": "qiskit_pyext",
+    "release_artifact": "target/release/libqiskit_pyext.dylib"
+  },
+  "status": "macos_arm64_pyext_built_and_imported_after_preregistration",
+  "title": "Qiskit 2.4.1 R185 windowed-exact-score macOS arm64 build manifest",
+  "total_simulated_shots": 0,
+  "version": 0
+}

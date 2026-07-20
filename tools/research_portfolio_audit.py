@@ -5286,8 +5286,185 @@ def audit_r185_macos_arm64_replication(root: Path, errors: list[str]) -> dict:
         "worker_dir",
     )
     final_presence = [paths[key].exists() for key in final_keys]
-    if any(final_presence) and not all(final_presence):
+    final_complete = all(final_presence)
+    if any(final_presence) and not final_complete:
         errors.append("R185 final evidence chain is incomplete")
+
+    result = oracle = bundle = build = None
+    summary: dict = {}
+    classifications: dict = {}
+    if final_complete:
+        result = json.loads(read(paths["result"]))
+        oracle = json.loads(read(paths["oracle"]))
+        bundle = json.loads(read(paths["bundle"]))
+        build = json.loads(read(paths["build"]))
+        summary = result.get("summary", {})
+        classifications = result.get("hypothesis_classifications", {})
+        h2 = classifications.get("H2-compact-common-path", {})
+        h3 = classifications.get("H3-representation-speedup", {})
+        h4 = classifications.get("H4-biguint-competitiveness", {})
+        h5 = classifications.get("H5-cross-architecture-transfer", {})
+        result_false_claims = (
+            "hardware_result_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "solved_frontier_claimed",
+            "production_qiskit_remedy_claimed",
+            "causal_bottleneck_claimed",
+        )
+        oracle_false_claims = (
+            "hardware_result_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "solved_frontier_claimed",
+            "production_qiskit_remedy_claimed",
+            "causal_bottleneck_claimed",
+        )
+        build_false_claims = (
+            "hardware_result_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "solved_frontier_claimed",
+        )
+        bundle_false_claims = (
+            "hardware_result_claimed",
+            "quantum_advantage_claimed",
+            "bqp_separation_claimed",
+            "solved_frontier_claimed",
+        )
+        accelerator = build.get("accelerator", {})
+        build_platform = build.get("platform", {})
+        runner = build.get("public_runner_attestation", {})
+        if (
+            not all(payload_ok(payload) for payload in (result, oracle, bundle, build))
+            or result.get("method")
+            != "b4_b8_r185_macos_arm64_replication_replay_v0"
+            or result.get("status")
+            != "macos_arm64_replication_complete_independent_oracle_pending"
+            or result.get("protocol_payload_hash") != protocol.get("payload_hash")
+            or result.get("design_contract_payload_hash") != design.get("payload_hash")
+            or result.get("contract_payload_hash") != execution.get("payload_hash")
+            or summary.get("worker_count") != 13
+            or summary.get("recorded_triplet_count") != 468
+            or summary.get("mapping_integrity_triplet_count") != 468
+            or summary.get("timing_call_count") != 1404
+            or summary.get("counter_probe_call_count") != 468
+            or summary.get("warmup_call_count") != 351
+            or summary.get("total_qiskit_function_call_count") != 2223
+            or summary.get("simulation_execution_count") != 0
+            or summary.get("total_simulated_shots") != 0
+            or set(classifications)
+            != {
+                "H1-exact-integrity",
+                "H2-compact-common-path",
+                "H3-representation-speedup",
+                "H4-biguint-competitiveness",
+                "H5-cross-architecture-transfer",
+            }
+            or not all(
+                item.get("supported_under_frozen_rule") is True
+                for item in classifications.values()
+            )
+            or h2.get("maximum_window_limb_count") > 4
+            or h2.get("maximum_score_object_size_bytes") > 64
+            or h2.get("fallback_transition_count") != 0
+            or h2.get("wide_combine_count") != 0
+            or h3.get("median_paired_candidate_to_reference_ratio") > 0.90
+            or h4.get("median_paired_candidate_to_baseline_ratio") > 1.00
+            or h5.get("linux_H1_through_H4_supported") is not True
+            or h5.get("macos_H1_through_H4_supported") is not True
+            or h5.get("identical_patch") is not True
+            or h5.get("identical_workload") is not True
+            or h5.get("identical_thresholds") is not True
+            or any(result.get(field) is not False for field in result_false_claims)
+            or result.get("new_credit_delta") != 0
+        ):
+            errors.append("R185 final result, H1-H5 classification, or claim boundary mismatch")
+        if (
+            oracle.get("method")
+            != "b4_b8_r185_independent_macos_arm64_replication_oracle_v0"
+            or oracle.get("status") != "independent_oracle_complete"
+            or oracle.get("requirements_passed") != 13
+            or oracle.get("requirements_failed") != 0
+            or oracle.get("row_hash_pass_count") != 468
+            or oracle.get("worker_manifest_hash_pass_count") != 13
+            or oracle.get("source_result_payload_hash") != result.get("payload_hash")
+            or oracle.get("recomputed_hypothesis_classifications") != classifications
+            or not all(oracle.get("requirements", {}).values())
+            or not all(oracle.get("result_matches", {}).values())
+            or any(oracle.get(field) is not False for field in oracle_false_claims)
+            or oracle.get("new_credit_delta") != 0
+        ):
+            errors.append("R185 independent oracle or result binding mismatch")
+        if (
+            build.get("method") != "b4_b8_r185_macos_arm64_replication_build_v0"
+            or build.get("status")
+            != "macos_arm64_pyext_built_and_imported_after_preregistration"
+            or build_platform.get("system") != "Darwin"
+            or build_platform.get("machine") != "arm64"
+            or "Mach-O 64-bit dynamically linked shared library arm64"
+            not in str(accelerator.get("file_description", ""))
+            or accelerator.get("sha256") != file_hash(paths["binary"])
+            or build.get("python_import_smoke", {}).get("accelerator_sha256")
+            != accelerator.get("sha256")
+            or not all(
+                build.get("python_import_smoke", {})
+                .get("r184_entry_points", {})
+                .values()
+            )
+            or runner.get("mode") != "clean_public_main_local_runner"
+            or runner.get("clean_worktree_before_build") is not True
+            or runner.get("platform_contract_passed") is not True
+            or runner.get("runner_commit") != runner.get("remote_main_at_build_start")
+            or build.get("preregistration", {}).get("discussion")
+            != "https://github.com/crystal-tensor/Prometheus-plan/discussions/280"
+            or any(build.get(field) is not False for field in build_false_claims)
+            or build.get("new_credit_delta") != 0
+        ):
+            errors.append("R185 macOS arm64 source build or runner attestation mismatch")
+        if (
+            bundle.get("method")
+            != "b4_b8_r185_macos_arm64_replication_bundle_v0"
+            or bundle.get("status") != "macos_arm64_bundle_complete"
+            or bundle.get("artifact_count") != 57
+            or bundle.get("worker_artifact_count") != 13
+            or bundle.get("source_result_payload_hash") != result.get("payload_hash")
+            or bundle.get("source_oracle_payload_hash") != oracle.get("payload_hash")
+            or bundle.get("source_build_payload_hash") != build.get("payload_hash")
+            or bundle.get("public_runner_mode") != "clean_public_main_local_runner"
+            or bundle.get("public_runner_commit") != runner.get("runner_commit")
+            or bundle.get("simulation_execution_count") != 0
+            or bundle.get("total_simulated_shots") != 0
+            or any(bundle.get(field) is not False for field in bundle_false_claims)
+            or bundle.get("new_credit_delta") != 0
+        ):
+            errors.append("R185 evidence bundle or zero-credit boundary mismatch")
+        for artifact in bundle.get("artifacts", []):
+            path = root / artifact.get("path", "")
+            if not path.is_file() or file_hash(path) != artifact.get("sha256"):
+                errors.append(f"R185 bundle artifact mismatch: {artifact.get('path')}")
+        result_report = read(paths["result_report"])
+        oracle_report = read(paths["oracle_report"])
+        if not all(
+            marker in result_report
+            for marker in (
+                "`468/468` triplets",
+                "`0.677482`",
+                "`0.501213`",
+                "hardware behavior",
+            )
+        ):
+            errors.append("R185 result report claim boundary missing")
+        if not all(
+            marker in oracle_report
+            for marker in (
+                "Requirements: `13/13`",
+                "`468` triplet-row hashes",
+                "without importing Qiskit",
+                "hardware behavior",
+            )
+        ):
+            errors.append("R185 oracle report claim boundary missing")
 
     status.update(
         {
@@ -5301,10 +5478,26 @@ def audit_r185_macos_arm64_replication(root: Path, errors: list[str]) -> dict:
             "execution_contract_payload_hash": execution.get("payload_hash")
             if execution is not None
             else None,
-            "scientific_execution_started": all(final_presence),
-            "result_status": "submitted" if paths["result"].exists() else "not_submitted",
-            "oracle_status": "submitted" if paths["oracle"].exists() else "not_submitted",
-            "measured_triplet_count": 0,
+            "scientific_execution_started": final_complete,
+            "result_status": result.get("status") if result is not None else "not_submitted",
+            "result_payload_hash": result.get("payload_hash") if result is not None else None,
+            "oracle_status": oracle.get("status") if oracle is not None else "not_submitted",
+            "oracle_payload_hash": oracle.get("payload_hash") if oracle is not None else None,
+            "build_payload_hash": build.get("payload_hash") if build is not None else None,
+            "bundle_payload_hash": bundle.get("payload_hash") if bundle is not None else None,
+            "measured_triplet_count": summary.get("recorded_triplet_count", 0),
+            "mapping_integrity_triplet_count": summary.get(
+                "mapping_integrity_triplet_count", 0
+            ),
+            "window_to_prefix_median_time_ratio": classifications.get(
+                "H3-representation-speedup", {}
+            ).get("median_paired_candidate_to_reference_ratio"),
+            "window_to_biguint_median_time_ratio": classifications.get(
+                "H4-biguint-competitiveness", {}
+            ).get("median_paired_candidate_to_baseline_ratio"),
+            "cross_architecture_transfer_supported": classifications.get(
+                "H5-cross-architecture-transfer", {}
+            ).get("supported_under_frozen_rule", False),
             "new_credit_delta": 0,
         }
     )

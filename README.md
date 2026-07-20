@@ -79,27 +79,29 @@ Current evidence includes:
 - an audit report in `research/portfolio_status_report.md`;
 - a current status page in `research/current_stage_brief.html`.
 
-The next B4/B8/B10 step is the frozen, unopened R185 macOS arm64
-cross-architecture replication. It repeats the exact R184 patch, 13 workload
-cells, 468 order-balanced BigUint/prefix/window triplets, 1,404 timing calls,
-468 probes, 351 warmups, and 2,223 total Qiskit calls while changing only the
-execution architecture from Linux x86-64 to Darwin arm64. H1-H4 retain the
-R184 integrity, compactness, `0.90x` window/prefix, and `1.00x`
-window/BigUint thresholds. New H5 accepts transfer only if both the committed
-Linux result and the future macOS result support H1-H4 under the identical
-patch, workload, and thresholds. Protocol `bd2f5c9a...`; design contract
-`c8f8b7e8...`. Scientific execution, build, worker rows, performance
-classification, cross-architecture transfer, and new credit remain unopened
-or zero. The design is not a universal platform theorem, production remedy,
-hardware result, quantum advantage, BQP separation, or solved frontier.
+The latest completed B4/B8/B10 step is the independently audited R185 macOS
+arm64 replication. A clean public-main Apple Silicon runner rebuilt the same
+Qiskit 2.4.1 source commit with the unchanged R184 patch, then executed the
+same 13 cells, 468 six-order-balanced BigUint/prefix/window triplets, 1,404
+timings, 468 probes, 351 warmups, and 2,223 total Qiskit calls. All `468/468`
+mappings agree. The compact path again uses at most two limbs and 40 bytes,
+with zero fallback transitions and zero wide combines. The paired
+window/prefix median ratio is `0.677482x`; window/BigUint is `0.501213x`; all
+13 cells favor the window arm. H1-H4 therefore pass on macOS arm64, and H5
+accepts transfer across the committed Linux x86-64 and macOS arm64 results
+under the identical patch, workload, and thresholds.
 
-The R185 second-stage execution contract is also frozen and unopened. Contract
-`19d56ee8...` binds 18 source artifacts, the unchanged R184 patch, five R185
-execution tools, Discussion #280, and public design commit `83c0741e...`. The
-13-cell measurement matrix and H1-H5 rules are unchanged. No accelerator,
-build manifest, worker row, timing, oracle output, transfer classification, or
-credit existed when the contract was created. The next allowed operation is a
-Darwin arm64 build from a clean commit that already equals public `main`.
+The standard-library R185 oracle imports neither Qiskit nor the executor. It
+validates `13/13` worker manifests and `468/468` row hashes, independently
+recomputes all five hypotheses, and passes `13/13`. Result `09e3f16f...`;
+oracle `b0e818eb...`; source build `15caf518...`; 57-artifact bundle
+`0c164aa0...`. This is stronger evidence that the exact-score representation
+and its speedup are not confined to one CPU architecture. It is still a
+frozen-workload classical compiler result, not a universal performance theorem,
+upstream Qiskit remedy, quantum-hardware result, quantum advantage, BQP
+separation, solved frontier, or new credit. The next gate is complete VF2
+workflow pricing across both architectures while the separate real-backend
+evidence lanes remain at zero rows.
 
 The latest completed B4/B8/B10 step is the independently audited R184
 windowed exact-score experiment. Public Actions run `29778806963` executed 13
@@ -3735,6 +3737,21 @@ triplets and all H1-H5 rules, and requires the future build to start from a
 clean Darwin arm64 commit already published as remote `main`. Scientific
 measurement remains unopened; accelerator, build, workers, result, oracle,
 bundle, transfer support, and new credit remain absent or zero.
+
+`T-B4-002ee` / `T-B8-003ei` /
+`T-B10-009du-r185-macos-arm64-replication-result` completes that frozen
+execution surface from clean public-main commit `66cfde7e...`. The native
+artifact is a Mach-O arm64 shared library rebuilt from Qiskit commit
+`0fd015a2...` and the unchanged R184 patch. All `468/468` mappings remain
+exact; the compact score stays within two limbs and 40 bytes with zero fallback
+or wide-combine events. The paired window/prefix and window/BigUint median
+ratios are `0.677482x` and `0.501213x`, so macOS H1-H4 pass and H5 accepts the
+bounded Linux/macOS transfer. The standard-library oracle validates `13/13`
+worker manifests and `468/468` row hashes and passes `13/13`; the portfolio
+audit reports zero errors and zero warnings. This remains a classical
+source-bound compiler experiment with zero simulated shots and zero real
+quantum-backend rows. It does not establish an upstream remedy, hardware
+behavior, quantum advantage, BQP separation, solved B4/B8/B10, or new credit.
 
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
