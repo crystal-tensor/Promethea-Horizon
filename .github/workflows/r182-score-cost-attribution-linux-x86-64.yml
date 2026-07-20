@@ -34,7 +34,8 @@ jobs:
       - name: Check out the preregistered commit
         uses: actions/checkout@v4
         with:
-          fetch-depth: 1
+          # The source-bound ancestry gate must see the public amendment commit.
+          fetch-depth: 0
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
