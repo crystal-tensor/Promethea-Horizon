@@ -3825,6 +3825,11 @@ def audit_r182_score_cost_attribution_preregistration(
         / "benchmarks/B4_B8_R182_score_cost_attribution_contract_v0.json",
         "report": root / "research/B4_B8_R182_score_cost_attribution_protocol.md",
         "tool": root / "tools/b4_b8_r182_score_cost_attribution_preregister.py",
+        "amendment": root
+        / "results/B4_B8_R182_score_cost_attribution_protocol_amendment_v1.json",
+        "amendment_report": root
+        / "research/B4_B8_R182_score_cost_attribution_protocol_amendment.md",
+        "amendment_tool": root / "tools/b4_b8_r182_protocol_amendment.py",
     }
     status = {f"{key}_exists": path.exists() for key, path in paths.items()}
     if not all(status.values()):
@@ -3842,6 +3847,7 @@ def audit_r182_score_cost_attribution_preregistration(
 
     protocol = json.loads(read(paths["protocol"]))
     contract = json.loads(read(paths["contract"]))
+    amendment = json.loads(read(paths["amendment"]))
     expected_sources = {
         "result": "7a5f055dae4184e01e5c8bb8a18de7b9d09cde8db6b2415b24cb6c1ab9a0b38f",
         "oracle": "a1de6b1b1eb57353bbf3968a2c8232ae6c41d8ee8ca4b398b7992a6b24d9d388",
@@ -3852,6 +3858,7 @@ def audit_r182_score_cost_attribution_preregistration(
         row.get("hypothesis_id"): row
         for row in protocol.get("frozen_hypotheses", [])
     }
+    corrected_counts = amendment.get("corrected_workload_counts", {})
     if (
         not payload_ok(protocol)
         or protocol.get("method")
@@ -3905,6 +3912,44 @@ def audit_r182_score_cost_attribution_preregistration(
     ):
         errors.append("R182 unopened protocol makes a forbidden positive claim")
 
+    unchanged = amendment.get("unchanged_scientific_contract", {})
+    if (
+        not payload_ok(amendment)
+        or amendment.get("method")
+        != "b4_b8_r182_protocol_count_label_amendment_v1"
+        or amendment.get("status") != "public_correction_execution_unopened"
+        or amendment.get("payload_hash")
+        != "747065513098d25f90e977b5d548219ca0d6944dd8b40840f97c17e55c348dfb"
+        or amendment.get("amends_protocol_payload_hash")
+        != protocol.get("payload_hash")
+        or corrected_counts.get("exact_policy_count") != 3
+        or corrected_counts.get("cells_per_policy") != 13
+        or corrected_counts.get("measured_replays_per_cell") != 32
+        or corrected_counts.get("warmups_per_cell") != 8
+        or corrected_counts.get("measured_calls_per_policy") != 416
+        or corrected_counts.get("warmup_calls_per_policy") != 104
+        or corrected_counts.get("measured_calls_all_policies") != 1248
+        or corrected_counts.get("warmup_calls_all_policies") != 312
+        or any(value is not False for value in unchanged.values())
+        or len(unchanged) != 7
+        or amendment.get("execution_started") is not False
+        or amendment.get("build_started") is not False
+        or amendment.get("measured_worker_count") != 0
+        or amendment.get("new_credit_delta") != 0
+    ):
+        errors.append("R182 unopened workload-count amendment mismatch")
+    amendment_report = read(paths["amendment_report"])
+    if not all(
+        marker in amendment_report
+        for marker in (
+            "public_correction_execution_unopened",
+            "Measurements per policy: `416`",
+            "Measurements across all policies: `1248`",
+            "No workload cell, replay count, warmup count, hypothesis, threshold",
+        )
+    ):
+        errors.append("R182 workload-count amendment report boundary missing")
+
     if (
         not payload_ok(contract)
         or contract.get("contract_id")
@@ -3954,9 +3999,20 @@ def audit_r182_score_cost_attribution_preregistration(
             "contract_payload_hash": contract.get("payload_hash"),
             "cost_channel_count": len(protocol.get("required_cost_channels", [])),
             "workload_cell_count": cells.get("total_cells_per_exact_policy"),
-            "measured_call_count_per_exact_policy": cells.get(
-                "exact_policy_measured_call_count"
+            "measured_call_count_per_exact_policy": corrected_counts.get(
+                "measured_calls_per_policy"
             ),
+            "measured_call_count_all_exact_policies": corrected_counts.get(
+                "measured_calls_all_policies"
+            ),
+            "warmup_call_count_per_exact_policy": corrected_counts.get(
+                "warmup_calls_per_policy"
+            ),
+            "warmup_call_count_all_exact_policies": corrected_counts.get(
+                "warmup_calls_all_policies"
+            ),
+            "amendment_status": amendment.get("status"),
+            "amendment_payload_hash": amendment.get("payload_hash"),
             "execution_tooling_bound": contract.get("execution_tooling_bound"),
             "execution_started": contract.get("execution_started"),
             "new_credit_delta": 0,

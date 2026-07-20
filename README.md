@@ -3520,7 +3520,10 @@ and 312 warmups in total. The design separates retained-binary64 leaf
 construction, destination initialization, arithmetic and comparison limb
 visits, carry extension, maximum used length, BigUint heap allocations and
 bytes, and elapsed time. Protocol hash `c4108dd5...`; design-contract hash
-`065799ba...`. Execution is unopened and remains blocked until six source-bound
+`065799ba...`. Amendment `74706551...` corrects two aggregate field labels
+without changing the matrix: each policy has 416 measurements and 104
+warmups, while all three policies together have 1,248 measurements and 312
+warmups. Execution is unopened and remains blocked until six source-bound
 artifacts are supplied: the instrumentation patch, replay tool, independent
 oracle, Linux build tool, bundle tool, and public workflow. No cost
 attribution, causal bottleneck, production remedy, hardware result, quantum
