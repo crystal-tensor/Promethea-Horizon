@@ -2587,6 +2587,438 @@ def audit_r175_rust_exact_score(
     return status
 
 
+def audit_r176_fixed_superaccumulator(
+    root: Path,
+    b4_manifest: dict,
+    b8_manifest: dict,
+    b10_manifest: dict,
+    errors: list[str],
+) -> dict:
+    """Validate R176's fixed exact-score integration and independent oracle."""
+    from datetime import datetime
+    from statistics import median
+
+    paths = {
+        "protocol": root / "results/B4_B8_R176_fixed_superaccumulator_protocol_v0.json",
+        "contract": root
+        / "benchmarks/B4_B8_R176_fixed_superaccumulator_contract_v0.json",
+        "result": root / "results/B4_B8_R176_fixed_superaccumulator_v0.json",
+        "report": root / "research/B4_B8_R176_fixed_superaccumulator.md",
+        "oracle_result": root
+        / "results/B4_B8_R176_independent_fixed_accumulator_oracle_v0.json",
+        "oracle_report": root
+        / "research/B4_B8_R176_independent_fixed_accumulator_oracle.md",
+        "preregister": root / "tools/b4_b8_r176_fixed_superaccumulator_preregister.py",
+        "executor": root / "tools/b4_b8_r176_fixed_superaccumulator_replay.py",
+        "oracle_executor": root
+        / "tools/b4_b8_r176_independent_fixed_accumulator_oracle.py",
+        "build_manifest": root
+        / "research/source_lineage/Qiskit_2_4_1_R176_fixed_superaccumulator_build_manifest.json",
+        "patch": root
+        / "research/source_lineage/Qiskit_2_4_1_R176_fixed_superaccumulator.patch",
+        "accelerator": root
+        / "research/source_lineage/Qiskit_2_4_1_R176_fixed_superaccumulator_accelerate.cpython-312-darwin.so",
+    }
+    status = {f"{key}_path": str(path) for key, path in paths.items()}
+    status.update({f"{key}_exists": path.exists() for key, path in paths.items()})
+    if not all(path.exists() for path in paths.values()):
+        errors.append("R176 fixed-superaccumulator artifact missing")
+        return status
+
+    def canonical(value: object) -> str:
+        return hashlib.sha256(
+            json.dumps(
+                value, sort_keys=True, separators=(",", ":"), ensure_ascii=True
+            ).encode()
+        ).hexdigest()
+
+    def payload_ok(payload: dict, field: str = "payload_hash") -> bool:
+        body = dict(payload)
+        observed = body.pop(field, None)
+        return observed == canonical(body)
+
+    protocol = json.loads(read(paths["protocol"]))
+    contract = json.loads(read(paths["contract"]))
+    result = json.loads(read(paths["result"]))
+    oracle = json.loads(read(paths["oracle_result"]))
+    build = json.loads(read(paths["build_manifest"]))
+    identities = [
+        (protocol, "b4_b8_r176_fixed_superaccumulator_protocol_v0", "protocol"),
+        (result, "b4_b8_r176_fixed_superaccumulator_v0", "result"),
+        (oracle, "b4_b8_r176_independent_fixed_accumulator_oracle_v0", "oracle"),
+    ]
+    for payload, expected_method, label in identities:
+        if not payload_ok(payload) or payload.get("method") != expected_method:
+            errors.append(f"R176 {label} identity or payload mismatch")
+    if (
+        not payload_ok(build)
+        or build.get("payload_hash")
+        != "5e227aaa471d25aa8bcaa5c9d302d65cc14d3ca1fca05184c45be65b9fe215e6"
+    ):
+        errors.append("R176 build manifest payload mismatch")
+    if (
+        build.get("official_source", {}).get("commit")
+        != "0fd015a22b84c9082173597a5d2304dc0aaec08c"
+        or build.get("patch", {}).get("sha256")
+        != hashlib.sha256(paths["patch"].read_bytes()).hexdigest()
+        or build.get("accelerator", {}).get("sha256")
+        != hashlib.sha256(paths["accelerator"].read_bytes()).hexdigest()
+        or build.get("accelerator", {}).get("size_bytes")
+        != paths["accelerator"].stat().st_size
+        or any(row.get("returncode") != 0 for row in build.get("build_checks", []))
+        or build.get("fixed_width_proof", {}).get("limb_count") not in (None, 34)
+    ):
+        errors.append("R176 compiled source lineage or build check mismatch")
+
+    if (
+        not payload_ok(contract)
+        or contract.get("contract_id")
+        != "B4-B8-R176-fixed-superaccumulator-contract-v0"
+        or contract.get("execution_started") is not False
+        or contract.get("protocol_payload_hash") != protocol.get("payload_hash")
+    ):
+        errors.append("R176 contract identity, payload, or unopened boundary mismatch")
+    for section in ("source_bindings", "tool_bindings"):
+        for binding_id, binding in contract.get(section, {}).items():
+            path = root / binding.get("path", "")
+            if not path.exists() or hashlib.sha256(
+                path.read_bytes()
+            ).hexdigest() != binding.get("sha256"):
+                errors.append(f"R176 {section} mismatch: {binding_id}")
+
+    expected_preregistration = {
+        "commit": "79228051",
+        "discussion": "https://github.com/crystal-tensor/Prometheus-plan/discussions/264",
+        "created_at": "2026-07-20T14:25:05Z",
+    }
+    if (
+        result.get("preregistration") != expected_preregistration
+        or oracle.get("preregistration") != expected_preregistration
+    ):
+        errors.append("R176 public preregistration binding mismatch")
+
+    summary = result.get("summary", {})
+    expected_summary = {
+        "worker_count": 39,
+        "process_instance_uuid_count": 39,
+        "workers_started_after_preregistration": 39,
+        "recorded_call_count": 2400,
+        "warmup_call_count": 624,
+        "qiskit_calls_performed": 3024,
+        "source_expected_match_count": 800,
+        "biguint_expected_match_count": 800,
+        "fixed_expected_match_count": 800,
+        "biguint_fixed_mapping_agreement_count": 800,
+        "r169_fixed_preservation_count": 192,
+        "r170_fixed_repair_count": 192,
+        "r172_fixed_repair_count": 192,
+        "small_gap_source_prior_wrong_winner_reproduction_count": 224,
+        "small_gap_biguint_repair_count": 224,
+        "small_gap_fixed_repair_count": 224,
+        "small_gap_minimum_ulp_ratio": 0.03125,
+        "small_gap_maximum_ulp_ratio": 0.5,
+        "performance_cell_count": 37,
+        "memory_pair_count": 13,
+        "simulation_execution_count": 0,
+        "total_simulated_shots": 0,
+        "experimental_rust_entry_integrated": True,
+        "upstream_patch_accepted": False,
+        "production_qiskit_remedy_claimed": False,
+        "confirmed_qiskit_bug_claimed": False,
+        "route_quality_improvement_claimed": False,
+        "hardware_result_claimed": False,
+        "quantum_advantage_claimed": False,
+        "bqp_separation_claimed": False,
+        "solved_frontier_claimed": False,
+        "new_credit_delta": 0,
+    }
+    failed_requirements = [
+        row.get("requirement_id")
+        for row in result.get("requirements", [])
+        if not row.get("passed")
+    ]
+    if (
+        result.get("status")
+        != "integrated_fixed_superaccumulator_supported_on_frozen_matrix"
+        or result.get("classification")
+        != "bounded_compiled_comparator_integration_with_performance_ledger"
+        or result.get("requirements_passed") != 16
+        or result.get("requirements_failed") != 0
+        or failed_requirements
+    ):
+        errors.append("R176 result status or requirement ledger mismatch")
+    for field, value in expected_summary.items():
+        if summary.get(field) != value:
+            errors.append(f"R176 result summary {field} mismatch")
+
+    artifacts = result.get("worker_artifacts", [])
+    manifests = []
+    rows = []
+    case_summaries = []
+    created_unix = int(
+        datetime.fromisoformat(
+            expected_preregistration["created_at"].replace("Z", "+00:00")
+        ).timestamp()
+    )
+    for artifact in artifacts:
+        path = root / artifact.get("path", "")
+        if not path.exists() or hashlib.sha256(
+            path.read_bytes()
+        ).hexdigest() != artifact.get("sha256"):
+            errors.append(f"R176 worker artifact hash mismatch: {artifact.get('path')}")
+            continue
+        manifest = json.loads(read(path))
+        if not payload_ok(manifest, "manifest_hash") or manifest.get(
+            "manifest_hash"
+        ) != artifact.get("manifest_hash"):
+            errors.append(f"R176 worker manifest hash mismatch: {artifact.get('path')}")
+        if (
+            manifest.get("accelerator_sha256") != result.get("accelerator_sha256")
+            or manifest.get("started_at_unix", 0) < created_unix
+        ):
+            errors.append(
+                f"R176 worker lineage or start boundary mismatch: {artifact.get('path')}"
+            )
+        for row in manifest.get("replay_rows", []):
+            if not payload_ok(row, "row_hash"):
+                errors.append(f"R176 worker row hash mismatch: {artifact.get('path')}")
+        for row in manifest.get("case_summaries", []):
+            if not payload_ok(row, "case_summary_hash"):
+                errors.append(
+                    f"R176 case summary hash mismatch: {artifact.get('path')}"
+                )
+        manifests.append(manifest)
+        rows.extend(manifest.get("replay_rows", []))
+        case_summaries.extend(manifest.get("case_summaries", []))
+    if (
+        len(artifacts) != 39
+        or len(manifests) != 39
+        or len(rows) != 2400
+        or len(case_summaries) != 84
+        or canonical(rows) != result.get("row_set_hash")
+        or len({row.get("process_instance_uuid") for row in manifests}) != 39
+    ):
+        errors.append("R176 worker, row, case, or process set mismatch")
+
+    source_times = [
+        row["elapsed_ns"] for row in rows if row.get("policy") == "source_f64"
+    ]
+    biguint_times = [
+        row["elapsed_ns"]
+        for row in rows
+        if row.get("policy") == "rust_biguint_exact_retained_binary64"
+    ]
+    fixed_times = [
+        row["elapsed_ns"]
+        for row in rows
+        if row.get("policy") == "rust_fixed_exact_retained_binary64"
+    ]
+    fixed_source_ratio = median(fixed_times) / median(source_times)
+    fixed_biguint_ratio = median(fixed_times) / median(biguint_times)
+    biguint_source_ratio = median(biguint_times) / median(source_times)
+    cell_ratios = [
+        row.get("fixed_to_source_median_ratio")
+        for row in result.get("performance_cells", [])
+    ]
+    rss_ratios = [
+        row.get("fixed_to_source_peak_rss_ratio")
+        for row in result.get("memory_pairs", [])
+    ]
+    thresholds = protocol.get("performance_thresholds", {})
+    ratios_match = all(
+        [
+            math.isclose(
+                fixed_source_ratio,
+                summary.get("aggregate_fixed_to_source_median_time_ratio", -1),
+                rel_tol=0,
+                abs_tol=1e-15,
+            ),
+            math.isclose(
+                fixed_biguint_ratio,
+                summary.get("aggregate_fixed_to_biguint_median_time_ratio", -1),
+                rel_tol=0,
+                abs_tol=1e-15,
+            ),
+            math.isclose(
+                biguint_source_ratio,
+                summary.get("aggregate_biguint_to_source_median_time_ratio", -1),
+                rel_tol=0,
+                abs_tol=1e-15,
+            ),
+            math.isclose(
+                max(cell_ratios),
+                summary.get("maximum_cell_fixed_to_source_median_time_ratio", -1),
+                rel_tol=0,
+                abs_tol=1e-15,
+            ),
+            math.isclose(
+                max(rss_ratios),
+                summary.get("maximum_worker_fixed_to_source_peak_rss_ratio", -1),
+                rel_tol=0,
+                abs_tol=1e-15,
+            ),
+        ]
+    )
+    if (
+        len(source_times) != 800
+        or len(biguint_times) != 800
+        or len(fixed_times) != 800
+        or len(cell_ratios) != 37
+        or len(rss_ratios) != 13
+        or not ratios_match
+        or fixed_source_ratio > thresholds.get("maximum_aggregate_median_time_ratio", 0)
+        or fixed_biguint_ratio
+        > thresholds.get("maximum_aggregate_fixed_to_biguint_median_time_ratio", 0)
+        or max(cell_ratios) > thresholds.get("maximum_cell_median_time_ratio", 0)
+        or max(rss_ratios) > thresholds.get("maximum_worker_peak_rss_ratio", 0)
+    ):
+        errors.append("R176 recomputed timing or memory acceptance boundary mismatch")
+
+    oracle_summary = oracle.get("summary", {})
+    oracle_expected = {
+        "worker_hashes_valid": 39,
+        "worker_artifacts_match": 39,
+        "row_hashes_valid": 2400,
+        "case_hashes_valid": 84,
+        "standard_outcomes_reproduced": 1728,
+        "small_gap_oracle_count": 28,
+        "small_gap_oracle_payload_matches": 84,
+        "small_gap_outcomes_reproduced": 672,
+        "performance_cell_count": 37,
+        "memory_pair_count": 13,
+        "summary_matches": True,
+        "qiskit_imported": False,
+        "r176_executor_imported": False,
+        "qiskit_calls_performed": 0,
+        "simulation_execution_count": 0,
+        "total_simulated_shots": 0,
+        "new_credit_delta": 0,
+    }
+    oracle_failed = [
+        row.get("requirement_id")
+        for row in oracle.get("requirements", [])
+        if not row.get("passed")
+    ]
+    if (
+        oracle.get("status") != "independent_fixed_superaccumulator_oracle_complete"
+        or oracle.get("classification")
+        != "standard_library_reproduction_of_integrated_rust_matrix"
+        or oracle.get("source_result_payload_hash") != result.get("payload_hash")
+        or oracle.get("requirements_passed") != 12
+        or oracle.get("requirements_failed") != 0
+        or oracle_failed
+    ):
+        errors.append(
+            "R176 independent oracle status, binding, or requirement ledger mismatch"
+        )
+    for field, value in oracle_expected.items():
+        if oracle_summary.get(field) != value:
+            errors.append(f"R176 oracle summary {field} mismatch")
+
+    for path, markers, label in [
+        (
+            paths["report"],
+            ["16/16", "1.889304", "0.768244", "Claim Boundary"],
+            "result",
+        ),
+        (
+            paths["oracle_report"],
+            ["12/12", "2400/2400", "28/28", "Claim Boundary"],
+            "oracle",
+        ),
+    ]:
+        report_text = read(path)
+        for marker in markers:
+            if marker not in report_text:
+                errors.append(f"R176 {label} report boundary missing: {marker}")
+
+    result_rows = [
+        (
+            "B4",
+            b4_manifest.get("current_results", {}).get(
+                "b4_b8_r176_fixed_superaccumulator_v0"
+            ),
+        ),
+        (
+            "B8",
+            b8_manifest.get("current_results", {}).get(
+                "b4_b8_r176_fixed_superaccumulator_v0"
+            ),
+        ),
+        (
+            "B10",
+            b10_manifest.get("current_results", {}).get(
+                "b10_t2_b4_b8_r176_fixed_superaccumulator_v0"
+            ),
+        ),
+    ]
+    oracle_rows = [
+        (
+            "B4",
+            b4_manifest.get("current_results", {}).get(
+                "b4_b8_r176_independent_fixed_accumulator_oracle_v0"
+            ),
+        ),
+        (
+            "B8",
+            b8_manifest.get("current_results", {}).get(
+                "b4_b8_r176_independent_fixed_accumulator_oracle_v0"
+            ),
+        ),
+        (
+            "B10",
+            b10_manifest.get("current_results", {}).get(
+                "b10_t2_b4_b8_r176_independent_fixed_accumulator_oracle_v0"
+            ),
+        ),
+    ]
+    for label, row in result_rows:
+        if (
+            not row
+            or row.get("status") != result.get("status")
+            or row.get("recorded_call_count") != 2400
+            or row.get("requirements_passed") != 16
+            or row.get("failed_requirement_ids") != []
+        ):
+            errors.append(f"{label} manifest missing or invalid R176 result")
+    for label, row in oracle_rows:
+        if (
+            not row
+            or row.get("status") != oracle.get("status")
+            or row.get("row_hashes_valid") != 2400
+            or row.get("requirements_passed") != 12
+            or row.get("failed_requirement_ids") != []
+        ):
+            errors.append(f"{label} manifest missing or invalid R176 oracle")
+
+    status.update(
+        {
+            "status": result.get("status"),
+            "classification": result.get("classification"),
+            "requirements_passed": result.get("requirements_passed"),
+            "requirements_failed": result.get("requirements_failed"),
+            "source_expected_match_count": summary.get("source_expected_match_count"),
+            "fixed_expected_match_count": summary.get("fixed_expected_match_count"),
+            "aggregate_fixed_to_source_median_time_ratio": summary.get(
+                "aggregate_fixed_to_source_median_time_ratio"
+            ),
+            "aggregate_fixed_to_biguint_median_time_ratio": summary.get(
+                "aggregate_fixed_to_biguint_median_time_ratio"
+            ),
+            "maximum_cell_fixed_to_source_median_time_ratio": summary.get(
+                "maximum_cell_fixed_to_source_median_time_ratio"
+            ),
+            "maximum_worker_fixed_to_source_peak_rss_ratio": summary.get(
+                "maximum_worker_fixed_to_source_peak_rss_ratio"
+            ),
+            "oracle_status": oracle.get("status"),
+            "oracle_requirements_passed": oracle.get("requirements_passed"),
+            "new_credit_delta": summary.get("new_credit_delta"),
+        }
+    )
+    return status
+
+
 def audit(root: Path) -> dict:
     research = root / "research"
     benchmarks = root / "benchmarks"
@@ -44618,6 +45050,9 @@ def audit(root: Path) -> dict:
     r173_first_divergent_combine_status = audit_r173_first_divergent_combine(root, b4_manifest, b8_manifest, b10_manifest, errors)
     r174_exact_score_comparator_status = audit_r174_exact_score_comparator(root, b4_manifest, b8_manifest, b10_manifest, errors)
     r175_rust_exact_score_status = audit_r175_rust_exact_score(root, b4_manifest, b8_manifest, b10_manifest, errors)
+    r176_fixed_superaccumulator_status = audit_r176_fixed_superaccumulator(
+        root, b4_manifest, b8_manifest, b10_manifest, errors
+    )
 
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
@@ -44984,6 +45419,7 @@ def audit(root: Path) -> dict:
             "r173_first_divergent_combine": r173_first_divergent_combine_status,
             "r174_exact_score_comparator": r174_exact_score_comparator_status,
             "r175_rust_exact_score": r175_rust_exact_score_status,
+            "r176_fixed_superaccumulator": r176_fixed_superaccumulator_status,
         },
         "b5": {
             "manifest": str(b5_manifest_path),
@@ -45150,6 +45586,7 @@ def audit(root: Path) -> dict:
             "r173_first_divergent_combine": r173_first_divergent_combine_status,
             "r174_exact_score_comparator": r174_exact_score_comparator_status,
             "r175_rust_exact_score": r175_rust_exact_score_status,
+            "r176_fixed_superaccumulator": r176_fixed_superaccumulator_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -45193,6 +45630,7 @@ def audit(root: Path) -> dict:
             "r173_first_divergent_combine": r173_first_divergent_combine_status,
             "r174_exact_score_comparator": r174_exact_score_comparator_status,
             "r175_rust_exact_score": r175_rust_exact_score_status,
+            "r176_fixed_superaccumulator": r176_fixed_superaccumulator_status,
             "t1_d5_observable_denominator_table": b10_t1_d5_table_status,
             "t1_d5_b3_molecular_observable_table": b10_t1_d5_b3_table_status,
             "t1_d5_b3_reaction_observable_table": b10_t1_d5_b3_reaction_table_status,

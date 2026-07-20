@@ -3368,6 +3368,27 @@ experimental source-bound optimization, not an upstream patch, production
 remedy, confirmed bug, hardware result, quantum advantage, BQP separation,
 solved frontier, or new credit.
 
+`T-B4-002da` / `T-B8-003de` / `T-B10-009cq-r176-result` now records the
+unchanged frozen matrix as supported at requirements `16/16`. All `39`
+workers started after public preregistration in Discussion #264 and completed
+`624` warmups plus `2,400` recorded calls. Source f64, R175 `BigUint`, and the
+34-limb fixed accumulator each match `800/800` frozen outcomes; BigUint and
+fixed agree on all `800/800` mappings. Fixed exact preserves R169 on
+`192/192`, repairs R170 and R172 on `192/192` each, and repairs all `224/224`
+R160 sub-ULP wrong winners spanning `0.03125` to `0.5 ULP`. Performance now
+passes: aggregate fixed/source is `1.889304`, aggregate fixed/BigUint is
+`0.768244`, the worst fixed/source cell is `2.486844`, and the worst
+fixed/source process-RSS ratio is `1.016771`. A standard-library-only oracle
+passes `12/12` while importing neither Qiskit nor the R176 executor; it
+validates `39/39` worker hashes, `2,400/2,400` row hashes, all `84` case
+hashes, and every standard and small-gap outcome. This supports one bounded,
+source-bound experimental comparator on the frozen local matrix. It is not an
+upstream-accepted or production Qiskit patch, confirmed Qiskit bug,
+cross-platform performance result, hardware evidence, quantum advantage, BQP
+separation, solved B4/B8/B10, or new credit. The next gate is an independently
+built cross-platform replay followed by broader graph-size and candidate-count
+pressure before any production proposal.
+
 The R149 holdout at `T-B4-002bh` / `T-B8-003bl` / `T-B10-009az` is
 then preregistered ACCEPT with A1-A10, requirements, and phase replay all
 passing `10/10`, `10/10`, and `4/4`. All `24/24` repaired and target-specific
