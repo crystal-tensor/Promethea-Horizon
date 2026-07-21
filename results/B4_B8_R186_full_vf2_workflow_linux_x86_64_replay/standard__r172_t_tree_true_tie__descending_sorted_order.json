@@ -1,0 +1,5729 @@
+{
+  "accelerator_path": "/tmp/prometheus-r186-linux_x86_64-85b89b99de562279/qiskit/_accelerate.abi3.so",
+  "accelerator_sha256": "85b89b99de5622799a0bdabac5b7b936c440a0e80afd6af9d5b8d5cf3673bde7",
+  "cell": {
+    "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+    "dataset_id": "r172_t_tree_true_tie",
+    "kind": "standard",
+    "profile_id": "descending_sorted_order"
+  },
+  "design_contract_payload_hash": "3e4c24252f9e340ae221a9ae76e88eb10e3d488f4e79ce2513df1e5a0ef76dc6",
+  "environment": {
+    "machine": "x86_64",
+    "platform": "Linux-6.17.0-1020-azure-x86_64-with-glibc2.39",
+    "python": "3.12.13",
+    "pythonpath_head": "/home/runner/work/Prometheus-plan/Prometheus-plan/tools",
+    "qiskit": "2.4.1",
+    "qiskit_aer": "0.17.2",
+    "qiskit_ibm_runtime": "0.46.1",
+    "system": "Linux"
+  },
+  "execution_contract_payload_hash": "bb932759886eaeb881ea50c35cca0bd1e1f7b7c68d28503d10e0e08b5c175fdd",
+  "input_path": "benchmarks/B4_B8_R172_second_near_tie_candidate_v0.qasm",
+  "input_sha256": "f2dd4684d3de77fd3904d9a3c8ce29c16f5315e78ce2eb6ac632a90f4018acc9",
+  "manifest_hash": "fa5e2d24bad40dc62dddae4fdfe5e7edfc4b971312c4b10ab7ea0358289e8c29",
+  "method": "b4_b8_r186_full_vf2_workflow_replay_v0",
+  "platform_id": "linux_x86_64",
+  "preregistration": {
+    "commit": "20ba8df7a0d64fa4abc1335e4ca41e140475f7df",
+    "created_at": "2026-07-20T22:09:13Z",
+    "discussion": "https://github.com/crystal-tensor/Prometheus-plan/discussions/282"
+  },
+  "process_id": 2388,
+  "process_instance_uuid": "2bd14b56-1946-4ae6-9ff7-0b1a87035102",
+  "protocol_payload_hash": "7e4629295f6a0ecc986a6812f38c839f5da8b65b98cf91c248ef1d2ae747a8ac",
+  "python_vf2_layout_sha256": "0a8fdcaf18c9356e8f701f6438f95608684d13626c1dc2d3e86189d31049f6aa",
+  "real_backend_row_count": 0,
+  "recorded_row_count": 36,
+  "replay_rows": [
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 26640,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 21611,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 26530,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 422685,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 382490,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 411705,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.8112237237237238,
+          "candidate_to_reference": 0.8145872597059932
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.9049055443178726,
+          "candidate_to_reference": 0.9290389963687592
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "a967e4390294a73007df85a88bdc65f44a42a581f8d917e9e30b7984dac58717",
+      "row_index": 0,
+      "schedule_index": 0,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 36308,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 22813,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 31389,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 438926,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 502907,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 394392,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.628318827806544,
+          "candidate_to_reference": 0.72678326802383
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.1457671680419934,
+          "candidate_to_reference": 1.2751450333678167
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "b11da4f104fa2a18e91ee6e4a2a62aa1d1bceb2eb3cdfe78235afec8b9199408",
+      "row_index": 1,
+      "schedule_index": 1,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 31299,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 22923,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 27862,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 407718,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 421724,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 392820,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.7323876162177705,
+          "candidate_to_reference": 0.8227334721125548
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.0343521747874758,
+          "candidate_to_reference": 1.0735807749096278
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "5eff2b415128aa2ef005ff2fa60841c9f04a8626ed59fdfeaa5d26814ef97f49",
+      "row_index": 2,
+      "schedule_index": 2,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 37611,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 25529,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 29085,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 426493,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 401025,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 517665,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.6787641913270054,
+          "candidate_to_reference": 0.8777376654632972
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.9402850691570553,
+          "candidate_to_reference": 0.7746805366404914
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "25f865456a7aeccd2ae202b35fab1e7b280b04532520aff018bfc26d764460de",
+      "row_index": 3,
+      "schedule_index": 3,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 27692,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 21690,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 30227,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 424409,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 387499,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 407597,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.7832587028744764,
+          "candidate_to_reference": 0.7175703840936911
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.9130320045050883,
+          "candidate_to_reference": 0.9506914918412059
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "59e5420386ff509eb5b51e52c68923f1d05e6c83ab07dde02582ead5ef5bfa8f",
+      "row_index": 4,
+      "schedule_index": 4,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 31709,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 23795,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 60965,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 403760,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 487818,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 423698,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.7504178624365322,
+          "candidate_to_reference": 0.39030591322890185
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.2081880324945513,
+          "candidate_to_reference": 1.1513342050233892
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "be12b0a0f518bcd6de0df47b3c9f21195fd0b172f7bf52a402d42ff70289cb63",
+      "row_index": 5,
+      "schedule_index": 5,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 25858,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 22292,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 31159,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 397058,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 434708,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 411785,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.8620929692938356,
+          "candidate_to_reference": 0.7154273243685613
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.0948224188909428,
+          "candidate_to_reference": 1.0556673992496084
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "e937373ba80b6dfb4f12556e69f2711a5f6a19a5c9747d592b82e7c2e0163da3",
+      "row_index": 6,
+      "schedule_index": 6,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 26350,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 25899,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 38422,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 397097,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 501784,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 402918,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.9828842504743833,
+          "candidate_to_reference": 0.6740669408151579
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.263630800534882,
+          "candidate_to_reference": 1.2453749894519481
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "23688688fb4934168019773d6136da61ccd92d2b9ec593688bdeb0532c422cad",
+      "row_index": 7,
+      "schedule_index": 7,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 27913,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 29506,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 27452,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 403911,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 402427,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 421394,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.057070182352309,
+          "candidate_to_reference": 1.0748215066297537
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.9963259232850802,
+          "candidate_to_reference": 0.9549898669653578
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "9b26babe69d009934da8b9296034df6a2990ca0783b116f0e17223c170cd81c2",
+      "row_index": 8,
+      "schedule_index": 8,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 29655,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 32932,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 29054,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 547020,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 391767,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 401757,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.11050413083797,
+          "candidate_to_reference": 1.1334755971639017
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.7161840517714161,
+          "candidate_to_reference": 0.9751342229257984
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "8a1f4eb0bd3d964b4cb8fd50189d7eb360dab9c41ff0b0cb008c692b10eb1502",
+      "row_index": 9,
+      "schedule_index": 9,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 28735,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 27953,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 50655,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 418728,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 407497,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 392519,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.9727858012876284,
+          "candidate_to_reference": 0.5518310137202646
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.9731782923520758,
+          "candidate_to_reference": 1.0381586623832222
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "2cf0fb0f3d97f25b7d467cb8e2de0e0c153c3fa42c1f02a0fc94f5e2c50febef",
+      "row_index": 10,
+      "schedule_index": 10,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 27813,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 32350,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 31018,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 397147,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 404591,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 517363,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.163125157300543,
+          "candidate_to_reference": 1.0429428074021536
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.0187436893643915,
+          "candidate_to_reference": 0.7820253864308039
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "fd19c2e3a6f1428808a9d5efd8391b8c9ec447807ab98fef061f36ed2a699d8e",
+      "row_index": 11,
+      "schedule_index": 11,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 29355,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 21921,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 27882,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 433676,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 415462,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 403550,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.7467552376085845,
+          "candidate_to_reference": 0.7862061545082849
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.9580009039006079,
+          "candidate_to_reference": 1.0295180275058853
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "529805ea4c92a7c27f81c531b3f8e4ebec231cfe7355596bf4db6e5e59649d97",
+      "row_index": 12,
+      "schedule_index": 0,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 36278,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 23143,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 31970,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 503617,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 387819,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 429338,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.6379348365400518,
+          "candidate_to_reference": 0.7238974038160776
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.7700673329137023,
+          "candidate_to_reference": 0.9032953057963655
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "d6cd66b55a39a51fa5cf7db931e6bd6e8c9f552ec1e7168b296a08fc48a10a26",
+      "row_index": 13,
+      "schedule_index": 1,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 29936,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 22362,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 26970,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 442262,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 394372,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 426093,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.7469935863174773,
+          "candidate_to_reference": 0.8291434927697442
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.891715770290009,
+          "candidate_to_reference": 0.9255538110224764
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "9fa6c580d5e64df711318fdd7e27d72e72e476f127247f62c3664225fe8441e7",
+      "row_index": 14,
+      "schedule_index": 2,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 36228,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 25458,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 28363,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 499299,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 418738,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 396587,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.7027161311692613,
+          "candidate_to_reference": 0.897577830271833
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.8386517898093127,
+          "candidate_to_reference": 1.0558540748940333
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "532be338e9aa5e53732b66f6ec8a1aee7f852f6897aa62a00c3f2bc421734f41",
+      "row_index": 15,
+      "schedule_index": 3,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 26961,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 21641,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 31169,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 394923,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 456710,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 430359,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.802677942212826,
+          "candidate_to_reference": 0.6943116558118644
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.1564532832982632,
+          "candidate_to_reference": 1.061230275188854
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "02d09225aca585e5e81db0231fb96a6e5c82aaa66f07f89a2cb010969d7ad643",
+      "row_index": 16,
+      "schedule_index": 4,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 29896,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 23664,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 39303,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 398930,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 421002,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 502956,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.7915440192667915,
+          "candidate_to_reference": 0.6020914434012671
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.0553280024064373,
+          "candidate_to_reference": 0.8370553288955694
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "4d639bd2f505f8255d176e7dcb4aba0e4d2e959f3d37574c184abc6b888e9fb1",
+      "row_index": 17,
+      "schedule_index": 5,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 26119,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 23093,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 33063,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 392018,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 395134,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 429839,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.884145641104177,
+          "candidate_to_reference": 0.6984544657169646
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.0079486146044314,
+          "candidate_to_reference": 0.9192604672912416
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "3aae064bbf36e659aa262979c98eb129599b9533b2a971f894f9df4e93e1de91",
+      "row_index": 18,
+      "schedule_index": 6,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 26930,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 25789,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 50415,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 422966,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 392819,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 646537,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.9576308949127367,
+          "candidate_to_reference": 0.5115342655955569
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.9287247674753999,
+          "candidate_to_reference": 0.6075738898160508
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "11b0631d77811eb799e5d04ce6adf8ced1a0ecc28ea153cd26abf7feaaa0f65e",
+      "row_index": 19,
+      "schedule_index": 7,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 25879,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 25949,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 27351,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 397398,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 447693,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 472600,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.0027048958615092,
+          "candidate_to_reference": 0.9487404482468649
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.126560777859979,
+          "candidate_to_reference": 0.9472979263647905
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "0b0a86415d43b42b2a02503ba042d872646c9fb08c2cce9f227064bbda89f3e6",
+      "row_index": 20,
+      "schedule_index": 8,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 29255,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 31730,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 28263,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 395664,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 398389,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 418658,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.084600922919159,
+          "candidate_to_reference": 1.122669214166932
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.0068871567794897,
+          "candidate_to_reference": 0.9515857812343249
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "59401e0801890cdbd24f5037083f132b41ecb7424c1e79c7880be76d75d2f96d",
+      "row_index": 21,
+      "schedule_index": 9,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 25338,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 26690,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 27372,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 485173,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 406816,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 426232,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.0533585918383455,
+          "candidate_to_reference": 0.9750840274733305
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.8384967836215124,
+          "candidate_to_reference": 0.9544473432309165
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "6e95dff8bfbcec7ffd2eb803ffb6228fb60fa9d8d700e1a13c7e71960a298f32",
+      "row_index": 22,
+      "schedule_index": 10,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 27141,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 32681,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 31910,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 419339,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 427134,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 395194,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.2041192292104197,
+          "candidate_to_reference": 1.0241617047947351
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.018588779006961,
+          "candidate_to_reference": 1.0808210650971422
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "4dc527e0579ab2f53e4bdc37d1117c88e9cd44239137a38ab7be35b06d7f3184",
+      "row_index": 23,
+      "schedule_index": 11,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 30307,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 21581,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 28644,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 406165,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 489901,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 505822,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.7120797175570001,
+          "candidate_to_reference": 0.7534213098729228
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.206162520158064,
+          "candidate_to_reference": 0.9685245007136898
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "036594e862d7490600332e74e77b2c8784c1e3d87c8b25ac05a79be3aa0a6271",
+      "row_index": 24,
+      "schedule_index": 0,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 37500,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 22923,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 32811,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 445538,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 412627,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 397328,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.61128,
+          "candidate_to_reference": 0.6986376520069489
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.9261320022085658,
+          "candidate_to_reference": 1.0385047114726371
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "bf643a3e46d68802a5682b2a74b0c3e1fbe35101ce2534c28d5aa13d2bff80aa",
+      "row_index": 25,
+      "schedule_index": 1,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 30397,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 22051,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 26239,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 402057,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 413218,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 491576,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.7254334309306839,
+          "candidate_to_reference": 0.8403902587751058
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.0277597455087213,
+          "candidate_to_reference": 0.8405984018747864
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "8d2bad9e56f7e3b71629c377d9b4bc99cab2a39fb7bb375a726d7d03fa7ef7ac",
+      "row_index": 26,
+      "schedule_index": 2,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 36499,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 46427,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 32301,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 423177,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 391938,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 389853,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.272007452258966,
+          "candidate_to_reference": 1.4373239218600042
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.9261798254631041,
+          "candidate_to_reference": 1.005348169694731
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "c7c2f4d37a5cd744b17a2095aaf08cd63cf5dbc1697d329ae2af640c5b662cfb",
+      "row_index": 27,
+      "schedule_index": 3,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 27081,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 22071,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 32291,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 500262,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 388982,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 408218,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.8149994461061261,
+          "candidate_to_reference": 0.6835031432907002
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.7775565603623701,
+          "candidate_to_reference": 0.9528781190442361
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "1ce18ab2a062316e42f2022289e2d7c76301090235d91b24954cc7489c71c9f9",
+      "row_index": 28,
+      "schedule_index": 4,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 29465,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 22282,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 38252,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 421654,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 386106,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 404732,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.7562192431698626,
+          "candidate_to_reference": 0.5825054899090244
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.9156939101727957,
+          "candidate_to_reference": 0.9539794234209303
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "dbba8b6bd4647ef959aee219b93c1466f18baaa80995e1113aa0545e83f7919a",
+      "row_index": 29,
+      "schedule_index": 5,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 50735,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 22131,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 31329,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 423005,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 494951,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 411675,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.43620774613186164,
+          "candidate_to_reference": 0.7064062051134732
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.1700830959444923,
+          "candidate_to_reference": 1.2022857836885894
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "fcc80e163830d7789ab062e2a171a05137c2055ee4268cb5154f7fd378e7f121",
+      "row_index": 30,
+      "schedule_index": 6,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 26650,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 25368,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 37491,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 389624,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 409310,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 408609,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 0.9518949343339588,
+          "candidate_to_reference": 0.6766423941746019
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.0505256349711516,
+          "candidate_to_reference": 1.0017155765046781
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "968423a12ca8a4e7bec12ae7e93b0798f037636a78ddcd67f5250dce4110f50b",
+      "row_index": 31,
+      "schedule_index": 7,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 25818,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 26219,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 27281,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 487427,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 433116,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 416104,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.0155317995197148,
+          "candidate_to_reference": 0.9610718082181738
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.8885761355033677,
+          "candidate_to_reference": 1.040884009766789
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "3dbd8d4630ab1cc69894912765af15348ff8f94888a6c8c79ae4d44516d6b34a",
+      "row_index": 32,
+      "schedule_index": 8,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 28834,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 31700,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 28654,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 413809,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 390084,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 388161,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.099396545744607,
+          "candidate_to_reference": 1.1063027849514901
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.942666785884309,
+          "candidate_to_reference": 1.0049541298584865
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "4b0e3142d124d79b1cecefc128180faeb2a83702b8327eca8f4d222647b8215d",
+      "row_index": 33,
+      "schedule_index": 9,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 25258,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 27001,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 27722,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 415011,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 509429,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 396055,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.069007839100483,
+          "candidate_to_reference": 0.9739917754851742
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 1.2275072227001211,
+          "candidate_to_reference": 1.286258221711631
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "3c8205a003c41448c1a76362840b4c67173cbf5b4230b1b70c9a630f7d80e54d",
+      "row_index": 34,
+      "schedule_index": 10,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    },
+    {
+      "all_six_mappings_match_expected": true,
+      "case_id": null,
+      "cell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "cross_surface_arm_mapping_match": true,
+      "execution_schedule": [
+        {
+          "arm": "candidate",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "reference",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "baseline",
+          "surface": "python_passmanager"
+        },
+        {
+          "arm": "candidate",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "reference",
+          "surface": "accelerator_entrypoint"
+        },
+        {
+          "arm": "baseline",
+          "surface": "accelerator_entrypoint"
+        }
+      ],
+      "expected_mapping_vector": [
+        5,
+        3,
+        4,
+        6,
+        1,
+        2,
+        0
+      ],
+      "kind": "standard",
+      "measurements": {
+        "accelerator_entrypoint": {
+          "baseline": {
+            "elapsed_nanoseconds": 26730,
+            "execution_position": 5,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 31349,
+            "execution_position": 3,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 31058,
+            "execution_position": 4,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        },
+        "python_passmanager": {
+          "baseline": {
+            "elapsed_nanoseconds": 421754,
+            "execution_position": 2,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_biguint_exact_retained_binary64"
+          },
+          "candidate": {
+            "elapsed_nanoseconds": 396757,
+            "execution_position": 0,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_windowed_4_limb_exact_with_biguint_fallback"
+          },
+          "reference": {
+            "elapsed_nanoseconds": 390746,
+            "execution_position": 1,
+            "mapping_vector": [
+              5,
+              3,
+              4,
+              6,
+              1,
+              2,
+              0
+            ],
+            "matches_expected": true,
+            "policy": "rust_prefix_initialized_34_limb_exact"
+          }
+        }
+      },
+      "paired_ratios": {
+        "accelerator_entrypoint": {
+          "candidate_to_baseline": 1.1728020950243172,
+          "candidate_to_reference": 1.0093695666172966
+        },
+        "python_passmanager": {
+          "candidate_to_baseline": 0.940730852582311,
+          "candidate_to_reference": 1.0153833948396145
+        }
+      },
+      "platform_id": "linux_x86_64",
+      "real_backend_row_count": 0,
+      "row_hash": "b29486d80a2a66c327f39010948d91339ddbd34f927d77953379842d88628119",
+      "row_index": 35,
+      "schedule_index": 11,
+      "simulation_execution_count": 0,
+      "subcell_id": "standard__r172_t_tree_true_tie__descending_sorted_order",
+      "timing_call_count": 6,
+      "total_simulated_shots": 0
+    }
+  ],
+  "schedule_counts": {
+    "0": 3,
+    "1": 3,
+    "10": 3,
+    "11": 3,
+    "2": 3,
+    "3": 3,
+    "4": 3,
+    "5": 3,
+    "6": 3,
+    "7": 3,
+    "8": 3,
+    "9": 3
+  },
+  "schedule_rule": "all_six_arm_orders_crossed_with_both_surface_orders_repeated_three_times",
+  "simulation_execution_count": 0,
+  "source_worker_path": "results/B4_B8_R172_second_near_tie_candidate_replay/descending_sorted_order.json",
+  "started_at_unix": 1784597609,
+  "status": "isolated_full_workflow_worker_complete",
+  "target_descriptor_sha256": "702c8fd9dcf67a069e7af63e31a57c74c17aaa5e3c5b6d8c2e28ec0c049c0de7",
+  "timing_call_count": 216,
+  "title": "R186 isolated full VF2 workflow cell",
+  "total_simulated_shots": 0,
+  "version": 0,
+  "warmup_call_count": 72,
+  "warmup_matches_expected": {
+    "accelerator_entrypoint": {
+      "baseline": 12,
+      "candidate": 12,
+      "reference": 12
+    },
+    "python_passmanager": {
+      "baseline": 12,
+      "candidate": 12,
+      "reference": 12
+    }
+  }
+}

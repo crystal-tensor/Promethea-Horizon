@@ -5504,6 +5504,373 @@ def audit_r185_macos_arm64_replication(root: Path, errors: list[str]) -> dict:
     return status
 
 
+def audit_r186_full_vf2_workflow(root: Path, errors: list[str]) -> dict:
+    """Validate R186 evidence while preserving its rejected transfer hypothesis."""
+    paths = {
+        "protocol": root / "results/B4_B8_R186_full_vf2_workflow_protocol_v0.json",
+        "design": root / "benchmarks/B4_B8_R186_full_vf2_workflow_contract_v0.json",
+        "execution": root
+        / "benchmarks/B4_B8_R186_full_vf2_workflow_execution_contract_v0.json",
+        "linux": root / "results/B4_B8_R186_full_vf2_workflow_linux_x86_64_v0.json",
+        "macos": root / "results/B4_B8_R186_full_vf2_workflow_macos_arm64_v0.json",
+        "oracle": root / "results/B4_B8_R186_independent_oracle_v0.json",
+        "bundle": root / "results/B4_B8_R186_full_vf2_workflow_bundle_v0.json",
+        "linux_report": root
+        / "research/B4_B8_R186_full_vf2_workflow_linux_x86_64.md",
+        "macos_report": root
+        / "research/B4_B8_R186_full_vf2_workflow_macos_arm64.md",
+        "oracle_report": root / "research/B4_B8_R186_independent_oracle.md",
+        "linux_workers": root
+        / "results/B4_B8_R186_full_vf2_workflow_linux_x86_64_replay",
+        "macos_workers": root
+        / "results/B4_B8_R186_full_vf2_workflow_macos_arm64_replay",
+    }
+    status = {f"{key}_exists": path.exists() for key, path in paths.items()}
+    if not all(status.values()):
+        errors.append("R186 full-workflow evidence chain is incomplete")
+        return status
+
+    def canonical(value: object) -> str:
+        return hashlib.sha256(
+            json.dumps(value, sort_keys=True, separators=(",", ":")).encode()
+        ).hexdigest()
+
+    def payload_ok(payload: dict, key: str = "payload_hash") -> bool:
+        body = dict(payload)
+        return body.pop(key, None) == canonical(body)
+
+    def file_hash(path: Path) -> str:
+        return hashlib.sha256(path.read_bytes()).hexdigest()
+
+    protocol = json.loads(read(paths["protocol"]))
+    design = json.loads(read(paths["design"]))
+    execution = json.loads(read(paths["execution"]))
+    results = {
+        "linux_x86_64": json.loads(read(paths["linux"])),
+        "macos_arm64": json.loads(read(paths["macos"])),
+    }
+    oracle = json.loads(read(paths["oracle"]))
+    bundle = json.loads(read(paths["bundle"]))
+
+    workload = protocol.get("frozen_workload", {})
+    hypotheses = [
+        row.get("hypothesis_id") for row in protocol.get("frozen_hypotheses", [])
+    ]
+    if (
+        not payload_ok(protocol)
+        or protocol.get("method") != "b4_b8_r186_full_vf2_workflow_protocol_v0"
+        or protocol.get("status") != "preregistered_design_unopened"
+        or workload.get("workload_cell_count") != 13
+        or workload.get("subcell_count") != 37
+        or workload.get("measured_row_count") != 468
+        or workload.get("measured_timing_call_count_per_platform") != 2808
+        or workload.get("warmup_call_count_per_platform") != 936
+        or workload.get("total_qiskit_call_count_both_platforms") != 7488
+        or hypotheses
+        != [
+            "H1-full-boundary-integrity",
+            "H2-direct-window-competitiveness",
+            "H3-passmanager-window-competitiveness",
+            "H4-relative-saving-retention",
+            "H5-cross-architecture-workflow-transfer",
+        ]
+    ):
+        errors.append("R186 protocol identity, matrix, or frozen hypotheses mismatch")
+
+    if (
+        not payload_ok(design)
+        or design.get("contract_id")
+        != "B4-B8-R186-full-vf2-workflow-design-contract-v0"
+        or design.get("status") != "design_frozen_execution_tooling_unbound"
+        or design.get("protocol_payload_hash") != protocol.get("payload_hash")
+        or design.get("execution_started") is not False
+        or design.get("execution_tooling_bound") is not False
+        or len(design.get("required_before_execution", [])) != 5
+    ):
+        errors.append("R186 design contract or unopened boundary mismatch")
+    for binding in design.get("source_bindings", {}).values():
+        path = root / binding.get("path", "")
+        if not path.is_file() or file_hash(path) != binding.get("sha256"):
+            errors.append(f"R186 design source binding mismatch: {binding.get('path')}")
+    design_tool = design.get("design_tool_binding", {})
+    design_tool_path = root / design_tool.get("path", "")
+    if (
+        not design_tool_path.is_file()
+        or file_hash(design_tool_path) != design_tool.get("sha256")
+    ):
+        errors.append("R186 design-tool binding mismatch")
+
+    public = execution.get("public_preregistration", {})
+    if (
+        not payload_ok(execution)
+        or execution.get("contract_id")
+        != "B4-B8-R186-full-vf2-workflow-execution-contract-v0"
+        or execution.get("status") != "execution_bound_unopened"
+        or execution.get("protocol_payload_hash") != protocol.get("payload_hash")
+        or execution.get("design_contract_payload_hash") != design.get("payload_hash")
+        or execution.get("execution_started") is not False
+        or public.get("discussion")
+        != "https://github.com/crystal-tensor/Prometheus-plan/discussions/282"
+        or public.get("public_design_commit")
+        != "1f0a9ee6aa50263329e6f8eb985da13c660e6d1a"
+        or public.get("created_at") != "2026-07-20T22:09:13Z"
+        or not all(execution.get("runtime_guards", {}).values())
+    ):
+        errors.append("R186 execution contract or public preregistration mismatch")
+    for section in ("source_bindings", "tool_bindings"):
+        for binding in execution.get(section, {}).values():
+            # The landing page is a mutable public status surface. Its frozen hash is
+            # retained in the contract and bundle, while later research updates are
+            # expected to change the current file.
+            if binding.get("path") == "research/axiom_horizon_landing.html":
+                continue
+            path = root / binding.get("path", "")
+            if not path.is_file() or file_hash(path) != binding.get("sha256"):
+                errors.append(
+                    f"R186 execution {section} mismatch: {binding.get('path')}"
+                )
+
+    false_claims = (
+        "upstream_patch_accepted",
+        "production_qiskit_remedy_claimed",
+        "full_transpilation_pipeline_benchmarked",
+        "hardware_result_claimed",
+        "quantum_advantage_claimed",
+        "bqp_separation_claimed",
+        "solved_frontier_claimed",
+    )
+    expected_platform_hypotheses = {
+        "linux_x86_64": {
+            "H1-full-boundary-integrity": True,
+            "H2-direct-window-competitiveness": True,
+            "H3-passmanager-window-competitiveness": True,
+            "H4-relative-saving-retention": False,
+        },
+        "macos_arm64": {
+            "H1-full-boundary-integrity": True,
+            "H2-direct-window-competitiveness": True,
+            "H3-passmanager-window-competitiveness": True,
+            "H4-relative-saving-retention": True,
+        },
+    }
+    expected_requirements = {
+        "linux_x86_64": (9, 1),
+        "macos_arm64": (10, 0),
+    }
+    all_worker_paths: list[str] = []
+    for platform_id, result in results.items():
+        direct = result.get("aggregate_surface_ratios", {}).get(
+            "accelerator_entrypoint", {}
+        )
+        workflow = result.get("aggregate_surface_ratios", {}).get(
+            "python_passmanager", {}
+        )
+        passed, failed = expected_requirements[platform_id]
+        direct_ratio = direct.get("candidate_to_baseline_paired_median")
+        workflow_ratio = workflow.get("candidate_to_baseline_paired_median")
+        retained = result.get("relative_saving_retention_fraction")
+        recomputed_retained = (
+            (1.0 - workflow_ratio) / (1.0 - direct_ratio)
+            if direct_ratio is not None and direct_ratio < 1.0
+            else 0.0
+        )
+        if (
+            not payload_ok(result)
+            or result.get("method")
+            != "b4_b8_r186_full_vf2_workflow_replay_v0"
+            or result.get("status")
+            != "platform_complete_cross_platform_oracle_pending"
+            or result.get("platform_id") != platform_id
+            or result.get("protocol_payload_hash") != protocol.get("payload_hash")
+            or result.get("design_contract_payload_hash") != design.get("payload_hash")
+            or result.get("execution_contract_payload_hash")
+            != execution.get("payload_hash")
+            or result.get("worker_count") != 13
+            or result.get("measured_row_count") != 468
+            or result.get("measured_timing_call_count") != 2808
+            or result.get("warmup_call_count") != 936
+            or result.get("mapping_match_count") != 2808
+            or result.get("mapping_check_count") != 2808
+            or result.get("requirements_passed") != passed
+            or result.get("requirements_failed") != failed
+            or result.get("hypothesis_support")
+            != expected_platform_hypotheses[platform_id]
+            or direct_ratio is None
+            or direct_ratio > 1.0
+            or workflow_ratio is None
+            or workflow_ratio > 1.0
+            or retained is None
+            or not math.isclose(retained, recomputed_retained, rel_tol=0, abs_tol=1e-15)
+            or result.get("simulation_execution_count") != 0
+            or result.get("total_simulated_shots") != 0
+            or result.get("real_backend_row_count") != 0
+            or any(result.get("claim_boundary", {}).get(field) is not False for field in false_claims)
+            or result.get("claim_boundary", {}).get("new_credit_delta") != 0
+        ):
+            errors.append(f"R186 {platform_id} result or frozen classification mismatch")
+
+        worker_paths = result.get("worker_manifest_paths", [])
+        all_worker_paths.extend(worker_paths)
+        if len(worker_paths) != 13 or len(set(worker_paths)) != 13:
+            errors.append(f"R186 {platform_id} worker-path count mismatch")
+            continue
+        row_count = mapping_count = timing_count = warmup_count = 0
+        for relative in worker_paths:
+            path = root / relative
+            if not path.is_file():
+                errors.append(f"R186 worker missing: {relative}")
+                continue
+            worker = json.loads(read(path))
+            if not payload_ok(worker, "manifest_hash"):
+                errors.append(f"R186 worker manifest hash mismatch: {relative}")
+                continue
+            rows = worker.get("replay_rows", [])
+            row_count += len(rows)
+            timing_count += worker.get("timing_call_count", 0)
+            warmup_count += worker.get("warmup_call_count", 0)
+            if (
+                worker.get("platform_id") != platform_id
+                or len(rows) != 36
+                or set(worker.get("schedule_counts", {}).values()) != {3}
+                or len(worker.get("schedule_counts", {})) != 12
+            ):
+                errors.append(f"R186 worker matrix mismatch: {relative}")
+            for row in rows:
+                if not payload_ok(row, "row_hash"):
+                    errors.append(f"R186 row hash mismatch: {relative}")
+                    break
+                measurements = row.get("measurements", {})
+                row_matches = [
+                    arm.get("matches_expected") is True
+                    for surface in measurements.values()
+                    for arm in surface.values()
+                ]
+                mapping_count += sum(row_matches)
+                if len(row_matches) != 6 or not all(row_matches):
+                    errors.append(f"R186 mapping-integrity mismatch: {relative}")
+                    break
+        if (row_count, mapping_count, timing_count, warmup_count) != (
+            468,
+            2808,
+            2808,
+            936,
+        ):
+            errors.append(f"R186 {platform_id} aggregate worker counts mismatch")
+
+    expected_oracle_hypotheses = {
+        "H1-full-boundary-integrity": True,
+        "H2-direct-window-competitiveness": True,
+        "H3-passmanager-window-competitiveness": True,
+        "H4-relative-saving-retention": False,
+        "H5-cross-architecture-workflow-transfer": False,
+    }
+    expected_failed = {
+        "Q10_h1_through_h4_pass_both_platforms",
+        "Q11_h5_cross_architecture_transfer_passes",
+    }
+    oracle_requirements = oracle.get("requirements", {})
+    if (
+        not payload_ok(oracle)
+        or oracle.get("method") != "b4_b8_r186_independent_oracle_v0"
+        or oracle.get("status") != "independent_oracle_complete"
+        or oracle.get("protocol_payload_hash") != protocol.get("payload_hash")
+        or oracle.get("design_contract_payload_hash") != design.get("payload_hash")
+        or oracle.get("execution_contract_payload_hash") != execution.get("payload_hash")
+        or oracle.get("platform_result_payload_hashes")
+        != {key: value.get("payload_hash") for key, value in results.items()}
+        or oracle.get("worker_manifest_count") != 26
+        or oracle.get("worker_manifest_hash_count") != 26
+        or oracle.get("row_count") != 936
+        or oracle.get("row_hash_count") != 936
+        or oracle.get("mapping_match_count") != 5616
+        or oracle.get("mapping_check_count") != 5616
+        or oracle.get("requirements_passed") != 11
+        or oracle.get("requirements_failed") != 2
+        or {key for key, value in oracle_requirements.items() if not value}
+        != expected_failed
+        or oracle.get("hypothesis_support") != expected_oracle_hypotheses
+        or oracle.get("claim_boundary", {}).get("imports_qiskit") is not False
+        or oracle.get("claim_boundary", {}).get("imports_executor") is not False
+        or any(oracle.get("claim_boundary", {}).get(field) is not False for field in false_claims)
+        or oracle.get("claim_boundary", {}).get("new_credit_delta") != 0
+    ):
+        errors.append("R186 independent oracle or rejected-hypothesis boundary mismatch")
+
+    landing_binding = next(
+        (
+            binding
+            for binding in execution.get("tool_bindings", {}).values()
+            if binding.get("path") == "research/axiom_horizon_landing.html"
+        ),
+        {},
+    )
+    bundle_landing = next(
+        (
+            artifact
+            for artifact in bundle.get("artifacts", [])
+            if artifact.get("path") == "research/axiom_horizon_landing.html"
+        ),
+        {},
+    )
+    if (
+        not payload_ok(bundle)
+        or bundle.get("method") != "b4_b8_r186_full_vf2_workflow_bundle_v0"
+        or bundle.get("status") != "dual_platform_bundle_complete"
+        or bundle.get("artifact_count") != 47
+        or bundle.get("worker_artifact_count") != 26
+        or bundle.get("oracle_payload_hash") != oracle.get("payload_hash")
+        or bundle.get("requirements_failed") != 2
+        or bundle.get("simulation_execution_count") != 0
+        or bundle.get("total_simulated_shots") != 0
+        or bundle.get("real_backend_row_count") != 0
+        or bundle_landing.get("sha256") != landing_binding.get("sha256")
+        or any(bundle.get("claim_boundary", {}).get(field) is not False for field in false_claims)
+        or bundle.get("claim_boundary", {}).get("new_credit_delta") != 0
+    ):
+        errors.append("R186 evidence bundle or historical landing binding mismatch")
+    for artifact in bundle.get("artifacts", []):
+        if artifact.get("path") == "research/axiom_horizon_landing.html":
+            continue
+        path = root / artifact.get("path", "")
+        if not path.is_file() or file_hash(path) != artifact.get("sha256"):
+            errors.append(f"R186 bundle artifact mismatch: {artifact.get('path')}")
+
+    report_markers = {
+        "linux_report": ("`9/10`", "`0.033531916`", "zero quantum shots"),
+        "macos_report": ("`10/10`", "`0.135181119`", "zero quantum shots"),
+        "oracle_report": ("`11/13`", "`5616/5616`", "H5-cross-architecture-workflow-transfer"),
+    }
+    for report_key, markers in report_markers.items():
+        report = read(paths[report_key])
+        if not all(marker in report for marker in markers):
+            errors.append(f"R186 report boundary missing: {report_key}")
+
+    status.update(
+        {
+            "protocol_status": protocol.get("status"),
+            "protocol_payload_hash": protocol.get("payload_hash"),
+            "execution_contract_payload_hash": execution.get("payload_hash"),
+            "linux_result_payload_hash": results["linux_x86_64"].get("payload_hash"),
+            "macos_result_payload_hash": results["macos_arm64"].get("payload_hash"),
+            "oracle_payload_hash": oracle.get("payload_hash"),
+            "bundle_payload_hash": bundle.get("payload_hash"),
+            "evidence_integrity_complete": True,
+            "mapping_match_count": oracle.get("mapping_match_count"),
+            "mapping_check_count": oracle.get("mapping_check_count"),
+            "linux_relative_saving_retention_fraction": results["linux_x86_64"].get(
+                "relative_saving_retention_fraction"
+            ),
+            "macos_relative_saving_retention_fraction": results["macos_arm64"].get(
+                "relative_saving_retention_fraction"
+            ),
+            "cross_architecture_workflow_transfer_supported": False,
+            "scientific_verdict": "rejected_under_frozen_H4_H5_rules",
+            "new_credit_delta": 0,
+        }
+    )
+    return status
+
+
 def audit(root: Path) -> dict:
     research = root / "research"
     benchmarks = root / "benchmarks"
@@ -47548,6 +47915,7 @@ def audit(root: Path) -> dict:
     r185_macos_arm64_replication_status = audit_r185_macos_arm64_replication(
         root, errors
     )
+    r186_full_vf2_workflow_status = audit_r186_full_vf2_workflow(root, errors)
 
     for path in [roadmap_path, status_html_path]:
         if not path.exists():
@@ -47921,6 +48289,7 @@ def audit(root: Path) -> dict:
             "r183_prefix_initialization_ablation": r183_prefix_initialization_status,
             "r184_window_exact_score": r184_window_exact_score_status,
             "r185_macos_arm64_replication": r185_macos_arm64_replication_status,
+            "r186_full_vf2_workflow": r186_full_vf2_workflow_status,
         },
         "b5": {
             "manifest": str(b5_manifest_path),
@@ -48094,6 +48463,7 @@ def audit(root: Path) -> dict:
             "r183_prefix_initialization_ablation": r183_prefix_initialization_status,
             "r184_window_exact_score": r184_window_exact_score_status,
             "r185_macos_arm64_replication": r185_macos_arm64_replication_status,
+            "r186_full_vf2_workflow": r186_full_vf2_workflow_status,
         },
         "b9": {
             "manifest": str(b9_manifest_path),
@@ -48144,6 +48514,7 @@ def audit(root: Path) -> dict:
             "r183_prefix_initialization_ablation": r183_prefix_initialization_status,
             "r184_window_exact_score": r184_window_exact_score_status,
             "r185_macos_arm64_replication": r185_macos_arm64_replication_status,
+            "r186_full_vf2_workflow": r186_full_vf2_workflow_status,
             "t1_d5_observable_denominator_table": b10_t1_d5_table_status,
             "t1_d5_b3_molecular_observable_table": b10_t1_d5_b3_table_status,
             "t1_d5_b3_reaction_observable_table": b10_t1_d5_b3_reaction_table_status,

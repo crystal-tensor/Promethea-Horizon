@@ -79,27 +79,32 @@ Current evidence includes:
 - an audit report in `research/portfolio_status_report.md`;
 - a current status page in `research/current_stage_brief.html`.
 
-The current B4/B8/B10 step is the preregistered R186 full VF2 workflow
-translation test. R184 and R185 measured the complete patched Rust search and
-score entry point, but not Qiskit's Python `VF2Layout.run`, `Layout`
-construction, property-set writes, or `PassManager` scheduling. R186 freezes
-both surfaces across the same 13-cell exact-mapping workload on Linux x86-64
-and macOS arm64. Each platform will execute 468 six-call rows, 2,808 measured
-calls, and 936 warmup calls. All six outputs must preserve the frozen mapping;
-the window arm must remain no slower than BigUint through both surfaces; and at
-least 10% of the direct-entrypoint fractional saving must survive the Python
-workflow boundary. Protocol `7e462929...`; design contract `3e4c2425...`.
-Execution remains unopened. The harness is an external source-faithful
-monkeypatch around Qiskit 2.4.1, not an upstream integration, full transpilation
-benchmark, hardware result, quantum advantage, BQP separation, solved frontier,
-or new credit. Public Discussion
-[#282](https://github.com/crystal-tensor/Prometheus-plan/discussions/282) and
-execution contract `bb932759...` now bind the replay, standard-library oracle,
-evidence bundler, Linux workflow, both native extension binaries, and the
-content-only landing-page update. Platform result files and worker evidence
-remain absent until execution begins from the same clean public commit.
+The current B4/B8/B10 result is the completed R186 full VF2 workflow
+translation test. It executes the unchanged exact BigUint, prefix, and window
+arms through both the patched Rust entry point and Qiskit's Python
+`VF2Layout` plus `PassManager` boundary on Linux x86-64 and macOS arm64. The
+two platforms record 936 six-call rows, 5,616 measured calls, 1,872 warmups,
+and 7,488 total Qiskit calls. All `5,616/5,616` measured mappings preserve the
+frozen expected outputs.
 
-The latest completed B4/B8/B10 step is the independently audited R185 macOS
+The performance conclusion is deliberately narrower. On Linux, window/BigUint
+is `0.809280x` at the direct entry point but `0.993605x` through PassManager,
+retaining only `3.353%` of the direct fractional saving and failing the frozen
+10% H4 gate. On macOS arm64, the corresponding ratios are `0.508427x` and
+`0.933549x`, retaining `13.518%` and passing H4. The standard-library oracle
+validates all 26 worker manifests and 936 row hashes, then returns `11/13`:
+evidence integrity passes, while H4 across both platforms and H5 portable
+workflow transfer are rejected. Protocol `7e462929...`; execution contract
+`bb932759...`; Linux result `ee60d245...`; macOS result `2c9b48c4...`; oracle
+`3d938801...`; bundle `aba58fa1...`. Public Discussion
+[#282](https://github.com/crystal-tensor/Prometheus-plan/discussions/282) and
+[Actions run 29793396386](https://github.com/crystal-tensor/Prometheus-plan/actions/runs/29793396386)
+preserve the pre-execution challenge and Linux artifact. This is an external
+source-faithful Qiskit 2.4.1 monkeypatch harness, not an upstream integration,
+full transpilation benchmark, hardware result, quantum advantage, BQP
+separation, solved frontier, or new credit.
+
+The preceding B4/B8/B10 step is the independently audited R185 macOS
 arm64 replication. A clean public-main Apple Silicon runner rebuilt the same
 Qiskit 2.4.1 source commit with the unchanged R184 patch, then executed the
 same 13 cells, 468 six-order-balanced BigUint/prefix/window triplets, 1,404
